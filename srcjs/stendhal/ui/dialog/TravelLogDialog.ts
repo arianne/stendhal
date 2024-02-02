@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2007-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2007-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -40,7 +40,7 @@ export class TravelLogDialog extends DialogContentComponent {
 	};
 
 	public override refresh() {
-		this.componentElement.style.setProperty("font-family", stendhal.config.get("ui.font.tlog"));
+		this.componentElement.style.setProperty("font-family", stendhal.config.get("client.font.travel_log"));
 	}
 
 	public override getConfigId(): string {

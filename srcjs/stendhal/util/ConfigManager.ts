@@ -25,6 +25,9 @@ export class ConfigManager {
 		"client.chat.float": "false",
 		"client.chat.visible": "false",
 		"client.emojis.native": "false",
+		"client.font.body": "Carlito",
+		"client.font.chat": "Carlito",
+		"client.font.travel_log": "Black Chancery",
 		"client.joystick": "false",
 		"client.joystick.center.x": "224",
 		"client.joystick.center.y": "384",
@@ -40,9 +43,6 @@ export class ConfigManager {
 		"ui.sound.gui.volume": "100",
 		"ui.sound.music.volume": "100",
 		"ui.sound.sfx.volume": "100",
-		"ui.font.body": "Carlito",
-		"ui.font.chat": "Carlito",
-		"ui.font.tlog": "Black Chancery",
 		"ui.stats.charname": "true",
 		"ui.stats.hpbar": "true",
 		"ui.window.chest": "160,370",
@@ -84,6 +84,9 @@ export class ConfigManager {
 	 * Old keys that should be replaced.
 	 */
 	private readonly deprecated: {[old: string]: string} = {
+		"ui.font.body": "client.font.body",
+		"ui.font.chat": "client.font.chat",
+		"ui.font.tlog": "client.font.travel_log",
 		"ui.joystick": "client.joystick.style",
 		"ui.joystick.center.x": "client.joystick.center.x",
 		"ui.joystick.center.y": "client.joystick.center.y"

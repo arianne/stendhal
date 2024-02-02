@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                 Copyright © 2003-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,8 +21,8 @@ export class AchievementBanner extends TextBubble {
 	private banner: BackgroundPainter;
 	private icon: HTMLImageElement;
 
-	private font = "normal 14px " + stendhal.config.get("ui.font.tlog");
-	private fontT = "normal 20px " + stendhal.config.get("ui.font.tlog");
+	private font = "normal 14px " + stendhal.config.get("client.font.travel_log");
+	private fontT = "normal 20px " + stendhal.config.get("client.font.travel_log");
 
 	private innerWidth = 0;
 	private innerHeight = 0;

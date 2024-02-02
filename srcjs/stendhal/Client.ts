@@ -149,7 +149,7 @@ export class Client {
 
 		// update user interface after config is loaded
 		stendhal.config.refreshTheme();
-		document.getElementById("body")!.style.setProperty("font-family", stendhal.config.get("ui.font.body"));
+		document.getElementById("body")!.style.setProperty("font-family", stendhal.config.get("client.font.body"));
 
 		// initialize events
 		singletons.getEventRegistry().init();

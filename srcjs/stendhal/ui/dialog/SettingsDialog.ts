@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2003-2024 - Arianne                     *
+ *                 Copyright © 2003-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -181,17 +181,17 @@ export class SettingsDialog extends DialogContentComponent {
 		const fonts = Object.keys(stendhal.config.fonts);
 
 		const sel_fontbody = this.createFontSelect("selfontbody",
-				fonts.indexOf(stendhal.config.get("ui.font.body")));
+				fonts.indexOf(stendhal.config.get("client.font.body")));
 		sel_fontbody.addEventListener("change", (e) => {
 			const new_font = fonts[sel_fontbody.selectedIndex];
-			stendhal.config.set("ui.font.body", new_font);
+			stendhal.config.set("client.font.body", new_font);
 			document.body.style.setProperty("font-family", new_font);
 		});
 
 		const sel_fontchat = this.createFontSelect("selfontchat",
-				fonts.indexOf(stendhal.config.get("ui.font.chat")));
+				fonts.indexOf(stendhal.config.get("client.font.chat")));
 		sel_fontchat.addEventListener("change", (e) => {
-			stendhal.config.set("ui.font.chat", fonts[sel_fontchat.selectedIndex]);
+			stendhal.config.set("client.font.chat", fonts[sel_fontchat.selectedIndex]);
 			// make sure component is open before trying to refresh
 			if (clog) {
 				clog.refresh();
@@ -199,9 +199,9 @@ export class SettingsDialog extends DialogContentComponent {
 		});
 
 		const sel_fonttlog = this.createFontSelect("selfonttlog",
-				fonts.indexOf(stendhal.config.get("ui.font.tlog")))
+				fonts.indexOf(stendhal.config.get("client.font.travel_log")))
 		sel_fonttlog.addEventListener("change", (e) => {
-			stendhal.config.set("ui.font.tlog", fonts[sel_fonttlog.selectedIndex]);
+			stendhal.config.set("client.font.travel_log", fonts[sel_fonttlog.selectedIndex]);
 			const tlog = (ui.get(UIComponentEnum.TravelLogDialog) as TravelLogDialog);
 			// make sure component is open before trying to refresh
 			if (tlog) {
