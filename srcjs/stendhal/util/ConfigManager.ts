@@ -154,16 +154,18 @@ export class ConfigManager {
 		// convert old keys
 		for (const keyOld in this.deprecated) {
 			const keyNew = this.deprecated[keyOld];
-			let valueOld = this.storage.getItem(keyOld);
-			if (typeof(this.storage.getItem(keyNew)) === "undefined" && typeof(valueOld) !== "undefined") {
-				// special cases
-				if (keyOld === "ui.joystick") {
-					if (valueOld !== "none" && typeof(this.storage.getItem("client.joystick")) === "undefined") {
-						this.storage.setItem("client.joystick", "true");
+			if (keyNew != null) {
+				let valueOld = this.storage.getItem(keyOld);
+				if (typeof(this.storage.getItem(keyNew)) === "undefined" && typeof(valueOld) !== "undefined") {
+					// special cases
+					if (keyOld === "ui.joystick") {
+						if (valueOld !== "none" && typeof(this.storage.getItem("client.joystick")) === "undefined") {
+							this.storage.setItem("client.joystick", "true");
+						}
+						valueOld = valueOld === "dpad" ? "dpad" : "joystick";
 					}
-					valueOld = valueOld === "dpad" ? "dpad" : "joystick";
+					this.storage.setItem(keyNew, valueOld!);
 				}
-				this.storage.setItem(keyNew, valueOld!);
 			}
 			// clean up old key
 			this.storage.removeItem(keyOld);
