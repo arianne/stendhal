@@ -31,6 +31,8 @@ export class ConfigManager {
 		"client.joystick.style": "joystick",
 		"client.menu.style": "traditional",
 		"client.pathfinding": "true",
+		// represents most recently used client version
+		"client.version": document.documentElement.getAttribute("data-build-version") || "",
 		"ui.sound": "false",
 		"ui.sound.master.volume": "100",
 		"ui.sound.ambient.volume": "100",
