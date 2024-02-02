@@ -37,14 +37,12 @@ android {
 	signingConfigs {
 		release {
 			if (keystorePropertiesFile.exists()) {
-				println "Using release signing key"
 				storeFile file(keystoreProperties["storeFile"])
 				storePassword keystoreProperties["storePassword"]
 				keyPassword keystoreProperties["keyPassword"]
 				keyAlias keystoreProperties["keyAlias"]
 			} else {
 				// default to debug key
-				println "Using debug signing key"
 				storeFile signingConfigs.debug.storeFile
 				storePassword signingConfigs.debug.storePassword
 				keyPassword signingConfigs.debug.keyPassword
@@ -82,7 +80,6 @@ android {
 			} else {
 				outputFileName = new File("${buildRoot}", "${outputFileName}")
 			}
-			println "Exporting apk to '${outputFileName}'"
 		}
 	}
 
@@ -96,6 +93,12 @@ android {
 	lintOptions {
 		abortOnError false
 	}
+
+	// print some build info for debugging
+	println "Package:         " + namespace
+	println "Application ID:  " + defaultConfig.applicationId
+	println "Output basename: " + archivesBaseName
+	println "Signing key:     " + signingConfigs.release.storeFile
 }
 
 dependencies {
