@@ -46,7 +46,7 @@ export class ChatLogComponent extends Component {
 
 
 	public override refresh() {
-		this.componentElement.style.setProperty("font-family", stendhal.config.get("client.font.chat"));
+		this.componentElement.style.setProperty("font-family", stendhal.config.get("font.chat"));
 	}
 
 

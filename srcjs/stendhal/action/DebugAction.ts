@@ -119,7 +119,7 @@ export class DebugAction extends SlashAction {
 			Chat.log("client", usage);
 			return;
 		}
-		if (!stendhal.config.getBoolean("gamescreen.weather")) {
+		if (!stendhal.config.getBoolean("effect.weather")) {
 			Chat.logH("warning", "Weather is disabled.");
 		}
 

@@ -39,7 +39,7 @@ export class Corpse extends PopupInventory {
 		super.set(key, value);
 
 		this.sprite = this.sprite || {};
-		const bloodEnabled = stendhal.config.getBoolean("gamescreen.blood");
+		const bloodEnabled = stendhal.config.getBoolean("effect.blood");
 
 		if (bloodEnabled && (key === "image")) {
 			this.sprite.filename = stendhal.paths.sprites + "/corpse/" + value + ".png";
@@ -54,7 +54,7 @@ export class Corpse extends PopupInventory {
 		}
 		super.draw(ctx);
 
-		if (stendhal.config.getBoolean("client.activity-indicator") && !this.isEmpty()) {
+		if (stendhal.config.getBoolean("activity-indicator") && !this.isEmpty()) {
 			const tileW = stendhal.ui.gamewindow.targetTileWidth;
 			const tileH = stendhal.ui.gamewindow.targetTileHeight;
 			if (this.sprite.width == undefined || this.sprite.height == undefined) {
@@ -120,7 +120,7 @@ export class Corpse extends PopupInventory {
 
 			const invComponent = new ItemInventoryComponent(this,
 					"content", content_row, content_col,
-					stendhal.config.getBoolean("action.inventory.quickpickup"), undefined);
+					stendhal.config.getBoolean("inventory.quick-pickup"), undefined);
 			// TODO: remove, deprecated
 			invComponent.setConfigId("corpse");
 

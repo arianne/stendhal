@@ -21,8 +21,8 @@ export class AchievementBanner extends TextBubble {
 	private banner: BackgroundPainter;
 	private icon: HTMLImageElement;
 
-	private font = "normal 14px " + stendhal.config.get("client.font.travel-log");
-	private fontT = "normal 20px " + stendhal.config.get("client.font.travel-log");
+	private font = "normal 14px " + stendhal.config.get("font.travel-log");
+	private fontT = "normal 20px " + stendhal.config.get("font.travel-log");
 
 	private innerWidth = 0;
 	private innerHeight = 0;

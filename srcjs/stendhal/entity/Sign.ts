@@ -41,7 +41,7 @@ export class Sign extends Entity {
 			var localX = this["x"] * 32;
 			var localY = this["y"] * 32;
 			ctx.drawImage(image, localX, localY);
-			if (this.indicator && stendhal.config.getBoolean("client.activity-indicator")) {
+			if (this.indicator && stendhal.config.getBoolean("activity-indicator")) {
 				this.indicator.draw(ctx, localX, localY, image.width);
 			}
 		}

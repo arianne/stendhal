@@ -78,7 +78,7 @@ export class ChatInputComponent extends Component {
 			btn_emoji.removeChild(btn_emoji.lastChild)
 		}
 		// update button
-		if (stendhal.config.getBoolean("client.emojis.native")) {
+		if (stendhal.config.getBoolean("emojis.native")) {
 			btn_emoji.innerText = "☺";
 		} else {
 			// set image for emoji button

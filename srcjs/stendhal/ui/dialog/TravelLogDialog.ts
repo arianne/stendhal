@@ -40,7 +40,7 @@ export class TravelLogDialog extends DialogContentComponent {
 	};
 
 	public override refresh() {
-		this.componentElement.style.setProperty("font-family", stendhal.config.get("client.font.travel-log"));
+		this.componentElement.style.setProperty("font-family", stendhal.config.get("font.travel-log"));
 	}
 
 	public override getConfigId(): string {

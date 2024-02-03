@@ -640,11 +640,11 @@ export class ViewPort {
 	 */
 	updateJoystick() {
 		this.joystick.onRemoved();
-		if (!stendhal.config.getBoolean("client.joystick")) {
+		if (!stendhal.config.getBoolean("joystick")) {
 			this.joystick = new JoystickBase();
 			return;
 		}
-		this.joystick = stendhal.config.get("client.joystick.style") === "dpad" ? new DirectionPad() : new Joystick();
+		this.joystick = stendhal.config.get("joystick.style") === "dpad" ? new DirectionPad() : new Joystick();
 	}
 
 	/**

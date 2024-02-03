@@ -93,7 +93,7 @@ class UI {
 
 		const chatPanel = this.get(UIComponentEnum.BottomPanel)!;
 		chatPanel.refresh();
-		chatPanel.setVisible(stendhal.config.getBoolean("client.chat.visible"));
+		chatPanel.setVisible(stendhal.config.getBoolean("chat.visible"));
 		// initialize on-screen joystick
 		stendhal.ui.gamewindow.updateJoystick();
 		QuickMenu.init();
@@ -120,7 +120,7 @@ class UI {
 	 */
 	public onSoundUpdate() {
 		(this.get(UIComponentEnum.QMSound)! as QuickMenuButton).update();
-		document.getElementById("soundbutton")!.textContent = stendhal.config.getBoolean("client.sound")
+		document.getElementById("soundbutton")!.textContent = stendhal.config.getBoolean("sound")
 				? "🔊" : "🔇";
 	}
 
@@ -128,7 +128,7 @@ class UI {
 	 * Instructions to execute when menu style changes.
 	 */
 	public onMenuUpdate() {
-		switch (stendhal.config.get("client.menu.style")) {
+		switch (stendhal.config.get("menu.style")) {
 			case "traditional":
 				document.getElementById("menupanel")!.style["display"] = "";
 				QuickMenu.setVisible(false);
@@ -151,7 +151,7 @@ class UI {
 		UI.userReady = true;
 
 		// continuous movement server attribute is volatile so that initial state is managed by solely by client
-		if (stendhal.config.getBoolean("input.movecont")) {
+		if (stendhal.config.getBoolean("move.cont")) {
 			marauroa.clientFramework.sendAction({
 				"type": "move.continuous",
 				"move.continuous": ""

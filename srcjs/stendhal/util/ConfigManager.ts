@@ -20,61 +20,59 @@ declare var stendhal: any;
 export class ConfigManager {
 
 	private readonly defaults: {[id: string]: string} = {
-		"client.activity-indicator": "true",
-		"client.chat.autohide": "false",
-		"client.chat.float": "false",
-		"client.chat.visible": "false",
-		"client.emojis.native": "false",
-		"client.font.body": "Carlito",
-		"client.font.chat": "Carlito",
-		"client.font.travel-log": "Black Chancery",
-		"client.joystick": "false",
-		"client.joystick.center.x": "224",
-		"client.joystick.center.y": "384",
-		"client.joystick.style": "joystick",
-		"client.menu.style": "traditional",
-		"client.pathfinding": "true",
-		"client.sound": "false",
-		"client.sound.master.volume": "100",
-		"client.sound.ambient.volume": "100",
-		"client.sound.creature.volume": "100",
-		"client.sound.gui.volume": "100",
-		"client.sound.music.volume": "100",
-		"client.sound.sfx.volume": "100",
-		"client.stats_panel.charname": "true",
-		"client.stats_panel.hpbar": "true",
+		"activity-indicator": "true",
+		"chat.autohide": "false",
+		"chat.float": "false",
+		"chat.private.sound": "ui/notify_up",
+		"chat.visible": "false",
+		"chat-opts.custom": "",
+		"click-indicator": "false",
+		"effect.blood": "true",
+		"effect.lighting": "true",
+		"effect.weather": "true",
+		"effect.no-nude": "true",
+		"effect.shadows": "true",
+		"emojis.native": "false",
+		"font.body": "Carlito",
+		"font.chat": "Carlito",
+		"font.travel-log": "Black Chancery",
+		"inventory.double-click": "false",
+		"inventory.quick-pickup": "true",
+		"joystick": "false",
+		"joystick.center.x": "224",
+		"joystick.center.y": "384",
+		"joystick.style": "joystick",
+		"menu.style": "traditional",
+		"move.cont": "false",
+		"panel.stats.charname": "true",
+		"panel.stats.hpbar": "true",
+		"pathfinding": "true",
+		"sound": "false",
+		"sound.master.volume": "100",
+		"sound.ambient.volume": "100",
+		"sound.creature.volume": "100",
+		"sound.gui.volume": "100",
+		"sound.music.volume": "100",
+		"sound.sfx.volume": "100",
+		"speech.creature": "true",
 		// represents most recently used client version
-		"client.version": document.documentElement.getAttribute("data-build-version") || "",
-		"client.window.chest": "160,370",
-		"client.window.corpse": "160,370",
-		"client.window.menu": "150,20",
-		"client.window.outfit": "300,50",
-		"client.window.settings": "20,20",
-		"client.window.shortcuts": "20,20",
-		"client.window.trade": "200,100",
-		"client.window.travel-log": "160,50",
-		// FIXME: these should have been "gamewindow" to prevent confusion
-		"gamescreen.blood": "true",
-		"gamescreen.lighting": "true",
-		"gamescreen.weather": "true",
-		"gamescreen.nonude": "true",
-		"gamescreen.shadows": "true",
-		"gamescreen.speech.creature": "true",
-		"input.click.indicator": "false",
-		"input.movecont": "false",
-		//"input.doubleclick": "false",
-		"action.item.doubleclick": "false",
-		"action.inventory.quickpickup": "true",
-		"event.pvtmsg.sound": "ui/notify_up",
-		"chat.custom-keywords": "",
+		"version": document.documentElement.getAttribute("data-build-version") || "",
+		"window.chest": "160,370",
+		"window.corpse": "160,370",
+		"window.menu": "150,20",
+		"window.outfit": "300,50",
+		"window.settings": "20,20",
+		"window.shortcuts": "20,20",
+		"window.trade": "200,100",
+		"window.travel-log": "160,50"
 	};
 
 	private readonly opts: {[key: string]: {[id: string]: string}} = {
-		"client.joystick.style": {
+		"joystick.style": {
 			"joystick": "",
 			"dpad": "direction pad"
 		},
-		"client.menu.style": {
+		"menu.style": {
 			"traditional": "",
 			"floating": ""
 		}
@@ -82,9 +80,22 @@ export class ConfigManager {
 
 	/**
 	 * Old keys that should be replaced.
+	 *
+	 * NOTE: both old (if previously followed convention) & replacement keys must be prefixed with "client."
 	 */
 	private readonly deprecated: {[old: string]: string} = {
-		"chat.custom_keywords": "chat.custom-keywords",
+		"action.inventory.quickpickup": "client.inventory.quick-pickup",
+		"action.item.doubleclick": "client.inventory.double-click",
+		"chat.custom_keywords": "client.chat-opts.custom",
+		"event.pvtmsg.sound": "client.chat.private.sound",
+		"gamescreen.blood": "client.effect.blood",
+		"gamescreen.lighting": "client.effect.lighting",
+		"gamescreen.weather": "client.effect.weather",
+		"gamescreen.nonude": "client.effect.no-nude",
+		"gamescreen.shadows": "client.effect.shadows",
+		"gamescreen.speech.creature": "client.speech.creature",
+		"input.click.indicator": "client.click-indicator",
+		"input.movecont": "client.move.cont",
 		"ui.font.body": "client.font.body",
 		"ui.font.chat": "client.font.chat",
 		"ui.font.tlog": "client.font.travel-log",
@@ -98,8 +109,9 @@ export class ConfigManager {
 		"ui.sound.gui.volume": "client.sound.gui.volume",
 		"ui.sound.music.volume": "client.sound.music.volume",
 		"ui.sound.sfx.volume": "client.sound.sfx.volume",
-		"ui.stats.charname": "client.stats_panel.charname",
-		"ui.stats.hpbar": "client.stats_panel.hpbar",
+		"ui.stats.charname": "client.panel.stats.charname",
+		"ui.stats.hpbar": "client.panel.stats.hpbar",
+		"ui.theme": "client.theme",
 		"ui.window.chest": "client.window.chest",
 		"ui.window.corpse": "client.window.corpse",
 		"ui.window.menu": "client.window.menu",
@@ -226,7 +238,8 @@ export class ConfigManager {
 		if (typeof(value) === "object") {
 			value = JSON.stringify(value);
 		}
-		this.storage.setItem(key, value);
+		// index in storage with "client." prefix
+		this.storage.setItem("client." + key, value);
 		stendhal.session.set(key, value);
 	}
 
@@ -239,7 +252,7 @@ export class ConfigManager {
 	 *     Stored value identified by key or undefined if key not found.
 	 */
 	get(key: string): string|null|undefined {
-		const ret = stendhal.session.get(key) || this.storage.getItem(key) || this.defaults[key];
+		const ret = stendhal.session.get(key) || this.storage.getItem("client." + key) || this.defaults[key];
 		// allow null to be a value
 		if (ret === "null") {
 			return null;
@@ -355,7 +368,7 @@ export class ConfigManager {
 	 *     String identifier.
 	 */
 	remove(key: string) {
-		this.storage.removeItem(key);
+		this.storage.removeItem("client." + key);
 		stendhal.session.remove(key);
 	}
 
@@ -382,7 +395,7 @@ export class ConfigManager {
 	 */
 	setWindowState(id: string, x: number, y: number) {
 		this.windowstates[id] = {x: x, y: y};
-		this.set("client.window." + id, x + "," + y);
+		this.set("window." + id, x + "," + y);
 	}
 
 	/**
@@ -400,7 +413,7 @@ export class ConfigManager {
 		if (this.windowstates.hasOwnProperty(id)) {
 			state = this.windowstates[id];
 		} else {
-			const tmp: string[] = (this.get("client.window." + id) || "0,0").split(",");
+			const tmp: string[] = (this.get("window." + id) || "0,0").split(",");
 			state.x = parseInt(tmp[0], 10);
 			state.y = parseInt(tmp[1], 10);
 		}
@@ -414,7 +427,7 @@ export class ConfigManager {
 	 *     Theme string identifier.
 	 */
 	setTheme(value: string) {
-		this.set("ui.theme", value);
+		this.set("theme", value);
 	}
 
 	/**
@@ -424,7 +437,7 @@ export class ConfigManager {
 	 *     String identifier.
 	 */
 	getTheme(): string {
-		return this.get("ui.theme") || "wood";
+		return this.get("theme") || "wood";
 	}
 
 	/**

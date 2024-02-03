@@ -298,7 +298,7 @@ export class ItemContainerImplementation {
 					new ActionContextMenu((event.target as any).dataItem, append),
 					event.pageX - 50, event.pageY - 5));
 			} else if (!stendhal.ui.heldItem) {
-				if (!stendhal.config.getBoolean("action.item.doubleclick") || this.isDoubleClick(event)) {
+				if (!stendhal.config.getBoolean("inventory.double-click") || this.isDoubleClick(event)) {
 					marauroa.clientFramework.sendAction({
 						type: "use",
 						"target_path": (event.target as any).dataItem.getIdPath(),

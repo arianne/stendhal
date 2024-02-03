@@ -88,12 +88,12 @@ export class Client {
 		stendhal.config = singletons.getConfigManager();
 		stendhal.session = singletons.getSessionManager();
 
-		if (stendhal.config.get("client.version") !== stendhal.data.build.version) {
+		if (stendhal.config.get("version") !== stendhal.data.build.version) {
 			// TODO: find a less nagging way to notify the user
 			//alert("client version change detected, you may want to clear the cache");
 		}
 		// update most recently used version
-		//stendhal.config.set("client.version", stendhal.data.build.version);
+		//stendhal.config.set("version", stendhal.data.build.version);
 
 		this.initData();
 		this.initUI();
@@ -149,7 +149,7 @@ export class Client {
 
 		// update user interface after config is loaded
 		stendhal.config.refreshTheme();
-		document.getElementById("body")!.style.setProperty("font-family", stendhal.config.get("client.font.body"));
+		document.getElementById("body")!.style.setProperty("font-family", stendhal.config.get("font.body"));
 
 		// initialize events
 		singletons.getEventRegistry().init();
@@ -440,7 +440,7 @@ export class Client {
 	}
 
 	static handleClickIndicator(e: Event) {
-		if (!stendhal.config.getBoolean("input.click.indicator")) {
+		if (!stendhal.config.getBoolean("click-indicator")) {
 			return;
 		}
 		if (Client.click_indicator_id !== undefined) {

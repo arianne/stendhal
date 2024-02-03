@@ -656,7 +656,7 @@ export class SlashActionRepo {
 
 	"movecont": SlashAction = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
-			const enable = !stendhal.config.getBoolean("input.movecont");
+			const enable = !stendhal.config.getBoolean("move.cont");
 			const action: Action = {
 				"type": "move.continuous",
 			};
@@ -665,7 +665,7 @@ export class SlashActionRepo {
 			}
 			this.sendAction(action);
 			// update config
-			stendhal.config.set("input.movecont", enable);
+			stendhal.config.set("move.cont", enable);
 			Chat.log("info", "Continuous movement "
 					+ (enable ? "enabled" : "disabled") + ".");
 			return true;
@@ -712,7 +712,7 @@ export class SlashActionRepo {
 	"mute": SlashAction = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			stendhal.main.toggleSound();
-			if (stendhal.config.getBoolean("client.sound")) {
+			if (stendhal.config.getBoolean("sound")) {
 				Chat.log("info", "Sounds are now on.");
 			} else {
 				Chat.log("info", "Sounds are now off.");

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -234,7 +234,7 @@ export class RPEntity extends ActiveEntity {
 			outfit["detail"] = Math.floor(this["outfit"]/100000000) % 100;
 		}
 
-		if (stendhal.config.getBoolean("gamescreen.shadows") && this.castsShadow()) {
+		if (stendhal.config.getBoolean("effect.shadows") && this.castsShadow()) {
 			// dressed entities should use 48x64 sprites
 			// FIXME: this will not display correctly for horse outfit
 			const shadow = stendhal.data.sprites.getShadow("48x64");
@@ -294,7 +294,7 @@ export class RPEntity extends ActiveEntity {
 			n = "0" + index;
 		}
 
-		if (part === "body" && index < 3 && stendhal.config.getBoolean("gamescreen.nonude")) {
+		if (part === "body" && index < 3 && stendhal.config.getBoolean("effect.no-nude")) {
 			n += "-nonude";
 		} else if (part === "dress" && stendhal.data.outfit.drawBustyDress(index, body)) {
 			n += "b";
@@ -360,7 +360,7 @@ export class RPEntity extends ActiveEntity {
 			}
 
 			// check for safe image
-			if (!stendhal.config.getBoolean("gamescreen.blood") && stendhal.data.sprites.hasSafeImage(filename)) {
+			if (!stendhal.config.getBoolean("effect.blood") && stendhal.data.sprites.hasSafeImage(filename)) {
 				filename = filename + "-safe.png";
 			} else {
 				filename = filename + ".png";
@@ -368,7 +368,7 @@ export class RPEntity extends ActiveEntity {
 
 			let image = stendhal.data.sprites.get(filename);
 
-			if (stendhal.config.getBoolean("gamescreen.shadows") && this.castsShadow()) {
+			if (stendhal.config.getBoolean("effect.shadows") && this.castsShadow()) {
 				// check for configured shadow style
 				let shadow_style = this["shadow_style"];
 				if (typeof(shadow_style) === "undefined") {

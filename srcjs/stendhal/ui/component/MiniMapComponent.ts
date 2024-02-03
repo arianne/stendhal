@@ -206,7 +206,7 @@ export class MiniMapComponent extends Component {
 	}
 
 	onClick(event: MouseEvent) {
-		if (!stendhal.config.getBoolean("client.pathfinding")) {
+		if (!stendhal.config.getBoolean("pathfinding")) {
 			return;
 		}
 		let pos = stendhal.ui.html.extractPosition(event);

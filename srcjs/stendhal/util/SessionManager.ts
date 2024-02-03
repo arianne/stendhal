@@ -57,13 +57,13 @@ export class SessionManager {
 		if (server && this.isTestClient()) {
 			this.server_default = server !== "main";
 		}
-
 		// store configuration in active memory
-		for (const id of stendhal.config.getKeys()) {
-			const value = window.localStorage.getItem(id);
-			if (value != null) {
-				this.states[id] = value;
+		for (let key of stendhal.config.getKeys()) {
+			let value = stendhal.config.get(key);
+			if (value == null) {
+				value = "null";
 			}
+			this.set(key, value);
 		}
 	}
 
@@ -75,7 +75,7 @@ export class SessionManager {
 	 * @return
 	 *     Value indexed by `key` or `null` if key does not exist.
 	 */
-	get(key: string): string|undefined {
+	get(key: string): string|null|undefined {
 		return this.states[key];
 	}
 

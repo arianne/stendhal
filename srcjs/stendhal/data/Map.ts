@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -141,7 +141,7 @@ export class Map {
 			var filename = "/" + source.replace(/\.\.\/\.\.\//g, "");
 
 			let baseFilename = filename.replace(/\.png$/, "").replace("/tileset", Paths.tileset);
-			if (!stendhal.config.getBoolean("gamescreen.blood") && this.hasSafeTileset(baseFilename)) {
+			if (!stendhal.config.getBoolean("effect.blood") && this.hasSafeTileset(baseFilename)) {
 				this.tilesetFilenames.push(baseFilename + "-safe.png");
 			} else {
 				this.tilesetFilenames.push(baseFilename + ".png");
