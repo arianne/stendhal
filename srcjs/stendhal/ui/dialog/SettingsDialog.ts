@@ -199,9 +199,9 @@ export class SettingsDialog extends DialogContentComponent {
 		});
 
 		const sel_fonttlog = this.createFontSelect("selfonttlog",
-				fonts.indexOf(stendhal.config.get("client.font.travel_log")))
+				fonts.indexOf(stendhal.config.get("client.font.travel-log")))
 		sel_fonttlog.addEventListener("change", (e) => {
-			stendhal.config.set("client.font.travel_log", fonts[sel_fonttlog.selectedIndex]);
+			stendhal.config.set("client.font.travel-log", fonts[sel_fonttlog.selectedIndex]);
 			const tlog = (ui.get(UIComponentEnum.TravelLogDialog) as TravelLogDialog);
 			// make sure component is open before trying to refresh
 			if (tlog) {
@@ -216,10 +216,10 @@ export class SettingsDialog extends DialogContentComponent {
 				});
 
 		// common chat keyword options
-		const txt_chatopts = this.createTextInput("txtchatopts", stendhal.config.get("chat.custom_keywords"),
+		const txt_chatopts = this.createTextInput("txtchatopts", stendhal.config.get("chat.custom-keywords"),
 				"Comma-separated list accessible from the chat options dialog");
 		txt_chatopts.addEventListener("change", (e) => {
-			stendhal.config.set("chat.custom_keywords", txt_chatopts.value);
+			stendhal.config.set("chat.custom-keywords", txt_chatopts.value);
 		});
 
 		// on-screen joystick

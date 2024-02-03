@@ -39,7 +39,7 @@ export class ChatOptionsDialog extends DialogContentComponent {
 
 		// common chat options
 		const custom_options = [];
-		for (let opt of stendhal.config.get("chat.custom_keywords").split(",")) {
+		for (let opt of stendhal.config.get("chat.custom-keywords").split(",")) {
 			opt = opt.trim();
 			if (opt) {
 				custom_options.push(opt);

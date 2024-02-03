@@ -27,7 +27,7 @@ export class ConfigManager {
 		"client.emojis.native": "false",
 		"client.font.body": "Carlito",
 		"client.font.chat": "Carlito",
-		"client.font.travel_log": "Black Chancery",
+		"client.font.travel-log": "Black Chancery",
 		"client.joystick": "false",
 		"client.joystick.center.x": "224",
 		"client.joystick.center.y": "384",
@@ -52,7 +52,7 @@ export class ConfigManager {
 		"client.window.settings": "20,20",
 		"client.window.shortcuts": "20,20",
 		"client.window.trade": "200,100",
-		"client.window.travel_log": "160,50",
+		"client.window.travel-log": "160,50",
 		// FIXME: these should have been "gamewindow" to prevent confusion
 		"gamescreen.blood": "true",
 		"gamescreen.lighting": "true",
@@ -66,7 +66,7 @@ export class ConfigManager {
 		"action.item.doubleclick": "false",
 		"action.inventory.quickpickup": "true",
 		"event.pvtmsg.sound": "ui/notify_up",
-		"chat.custom_keywords": "",
+		"chat.custom-keywords": "",
 	};
 
 	private readonly opts: {[key: string]: {[id: string]: string}} = {
@@ -84,9 +84,10 @@ export class ConfigManager {
 	 * Old keys that should be replaced.
 	 */
 	private readonly deprecated: {[old: string]: string} = {
+		"chat.custom_keywords": "chat.custom-keywords",
 		"ui.font.body": "client.font.body",
 		"ui.font.chat": "client.font.chat",
-		"ui.font.tlog": "client.font.travel_log",
+		"ui.font.tlog": "client.font.travel-log",
 		"ui.joystick": "client.joystick.style",
 		"ui.joystick.center.x": "client.joystick.center.x",
 		"ui.joystick.center.y": "client.joystick.center.y",
@@ -106,7 +107,7 @@ export class ConfigManager {
 		"ui.window.settings": "client.window.settings",
 		"ui.window.shortcuts": "client.window.shortcuts",
 		"ui.window.trade": "client.window.trade",
-		"ui.window.travellog": "client.window.travel_log"
+		"ui.window.travellog": "client.window.travel-log"
 	};
 
 	private readonly themes = {
