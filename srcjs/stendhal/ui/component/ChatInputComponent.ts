@@ -165,7 +165,7 @@ export class ChatInputComponent extends Component {
 	 * Executes send action when enter key is pressed.
 	 */
 	private onKeyPress(event: KeyboardEvent) {
-		if (event.keyCode === 13) {
+		if (event.keyCode === KeyCode.ENTER) {
 			this.send();
 			event.preventDefault();
 		}
