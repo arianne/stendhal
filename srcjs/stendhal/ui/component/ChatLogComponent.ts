@@ -424,7 +424,7 @@ export class ChatLogComponent extends Component {
 	 * @return {string}
 	 *   Plain text formatted message.
 	 */
-	private plainText(msg: string, tags: string[]|undefined=undefined): string {
+	private plainText(msg: string, tags?: string[]): string {
 		if (!tags) {
 			msg = msg.replace(/<.*?>/g, "");
 		} else {
