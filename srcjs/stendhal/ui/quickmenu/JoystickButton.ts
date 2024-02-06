@@ -24,12 +24,15 @@ export class JoystickButton extends QuickMenuButton {
 	}
 
 	/**
-	 * Updates button icon.
+	 * Updates button image.
 	 */
 	public override update() {
 		this.setImageBasename(stendhal.config.getBoolean("joystick") ? "joystick" : "joystick-disabled");
 	}
 
+	/**
+	 * Toggles joystick visibility when clicked/tapped.
+	 */
 	protected override onClick(evt: Event) {
 		const newState = !stendhal.config.getBoolean("joystick");
 		stendhal.config.set("joystick", newState);

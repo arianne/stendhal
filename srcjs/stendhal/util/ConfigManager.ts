@@ -17,10 +17,19 @@ import { BuddyListComponent } from "../ui/component/BuddyListComponent";
 declare var stendhal: any;
 
 
+/**
+ * Manages configuration settings that persist accross sessions.
+ */
 export class ConfigManager {
 
+	/**
+	 * Configuration keys & default values.
+	 *
+	 * NOTE: all keys are automatically prefixed with "client." from the set/get methods.
+	 */
 	private readonly defaults: {[id: string]: string} = {
 		"activity-indicator": "true",
+		// TODO: possible change key prefixes pertaining directly to chat panel to "panel.chat."
 		"chat.autohide": "false",
 		"chat.float": "false",
 		"chat.private.sound": "ui/notify_up",
@@ -46,6 +55,7 @@ export class ConfigManager {
 		"move.cont": "false",
 		"panel.stats.charname": "true",
 		"panel.stats.hpbar": "true",
+		// TODO: split into "path-finding.ground" & "path-finding.minimap"
 		"pathfinding": "true",
 		"sound": "false",
 		"sound.master.volume": "100",
@@ -67,6 +77,9 @@ export class ConfigManager {
 		"window.travel-log": "160,50"
 	};
 
+	/**
+	 * Enumerated options for multiple choice settings.
+	 */
 	private readonly opts: {[key: string]: {[id: string]: string}} = {
 		"joystick.style": {
 			"joystick": "",
@@ -81,7 +94,11 @@ export class ConfigManager {
 	/**
 	 * Old keys that should be replaced.
 	 *
-	 * NOTE: both old (if previously followed convention) & replacement keys must be prefixed with "client."
+	 * Format is "old-key": "new-key". If "new-key" is `null` then the old key value is simply removed from storage
+	 * without updating any new key.
+	 *
+	 * NOTE: "new-key" must abide the naming convention by including the "client." prefix. "old-key" must include
+	 *       prefix only if added after the naming convention was implemented.
 	 */
 	private readonly deprecated: {[old: string]: string} = {
 		"action.inventory.quickpickup": "client.inventory.quick-pickup",
@@ -112,6 +129,7 @@ export class ConfigManager {
 		"ui.stats.charname": "client.panel.stats.charname",
 		"ui.stats.hpbar": "client.panel.stats.hpbar",
 		"ui.theme": "client.theme",
+		// default window states
 		"ui.window.chest": "client.window.chest",
 		"ui.window.corpse": "client.window.corpse",
 		"ui.window.menu": "client.window.menu",
@@ -122,6 +140,9 @@ export class ConfigManager {
 		"ui.window.travellog": "client.window.travel-log"
 	};
 
+	/**
+	 * Themes to apply to panel backgrounds, borders & fonts coloring.
+	 */
 	private readonly themes = {
 		/**
 		 * Theme backgrounds indexed by ID.
@@ -155,6 +176,9 @@ export class ConfigManager {
 		}
 	} as any;
 
+	/**
+	 * Available font faces the user can select for different areas of the user interface.
+	 */
 	private readonly fonts: {[name: string]: string} = {
 		"sans-serif": "system default",
 		"serif": "system default (serif)",
@@ -163,7 +187,12 @@ export class ConfigManager {
 		"Carlito": ""
 	};
 
+	/** Local storage object (FIXME: not necessary store in local property).
+	 *
+	 * @deprecated
+	 */
 	private readonly storage = window.localStorage;
+	/** Stored window states to persist between opening & closing dialog windows & across client sessions. */
 	private readonly windowstates: any = {};
 	/** @deprecated */
 	private initialized = false;
@@ -210,6 +239,7 @@ export class ConfigManager {
 
 	/**
 	 * @deprecated
+	 *   Not needed anymore as this is now a singleton class & is initialized using the `ConfigManager.get()` method.
 	 */
 	init(args: any) {
 		if (this.initialized) {
@@ -221,6 +251,11 @@ export class ConfigManager {
 
 	/**
 	 * Retrieves all available settings keys.
+	 *
+	 * NOTE: Keys in the returned list are not prefixed with "client.". Normally it is considered hidden & of no use to
+	 *       other parts of the client. Thus this method also exludes it. So in cases where methods do need to know of
+	 *       the prefix, such as the method `ui.SessionManager.init` which manages copies of the keys for the current
+	 *       session must prepend it itself.
 	 */
 	public getKeys(): string[] {
 		return Object.keys(this.defaults);
@@ -230,9 +265,9 @@ export class ConfigManager {
 	 * Stores a configuration setting.
 	 *
 	 * @param key
-	 *     String identifier.
+	 *   `string` identifier.
 	 * @param value
-	 *     Item to be stored.
+	 *   Item to be stored.
 	 */
 	set(key: string, value: any) {
 		if (typeof(value) === "object") {
@@ -246,10 +281,11 @@ export class ConfigManager {
 	/**
 	 * Retrieves a configuration setting value.
 	 *
-	 * @param key
-	 *     String identifier.
-	 * @return
-	 *     Stored value identified by key or undefined if key not found.
+	 * @param key {string}
+	 *   `string` identifier.
+	 * @return {string|null|undefined}
+	 *   Stored value identified by key as a `string` or `undefined` if key not found. If value is the string "null" it
+	 *   is converted to a `null` object.
 	 */
 	get(key: string): string|null|undefined {
 		const ret = stendhal.session.get(key) || this.storage.getItem("client." + key) || this.defaults[key];
@@ -261,14 +297,14 @@ export class ConfigManager {
 	}
 
 	/**
-	 * Retrieves an integer number value from storage.
+	 * Retrieves an integer number configuration value.
 	 *
-	 * @param key
-	 *     String identifier.
-	 * @param dval
-	 *     Default value if key is not found.
-	 * @return
-	 *     Integer or undefined.
+	 * @param key {string}
+	 *   `string` identifier.
+	 * @param dval {number}
+	 *   Default value in case key is not found.
+	 * @return {number|undefined}
+	 *   Integer `number` or `undefined`.
 	 */
 	getInt(key: string, dval?: number): any {
 		let value = this.getFloat(key);
@@ -282,14 +318,14 @@ export class ConfigManager {
 	}
 
 	/**
-	 * Retrieves a float number value from storage.
+	 * Retrieves a float number configuration value.
 	 *
-	 * @param key
-	 *     String identifier.
-	 * @param dval
-	 *     Default value if key is not found.
-	 * @return
-	 *     Float or undefined.
+	 * @param key {string}
+	 *   `string` identifier.
+	 * @param dval {number}
+	 *   Default value in case key is not found.
+	 * @return {number|undefined}
+	 *   Float `number` or `undefined`.
 	 */
 	getFloat(key: string, dval?: number): any {
 		let value = Number(this.get(key));
@@ -303,12 +339,13 @@ export class ConfigManager {
 	}
 
 	/**
-	 * Retrieves a boolean value from storage.
+	 * Retrieves a boolean configuration value.
 	 *
-	 * @param key
-	 *     String identifier.
-	 * @return
-	 *     Boolean value of key or false if key not found.
+	 * @param key {string}
+	 *   `string` identifier.
+	 * @return {boolean}
+	 *   `true` if value is (case-insensitive) string "true", otherwise `false` for any other string value or if key not
+	 *   found.
 	 */
 	getBoolean(key: string): boolean {
 		const value = this.get(key);
@@ -319,12 +356,12 @@ export class ConfigManager {
 	}
 
 	/**
-	 * Retrieves a JSON type object or array from storage.
+	 * Retrieves a JSON type object or array configuration value.
 	 *
-	 * @param key
-	 *     String identifier.
-	 * @return
-	 *     Object, array, or undefined.
+	 * @param key {string}
+	 *   `string` identifier.
+	 * @return {object|string[]}
+	 *   JavaScript `object`, `string[]` array, or `undefined`.
 	 */
 	getObject(key: string): any|undefined {
 		let value = this.get(key);
@@ -338,24 +375,25 @@ export class ConfigManager {
 	}
 
 	/**
-	 * Retrieves a list of available options for a config id.
+	 * Retrieves an enumarable object of available options for a configuration key.
 	 *
-	 * @param key
-	 *   String identifier.
-	 * @return
-	 *   String enumeration.
+	 * @param key {string}
+	 *   `string` identifier.
+	 * @return {object}
+	 *   `object` that can be enumerated into a set of key=value pairs in the format of `"id": "label"` where "label" is
+	 *   displayed in multiple choice settings. If "label" is an empty `string` then "id" is displayed instead.
 	 */
 	public getOpts(key: string): {[id: string]: string} {
 		return this.isOptsPairs(key) ? this.opts[key] : {};
 	}
 
 	/**
-	 * Checks if a key represents a set of configuration key=value pairs.
+	 * Checks if a key represents a set of enumerable configuration key=value pairs.
 	 *
-	 * @param key
-	 *   String identifier.
-	 * @return
-	 *   `true` if `key` has a value in `ConfigManager.opts`.
+	 * @param key {string}
+	 *   `string` identifier.
+	 * @return {boolean}
+	 *   `true` if "key" has a value in the `ConfigManager.opts` object.
 	 */
 	private isOptsPairs(key: string): boolean {
 		return Object.keys(this.opts).indexOf(key) > -1;
@@ -364,8 +402,10 @@ export class ConfigManager {
 	/**
 	 * Removes a key & its value from storage.
 	 *
-	 * @param key
-	 *     String identifier.
+	 * @param key {string}
+	 *   `string` identifier.
+	 * @todo
+	 *   Return `true` if successfully removed.
 	 */
 	remove(key: string) {
 		this.storage.removeItem("client." + key);
@@ -373,7 +413,10 @@ export class ConfigManager {
 	}
 
 	/**
-	 * Removes all data from storage.
+	 * Removes all stored configuration values.
+	 *
+	 * @todo
+	 *   Return `true` if all values successfully removed.
 	 */
 	clear() {
 		for (const key of Object.keys(this.defaults)) {
@@ -382,15 +425,13 @@ export class ConfigManager {
 	}
 
 	/**
-	 * Sets attributes for a dialog window.
+	 * Stores attributes for a dialog window.
 	 *
-	 * TODO: move into session manager
-	 *
-	 * @param id
-	 *   Dialog identifier.
-	 * @param x
+	 * @param id {string}
+	 *   Dialog `string` identifier (excluding "client.window." prefix).
+	 * @param x {number}
 	 *   Horizontal position.
-	 * @param y
+	 * @param y {number}
 	 *   Vertical position.
 	 */
 	setWindowState(id: string, x: number, y: number) {
@@ -399,14 +440,12 @@ export class ConfigManager {
 	}
 
 	/**
-	 * Retrieves attributes for a dialog window.
+	 * Retrieves stored attributes for a dialog window.
 	 *
-	 * TODO: move into session manager
-	 *
-	 * @param id
-	 *   Dialog identifier.
-	 * @return
-	 *   Object containing X/Y positioning of dialog.
+	 * @param id {string}
+	 *   Dialog `string` identifier (excluding "client.window." prefix).
+	 * @return {object}
+	 *   `object` containing X/Y positioning of window formatted as `{"x": `number`, "y": `number`}`.
 	 */
 	getWindowState(id: string): {[index: string]: number} {
 		let state: {[index: string]: number} = {};
@@ -423,8 +462,8 @@ export class ConfigManager {
 	/**
 	 * Sets the UI theme.
 	 *
-	 * @param value
-	 *     Theme string identifier.
+	 * @param value {string}
+	 *   Theme `string` name/identifier.
 	 */
 	setTheme(value: string) {
 		this.set("theme", value);
@@ -433,8 +472,8 @@ export class ConfigManager {
 	/**
 	 * Retrieves the identifier of current theme.
 	 *
-	 * @return
-	 *     String identifier.
+	 * @return {string}
+	 *   Theme `string` name/identifier.
 	 */
 	getTheme(): string {
 		return this.get("theme") || "wood";
@@ -443,8 +482,8 @@ export class ConfigManager {
 	/**
 	 * Retrieves image filename of current theme.
 	 *
-	 * @return
-	 *     String filename.
+	 * @return {string}
+	 *   `string` filename path.
 	 */
 	getThemeBG(): string {
 		return this.themes.map[this.getTheme()] || this.themes.map["wood"];
@@ -453,17 +492,17 @@ export class ConfigManager {
 	/**
 	 * Applies current theme to an element.
 	 *
-	 * @param element
-	 *     Element to be updated.
-	 * @param children
-	 *     If <code>true</code>, theme will be applied to children elements
-	 *     (default: <code>false</code>).
-	 * @param recurse
-	 *     If <code>true</code>, applies to all children recursively (default:
-	 *     <code>false</code>).
-	 * @param updateBG
-	 *     If <code>true</code>, applies white backgrounds for dark themes &
-	 *     black backgrounds for light themes (default: <code>false</code>).
+	 * @param element {HTMLElement}
+	 *   Element to be updated.
+	 * @param children {boolean}
+	 *   If `true`, theme will be applied to child elements of "element" (default: `false`).
+	 * @param recurse {boolean}
+	 *   If `true`, applies to all child elements recursively (default: `false`).
+	 * @param updateBG {boolean}
+	 *   If `true`, applies white backgrounds for dark themes & black backgrounds for light themes (default: `false`).
+	 * @todo
+	 *   Check that parameters "children", "recurse", & "updateBG" are still necessary as all elements may now have set
+	 *   the appropriate attribute to denote themable.
 	 */
 	applyTheme(element: HTMLElement, children=false, recurse=false, updateBG=false) {
 		const current = this.getTheme();
@@ -490,11 +529,13 @@ export class ConfigManager {
 	}
 
 	/**
-	 * Refreshes theme for all applicable elements.
+	 * Refreshes & applies theme for all applicable elements.
 	 *
-	 * @param updateBG
-	 *     If <code>true</code>, applies white backgrounds for dark themes &
-	 *     black backgrounds for light themes (default: <code>false</code>).
+	 * @param updateBG {boolean}
+	 *   If `true`, applies white backgrounds for dark themes & black backgrounds for light themes (default: `false`).
+	 * @todo
+	 *   Check that parameter "updateBG" is still necessary as all elements may now have set the appropriate attribute
+	 *   to denote themable.
 	 */
 	refreshTheme(updateBG=false) {
 		for (const elem of Array.from(document.querySelectorAll(".background"))) {
@@ -525,7 +566,10 @@ export class ConfigManager {
 	}
 
 	/**
-	 * Checks if the current theme is defined as "dark".
+	 * Checks if the current theme is configured as "dark".
+	 *
+	 * @return {boolean}
+	 *   `true` if theme is considered dark & should employ a light text foreground color.
 	 */
 	usingDarkTheme(): boolean {
 		return this.themes.dark[this.getTheme()] == true;

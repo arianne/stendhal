@@ -12,12 +12,19 @@
 declare var stendhal: any;
 
 
+/**
+ * Manages current client session independent of clients open in other browser tabs.
+ */
 export class SessionManager {
 
+	/** Name of user's character for this client session. */
 	private charname?: string;
+	/** Attribute set to prevent re-initialization. */
 	private initialized = false;
+	/** Attribute determining connection to default server counterpart (test client only). */
 	private server_default = true;
 
+	/** Session configuration values. */
 	private states: {[id: string]: string} = {};
 
 	/** Singleton instance. */
@@ -41,6 +48,9 @@ export class SessionManager {
 		// do nothing
 	}
 
+	/**
+	 * Initializes session values.
+	 */
 	init(args: any) {
 		if (this.initialized) {
 			console.warn("tried to re-initialize SessionManager");
@@ -70,10 +80,14 @@ export class SessionManager {
 	/**
 	 * Retrieves a value from session memory.
 	 *
-	 * @param key
-	 *     String identifier.
-	 * @return
-	 *     Value indexed by `key` or `null` if key does not exist.
+	 * NOTE: Unless specifically needed do not call this directly. Instead `util.ConfigManager.get(key) should be called.
+	 *
+	 * @param key {string}
+	 *   `string` identifier.
+	 * @return {string|undefined}
+	 *   `string` value indexed by "key" or `undefined` if key not found.
+	 * @fixme
+	 *   Should be allowed to return `null`.
 	 */
 	get(key: string): string|null|undefined {
 		return this.states[key];
@@ -82,10 +96,13 @@ export class SessionManager {
 	/**
 	 * Stores a value in session memory.
 	 *
-	 * @param key
-	 *     String identifier.
-	 * @param value
-	 *     Value to be stored.
+	 * NOTE: Unless specifically needed do not call this directly. Instead `util.ConfigManager.set(key, value) should be
+	 *       called.
+	 *
+	 * @param key {string}
+	 *   `string` identifier.
+	 * @param value {any}
+	 *   Value to be stored.
 	 */
 	set(key: string, value: any) {
 		value = this.toString(value);
@@ -96,10 +113,29 @@ export class SessionManager {
 		this.states[key] = value;
 	}
 
+	/**
+	 * Removes a key & its value from storage.
+	 *
+	 * NOTE: Unless specifically needed do not call this directly. Instead `util.ConfigManager.remove(key) should be
+	 *       called.
+	 *
+	 * @param key {string}
+	 *   String identifier.
+	 * @todo
+	 *   Return `true` if successfully removed.
+	 */
 	remove(key: string) {
 		delete this.states[key];
 	}
 
+	/**
+	 * Converts an object to string equivalent.
+	 *
+	 * @param value {any}
+	 *   Object to be converted.
+	 * @return {string|undefined}
+	 *   String representation of "value".
+	 */
 	private toString(value: any): string|undefined {
 		if (value == null) {
 			return "null";
@@ -118,8 +154,8 @@ export class SessionManager {
 	/**
 	 * Sets active character name for this session.
 	 *
-	 * @param charname
-	 *     Player's character name.
+	 * @param charname {string}
+	 *   Player's character name.
 	 */
 	setCharName(charname: string) {
 		this.charname = charname;
@@ -132,8 +168,8 @@ export class SessionManager {
 	/**
 	 * Retrieves the active character name for this session.
 	 *
-	 * @return
-	 *     Player's character name.
+	 * @return {string}
+	 *   Player's character name or empty string if not set.
 	 */
 	getCharName(): string {
 		return this.charname || "";
@@ -141,6 +177,9 @@ export class SessionManager {
 
 	/**
 	 * Detects if test client is being used based on data path.
+	 *
+	 * @return {boolean}
+	 *   `true` if data path root is set to "/testdata".
 	 */
 	isTestClient(): boolean {
 		return stendhal.paths.data === "/testdata";
@@ -149,11 +188,10 @@ export class SessionManager {
 	/**
 	 * Checks if the client should connect to its default server counterpart.
 	 *
-	 * Used for test client only.
+	 * Test client only. Ignored by production client.
 	 *
-	 * @return
-	 *   `true` if test client should connect to test server. `false` if it should connect to main
-	 *   server.
+	 * @return {boolean}
+	 *   `true` if test client should connect to test server. `false` if it should connect to main production server.
 	 */
 	isServerDefault(): boolean {
 		return this.server_default;

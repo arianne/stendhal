@@ -14,6 +14,9 @@ import { ui } from "../UI";
 import { UIComponentEnum } from "../UIComponentEnum";
 
 
+/**
+ * Button to toggle visibility of floating chat panel.
+ */
 export class ChatButton extends QuickMenuButton {
 
 	constructor() {
@@ -21,7 +24,7 @@ export class ChatButton extends QuickMenuButton {
 	}
 
 	/**
-	 * Updates button icon.
+	 * Updates button image.
 	 */
 	public override update() {
 		const chatPanel = ui.get(UIComponentEnum.BottomPanel);
@@ -30,6 +33,9 @@ export class ChatButton extends QuickMenuButton {
 		}
 	}
 
+	/**
+	 * Toggles chat panel visibility when clicked/tapped.
+	 */
 	protected override onClick(evt: Event) {
 		// update panel visibility
 		const chatPanel = ui.get(UIComponentEnum.BottomPanel);

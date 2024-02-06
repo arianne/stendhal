@@ -40,13 +40,22 @@ import { Chat } from "./util/Chat";
 import { DialogHandler } from "./util/DialogHandler";
 
 
+/**
+ * Main class representing client.
+ */
 export class Client {
 
+	/** Property set to prevent re-initialization. */
 	private initialized = false;
 	private errorCounter = 0;
 	private unloading = false;
+	/** User's character name.
+	 *
+	 * NOTE: can we replace references to this with value now stored in `util.SessionManager`?
+	 */
 	public username?: string;
 
+	/** ID for vetoing click indicator timeout (experimental setting not enabled/visible by default). */
 	private static click_indicator_id: number|undefined = undefined;
 
 	/** Singleton instance. */
@@ -71,7 +80,7 @@ export class Client {
 	}
 
 	/**
-	 * Initializations to be called before startup.
+	 * Initializations to be called before main startup calls.
 	 */
 	init() {
 		if (this.initialized) {
@@ -100,6 +109,9 @@ export class Client {
 		this.initZone();
 	}
 
+	/**
+	 * Initializes sprite resources & other data management.
+	 */
 	private initData() {
 		// build info is stored in build/js/build.js
 		stendhal.data = stendhal.data || {};
@@ -113,6 +125,9 @@ export class Client {
 		stendhal.data.map = singletons.getMap();
 	}
 
+	/**
+	 * Initializes GUI elements, input management, sound management, & other interface tools.
+	 */
 	private initUI() {
 		stendhal.ui = stendhal.ui || {};
 		stendhal.ui.equip = singletons.getInventory();
@@ -134,11 +149,17 @@ export class Client {
 		});
 	}
 
+	/**
+	 * Builds initial zone for user to enter world.
+	 */
 	private initZone() {
 		stendhal.zone = new Zone();
 		stendhal.zone.ground = new Ground();
 	}
 
+	/**
+	 * Main startup routines.
+	 */
 	startup() {
 		this.devWarning();
 
@@ -190,6 +211,9 @@ export class Client {
 		}
 	}
 
+	/**
+	 * Prints standard warning message to development tools console.
+	 */
 	devWarning() {
 		console.log("%c ", "padding: 30px; background: url(" + window.location.protocol + "://" + window.location.host + "/images/buttons/devtools-warning.png) no-repeat; color: #AF0");
 		console.log("%cIf someone told you, to copy and paste something here, it's a scam and will give them access to your account.", "color:#A00; background-color:#FFF; font-size:150%");
@@ -199,6 +223,9 @@ export class Client {
 		window["eval"] = function() {};
 	}
 
+	/**
+	 * Reports errors emitted by web client to server.
+	 */
 	onError(error: ErrorEvent): boolean|undefined {
 		this.errorCounter++;
 		if (this.errorCounter > 5) {
@@ -228,7 +255,7 @@ export class Client {
 	}
 
 	/**
-	 * register marauroa event handlers.
+	 * Registers Marauroa event handlers.
 	 */
 	registerMarauroaEventHandlers() {
 		marauroa.clientFramework.onDisconnect = function(_reason: string, _error: string) {
@@ -348,6 +375,9 @@ export class Client {
 		}
 	}
 
+	/**
+	 * Creates a character selection dialog window.
+	 */
 	chooseCharacter(name: string) {
 		stendhal.session.setCharName(name);
 		marauroa.clientFramework.chooseCharacter(name);
@@ -357,12 +387,15 @@ export class Client {
 		singletons.getSoundManager().playGlobalizedEffect("ui/login");
 	}
 
+	/**
+	 * Sets the clients unloading state property.
+	 */
 	onBeforeUnload() {
 		Client.instance.unloading = true;
 	}
 
 	/**
-	 * registers global browser event handlers.
+	 * Registers global browser event handlers.
 	 */
 	registerBrowserEventHandlers() {
 		const keyHandler = singletons.getKeyHandler();
@@ -421,6 +454,12 @@ export class Client {
 		click_indicator.src = stendhal.paths.gui + "/click_indicator.png";
 	}
 
+	/**
+	 * Reads zone's map data.
+	 *
+	 * @param data {any}
+	 *   Information about map.
+	 */
 	onDataMap(data: any) {
 		var zoneinfo = {} as {[key: string]: string};
 		var deserializer = marauroa.Deserializer.fromBase64(data);
@@ -430,15 +469,26 @@ export class Client {
 		singletons.getWeatherRenderer().update(zoneinfo["weather"]);
 	}
 
+	/**
+	 * Event handler to suppress browser's default context menu.
+	 */
 	preventContextMenu(e: Event) {
 		e.preventDefault();
 	}
 
+	/**
+	 * Sets the default cursor for the entire page.
+	 */
 	onMouseEnter(e: MouseEvent) {
 		// use Stendhal's built-in cursor for entire page
 		(e.target as HTMLElement).style.cursor = "url(" + stendhal.paths.sprites + "/cursor/normal.png) 1 3, auto";
 	}
 
+	/**
+	 * Draws indicator on screen to click/touch events when enabled.
+	 *
+	 * Experimental feature disabled & hidden from settings dialog by default.
+	 */
 	static handleClickIndicator(e: Event) {
 		if (!stendhal.config.getBoolean("click-indicator")) {
 			return;

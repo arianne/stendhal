@@ -1,5 +1,5 @@
 /***************************************************************************
- *                       Copyright © 2023 - Stendhal                       *
+ *                 Copyright © 2023-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -36,10 +36,10 @@ export class PerceptionListener {
 	/**
 	 * Action when an object is added to the world.
 	 *
-	 * @param obj
-	 *     Object to be added.
-	 * @return
-	 *     <code>true</code> if object was added.
+	 * @param obj {entity.RPObject}
+	 *   Object to be added.
+	 * @return {boolean}
+	 *   `true` if object was added.
 	 * @see marauroa.perceptionListener.onAdded
 	 */
 	onAdded(obj: RPObject): boolean {

@@ -13,12 +13,18 @@ import { QuickMenuButton } from "./QuickMenuButton";
 import { FacingHandler } from "../../util/FacingHandler";
 
 
+/**
+ * Button to rotate character counter-clockwise.
+ */
 export class RotateLButton extends QuickMenuButton {
 
 	constructor() {
 		super("rotate-l");
 	}
 
+	/**
+	 * Rotates character counter-clockwise when clicked/tapped.
+	 */
 	protected override onClick(evt: Event) {
 		FacingHandler.get().turnCounterClockwise();
 	}

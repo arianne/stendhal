@@ -13,12 +13,18 @@ import { QuickMenuButton } from "./QuickMenuButton";
 import { singletons } from "../../SingletonRepo";
 
 
+/**
+ * Button to bring up settings dialog window.
+ */
 export class SettingsButton extends QuickMenuButton {
 
 	constructor() {
 		super("settings");
 	}
 
+	/**
+	 * Opens settings window when clicked/tapped.
+	 */
 	protected override onClick(evt: Event) {
 		singletons.getSlashActionRepo().execute("/settings");
 	}

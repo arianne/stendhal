@@ -26,12 +26,15 @@ const config = singletons.getConfigManager();
 const slashActions = singletons.getSlashActionRepo();
 
 /**
- * chat input text field
+ * Chat input text field.
  */
 export class ChatInputComponent extends Component {
 
+	/** Remembered input values for quick lookup. */
 	private history: string[];
+	/** Selected index in history entries. */
 	private historyIndex: number;
+	/** DOM element. */
 	private inputElement: HTMLInputElement;
 
 	constructor() {
@@ -69,6 +72,9 @@ export class ChatInputComponent extends Component {
 		this.refresh();
 	}
 
+	/**
+	 * Updates attributes of DOM element & shortcuts buttons.
+	 */
 	public override refresh() {
 		super.refresh();
 
@@ -86,10 +92,19 @@ export class ChatInputComponent extends Component {
 		}
 	}
 
+	/**
+	 * Removes all text from input.
+	 */
 	public clear() {
 		this.inputElement.value = "";
 	}
 
+	/**
+	 * Sets text value of input.
+	 *
+	 * @param text {string}
+	 *   Text to be set.
+	 */
 	public setText(text: string) {
 		const chatPanel = ui.get(UIComponentEnum.BottomPanel)!;
 		if (!chatPanel.isVisible()) {
@@ -99,10 +114,22 @@ export class ChatInputComponent extends Component {
 		this.inputElement.focus();
 	}
 
+	/**
+	 * Appends to current value of input.
+	 *
+	 * @param text {string}
+	 *   Text to be added to end of value.
+	 */
 	public appendText(text: string) {
 		this.setText(this.inputElement.value + text);
 	}
 
+	/**
+	 * Sets text value from history.
+	 *
+	 * @param i {number}
+	 *   History index to use.
+	 */
 	private fromHistory(i: number) {
 		this.historyIndex = this.historyIndex + i;
 		if (this.historyIndex < 0) {
@@ -116,6 +143,9 @@ export class ChatInputComponent extends Component {
 		}
 	}
 
+	/**
+	 * Handles shift+arrow keypress events to cycle through history entries.
+	 */
 	onKeyDown(event: KeyboardEvent) {
 		let code = KeyCode.extract(event);
 
@@ -131,6 +161,9 @@ export class ChatInputComponent extends Component {
 		}
 	}
 
+	/**
+	 * Executes send action when enter key is pressed.
+	 */
 	private onKeyPress(event: KeyboardEvent) {
 		if (event.keyCode === 13) {
 			this.send();
@@ -138,6 +171,16 @@ export class ChatInputComponent extends Component {
 		}
 	}
 
+	/**
+	 * Adds line of text to history.
+	 *
+	 * After reaching maximum of 100 entries oldest entry is overwritten in favor of new text.
+	 *
+	 * NOTE: Would it be beneficial at all to allow configuring history lines buffer in settings?
+	 *
+	 * @param text {string}
+	 *   Text to be added. Usually value of the text input.
+	 */
 	public remember(text: string) {
 		// don't add duplicates of last remembered string
 		if (this.history.length > 0 && text === this.history[this.history.length-1]) {
@@ -157,6 +200,9 @@ export class ChatInputComponent extends Component {
 		config.set("chat.history.index", this.historyIndex);
 	}
 
+	/**
+	 * Processes current text value & executes appropriate action.
+	 */
 	private send() {
 		let val = this.inputElement.value;
 		let array = val.split(" ");
@@ -178,6 +224,9 @@ export class ChatInputComponent extends Component {
 		(ui.get(UIComponentEnum.BottomPanel) as ChatPanel).onMessageSent();
 	}
 
+	/**
+	 * Creates & shows the emoji map dialog.
+	 */
 	private buildEmojiMap() {
 		const wstate = stendhal.config.getWindowState("shortcuts");
 		const content = new EmojiMapDialog();

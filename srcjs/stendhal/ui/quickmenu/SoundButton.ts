@@ -25,12 +25,15 @@ export class SoundButton extends QuickMenuButton {
 	}
 
 	/**
-	 * Updates button icon.
+	 * Updates button image.
 	 */
 	public override update() {
 		this.setImageBasename(stendhal.config.getBoolean("sound") ? "sound" : "sound-disabled");
 	}
 
+	/**
+	 * Toggles sound muted state when clicked/tapped.
+	 */
 	protected override onClick(evt: Event) {
 		singletons.getSoundManager().toggleSound();
 	}

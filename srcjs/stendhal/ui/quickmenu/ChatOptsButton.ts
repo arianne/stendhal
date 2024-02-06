@@ -14,7 +14,7 @@ import { ChatOptionsDialog } from "../dialog/ChatOptionsDialog";
 
 
 /**
- * Button to bring up chat options dialog.
+ * Button to bring up chat options dialog window.
  */
 export class ChatOptsButton extends QuickMenuButton {
 
@@ -22,6 +22,9 @@ export class ChatOptsButton extends QuickMenuButton {
 		super("chatopts");
 	}
 
+	/**
+	 * Opens chat options window when clicked/tapped.
+	 */
 	protected override onClick(e: Event) {
 		ChatOptionsDialog.createOptions();
 	}

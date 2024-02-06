@@ -16,7 +16,7 @@ declare var stendhal: any;
 
 
 /**
- * Button to open the main application menu.
+ * Button to open the main application menu dialog window.
  */
 export class MenuButton extends QuickMenuButton {
 
@@ -24,6 +24,9 @@ export class MenuButton extends QuickMenuButton {
 		super("menu");
 	}
 
+	/**
+	 * Opens application menu window when clicked/tapped.
+	 */
 	protected override onClick(evt: Event) {
 		ui.showApplicationMenu();
 	}
