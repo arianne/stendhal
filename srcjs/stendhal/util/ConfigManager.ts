@@ -32,6 +32,8 @@ export class ConfigManager {
 		// TODO: possible change key prefixes pertaining directly to chat panel to "panel.chat."
 		"chat.autohide": "false",
 		"chat.float": "false",
+		"chat.history": "[]",
+		"chat.history.index": "0",
 		"chat.private.sound": "ui/notify_up",
 		"chat.visible": "false",
 		"chat-opts.custom": "",
@@ -65,6 +67,7 @@ export class ConfigManager {
 		"sound.music.volume": "100",
 		"sound.sfx.volume": "100",
 		"speech.creature": "true",
+		"theme": "wood",
 		// represents most recently used client version
 		"version": document.documentElement.getAttribute("data-build-version") || "",
 		"window.chest": "160,370",
@@ -104,6 +107,8 @@ export class ConfigManager {
 		"action.chest.quickpickup": "client.inventory.quick-pickup",
 		"action.item.doubleclick": "client.inventory.double-click",
 		"chat.custom_keywords": "client.chat-opts.custom",
+		"chat.history": "client.chat.history",
+		"chat.history.index": "client.chat.history.index",
 		"event.pvtmsg.sound": "client.chat.private.sound",
 		"gamescreen.blood": "client.effect.blood",
 		"gamescreen.lighting": "client.effect.lighting",
@@ -128,6 +133,7 @@ export class ConfigManager {
 		"ui.sound.sfx.volume": "client.sound.sfx.volume",
 		"ui.stats.charname": "client.panel.stats.charname",
 		"ui.stats.hpbar": "client.panel.stats.hpbar",
+		"ui.theme": "client.theme",
 		"ui.window.chest": "client.window.chest",
 		"ui.window.corpse": "client.window.corpse",
 		"ui.window.menu": "client.window.menu",
@@ -135,10 +141,7 @@ export class ConfigManager {
 		"ui.window.settings": "client.window.settings",
 		"ui.window.shortcuts": "client.window.shortcuts",
 		"ui.window.trade": "client.window.trade",
-		"ui.window.travellog": "client.window.travel-log",
-		// segregating the following as they don't have values in `ConfigManager.defaults`
-		"chat.history": "client.chat.history",
-		"ui.theme": "client.theme"
+		"ui.window.travellog": "client.window.travel-log"
 	};
 
 	/**
