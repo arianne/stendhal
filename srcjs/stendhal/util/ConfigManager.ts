@@ -101,7 +101,7 @@ export class ConfigManager {
 	 *       prefix only if added after the naming convention was implemented.
 	 */
 	private readonly deprecated: {[old: string]: string} = {
-		"action.inventory.quickpickup": "client.inventory.quick-pickup",
+		"action.chest.quickpickup": "client.inventory.quick-pickup",
 		"action.item.doubleclick": "client.inventory.double-click",
 		"chat.custom_keywords": "client.chat-opts.custom",
 		"event.pvtmsg.sound": "client.chat.private.sound",
@@ -128,8 +128,6 @@ export class ConfigManager {
 		"ui.sound.sfx.volume": "client.sound.sfx.volume",
 		"ui.stats.charname": "client.panel.stats.charname",
 		"ui.stats.hpbar": "client.panel.stats.hpbar",
-		"ui.theme": "client.theme",
-		// default window states
 		"ui.window.chest": "client.window.chest",
 		"ui.window.corpse": "client.window.corpse",
 		"ui.window.menu": "client.window.menu",
@@ -137,7 +135,10 @@ export class ConfigManager {
 		"ui.window.settings": "client.window.settings",
 		"ui.window.shortcuts": "client.window.shortcuts",
 		"ui.window.trade": "client.window.trade",
-		"ui.window.travellog": "client.window.travel-log"
+		"ui.window.travellog": "client.window.travel-log",
+		// segregating the following as they don't have values in `ConfigManager.defaults`
+		"chat.history": "client.chat.history",
+		"ui.theme": "client.theme"
 	};
 
 	/**
@@ -229,6 +230,8 @@ export class ConfigManager {
 						if (valueOld === "dpad") {
 							this.storage.setItem(keyNew, valueOld);
 						}
+					} else {
+						this.storage.setItem(keyNew, valueOld);
 					}
 				}
 			}
