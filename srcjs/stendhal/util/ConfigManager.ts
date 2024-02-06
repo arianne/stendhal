@@ -47,6 +47,7 @@ export class ConfigManager {
 		"font.body": "Carlito",
 		"font.chat": "Carlito",
 		"font.travel-log": "Black Chancery",
+		// NOTE: quick-pickup has precedence over double-click in chests & corpses
 		"inventory.double-click": "false",
 		"inventory.quick-pickup": "true",
 		"joystick": "false",
