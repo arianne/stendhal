@@ -55,8 +55,8 @@ export class ConfigManager {
 		"move.cont": "false",
 		"panel.stats.charname": "true",
 		"panel.stats.hpbar": "true",
-		// TODO: split into "path-finding.ground" & "path-finding.minimap"
 		"pathfinding": "true",
+		"pathfinding.minimap": "true",
 		"sound": "false",
 		"sound.master.volume": "100",
 		"sound.ambient.volume": "100",

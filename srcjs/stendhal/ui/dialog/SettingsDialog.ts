@@ -146,7 +146,10 @@ export class SettingsDialog extends DialogContentComponent {
 				"Displaying clicks", "Not displaying clicks");
 
 		this.createCheckBox("chk_pathfinding", "pathfinding",
-				"Pathfinding on ground enabled", "Pathfinding on ground disabled");
+				"Click/Tap ground to walk", "Ground pathfinding disabled");
+
+		this.createCheckBox("chk_pathfindingmm", "pathfinding.minimap",
+				"Click/Tap minimap to walk", "Minimap pathfinding disabled");
 
 		this.createCheckBox("chk_nativeemojis", "emojis.native",
 				"Using native emojis", "Using built-in emojis",
