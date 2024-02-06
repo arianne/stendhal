@@ -349,7 +349,7 @@ export class ViewPort {
 	 * @return {boolean}
 	 *   `true` if there is a text bubble at position.
 	 */
-	textBubbleAt(x: number, y: number) {
+	textBubbleAt(x: number, y: number): boolean {
 		for (const sprite of this.notifSprites) {
 			if (sprite.clipsPoint(x, y)) {
 				return true;

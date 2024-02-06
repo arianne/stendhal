@@ -189,7 +189,7 @@ export class ChatLogComponent extends Component {
 	 * @return {string}
 	 *   Text formatted with keywords & item names highlighted.
 	 */
-	private formatLogEntry(message: string) {
+	private formatLogEntry(message: string): string {
 		if (!message) {
 			return "";
 		}

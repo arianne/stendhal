@@ -31,7 +31,7 @@ export class Paths {
 	 * @return {string}
 	 *   Path determining data root.
 	 */
-	private static extractPath(ref: string) {
+	private static extractPath(ref: string): string {
 		let path = document.getElementsByTagName("html")[0].getAttribute(ref);
 
 		// make sure that there is no javascript:// or similary shinanigans
