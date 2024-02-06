@@ -188,11 +188,6 @@ export class ConfigManager {
 		"Carlito": ""
 	};
 
-	/** Local storage object (FIXME: not necessary store in local property).
-	 *
-	 * @deprecated
-	 */
-	private readonly storage = window.localStorage;
 	/** Stored window states to persist between opening & closing dialog windows & across client sessions. */
 	private readonly windowstates: any = {};
 	/** @deprecated */
@@ -220,23 +215,23 @@ export class ConfigManager {
 		for (const keyOld in this.deprecated) {
 			const keyNew = this.deprecated[keyOld];
 			if (keyNew != null) {
-				let valueOld = this.storage.getItem(keyOld);
-				if (this.storage.getItem(keyNew) == null && valueOld != null) {
+				let valueOld = window.localStorage.getItem(keyOld);
+				if (window.localStorage.getItem(keyNew) == null && valueOld != null) {
 					// special cases
 					if (keyOld === "ui.joystick") {
-						if (valueOld !== "none" && this.storage.getItem("client.joystick") == null) {
-							this.storage.setItem("client.joystick", "true");
+						if (valueOld !== "none" && window.localStorage.getItem("client.joystick") == null) {
+							window.localStorage.setItem("client.joystick", "true");
 						}
 						if (valueOld === "dpad") {
-							this.storage.setItem(keyNew, valueOld);
+							window.localStorage.setItem(keyNew, valueOld);
 						}
 					} else {
-						this.storage.setItem(keyNew, valueOld);
+						window.localStorage.setItem(keyNew, valueOld);
 					}
 				}
 			}
 			// clean up old key
-			this.storage.removeItem(keyOld);
+			window.localStorage.removeItem(keyOld);
 		}
 	}
 
@@ -277,7 +272,7 @@ export class ConfigManager {
 			value = JSON.stringify(value);
 		}
 		// index in storage with "client." prefix
-		this.storage.setItem("client." + key, value);
+		window.localStorage.setItem("client." + key, value);
 		stendhal.session.set(key, value);
 	}
 
@@ -291,7 +286,7 @@ export class ConfigManager {
 	 *   is converted to a `null` object.
 	 */
 	get(key: string): string|null|undefined {
-		const ret = stendhal.session.get(key) || this.storage.getItem("client." + key) || this.defaults[key];
+		const ret = stendhal.session.get(key) || window.localStorage.getItem("client." + key) || this.defaults[key];
 		// allow null to be a value
 		if (ret === "null") {
 			return null;
@@ -411,7 +406,7 @@ export class ConfigManager {
 	 *   Return `true` if successfully removed.
 	 */
 	remove(key: string) {
-		this.storage.removeItem("client." + key);
+		window.localStorage.removeItem("client." + key);
 		stendhal.session.remove(key);
 	}
 
