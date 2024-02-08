@@ -6,12 +6,6 @@
 	<import file="main.xml" />
 	<import file="tools.xml" />
 
-	<!-- Windows fails to execute "ng" unless it is invoked as "ng.cmd" -->
-	<condition property="executable.suffix" value=".cmd">
-		<os family="windows"/>
-	</condition>
-	<property name="executable.suffix" value=""/>
-
 	<!-- On Microsoft Windows binary files do not have to be on $env.PATH,
 			 so this check does not work.
 	<condition property="exclude.webclient" value="true">
