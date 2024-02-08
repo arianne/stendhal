@@ -136,19 +136,7 @@ export class Client {
 		stendhal.ui.html = singletons.getHTMLManager();
 		stendhal.ui.touch = singletons.getTouchHandler();
 		stendhal.ui.gamewindow = singletons.getViewPort();
-
-		// main menu
-		const menubutton = document.getElementById("menubutton")!;
-		menubutton.addEventListener("click", function(e: Event) {
-			ui.showApplicationMenu();
-		});
-
-		// sound system
 		stendhal.ui.soundMan = singletons.getSoundManager();
-		const soundButton = document.getElementById("soundbutton")!;
-		soundButton.addEventListener("click", function(e: Event) {
-			stendhal.ui.soundMan.toggleSound();
-		});
 	}
 
 	/**
@@ -455,6 +443,18 @@ export class Client {
 				// FIXME: doesn't work
 				e.stopPropagation();
 			}
+		});
+
+		// main menu button
+		const menubutton = document.getElementById("menubutton")!;
+		menubutton.addEventListener("click", function(e: Event) {
+			ui.showApplicationMenu();
+		});
+
+		// main sound button
+		const soundButton = document.getElementById("soundbutton")!;
+		soundButton.addEventListener("click", function(e: Event) {
+			stendhal.ui.soundMan.toggleSound();
 		});
 
 		// click/touch indicator
