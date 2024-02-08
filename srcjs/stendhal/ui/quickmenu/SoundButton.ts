@@ -9,10 +9,11 @@
  *                                                                         *
  ***************************************************************************/
 
-import { QuickMenuButton } from "./QuickMenuButton";
-import { singletons } from "../../SingletonRepo";
-
 declare var stendhal: any;
+
+import { QuickMenuButton } from "./QuickMenuButton";
+import { UIComponentEnum } from "../UIComponentEnum";
+import { singletons } from "../../SingletonRepo";
 
 
 /**
@@ -21,7 +22,7 @@ declare var stendhal: any;
 export class SoundButton extends QuickMenuButton {
 
 	constructor() {
-		super("sound");
+		super("sound", UIComponentEnum.QMSound);
 	}
 
 	/**

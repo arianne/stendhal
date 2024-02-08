@@ -21,7 +21,6 @@ import { SettingsButton } from "./SettingsButton";
 import { SoundButton } from "./SoundButton";
 
 import { ui } from "../UI";
-import { UIComponentEnum } from "../UIComponentEnum";
 
 import { Paths } from "../../data/Paths";
 
@@ -70,24 +69,16 @@ export class QuickMenu {
 		btn_main.draggable = false;
 
 		// horizontal sub-buttons
-		const joystickButton = new JoystickButton();
-		QuickMenu.buttonListX.push(joystickButton);
-		const soundButton = new SoundButton();
-		QuickMenu.buttonListX.push(soundButton);
+		QuickMenu.buttonListX.push(new JoystickButton());
+		QuickMenu.buttonListX.push(new SoundButton());
 		QuickMenu.buttonListX.push(new LogButton());
 		QuickMenu.buttonListX.push(new SettingsButton());
 		QuickMenu.buttonListX.push(new MenuButton());
 		// vertical sub-buttons
-		const chatButton = new ChatButton();
-		QuickMenu.buttonListY.push(chatButton);
+		QuickMenu.buttonListY.push(new ChatButton());
 		QuickMenu.buttonListY.push(new ChatOptsButton());
 		QuickMenu.buttonListY.push(new RotateLButton());
 		QuickMenu.buttonListY.push(new RotateRButton());
-
-		// register component buttons
-		ui.registerComponent(UIComponentEnum.QMChat, chatButton);
-		ui.registerComponent(UIComponentEnum.QMJoystick, joystickButton);
-		ui.registerComponent(UIComponentEnum.QMSound, soundButton);
 
 		btn_main.onload = () => {
 			// remove listener

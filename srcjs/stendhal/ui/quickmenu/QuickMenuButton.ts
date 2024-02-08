@@ -10,6 +10,7 @@
  ***************************************************************************/
 
 import { Component } from "../toolkit/Component";
+import { ui } from "../UI";
 import { Paths } from "../../data/Paths";
 
 
@@ -22,8 +23,22 @@ export abstract class QuickMenuButton extends Component {
 	public enabled = true;
 
 
-	protected constructor(id: string) {
+	/**
+	 * Creates a new quick menu button.
+	 *
+	 * @param id {string}
+	 *   Basename of DOM element ID.
+	 * @param cid {ui.UIComponentEnum.UIComponentEnum}
+	 *   ID to optionally register component.
+	 */
+	protected constructor(id: string, cid?: number) {
 		super("qm-" + id);
+
+		// register component
+		if (typeof(cid) !== "undefined") {
+			ui.registerComponent(cid, this);
+		}
+
 		(this.componentElement as HTMLImageElement).src = Paths.gui + "/quickmenu/" + id + ".png";
 		this.componentElement.style["cursor"] = "url(" + Paths.sprites + "/cursor/highlight.png) 1 3, auto";
 		this.componentElement.draggable = false;

@@ -9,9 +9,10 @@
  *                                                                         *
  ***************************************************************************/
 
-import { QuickMenuButton } from "./QuickMenuButton";
-
 declare var stendhal: any;
+
+import { QuickMenuButton } from "./QuickMenuButton";
+import { UIComponentEnum } from "../UIComponentEnum";
 
 
 /**
@@ -20,7 +21,7 @@ declare var stendhal: any;
 export class JoystickButton extends QuickMenuButton {
 
 	constructor() {
-		super("joystick");
+		super("joystick", UIComponentEnum.QMJoystick);
 	}
 
 	/**

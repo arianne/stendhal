@@ -20,7 +20,7 @@ import { UIComponentEnum } from "../UIComponentEnum";
 export class ChatButton extends QuickMenuButton {
 
 	constructor() {
-		super("chat");
+		super("chat", UIComponentEnum.QMChat);
 	}
 
 	/**
