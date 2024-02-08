@@ -18,6 +18,11 @@ import { Panel } from "./toolkit/Panel";
 import { singletons } from "../SingletonRepo";
 
 
+/**
+ * Panel containing elements associated with chat.
+ *
+ * TODO: move to ui/component directory
+ */
 export class ChatPanel extends Panel {
 
 	constructor() {

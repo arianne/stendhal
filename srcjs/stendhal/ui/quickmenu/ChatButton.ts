@@ -41,7 +41,6 @@ export class ChatButton extends QuickMenuButton {
 		const chatPanel = ui.get(UIComponentEnum.BottomPanel);
 		if (chatPanel) {
 			chatPanel.setVisible(!chatPanel.isVisible());
-			this.update();
 		}
 	}
 }
