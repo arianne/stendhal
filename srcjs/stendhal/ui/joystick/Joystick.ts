@@ -11,7 +11,7 @@
 
 declare var stendhal: any;
 
-import { JoystickBase } from "./JoystickBase";
+import { JoystickImpl } from "./JoystickImpl";
 import { Direction } from "../../util/Direction";
 
 
@@ -23,7 +23,7 @@ import { Direction } from "../../util/Direction";
  * character's walking direction based on positioning of its center relative to center of outer
  * button.
  */
-export class Joystick extends JoystickBase {
+export class Joystick extends JoystickImpl {
 
 	/** Element representing joystick boundaries. */
 	private outer: HTMLImageElement;

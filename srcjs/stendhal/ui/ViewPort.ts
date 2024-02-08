@@ -20,7 +20,7 @@ import { PlayerEquipmentComponent } from "./component/PlayerEquipmentComponent";
 import { ActionContextMenu } from "./dialog/ActionContextMenu";
 import { DropQuantitySelectorDialog } from "./dialog/DropQuantitySelectorDialog";
 
-import { JoystickBase } from "./joystick/JoystickBase";
+import { JoystickImpl } from "./joystick/JoystickImpl";
 
 import { QuickMenuButton } from "./quickmenu/QuickMenuButton";
 
@@ -74,7 +74,7 @@ export class ViewPort {
 	private weatherRenderer = singletons.getWeatherRenderer();
 
 	/** On-screen joystick. */
-	private joystick: JoystickBase|null = null;
+	private joystick: JoystickImpl|null = null;
 
 	/** Styles to be applied when chat panel is not floating. */
 	private readonly initialStyle: {[prop: string]: string};

@@ -10,7 +10,7 @@
  ***************************************************************************/
 
 import { DPadButton } from "./DPadButton";
-import { JoystickBase } from "./JoystickBase";
+import { JoystickImpl } from "./JoystickImpl";
 import { Direction } from "../../util/Direction";
 
 
@@ -20,7 +20,7 @@ import { Direction } from "../../util/Direction";
  * Consists of four elements each representing a button that controls character's movement in a
  * single direction.
  */
-export class DirectionPad extends JoystickBase {
+export class DirectionPad extends JoystickImpl {
 
 	/** Element used to move character up. */
 	private up: DPadButton;

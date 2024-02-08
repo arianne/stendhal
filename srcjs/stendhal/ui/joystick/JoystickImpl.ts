@@ -18,10 +18,8 @@ import { Direction } from "../../util/Direction";
 
 /**
  * On-screen movement control implementation.
- *
- * TODO: rename to "JoystickImpl".
  */
-export abstract class JoystickBase {
+export abstract class JoystickImpl {
 
 	/** Most recently executed direction change. */
 	protected direction = Direction.STOP;
@@ -106,7 +104,7 @@ export abstract class JoystickBase {
 	 *   Event to be validated.
 	 */
 	public onDisengaged(e: Event) {
-		if (!JoystickBase.checkActionEvent(e)) {
+		if (!JoystickImpl.checkActionEvent(e)) {
 			return;
 		}
 		this.reset();
