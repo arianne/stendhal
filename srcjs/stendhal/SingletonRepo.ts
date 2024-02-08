@@ -41,6 +41,9 @@ import { ViewPort } from "./ui/ViewPort";
 
 import { ChatInputComponent } from "./ui/component/ChatInputComponent";
 
+import { DirectionPad } from "./ui/joystick/DirectionPad";
+import { Joystick } from "./ui/joystick/Joystick";
+
 
 export class SingletonRepo {
 
@@ -62,6 +65,10 @@ export class SingletonRepo {
 
 	static getConfigManager(): ConfigManager {
 		return ConfigManager.get();
+	}
+
+	static getDirectionPad(): DirectionPad {
+		return DirectionPad.get();
 	}
 
 	static getEmojiStore(): EmojiStore {
@@ -86,6 +93,10 @@ export class SingletonRepo {
 
 	static getInventory(): Inventory {
 		return Inventory.get();
+	}
+
+	static getJoystick(): Joystick {
+		return Joystick.get();
 	}
 
 	static getKeyHandler(): typeof KeyHandler {

@@ -20,8 +20,6 @@ import { PlayerEquipmentComponent } from "./component/PlayerEquipmentComponent";
 import { ActionContextMenu } from "./dialog/ActionContextMenu";
 import { DropQuantitySelectorDialog } from "./dialog/DropQuantitySelectorDialog";
 
-import { DirectionPad } from "./joystick/DirectionPad";
-import { Joystick } from "./joystick/Joystick";
 import { JoystickBase } from "./joystick/JoystickBase";
 
 import { QuickMenuButton } from "./quickmenu/QuickMenuButton";
@@ -76,7 +74,7 @@ export class ViewPort {
 	private weatherRenderer = singletons.getWeatherRenderer();
 
 	/** On-screen joystick. */
-	private joystick: JoystickBase = new JoystickBase();
+	private joystick: JoystickBase|null = null;
 
 	/** Styles to be applied when chat panel is not floating. */
 	private readonly initialStyle: {[prop: string]: string};
@@ -685,6 +683,16 @@ export class ViewPort {
 	}
 
 	/**
+	 * Removes joystick elements from DOM and unsets `ui.ViewPort.ViewPort.joystick` property.
+	 */
+	private removeJoystick() {
+		if (this.joystick) {
+			this.joystick.removeFromDOM();
+		}
+		this.joystick = null;
+	}
+
+	/**
 	 * Updates the on-screen joystick.
 	 */
 	updateJoystick() {
@@ -694,12 +702,19 @@ export class ViewPort {
 			joystickButton.update();
 		}
 
-		this.joystick.onRemoved();
 		if (!stendhal.config.getBoolean("joystick")) {
-			this.joystick = new JoystickBase();
+			this.removeJoystick();
 			return;
 		}
-		this.joystick = stendhal.config.get("joystick.style") === "dpad" ? new DirectionPad() : new Joystick();
+		const newJoystick = stendhal.config.get("joystick.style") === "dpad"
+				? singletons.getDirectionPad() : singletons.getJoystick();
+		if (this.joystick && newJoystick === this.joystick) {
+			this.joystick.update();
+		} else {
+			this.removeJoystick();
+			this.joystick = newJoystick;
+			newJoystick.addToDOM();
+		}
 	}
 
 	/**

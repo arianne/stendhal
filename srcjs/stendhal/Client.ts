@@ -434,7 +434,7 @@ export class Client {
 
 		// handle disengaging joystick when mouse button released outside joystick area
 		document.body.addEventListener("mouseup", (e: MouseEvent) => {
-			if (e.button == 0) {
+			if (e.button == 0 && stendhal.ui.gamewindow.joystick) {
 				stendhal.ui.gamewindow.joystick.reset();
 			}
 		});
