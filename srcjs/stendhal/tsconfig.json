@@ -9,5 +9,9 @@
 		"sourceMap": true,
 		"strict": true,
 		"target": "es6"
+	},
+	"typedocOptions": {
+		"entryPoints": ["."],
+		"out": "../../build/build_docs/typescript"
 	}
 }

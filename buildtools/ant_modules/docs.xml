@@ -2,6 +2,10 @@
 
 <project xmlns:if="ant:if" xmlns:unless="ant:unless">
 
+	<property name="build_docs" value="${buildroot}/build_docs"/>
+	<property name="tsdocs" value="${build_docs}/typescript"/>
+
+
 	<target name="clean_javadocs" description="Delete javadoc generated HTML documentation.">
 		<delete dir="${docs}"/>
 	</target>
@@ -79,6 +83,25 @@
 			<arg value="build.py"/>
 		</exec>
 	</target> <!-- mkdocs -->
+
+
+	<target name="clean_tsdocs">
+		<delete dir="${tsdocs}"/>
+	</target>
+
+
+	<target name="tsdocs" depends="clean_tsdocs">
+		<exec executable="npm${executable.suffix}" failonerror="true">
+			<arg value="install"/>
+			<arg value="typedoc"/>
+			<arg value="--no-save"/>
+		</exec>
+		<exec executable="npx${executable.suffix}" dir="srcjs/stendhal" failonerror="true">
+			<arg value="typedoc"/>
+			<arg value="--entryPointStrategy"/>
+			<arg value="expand"/>
+		</exec>
+	</target>
 
 
 	<target name="docs" description="Generate HTML documentation for Java and Lua APIs." depends="javadocs,mkdocs"/>
