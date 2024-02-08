@@ -26,15 +26,15 @@
 			match="^site_name: .*$"
 			replace="site_name: Stendhal ${version} Reference Documentation"
 			byline="true"/>
-		<replaceregexp file="app/android/app/build.gradle"
+		<replaceregexp file="app/android/client/build.gradle"
 			match="versionName .*$"
 			replace="versionName &quot;${version.android}&quot;"
 			byline="true"/>
-		<replaceregexp file="app/android/app/build.gradle"
+		<replaceregexp file="app/android/client/build.gradle"
 			match="def outputName = .*$"
 			replace="def outputName = &quot;org.stendhalgame.client-${version.android}&quot;"
 			byline="true"/>
-		<replaceregexp file="app/android/app/src/main/res/values/strings.xml"
+		<replaceregexp file="app/android/client/src/main/res/values/strings.xml"
 			match="&lt;string name=&quot;build_version&quot;&gt;.*?&lt;/string&gt;"
 			replace="&lt;string name=&quot;build_version&quot;&gt;${version}&lt;/string&gt;"
 			byline="true"/>
