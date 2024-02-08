@@ -5,6 +5,7 @@ site_url: https://stendhalgame.org/
 nav:
   - Index: /reference/
   - Java: /reference/java/
+  - TypeScript: /reference/typescript/
   - Lua: /reference/lua/
   - Home: /
 extra_css:
