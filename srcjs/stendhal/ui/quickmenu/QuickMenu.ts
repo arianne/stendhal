@@ -70,7 +70,8 @@ export class QuickMenu {
 		btn_main.draggable = false;
 
 		// horizontal sub-buttons
-		QuickMenu.buttonListX.push(new JoystickButton());
+		const joystickButton = new JoystickButton();
+		QuickMenu.buttonListX.push(joystickButton);
 		const soundButton = new SoundButton();
 		QuickMenu.buttonListX.push(soundButton);
 		QuickMenu.buttonListX.push(new LogButton());
@@ -85,6 +86,7 @@ export class QuickMenu {
 
 		// register component buttons
 		ui.registerComponent(UIComponentEnum.QMChat, chatButton);
+		ui.registerComponent(UIComponentEnum.QMJoystick, joystickButton);
 		ui.registerComponent(UIComponentEnum.QMSound, soundButton);
 
 		btn_main.onload = () => {

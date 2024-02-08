@@ -24,6 +24,8 @@ import { DirectionPad } from "./joystick/DirectionPad";
 import { Joystick } from "./joystick/Joystick";
 import { JoystickBase } from "./joystick/JoystickBase";
 
+import { QuickMenuButton } from "./quickmenu/QuickMenuButton";
+
 import { Client } from "../Client";
 import { singletons } from "../SingletonRepo";
 
@@ -686,6 +688,12 @@ export class ViewPort {
 	 * Updates the on-screen joystick.
 	 */
 	updateJoystick() {
+		// update quick menu button image
+		const joystickButton = ui.get(UIComponentEnum.QMJoystick) as QuickMenuButton;
+		if (joystickButton) {
+			joystickButton.update();
+		}
+
 		this.joystick.onRemoved();
 		if (!stendhal.config.getBoolean("joystick")) {
 			this.joystick = new JoystickBase();

@@ -37,6 +37,5 @@ export class JoystickButton extends QuickMenuButton {
 		const newState = !stendhal.config.getBoolean("joystick");
 		stendhal.config.set("joystick", newState);
 		stendhal.ui.gamewindow.updateJoystick();
-		this.update();
 	}
 }
