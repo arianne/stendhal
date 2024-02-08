@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2003-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2003-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -265,6 +265,13 @@ export class ItemContainerImplementation {
 		if (evt instanceof MouseEvent) {
 			evt.preventDefault();
 		}
+
+		// workaround to prevent accidentally using items when disengaging joystick
+		// FIXME: a global solution would be better
+		if (stendhal.ui.gamewindow.joystick && stendhal.ui.gamewindow.joystick.isEngaged()) {
+			return;
+		}
+
 		let event = stendhal.ui.html.extractPosition(evt);
 		if ((event.target as any).dataItem) {
 			const long_touch = stendhal.ui.touch.isLongTouch(evt);
