@@ -27,17 +27,46 @@ class UI {
 	/** Attribute denoting readiness of user. */
 	private static userReady = false;
 
+	/** List of registered components. */
 	private wellKnownComponents: Map<UIComponentEnum, Component> = new Map();
 
 
+	/**
+	 * Builds and displays a dialog window that is automatically closed if another is opened.
+	 *
+	 * @param title {string}
+	 *   Text displayed in window title bar.
+	 * @param contentComponent {ui.toolkit.Component.Component}
+	 *   Component containing contents of dialog window.
+	 * @param x {number}
+	 *   Window positioning on X axis.
+	 * @param y {number}
+	 *   Window positioning on Y axis.
+	 * @return {ui.toolkit.SingletonFloatingWindow.SingletonFloatingWindow}
+	 *   New dialog window.
+	 */
 	public createSingletonFloatingWindow(title: string, contentComponent: Component, x: number, y: number) {
 		return new SingletonFloatingWindow(title, contentComponent, x, y);
 	}
 
+	/**
+	 * Adds a component to list of known components.
+	 *
+	 * @param key {ui.UIComponentEnum.UIComponentEnum}
+	 *   The ID component will be indexed under.
+	 * @param component {ui.toolkit.Component.Component}
+	 *   The component to be registered.
+	 */
 	public registerComponent(key: UIComponentEnum, component: Component) {
 		this.wellKnownComponents.set(key, component);
 	}
 
+	/**
+	 * Removes a component from list of known components.
+	 *
+	 * @param component {ui.toolkit.Component.Component}
+	 *   The component to be unregistered.
+	 */
 	public unregisterComponent(component: Component) {
 		for (let entry of this.wellKnownComponents.entries()) {
 			if (entry[1] === component) {
@@ -47,6 +76,14 @@ class UI {
 		}
 	}
 
+	/**
+	 * Retrieves a registered component.
+	 *
+	 * @param key {ui.UIComponentEnum.UIComponentEnum}
+	 *   Component ID.
+	 * @return {ui.toolkit.Component.Component}
+	 *   Component instance or `undefined` if ID isn't registered.
+	 */
 	public get(key: UIComponentEnum): Component|undefined {
 		return this.wellKnownComponents.get(key);
 	}
