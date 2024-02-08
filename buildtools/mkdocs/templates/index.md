@@ -17,7 +17,14 @@ Stendhal &amp; Marauroa are written in the [Java programming language](https://w
     - [Marauroa common](/reference/java/marauroa/client/package-summary.html)
 
 
-## Scripting
+## Web Client
+
+The web client interface is writting in the [TypeScript language](https://www.typescriptlang.org/).
+
+- [TypeScript reference](/reference/typescript/)
+
+
+## Server Scripting
 
 Stendhal supports scripting interfaces for both [Groovy](https://groovy-lang.org/) &amp;
 [Lua](https://www.lua.org/).

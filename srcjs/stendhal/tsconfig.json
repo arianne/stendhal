@@ -12,6 +12,6 @@
 	},
 	"typedocOptions": {
 		"entryPoints": ["."],
-		"out": "../../build/build_docs/typescript"
+		"out": "../../build/build_docs/reference/typescript"
 	}
 }

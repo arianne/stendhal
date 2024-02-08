@@ -2,26 +2,34 @@
 
 <project xmlns:if="ant:if" xmlns:unless="ant:unless">
 
-	<property name="build_docs" value="${buildroot}/build_docs"/>
+	<property name="build_docs" value="${buildroot}/build_docs/reference"/>
+	<property name="javadocs" value="${build_docs}/java"/>
 	<property name="tsdocs" value="${build_docs}/typescript"/>
+	<property name="luadocs" value="${build_docs}/lua"/>
 
 
-	<target name="clean_javadocs" description="Delete javadoc generated HTML documentation.">
-		<delete dir="${docs}"/>
+	<target name="clean_docs">
+		<delete dir="${buildroot}/build_docs"/>
 	</target>
 
-	<target name="clean_mkdocs" description="Delete MkDocs generated HTML documentation.">
-		<delete dir="${buildroot}/mkdocs/"/>
+	<target name="docs" description="Generate HTML documentation for Java, TypeScript, and Lua APIs." depends="luadocs,javadocs,tsdocs"/>
+
+
+	<!-- Java documentation -->
+
+	<target name="clean_javadocs">
+		<delete dir="${javadocs}"/>
 	</target>
 
-	<target name="javadocs" description="Generate HTML documentation for Java API with javadoc." depends="clean_javadocs">
+
+	<target name="javadocs" depends="clean_javadocs">
 		<condition property="include.marauroa" value="true">
 			<available file="${marauroa_src}" type="dir"/>
 		</condition>
 
 		<javadoc
 				defaultexcludes="yes"
-				destdir="${docs}"
+				destdir="${javadocs}"
 				author="true"
 				encoding="UTF-8"
 				version="true"
@@ -72,18 +80,7 @@
 	</target> <!-- javadocs -->
 
 
-	<target name="mkdocs" description="Generate HTML documentation for Lua API with MkDocs." depends="clean_mkdocs">
-		<echo unless:true="${python.present}"
-			message="Python unavailable, cannot run mkdocs"/>
-
-		<!-- Note: script will include Java documentation if "javadocs" build directory is found -->
-		<exec if:true="${python.present}" executable="python" failonerror="true"
-				dir="./buildtools/mkdocs/">
-			<arg value="-u"/>
-			<arg value="build.py"/>
-		</exec>
-	</target> <!-- mkdocs -->
-
+	<!-- TypeScript documentation -->
 
 	<target name="clean_tsdocs">
 		<delete dir="${tsdocs}"/>
@@ -104,6 +101,23 @@
 	</target>
 
 
-	<target name="docs" description="Generate HTML documentation for Java and Lua APIs." depends="javadocs,mkdocs"/>
+	<!-- Lua documentation -->
+
+	<target name="clean_luadocs">
+		<delete dir="${luadocs}"/>
+	</target>
+
+
+	<target name="luadocs" depends="clean_luadocs">
+		<echo unless:true="${python.present}"
+			message="Python unavailable, cannot run mkdocs"/>
+
+		<!-- NOTE: MkDocs create the top-level index.html -->
+		<exec if:true="${python.present}" executable="python" failonerror="true"
+				dir="./buildtools/mkdocs/">
+			<arg value="-u"/>
+			<arg value="build.py"/>
+		</exec>
+	</target>
 
 </project>
