@@ -201,7 +201,7 @@ export class Joystick extends JoystickImpl {
 	 * @param e {Event}
 	 *   Event denoting an update to joystick state.
 	 */
-	private onDragWhileEngaged(e: Event) {
+	public onDragWhileEngaged(e: Event) {
 		if (!this.isEngaged()) {
 			// prevent movement if joystick is not engaged
 			return;
