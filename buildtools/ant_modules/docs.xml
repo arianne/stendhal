@@ -26,10 +26,17 @@
 				failonerror="yes"
 				additionalparam="-Xdoclint:-html">
 			<!-- include marauroa source if available -->
-			<fileset dir="${marauroa_src}" includes="**/*.java"
-					if:true="${include.marauroa}"/>
-			<fileset dir="${src}" includes="**/*.java"/>
-			<fileset dir="${testsrc}" includes="utilities/**/*.java"/>
+			<sourcepath path="${marauroa_src}" if:true="${include.marauroa}"/>
+			<sourcepath path="${src}"/>
+			<sourcefiles>
+				<fileset dir="${testsrc}">
+					<include name="utilities/**/*.java"/>
+					<!-- some of the utilities depend on the following -->
+					<include name="games/stendhal/server/entity/mapstuff/block/BlockTest.java"/>
+					<include name="games/stendhal/server/maps/MockStendhalRPRuleProcessor.java"/>
+					<include name="games/stendhal/server/maps/MockStendlRPWorld.java"/>
+				</fileset>
+			</sourcefiles>
 			<classpath>
 				<pathelement path="${marauroa_src}"
 						if:true="${include.marauroa}"/>
