@@ -34,6 +34,9 @@ export class Joystick extends JoystickImpl {
 	/** Element used to determine moving direction of character. */
 	private inner: HTMLImageElement;
 
+	/** Secondary direction of movement. */
+	private secondaryDir = 0;
+
 	/** Difference in pixels of inner button center relative to outer button center before a move
 	 *  event will be executed. */
 	private readonly playThreshold = 24;
@@ -47,13 +50,16 @@ export class Joystick extends JoystickImpl {
 	 * NOTE: currently supports only 4 sectors but should be updated to represent sectors as laid out
 	 *       in https://github.com/arianne/stendhal/issues/608#issuecomment-1872485986
 	 */
-	private readonly sectors: Pair<Direction, AngleRange>[] = [
-		// NOTE: 0 degrees represents right on joystick plane
-		new Pair(Direction.UP, new AngleRange(225, 314.9)),
-		new Pair(Direction.RIGHT, new AngleRange(315, 44.9)),
-		new Pair(Direction.DOWN, new AngleRange(45, 134.9)),
-		new Pair(Direction.LEFT, new AngleRange(135, 224.9))
-	];
+	private readonly sectors: {[key: string]: Pair<number, AngleRange>[]} = {
+		primary: [
+			// NOTE: 0 degrees represents right on joystick plane
+			new Pair(Direction.UP.val, new AngleRange(225, 314.9)),
+			new Pair(Direction.RIGHT.val, new AngleRange(315, 44.9)),
+			new Pair(Direction.DOWN.val, new AngleRange(45, 134.9)),
+			new Pair(Direction.LEFT.val, new AngleRange(135, 224.9))
+		],
+		secondary: []
+	};
 
 	/** Singleton instance. */
 	private static instance: Joystick;
@@ -76,6 +82,16 @@ export class Joystick extends JoystickImpl {
 	 */
 	private constructor() {
 		super();
+
+		// initialize secondary movement ranges
+		// all sectors should be equal size
+		const ssize = this.sectors.primary[0].second.getSize() / 3;
+		for (const p of this.sectors.primary) {
+			const rangeCC = new AngleRange(p.second.min, p.second.min + ssize);
+			const rangeC = new AngleRange(p.second.max - ssize, p.second.max);
+			this.sectors.secondary.push(new Pair(p.first + .1, rangeCC));
+			this.sectors.secondary.push(new Pair(p.first + .2, rangeC));
+		}
 
 		this.outer = new Image();
 		this.inner = new Image();
@@ -231,6 +247,17 @@ export class Joystick extends JoystickImpl {
 	}
 
 	/**
+	 * Called when secondary direction should be updated.
+	 *
+	 * @param dir {number}
+	 *   New secondary direction.
+	 */
+	private onSecondaryDirChange(dir: number) {
+		this.secondaryDir = dir;
+		// TODO: send event to set secondary direction server side.
+	}
+
+	/**
 	 * Called when drag gesture is detected to update movement and buttons.
 	 *
 	 * @param e {Event}
@@ -247,9 +274,14 @@ export class Joystick extends JoystickImpl {
 		this.updateInner(pos.pageX, pos.pageY);
 
 		// set new direction of movement
-		const new_direction = this.getPressedDirection();
-		if (new_direction != this.direction) {
-			this.onDirectionChange(new_direction);
+		let sec = this.getPressedDirection();
+		const pri = Math.floor(sec);
+		if (pri != this.direction.val) {
+			this.onDirectionChange(Direction.VALUES[pri]);
+		}
+		sec = sec - pri == 0 ? 0 : sec;
+		if (sec != this.secondaryDir) {
+			this.onSecondaryDirChange(sec);
 		}
 	}
 
@@ -269,23 +301,28 @@ export class Joystick extends JoystickImpl {
 	/**
 	 * Retrieves the interpreted direction of joystick.
 	 *
-	 * @return {util.Direction}
-	 *   Facing direction the joystick's state represents.
+	 * @return {number}
+	 *   Direction of movement the joystick's state represents.
 	 */
-	private getPressedDirection(): Direction {
+	private getPressedDirection(): number {
 		const irect = this.inner.getBoundingClientRect();
 		const ix = irect.left + Math.floor(this.inner.width / 2) - Joystick.getCenterX();
 		const iy = irect.top + Math.floor(this.inner.height / 2) - Joystick.getCenterY();
 		if (this.inDeadZone(ix, iy)) {
-			return Direction.STOP;
+			return Direction.STOP.val;
 		}
 		const angle = MathHelper.pointToDeg(ix, iy);
-		for (const pair of this.sectors) {
+		for (const pair of this.sectors.secondary) {
 			if (pair.second.contains(angle)) {
 				return pair.first;
 			}
 		}
-		return Direction.STOP;
+		for (const pair of this.sectors.primary) {
+			if (pair.second.contains(angle)) {
+				return pair.first;
+			}
+		}
+		return Direction.STOP.val;
 	}
 
 	/**
