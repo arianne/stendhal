@@ -10,6 +10,8 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Point } from "./Point";
+
 
 /**
  * Helper class for mathmatical calculations & conversions.
@@ -43,6 +45,8 @@ export class MathHelper {
 	/**
 	 * Converts an X/Y coordinate pair to radians.
 	 *
+	 * @param point {util.Point.Point}
+	 *   Point object containing X/Y coordinates.
 	 * @param x {number}
 	 *   Coordinate on X axis relative to center 0,0.
 	 * @param y {number}
@@ -50,13 +54,21 @@ export class MathHelper {
 	 * @return {number}
 	 *   Radians.
 	 */
-	static pointToRad(x: number, y: number): number {
-		return Math.atan2(y, x);
+	static pointToRad(point: Point): number;
+	static pointToRad(x: number, y: number): number;
+	static pointToRad(x: number|Point, y?: number): number {
+		if (x instanceof Point) {
+			y = x.y;
+			x = x.x;
+		}
+		return Math.atan2(y!, x);
 	}
 
 	/**
 	 * Converts an X/Y coordinate pair to angle of degrees.
 	 *
+	 * @param point {util.Point.Point}
+	 *   Point object containing X/Y coordinates.
 	 * @param x {number}
 	 *   Coordinate on X axis relative to center 0,0.
 	 * @param y {number}
@@ -64,8 +76,14 @@ export class MathHelper {
 	 * @return {number}
 	 *   Angle of degrees.
 	 */
-	static pointToDeg(x: number, y: number): number {
-		return MathHelper.radToDeg(MathHelper.pointToRad(x, y));
+	static pointToDeg(point: Point): number;
+	static pointToDeg(x: number, y: number): number;
+	static pointToDeg(x: number|Point, y?: number): number {
+		if (x instanceof Point) {
+			y = x.y;
+			x = x.x;
+		}
+		return MathHelper.radToDeg(MathHelper.pointToRad(x, y!));
 	}
 
 	/**
