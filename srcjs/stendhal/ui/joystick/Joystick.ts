@@ -16,6 +16,7 @@ import { AngleRange } from "../../util/AngleRange";
 import { Direction } from "../../util/Direction";
 import { MathHelper } from "../../util/MathHelper";
 import { Pair } from "../../util/Pair";
+import { Point } from "../../util/Point";
 
 
 /**
@@ -194,10 +195,10 @@ export class Joystick extends JoystickImpl {
 	 *   Absolute coordinate on X axis.
 	 * @param y {number}
 	 *   Absolute coordinate on Y axis.
-	 * @return {object}
+	 * @return {util.Point.Point}
 	 *   Adjusted positioning.
 	 */
-	private keepInside(x: number, y: number): {[index: string]: number} {
+	private keepInside(x: number, y: number): Point {
 		const bounds = this.outer.getBoundingClientRect();
 		const cx = bounds.left + this.radius;
 		const cy = bounds.top + this.radius;
@@ -208,7 +209,7 @@ export class Joystick extends JoystickImpl {
 			x = Math.cos(rad) * this.radius + cx;
 			y = Math.sin(rad) * this.radius + cy;
 		}
-		return {x: x, y: y};
+		return new Point(x, y);
 	}
 
 	/**
