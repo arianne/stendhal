@@ -9,12 +9,13 @@
  *                                                                         *
  ***************************************************************************/
 
+declare var stendhal: any;
+
 import { Component } from "./Component";
 import { DialogContentComponent } from "./DialogContentComponent";
-
 import { SoundManager } from "../SoundManager";
+import { Point } from "../../util/Point";
 
-declare var stendhal: any;
 
 export class FloatingWindow extends Component {
 
@@ -169,7 +170,7 @@ export class FloatingWindow extends Component {
 	/**
 	 * Keeps dialog window within browser page.
 	 */
-	private checkPos(): any {
+	private checkPos(): Point {
 		if (this.content) {
 			this.content.onMoved();
 		}
@@ -203,7 +204,7 @@ export class FloatingWindow extends Component {
 			this.componentElement.style.top = (offset.y + newY) + "px";
 		}
 
-		return {x: newX + offset.x, y: newY + offset.y};
+		return new Point(newX + offset.x, newY + offset.y);
 	}
 
 	public override onMoved() {
