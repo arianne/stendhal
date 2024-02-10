@@ -11,6 +11,8 @@
 
 declare var stendhal: any;
 
+import { Point } from "./Point";
+
 import { ui } from "../ui/UI";
 import { UIComponentEnum } from "../ui/UIComponentEnum";
 
@@ -193,7 +195,7 @@ export class ConfigManager {
 	};
 
 	/** Cached window states. */
-	private readonly windowstates: any = {};
+	private readonly windowstates: {[id: string]: Point} = {};
 	/** @deprecated */
 	private initialized = false;
 
@@ -439,7 +441,7 @@ export class ConfigManager {
 	 *   Vertical position.
 	 */
 	setWindowState(id: string, x: number, y: number) {
-		this.windowstates[id] = {x: x, y: y};
+		this.windowstates[id] = new Point(x, y);
 		this.set("window." + id, x + "," + y);
 	}
 
@@ -448,14 +450,14 @@ export class ConfigManager {
 	 *
 	 * @param id {string}
 	 *   Dialog `string` identifier (excluding "client.window." prefix).
-	 * @return {object}
-	 *   `object` containing X/Y positioning of window formatted as `{"x": `number`, "y": `number`}`.
+	 * @return {util.Point.Point}
+	 *   Point containing X/Y positioning of window.
 	 */
-	getWindowState(id: string): {[index: string]: number} {
+	getWindowState(id: string): Point {
 		if (!this.windowstates.hasOwnProperty(id)) {
 			const tmp: string[] = (this.get("window." + id) || "0,0").split(",");
 			// cache state
-			this.windowstates[id] = {x: parseInt(tmp[0], 10), y: parseInt(tmp[1], 10)};
+			this.windowstates[id] = new Point(parseInt(tmp[0], 10), parseInt(tmp[1], 10));
 		}
 		return this.windowstates[id];
 	}
