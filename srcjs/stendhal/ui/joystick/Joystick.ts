@@ -180,18 +180,35 @@ export class Joystick extends JoystickImpl {
 	 *   Positioning center on Y axis.
 	 */
 	private updateInner(x: number, y: number) {
-		// FIXME: need a smarter algorithm for restricting range of motion of inner button to radius of
-		//        outer without impairing updates when touch/click is beyond radius
+		const pos = this.keepInside(x, y);
+		this.inner.style.left = (pos.x - Math.floor(this.inner.width / 2)) + "px";
+		this.inner.style.top = (pos.y - Math.floor(this.inner.height / 2)) + "px";
+	}
+
+	/**
+	 * Restricts movement of inner button to joystick radial boundaries.
+	 *
+	 * Reference: https://stackoverflow.com/a/8528999/4677917
+	 *
+	 * @param x {number}
+	 *   Absolute coordinate on X axis.
+	 * @param y {number}
+	 *   Absolute coordinate on Y axis.
+	 * @return {object}
+	 *   Adjusted positioning.
+	 */
+	private keepInside(x: number, y: number): {[index: string]: number} {
 		const bounds = this.outer.getBoundingClientRect();
-		const xdiff = Math.abs(x - (bounds.left + this.radius));
-		const ydiff = Math.abs(y - (bounds.top + this.radius));
-		// don't allow inner button to move beyond radius of outer
-		if (xdiff <= this.radius) {
-			this.inner.style.left = (x - Math.floor(this.inner.width / 2)) + "px";
+		const cx = bounds.left + this.radius;
+		const cy = bounds.top + this.radius;
+		const relX = x - cx;
+		const relY = y - cy;
+		if (this.outside(relX, relY)) {
+			const rad = MathHelper.pointToRad(relX, relY);
+			x = Math.cos(rad) * this.radius + cx;
+			y = Math.sin(rad) * this.radius + cy;
 		}
-		if (ydiff <= this.radius) {
-			this.inner.style.top = (y - Math.floor(this.inner.height / 2)) + "px";
-		}
+		return {x: x, y: y};
 	}
 
 	/**
@@ -282,5 +299,19 @@ export class Joystick extends JoystickImpl {
 	 */
 	private inDeadZone(relX: number, relY: number): boolean {
 		return Math.pow(Math.abs(relX), 2) + Math.pow(Math.abs(relY), 2) <= Math.pow(this.playThreshold, 2);
+	}
+
+	/**
+	 * Checks if a position extends beyond radial limit.
+	 *
+	 * @param relX {number}
+	 *   Coordinate on X axis relative to joystick center.
+	 * @param relY {number}
+	 *   Coordinate on Y axis relative to joystick center.
+	 * @return {boolean}
+	 *   `true` if position is beyond radius.
+	 */
+	private outside(relX: number, relY: number): boolean {
+		return Math.pow(Math.abs(relX), 2) + Math.pow(Math.abs(relY), 2) >= Math.pow(this.radius, 2);
 	}
 }
