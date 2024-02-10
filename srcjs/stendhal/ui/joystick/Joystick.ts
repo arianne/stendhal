@@ -12,7 +12,10 @@
 declare var stendhal: any;
 
 import { JoystickImpl } from "./JoystickImpl";
+import { AngleRange } from "../../util/AngleRange";
 import { Direction } from "../../util/Direction";
+import { MathHelper } from "../../util/MathHelper";
+import { Pair } from "../../util/Pair";
 
 
 /**
@@ -36,6 +39,20 @@ export class Joystick extends JoystickImpl {
 
 	/** Property denoting joystick is in an engaged state. */
 	private engaged = false;
+
+	/**
+	 * Angles representing directions of movement.
+	 *
+	 * NOTE: currently supports only 4 sectors but should be updated to represent sectors as laid out
+	 *       in https://github.com/arianne/stendhal/issues/608#issuecomment-1872485986
+	 */
+	private readonly sectors: Pair<Direction, AngleRange>[] = [
+		// NOTE: 0 degrees represents right on joystick plane
+		new Pair(Direction.UP, new AngleRange(225, 314.9)),
+		new Pair(Direction.RIGHT, new AngleRange(315, 44.9)),
+		new Pair(Direction.DOWN, new AngleRange(45, 134.9)),
+		new Pair(Direction.LEFT, new AngleRange(135, 224.9))
+	];
 
 	/** Singleton instance. */
 	private static instance: Joystick;
@@ -163,8 +180,8 @@ export class Joystick extends JoystickImpl {
 	 *   Positioning center on Y axis.
 	 */
 	private updateInner(x: number, y: number) {
-		// FIXME: need a smarter algorithm for detecting if center of inner circle is beyond radius
-		//        of outer
+		// FIXME: need a smarter algorithm for restricting range of motion of inner button to radius of
+		//        outer without impairing updates when touch/click is beyond radius
 		const bounds = this.outer.getBoundingClientRect();
 		const xdiff = Math.abs(x - (bounds.left + this.radius));
 		const ydiff = Math.abs(y - (bounds.top + this.radius));
@@ -238,22 +255,32 @@ export class Joystick extends JoystickImpl {
 	 *   Facing direction the joystick's state represents.
 	 */
 	private getPressedDirection(): Direction {
-		let dir = Direction.STOP;
-		// FIXME: need a smarter algorithm for detecting direction based on position of inner circle
-		//        relative to center of outer
-		const rect = this.inner.getBoundingClientRect();
-		const oCenterX = Joystick.getCenterX(), oCenterY = Joystick.getCenterY();
-		const iCenterX = rect.left + Math.floor(this.inner.width / 2);
-		const iCenterY = rect.top + Math.floor(this.inner.height / 2);
-		if (iCenterX < oCenterX - this.playThreshold) {
-			dir = Direction.LEFT;
-		} else if (iCenterX > oCenterX + this.playThreshold) {
-			dir = Direction.RIGHT;
-		} else if (iCenterY < oCenterY - this.playThreshold) {
-			dir = Direction.UP;
-		} else if (iCenterY > oCenterY + this.playThreshold) {
-			dir = Direction.DOWN;
+		const irect = this.inner.getBoundingClientRect();
+		const ix = irect.left + Math.floor(this.inner.width / 2) - Joystick.getCenterX();
+		const iy = irect.top + Math.floor(this.inner.height / 2) - Joystick.getCenterY();
+		if (this.inDeadZone(ix, iy)) {
+			return Direction.STOP;
 		}
-		return dir;
+		const angle = MathHelper.pointToDeg(ix, iy);
+		for (const pair of this.sectors) {
+			if (pair.second.contains(angle)) {
+				return pair.first;
+			}
+		}
+		return Direction.STOP;
+	}
+
+	/**
+	 * Checks if a position is inside dead zone area.
+	 *
+	 * @param relX {number}
+	 *   Coordinate on X axis relative to joystick center.
+	 * @param relY {number}
+	 *   Coordinate on Y axis relative to joystick center.
+	 * @return {boolean}
+	 *   `true` if position is not in an area of joystick denoting character movement.
+	 */
+	private inDeadZone(relX: number, relY: number): boolean {
+		return Math.pow(Math.abs(relX), 2) + Math.pow(Math.abs(relY), 2) <= Math.pow(this.playThreshold, 2);
 	}
 }
