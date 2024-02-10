@@ -9,12 +9,12 @@
  *                                                                         *
  ***************************************************************************/
 
+declare var stendhal: any;
+
 import { ui } from "../ui/UI";
 import { UIComponentEnum } from "../ui/UIComponentEnum";
 
 import { BuddyListComponent } from "../ui/component/BuddyListComponent";
-
-declare var stendhal: any;
 
 
 /**
@@ -192,7 +192,7 @@ export class ConfigManager {
 		"Carlito": ""
 	};
 
-	/** Stored window states to persist between opening & closing dialog windows & across client sessions. */
+	/** Cached window states. */
 	private readonly windowstates: any = {};
 	/** @deprecated */
 	private initialized = false;
@@ -429,6 +429,8 @@ export class ConfigManager {
 	/**
 	 * Stores attributes for a dialog window.
 	 *
+	 * TODO: support resizable windows?
+	 *
 	 * @param id {string}
 	 *   Dialog `string` identifier (excluding "client.window." prefix).
 	 * @param x {number}
@@ -450,15 +452,12 @@ export class ConfigManager {
 	 *   `object` containing X/Y positioning of window formatted as `{"x": `number`, "y": `number`}`.
 	 */
 	getWindowState(id: string): {[index: string]: number} {
-		let state: {[index: string]: number} = {};
-		if (this.windowstates.hasOwnProperty(id)) {
-			state = this.windowstates[id];
-		} else {
+		if (!this.windowstates.hasOwnProperty(id)) {
 			const tmp: string[] = (this.get("window." + id) || "0,0").split(",");
-			state.x = parseInt(tmp[0], 10);
-			state.y = parseInt(tmp[1], 10);
+			// cache state
+			this.windowstates[id] = {x: parseInt(tmp[0], 10), y: parseInt(tmp[1], 10)};
 		}
-		return state;
+		return this.windowstates[id];
 	}
 
 	/**
