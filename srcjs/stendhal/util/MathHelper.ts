@@ -51,7 +51,7 @@ export class MathHelper {
 	 *   Radians.
 	 */
 	static pointToRad(x: number, y: number): number {
-			return Math.atan2(y, x);
+		return Math.atan2(y, x);
 	}
 
 	/**
