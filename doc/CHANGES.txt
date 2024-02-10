@@ -25,7 +25,7 @@ Changelog
 
 *web client*
 - corpses optionally display an indicator when they contain items
-- improvement movement handling with on-screen direction pad
+- improved movement handling with on-screen joystick & direction pad
 - alternate "floating" menu style
 - alternate "floating" chat panel style
 - software keyboard is automatically hidden after sending chat message
