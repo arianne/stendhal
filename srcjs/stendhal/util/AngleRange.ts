@@ -19,8 +19,8 @@ import { MathHelper } from "./MathHelper";
 export class AngleRange {
 	[index: string]: number|Function;
 
-	private readonly min: number;
-	private readonly max: number;
+	public readonly min: number;
+	public readonly max: number;
 
 
 	/**
@@ -53,5 +53,15 @@ export class AngleRange {
 			return angle >= this.min || angle <= this.max;
 		}
 		return angle >= this.min && angle <= this.max;
+	}
+
+	/**
+	 * Retrieves number of degrees between the min & max values.
+	 */
+	public getSize(): number {
+		if (this.min > this.max) {
+			return 360 - this.min + this.max;
+		}
+		return this.max - this.min;
 	}
 }
