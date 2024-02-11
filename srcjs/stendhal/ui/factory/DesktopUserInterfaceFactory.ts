@@ -30,8 +30,6 @@ import { ZoneInfoComponent } from "../component/ZoneInfoComponent";
 import { PlayerEquipmentComponent } from "../component/PlayerEquipmentComponent";
 import { PlayerStatsComponent } from "../component/PlayerStatsComponent";
 
-import { singletons } from "../../SingletonRepo";
-
 
 export class DesktopUserInterfaceFactory {
 
