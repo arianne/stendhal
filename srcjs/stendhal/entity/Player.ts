@@ -16,6 +16,11 @@ import { RPEntity } from "./RPEntity";
 
 import { MenuItem } from "../action/MenuItem";
 
+import { ui } from "../ui/UI";
+import { UIComponentEnum } from "../ui/UIComponentEnum";
+
+import { GroupPanelComponent } from "../ui/component/GroupPanelComponent";
+
 import { Color } from "../util/Color";
 
 
@@ -44,6 +49,8 @@ export class Player extends RPEntity {
 		super.set(key, value);
 		if (key === "ghostmode") {
 			this.minimapShow = false;
+		} else if (["hp", "base_hp"].indexOf(key) !== -1) {
+			this.updateGroupStatus(true);
 		}
 	}
 
@@ -188,12 +195,34 @@ export class Player extends RPEntity {
 	 * Actions to execute when player is removed from zone.
 	 */
 	onExitZone() {
+		// HP status of current user should always be visible
+		if (this != marauroa.me) {
+			this.updateGroupStatus(false);
+		}
 	}
 
 	/**
 	 * Actions to execute when player is created in zone.
 	 */
 	onEnterZone() {
+		this.updateGroupStatus(true);
+	}
+
+	/**
+	 * Updates group membership HP bar.
+	 *
+	 * @param visible {boolean}
+	 *   If `false`, player's group status is not visible to current user.
+	 */
+	updateGroupStatus(visible: boolean) {
+		const memberComponent = (ui.get(UIComponentEnum.GroupPanel)! as GroupPanelComponent).getMemberComponent(this["name"]);
+		if (memberComponent) {
+			if (visible) {
+				memberComponent.updateHP(this["hp"] / this["base_hp"]);
+			} else {
+				memberComponent.hideStatus();
+			}
+		}
 	}
 
 	override getCursor(_x: number, _y: number) {

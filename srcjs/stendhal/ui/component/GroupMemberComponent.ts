@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2003-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2003-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,21 +9,31 @@
  *                                                                         *
  ***************************************************************************/
 
+declare let marauroa: any;
+declare let stendhal: any;
+
+import { ChatInputComponent } from "./ChatInputComponent";
+
 import { ui } from "../UI";
 import { UIComponentEnum } from "../UIComponentEnum";
 
 import { Component } from "../toolkit/Component";
 
-import { ActionContextMenu } from "../dialog/ActionContextMenu";
-import { ChatInputComponent } from "./ChatInputComponent";
+import { StatBarComponent } from "../component/StatBarComponent";
 
-declare let marauroa: any;
-declare let stendhal: any;
+import { ActionContextMenu } from "../dialog/ActionContextMenu";
+
+import { singletons } from "../../SingletonRepo";
+
 
 /**
  * a group member
  */
 export class GroupMemberComponent extends Component {
+
+	/** HP bar associated with this component. */
+	private hpBar: StatBarComponent;
+
 
 	constructor(private memberName: string, private isUserLeader: boolean) {
 		super("group-member-template");
@@ -31,8 +41,31 @@ export class GroupMemberComponent extends Component {
 		this.componentElement.addEventListener("mouseup", (event) => {
 			this.onMouseUp(event);
 		});
+
+		this.hpBar = new StatBarComponent();
+		this.hpBar.componentElement.classList.add("group-member-hpbar");
+		// check for player to initialize HP bar value
+		const player = singletons.getZone().findPlayer(memberName);
+		if (player) {
+			// component hasn't been created yet so `Player.updateGroupStatus` will fail here
+			this.hpBar.draw(player["hp"] / player["base_hp"]);
+		} else {
+			// initialize with gray background
+			this.hpBar.draw(0);
+		}
+		// add HP as child after name
+		this.componentElement.appendChild(this.hpBar.componentElement);
 	}
 
+	/**
+	 * Retrieves player name.
+	 *
+	 * @return {string}
+	 *   Name of player associated with this component.
+	 */
+	getMemberName(): string {
+		return this.child(".group-member-name")!.innerText;
+	}
 
 	buildActions(actions: any) {
 		let playerName = this.memberName;
@@ -87,5 +120,22 @@ export class GroupMemberComponent extends Component {
 	onMouseUp(event: MouseEvent) {
 		stendhal.ui.actionContextMenu.set(ui.createSingletonFloatingWindow("Action",
 			new ActionContextMenu(this), Math.max(10, event.pageX - 50), event.pageY - 5));
+	}
+
+	/**
+	 * Updates & redraws member HP bar.
+	 *
+	 * @param ratio {number}
+	 *   Percentage value of player's current HP.
+	 */
+	updateHP(ratio: number) {
+		this.hpBar.draw(ratio);
+	}
+
+	/**
+	 * Makes member's HP status invisible to current user.
+	 */
+	hideStatus() {
+		this.updateHP(0);
 	}
 }

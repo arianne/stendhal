@@ -41,6 +41,7 @@ Changelog
 - fixed chat history duplicates
 - chat options dialog remains open until NPC is no longer attending or player closes
 - fixed continuous movement state not always updated at startup
+- supports displaying members' HP status in group panel
 
 *desktop client (non-Java)*
 - experimental desktop interface for the web client using Neutralinojs

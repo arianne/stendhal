@@ -176,9 +176,12 @@ div.quickPickup div.itemSlot {
 	background-color: #000;
 }
 
-#stats {
+#stats, .group-members, .group-member-component {
 	display: flex;
 	flex-direction: column;
+}
+
+#stats {
 	border: 1px solid black;
 	width: 128px;
 	float: left;
