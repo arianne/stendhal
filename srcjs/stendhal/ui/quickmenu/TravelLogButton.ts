@@ -17,7 +17,7 @@ declare var marauroa: any;
 /**
  * Button to bring up travel log dialog window.
  */
-export class LogButton extends QuickMenuButton {
+export class TravelLogButton extends QuickMenuButton {
 
 	constructor() {
 		super("log");

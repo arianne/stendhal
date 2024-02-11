@@ -12,7 +12,7 @@
 import { ChatButton } from "./ChatButton";
 import { ChatOptsButton } from "./ChatOptsButton";
 import { JoystickButton } from "./JoystickButton";
-import { LogButton } from "./LogButton";
+import { TravelLogButton } from "./TravelLogButton";
 import { MenuButton } from "./MenuButton";
 import { QuickMenuButton } from "./QuickMenuButton";
 import { RotateLButton } from "./RotateLButton";
@@ -71,7 +71,7 @@ export class QuickMenu {
 		// horizontal sub-buttons
 		QuickMenu.buttonListX.push(new JoystickButton());
 		QuickMenu.buttonListX.push(new SoundButton());
-		QuickMenu.buttonListX.push(new LogButton());
+		QuickMenu.buttonListX.push(new TravelLogButton());
 		QuickMenu.buttonListX.push(new SettingsButton());
 		QuickMenu.buttonListX.push(new MenuButton());
 		// vertical sub-buttons
