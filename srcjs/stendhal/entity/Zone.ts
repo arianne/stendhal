@@ -13,6 +13,7 @@ declare var marauroa: any;
 declare var stendhal: any;
 
 import { Entity } from "./Entity";
+import { Player } from "./Player";
 
 
 /**
@@ -115,5 +116,21 @@ export class Zone {
 
 			return rv;
 		});
+	}
+
+	/**
+	 * Finds player instance in zone.
+	 *
+	 * @param name {string}
+	 *   Player name to search for.
+	 * @return {Player}
+	 *   Player instance or `undefined`.
+	 */
+	findPlayer(name: string): Player|undefined {
+		for (const ent of this.entities) {
+			if (ent instanceof Player && ent["name"] === name) {
+				return ent as Player;
+			}
+		}
 	}
 }
