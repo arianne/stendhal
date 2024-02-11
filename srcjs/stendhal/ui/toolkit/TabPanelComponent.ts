@@ -84,6 +84,16 @@ export class TabPanelComponent extends Panel {
 		}
 	}
 
+	/**
+	 * Retrieves index value of current tab.
+	 *
+	 * @return {number}
+	 *   Indexed number value.
+	 */
+	getCurrentIndex(): number {
+		return this.currentIndex;
+	}
+
 	onTabClick(event: Event) {
 		this.setCurrentTab(Number.parseInt((event.target as HTMLElement).dataset.index!, 10));
 	}
