@@ -13,6 +13,8 @@ import { Client } from "./Client";
 import { EventRegistry } from "./EventRegistry";
 import { SlashActionRepo } from "./SlashActionRepo";
 
+import { Zone } from "./entity/Zone";
+
 import { ConfigManager } from "./util/ConfigManager";
 import { FacingHandler } from "./util/FacingHandler";
 import { KeyHandler } from "./util/KeyHandler";
@@ -153,6 +155,10 @@ export class SingletonRepo {
 
 	static getWeatherRenderer(): WeatherRenderer {
 		return WeatherRenderer.get();
+	}
+
+	static getZone(): Zone {
+		return Zone.get();
 	}
 }
 

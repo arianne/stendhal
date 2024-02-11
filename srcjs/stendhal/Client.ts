@@ -19,7 +19,6 @@ import { Paths } from "./data/Paths";
 
 import { Ground } from "./entity/Ground";
 import { RPObject } from "./entity/RPObject";
-import { Zone } from "./entity/Zone";
 
 import { ui } from "./ui/UI";
 import { UIComponentEnum } from "./ui/UIComponentEnum";
@@ -143,7 +142,7 @@ export class Client {
 	 * Builds initial zone for user to enter world.
 	 */
 	private initZone() {
-		stendhal.zone = new Zone();
+		stendhal.zone = singletons.getZone();
 		stendhal.zone.ground = new Ground();
 	}
 

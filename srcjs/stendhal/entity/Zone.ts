@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -20,8 +20,29 @@ import { Entity } from "./Entity";
  */
 export class Zone {
 
+	/** Entities found in this zone. */
 	private entities: Entity[] = [];
 
+	/** Singleton instance. */
+	private static instance: Zone;
+
+
+	/**
+	 * Retrieves singleton instance.
+	 */
+	public static get(): Zone {
+		if (!Zone.instance) {
+			Zone.instance = new Zone();
+		}
+		return Zone.instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private constructor() {
+		// do nothing
+	}
 
 	getEntitiesAt(x: number, y: number, filter: boolean): Entity[] {
 		const xGrid = x / 32;

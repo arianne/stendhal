@@ -9,6 +9,9 @@
  *                                                                         *
  ***************************************************************************/
 
+declare var marauroa: any;
+declare var stendhal: any;
+
 import { ActiveEntity } from "./ActiveEntity";
 import { Entity } from "./Entity";
 import { singletons } from "../SingletonRepo";
@@ -28,11 +31,6 @@ import { RangedAttackSprite } from "../sprite/action/RangedAttackSprite";
 
 import { SoundManager } from "../ui/SoundManager";
 import { ImageWithDimensions } from "data/ImageWithDimensions";
-
-declare var marauroa: any;
-declare var stendhal: any;
-
-const emojiStore = singletons.getEmojiStore();
 
 var HEALTH_BAR_HEIGHT = 6;
 
@@ -176,7 +174,7 @@ export class RPEntity extends ActiveEntity {
 		}
 
 		if (marauroa.me.isInHearingRange(this, rangeSquared)) {
-			let emoji = emojiStore.create(text);
+			let emoji = singletons.getEmojiStore().create(text);
 			if (emoji) {
 				this.addEmoji(emoji);
 				Chat.log("emoji", emoji, this.getTitle());
