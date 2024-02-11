@@ -46,15 +46,7 @@ export class User extends Player {
 
 	constructor() {
 		super();
-		queueMicrotask(() => {
-			this.onEnterZone();
-		});
 		ui.onUserReady();
-	}
-
-	override destroy(parent: any) {
-		this.onExitZone();
-		super.destroy(parent);
 	}
 
 	override set(key: string, value: any) {
@@ -148,7 +140,8 @@ export class User extends Player {
 	/**
 	 * Actions when player leaves a zone.
 	 */
-	onExitZone() {
+	override onExitZone() {
+		super.onExitZone();
 		// speech bubbles & emojis from viewport
 		stendhal.ui.gamewindow.onExitZone();
 		// stop sounds & clear map sounds cache on zone change
@@ -181,7 +174,8 @@ export class User extends Player {
 	/**
 	 * Actions when player enters a zone.
 	 */
-	onEnterZone() {
+	override onEnterZone() {
+		super.onEnterZone();
 		// play looped sound sources
 		this.lssMan.onZoneReady();
 	}

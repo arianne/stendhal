@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -27,6 +27,18 @@ export class Player extends RPEntity {
 	// shift hp bar & title to avoid overlap with other entities
 	override titleDrawYOffset = 6;
 
+
+	constructor() {
+		super();
+		queueMicrotask(() => {
+			this.onEnterZone();
+		});
+	}
+
+	override destroy(parent: any) {
+		this.onExitZone();
+		super.destroy(parent);
+	}
 
 	override set(key: string, value: any) {
 		super.set(key, value);
@@ -170,6 +182,18 @@ export class Player extends RPEntity {
 			return;
 		}
 		super.say(text, rangeSquared);
+	}
+
+	/**
+	 * Actions to execute when player is removed from zone.
+	 */
+	onExitZone() {
+	}
+
+	/**
+	 * Actions to execute when player is created in zone.
+	 */
+	onEnterZone() {
 	}
 
 	override getCursor(_x: number, _y: number) {
