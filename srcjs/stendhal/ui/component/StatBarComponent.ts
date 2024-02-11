@@ -12,6 +12,9 @@
 import { Component } from "../toolkit/Component";
 import { Color } from "../../util/Color";
 
+/**
+ * TODO: move this to `ui.toolkit`.
+ */
 export class StatBarComponent extends Component {
 
 	readonly canvas: HTMLCanvasElement;
