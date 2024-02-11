@@ -11,6 +11,8 @@
 
 declare var stendhal: any;
 
+import { SlashActionRepo } from "../SlashActionRepo";
+
 
 export class GroupManager {
 
@@ -70,5 +72,13 @@ export class GroupManager {
 	 */
 	getMemberCount(): number {
 		return this.count;
+	}
+
+	/**
+	 * Requests a group management event from server to refresh status in client.
+	 */
+	refresh() {
+		// NOTE: sending action directly with `marauroa.clientFramework.sendAction` doesn't work here???
+		SlashActionRepo.get().execute("/group status");
 	}
 }

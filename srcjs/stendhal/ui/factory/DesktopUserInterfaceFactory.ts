@@ -9,6 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
+declare var stendhal: any;
+
 import { ChatPanel } from "../ChatPanel";
 import { UIComponentEnum } from "../UIComponentEnum";
 import { ui } from "../UI";
@@ -33,6 +35,10 @@ import { singletons } from "../../SingletonRepo";
 
 export class DesktopUserInterfaceFactory {
 
+	/** Property to help workaround issue with group event not always received at login. */
+	private checkedGroupAfterLogin = false;
+
+
 	public create() {
 		let topPanel = new Panel("topPanel");
 		ui.registerComponent(UIComponentEnum.LeftPanel, topPanel);
@@ -52,6 +58,23 @@ export class DesktopUserInterfaceFactory {
 		this.add(socialPanel, UIComponentEnum.GroupPanel, new GroupPanelComponent());
 		socialPanel.addTab("Friends");
 		socialPanel.addTab("Group");
+
+		// workaround issue where some events aren't received at login by updating when tab changes
+		const that = this;
+		socialPanel.onTabChanged = function() {
+			if (this.getCurrentIndex() == 1) {
+				if (that.checkedGroupAfterLogin) {
+					return;
+				}
+				that.checkedGroupAfterLogin = true;
+				if (stendhal.data.group.getMemberCount() == 0) {
+					console.debug("group not recognized after login, contacting server for refresh ...");
+					stendhal.data.group.refresh();
+				}
+			}
+		};
+		// since this isn't available at time of construction execute for good measure
+		socialPanel.onTabChanged();
 
 		let rightPanel = new Panel("rightColumn");
 		ui.registerComponent(UIComponentEnum.RightPanel, rightPanel);
