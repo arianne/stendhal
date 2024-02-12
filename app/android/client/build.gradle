@@ -2,6 +2,23 @@ plugins {
 	id 'com.android.application'
 }
 
+/**
+ * Checks for available project property.
+ *
+ * @param prop
+ *   Property key.
+ * @return
+ *   Property value or `null` if property not found or contains only whitespace characters.
+ */
+def checkPropertyValue(prop) {
+	def value = project.findProperty(prop);
+	// don't allow property values with whitspace only
+	if (value == null || value.replaceAll(" |	", "").length() == 0) {
+		return null;
+	}
+	return value;
+}
+
 android {
 	namespace "org.stendhalgame.client"
 	compileSdk 32
@@ -20,9 +37,31 @@ android {
 	def appProperties = new Properties();
 	appProperties.load(new FileInputStream(rootProject.file("app.properties")));
 
-	// build output
+	// build output directory
 	project.setProperty("buildDir", "${projectDir}/../../../build/build_android_client");
-	project.setProperty("archivesBaseName", "${namespace}-${defaultConfig.versionName}")
+
+	/* Custom build properties:
+	 *   applicationTitle (replaces app title & launcher label)
+	 *   applicationId    (replaces `defaultConfig.applicationId`)
+	 *   versionName      (replaces `defaultConfig.versionName`)
+	 *   packageName      (replaces output package filename prefix)
+	 *
+	 * Example: gradlew -PapplicationId=foo.bar -PversionName=1.0 -PpackageName=foobar
+	 */
+	if (checkPropertyValue("applicationTitle")) {
+		appProperties.title = project.findProperty("applicationTitle");
+	}
+	if (checkPropertyValue("applicationId")) {
+		defaultConfig.applicationId = project.findProperty("applicationId");
+	}
+	if (checkPropertyValue("versionName")) {
+		defaultConfig.versionName = project.findProperty("versionName");
+	}
+	if (checkPropertyValue("packageName")) {
+		project.setProperty("archivesBaseName", project.findProperty("packageName") + "-${defaultConfig.versionName}");
+	} else {
+		project.setProperty("archivesBaseName", "${defaultConfig.applicationId}-${defaultConfig.versionName}");
+	}
 
 	/* A keystore.properties file can be placed in the root Android project directory and must
 	 * include the following values:
