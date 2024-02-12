@@ -12,13 +12,17 @@ android {
 		targetSdk 32
 		versionCode 1
 		versionName "1045005"
-		setProperty("archivesBaseName", "${namespace}-${defaultConfig.versionName}")
-		setProperty("buildDir", "${projectDir}/../../../build/build_android_client")
-
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 		targetSdkVersion 32
 		minSdkVersion 21
 	}
+
+	def appProperties = new Properties();
+	appProperties.load(new FileInputStream(rootProject.file("app.properties")));
+
+	// build output
+	project.setProperty("buildDir", "${projectDir}/../../../build/build_android_client");
+	project.setProperty("archivesBaseName", "${namespace}-${defaultConfig.versionName}")
 
 	/* A keystore.properties file can be placed in the root Android project directory and must
 	 * include the following values:
@@ -66,7 +70,10 @@ android {
 	}
 
 	buildTypes.all { type ->
-		if (!type.name.equals("debug")) {
+		manifestPlaceholders.appTitle = appProperties.title
+		if (type.name.equals("debug")) {
+			manifestPlaceholders.appTitle = manifestPlaceholders.appTitle + " (debug)"
+		} else {
 			sourceSets[type.name].java { srcDirs "src/shared/java/" }
 		}
 	}
@@ -95,10 +102,12 @@ android {
 	}
 
 	// print some build info for debugging
-	println "Package:         " + namespace
-	println "Application ID:  " + defaultConfig.applicationId
-	println "Output basename: " + archivesBaseName
-	println "Signing key:     " + signingConfigs.release.storeFile
+	println("Title:           " + appProperties.title);
+	println("Package:         " + namespace)
+	println("Application ID:  " + defaultConfig.applicationId)
+	println("Version:         " + defaultConfig.versionName)
+	println("Output basename: " + archivesBaseName)
+	println("Signing key:     " + signingConfigs.release.storeFile)
 }
 
 dependencies {
