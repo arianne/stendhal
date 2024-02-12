@@ -277,7 +277,11 @@ export class Joystick extends JoystickImpl {
 		let sec = this.getPressedDirection();
 		const pri = Math.floor(sec);
 		if (pri != this.direction.val) {
-			this.onDirectionChange(Direction.VALUES[pri]);
+			if (pri == Direction.STOP.val) {
+				this.queueStop();
+			} else {
+				this.onDirectionChange(Direction.VALUES[pri]);
+			}
 		}
 		sec = sec - pri == 0 ? 0 : sec;
 		if (sec != this.secondaryDir) {
