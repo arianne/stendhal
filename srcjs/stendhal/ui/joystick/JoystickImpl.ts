@@ -25,6 +25,8 @@ export abstract class JoystickImpl {
 	protected direction = Direction.STOP;
 	/** Pixel radius joystick elements should abide by. */
 	protected radius = 0;
+	/** Property denoting joystick is in an engaged state. */
+	protected engaged = false;
 
 	/** ID used to veto buffered time before sending stop event to server. */
 	private stopTimeoutId = 0;
@@ -93,21 +95,42 @@ export abstract class JoystickImpl {
 	/**
 	 * Called when joystick should be set to its default idle state.
 	 */
-	public abstract reset(): void;
+	public reset() {
+		// update engaged state
+		this.engaged = false;
+	}
+
+	/**
+	 * Called when joystick engagement starts.
+	 *
+	 * @param e {Event}
+	 *   Event to be validated.
+	 * @return {boolean}
+	 *   `true` if engagement state set.
+	 */
+	protected onEngaged(e: Event): boolean {
+		if (!JoystickImpl.checkActionEvent(e)) {
+			return false;
+		}
+		// update engaged state
+		this.engaged = true;
+		return this.engaged;
+	}
 
 	/**
 	 * Called when joystick engagement ends and character movement should stop.
 	 *
-	 * This is made public so that `ui.joystick.DPadButton.DPadButton` can access it.
-	 *
 	 * @param e {Event}
 	 *   Event to be validated.
+	 * @return {boolean}
+	 *   `true` if engagement state unset.
 	 */
-	public onDisengaged(e: Event) {
+	protected onDisengaged(e: Event): boolean {
 		if (!JoystickImpl.checkActionEvent(e)) {
-			return;
+			return false;
 		}
 		this.reset();
+		return !this.engaged;
 	}
 
 	/**
@@ -117,7 +140,7 @@ export abstract class JoystickImpl {
 	 *   `true` if considered to be engaged.
 	 */
 	protected isEngaged(): boolean {
-		return this.direction != Direction.STOP;
+		return this.engaged;
 	}
 
 	/**
@@ -201,7 +224,7 @@ export abstract class JoystickImpl {
 	 * Called when user's character direction should be updated.
 	 *
 	 * @param dir {util.Direction}
-	 *   New direction character move or stop.
+	 *   New direction for character to move or stop.
 	 */
 	protected onDirectionChange(dir: Direction) {
 		if (!ui.isDisplayReady()) {

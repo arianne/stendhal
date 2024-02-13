@@ -95,10 +95,12 @@ export class DirectionPad extends JoystickImpl {
 	 */
 	public override reset() {
 		this.disengageAll();
-		if (this.isEngaged()) {
+		if (this.engaged) {
 			// stop movement
 			this.queueStop();
 		}
+		// don't update engaged state until after check
+		super.reset();
 	}
 
 	/**
@@ -108,20 +110,6 @@ export class DirectionPad extends JoystickImpl {
 		for (const button of this.buttons) {
 			button.onDisengaged();
 		}
-	}
-
-	/**
-	 * Called when a button is engaged and determines direction of movement.
-	 *
-	 * This is made public so that `ui.joystick.DPadButton.DPadButton` can access it.
-	 *
-	 * @param e {Event}
-	 *   Event to be validated.
-	 * @return {boolean}
-	 *   `true` if engagement state set.
-	 */
-	private onEngaged(e: Event): boolean {
-		return DirectionPad.checkActionEvent(e);
 	}
 
 	/**
@@ -162,7 +150,7 @@ export class DirectionPad extends JoystickImpl {
 	 *   Button component over which the drag event was detected.
 	 */
 	public onDragWhileEngaged(button: DPadButton) {
-		if (!this.isEngaged()) {
+		if (!this.engaged) {
 			// prevent movement if direction pad is not engaged
 			return;
 		}

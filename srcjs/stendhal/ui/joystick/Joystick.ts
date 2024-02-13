@@ -41,9 +41,6 @@ export class Joystick extends JoystickImpl {
 	 *  event will be executed. */
 	private readonly playThreshold = 24;
 
-	/** Property denoting joystick is in an engaged state. */
-	private engaged = false;
-
 	/**
 	 * Angles representing directions of movement.
 	 *
@@ -168,11 +165,11 @@ export class Joystick extends JoystickImpl {
 	}
 
 	/**
-	 * Resets all buttons to a state of disengaged.
+	 * Resets inner buttons to disengaged state & stops movement.
 	 */
 	public override reset() {
 		// update engaged state
-		this.engaged = false;
+		super.reset();
 		this.inner.onload = () => {
 			// remove listener
 			this.inner.onload = null;
@@ -235,15 +232,13 @@ export class Joystick extends JoystickImpl {
 	 * @param e {Event}
 	 *   Event to be validated.
 	 */
-	private onEngaged(e: Event) {
-		if (!Joystick.checkActionEvent(e)) {
-			return;
+	protected override onEngaged(e: Event): boolean {
+		if (!super.onEngaged(e)) {
+			return false;
 		}
-
-		// update engaged state
-		this.engaged = true;
 		this.inner.src = Joystick.getResource("joystick_inner_active");
 		this.onDragWhileEngaged(e);
+		return this.engaged;
 	}
 
 	/**
@@ -264,7 +259,7 @@ export class Joystick extends JoystickImpl {
 	 *   Event denoting an update to joystick state.
 	 */
 	public onDragWhileEngaged(e: Event) {
-		if (!this.isEngaged()) {
+		if (!this.engaged) {
 			// prevent movement if joystick is not engaged
 			return;
 		}
@@ -287,19 +282,6 @@ export class Joystick extends JoystickImpl {
 		if (sec != this.secondaryDir) {
 			this.onSecondaryDirChange(sec);
 		}
-	}
-
-	/**
-	 * Checks joystick's state of engagement.
-	 *
-	 * This is overridden because joystick interface can be considered engaged even when player is
-	 * not moving.
-	 *
-	 * @return {boolean}
-	 *   `true` if considered to be engaged.
-	 */
-	protected override isEngaged(): boolean {
-		return this.engaged;
 	}
 
 	/**
