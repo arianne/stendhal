@@ -227,20 +227,30 @@ export abstract class JoystickImpl {
 	 *   New direction for character to move or stop.
 	 */
 	protected onDirectionChange(dir: Direction) {
-		if (!ui.isDisplayReady()) {
-			console.debug("not executing direction change before display is ready");
+		if (!ui.isDisplayReady() || !marauroa.me) {
+			console.debug("not executing direction change before user ready");
 			return;
 		}
 		this.direction = dir;
 		if (this.direction == Direction.STOP) {
 			marauroa.clientFramework.sendAction({type: "stop"});
-		} else {
-			if (this.stopTimeoutId) {
-				clearTimeout(this.stopTimeoutId);
-				this.stopTimeoutId = 0;
-			}
-			marauroa.clientFramework.sendAction({type: "move", dir: ""+this.direction.val});
+			return;
 		}
+		if (this.stopTimeoutId) {
+			// new direction pressed before timeout expired
+			clearTimeout(this.stopTimeoutId);
+			this.stopTimeoutId = 0;
+		}
+		if (marauroa.me.autoWalkEnabled() && marauroa.me.getWalkDirection() == dir) {
+			// disable auto-walk if new direction is same as current direction of movement
+			// NOTE: do not set current direction to `Direction.STOP` here as this should only be done
+			//       when joystick is disengaged
+			// NOTE: in `ui.joystick.Joystick.Joystick` implementation, dragging inner button into
+			//       play/dead zone & back to same direction of movement will stop character
+			marauroa.clientFramework.sendAction({type: "walk"});
+			return;
+		}
+		marauroa.clientFramework.sendAction({type: "move", dir: ""+this.direction.val});
 	}
 
 	/**
