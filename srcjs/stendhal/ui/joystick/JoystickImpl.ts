@@ -139,7 +139,7 @@ export abstract class JoystickImpl {
 	 * @return {boolean}
 	 *   `true` if considered to be engaged.
 	 */
-	protected isEngaged(): boolean {
+	public isEngaged(): boolean {
 		return this.engaged;
 	}
 
