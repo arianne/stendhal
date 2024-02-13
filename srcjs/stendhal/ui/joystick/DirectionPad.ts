@@ -117,27 +117,40 @@ export class DirectionPad extends JoystickImpl {
 	 *
 	 * @param e {Event}
 	 *   Event to be validated.
+	 * @return {boolean}
+	 *   `true` if engagement state set.
 	 */
-	public onEngaged(e: Event) {
-		if (!DirectionPad.checkActionEvent(e)) {
+	private onEngaged(e: Event): boolean {
+		return DirectionPad.checkActionEvent(e);
+	}
+
+	/**
+	 * Called when a button is engaged to determine direction of movement.
+	 *
+	 * @param e {Event}
+	 *   Event to be validated.
+	 * @param button {ui.joystick.DPadButton.DPadButton}
+	 *   Button component that was engaged.
+	 */
+	public onButtonEngaged(e: Event, button: DPadButton) {
+		if (!this.onEngaged(e)) {
 			return;
 		}
+		if (button.direction != this.direction) {
+			this.onDirectionChange(button.direction);
+		}
+		button.onEngaged();
+	}
 
-		let button: DPadButton;
-		for (const b of this.buttons) {
-			if (e.target == b.element) {
-				button = b;
-				break;
-			}
-		}
-		let newDirection = Direction.STOP;
-		if (button) {
-			newDirection = button.direction;
-			button.onEngaged();
-		}
-		if (newDirection != this.direction) {
-			this.onDirectionChange(newDirection);
-		}
+	/**
+	 * Called when a button is disengaged to stop movement.
+	 *
+	 * @param e {Event}
+	 *   Event to be validated.
+	 */
+	public onButtonDisengaged(e: Event) {
+		this.onDisengaged(e);
+		// NOTE: calling `DPadButton.onDisengaged` not required as `DirectionPad.reset` has already been called
 	}
 
 	/**

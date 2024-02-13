@@ -68,12 +68,12 @@ export class DPadButton {
 				// release pointer capture for touch events
 				(e.target as Element).releasePointerCapture(e.pointerId);
 			}
-			DirectionPad.get().onEngaged(e);
+			DirectionPad.get().onButtonEngaged(e, this);
 		});
 		// listen for touch end events to end engagement
 		// NOTE: "mouseup" is handled globally in the body element (see Client.Client.registerBrowserEventHandlers)
 		this.element.addEventListener("touchend", (e: Event) => {
-			DirectionPad.get().onDisengaged(e);
+			DirectionPad.get().onButtonDisengaged(e);
 		});
 		// listen for mouse/touch movement to detect dragging
 		this.element.addEventListener("pointerenter", (e: Event) => {
