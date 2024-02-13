@@ -217,7 +217,8 @@ export class ItemContainerImplementation {
 				"source_path": stendhal.ui.heldItem.path
 			} as any;
 
-			if (stendhal.ui.heldItem.slot === this.slot) {
+			const sameSlot = stendhal.ui.heldItem.slot === this.slot;
+			if (sameSlot) {
 				action["type"] = "reorder";
 				action["new_position"] = this.parseIndex(event) || "" + (this.size - 1);
 			} else {
@@ -231,7 +232,7 @@ export class ItemContainerImplementation {
 
 			// if ctrl is pressed or holding stackable item from touch event, we ask for the quantity
 			const touch_held = stendhal.ui.touch.holdingItem() && quantity > 1;
-			const split_action = (event instanceof DragEvent && event.ctrlKey) || touch_held;
+			const split_action = !sameSlot && ((event instanceof DragEvent && event.ctrlKey) || touch_held);
 			if (split_action) {
 				const pos = stendhal.ui.html.extractPosition(event);
 				ui.createSingletonFloatingWindow("Quantity",
