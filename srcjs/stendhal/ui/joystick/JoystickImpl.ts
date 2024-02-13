@@ -232,25 +232,14 @@ export abstract class JoystickImpl {
 			return;
 		}
 		this.direction = dir;
-		if (this.direction == Direction.STOP) {
-			marauroa.clientFramework.sendAction({type: "stop"});
-			return;
-		}
 		if (this.stopTimeoutId) {
 			// new direction pressed before timeout expired
 			clearTimeout(this.stopTimeoutId);
 			this.stopTimeoutId = 0;
 		}
-		if (marauroa.me.autoWalkEnabled() && marauroa.me.getWalkDirection() == dir) {
-			// disable auto-walk if new direction is same as current direction of movement
-			// NOTE: do not set current direction to `Direction.STOP` here as this should only be done
-			//       when joystick is disengaged
-			// NOTE: in `ui.joystick.Joystick.Joystick` implementation, dragging inner button into
-			//       play/dead zone & back to same direction of movement will stop character
-			marauroa.clientFramework.sendAction({type: "walk"});
-			return;
-		}
-		marauroa.clientFramework.sendAction({type: "move", dir: ""+this.direction.val});
+		// NOTE: in `ui.joystick.Joystick.Joystick` implementation, dragging inner button into
+		//       play/dead zone & back to same direction of movement will cancel auto-walk
+		marauroa.me.setDirection(dir, true);
 	}
 
 	/**
@@ -261,10 +250,12 @@ export abstract class JoystickImpl {
 	 * vetoed and the stop event is not sent.
 	 */
 	protected queueStop() {
+		// NOTE: `marauroa.me` will be initialized by the time any stop event is queued, so no need
+		//       to check
 		this.direction = Direction.STOP;
 		this.stopTimeoutId = setTimeout(() => {
 			// new direction not pressed before timeout expired
-			marauroa.clientFramework.sendAction({type: "stop"});
+			marauroa.me.stop();
 			this.stopTimeoutId = 0;
 		}, 300);
 	}
