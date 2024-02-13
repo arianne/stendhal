@@ -27,9 +27,6 @@ export class ItemContainerImplementation {
 	private timestampMouseDown = 0;
 	private timestampMouseDownPrev = 0;
 
-	// slot index where cursor is hovering
-	private selectedIdx: string|undefined = undefined;
-
 	// marked for updating certain attributes
 	private dirty = false;
 
@@ -191,18 +188,26 @@ export class ItemContainerImplementation {
 		if (event instanceof DragEvent && event.dataTransfer) {
 			event.dataTransfer.dropEffect = "move";
 		}
+		return false;
+	}
 
-		// store index of where cursor is located
+	/**
+	 * Extracts slot index from element ID.
+	 */
+	private parseIndex(event: Event): string|undefined {
 		const id = (event.target as HTMLElement).id;
-		if (id.includes(".")) {
-			const tmp = id.split(".");
+		// NOTE: element ID is formatted as "<name>-<id>-<index>"
+		//       - name:  inventory name (e.g. "bag")
+		//       - id:    inventory ID number
+		//       - index: inventory index of this element
+		// See `ui.component.ItemInventoryComponent.ItemInventoryComponent`
+		if (id.includes("-")) {
+			const tmp = id.split("-");
 			const idx = tmp[tmp.length - 1];
 			if (!isNaN(parseInt(idx, 10))) {
-				this.selectedIdx = idx;
+				return idx;
 			}
 		}
-
-		return false;
 	}
 
 	private onDrop(event: DragEvent|TouchEvent) {
@@ -214,7 +219,7 @@ export class ItemContainerImplementation {
 
 			if (stendhal.ui.heldItem.slot === this.slot) {
 				action["type"] = "reorder";
-				action["new_position"] = this.selectedIdx || "" + (this.size - 1);
+				action["new_position"] = this.parseIndex(event) || "" + (this.size - 1);
 			} else {
 				action["type"] = "equip";
 				action["target_path"] = "[" + myobject["id"] + "\t" + this.slot + "]";
