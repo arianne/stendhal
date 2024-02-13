@@ -163,10 +163,8 @@ export class KeyHandler {
 			marauroa.clientFramework.sendAction(action);
 
 			// stop walking if keypress in direction of current movement
-			if (marauroa.me && marauroa.me.autoWalkEnabled()) {
-				if (parseInt(marauroa.me["dir"], 10) === dir.val) {
-					marauroa.clientFramework.sendAction({"type": "walk"});
-				}
+			if (marauroa.me && marauroa.me.autoWalkEnabled() && marauroa.me.getWalkDirection() == dir) {
+				marauroa.clientFramework.sendAction({"type": "walk"});
 			}
 		} else {
 			// move focus to chat-input on keydown
