@@ -2,23 +2,6 @@ plugins {
 	id 'com.android.application'
 }
 
-/**
- * Checks for available project property.
- *
- * @param prop
- *   Property key.
- * @return
- *   Property value or `null` if property not found or contains only whitespace characters.
- */
-def checkPropertyValue(prop) {
-	def value = project.findProperty(prop);
-	// don't allow property values with whitspace only
-	if (value == null || value.replaceAll(" |	", "").length() == 0) {
-		return null;
-	}
-	return value;
-}
-
 android {
 	namespace "org.stendhalgame.client"
 	compileSdk 32
@@ -34,34 +17,9 @@ android {
 		minSdkVersion 21
 	}
 
-	def appProperties = new Properties();
-	appProperties.load(new FileInputStream(rootProject.file("app.properties")));
-
-	// build output directory
-	project.setProperty("buildDir", "${projectDir}/../../../build/build_android_client");
-
-	/* Custom build properties:
-	 *   applicationTitle (replaces app title & launcher label)
-	 *   applicationId    (replaces `defaultConfig.applicationId`)
-	 *   versionName      (replaces `defaultConfig.versionName`)
-	 *   packageName      (replaces output package filename prefix)
-	 *
-	 * Example: gradlew -PapplicationId=foo.bar -PversionName=1.0 -PpackageName=foobar
-	 */
-	if (checkPropertyValue("applicationTitle")) {
-		appProperties.title = project.findProperty("applicationTitle");
-	}
-	if (checkPropertyValue("applicationId")) {
-		defaultConfig.applicationId = project.findProperty("applicationId");
-	}
-	if (checkPropertyValue("versionName")) {
-		defaultConfig.versionName = project.findProperty("versionName");
-	}
-	if (checkPropertyValue("packageName")) {
-		project.setProperty("archivesBaseName", project.findProperty("packageName") + "-${defaultConfig.versionName}");
-	} else {
-		project.setProperty("archivesBaseName", "${defaultConfig.applicationId}-${defaultConfig.versionName}");
-	}
+	// build output
+	project.setProperty("archivesBaseName", "${namespace}-${defaultConfig.versionName}")
+	project.setProperty("buildDir", "${projectDir}/../../../build/build_android_client")
 
 	/* A keystore.properties file can be placed in the root Android project directory and must
 	 * include the following values:
@@ -109,10 +67,7 @@ android {
 	}
 
 	buildTypes.all { type ->
-		manifestPlaceholders.appTitle = appProperties.title
-		if (type.name.equals("debug")) {
-			manifestPlaceholders.appTitle = manifestPlaceholders.appTitle + " (debug)"
-		} else {
+		if (!type.name.equals("debug")) {
 			sourceSets[type.name].java { srcDirs "src/shared/java/" }
 		}
 	}
@@ -141,12 +96,12 @@ android {
 	}
 
 	// print some build info for debugging
-	println("Title:           " + appProperties.title);
 	println("Package:         " + namespace)
 	println("Application ID:  " + defaultConfig.applicationId)
 	println("Version:         " + defaultConfig.versionName)
 	println("Output basename: " + archivesBaseName)
 	println("Signing key:     " + signingConfigs.release.storeFile)
+	println("Build directory: " + project.buildDir)
 }
 
 dependencies {
