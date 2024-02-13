@@ -22,14 +22,8 @@ import { Direction } from "../../util/Direction";
  */
 export class DirectionPad extends JoystickImpl {
 
-	/** Element used to move character up. */
-	private up: DPadButton;
-	/** Element used to move character down. */
-	private down: DPadButton;
-	/** Element used to move character left. */
-	private left: DPadButton;
-	/** Element used to move character right. */
-	private right: DPadButton;
+	/** Button components associated with this direction pad. */
+	private buttons: DPadButton[];
 
 	/** Singleton instance. */
 	private static instance: DirectionPad;
@@ -62,20 +56,13 @@ export class DirectionPad extends JoystickImpl {
 		};
 		tmp.src = DirectionPad.getResource("dpad_button");
 
-		this.up = new DPadButton(Direction.UP);
-		this.down = new DPadButton(Direction.DOWN);
-		this.left = new DPadButton(Direction.LEFT);
-		this.right = new DPadButton(Direction.RIGHT);
-	}
-
-	/**
-	 * Retrieves an array of buttons associated with this direction pad.
-	 *
-	 * @return {ui.joystick.DirectionPad.DPadButton[]}
-	 *   Configured buttons.
-	 */
-	private getButtons(): DPadButton[] {
-		return [this.up, this.down, this.left, this.right];
+		// initialize buttons
+		this.buttons = [
+			new DPadButton(Direction.UP),
+			new DPadButton(Direction.DOWN),
+			new DPadButton(Direction.LEFT),
+			new DPadButton(Direction.RIGHT)
+		];
 	}
 
 	/**
@@ -86,7 +73,7 @@ export class DirectionPad extends JoystickImpl {
 	 */
 	protected override getElements(): HTMLImageElement[] {
 		const elements: HTMLImageElement[] = [];
-		for (const button of this.getButtons()) {
+		for (const button of this.buttons) {
 			elements.push(button.element);
 		}
 		return elements;
@@ -98,7 +85,7 @@ export class DirectionPad extends JoystickImpl {
 	public override update() {
 		const centerX = DirectionPad.getCenterX();
 		const centerY = DirectionPad.getCenterY();
-		for (const button of this.getButtons()) {
+		for (const button of this.buttons) {
 			button.update(this.radius, centerX, centerY);
 		}
 	}
@@ -118,7 +105,7 @@ export class DirectionPad extends JoystickImpl {
 	 * Sets all buttons to represent a disengaged state.
 	 */
 	private disengageAll() {
-		for (const button of this.getButtons()) {
+		for (const button of this.buttons) {
 			button.onDisengaged();
 		}
 	}
@@ -136,20 +123,12 @@ export class DirectionPad extends JoystickImpl {
 			return;
 		}
 
-		let button;
-		switch (e.target) {
-			case this.up.element:
-				button = this.up;
+		let button: DPadButton;
+		for (const b of this.buttons) {
+			if (e.target == b.element) {
+				button = b;
 				break;
-			case this.right.element:
-				button = this.right;
-				break;
-			case this.down.element:
-				button = this.down;
-				break;
-			case this.left.element:
-				button = this.left;
-				break;
+			}
 		}
 		let newDirection = Direction.STOP;
 		if (button) {
@@ -167,7 +146,7 @@ export class DirectionPad extends JoystickImpl {
 	 * This is made public so that `ui.joystick.DPadButton.DPadButton` can access it.
 	 *
 	 * @param button {ui.joystick.DPadButton.DPadButton}
-	 *   The element over which the drag event was detected.
+	 *   Button component over which the drag event was detected.
 	 */
 	public onDragWhileEngaged(button: DPadButton) {
 		if (!this.isEngaged()) {
