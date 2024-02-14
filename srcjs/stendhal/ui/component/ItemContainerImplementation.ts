@@ -9,14 +9,17 @@
  *                                                                         *
  ***************************************************************************/
 
+declare var marauroa: any;
+declare var stendhal: any;
+
 import { ui } from "../UI";
 
 import { ActionContextMenu } from "../dialog/ActionContextMenu";
 import { DropQuantitySelectorDialog } from "../dialog/DropQuantitySelectorDialog";
 import { Item } from "../../entity/Item";
 
-declare var marauroa: any;
-declare var stendhal: any;
+import { singletons } from "../../SingletonRepo";
+
 
 /**
  * a container for items like a bag or corpse
@@ -165,18 +168,21 @@ export class ItemContainerImplementation {
 		const slotNumber = target.id.slice(this.slot.length + this.suffix.length);
 		let item = myobject[this.slot].getByIndex(slotNumber);
 		if (item) {
-			stendhal.ui.heldItem = {
+			const heldObject = {
 				path: item.getIdPath(),
 				zone: marauroa.currentZoneName,
 				slot: this.slot,
 				quantity: item.hasOwnProperty("quantity") ? item["quantity"] : 1
-			} as any;
+			};
 
 			const img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(item.sprite.filename), 32, 32);
 			if (event instanceof DragEvent && event.dataTransfer) {
+				stendhal.ui.heldObject = heldObject;
 				event.dataTransfer.setDragImage(img, 0, 0);
 			} else if (stendhal.ui.touch.isTouchEvent(event)) {
-				stendhal.ui.touch.setHeldItem(img);
+				stendhal.ui.touch.setHolding(true);
+				// TODO: move when supported by mouse events
+				singletons.getHeldObjectManager().set(heldObject, img);
 			}
 		} else {
 			event.preventDefault();
@@ -212,26 +218,26 @@ export class ItemContainerImplementation {
 
 	private onDrop(event: DragEvent|TouchEvent) {
 		const myobject = this.object || marauroa.me;
-		if (stendhal.ui.heldItem) {
+		if (stendhal.ui.heldObject) {
 			const action = {
-				"source_path": stendhal.ui.heldItem.path
+				"source_path": stendhal.ui.heldObject.path
 			} as any;
 
-			const sameSlot = stendhal.ui.heldItem.slot === this.slot;
+			const sameSlot = stendhal.ui.heldObject.slot === this.slot;
 			if (sameSlot) {
 				action["type"] = "reorder";
 				action["new_position"] = this.parseIndex(event) || "" + (this.size - 1);
 			} else {
 				action["type"] = "equip";
 				action["target_path"] = "[" + myobject["id"] + "\t" + this.slot + "]";
-				action["zone"] = stendhal.ui.heldItem.zone;
+				action["zone"] = stendhal.ui.heldObject.zone;
 			}
 
-			const quantity = stendhal.ui.heldItem.quantity;
-			stendhal.ui.heldItem = undefined;
+			const quantity = stendhal.ui.heldObject.quantity;
+			stendhal.ui.heldObject = undefined;
 
 			// if ctrl is pressed or holding stackable item from touch event, we ask for the quantity
-			const touch_held = stendhal.ui.touch.holdingItem() && quantity > 1;
+			const touch_held = stendhal.ui.touch.holding() && quantity > 1;
 			const split_action = !sameSlot && ((event instanceof DragEvent && event.ctrlKey) || touch_held);
 			if (split_action) {
 				const pos = stendhal.ui.html.extractPosition(event);
@@ -239,9 +245,11 @@ export class ItemContainerImplementation {
 					new DropQuantitySelectorDialog(action, touch_held),
 					pos.pageX - 50, pos.pageY - 25);
 			} else {
+				singletons.getHeldObjectManager().onRelease();
 				marauroa.clientFramework.sendAction(action);
 			}
 		}
+
 		event.stopPropagation();
 		event.preventDefault();
 	}
@@ -310,7 +318,7 @@ export class ItemContainerImplementation {
 				stendhal.ui.actionContextMenu.set(ui.createSingletonFloatingWindow("Action",
 					new ActionContextMenu((event.target as any).dataItem, append),
 					event.pageX - 50, event.pageY - 5));
-			} else if (!stendhal.ui.heldItem) {
+			} else if (!stendhal.ui.heldObject) {
 				if (!stendhal.config.getBoolean("inventory.double-click") || this.isDoubleClick(event)) {
 					marauroa.clientFramework.sendAction({
 						type: "use",
@@ -322,7 +330,7 @@ export class ItemContainerImplementation {
 		}
 
 		// clean up item held via touch
-		stendhal.ui.touch.unsetHeldItem();
+		stendhal.ui.touch.setHolding(false);
 
 		document.getElementById("gamewindow")!.focus();
 	}
@@ -342,14 +350,15 @@ export class ItemContainerImplementation {
 
 	private onTouchEnd(evt: TouchEvent) {
 		stendhal.ui.touch.onTouchEnd();
-		if (stendhal.ui.touch.isLongTouch(evt) && !stendhal.ui.touch.held) {
+		if (stendhal.ui.touch.isLongTouch(evt) && !stendhal.ui.touch.holding()) {
 			this.onMouseUp(evt);
-		} else if (stendhal.ui.touch.held) {
+		} else if (stendhal.ui.touch.holding()) {
 			evt.preventDefault();
 
 			this.onDrop(evt);
-			stendhal.ui.touch.unsetHeldItem();
+			stendhal.ui.touch.setHolding(false);
 		}
+		// clean up held object & touch handler
 		stendhal.ui.touch.unsetOrigin();
 	}
 

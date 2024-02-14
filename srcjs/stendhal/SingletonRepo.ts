@@ -33,6 +33,7 @@ import { TileStore } from "./data/TileStore";
 
 import { ui } from "./ui/UI";
 import { UIComponentEnum } from "./ui/UIComponentEnum";
+import { HeldObjectManager } from "./ui/HeldObject";
 import { HTMLManager } from "./ui/HTMLManager";
 import { Inventory } from "./ui/Inventory";
 import { LoopedSoundSourceManager } from "./ui/LoopedSoundSourceManager";
@@ -87,6 +88,10 @@ export class SingletonRepo {
 
 	static getGroupManager(): GroupManager {
 		return GroupManager.get();
+	}
+
+	static getHeldObjectManager(): HeldObjectManager {
+		return HeldObjectManager.get();
 	}
 
 	static getHTMLManager(): HTMLManager {

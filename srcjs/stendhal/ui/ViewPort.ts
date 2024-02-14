@@ -151,11 +151,6 @@ export class ViewPort {
 				this.drawTextSprites();
 				this.drawTextSprites(this.notifSprites);
 
-				if (stendhal.ui.touch.held) {
-					// draw a representation of a item "held" via touch input
-					stendhal.ui.touch.drawHeld(this.ctx);
-				}
-
 				// redraw inventory sprites
 				stendhal.ui.equip.update();
 				(ui.get(UIComponentEnum.PlayerEquipment) as PlayerEquipmentComponent).update();
@@ -392,7 +387,7 @@ export class ViewPort {
 		mHandle._onMouseDown = function(e: MouseEvent|TouchEvent) {
 			var pos = stendhal.ui.html.extractPosition(e);
 			if (stendhal.ui.touch.isTouchEvent(e)) {
-				if (stendhal.ui.touch.holdingItem()) {
+				if (stendhal.ui.touch.holding()) {
 					// prevent default viewport action when item is "held"
 					return;
 				}
@@ -455,7 +450,7 @@ export class ViewPort {
 					stendhal.ui.actionContextMenu.set(ui.createSingletonFloatingWindow("Action",
 						new ActionContextMenu(entity, append), pos.pageX - 50, pos.pageY - 5));
 				}
-			} else if (stendhal.ui.touch.holdingItem()) {
+			} else if (stendhal.ui.touch.holding()) {
 				// FIXME: this may be unnecessary
 				stendhal.ui.gamewindow.onDrop(e);
 			} else {
@@ -490,8 +485,8 @@ export class ViewPort {
 			e.target.removeEventListener("touchend", mHandle.onMouseUp);
 			e.target.removeEventListener("touchmove", mHandle.onDrag);
 
-			// clean up item held via touch
-			stendhal.ui.touch.unsetHeldItem();
+			// clean up touch handler
+			stendhal.ui.touch.setHolding(false);
 			stendhal.ui.touch.unsetOrigin();
 		}
 
@@ -558,14 +553,14 @@ export class ViewPort {
 		var img = undefined;
 		if (draggedEntity && draggedEntity.type === "item") {
 			img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(draggedEntity.sprite.filename), 32, 32);
-			stendhal.ui.heldItem = {
+			stendhal.ui.heldObject = {
 				path: draggedEntity.getIdPath(),
 				zone: marauroa.currentZoneName,
 				quantity: draggedEntity.hasOwnProperty("quantity") ? draggedEntity["quantity"] : 1
 			}
 		} else if (draggedEntity && draggedEntity.type === "corpse") {
 			img = stendhal.data.sprites.get(draggedEntity.sprite.filename);
-			stendhal.ui.heldItem = {
+			stendhal.ui.heldObject = {
 				path: draggedEntity.getIdPath(),
 				zone: marauroa.currentZoneName,
 				quantity: 1
@@ -596,36 +591,38 @@ export class ViewPort {
 	 * Handles releasing an item or corpse from drag event.
 	 */
 	onDrop(e: DragEvent) {
-		if (stendhal.ui.heldItem) {
+		if (stendhal.ui.heldObject) {
 			var pos = stendhal.ui.html.extractPosition(e);
 			var action = {
 				"x": Math.floor((pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX) / 32).toString(),
 				"y": Math.floor((pos.canvasRelativeY + stendhal.ui.gamewindow.offsetY) / 32).toString(),
-				"zone": stendhal.ui.heldItem.zone
+				"zone": stendhal.ui.heldObject.zone
 			} as any;
 
-			var id = stendhal.ui.heldItem.path.substr(1, stendhal.ui.heldItem.path.length - 2);
+			var id = stendhal.ui.heldObject.path.substr(1, stendhal.ui.heldObject.path.length - 2);
 			var drop = /\t/.test(id);
 			if (drop) {
 				action["type"] = "drop";
-				action["source_path"] = stendhal.ui.heldItem.path;
+				action["source_path"] = stendhal.ui.heldObject.path;
 			} else {
 				action["type"] = "displace";
 				action["baseitem"] = id;
 			}
 
-			const quantity = stendhal.ui.heldItem.quantity;
+			const quantity = stendhal.ui.heldObject.quantity;
 			// item was dropped
-			stendhal.ui.heldItem = undefined;
+			stendhal.ui.heldObject = undefined;
 
-			const touch_held = stendhal.ui.touch.holdingItem() && quantity > 1;
+			const touch_held = stendhal.ui.touch.holding() && quantity > 1;
 			// if ctrl is pressed or holding stackable item from touch event, we ask for the quantity
 			if (e.ctrlKey || touch_held) {
 				ui.createSingletonFloatingWindow("Quantity", new DropQuantitySelectorDialog(action, touch_held), pos.pageX - 50, pos.pageY - 25);
 			} else {
+				singletons.getHeldObjectManager().onRelease();
 				marauroa.clientFramework.sendAction(action);
 			}
 		}
+
 		e.stopPropagation();
 		e.preventDefault();
 	}
@@ -636,8 +633,8 @@ export class ViewPort {
 	onTouchEnd(e: TouchEvent) {
 		stendhal.ui.touch.onTouchEnd();
 		stendhal.ui.gamewindow.onDrop(e);
-		if (stendhal.ui.touch.holdingItem()) {
-			stendhal.ui.touch.unsetHeldItem();
+		if (stendhal.ui.touch.holding()) {
+			stendhal.ui.touch.setHolding(false);
 			stendhal.ui.touch.unsetOrigin();
 		}
 		// execute here because "touchend" event propagation is cancelled on the veiwport

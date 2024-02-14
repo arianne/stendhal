@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2015-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2015-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,9 +9,11 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Component } from "../toolkit/Component";
-
 declare var marauroa: any;
+
+import { Component } from "../toolkit/Component";
+import { singletons } from "../../SingletonRepo";
+
 
 export class DropQuantitySelectorDialog extends Component {
 
@@ -43,7 +45,11 @@ export class DropQuantitySelectorDialog extends Component {
 		});
 	}
 
+	/**
+	 * Drops selected quantity from stack.
+	 */
 	private onDrop(event: Event) {
+		singletons.getHeldObjectManager().onRelease();
 		let quantityStr = (this.child(".quantityselectorvalue") as HTMLInputElement).value;
 		let quantity = parseInt(quantityStr);
 		if (quantity > 0) {
@@ -54,7 +60,11 @@ export class DropQuantitySelectorDialog extends Component {
 		event.preventDefault();
 	}
 
+	/**
+	 * Drops entire stack.
+	 */
 	private onDropAll(event: Event) {
+		singletons.getHeldObjectManager().onRelease();
 		marauroa.clientFramework.sendAction(this.action);
 		this.componentElement.dispatchEvent(new Event("close"));
 		event.preventDefault();

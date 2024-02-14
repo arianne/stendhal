@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2023 - Stendhal                     *
+ *                    Copyright © 2003-2024 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -11,6 +11,8 @@
 
 declare var stendhal: any;
 
+import { Point } from "../util/Point";
+
 
 export class TouchHandler {
 
@@ -19,10 +21,10 @@ export class TouchHandler {
 	private readonly longTouchDuration = 300;
 	private timestampTouchStart = 0;
 	private timestampTouchEnd = 0;
-	private held?: any;
+	private held = false;
 
 	// location when touch event began
-	private origin: {[index: string]: number}|undefined = undefined;
+	private origin?: Point;
 	private readonly moveThreshold = 16;
 
 	/** Singleton instance. */
@@ -59,7 +61,8 @@ export class TouchHandler {
 	onTouchStart(x: number, y: number) {
 		this.timestampTouchStart = +new Date();
 		this.touchEngaged = true;
-		this.origin = {x: x, y: y};
+		// TODO: handle object origin in `ui.HeldObject.HeldObject`
+		this.origin = new Point(x, y);
 	}
 
 	/**
@@ -96,48 +99,23 @@ export class TouchHandler {
 	}
 
 	/**
-	 * Sets information for a held item representation.
-	 *
-	 * @param img
-	 *     Sprite <code>Image</code> to be drawn.
+	 * Unsets `ui.TouchHandler.TouchHandler.origin` property.
 	 */
-	setHeldItem(img: HTMLImageElement) {
-		this.held = {
-			image: img,
-			offsetX: document.getElementById("gamewindow")!.offsetWidth - 32,
-			offsetY: 0
-		};
-	}
-
-	/**
-	 * Clears information for a held item representation.
-	 */
-	unsetHeldItem() {
-		this.held = undefined;
-	}
-
 	unsetOrigin() {
 		this.origin = undefined;
 	}
 
 	/**
-	 * Checks if there is currently an item being held.
+	 * Sets `ui.TouchHandler.TouchHandler.held` property.
 	 */
-	holdingItem(): boolean {
-		return this.held != undefined && this.held != null;
+	setHolding(held: boolean) {
+		this.held = held;
 	}
 
 	/**
-	 * Draws representation of a held item.
-	 *
-	 * @param ctx
-	 *     Canvas context where representation is drawn.
+	 * Checks if an held object was initiated using touch.
 	 */
-	drawHeld(ctx: CanvasRenderingContext2D) {
-		ctx.globalAlpha = 0.5;
-		ctx.drawImage(this.held.image,
-				this.held.offsetX + stendhal.ui.gamewindow.offsetX,
-				this.held.offsetY + stendhal.ui.gamewindow.offsetY);
-		ctx.globalAlpha = 1.0;
+	holding(): boolean {
+		return this.held;
 	}
 }
