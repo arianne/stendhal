@@ -20,9 +20,9 @@ import { PlayerEquipmentComponent } from "./component/PlayerEquipmentComponent";
 import { ActionContextMenu } from "./dialog/ActionContextMenu";
 import { DropQuantitySelectorDialog } from "./dialog/DropQuantitySelectorDialog";
 
-import { DirectionPad } from "./joystick/DirectionPad";
-import { Joystick } from "./joystick/Joystick";
-import { JoystickBase } from "./joystick/JoystickBase";
+import { JoystickImpl } from "./joystick/JoystickImpl";
+
+import { QuickMenuButton } from "./quickmenu/QuickMenuButton";
 
 import { Client } from "../Client";
 import { singletons } from "../SingletonRepo";
@@ -38,12 +38,17 @@ import { Chat } from "../util/Chat";
 
 /**
  * game window aka world view
+ *
+ * @todo
+ *   Change element ID from "gamewindow" to "viewport".
  */
 export class ViewPort {
 
-	/** screen offsets in pixels. */
+	/** Horizontal screen offset in pixels. */
 	private offsetX = 0;
+	/** Vertical screen offset in pixels. */
 	private offsetY = 0;
+	/** Time of most recent redraw. */
 	private timeStamp = Date.now();
 
 	// dimensions
@@ -51,18 +56,25 @@ export class ViewPort {
 	private readonly width: number;
 	private readonly height: number;
 
+	/** Drawing context. */
 	private ctx: CanvasRenderingContext2D;
+	/** Map tile pixel width. */
 	private readonly targetTileWidth = 32;
+	/** Map tile pixel height. */
 	private readonly targetTileHeight = 32;
 	private drawingError = false;
 
+	/** Active speech bubbles to draw. */
 	private textSprites: SpeechBubble[] = [];
+	/** Active notification bubbles/achievement banners to draw. */
 	private notifSprites: TextBubble[] = [];
+	/** Active emoji sprites to draw. */
 	private emojiSprites: EmojiSprite[] = [];
+	/** Handles drawing weather in viewport. */
 	private weatherRenderer = singletons.getWeatherRenderer();
 
 	/** On-screen joystick. */
-	private joystick: JoystickBase = new JoystickBase();
+	private joystick: JoystickImpl|null = null;
 
 	/** Styles to be applied when chat panel is not floating. */
 	private readonly initialStyle: {[prop: string]: string};
@@ -103,13 +115,16 @@ export class ViewPort {
 	/**
 	 * Retrieves the viewport element.
 	 *
-	 * @return
+	 * @return {HTMLElement}
 	 *   Viewport `HTMLElement`.
 	 */
 	public getElement(): HTMLElement {
 		return document.getElementById("gamewindow")!;
 	}
 
+	/**
+	 * Draws terrain tiles & entity sprites in the viewport.
+	 */
 	draw() {
 		var startTime = new Date().getTime();
 
@@ -136,11 +151,6 @@ export class ViewPort {
 				this.drawTextSprites();
 				this.drawTextSprites(this.notifSprites);
 
-				if (stendhal.ui.touch.held) {
-					// draw a representation of a item "held" via touch input
-					stendhal.ui.touch.drawHeld(this.ctx);
-				}
-
 				// redraw inventory sprites
 				stendhal.ui.equip.update();
 				(ui.get(UIComponentEnum.PlayerEquipment) as PlayerEquipmentComponent).update();
@@ -151,7 +161,9 @@ export class ViewPort {
 		}, Math.max((1000/20) - (new Date().getTime()-startTime), 1));
 	}
 
-
+	/**
+	 * Draws overall entity sprites.
+	 */
 	drawEntities() {
 		var currentTime = new Date().getTime();
 		var time = currentTime - this.timeStamp;
@@ -165,6 +177,9 @@ export class ViewPort {
 		}
 	}
 
+	/**
+	 * Draws titles & HP bars associated with entities.
+	 */
 	drawEntitiesTop() {
 		var i;
 		for (i in stendhal.zone.entities) {
@@ -178,6 +193,12 @@ export class ViewPort {
 		}
 	}
 
+	/**
+	 * Draws active notifications or speech bubbles associated with characters, NPCs, & creatures.
+	 *
+	 * @param sgroup {sprite.TextBubble[]}
+	 *   Sprite group to drawn, either speech bubbles or notifications/achievements (default: speech bubbles).
+	 */
 	drawTextSprites(sgroup: TextBubble[]=this.textSprites) {
 		for (var i = 0; i < sgroup.length; i++) {
 			var sprite = sgroup[i];
@@ -191,15 +212,18 @@ export class ViewPort {
 	}
 
 	/**
-	 * Adds a sprite to be drawn on screen.
+	 * Adds an emoji sprite to viewport.
 	 *
-	 * @param sprite
-	 *     Sprite definition.
+	 * @param sprite {sprite.EmojiSprite}
+	 *   Sprite definition.
 	 */
 	addEmojiSprite(sprite: EmojiSprite) {
 		this.emojiSprites.push(sprite);
 	}
 
+	/**
+	 * Draws active emoji sprites.
+	 */
 	drawEmojiSprites() {
 		for (let i = 0; i < this.emojiSprites.length; i++) {
 			const sprite = this.emojiSprites[i];
@@ -211,6 +235,12 @@ export class ViewPort {
 		}
 	}
 
+	/**
+	 * Updates viewport drawing position of map based on player position.
+	 *
+	 * @param canvas {HTMLCanvasElement}
+	 *   Viewport canvas element.
+	 */
 	adjustView(canvas: HTMLCanvasElement) {
 		// IE does not support ctx.resetTransform(), so use the following workaround:
 		this.ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -232,10 +262,10 @@ export class ViewPort {
 	}
 
 	/**
-	 * Adds a text bubble sprite to screen.
+	 * Adds a speech bubble to viewport.
 	 *
-	 * @param sprite
-	 *     Text sprite to display.
+	 * @param sprite {sprite.SpeechBubble}
+	 *   Sprite definition.
 	 */
 	addTextSprite(sprite: SpeechBubble) {
 		this.textSprites.push(sprite);
@@ -243,14 +273,14 @@ export class ViewPort {
 	}
 
 	/**
-	 * Adds a notification bubble to screen.
+	 * Adds a notification bubble to viewport.
 	 *
-	 * @param mtype
-	 *     Message type.
-	 * @param text
-	 *     Text contents.
-	 * @param profile
-	 *     Optional entity image filename to show as the speaker.
+	 * @param mtype {string}
+	 *   Message type.
+	 * @param text {string}
+	 *   Text contents.
+	 * @param profile {string}
+	 *   Optional entity image filename to show as the speaker.
 	 */
 	addNotifSprite(mtype: string, text: string, profile?: string) {
 		const bubble = new NotificationBubble(mtype, text, profile);
@@ -259,14 +289,14 @@ export class ViewPort {
 	}
 
 	/**
-	 * Adds a notification bubble to window.
+	 * Adds an achievement banner to viewport.
 	 *
-	 * @param cat
-	 *     Achievement categroy.
-	 * @param title
-	 *     Achievement title.
-	 * @param desc
-	 *     Achievement description.
+	 * @param cat {string}
+	 *   Achievement categroy.
+	 * @param title {string}
+	 *   Achievement title.
+	 * @param desc {string}
+	 *   Achievement description.
 	 */
 	addAchievementNotif(cat: string, title: string, desc: string) {
 		const banner = new AchievementBanner(cat, title, desc);
@@ -275,16 +305,14 @@ export class ViewPort {
 	}
 
 	/**
-	 * Removes a text bubble. Looks for topmost sprite at
-	 * <code>x</code>,<code>y</code>. Otherwise removes
-	 * <code>sprite</code>.
+	 * Removes a speech bubble. Looks for topmost sprite at "x","y". Otherwise removes "sprite".
 	 *
-	 * @param sprite
-	 *     The sprite that is to be removed.
-	 * @param x
-	 *     X coordinate to check for overlapping sprite.
-	 * @param y
-	 *     Y coordinate to check for overlapping sprite.
+	 * @param sprite {sprite.TextBubble}
+	 *   Sprite that is to be removed.
+	 * @param x {number}
+	 *   X coordinate to check for overlapping sprite.
+	 * @param y {number}
+	 *   Y coordinate to check for overlapping sprite.
 	 */
 	removeTextBubble(sprite: TextBubble, x: number, y: number) {
 		for (let idx = this.notifSprites.length-1; idx >= 0; idx--) {
@@ -307,16 +335,16 @@ export class ViewPort {
 	}
 
 	/**
-	 * Checks for an active text bubble.
+	 * Checks for an active speech bubble.
 	 *
-	 * @param x
-	 *     X coordinate to check.
-	 * @param y
-	 *     Y coordinate to check.
-	 * @return
-	 *     <code>true</code> if there is a text bubble at position.
+	 * @param x {number}
+	 *   X coordinate to check.
+	 * @param y {number}
+	 *   Y coordinate to check.
+	 * @return {boolean}
+	 *   `true` if there is a text bubble at position.
 	 */
-	textBubbleAt(x: number, y: number) {
+	textBubbleAt(x: number, y: number): boolean {
 		for (const sprite of this.notifSprites) {
 			if (sprite.clipsPoint(x, y)) {
 				return true;
@@ -330,6 +358,9 @@ export class ViewPort {
 		return false;
 	}
 
+	/**
+	 * Called when `entity.User` instance exits a zone.
+	 */
 	onExitZone() {
 		// clear speech bubbles & emojis so they don't appear on the new map
 		for (const sgroup of [this.textSprites, this.emojiSprites]) {
@@ -343,7 +374,9 @@ export class ViewPort {
 		}
 	}
 
-	// Mouse click handling
+	/**
+	 *  Mouse click handling.
+	 */
 	onMouseDown = (function() {
 		var entity: any;
 		var startX: number;
@@ -354,7 +387,7 @@ export class ViewPort {
 		mHandle._onMouseDown = function(e: MouseEvent|TouchEvent) {
 			var pos = stendhal.ui.html.extractPosition(e);
 			if (stendhal.ui.touch.isTouchEvent(e)) {
-				if (stendhal.ui.touch.holdingItem()) {
+				if (stendhal.ui.touch.holding()) {
 					// prevent default viewport action when item is "held"
 					return;
 				}
@@ -417,7 +450,7 @@ export class ViewPort {
 					stendhal.ui.actionContextMenu.set(ui.createSingletonFloatingWindow("Action",
 						new ActionContextMenu(entity, append), pos.pageX - 50, pos.pageY - 5));
 				}
-			} else if (stendhal.ui.touch.holdingItem()) {
+			} else if (stendhal.ui.touch.holding()) {
 				// FIXME: this may be unnecessary
 				stendhal.ui.gamewindow.onDrop(e);
 			} else {
@@ -452,14 +485,17 @@ export class ViewPort {
 			e.target.removeEventListener("touchend", mHandle.onMouseUp);
 			e.target.removeEventListener("touchmove", mHandle.onDrag);
 
-			// clean up item held via touch
-			stendhal.ui.touch.unsetHeldItem();
+			// clean up touch handler
+			stendhal.ui.touch.setHolding(false);
 			stendhal.ui.touch.unsetOrigin();
 		}
 
 		return mHandle._onMouseDown;
 	})()
 
+	/**
+	 * Updates cursor style when positioned over an element or entity.
+	 */
 	onMouseMove(e: MouseEvent) {
 		var pos = stendhal.ui.html.extractPosition(e);
 		var x = pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX;
@@ -469,8 +505,7 @@ export class ViewPort {
 	}
 
 	/**
-	 * Changes character facing direction dependent on direction
-	 * of wheel scroll.
+	 * Changes character facing direction dependent on direction of wheel scroll.
 	 */
 	onMouseWheel(e: WheelEvent) {
 		if (marauroa.me) {
@@ -502,7 +537,9 @@ export class ViewPort {
 		}
 	}
 
-	// ***************** Drag and drop ******************
+	/**
+	 * Handles engaging an item or corpse to be dragged.
+	 */
 	onDragStart(e: DragEvent) {
 		var pos = stendhal.ui.html.extractPosition(e);
 		let draggedEntity;
@@ -516,14 +553,14 @@ export class ViewPort {
 		var img = undefined;
 		if (draggedEntity && draggedEntity.type === "item") {
 			img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(draggedEntity.sprite.filename), 32, 32);
-			stendhal.ui.heldItem = {
+			stendhal.ui.heldObject = {
 				path: draggedEntity.getIdPath(),
 				zone: marauroa.currentZoneName,
 				quantity: draggedEntity.hasOwnProperty("quantity") ? draggedEntity["quantity"] : 1
 			}
 		} else if (draggedEntity && draggedEntity.type === "corpse") {
 			img = stendhal.data.sprites.get(draggedEntity.sprite.filename);
-			stendhal.ui.heldItem = {
+			stendhal.ui.heldObject = {
 				path: draggedEntity.getIdPath(),
 				zone: marauroa.currentZoneName,
 				quantity: 1
@@ -539,6 +576,9 @@ export class ViewPort {
 		}
 	}
 
+	/**
+	 * Displays a corpse or item sprite while dragging.
+	 */
 	onDragOver(e: DragEvent): boolean {
 		e.preventDefault(); // Necessary. Allows us to drop.
 		if (e.dataTransfer) {
@@ -547,50 +587,54 @@ export class ViewPort {
 		return false;
 	}
 
+	/**
+	 * Handles releasing an item or corpse from drag event.
+	 */
 	onDrop(e: DragEvent) {
-		if (stendhal.ui.heldItem) {
+		if (stendhal.ui.heldObject) {
 			var pos = stendhal.ui.html.extractPosition(e);
 			var action = {
 				"x": Math.floor((pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX) / 32).toString(),
 				"y": Math.floor((pos.canvasRelativeY + stendhal.ui.gamewindow.offsetY) / 32).toString(),
-				"zone": stendhal.ui.heldItem.zone
+				"zone": stendhal.ui.heldObject.zone
 			} as any;
 
-			var id = stendhal.ui.heldItem.path.substr(1, stendhal.ui.heldItem.path.length - 2);
+			var id = stendhal.ui.heldObject.path.substr(1, stendhal.ui.heldObject.path.length - 2);
 			var drop = /\t/.test(id);
 			if (drop) {
 				action["type"] = "drop";
-				action["source_path"] = stendhal.ui.heldItem.path;
+				action["source_path"] = stendhal.ui.heldObject.path;
 			} else {
 				action["type"] = "displace";
 				action["baseitem"] = id;
 			}
 
-			const quantity = stendhal.ui.heldItem.quantity;
+			const quantity = stendhal.ui.heldObject.quantity;
 			// item was dropped
-			stendhal.ui.heldItem = undefined;
+			stendhal.ui.heldObject = undefined;
 
-			const touch_held = stendhal.ui.touch.holdingItem() && quantity > 1;
+			const touch_held = stendhal.ui.touch.holding() && quantity > 1;
 			// if ctrl is pressed or holding stackable item from touch event, we ask for the quantity
 			if (e.ctrlKey || touch_held) {
 				ui.createSingletonFloatingWindow("Quantity", new DropQuantitySelectorDialog(action, touch_held), pos.pageX - 50, pos.pageY - 25);
 			} else {
+				singletons.getHeldObjectManager().onRelease();
 				marauroa.clientFramework.sendAction(action);
 			}
 		}
+
 		e.stopPropagation();
 		e.preventDefault();
 	}
 
 	/**
-	 * This is a workaround until it's figured out how to make it work using the same methods as
-	 * mouse event.
+	 * This is a workaround until it's figured out how to make it work using the same methods as mouse event.
 	 */
 	onTouchEnd(e: TouchEvent) {
 		stendhal.ui.touch.onTouchEnd();
 		stendhal.ui.gamewindow.onDrop(e);
-		if (stendhal.ui.touch.holdingItem()) {
-			stendhal.ui.touch.unsetHeldItem();
+		if (stendhal.ui.touch.holding()) {
+			stendhal.ui.touch.setHolding(false);
 			stendhal.ui.touch.unsetOrigin();
 		}
 		// execute here because "touchend" event propagation is cancelled on the veiwport
@@ -602,7 +646,7 @@ export class ViewPort {
 	}
 
 	/**
-	 * Creates a screenshot of game screen to download.
+	 * Creates a screenshot from viewport area & executes an anchor click event to be handled by browser for PNG download.
 	 */
 	createScreenshot() {
 		Chat.log("client", "creating screenshot ...");
@@ -636,15 +680,38 @@ export class ViewPort {
 	}
 
 	/**
+	 * Removes joystick elements from DOM and unsets `ui.ViewPort.ViewPort.joystick` property.
+	 */
+	private removeJoystick() {
+		if (this.joystick) {
+			this.joystick.removeFromDOM();
+		}
+		this.joystick = null;
+	}
+
+	/**
 	 * Updates the on-screen joystick.
 	 */
 	updateJoystick() {
-		this.joystick.onRemoved();
-		if (!stendhal.config.getBoolean("client.joystick")) {
-			this.joystick = new JoystickBase();
+		// update quick menu button image
+		const joystickButton = ui.get(UIComponentEnum.QMJoystick) as QuickMenuButton;
+		if (joystickButton) {
+			joystickButton.update();
+		}
+
+		if (!stendhal.config.getBoolean("joystick")) {
+			this.removeJoystick();
 			return;
 		}
-		this.joystick = stendhal.config.get("client.joystick.style") === "dpad" ? new DirectionPad() : new Joystick();
+		const newJoystick = stendhal.config.get("joystick.style") === "dpad"
+				? singletons.getDirectionPad() : singletons.getJoystick();
+		if (this.joystick && newJoystick === this.joystick) {
+			this.joystick.update();
+		} else {
+			this.removeJoystick();
+			this.joystick = newJoystick;
+			newJoystick.addToDOM();
+		}
 	}
 
 	/**

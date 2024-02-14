@@ -242,7 +242,7 @@ export class EventRegistry {
 				}
 
 				// play notification sound
-				const notif = stendhal.config.get("event.pvtmsg.sound");
+				const notif = stendhal.config.get("chat.private.sound");
 				if (notif && this.soundTextEvents[ttype]) {
 					stendhal.ui.soundMan.playGlobalizedEffect(notif);
 				}

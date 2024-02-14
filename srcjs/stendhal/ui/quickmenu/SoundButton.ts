@@ -9,10 +9,11 @@
  *                                                                         *
  ***************************************************************************/
 
-import { QuickMenuButton } from "./QuickMenuButton";
-import { singletons } from "../../SingletonRepo";
-
 declare var stendhal: any;
+
+import { QuickMenuButton } from "./QuickMenuButton";
+import { UIComponentEnum } from "../UIComponentEnum";
+import { singletons } from "../../SingletonRepo";
 
 
 /**
@@ -21,16 +22,19 @@ declare var stendhal: any;
 export class SoundButton extends QuickMenuButton {
 
 	constructor() {
-		super("sound");
+		super("sound", UIComponentEnum.QMSound);
 	}
 
 	/**
-	 * Updates button icon.
+	 * Updates button image.
 	 */
 	public override update() {
-		this.setImageBasename(stendhal.config.getBoolean("client.sound") ? "sound" : "sound-disabled");
+		this.setImageBasename(stendhal.config.getBoolean("sound") ? "sound" : "sound-disabled");
 	}
 
+	/**
+	 * Toggles sound muted state when clicked/tapped.
+	 */
 	protected override onClick(evt: Event) {
 		singletons.getSoundManager().toggleSound();
 	}

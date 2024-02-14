@@ -1,5 +1,6 @@
 /***************************************************************************
- *                       Copyright © 2024 - Stendhal                       *
+ *                    Copyright © 2024 - Faiumoni e. V.                    *
+ ***************************************************************************
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,23 +10,27 @@
  *                                                                         *
  ***************************************************************************/
 
-import { QuickMenuButton } from "./QuickMenuButton";
-import { singletons } from "../../SingletonRepo";
-
 
 /**
- * Button to bring up settings dialog window.
+ * Representation of a 2-dimension plotted point on a plane.
  */
-export class SettingsButton extends QuickMenuButton {
-
-	constructor() {
-		super("settings");
-	}
+export class Point {
+	[key: string]: number|Function;
 
 	/**
-	 * Opens settings window when clicked/tapped.
+	 * Creates a new Point.
+	 *
+	 * @param x {number}
+	 *   Coordinate on X axis.
+	 * @param y {number}
+	 *   Coordinate on Y axis.
 	 */
-	protected override onClick(evt: Event) {
-		singletons.getSlashActionRepo().execute("/settings");
+	constructor(public x: number, public y: number) {};
+
+	/**
+	 * Converts to JSON formatted string.
+	 */
+	public toString(): string {
+		return JSON.stringify({x: this.x, y: this.y});
 	}
 }

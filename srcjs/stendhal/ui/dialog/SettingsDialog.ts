@@ -41,24 +41,24 @@ export class SettingsDialog extends DialogContentComponent {
 		const clog = (ui.get(UIComponentEnum.ChatLog) as ChatLogComponent);
 
 		this.storedStates = {
-			"txtjoystickx": stendhal.config.get("client.joystick.center.x"),
-			"txtjoysticky": stendhal.config.get("client.joystick.center.y")
+			"txtjoystickx": stendhal.config.get("joystick.center.x"),
+			"txtjoysticky": stendhal.config.get("joystick.center.y")
 		};
 
 		this.initialStates = {
-			"gamescreen.blood": stendhal.config.get("gamescreen.blood"),
+			"effect.blood": stendhal.config.get("effect.blood"),
 		};
 
 
 		/* *** left panel *** */
 
-		const chk_light = this.createCheckBox("chk_light", "gamescreen.lighting",
+		const chk_light = this.createCheckBox("chk_light", "effect.lighting",
 				"Lighting effects are enabled", "Lighting effects are disabled")!;
 		// FIXME: lighting effects not yet supported
 		chk_light.disabled = true;
 		chk_light.parentElement!.title = "Lighting effects not currently supported";
 
-		const chk_weather = this.createCheckBox("chk_weather", "gamescreen.weather",
+		const chk_weather = this.createCheckBox("chk_weather", "effect.weather",
 				"Weather is enabled", "Weather is disabled", function() {
 					if (clog) {
 						clog.addLine("client", "Weather changes will take effect after you change maps.");
@@ -67,48 +67,48 @@ export class SettingsDialog extends DialogContentComponent {
 		chk_weather.parentElement!.title = "Weather effects not currently supported";
 
 		const sd = this;
-		this.createCheckBox("chk_blood", "gamescreen.blood",
+		this.createCheckBox("chk_blood", "effect.blood",
 				"Gory images are enabled", "Gory images are disabled");
 
-		this.createCheckBox("chk_nonude", "gamescreen.nonude",
+		this.createCheckBox("chk_nonude", "effect.no-nude",
 				"Naked entities have undergarments", "Naked entities are not covered");
 
-		this.createCheckBox("chk_shadows", "gamescreen.shadows",
+		this.createCheckBox("chk_shadows", "effect.shadows",
 				"Shadows are enabled", "Shadows are disabled");
 
-		this.createCheckBox("chk_speechcr", "gamescreen.speech.creature",
+		this.createCheckBox("chk_speechcr", "speech.creature",
 				"Creature speech bubbles are enabled", "Creature speech bubbles are disabled");
 
 		const player_stats = ui.get(UIComponentEnum.PlayerStats) as PlayerStatsComponent;
 
-		const chk_charname = this.createCheckBox("chk_charname", "client.stats_panel.charname",
+		const chk_charname = this.createCheckBox("chk_charname", "panel.stats.charname",
 				undefined, undefined,
 				function() {
 					player_stats.enableCharName(chk_charname.checked);
 				})!;
 
-		const chk_hpbar = this.createCheckBox("chk_hpbar", "client.stats_panel.hpbar",
+		const chk_hpbar = this.createCheckBox("chk_hpbar", "panel.stats.hpbar",
 				undefined, undefined,
 				function() {
 					player_stats.enableBar("hp", chk_hpbar.checked);
 				})!;
 
-		this.createCheckBox("chk_activityindicator", "client.activity-indicator",
+		this.createCheckBox("chk_activityindicator", "activity-indicator",
 				"Indicator will be drawn", "Indicator will not be drawn");
 
-		const chk_floatchat = this.createCheckBox("chk_floatchat", "client.chat.float",
+		const chk_floatchat = this.createCheckBox("chk_floatchat", "chat.float",
 				undefined, undefined,
 				function() {
 					(ui.get(UIComponentEnum.BottomPanel) as ChatPanel).setFloating(chk_floatchat.checked);
 				});
 
-		this.createCheckBox("chk_hidechat", "client.chat.autohide",
+		this.createCheckBox("chk_hidechat", "chat.autohide",
 				"Chat panel will be hidden after sending text", "Chat panel will remain on-screen");
 
 
 		/* *** center panel *** */
 
-		this.createCheckBox("chk_dblclick", "action.item.doubleclick",
+		this.createCheckBox("chk_dblclick", "inventory.double-click",
 				"Items are used/consumed with double click/touch",
 				"Items are used/consumed with single click/touch",
 				function() {
@@ -120,11 +120,11 @@ export class SettingsDialog extends DialogContentComponent {
 				});
 
 		// FIXME: open chest windows are not refreshed
-		this.createCheckBox("chk_chestqp", "action.inventory.quickpickup",
+		this.createCheckBox("chk_chestqp", "inventory.quick-pickup",
 				"Click tranfers items from chests and corpses to player inventory",
 				"Click executes default action on items in chests and corpses");
 
-		const chk_movecont = this.createCheckBox("chk_movecont", "input.movecont",
+		const chk_movecont = this.createCheckBox("chk_movecont", "move.cont",
 				"Player will continue to walk after changing areas",
 				"Player will stop after changing areas",
 				function() {
@@ -136,19 +136,22 @@ export class SettingsDialog extends DialogContentComponent {
 				})!;
 
 		// TODO: make this multiple choice
-		const chk_pvtsnd = this.createCheckBox("chk_pvtsnd", "event.pvtmsg.sound",
+		const chk_pvtsnd = this.createCheckBox("chk_pvtsnd", "chat.private.sound",
 				"Private message audio notifications enabled",
 				"Private message audio notifications disabled",
 				undefined, "ui/notify_up", "null");
-		chk_pvtsnd.checked = stendhal.config.get("event.pvtmsg.sound") === "ui/notify_up";
+		chk_pvtsnd.checked = stendhal.config.get("chat.private.sound") === "ui/notify_up";
 
-		this.createCheckBox("chk_clickindicator", "input.click.indicator",
+		this.createCheckBox("chk_clickindicator", "click-indicator",
 				"Displaying clicks", "Not displaying clicks");
 
-		this.createCheckBox("chk_pathfinding", "client.pathfinding",
-				"Pathfinding on ground enabled", "Pathfinding on ground disabled");
+		this.createCheckBox("chk_pathfinding", "pathfinding",
+				"Click/Tap ground to walk", "Ground pathfinding disabled");
 
-		this.createCheckBox("chk_nativeemojis", "client.emojis.native",
+		this.createCheckBox("chk_pathfindingmm", "pathfinding.minimap",
+				"Click/Tap minimap to walk", "Minimap pathfinding disabled");
+
+		this.createCheckBox("chk_nativeemojis", "emojis.native",
 				"Using native emojis", "Using built-in emojis",
 				function() {
 					singletons.getChatInput().refresh();
@@ -181,17 +184,17 @@ export class SettingsDialog extends DialogContentComponent {
 		const fonts = Object.keys(stendhal.config.fonts);
 
 		const sel_fontbody = this.createFontSelect("selfontbody",
-				fonts.indexOf(stendhal.config.get("client.font.body")));
+				fonts.indexOf(stendhal.config.get("font.body")));
 		sel_fontbody.addEventListener("change", (e) => {
 			const new_font = fonts[sel_fontbody.selectedIndex];
-			stendhal.config.set("client.font.body", new_font);
+			stendhal.config.set("font.body", new_font);
 			document.body.style.setProperty("font-family", new_font);
 		});
 
 		const sel_fontchat = this.createFontSelect("selfontchat",
-				fonts.indexOf(stendhal.config.get("client.font.chat")));
+				fonts.indexOf(stendhal.config.get("font.chat")));
 		sel_fontchat.addEventListener("change", (e) => {
-			stendhal.config.set("client.font.chat", fonts[sel_fontchat.selectedIndex]);
+			stendhal.config.set("font.chat", fonts[sel_fontchat.selectedIndex]);
 			// make sure component is open before trying to refresh
 			if (clog) {
 				clog.refresh();
@@ -199,9 +202,9 @@ export class SettingsDialog extends DialogContentComponent {
 		});
 
 		const sel_fonttlog = this.createFontSelect("selfonttlog",
-				fonts.indexOf(stendhal.config.get("client.font.travel_log")))
+				fonts.indexOf(stendhal.config.get("font.travel-log")))
 		sel_fonttlog.addEventListener("change", (e) => {
-			stendhal.config.set("client.font.travel_log", fonts[sel_fonttlog.selectedIndex]);
+			stendhal.config.set("font.travel-log", fonts[sel_fonttlog.selectedIndex]);
 			const tlog = (ui.get(UIComponentEnum.TravelLogDialog) as TravelLogDialog);
 			// make sure component is open before trying to refresh
 			if (tlog) {
@@ -209,26 +212,26 @@ export class SettingsDialog extends DialogContentComponent {
 			}
 		});
 
-		this.createSelectFromConfig("selmenustyle", "client.menu.style",
+		this.createSelectFromConfig("selmenustyle", "menu.style",
 				undefined,
 				function(e: Event) {
 					ui.onMenuUpdate();
 				});
 
 		// common chat keyword options
-		const txt_chatopts = this.createTextInput("txtchatopts", stendhal.config.get("chat.custom_keywords"),
+		const txt_chatopts = this.createTextInput("txtchatopts", stendhal.config.get("chat-opts.custom"),
 				"Comma-separated list accessible from the chat options dialog");
 		txt_chatopts.addEventListener("change", (e) => {
-			stendhal.config.set("chat.custom_keywords", txt_chatopts.value);
+			stendhal.config.set("chat-opts.custom", txt_chatopts.value);
 		});
 
 		// on-screen joystick
-		const sel_joystick = this.createSelectFromConfig("seljoystick", "client.joystick.style",
+		const sel_joystick = this.createSelectFromConfig("seljoystick", "joystick.style",
 				undefined,
 				function(e: Event) {
 					stendhal.ui.gamewindow.updateJoystick();
 				});
-		const chk_joystick = this.createCheckBox("chk_joystick", "client.joystick",
+		const chk_joystick = this.createCheckBox("chk_joystick", "joystick",
 				undefined, undefined,
 				function(e: Event) {
 					sel_joystick.disabled = !chk_joystick.checked;
@@ -243,7 +246,7 @@ export class SettingsDialog extends DialogContentComponent {
 					"Joystick position on " + o.toUpperCase() + " axis");
 			orienter.addEventListener("input", (e) => {
 				// update configuration
-				stendhal.config.set("client.joystick.center." + o, orienter.value || 0);
+				stendhal.config.set("joystick.center." + o, orienter.value || 0);
 				// update on-screen joystick position
 				stendhal.ui.gamewindow.updateJoystick();
 			});

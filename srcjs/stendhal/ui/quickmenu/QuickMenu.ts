@@ -21,26 +21,40 @@ import { SettingsButton } from "./SettingsButton";
 import { SoundButton } from "./SoundButton";
 
 import { ui } from "../UI";
-import { UIComponentEnum } from "../UIComponentEnum";
 
 import { Paths } from "../../data/Paths";
 
 
 /**
  * Main button to show/hide quick menu buttons.
+ *
+ * @todo
+ *   Make subclass of `ui.toolkit.Component` or possibly subclass of `ui.quickmenu.QuickMenuButton`.
  */
 export class QuickMenu {
 
+	/** Property set to prevent re-initialization. */
 	private static initialized = false;
+	/** Determines if sub-buttons are visible. */
 	private static expanded = false;
+	/** Horizontally grouped sub-buttons. */
 	private static readonly buttonListX: QuickMenuButton[] = [];
+	/** Vertially grouped sub-buttons. */
 	private static readonly buttonListY: QuickMenuButton[] = [];
 
 
+	/**
+	 * Static properties & methods only.
+	 *
+	 * NOTE: should this be singleton?
+	 */
 	private constructor() {
 		// do nothing
 	}
 
+	/**
+	 * Initializes quick menu & all sub-buttons.
+	 */
 	public static init() {
 		if (QuickMenu.initialized) {
 			console.warn("WARNING: attempted to re-initialize quick menu buttons")
@@ -56,21 +70,15 @@ export class QuickMenu {
 
 		// horizontal sub-buttons
 		QuickMenu.buttonListX.push(new JoystickButton());
-		const soundButton = new SoundButton();
-		QuickMenu.buttonListX.push(soundButton);
+		QuickMenu.buttonListX.push(new SoundButton());
 		QuickMenu.buttonListX.push(new LogButton());
 		QuickMenu.buttonListX.push(new SettingsButton());
 		QuickMenu.buttonListX.push(new MenuButton());
 		// vertical sub-buttons
-		const chatButton = new ChatButton();
-		QuickMenu.buttonListY.push(chatButton);
+		QuickMenu.buttonListY.push(new ChatButton());
 		QuickMenu.buttonListY.push(new ChatOptsButton());
 		QuickMenu.buttonListY.push(new RotateLButton());
 		QuickMenu.buttonListY.push(new RotateRButton());
-
-		// register component buttons
-		ui.registerComponent(UIComponentEnum.QMChat, chatButton);
-		ui.registerComponent(UIComponentEnum.QMSound, soundButton);
 
 		btn_main.onload = () => {
 			// remove listener
@@ -87,6 +95,12 @@ export class QuickMenu {
 		QuickMenu.update();
 	}
 
+	/**
+	 * Enables or disables a sub-button.
+	 *
+	 * @param id {number}
+	 *   Registered `ui.UIComponentEnum` ID.
+	 */
 	public static setButtonEnabled(id: number, enabled: boolean) {
 		const button = (ui.get(id) as QuickMenuButton);
 		if (button) {
@@ -97,7 +111,7 @@ export class QuickMenu {
 	}
 
 	/**
-	 * Updates button positioning.
+	 * Updates menu positioning relative to upper-right corner of viewport.
 	 */
 	public static refresh() {
 		// place buttons in upper-right corner of viewport
@@ -132,11 +146,17 @@ export class QuickMenu {
 		}
 	}
 
+	/**
+	 * Toggles expanded state.
+	 */
 	private static toggle() {
 		QuickMenu.expanded = !QuickMenu.expanded;
 		QuickMenu.update();
 	}
 
+	/**
+	 * Updates main button image & shows or hides sub-buttons depending on expanded state.
+	 */
 	private static update() {
 		if (!QuickMenu.isVisible()) {
 			// menu is disabled so we don't need to update visibility of sub-buttons
@@ -150,10 +170,10 @@ export class QuickMenu {
 	}
 
 	/**
-	 * Shows or hides quick menu.
+	 * Determines enabled (visible) state of menu.
 	 *
-	 * @param visible
-	 *   Whether quick menu should be shown.
+	 * @param visible {boolean}
+	 *   Whether quick menu should be shown (default: `true`).
 	 */
 	public static setVisible(visible=true) {
 		if (QuickMenu.isVisible() == visible) {
@@ -171,17 +191,20 @@ export class QuickMenu {
 	}
 
 	/**
-	 * Checks if menu in visible state.
+	 * Checks if menu is in enabled (visible) state.
+	 *
+	 * @return {boolean}
+	 *   `true` if main button element's display style is not set to "none".
 	 */
 	private static isVisible(): boolean {
 		return QuickMenu.getElement().style["display"] !== "none";
 	}
 
 	/**
-	 * Retrieves the main element associated with the quick menu.
+	 * Retrieves the master element associated with the menu.
 	 *
 	 * @return
-	 *   `HTMLImageElement`.
+	 *   Main `HTMLImageElement`.
 	 */
 	private static getElement(): HTMLImageElement {
 		return document.getElementById("qm-main")! as HTMLImageElement;

@@ -156,7 +156,7 @@
 	</template>
 
 	<template id="group-member-template">
-		<div>
+		<div class="group-member-component">
 			<div class="group-member-name"></div>
 		</div>
 	</template>
@@ -272,7 +272,8 @@
 			<label class="checksetting"><input type="checkbox" id="chk_movecont">Continuous movement</label>
 			<label class="checksetting"><input type="checkbox" id="chk_pvtsnd">Private message notifications</label>
 			<label class="checksetting"><input type="checkbox" id="chk_clickindicator" class="experimental">Display clicks/touches</label>
-			<label class="checksetting"><input type="checkbox" id="chk_pathfinding">Click ground to move</label>
+			<label class="checksetting"><input type="checkbox" id="chk_pathfinding">Pathfinding via ground</label>
+			<label class="checksetting"><input type="checkbox" id="chk_pathfindingmm">Pathfinding via minimap</label>
 			<label class="checksetting"><input type="checkbox" id="chk_nativeemojis" class="experimental">Native emojis</label>
 		</div>
 		<div id="settings_panel3" class="verticalgroup vgroupcolr">
@@ -438,6 +439,8 @@
 	<template id="emojimap-template">
 		<div></div>
 	</template>
+
+	<img id="held-object" class="hidden unselectable" draggable="false">
 
 	<!-- place at end of document so drawn above all other elements -->
 	<img id="click-indicator">

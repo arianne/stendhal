@@ -59,16 +59,30 @@ export class HTMLManager {
 
 	extractPosition(event: any): any {
 		let pos = event;
+
+		let canvas = event.target as HTMLCanvasElement;
 		if (event.changedTouches) {
 			pos = {
 				pageX: Math.round(event.changedTouches[0].pageX),
 				pageY: Math.round(event.changedTouches[0].pageY),
 				target: event.changedTouches[0].target
 			}
-			pos.offsetX = pos.pageX - event.changedTouches[0].target.offsetLeft;
-			pos.offsetY = pos.pageY - event.changedTouches[0].target.offsetTop;
+			if (["touchmove", "touchend"].indexOf(event.type) > -1) {
+				// touch events target source element
+				for (const el of document.elementsFromPoint(pos.pageX, pos.pageY)) {
+					if (el.tagName === "CANVAS") {
+						canvas = el as HTMLCanvasElement;
+						break;
+					}
+				}
+				const rect = canvas.getBoundingClientRect();
+				pos.offsetX = pos.pageX - rect.left;
+				pos.offsetY = pos.pageY - rect.top;
+			} else {
+				pos.offsetX = pos.pageX - event.changedTouches[0].target.offsetLeft;
+				pos.offsetY = pos.pageY - event.changedTouches[0].target.offsetTop;
+			}
 		}
-		let canvas = event.target as HTMLCanvasElement;
 		pos.canvasRelativeX = Math.round(pos.offsetX * canvas.width / canvas.clientWidth);
 		pos.canvasRelativeY = Math.round(pos.offsetY * canvas.height / canvas.clientHeight);
 		return pos;

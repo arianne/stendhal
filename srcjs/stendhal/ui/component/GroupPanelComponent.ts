@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2003-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2003-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,26 +9,31 @@
  *                                                                         *
  ***************************************************************************/
 
+declare let marauroa: any;
+declare let stendhal: any;
+
+import { ChatInputComponent } from "./ChatInputComponent";
+import { GroupMemberComponent } from "./GroupMemberComponent";
+
 import { ui } from "../UI";
 import { UIComponentEnum } from "../UIComponentEnum";
 
+import { Component } from "../toolkit/Component";
 import { Panel } from "../toolkit/Panel";
 import { TabPanelComponent } from "../toolkit/TabPanelComponent";
 
-import { ChatInputComponent } from "./ChatInputComponent";
-
 import { Chat } from "../../util/Chat";
-import { GroupMemberComponent } from "./GroupMemberComponent";
 
-
-declare let marauroa: any;
-declare let stendhal: any;
 
 /**
  * group management
  */
 export class GroupPanelComponent extends Panel {
+
 	private invites: Record<string, HTMLButtonElement> = {}
+
+	/** Registered members for faster lookup. */
+	private members = new Map<String, GroupMemberComponent>();
 
 
 	constructor() {
@@ -106,6 +111,21 @@ export class GroupPanelComponent extends Panel {
 		this.renderGroupMembers();
 	}
 
+	override add(child: Component) {
+		super.add(child);
+		if (child instanceof GroupMemberComponent) {
+			const memberComponent = child as GroupMemberComponent;
+			this.members.set(memberComponent.getMemberName(), memberComponent);
+		}
+	}
+
+	override clear() {
+		super.clear();
+		for (const name of this.members.keys()) {
+			this.members.delete(name);
+		}
+	}
+
 	renderGroupMembers() {
 		this.clear();
 		for (let member of Object.keys(stendhal.data.group.members)) {
@@ -159,4 +179,22 @@ export class GroupPanelComponent extends Panel {
 		marauroa.clientFramework.sendAction(action);
 	}
 
+	/**
+	 * Retrieves membership component.
+	 *
+	 * @param name {string}
+	 *   Name of player.
+	 * @return {ui.component.GroupMemberComponent.GroupMemberComponent}
+	 *   The component associated with player or `undefined`.
+	 */
+	getMemberComponent(name: string): GroupMemberComponent|undefined {
+		if (!this.isInGroup()) {
+			return undefined;
+		}
+		for (const entry of this.members.entries()) {
+			if (entry[0] === name) {
+				return entry[1];
+			}
+		}
+	}
 }

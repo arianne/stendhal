@@ -127,7 +127,7 @@ export const ItemMap: {[index: string]: any} = {
 				cursor = imap.cursor;
 			}
 		}
-		if (cursor === "itemuse" && !config.getBoolean("action.item.doubleclick")) {
+		if (cursor === "itemuse" && !config.getBoolean("inventory.double-click")) {
 			cursor = "activity";
 		}
 		return cursor;

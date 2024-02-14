@@ -67,20 +67,24 @@ export class KeyHandler {
 	}
 
 	/**
-	 * Determines event type from event.
+	 * Checks keyboard event & determines resulting action.
 	 *
 	 * @param event:
 	 *   Keyboard event.
-	 * @return
-	 *   String representation of event type or `null`.
+	 * @return {number}
+	 *   Ternary representation of action to be executed:
+	 *   -  0: no action
+	 *   - -1: face to action
+	 *   -  1: move/walk action
 	 */
-	private static extractMoveOrFaceActionFromEvent(event: KeyboardEvent): string|null {
-		if (event.ctrlKey) {
-			return "face";
-		} else if (event.shiftKey) {
-			return null;
+	private static checkActionEvent(event: KeyboardEvent): number {
+		if (event.shiftKey) {
+			return 0;
 		}
-		return "move";
+		if (event.ctrlKey) {
+			return -1;
+		}
+		return 1;
 	}
 
 	/**
@@ -148,25 +152,24 @@ export class KeyHandler {
 				event.preventDefault();
 			}
 
+			if (!marauroa.me) {
+				return;
+			}
 			// if this is a repeated event, stop further processing
 			if (KeyHandler.pressedKeys.indexOf(code) > -1) {
 				return;
 			}
 			KeyHandler.pressedKeys.push(code);
 
-			var type = KeyHandler.extractMoveOrFaceActionFromEvent(event);
-			if (!type) {
+			const actionType = KeyHandler.checkActionEvent(event);
+			if (!actionType) {
 				return;
 			}
-			var dir = KeyHandler.extractDirectionFromKeyCode(code);
-			var action = {"type": type, "dir": ""+dir.val};
-			marauroa.clientFramework.sendAction(action);
-
-			// stop walking if keypress in direction of current movement
-			if (marauroa.me && marauroa.me.autoWalkEnabled()) {
-				if (parseInt(marauroa.me["dir"], 10) === dir.val) {
-					marauroa.clientFramework.sendAction({"type": "walk"});
-				}
+			const dir = KeyHandler.extractDirectionFromKeyCode(code);
+			if (actionType < 0) {
+				marauroa.me.faceTo(dir);
+			} else {
+				marauroa.me.setDirection(dir, true);
 			}
 		} else {
 			// move focus to chat-input on keydown
@@ -197,27 +200,32 @@ export class KeyHandler {
 		var code = KeyHandler.translate(KeyCode.extract(event));
 
 		if (code >= KeyCode.ARROW_LEFT && code <= KeyCode.ARROW_DOWN) {
-			var i = KeyHandler.pressedKeys.indexOf(code);
+			if (!marauroa.me) {
+				return;
+			}
+			const i = KeyHandler.pressedKeys.indexOf(code);
 			if (i > -1) {
+				// remove from list of currently pressed keys
 				KeyHandler.pressedKeys.splice(i, 1);
 			}
 
-			var action: {[key: string]: string} = {};
 			if (!KeyHandler.isDirPressed()) {
-				action["type"] = "stop";
-				marauroa.clientFramework.sendAction(action);
+				marauroa.me.stop();
+				return;
 			}
 
-			if (KeyHandler.pressedKeys.length > 0) {
-				code = KeyHandler.pressedKeys[0];
-				var type = KeyHandler.extractMoveOrFaceActionFromEvent(event);
-				if (!type) {
-					return;
-				}
-				var dir = KeyHandler.extractDirectionFromKeyCode(code);
-				action["type"] = type;
-				action["dir"] = ""+dir.val;
-				marauroa.clientFramework.sendAction(action);
+			// get previously pressed direction
+			code = KeyHandler.pressedKeys[0];
+			const actionType = KeyHandler.checkActionEvent(event);
+			if (!actionType) {
+				return;
+			}
+			const dir = KeyHandler.extractDirectionFromKeyCode(code);
+			if (actionType < 0) {
+				marauroa.me.faceTo(dir);
+			} else {
+				// NOTE: do not cancel auto-walk on key release
+				marauroa.me.setDirection(dir);
 			}
 		}
 	}

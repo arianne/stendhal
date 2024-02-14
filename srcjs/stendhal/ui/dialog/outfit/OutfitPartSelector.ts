@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2015-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2015-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -98,7 +98,7 @@ export class OutfitPartSelector {
 
 	_getPartSprite(part: string, index: number, color = null): Promise<CanvasImageSource> {
 		let suffix = ".png";
-		if (this._part === "body" && stendhal.config.getBoolean("gamescreen.nonude")) {
+		if (this._part === "body" && stendhal.config.getBoolean("effect.no-nude")) {
 			suffix = "-nonude.png";
 		}
 

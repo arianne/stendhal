@@ -18,11 +18,16 @@ import { Panel } from "./toolkit/Panel";
 import { singletons } from "../SingletonRepo";
 
 
+/**
+ * Panel containing elements associated with chat.
+ *
+ * TODO: move to ui/component directory
+ */
 export class ChatPanel extends Panel {
 
 	constructor() {
 		super("bottomPanel");
-		this.setFloating(singletons.getConfigManager().getBoolean("client.chat.float"));
+		this.setFloating(singletons.getConfigManager().getBoolean("chat.float"));
 	}
 
 	/**
@@ -32,7 +37,7 @@ export class ChatPanel extends Panel {
 	 *   `true` if panel should float.
 	 */
 	public setFloating(floating: boolean) {
-		singletons.getConfigManager().set("client.chat.float", floating);
+		singletons.getConfigManager().set("chat.float", floating);
 		let propPosition = "static";
 		let propOpacity = "1.0";
 		if (floating) {
@@ -99,7 +104,7 @@ export class ChatPanel extends Panel {
 	 * Hides chat panel after sending message if auto-hiding enabled.
 	 */
 	public onMessageSent() {
-		if (this.isFloating() && this.isVisible() && singletons.getConfigManager().getBoolean("client.chat.autohide")) {
+		if (this.isFloating() && this.isVisible() && singletons.getConfigManager().getBoolean("chat.autohide")) {
 			this.setVisible(false);
 		}
 	}
@@ -109,7 +114,7 @@ export class ChatPanel extends Panel {
 		const stateChanged = visible != this.isVisible();
 		super.setVisible(visible);
 		// update config
-		singletons.getConfigManager().set("client.chat.visible", visible);
+		singletons.getConfigManager().set("chat.visible", visible);
 		// update quick menu button
 		const chatButton = ui.get(UIComponentEnum.QMChat) as QuickMenuButton;
 		if (chatButton) {

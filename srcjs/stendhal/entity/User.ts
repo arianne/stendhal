@@ -31,6 +31,7 @@ import { OutfitDialog } from "../ui/dialog/outfit/OutfitDialog";
 import { FloatingWindow } from "../ui/toolkit/FloatingWindow";
 
 import { Color } from "../util/Color";
+import { Direction } from "../util/Direction";
 
 
 /**
@@ -46,15 +47,7 @@ export class User extends Player {
 
 	constructor() {
 		super();
-		queueMicrotask(() => {
-			this.onEnterZone();
-		});
 		ui.onUserReady();
-	}
-
-	override destroy(parent: any) {
-		this.onExitZone();
-		super.destroy(parent);
 	}
 
 	override set(key: string, value: any) {
@@ -148,7 +141,8 @@ export class User extends Player {
 	/**
 	 * Actions when player leaves a zone.
 	 */
-	onExitZone() {
+	override onExitZone() {
+		super.onExitZone();
 		// speech bubbles & emojis from viewport
 		stendhal.ui.gamewindow.onExitZone();
 		// stop sounds & clear map sounds cache on zone change
@@ -181,7 +175,8 @@ export class User extends Player {
 	/**
 	 * Actions when player enters a zone.
 	 */
-	onEnterZone() {
+	override onEnterZone() {
+		super.onEnterZone();
 		// play looped sound sources
 		this.lssMan.onZoneReady();
 	}
@@ -202,5 +197,44 @@ export class User extends Player {
 	public canInviteToGroup(): boolean {
 		const gman = singletons.getGroupManager();
 		return gman.getMemberCount() == 0 || gman.getLeader() === this["name"];
+	}
+
+	/**
+	 * Sends event to server to set direction user should face.
+	 *
+	 * @param dir {util.Direction.Direction}
+	 *   New direction to face.
+	 */
+	public setFacing(dir: Direction) {
+		marauroa.clientFramework.sendAction({type: "face", dir: ""+dir.val});
+	}
+
+	/**
+	 * Sends event to server to set or stop player's walking direction.
+	 *
+	 * @param dir {util.Direction.Direction}
+	 *   Direction for character to move or stop.
+	 * @param cancelAutoWalk {boolean}
+	 *   If `true` stops movement if auto-walk is active & "dir" matches user's current direction of
+	 *   movement.
+	 */
+	public setDirection(dir: Direction, cancelAutoWalk=false) {
+		if (dir == Direction.STOP) {
+			this.stop();
+			return;
+		}
+		if (cancelAutoWalk && this.autoWalkEnabled() && this.getWalkDirection() == dir) {
+			// cancel auto-walk if enabled & new direction is same as current direction of movement
+			marauroa.clientFramework.sendAction({type: "walk"});
+			return;
+		}
+		marauroa.clientFramework.sendAction({type: "move", dir: ""+dir.val});
+	}
+
+	/**
+	 * Sends action to server to stop player's walking direction.
+	 */
+	public stop() {
+		marauroa.clientFramework.sendAction({type: "stop"});
 	}
 }

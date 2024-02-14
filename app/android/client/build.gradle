@@ -12,13 +12,14 @@ android {
 		targetSdk 32
 		versionCode 1
 		versionName "1045005"
-		setProperty("archivesBaseName", "${namespace}-${defaultConfig.versionName}")
-		setProperty("buildDir", "${projectDir}/../../../build/build_android_client")
-
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 		targetSdkVersion 32
 		minSdkVersion 21
 	}
+
+	// build output
+	project.setProperty("archivesBaseName", "${namespace}-${defaultConfig.versionName}")
+	project.setProperty("buildDir", "${projectDir}/../../../build/build_android_client")
 
 	/* A keystore.properties file can be placed in the root Android project directory and must
 	 * include the following values:
@@ -95,10 +96,12 @@ android {
 	}
 
 	// print some build info for debugging
-	println "Package:         " + namespace
-	println "Application ID:  " + defaultConfig.applicationId
-	println "Output basename: " + archivesBaseName
-	println "Signing key:     " + signingConfigs.release.storeFile
+	println("Package:         " + namespace)
+	println("Application ID:  " + defaultConfig.applicationId)
+	println("Version:         " + defaultConfig.versionName)
+	println("Output basename: " + archivesBaseName)
+	println("Signing key:     " + signingConfigs.release.storeFile)
+	println("Build directory: " + project.buildDir)
 }
 
 dependencies {

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2023 - Stendhal                     *
+ *                 Copyright © 2003-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -73,7 +73,7 @@ export class WeatherRenderer {
 	 *     Weather type identifier.
 	 */
 	update(weather?: string) {
-		this.enabled = stendhal.config.getBoolean("gamescreen.weather");
+		this.enabled = stendhal.config.getBoolean("effect.weather");
 		this.frameIdx = 0;
 		this.lastUpdate = Date.now();
 		// reset warning messages

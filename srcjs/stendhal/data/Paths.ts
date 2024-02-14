@@ -10,6 +10,9 @@
  ***************************************************************************/
 
 
+/**
+ * Static class for data paths.
+ */
 export class Paths {
 	public static readonly data = Paths.extractPath("data-data-path");
 	public static readonly font = Paths.data + "/font";
@@ -23,9 +26,12 @@ export class Paths {
 	public static readonly ws = Paths.extractPath("data-ws");
 
 	/**
-	 * extract the path information from DOM
+	 * Extracts the path information from DOM.
+	 *
+	 * @return {string}
+	 *   Path determining data root.
 	 */
-	private static extractPath(ref: string) {
+	private static extractPath(ref: string): string {
 		let path = document.getElementsByTagName("html")[0].getAttribute(ref);
 
 		// make sure that there is no javascript:// or similary shinanigans

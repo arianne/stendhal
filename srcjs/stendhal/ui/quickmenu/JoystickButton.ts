@@ -9,9 +9,10 @@
  *                                                                         *
  ***************************************************************************/
 
-import { QuickMenuButton } from "./QuickMenuButton";
-
 declare var stendhal: any;
+
+import { QuickMenuButton } from "./QuickMenuButton";
+import { UIComponentEnum } from "../UIComponentEnum";
 
 
 /**
@@ -20,20 +21,22 @@ declare var stendhal: any;
 export class JoystickButton extends QuickMenuButton {
 
 	constructor() {
-		super("joystick");
+		super("joystick", UIComponentEnum.QMJoystick);
 	}
 
 	/**
-	 * Updates button icon.
+	 * Updates button image.
 	 */
 	public override update() {
-		this.setImageBasename(stendhal.config.getBoolean("client.joystick") ? "joystick" : "joystick-disabled");
+		this.setImageBasename(stendhal.config.getBoolean("joystick") ? "joystick" : "joystick-disabled");
 	}
 
+	/**
+	 * Toggles joystick visibility when clicked/tapped.
+	 */
 	protected override onClick(evt: Event) {
-		const newState = !stendhal.config.getBoolean("client.joystick");
-		stendhal.config.set("client.joystick", newState);
+		const newState = !stendhal.config.getBoolean("joystick");
+		stendhal.config.set("joystick", newState);
 		stendhal.ui.gamewindow.updateJoystick();
-		this.update();
 	}
 }

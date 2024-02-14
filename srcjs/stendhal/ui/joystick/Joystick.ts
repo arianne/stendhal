@@ -9,149 +9,167 @@
  *                                                                         *
  ***************************************************************************/
 
-import { JoystickBase } from "./JoystickBase";
-import { Direction } from "../../util/Direction";
-
 declare var stendhal: any;
 
+import { JoystickImpl } from "./JoystickImpl";
+import { AngleRange } from "../../util/AngleRange";
+import { Direction } from "../../util/Direction";
+import { MathHelper } from "../../util/MathHelper";
+import { Pair } from "../../util/Pair";
+import { Point } from "../../util/Point";
 
-export class Joystick extends JoystickBase {
 
+/**
+ * On-screen movement control implementation representing a joystick-like interface.
+ *
+ * Consists of two elements: An outer static button and an inner interactive button. The outer
+ * determines overall joystick positioning and boundaries. The inner is used to control
+ * character's walking direction based on positioning of its center relative to center of outer
+ * button.
+ */
+export class Joystick extends JoystickImpl {
+
+	/** Element representing joystick boundaries. */
 	private outer: HTMLImageElement;
+	/** Element used to determine moving direction of character. */
 	private inner: HTMLImageElement;
 
-	private engaged = false;
+	/** Secondary direction of movement. */
+	private secondaryDir = 0;
 
-	// number of pixels joystick can move before executing event
-	private static readonly play_threshold = 24;
+	/** Difference in pixels of inner button center relative to outer button center before a move
+	 *  event will be executed. */
+	private readonly playThreshold = 24;
+
+	/**
+	 * Angles representing directions of movement.
+	 *
+	 * NOTE: currently supports only 4 sectors but should be updated to represent sectors as laid out
+	 *       in https://github.com/arianne/stendhal/issues/608#issuecomment-1872485986
+	 */
+	private readonly sectors: {[key: string]: Pair<number, AngleRange>[]} = {
+		primary: [
+			// NOTE: 0 degrees represents right on joystick plane
+			new Pair(Direction.UP.val, new AngleRange(225, 314.9)),
+			new Pair(Direction.RIGHT.val, new AngleRange(315, 44.9)),
+			new Pair(Direction.DOWN.val, new AngleRange(45, 134.9)),
+			new Pair(Direction.LEFT.val, new AngleRange(135, 224.9))
+		],
+		secondary: []
+	};
+
+	/** Singleton instance. */
+	private static instance: Joystick;
 
 
-	public constructor() {
+	/**
+	 * Retrieves singleton instance.
+	 */
+	public static get(): Joystick {
+		if (!Joystick.instance) {
+			Joystick.instance = new Joystick();
+		}
+		return Joystick.instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 *
+	 * Creates the HTML elements but does not add them to DOM.
+	 */
+	private constructor() {
 		super();
+
+		// initialize secondary movement ranges
+		// all sectors should be equal size
+		const ssize = this.sectors.primary[0].second.getSize() / 3;
+		for (const p of this.sectors.primary) {
+			const rangeCC = new AngleRange(p.second.min, p.second.min + ssize);
+			const rangeC = new AngleRange(p.second.max - ssize, p.second.max);
+			this.sectors.secondary.push(new Pair(p.first + .1, rangeCC));
+			this.sectors.secondary.push(new Pair(p.first + .2, rangeC));
+		}
 
 		this.outer = new Image();
 		this.inner = new Image();
 
 		for (const jimg of [this.outer, this.inner]) {
-			jimg.classList.add("joystick-button");
+			jimg.classList.add("joystick-button", "hidden");
 			jimg.style.position = "absolute";
 			jimg.draggable = false;
 
-			// listen for activation events
+			// listen for click/touch start events to initialize engagement
+			// NOTE: should this use "pointerdown" like DirectionPad/DPadButton?
 			for (const etype of ["mousedown", "touchstart"]) {
 				jimg.addEventListener(etype, (e) => {
-					this.onMouseDown(e);
+					this.onEngaged(e);
 				});
 			}
-			// note "mouseup" is handled globally in the body element (see Client.ts)
+			// listen for touch end events to end engagement
+			// NOTE: "mouseup" is handled globally in the body element (see Client.Client.registerBrowserEventHandlers)
 			jimg.addEventListener("touchend", (e) => {
-				this.onMouseUp(e);
+				this.onDisengaged(e);
 			});
-
+			// listen for mouse/touch movement to detect dragging
+			// NOTE: should this use "pointermove"?
 			for (const etype of ["mousemove", "touchmove"]) {
 				// must be added to outer in case movement is too fast to be caught by inner
 				jimg.addEventListener(etype, (e) => {
-					if (e.type === "mousemove" && !this.engaged) {
-						// prevent movement if mouse button not pressed
-						return;
-					}
-					this.onMouseDown(e);
+					this.onDragWhileEngaged(e);
 				});
 			}
 		}
 
-		// update layout after outer image has loaded
+		// configure radius and inner button after outer button image has loaded
 		this.outer.onload = () => {
 			// remove listener
 			this.outer.onload = null;
-			this.onInit();
+			// radius is based on dimensions of outer button
+			this.radius = Math.floor(this.outer.width / 2);
+			this.onOuterReady();
 		};
 		this.outer.src = Joystick.getResource("joystick_outer");
 	}
 
-	private onInit() {
-		this.radius = Math.floor(this.outer.width / 2);
-		// set position of outer joystick
+	/**
+	 * Loads inner button image and finalizes initialization.
+	 */
+	private onOuterReady() {
+		this.inner.onload = () => {
+			// remove listener
+			this.inner.onload = null;
+			// center inner joystick on outer
+			const rect = this.outer.getBoundingClientRect();
+			this.updateInner(rect.left + this.radius, rect.top + this.radius);
+			this.onReady();
+		};
+		this.inner.src = Joystick.getResource("joystick_inner");
+	}
+
+	/**
+	 * Retrieves an array of the elements associated with this joystick.
+	 *
+	 * @return {HTMLImageElement[]}
+	 *   Image elements representing outer and inner buttons.
+	 */
+	protected override getElements(): HTMLImageElement[] {
+		return [this.outer, this.inner];
+	}
+
+	/**
+	 * Updates joystick positioning based on configured center X & Y coordinates.
+	 */
+	public override update() {
 		this.outer.style.left = (Joystick.getCenterX() - this.radius) + "px";
 		this.outer.style.top = (Joystick.getCenterY() - this.radius) + "px";
-		this.reset();
-
-		// add to DOM
-		const container = document.getElementById("joystick-container")!;
-		container.appendChild(this.outer);
-		container.appendChild(this.inner);
-	}
-
-	private onMouseDown(e: Event) {
-		if (!Joystick.checkActionEvent(e)) {
-			return;
-		}
-		if (!this.engaged) {
-			this.engaged = true;
-			this.inner.src = Joystick.getResource("joystick_inner_active");
-		}
-
-		const pos = stendhal.ui.html.extractPosition(e);
-
-		// update inner button position
-		this.updateInner(pos.pageX, pos.pageY);
-
-		const new_direction = this.getPressedDirection();
-		if (new_direction != this.direction) {
-			this.onDirectionChange(new_direction);
-		}
-	}
-
-	private onMouseUp(e: Event) {
-		if (!Joystick.checkActionEvent(e)) {
-			return;
-		}
-		this.reset();
 	}
 
 	/**
-	 * Retrieves the interpreted direction of joystick's state.
+	 * Resets inner buttons to disengaged state & stops movement.
 	 */
-	private getPressedDirection(): Direction {
-		let dir = Direction.STOP;
-		// FIXME: need a smarter algorithm for detecting direction based on position of inner circle
-		//        relative to center of outer
-		const rect = this.inner.getBoundingClientRect();
-		const oCenterX = Joystick.getCenterX(), oCenterY = Joystick.getCenterY();
-		const iCenterX = rect.left + Math.floor(this.inner.width / 2);
-		const iCenterY = rect.top + Math.floor(this.inner.height / 2);
-		if (iCenterX < oCenterX - Joystick.play_threshold) {
-			dir = Direction.LEFT;
-		} else if (iCenterX > oCenterX + Joystick.play_threshold) {
-			dir = Direction.RIGHT;
-		} else if (iCenterY < oCenterY - Joystick.play_threshold) {
-			dir = Direction.UP;
-		} else if (iCenterY > oCenterY + Joystick.play_threshold) {
-			dir = Direction.DOWN;
-		}
-		return dir;
-	}
-
-	/**
-	 * Updates position of inner button.
-	 */
-	private updateInner(x: number, y: number) {
-		// FIXME: need a smarter algorithm for detecting if center of inner circle is beyond radius
-		//        of outer
-		const bounds = this.outer.getBoundingClientRect();
-		const xdiff = Math.abs(x - (bounds.left + this.radius));
-		const ydiff = Math.abs(y - (bounds.top + this.radius));
-		// don't allow inner button to move beyond radius of outer
-		if (xdiff <= this.radius) {
-			this.inner.style.left = (x - Math.floor(this.inner.width / 2)) + "px";
-		}
-		if (ydiff <= this.radius) {
-			this.inner.style.top = (y - Math.floor(this.inner.height / 2)) + "px";
-		}
-	}
-
-	public override reset(): void {
-		this.engaged = false;
+	public override reset() {
+		// update engaged state
+		super.reset();
 		this.inner.onload = () => {
 			// remove listener
 			this.inner.onload = null;
@@ -162,18 +180,162 @@ export class Joystick extends JoystickBase {
 		this.inner.src = Joystick.getResource("joystick_inner");
 
 		if (this.direction != Direction.STOP) {
-			// stop movement
+			// immediately stop movement
 			this.onDirectionChange(Direction.STOP);
 		}
 	}
 
-	public override onRemoved(): void {
-		// remove from DOM
-		const container = document.getElementById("joystick-container")!;
-		for (const jimg of [this.outer, this.inner]) {
-			if (container.contains(jimg)) {
-				container.removeChild(jimg);
+	/**
+	 * Updates position of inner button.
+	 *
+	 * @param x {number}
+	 *   Positioning center on X axis.
+	 * @param y {number}
+	 *   Positioning center on Y axis.
+	 */
+	private updateInner(x: number, y: number) {
+		const pos = this.keepInside(x, y);
+		this.inner.style.left = (pos.x - Math.floor(this.inner.width / 2)) + "px";
+		this.inner.style.top = (pos.y - Math.floor(this.inner.height / 2)) + "px";
+	}
+
+	/**
+	 * Restricts movement of inner button to joystick radial boundaries.
+	 *
+	 * Reference: https://stackoverflow.com/a/8528999/4677917
+	 *
+	 * @param x {number}
+	 *   Absolute coordinate on X axis.
+	 * @param y {number}
+	 *   Absolute coordinate on Y axis.
+	 * @return {util.Point.Point}
+	 *   Adjusted positioning.
+	 */
+	private keepInside(x: number, y: number): Point {
+		const bounds = this.outer.getBoundingClientRect();
+		const cx = bounds.left + this.radius;
+		const cy = bounds.top + this.radius;
+		const relX = x - cx;
+		const relY = y - cy;
+		if (this.outside(relX, relY)) {
+			const rad = MathHelper.pointToRad(relX, relY);
+			x = Math.cos(rad) * this.radius + cx;
+			y = Math.sin(rad) * this.radius + cy;
+		}
+		return new Point(x, y);
+	}
+
+	/**
+	 * Called when joystick engagement starts in order to determine direction of movement and update
+	 * inner button.
+	 *
+	 * @param e {Event}
+	 *   Event to be validated.
+	 */
+	protected override onEngaged(e: Event): boolean {
+		if (!super.onEngaged(e)) {
+			return false;
+		}
+		this.inner.src = Joystick.getResource("joystick_inner_active");
+		this.onDragWhileEngaged(e);
+		return this.engaged;
+	}
+
+	/**
+	 * Called when secondary direction should be updated.
+	 *
+	 * @param dir {number}
+	 *   New secondary direction.
+	 */
+	private onSecondaryDirChange(dir: number) {
+		this.secondaryDir = dir;
+		// TODO: send event to set secondary direction server side.
+	}
+
+	/**
+	 * Called when drag gesture is detected to update movement and buttons.
+	 *
+	 * @param e {Event}
+	 *   Event denoting an update to joystick state.
+	 */
+	public onDragWhileEngaged(e: Event) {
+		if (!this.engaged) {
+			// prevent movement if joystick is not engaged
+			return;
+		}
+
+		// update inner button position
+		const pos = stendhal.ui.html.extractPosition(e);
+		this.updateInner(pos.pageX, pos.pageY);
+
+		// set new direction of movement
+		let sec = this.getPressedDirection();
+		const pri = Math.floor(sec);
+		if (pri != this.direction.val) {
+			if (pri == Direction.STOP.val) {
+				this.queueStop();
+			} else {
+				this.onDirectionChange(Direction.VALUES[pri]);
 			}
 		}
+		sec = sec - pri == 0 ? 0 : sec;
+		if (sec != this.secondaryDir) {
+			this.onSecondaryDirChange(sec);
+		}
+	}
+
+	/**
+	 * Retrieves the interpreted direction of joystick.
+	 *
+	 * @return {number}
+	 *   Direction of movement the joystick's state represents.
+	 */
+	private getPressedDirection(): number {
+		const irect = this.inner.getBoundingClientRect();
+		const ix = irect.left + Math.floor(this.inner.width / 2) - Joystick.getCenterX();
+		const iy = irect.top + Math.floor(this.inner.height / 2) - Joystick.getCenterY();
+		if (this.inDeadZone(ix, iy)) {
+			return Direction.STOP.val;
+		}
+		const angle = MathHelper.pointToDeg(ix, iy);
+		for (const pair of this.sectors.secondary) {
+			if (pair.second.contains(angle)) {
+				return pair.first;
+			}
+		}
+		for (const pair of this.sectors.primary) {
+			if (pair.second.contains(angle)) {
+				return pair.first;
+			}
+		}
+		return Direction.STOP.val;
+	}
+
+	/**
+	 * Checks if a position is inside dead zone area.
+	 *
+	 * @param relX {number}
+	 *   Coordinate on X axis relative to joystick center.
+	 * @param relY {number}
+	 *   Coordinate on Y axis relative to joystick center.
+	 * @return {boolean}
+	 *   `true` if position is not in an area of joystick denoting character movement.
+	 */
+	private inDeadZone(relX: number, relY: number): boolean {
+		return Math.pow(Math.abs(relX), 2) + Math.pow(Math.abs(relY), 2) <= Math.pow(this.playThreshold, 2);
+	}
+
+	/**
+	 * Checks if a position extends beyond radial limit.
+	 *
+	 * @param relX {number}
+	 *   Coordinate on X axis relative to joystick center.
+	 * @param relY {number}
+	 *   Coordinate on Y axis relative to joystick center.
+	 * @return {boolean}
+	 *   `true` if position is beyond radius.
+	 */
+	private outside(relX: number, relY: number): boolean {
+		return Math.pow(Math.abs(relX), 2) + Math.pow(Math.abs(relY), 2) >= Math.pow(this.radius, 2);
 	}
 }

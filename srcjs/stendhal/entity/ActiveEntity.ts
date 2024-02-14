@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -277,4 +277,13 @@ export class ActiveEntity extends Entity {
 		return false;
 	}
 
+	/**
+	 * Retrieves entities direction of movement.
+	 *
+	 * @return {util.Direction.Direction}
+	 *   Current direction entity is moving or stopped.
+	 */
+	getWalkDirection(): Direction {
+		return Direction.VALUES[parseInt(this["dir"], 10)];
+	}
 }

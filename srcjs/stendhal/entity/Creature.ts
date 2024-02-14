@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -32,7 +32,7 @@ export class Creature extends RPEntity {
 
 	// Overrides the one in creature
 	override say(text: string) {
-		if (stendhal.config.getBoolean("gamescreen.speech.creature")) {
+		if (stendhal.config.getBoolean("speech.creature")) {
 			this.addSpeechBubble(text);
 		}
 	}

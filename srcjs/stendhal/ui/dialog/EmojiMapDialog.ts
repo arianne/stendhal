@@ -68,7 +68,7 @@ export class EmojiMapDialog extends DialogContentComponent {
 		super("emojimap-template");
 
 		// Note: dialog must be re-constructed if setting changes
-		this.sysEmojis = stendhal.config.getBoolean("client.emojis.native");
+		this.sysEmojis = stendhal.config.getBoolean("emojis.native");
 
 		const emojiStore = singletons.getEmojiStore();
 		let emojiList = EmojiMapDialog.glyphs;

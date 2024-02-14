@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -41,7 +41,7 @@ export class Blood extends Entity {
 	}
 
 	override drawSpriteAt(ctx: CanvasRenderingContext2D, x: number, y: number) {
-		if (!stendhal.config.getBoolean("gamescreen.blood")) {
+		if (!stendhal.config.getBoolean("effect.blood")) {
 			return;
 		}
 

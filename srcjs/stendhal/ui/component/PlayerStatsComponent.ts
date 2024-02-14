@@ -61,7 +61,7 @@ export class PlayerStatsComponent extends Component {
 		const statuses = new StatusesListComponent();
 		ui.registerComponent(UIComponentEnum.StatusesList, statuses);
 
-		this.enableCharName(stendhal.config.getBoolean("client.stats_panel.charname"));
+		this.enableCharName(stendhal.config.getBoolean("panel.stats.charname"));
 
 		this.hpText = this.child("#hptext")!;
 		this.otherText = this.child("#otherstats")!;
@@ -73,7 +73,7 @@ export class PlayerStatsComponent extends Component {
 		this.bars["hp"] = new StatBarComponent("hpbar");
 		// use config to determine if HP bar should be visible
 		this.enableBar("hp", singletons.getConfigManager()
-				.getBoolean("client.stats_panel.hpbar"));
+				.getBoolean("panel.stats.hpbar"));
 	}
 
 	update(key: string) {

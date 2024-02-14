@@ -176,9 +176,12 @@ div.quickPickup div.itemSlot {
 	background-color: #000;
 }
 
-#stats {
+#stats, .group-members, .group-member-component {
 	display: flex;
 	flex-direction: column;
+}
+
+#stats {
 	border: 1px solid black;
 	width: 128px;
 	float: left;
@@ -302,7 +305,7 @@ div.logcolR {
 	background: url(/data/gui/danger.png) repeat;
 }
 
-.qm-button {
+.qm-button, img#held-object {
 	position: absolute;
 	display: none;
 	opacity: 0.5;

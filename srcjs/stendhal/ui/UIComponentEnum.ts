@@ -45,5 +45,6 @@ export class UIComponentEnum {
 
 	// Quick menu
 	public static readonly QMChat = 301;
-	public static readonly QMSound = 302;
+	public static readonly QMJoystick = 302;
+	public static readonly QMSound = 303;
 }

@@ -24,6 +24,7 @@ export class ChatLogComponent extends Component {
 
 	/** Most recent state of chat log scrolling. */
 	private scrollStateBottom: boolean;
+	/** Event listener for managing scroll position when component properties change such as changes to visibility. */
 	private scrollListener: EventListenerOrEventListenerObject;
 
 
@@ -44,17 +45,18 @@ export class ChatLogComponent extends Component {
 		}
 	}
 
-
+	/**
+	 * Updates font from config.
+	 */
 	public override refresh() {
-		this.componentElement.style.setProperty("font-family", stendhal.config.get("client.font.chat"));
+		this.componentElement.style.setProperty("font-family", stendhal.config.get("font.chat"));
 	}
-
 
 	/**
 	 * Generates a timestamp.
 	 *
-	 * @return
-	 *     Timestamp formatted <code>HTMLSpanElement</code> element.
+	 * @return {HTMLSpanElement}
+	 *   `HTMLSpanElement` element with inner text formatted with timestamp.
 	 */
 	private createTimestamp(): HTMLSpanElement {
 		const date = new Date();
@@ -74,7 +76,12 @@ export class ChatLogComponent extends Component {
 		return timestamp;
 	}
 
-
+	/**
+	 * Adds a line of text.
+	 *
+	 * @param row {HTMLDivElement}
+	 *   Div containing text to be added.
+	 */
 	private add(row: HTMLDivElement) {
 		// check state before adding row
 		const wasAtBottom = this.isAtBottom();
@@ -85,18 +92,17 @@ export class ChatLogComponent extends Component {
 		}
 	}
 
-
 	/**
 	 * Adds a line of text.
 	 *
-	 * @param type
-	 *     Message type.
-	 * @param message
-	 *     Text to be added.
-	 * @param orator
-	 *     Name of entity making the expression (default: <code>undefined</code>).
-	 * @param timestamp
-	 *     If <code>false</code>, suppresses prepending message with timestamp.
+	 * @param type {string}
+	 *   Message type.
+	 * @param message {string}
+	 *   Text to be added.
+	 * @param orator {string}
+	 *   Name of entity making the expression (default: `undefined`).
+	 * @param timestamp {boolean}
+	 *   If `false`, suppresses prepending message with timestamp (default: `true`).
 	 */
 	public addLine(type: string, message: string, orator?: string, timestamp=true) {
 		if (orator) {
@@ -124,16 +130,15 @@ export class ChatLogComponent extends Component {
 		this.add(row);
 	}
 
-
 	/**
 	 * Adds multiple lines of text.
 	 *
-	 * @param type
-	 *     Message type.
-	 * @param messages
-	 *     Texts to be added.
+	 * @param type {string}
+	 *   Message type.
+	 * @param messages {string[]}
+	 *   Array of texts to be added.
 	 * @param orator
-	 *     Name of entity making the expression (default: <code>undefined</code>).
+	 *   Name of entity making the expression (default: `undefined`).
 	 */
 	public addLines(type: string, messages: string[], orator?: string) {
 		let stamped = false;
@@ -147,14 +152,13 @@ export class ChatLogComponent extends Component {
 		}
 	}
 
-
 	/**
 	 * Adds a line displaying an emoji image.
 	 *
-	 * @param emoji
-	 *     Emoji image sprite.
-	 * @param orator
-	 *     Name of entity making the expression (default: <code>undefined</code>).
+	 * @param emoji {HTMLImageElement}
+	 *   Emoji image sprite.
+	 * @param orator {string}
+	 *   Name of entity making the expression (default: `undefined`).
 	 */
 	public addEmojiLine(emoji: HTMLImageElement, orator?: string) {
 		const lcol = document.createElement("div");
@@ -177,8 +181,15 @@ export class ChatLogComponent extends Component {
 		this.add(row);
 	}
 
-
-	private formatLogEntry(message: string) {
+	/**
+	 * Formats displayed text.
+	 *
+	 * @param message {string}
+	 *   Text to parse for special characters.
+	 * @return {string}
+	 *   Text formatted with keywords & item names highlighted.
+	 */
+	private formatLogEntry(message: string): string {
 		if (!message) {
 			return "";
 		}
@@ -287,7 +298,9 @@ export class ChatLogComponent extends Component {
 		return res;
 	}
 
-
+	/**
+	 * Removes all text from log.
+	 */
 	public clear() {
 		this.componentElement.innerHTML = "";
 	}
@@ -295,7 +308,7 @@ export class ChatLogComponent extends Component {
 	/**
 	 * Sets scrolled position.
 	 *
-	 * @param scroll
+	 * @param scroll {number}
 	 *   New scrolled position.
 	 */
 	private setScroll(scroll: number) {
@@ -329,7 +342,7 @@ export class ChatLogComponent extends Component {
 	}
 
 	/**
-	 * Called when chat panel is hidden.
+	 * Doesn't listen for scroll events while chat panel/log is hidden.
 	 */
 	public onHide() {
 		// stop listening for scroll events when chat panel is hidden
@@ -337,7 +350,7 @@ export class ChatLogComponent extends Component {
 	}
 
 	/**
-	 * Called when chat panel visibility is restored.
+	 * Re-activates scroll event listener when chat panel/log visibility is restored.
 	 */
 	public onUnhide() {
 		if (this.scrollStateBottom) {
@@ -347,7 +360,14 @@ export class ChatLogComponent extends Component {
 		this.componentElement.addEventListener("scroll", this.scrollListener);
 	}
 
-
+	/**
+	 * Copies log text to clipboard or exports to file.
+	 *
+	 * @param clipboard {boolean}
+	 *   If `true` text is copied to clipboard.
+	 * @fixme
+	 *   File export currently not supported.
+	 */
 	public exportContents(clipboard=true) {
 		if (clipboard && (!navigator || !navigator.clipboard)) {
 			console.warn("copying to clipboard not supported by this browser");
@@ -397,14 +417,14 @@ export class ChatLogComponent extends Component {
 	/**
 	 * Removes HTML tag formatting from a string.
 	 *
-	 * @param msg
-	 *     Message to format.
-	 * @param tags
-	 *     Only remove listed tags.
-	 * @return
-	 *     Formatted message.
+	 * @param msg {string}
+	 *   Message to format.
+	 * @param tags {string[]}
+	 *   List of tags to filter for removal (default: []).
+	 * @return {string}
+	 *   Plain text formatted message.
 	 */
-	private plainText(msg: string, tags: string[]|undefined=undefined): string {
+	private plainText(msg: string, tags?: string[]): string {
 		if (!tags) {
 			msg = msg.replace(/<.*?>/g, "");
 		} else {
@@ -417,7 +437,9 @@ export class ChatLogComponent extends Component {
 		return msg;
 	}
 
-
+	/**
+	 * Handles creating a custom context menu with options "Clear" & "Copy".
+	 */
 	private onContextMenu(evt: MouseEvent) {
 		if (!evt || evt.button != 2 || stendhal.ui.actionContextMenu.isOpen()) {
 			return;
@@ -449,9 +471,14 @@ export class ChatLogComponent extends Component {
 }
 
 
+/**
+ * Custom context menu component.
+ */
 class LogContextMenu extends Component {
 
+	/** Available options. */
 	options!: MenuItem[];
+
 
 	constructor(options: MenuItem[]) {
 		super("contextmenu-template");
@@ -469,6 +496,9 @@ class LogContextMenu extends Component {
 		});
 	}
 
+	/**
+	 * Handles executing commands when an option is clicked/tapped.
+	 */
 	private onClick(evt: Event) {
 		let iStr = (evt.target as HTMLElement).getAttribute("id")?.substring(13);
 		if (iStr === undefined || iStr === "") {

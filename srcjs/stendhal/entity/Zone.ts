@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -13,6 +13,7 @@ declare var marauroa: any;
 declare var stendhal: any;
 
 import { Entity } from "./Entity";
+import { Player } from "./Player";
 
 
 /**
@@ -20,8 +21,29 @@ import { Entity } from "./Entity";
  */
 export class Zone {
 
+	/** Entities found in this zone. */
 	private entities: Entity[] = [];
 
+	/** Singleton instance. */
+	private static instance: Zone;
+
+
+	/**
+	 * Retrieves singleton instance.
+	 */
+	public static get(): Zone {
+		if (!Zone.instance) {
+			Zone.instance = new Zone();
+		}
+		return Zone.instance;
+	}
+
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private constructor() {
+		// do nothing
+	}
 
 	getEntitiesAt(x: number, y: number, filter: boolean): Entity[] {
 		const xGrid = x / 32;
@@ -94,5 +116,21 @@ export class Zone {
 
 			return rv;
 		});
+	}
+
+	/**
+	 * Finds player instance in zone.
+	 *
+	 * @param name {string}
+	 *   Player name to search for.
+	 * @return {Player}
+	 *   Player instance or `undefined`.
+	 */
+	findPlayer(name: string): Player|undefined {
+		for (const ent of this.entities) {
+			if (ent instanceof Player && ent["name"] === name) {
+				return ent as Player;
+			}
+		}
 	}
 }

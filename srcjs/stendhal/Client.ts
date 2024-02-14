@@ -19,7 +19,6 @@ import { Paths } from "./data/Paths";
 
 import { Ground } from "./entity/Ground";
 import { RPObject } from "./entity/RPObject";
-import { Zone } from "./entity/Zone";
 
 import { ui } from "./ui/UI";
 import { UIComponentEnum } from "./ui/UIComponentEnum";
@@ -34,19 +33,30 @@ import { LoginDialog } from "./ui/dialog/LoginDialog";
 
 import { DesktopUserInterfaceFactory } from "./ui/factory/DesktopUserInterfaceFactory";
 
+import { Joystick } from "./ui/joystick/Joystick";
+
 import { SingletonFloatingWindow } from "./ui/toolkit/SingletonFloatingWindow";
 
 import { Chat } from "./util/Chat";
 import { DialogHandler } from "./util/DialogHandler";
 
 
+/**
+ * Main class representing client.
+ */
 export class Client {
 
+	/** Property set to prevent re-initialization. */
 	private initialized = false;
 	private errorCounter = 0;
 	private unloading = false;
+	/** User's character name.
+	 *
+	 * NOTE: can we replace references to this with value now stored in `util.SessionManager`?
+	 */
 	public username?: string;
 
+	/** ID for vetoing click indicator timeout (experimental setting not enabled/visible by default). */
 	private static click_indicator_id: number|undefined = undefined;
 
 	/** Singleton instance. */
@@ -71,7 +81,7 @@ export class Client {
 	}
 
 	/**
-	 * Initializations to be called before startup.
+	 * Initializations to be called before main startup calls.
 	 */
 	init() {
 		if (this.initialized) {
@@ -88,18 +98,21 @@ export class Client {
 		stendhal.config = singletons.getConfigManager();
 		stendhal.session = singletons.getSessionManager();
 
-		if (stendhal.config.get("client.version") !== stendhal.data.build.version) {
+		if (stendhal.config.get("version") !== stendhal.data.build.version) {
 			// TODO: find a less nagging way to notify the user
 			//alert("client version change detected, you may want to clear the cache");
 		}
 		// update most recently used version
-		//stendhal.config.set("client.version", stendhal.data.build.version);
+		//stendhal.config.set("version", stendhal.data.build.version);
 
 		this.initData();
 		this.initUI();
 		this.initZone();
 	}
 
+	/**
+	 * Initializes sprite resources & other data management.
+	 */
 	private initData() {
 		// build info is stored in build/js/build.js
 		stendhal.data = stendhal.data || {};
@@ -113,32 +126,29 @@ export class Client {
 		stendhal.data.map = singletons.getMap();
 	}
 
+	/**
+	 * Initializes GUI elements, input management, sound management, & other interface tools.
+	 */
 	private initUI() {
 		stendhal.ui = stendhal.ui || {};
 		stendhal.ui.equip = singletons.getInventory();
 		stendhal.ui.html = singletons.getHTMLManager();
 		stendhal.ui.touch = singletons.getTouchHandler();
 		stendhal.ui.gamewindow = singletons.getViewPort();
-
-		// main menu
-		const menubutton = document.getElementById("menubutton")!;
-		menubutton.addEventListener("click", function(e: Event) {
-			ui.showApplicationMenu();
-		});
-
-		// sound system
 		stendhal.ui.soundMan = singletons.getSoundManager();
-		const soundButton = document.getElementById("soundbutton")!;
-		soundButton.addEventListener("click", function(e: Event) {
-			stendhal.ui.soundMan.toggleSound();
-		});
 	}
 
+	/**
+	 * Builds initial zone for user to enter world.
+	 */
 	private initZone() {
-		stendhal.zone = new Zone();
+		stendhal.zone = singletons.getZone();
 		stendhal.zone.ground = new Ground();
 	}
 
+	/**
+	 * Main startup routines.
+	 */
 	startup() {
 		this.devWarning();
 
@@ -149,7 +159,7 @@ export class Client {
 
 		// update user interface after config is loaded
 		stendhal.config.refreshTheme();
-		document.getElementById("body")!.style.setProperty("font-family", stendhal.config.get("client.font.body"));
+		document.getElementById("body")!.style.setProperty("font-family", stendhal.config.get("font.body"));
 
 		// initialize events
 		singletons.getEventRegistry().init();
@@ -190,6 +200,9 @@ export class Client {
 		}
 	}
 
+	/**
+	 * Prints standard warning message to development tools console.
+	 */
 	devWarning() {
 		console.log("%c ", "padding: 30px; background: url(" + window.location.protocol + "://" + window.location.host + "/images/buttons/devtools-warning.png) no-repeat; color: #AF0");
 		console.log("%cIf someone told you, to copy and paste something here, it's a scam and will give them access to your account.", "color:#A00; background-color:#FFF; font-size:150%");
@@ -199,6 +212,9 @@ export class Client {
 		window["eval"] = function() {};
 	}
 
+	/**
+	 * Reports errors emitted by web client to server.
+	 */
 	onError(error: ErrorEvent): boolean|undefined {
 		this.errorCounter++;
 		if (this.errorCounter > 5) {
@@ -228,7 +244,7 @@ export class Client {
 	}
 
 	/**
-	 * register marauroa event handlers.
+	 * Registers Marauroa event handlers.
 	 */
 	registerMarauroaEventHandlers() {
 		marauroa.clientFramework.onDisconnect = function(_reason: string, _error: string) {
@@ -348,6 +364,9 @@ export class Client {
 		}
 	}
 
+	/**
+	 * Creates a character selection dialog window.
+	 */
 	chooseCharacter(name: string) {
 		stendhal.session.setCharName(name);
 		marauroa.clientFramework.chooseCharacter(name);
@@ -357,12 +376,15 @@ export class Client {
 		singletons.getSoundManager().playGlobalizedEffect("ui/login");
 	}
 
+	/**
+	 * Sets the clients unloading state property.
+	 */
 	onBeforeUnload() {
 		Client.instance.unloading = true;
 	}
 
 	/**
-	 * registers global browser event handlers.
+	 * Registers global browser event handlers.
 	 */
 	registerBrowserEventHandlers() {
 		const keyHandler = singletons.getKeyHandler();
@@ -399,11 +421,39 @@ export class Client {
 		gamewindow.addEventListener("contextmenu", stendhal.ui.gamewindow.onContentMenu);
 		gamewindow.addEventListener("wheel", stendhal.ui.gamewindow.onMouseWheel);
 
+		// handle mouse cursor movement
+		document.body.addEventListener("mousemove", (e: MouseEvent) => {
+			// handle updating joystick when mouse moves outside radius
+			if (stendhal.ui.gamewindow.joystick && stendhal.ui.gamewindow.joystick.isEngaged()) {
+				if (stendhal.ui.gamewindow.joystick instanceof Joystick) {
+					(stendhal.ui.gamewindow.joystick as Joystick).onDragWhileEngaged(e);
+				}
+				// prevent default action
+				// FIXME: doesn't work
+				e.stopPropagation();
+				return;
+			}
+		});
 		// handle disengaging joystick when mouse button released outside joystick area
 		document.body.addEventListener("mouseup", (e: MouseEvent) => {
-			if (e.button == 0) {
+			if (e.button == 0 && stendhal.ui.gamewindow.joystick && stendhal.ui.gamewindow.joystick.isEngaged()) {
 				stendhal.ui.gamewindow.joystick.reset();
+				// prevent executing "mouseup" on items & entities
+				// FIXME: doesn't work
+				e.stopPropagation();
 			}
+		});
+
+		// main menu button
+		const menubutton = document.getElementById("menubutton")!;
+		menubutton.addEventListener("click", function(e: Event) {
+			ui.showApplicationMenu();
+		});
+
+		// main sound button
+		const soundButton = document.getElementById("soundbutton")!;
+		soundButton.addEventListener("click", function(e: Event) {
+			stendhal.ui.soundMan.toggleSound();
 		});
 
 		// click/touch indicator
@@ -421,6 +471,12 @@ export class Client {
 		click_indicator.src = stendhal.paths.gui + "/click_indicator.png";
 	}
 
+	/**
+	 * Reads zone's map data.
+	 *
+	 * @param data {any}
+	 *   Information about map.
+	 */
 	onDataMap(data: any) {
 		var zoneinfo = {} as {[key: string]: string};
 		var deserializer = marauroa.Deserializer.fromBase64(data);
@@ -430,17 +486,28 @@ export class Client {
 		singletons.getWeatherRenderer().update(zoneinfo["weather"]);
 	}
 
+	/**
+	 * Event handler to suppress browser's default context menu.
+	 */
 	preventContextMenu(e: Event) {
 		e.preventDefault();
 	}
 
+	/**
+	 * Sets the default cursor for the entire page.
+	 */
 	onMouseEnter(e: MouseEvent) {
 		// use Stendhal's built-in cursor for entire page
 		(e.target as HTMLElement).style.cursor = "url(" + stendhal.paths.sprites + "/cursor/normal.png) 1 3, auto";
 	}
 
+	/**
+	 * Draws indicator on screen to click/touch events when enabled.
+	 *
+	 * Experimental feature disabled & hidden from settings dialog by default.
+	 */
 	static handleClickIndicator(e: Event) {
-		if (!stendhal.config.getBoolean("input.click.indicator")) {
+		if (!stendhal.config.getBoolean("click-indicator")) {
 			return;
 		}
 		if (Client.click_indicator_id !== undefined) {

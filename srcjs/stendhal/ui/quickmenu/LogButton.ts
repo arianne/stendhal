@@ -14,12 +14,18 @@ import { QuickMenuButton } from "./QuickMenuButton";
 declare var marauroa: any;
 
 
+/**
+ * Button to bring up travel log dialog window.
+ */
 export class LogButton extends QuickMenuButton {
 
 	constructor() {
 		super("log");
 	}
 
+	/**
+	 * Opens travel log window when clicked/tapped.
+	 */
 	protected override onClick(evt: Event) {
 		marauroa.clientFramework.sendAction({"type": "progressstatus"});
 	}

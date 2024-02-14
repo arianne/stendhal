@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2015-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2015-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -16,8 +16,15 @@ import { Panel } from "./Panel";
  * a tabbed panel
  */
 export class TabPanelComponent extends Panel {
+
+	/** Index value of currently visible tab. */
 	private currentIndex = 0;
+	/** Button representation for each tab. */
 	private buttons: HTMLButtonElement[] = [];
+
+	/** Optional instructions to execute when active tab changes. */
+	public onTabChanged?: Function;
+
 
 	/**
 	 * creates a new panel
@@ -71,6 +78,20 @@ export class TabPanelComponent extends Panel {
 		// show
 		this.children[this.currentIndex].componentElement.style.display = "block";
 		this.buttons[this.currentIndex].classList.add("active");
+
+		if (this.onTabChanged) {
+			this.onTabChanged();
+		}
+	}
+
+	/**
+	 * Retrieves index value of current tab.
+	 *
+	 * @return {number}
+	 *   Indexed number value.
+	 */
+	getCurrentIndex(): number {
+		return this.currentIndex;
 	}
 
 	onTabClick(event: Event) {

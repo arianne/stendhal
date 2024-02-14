@@ -1,5 +1,6 @@
 /***************************************************************************
- *                       Copyright © 2024 - Stendhal                       *
+ *                    Copyright © 2024 - Faiumoni e. V.                    *
+ ***************************************************************************
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,23 +10,12 @@
  *                                                                         *
  ***************************************************************************/
 
-import { QuickMenuButton } from "./QuickMenuButton";
-import { singletons } from "../../SingletonRepo";
-
 
 /**
- * Button to bring up settings dialog window.
+ * Class representing a pair of objects.
  */
-export class SettingsButton extends QuickMenuButton {
+export class Pair<T1, T2> {
+	[index: string]: any;
 
-	constructor() {
-		super("settings");
-	}
-
-	/**
-	 * Opens settings window when clicked/tapped.
-	 */
-	protected override onClick(evt: Event) {
-		singletons.getSlashActionRepo().execute("/settings");
-	}
+	constructor(readonly first: T1, readonly second: T2) {}
 }
