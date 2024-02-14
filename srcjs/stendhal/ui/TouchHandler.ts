@@ -27,6 +27,9 @@ export class TouchHandler {
 	private origin?: Point;
 	private readonly moveThreshold = 16;
 
+	/** Property for debugging. */
+	private debugging = false;
+
 	/** Singleton instance. */
 	private static instance: TouchHandler;
 
@@ -117,5 +120,19 @@ export class TouchHandler {
 	 */
 	holding(): boolean {
 		return this.held;
+	}
+
+	/**
+	 * Sets debugging property for touch events.
+	 */
+	setDebuggingEnabled(enable: boolean) {
+		this.debugging = enable;
+	}
+
+	/**
+	 * Checks if debugging is enabled for touch events.
+	 */
+	isDebuggingEnabled(): boolean {
+		return this.debugging;
 	}
 }

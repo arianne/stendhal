@@ -46,6 +46,9 @@ export class DebugAction extends SlashAction {
 			Chat.debugLogEnabled = true;
 		} else if (params[0] === "settings") {
 			SettingsDialog.debugging = !SettingsDialog.debugging;
+		} else if (params[0] === "touch") {
+			stendhal.ui.touch.setDebuggingEnabled(!stendhal.ui.touch.isDebuggingEnabled());
+			Chat.log("client", "touch debugging enabled: " + stendhal.ui.touch.isDebuggingEnabled());
 		}
 		return true;
 	}
@@ -56,7 +59,8 @@ export class DebugAction extends SlashAction {
 			"  /debug log",
 			"  /debug ui [pop]",
 			"  /debug weather [<name>]",
-			"  /debug settings"
+			"  /debug settings",
+			"  /debug touch"
 		];
 		Chat.log("client", usage);
 	}
