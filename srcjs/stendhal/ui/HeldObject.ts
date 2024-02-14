@@ -75,21 +75,35 @@ export class HeldObjectManager {
 	 *   Object considered to be "held".
 	 * @param img {HTMLImageElement|string}
 	 *   Image element or path to image.
+	 * @param pos {util.Point.Point}
+	 *   Initial position of displayed image.
 	 */
-	public set(obj: HeldObject, img: HTMLImageElement|string) {
+	public set(obj: HeldObject, img: HTMLImageElement|string, pos?: Point) {
 		stendhal.ui.heldObject = obj;
 		this.setImage(img);
-		this.onSet();
+		this.onSet(pos);
 	}
 
 	/**
 	 * Called when object is ready to be displayed.
+	 *
+	 * @param pos {util.Point.Point}
+	 *   Initial position of displayed image.
 	 */
-	public onSet() {
-		// TODO: use mouse/touch event for positioning
-		const rect = stendhal.ui.gamewindow.getElement().getBoundingClientRect();
-		this.setPosition(rect.left, rect.top);
+	public onSet(pos?: Point) {
+		const debugging = stendhal.ui.touch.isDebuggingEnabled();
+		if (debugging && pos) {
+			this.setPosition(pos.x, pos.y);
+		} else {
+			const rect = stendhal.ui.gamewindow.getElement().getBoundingClientRect();
+			this.setPosition(rect.left, rect.top);
+		}
 		this.setVisible(true);
+
+		if (debugging) {
+			document.body.addEventListener("touchmove", this.onDragWhileHeld);
+			document.body.addEventListener("touchend", this.onReleaseWhileHeld);
+		}
 	}
 
 	/**
@@ -133,13 +147,18 @@ export class HeldObjectManager {
 	 * Handles event to update held object drawing position.
 	 */
 	private onDragWhileHeld(e: Event) {
-		// TODO:
+		const pos = stendhal.ui.html.extractPosition(e);
+		HeldObjectManager.get().setPosition(pos.pageX, pos.pageY);
 	}
 
 	/**
 	 * Handles event to unset held object.
 	 */
 	private onReleaseWhileHeld(e: Event) {
-		// TODO:
+		const hom = HeldObjectManager.get();
+		hom.onRelease();
+
+		document.body.removeEventListener("touchmove", hom.onDragWhileHeld);
+		document.body.removeEventListener("touchend", hom.onReleaseWhileHeld);
 	}
 }

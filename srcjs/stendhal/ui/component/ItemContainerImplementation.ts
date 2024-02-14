@@ -20,6 +20,8 @@ import { Item } from "../../entity/Item";
 
 import { singletons } from "../../SingletonRepo";
 
+import { Point } from "../../util/Point";
+
 
 /**
  * a container for items like a bag or corpse
@@ -54,6 +56,9 @@ export class ItemContainerImplementation {
 			});
 			e.addEventListener("dragover", (event: DragEvent) => {
 				this.onDragOver(event)
+			});
+			e.addEventListener("touchmove", (event: TouchEvent) => {
+				this.onTouchMove(event);
 			});
 			e.addEventListener("drop", (event: DragEvent) => {
 				this.onDrop(event)
@@ -149,11 +154,13 @@ export class ItemContainerImplementation {
 
 	private onDragStart(event: DragEvent|TouchEvent) {
 		let myobject = this.object || marauroa.me;
-		// some mobile browsers such as Chrome call "dragstart" via long touch
-		const touchEngaged = stendhal.ui.touch.isTouchEngaged();
-		if (!myobject[this.slot] || touchEngaged) {
+		if (!myobject[this.slot]) {
 			event.preventDefault();
 			return;
+		}
+		// some mobile browsers such as Chrome call "dragstart" via long touch
+		if (stendhal.ui.touch.isTouchEngaged()) {
+			event.preventDefault();
 		}
 
 		let target
@@ -182,11 +189,22 @@ export class ItemContainerImplementation {
 			} else if (stendhal.ui.touch.isTouchEvent(event)) {
 				stendhal.ui.touch.setHolding(true);
 				// TODO: move when supported by mouse events
-				singletons.getHeldObjectManager().set(heldObject, img);
+				const pos = stendhal.ui.html.extractPosition(event);
+				singletons.getHeldObjectManager().set(heldObject, img, new Point(pos.pageX, pos.pageY));
 			}
 		} else {
 			event.preventDefault();
 		}
+	}
+
+	/**
+	 * Handles displaying an icon for objects dragged with touch.
+	 */
+	private onTouchMove(event: TouchEvent) {
+		if (!stendhal.ui.touch.isDebuggingEnabled() || stendhal.ui.heldObject) {
+			return;
+		}
+		this.onDragStart(event);
 	}
 
 	private onDragOver(event: DragEvent|TouchEvent) {
@@ -200,8 +218,7 @@ export class ItemContainerImplementation {
 	/**
 	 * Extracts slot index from element ID.
 	 */
-	private parseIndex(event: Event): string|undefined {
-		const id = (event.target as HTMLElement).id;
+	private parseIndex(id: string): string|undefined {
 		// NOTE: element ID is formatted as "<name>-<id>-<index>"
 		//       - name:  inventory name (e.g. "bag")
 		//       - id:    inventory ID number
@@ -219,14 +236,33 @@ export class ItemContainerImplementation {
 	private onDrop(event: DragEvent|TouchEvent) {
 		const myobject = this.object || marauroa.me;
 		if (stendhal.ui.heldObject) {
+			let id = (event.target as HTMLElement).id;
+			if (event.type === "touchend" && stendhal.ui.touch.isDebuggingEnabled()) {
+				const pos = stendhal.ui.html.extractPosition(event);
+				// "touchend" targets source element of "touchstart" so need to find the actual target
+				const targets = document.elementsFromPoint(pos.pageX, pos.pageY) as HTMLElement[];
+				for (const target of targets) {
+					if (target.id === "gamewindow") {
+						stendhal.ui.gamewindow.onDrop(event);
+						event.stopPropagation();
+						event.preventDefault();
+						return;
+					}
+					// held object element may be in the way
+					if (target.id !== "held-object") {
+						id = target.id;
+						break;
+					}
+				}
+			}
+
 			const action = {
 				"source_path": stendhal.ui.heldObject.path
 			} as any;
-
 			const sameSlot = stendhal.ui.heldObject.slot === this.slot;
 			if (sameSlot) {
 				action["type"] = "reorder";
-				action["new_position"] = this.parseIndex(event) || "" + (this.size - 1);
+				action["new_position"] = this.parseIndex(id) || "" + (this.size - 1);
 			} else {
 				action["type"] = "equip";
 				action["target_path"] = "[" + myobject["id"] + "\t" + this.slot + "]";
