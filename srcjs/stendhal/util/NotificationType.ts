@@ -1,5 +1,6 @@
 /***************************************************************************
- *                    Copyright © 2003-2023 - Arianne                      *
+ *                 Copyright © 2003-2024 - Faiumoni e. V.                  *
+ ***************************************************************************
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -13,24 +14,27 @@ import { Color } from "./Color";
 
 
 export const NotificationType = {
-	"client": Color.GRAY,
-	"detailed": Color.BLACK,
-	"emote": "rgb(99, 61, 139)",
-	"error": Color.RED,
-	"group": "rgb(00, 00, 160)",
-	"heal": Color.GREEN,
-	"information": Color.ORANGE,
-	"negative": Color.RED,
-	"normal": Color.BLACK,
-	"poison": Color.RED,
-	"positive": Color.GREEN,
-	"privmsg": Color.DARKGRAY,
-	"response": "#006400",
-	"scene_setting": "#572002",
-	"server": Color.DARKGRAY,
-	"significant_negative": Color.PINK,
-	"significant_positive": "rgb(65, 105, 225)",
-	"support": "#ff7200",
-	"tutorial": "rgb(172, 0, 172)",
-	"warning": "#a00000"
+	"client": Color.CHAT_CLIENT,
+	"detailed": Color.CHAT_DETAILED,
+	"emote": Color.CHAT_EMOTE,
+	"error": Color.CHAT_ERROR,
+	"group": Color.CHAT_GROUP,
+	"heal": Color.CHAT_HEAL,
+	"information": Color.CHAT_INFO,
+	"negative": Color.CHAT_NEGATIVE,
+	"normal": Color.CHAT_NORMAL,
+	"poison": Color.CHAT_POISON,
+	"positive": Color.CHAT_POSITIVE,
+	"privmsg": Color.CHAT_PRIVATE,
+	"response": Color.CHAT_RESPONSE,
+	"scene_setting": Color.CHAT_SCENE,
+	"server": Color.CHAT_SERVER,
+	"significant_negative": Color.CHAT_SIG_NEGATIVE,
+	"significant_positive": Color.CHAT_SIG_POSITIVE,
+	"support": Color.CHAT_SUPPORT,
+	"tutorial": Color.CHAT_TUTORIAL,
+	"warning": Color.CHAT_WARN
 } as {[index: string]: string;};
+
+// immutable
+Object.freeze(NotificationType);

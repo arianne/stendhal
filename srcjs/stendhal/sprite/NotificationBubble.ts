@@ -1,5 +1,6 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                 Copyright © 2003-2024 - Faiumoni e. V.                  *
+ ***************************************************************************
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,11 +10,12 @@
  *                                                                         *
  ***************************************************************************/
 
+declare var stendhal: any;
+
 import { TextBubble } from "./TextBubble";
 import { NotificationType } from "../util/NotificationType";
+import { Color } from "../util/Color";
 import { Speech } from "../util/Speech";
-
-declare var stendhal: any;
 
 
 export class NotificationBubble extends TextBubble {
@@ -113,7 +115,7 @@ export class NotificationBubble extends TextBubble {
 					this.height);
 		}
 
-		ctx.fillStyle = NotificationType[this.mtype] || "#000000";
+		ctx.fillStyle = NotificationType[this.mtype] || Color.BLACK;
 
 		let sy = this.y;
 		for (let li = 0; li < lcount; li++) {
