@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2023 - Stendhal                     *
+ *                    Copyright © 2003-2024 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -30,9 +30,15 @@ export class StatBarComponent extends Component {
 		this.ctx = this.canvas.getContext("2d")!;
 	}
 
+	drawBase() {
+		this.ctx.beginPath();
+		this.ctx.fillStyle = Color.GRAY;
+		this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+	}
+
 	draw(ratio: number) {
 		this.ctx.beginPath();
-		this.ctx.fillStyle = "#808080"; // same as java.awt.Color.GRAY (rgb(128,128,128))
+		this.ctx.fillStyle = Color.BLACK;
 		this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 		this.ctx.fillStyle = Color.getStatBarColor(ratio);
 		this.ctx.fillRect(0, 0, this.canvas.width * ratio, this.canvas.height);

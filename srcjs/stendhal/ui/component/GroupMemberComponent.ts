@@ -51,7 +51,7 @@ export class GroupMemberComponent extends Component {
 			this.hpBar.draw(player["hp"] / player["base_hp"]);
 		} else {
 			// initialize with gray background
-			this.hpBar.draw(0);
+			this.hpBar.drawBase();
 		}
 		// add HP as child after name
 		this.componentElement.appendChild(this.hpBar.componentElement);
@@ -136,6 +136,6 @@ export class GroupMemberComponent extends Component {
 	 * Makes member's HP status invisible to current user.
 	 */
 	hideStatus() {
-		this.updateHP(0);
+		this.hpBar.drawBase();
 	}
 }
