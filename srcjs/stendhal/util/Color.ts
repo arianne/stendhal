@@ -11,6 +11,14 @@
  ***************************************************************************/
 
 
+interface RGBColor {
+	[index: string]: number|undefined;
+	readonly R: number,
+	readonly G: number,
+	readonly B: number,
+	readonly A?: number
+}
+
 export class Color {
 	public static readonly AQUA = "rgb(0, 255, 255)"; // #00FFFF
 	public static readonly BLACK = "rgb(0, 0, 0)"; // #000000
@@ -81,5 +89,18 @@ export class Color {
 		const red = Math.floor(Math.min((1 - ratio) * 2, 1) * 255);
 		const green = Math.floor(Math.min(ratio * 2, 1) * 255);
 		return "rgb(" + red + ", " + green + ", 0)";
+	}
+
+	/**
+	 * Parses string to RBG values.
+	 *
+	 * @param color {string}
+	 *   String formatted as "rgb(<0-255>, <0-255>, <0-255>)".
+	 * @return {object}
+	 *   Object with R/G/B numerical values.
+	 */
+	public static parseRGB(color: string): RGBColor {
+		const tmp = color.replace(/^rgb\(/, "").replace(/\)$/, "").split(",");
+		return {R: Number(tmp[0]), G: Number(tmp[1]), B: Number(tmp[2])} as RGBColor;
 	}
 }

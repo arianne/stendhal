@@ -35,6 +35,12 @@ export class MiniMapComponent extends Component {
 	private bgImage!: HTMLCanvasElement;
 	private lastZone?: number[];
 
+	// ground/collision colors
+	private static readonly COLOR_COLLISION = Color.parseRGB(Color.COLLISION);
+	private static readonly COLOR_GROUND = {R: 224, G: 224, B: 224};
+	private static readonly COLOR_PROTECTION = Color.parseRGB(Color.PROTECTION);
+
+
 	constructor() {
 		super("minimap");
 		this.componentElement.addEventListener("click", (event) => {
@@ -139,23 +145,20 @@ export class MiniMapComponent extends Component {
 
 			for (let y = 0; y < height; y++) {
 				for (let x = 0; x < width; x++) {
+					let color = MiniMapComponent.COLOR_GROUND;
 					// RGBA array. Find the actual position
 					let pos = 4 * (y * width + x);
 					if (stendhal.data.map.collision(x, y)) {
 						// red collision
-						imgData.data[pos] = 255;
+						color = MiniMapComponent.COLOR_COLLISION;
 					} else if (stendhal.data.map.isProtected(x, y)) {
 						// light green for protection
-						imgData.data[pos] = 202;
-						imgData.data[pos + 1] = 230;
-						imgData.data[pos + 2] = 202;
-					} else {
-						// light gray elsewhere
-						imgData.data[pos] = 224;
-						imgData.data[pos + 1] = 224;
-						imgData.data[pos + 2] = 224;
+						color = MiniMapComponent.COLOR_PROTECTION;
 					}
-					imgData.data[pos + 3] = 255;
+					imgData.data[pos] = color.R;
+					imgData.data[pos + 1] = color.G;
+					imgData.data[pos + 2] = color.B;
+					imgData.data[pos + 3] = 255; // opacity
 				}
 			}
 			this.bgImage.width  = width;
