@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2003-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2003-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,12 +9,15 @@
  *                                                                         *
  ***************************************************************************/
 
+declare let marauroa: any;
+declare let stendhal: any;
+
 import { Component } from "../toolkit/Component";
 
 import { Player } from "../../entity/Player";
 
-declare let marauroa: any;
-declare let stendhal: any;
+import { Color } from "../../util/Color";
+
 
 /**
  * mini map
@@ -101,7 +104,7 @@ export class MiniMapComponent extends Component {
 			ctx.setTransform(1, 0, 0, 1, 0, 0);
 
 			// The area outside of the map
-			ctx.fillStyle = "#606060";
+			ctx.fillStyle = Color.DARK_GRAY;
 			ctx.fillRect(0, 0, this.width, this.height);
 
 			ctx.translate(Math.round(-this.xOffset), Math.round(-this.yOffset));
@@ -163,8 +166,8 @@ export class MiniMapComponent extends Component {
 	}
 
 	drawEntities(ctx: CanvasRenderingContext2D) {
-		ctx.fillStyle = "rgb(255,0,0)";
-		ctx.strokeStyle = "rgb(0,0,0)";
+		ctx.fillStyle = Color.RED;
+		ctx.strokeStyle = Color.BLACK;
 		let isAdmin = marauroa.me["adminlevel"] && marauroa.me["adminlevel"] >= 600;
 
 		for (let i in marauroa.currentZone) {
@@ -176,7 +179,7 @@ export class MiniMapComponent extends Component {
 				if (o.minimapStyle) {
 					ctx.strokeStyle = o.minimapStyle;
 				} else {
-					ctx.strokeStyle = "rgb(128, 128, 128)";
+					ctx.strokeStyle = Color.GRAY;
 				}
 
 				if (o instanceof Player) {
