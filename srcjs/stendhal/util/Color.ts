@@ -11,7 +11,7 @@
  ***************************************************************************/
 
 
-interface RGBColor {
+export interface RGBColor {
 	[index: string]: number|undefined;
 	readonly R: number,
 	readonly G: number,

@@ -27,6 +27,8 @@ import { QuickMenuButton } from "./quickmenu/QuickMenuButton";
 import { Client } from "../Client";
 import { singletons } from "../SingletonRepo";
 
+import { DebugAction } from "../action/DebugAction";
+
 import { AchievementBanner } from "../sprite/AchievementBanner";
 import { EmojiSprite } from "../sprite/EmojiSprite";
 import { NotificationBubble } from "../sprite/NotificationBubble";
@@ -72,6 +74,8 @@ export class ViewPort {
 	private emojiSprites: EmojiSprite[] = [];
 	/** Handles drawing weather in viewport. */
 	private weatherRenderer = singletons.getWeatherRenderer();
+	/** Coloring method of current zone. */
+	private coloring?: any;
 
 	/** On-screen joystick. */
 	private joystick: JoystickImpl|null = null;
@@ -150,6 +154,22 @@ export class ViewPort {
 				this.drawEmojiSprites();
 				this.drawTextSprites();
 				this.drawTextSprites(this.notifSprites);
+
+				// FIXME: wrong method to apply coloring & should only color tile layers & entities
+				if (DebugAction.coloring && this.coloring) {
+					//~ console.log("coloring (RGB): " + JSON.stringify(this.coloring.rgb));
+					//~ console.log("coloring (hex): " + this.coloring.hex);
+
+					const canvas = this.getElement() as HTMLCanvasElement;
+					const imgData = this.ctx.getImageData(0, 0, canvas.width, canvas.height);
+					for (let pos = 0; pos < imgData.data.length; pos += 4) {
+						imgData.data[pos] = imgData.data[pos] - this.coloring.rgb.R;
+						imgData.data[pos + 1] = imgData.data[pos + 1] - this.coloring.rgb.G;
+						imgData.data[pos + 2] = imgData.data[pos + 2] - this.coloring.rgb.B;
+						//~ imgData.data[pos + 3] = 127;
+					}
+					this.ctx.putImageData(imgData, 0, 0);
+				}
 
 				// redraw inventory sprites
 				stendhal.ui.equip.update();

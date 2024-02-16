@@ -39,6 +39,7 @@ import { SingletonFloatingWindow } from "./ui/toolkit/SingletonFloatingWindow";
 
 import { Chat } from "./util/Chat";
 import { DialogHandler } from "./util/DialogHandler";
+import { MathUtil } from "./util/MathUtil";
 
 
 /**
@@ -483,6 +484,20 @@ export class Client {
 		deserializer.readAttributes(zoneinfo);
 		(ui.get(UIComponentEnum.ZoneInfo) as ZoneInfoComponent).zoneChange(zoneinfo);
 		// Object { file: "Level 0/semos/city_easter.tmx", danger_level: "0.036429932929822995", zoneid: "", readable_name: "Semos city", id: "-1", color_method: "multiply" }
+
+		if (zoneinfo["color"]) {
+			const colorHex = MathUtil.numToHex(Number(zoneinfo["color"]));
+			const colorRGB = MathUtil.hexToRGB(colorHex);
+			stendhal.ui.gamewindow.coloring = {
+				hex: colorHex,
+				rgb: colorRGB,
+				color_method: zoneinfo["color_method"],
+				blend_method: zoneinfo["blend_method"]
+			};
+		} else {
+			stendhal.ui.gamewindow.coloring = undefined;
+		}
+
 		singletons.getWeatherRenderer().update(zoneinfo["weather"]);
 	}
 

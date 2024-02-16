@@ -31,6 +31,8 @@ export class DebugAction extends SlashAction {
 	readonly minParams = 0;
 	readonly maxParams = 0;
 	private uiPopped = false;
+	public static coloring = false;
+
 
 	execute(_type: string, params: string[], _remainder: string): boolean {
 		if (params.length < 1) {
@@ -48,7 +50,10 @@ export class DebugAction extends SlashAction {
 			SettingsDialog.debugging = !SettingsDialog.debugging;
 		} else if (params[0] === "touch") {
 			stendhal.ui.touch.setDebuggingEnabled(!stendhal.ui.touch.isDebuggingEnabled());
-			Chat.log("client", "touch debugging enabled: " + stendhal.ui.touch.isDebuggingEnabled());
+			Chat.log("client", "touch debugging " + (stendhal.ui.touch.isDebuggingEnabled() ? "enabled" : "disabled"));
+		} else if (params[0] === "coloring") {
+			DebugAction.coloring = !DebugAction.coloring;
+			Chat.log("client", "coloring debugging " + (DebugAction.coloring ? "enabled" : "disabled"));
 		}
 		return true;
 	}
@@ -60,7 +65,8 @@ export class DebugAction extends SlashAction {
 			"  /debug ui [pop]",
 			"  /debug weather [<name>]",
 			"  /debug settings",
-			"  /debug touch"
+			"  /debug touch",
+			"  /debug coloring"
 		];
 		Chat.log("client", usage);
 	}
