@@ -19,6 +19,13 @@ export interface RGBColor {
 	readonly A?: number
 }
 
+export interface HSLColor {
+	[index: string]: number|undefined;
+	readonly H: number,
+	readonly S: number,
+	readonly L: number
+}
+
 export class Color {
 	public static readonly AQUA = "rgb(0, 255, 255)"; // #00FFFF
 	public static readonly BLACK = "rgb(0, 0, 0)"; // #000000
@@ -85,22 +92,127 @@ export class Color {
 		// do nothing
 	}
 
-	public static getStatBarColor(ratio: number): string {
+	static getStatBarColor(ratio: number): string {
 		const red = Math.floor(Math.min((1 - ratio) * 2, 1) * 255);
 		const green = Math.floor(Math.min(ratio * 2, 1) * 255);
 		return "rgb(" + red + ", " + green + ", 0)";
 	}
 
 	/**
-	 * Parses string to RBG values.
+	 * Converts a number value to hex string.
 	 *
-	 * @param color {string}
-	 *   String formatted as "rgb(<0-255>, <0-255>, <0-255>)".
-	 * @return {object}
+	 * https://stackoverflow.com/a/37796055/4677917
+	 *
+	 * @param num {number}
+	 *   Value to be converted.
+	 * @return {string}
+	 *   Hex representation.
+	 */
+	static numToHex(num: number): string {
+		return "#" + (num >>> 0).toString(16).slice(-6).toUpperCase();
+	}
+
+	/**
+	 * Converts hex string to RGB color values.
+	 *
+	 * FIXME: this should do error checking
+	 *
+	 * @param hex {string}
+	 *   Hex value to be converted.
+	 * @return string
+	 *   RGB color representation.
+	 */
+	static hexToRGB(hex: string): string {
+		return "rgb(" + [
+			""+parseInt(hex.substring(1, 3), 16),
+			""+parseInt(hex.substring(3, 5), 16),
+			""+parseInt(hex.substring(5, 7), 16)
+		].join(", ") + ")";
+	}
+
+	/**
+	 * Converts RGB string to HSL.
+	 *
+	 * https://css-tricks.com/converting-color-spaces-in-javascript/
+	 *
+	 * @param rgb {string}
+	 *   RGB formatted string.
+	 * @return {string}
+	 *   HSL formatted string.
+	 */
+	static RGBToHSL(rgb: string): string {
+		const tmp = Color.parseRGB(rgb);
+		const r = tmp.R / 255;
+		const g = tmp.G / 255;
+		const b = tmp.B / 255;
+		const cmin = Math.min(r, g, b);
+		const cmax = Math.max(r, g, b);
+		const delta = cmax - cmin;
+
+		// hue
+		let h = 0;
+		if (delta == 0) {
+			h = 0;
+		} else if (cmax == r) {
+			h = ((g - b) / delta) % 6;
+		} else if (cmax == g) {
+			h = (b - r) / delta + 2;
+		} else {
+			h = (r - g) / delta + 4;
+		}
+		h = Math.round(h * 60);
+		if (h < 0) {
+			h += 360;
+		}
+
+		// lightness
+		let l = (cmax + cmin) / 2;
+		// saturation
+		let s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+
+		l = +(l * 100).toFixed(1);
+		s = +(s * 100).toFixed(1);
+
+		return "hsl(" + h + "," + s + "%," + l + "%)";
+	}
+
+	/**
+	 * Parses RBG color values.
+	 *
+	 * @param rbg {string}
+	 *   RGB formatted string.
+	 * @return {util.Color.RGBColor}
 	 *   Object with R/G/B numerical values.
 	 */
-	public static parseRGB(color: string): RGBColor {
-		const tmp = color.replace(/^rgb\(/, "").replace(/\)$/, "").split(",");
-		return {R: Number(tmp[0]), G: Number(tmp[1]), B: Number(tmp[2])} as RGBColor;
+	static parseRGB(rgb: string): RGBColor {
+		const tmp: number[] = [];
+		for (const s of rgb.replace(/^rgb\(/, "").replace(/\)$/, "").split(",")) {
+			let n = Number(s);
+			if (n > 255) {
+				n = 255;
+			}
+			if (n < 0) {
+				n = 0;
+			}
+			tmp.push(n);
+		}
+		return {R: tmp[0], G: tmp[1], B: tmp[2]} as RGBColor;
+	}
+
+	/**
+	 * Parses HSL color values.
+	 *
+	 * @parm hsl (strong}
+	 *   HSL formatted string.
+	 * @return {util.Color.HSLColor}
+	 *   Object with H/S/L numerical values.
+	 */
+	static parseHSL(hsl: string): HSLColor {
+		const tmp = hsl.replace(/^hsl\(/, "").replace(/\)$/, "").split(",");
+		return {
+			H: Number(tmp[0]) % 360,
+			S: parseFloat(tmp[1]) / 100,
+			L: parseFloat(tmp[2]) / 100
+		} as HSLColor;
 	}
 }

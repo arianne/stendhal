@@ -76,6 +76,8 @@ export class ViewPort {
 	private weatherRenderer = singletons.getWeatherRenderer();
 	/** Coloring method of current zone. */
 	private coloring?: any;
+	private filter?: string;
+	//~ private readonly compositeOperation;
 
 	/** On-screen joystick. */
 	private joystick: JoystickImpl|null = null;
@@ -103,6 +105,7 @@ export class ViewPort {
 	private constructor() {
 		const element = this.getElement() as HTMLCanvasElement;
 		this.ctx = element.getContext("2d")!;
+		//~ this.compositeOperation = this.ctx.globalCompositeOperation;
 		this.width = element.width;
 		this.height = element.height;
 
@@ -147,29 +150,16 @@ export class ViewPort {
 				var tileOffsetX = Math.floor(this.offsetX / this.targetTileWidth);
 				var tileOffsetY = Math.floor(this.offsetY / this.targetTileHeight);
 
+				// FIXME: filter should not be applied to "blend" layers
+				this.applyFilter();
 				stendhal.data.map.strategy.render(this.ctx.canvas, this, tileOffsetX, tileOffsetY, this.targetTileWidth, this.targetTileHeight);
 
 				this.weatherRenderer.draw(this.ctx);
+				this.removeFilter();
 				this.drawEntitiesTop();
 				this.drawEmojiSprites();
 				this.drawTextSprites();
 				this.drawTextSprites(this.notifSprites);
-
-				// FIXME: wrong method to apply coloring & should only color tile layers & entities
-				if (DebugAction.coloring && this.coloring) {
-					//~ console.log("coloring (RGB): " + JSON.stringify(this.coloring.rgb));
-					//~ console.log("coloring (hex): " + this.coloring.hex);
-
-					const canvas = this.getElement() as HTMLCanvasElement;
-					const imgData = this.ctx.getImageData(0, 0, canvas.width, canvas.height);
-					for (let pos = 0; pos < imgData.data.length; pos += 4) {
-						imgData.data[pos] = imgData.data[pos] - this.coloring.rgb.R;
-						imgData.data[pos + 1] = imgData.data[pos + 1] - this.coloring.rgb.G;
-						imgData.data[pos + 2] = imgData.data[pos + 2] - this.coloring.rgb.B;
-						//~ imgData.data[pos + 3] = 127;
-					}
-					this.ctx.putImageData(imgData, 0, 0);
-				}
 
 				// redraw inventory sprites
 				stendhal.ui.equip.update();
@@ -179,6 +169,61 @@ export class ViewPort {
 		setTimeout(function() {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
 		}, Math.max((1000/20) - (new Date().getTime()-startTime), 1));
+	}
+
+	/**
+	 * Adds map's coloring filter to viewport.
+	 *
+	 * FIXME:
+	 * - colors are wrong
+	 * - doesn't support "blend" layers
+	 */
+	applyFilter() {
+		// FIXME: wrong colors & should only color tile layers, entities, & weather
+		if (DebugAction.coloring && this.filter) {
+			//~ this.ctx.globalCompositeOperation = this.coloring.color_method;
+			//~ this.ctx.globalCompositeOperation = "hue";
+			/*
+			this.ctx.filter = "hue-rotate(-" + this.coloring.hslData.H + "deg) saturate("
+					+ this.coloring.hslData.S + ") brightness("
+					+ this.coloring.hslData.L + ")";
+			*/
+			this.ctx.filter = this.filter;
+
+			// DEBUG:
+			/*
+			console.log("coloring (hex): " + this.coloring.hex
+					+ "\ncoloring (RGB): " + this.coloring.rgb + " (" + JSON.stringify(this.coloring.rgbData) + ")"
+					+ "\ncoloring (HSL): " + this.coloring.hsl + " (" + JSON.stringify(this.coloring.hslData) + ")"
+					+ "\ncolor method: + " + this.coloring.color_method
+					+ "\nblend method: + " + this.coloring.blend_method
+					+ "\ncomposite operation: " + this.ctx.globalCompositeOperation);
+			*/
+
+			//~ this.ctx.save();
+			/*
+			const canvas = this.getElement() as HTMLCanvasElement;
+			const imgData = this.ctx.getImageData(0, 0, canvas.width, canvas.height);
+			for (let pos = 0; pos < imgData.data.length; pos += 4) {
+				imgData.data[pos] = imgData.data[pos] - this.coloring.rgbData.R;
+				imgData.data[pos + 1] = imgData.data[pos + 1] - this.coloring.rgbData.G;
+				imgData.data[pos + 2] = imgData.data[pos + 2] - this.coloring.rgbData.B;
+				//~ imgData.data[pos + 3] = 127;
+			}
+			this.ctx.putImageData(imgData, 0, 0);
+			*/
+			//~ this.ctx.fillStyle = this.coloring.rgb;
+			//~ this.ctx.fillRect(0, 0, canvas.width, canvas.height);
+			//~ this.ctx.restore();
+		}
+	}
+
+	/**
+	 * Removes map's coloring filter from viewport.
+	 */
+	removeFilter() {
+		//~ this.ctx.globalCompositeOperation = this.compositeOperation;
+		this.ctx.filter = "none";
 	}
 
 	/**

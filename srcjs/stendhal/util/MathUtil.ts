@@ -10,7 +10,6 @@
  ***************************************************************************/
 
 import { Point } from "./Point";
-import { RGBColor } from "./Color";
 
 
 /**
@@ -118,37 +117,5 @@ export class MathUtil {
 		// normalize to positive value
 		// NOTE: JavaScript has signed 0 value so get absolute just for safety
 		return Math.abs(n < 0 ? n + 360 : n);
-	}
-
-	/**
-	 * Converts a number value to hex string.
-	 *
-	 * https://stackoverflow.com/a/37796055/4677917
-	 *
-	 * @param num {number}
-	 *   Value to be converted.
-	 * @return {string}
-	 *   Hex representation.
-	 */
-	static numToHex(num: number): string {
-		return "#" + (num >>> 0).toString(16).slice(-6).toUpperCase();
-	}
-
-	/**
-	 * Converts hex string to RGB color values.
-	 *
-	 * FIXME: this should do error checking
-	 *
-	 * @param hex {string}
-	 *   Hex value to be converted.
-	 * @return {util.Color.RGBColor}
-	 *   RGB color.
-	 */
-	static hexToRGB(hex: string): RGBColor {
-		return {
-			R: parseInt(hex.substring(1, 3), 16),
-			G: parseInt(hex.substring(3, 5), 16),
-			B: parseInt(hex.substring(5, 7), 16)
-		};
 	}
 }
