@@ -499,7 +499,7 @@ export class Client {
 				blend_method: zoneinfo["blend_method"]
 			};
 			stendhal.ui.gamewindow.coloring = coloring;
-			stendhal.ui.gamewindow.filter = "hue-rotate(-" + coloring.hslData.H + "deg) saturate("
+			stendhal.ui.gamewindow.filter = "hue-rotate(" + coloring.hslData.H + "deg) saturate("
 					+ coloring.hslData.S + ") brightness("
 					+ coloring.hslData.L + ")";
 		} else {
