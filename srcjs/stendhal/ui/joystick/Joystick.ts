@@ -14,7 +14,7 @@ declare var stendhal: any;
 import { JoystickImpl } from "./JoystickImpl";
 import { AngleRange } from "../../util/AngleRange";
 import { Direction } from "../../util/Direction";
-import { MathHelper } from "../../util/MathHelper";
+import { MathUtil } from "../../util/MathUtil";
 import { Pair } from "../../util/Pair";
 import { Point } from "../../util/Point";
 
@@ -218,7 +218,7 @@ export class Joystick extends JoystickImpl {
 		const relX = x - cx;
 		const relY = y - cy;
 		if (this.outside(relX, relY)) {
-			const rad = MathHelper.pointToRad(relX, relY);
+			const rad = MathUtil.pointToRad(relX, relY);
 			x = Math.cos(rad) * this.radius + cx;
 			y = Math.sin(rad) * this.radius + cy;
 		}
@@ -297,7 +297,7 @@ export class Joystick extends JoystickImpl {
 		if (this.inDeadZone(ix, iy)) {
 			return Direction.STOP.val;
 		}
-		const angle = MathHelper.pointToDeg(ix, iy);
+		const angle = MathUtil.pointToDeg(ix, iy);
 		for (const pair of this.sectors.secondary) {
 			if (pair.second.contains(angle)) {
 				return pair.first;

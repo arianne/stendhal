@@ -10,7 +10,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { MathHelper } from "./MathHelper";
+import { MathUtil } from "./MathUtil";
 
 
 /**
@@ -33,8 +33,8 @@ export class AngleRange {
 	 */
 	constructor(min: number, max: number) {
 		// normalize range to positive values
-		this.min = MathHelper.normDeg(min);
-		this.max = MathHelper.normDeg(max);
+		this.min = MathUtil.normDeg(min);
+		this.max = MathUtil.normDeg(max);
 	}
 
 	/**
@@ -47,7 +47,7 @@ export class AngleRange {
 	 */
 	public contains(angle: number): boolean {
 		// normalize angle to positive value
-		angle = MathHelper.normDeg(angle);
+		angle = MathUtil.normDeg(angle);
 		// in degrees minimum can be a value greater that maximum
 		if (this.min > this.max) {
 			return angle >= this.min || angle <= this.max;
