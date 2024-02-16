@@ -75,9 +75,7 @@ export class ViewPort {
 	/** Handles drawing weather in viewport. */
 	private weatherRenderer = singletons.getWeatherRenderer();
 	/** Coloring method of current zone. */
-	private coloring?: any;
 	private filter?: string;
-	//~ private readonly compositeOperation;
 
 	/** On-screen joystick. */
 	private joystick: JoystickImpl|null = null;
@@ -179,42 +177,9 @@ export class ViewPort {
 	 * - doesn't support "blend" layers
 	 */
 	applyFilter() {
-		// FIXME: wrong colors & should only color tile layers, entities, & weather
 		if (DebugAction.coloring && this.filter) {
-			//~ this.ctx.globalCompositeOperation = this.coloring.color_method;
-			//~ this.ctx.globalCompositeOperation = "hue";
-			/*
-			this.ctx.filter = "hue-rotate(-" + this.coloring.hslData.H + "deg) saturate("
-					+ this.coloring.hslData.S + ") brightness("
-					+ this.coloring.hslData.L + ")";
-			*/
+			// FIXME: wrong colors
 			this.ctx.filter = this.filter;
-
-			// DEBUG:
-			/*
-			console.log("coloring (hex): " + this.coloring.hex
-					+ "\ncoloring (RGB): " + this.coloring.rgb + " (" + JSON.stringify(this.coloring.rgbData) + ")"
-					+ "\ncoloring (HSL): " + this.coloring.hsl + " (" + JSON.stringify(this.coloring.hslData) + ")"
-					+ "\ncolor method: + " + this.coloring.color_method
-					+ "\nblend method: + " + this.coloring.blend_method
-					+ "\ncomposite operation: " + this.ctx.globalCompositeOperation);
-			*/
-
-			//~ this.ctx.save();
-			/*
-			const canvas = this.getElement() as HTMLCanvasElement;
-			const imgData = this.ctx.getImageData(0, 0, canvas.width, canvas.height);
-			for (let pos = 0; pos < imgData.data.length; pos += 4) {
-				imgData.data[pos] = imgData.data[pos] - this.coloring.rgbData.R;
-				imgData.data[pos + 1] = imgData.data[pos + 1] - this.coloring.rgbData.G;
-				imgData.data[pos + 2] = imgData.data[pos + 2] - this.coloring.rgbData.B;
-				//~ imgData.data[pos + 3] = 127;
-			}
-			this.ctx.putImageData(imgData, 0, 0);
-			*/
-			//~ this.ctx.fillStyle = this.coloring.rgb;
-			//~ this.ctx.fillRect(0, 0, canvas.width, canvas.height);
-			//~ this.ctx.restore();
 		}
 	}
 
@@ -222,7 +187,6 @@ export class ViewPort {
 	 * Removes map's coloring filter from viewport.
 	 */
 	removeFilter() {
-		//~ this.ctx.globalCompositeOperation = this.compositeOperation;
 		this.ctx.filter = "none";
 	}
 

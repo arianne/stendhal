@@ -113,21 +113,33 @@ export class Color {
 	}
 
 	/**
-	 * Converts hex string to RGB color values.
+	 * Converts hex string to RGB color.
 	 *
 	 * FIXME: this should do error checking
 	 *
 	 * @param hex {string}
 	 *   Hex value to be converted.
-	 * @return string
+	 * @return {util.Color.RGBColor}
 	 *   RGB color representation.
 	 */
-	static hexToRGB(hex: string): string {
-		return "rgb(" + [
-			""+parseInt(hex.substring(1, 3), 16),
-			""+parseInt(hex.substring(3, 5), 16),
-			""+parseInt(hex.substring(5, 7), 16)
-		].join(", ") + ")";
+	static hexToRGB(hex: string): RGBColor {
+		return {
+			R: parseInt(hex.substring(1, 3), 16),
+			G: parseInt(hex.substring(3, 5), 16),
+			B: parseInt(hex.substring(5, 7), 16)
+		} as RGBColor;
+	}
+
+	/**
+	 * Converts hex string to HSL color.
+	 *
+	 * @param hex {string}
+	 *   Hex value to be converted.
+	 * @return {util.Color.HSLColor}
+	 *   HSL color representation.
+	 */
+	static hexToHSL(hex: string): HSLColor {
+		return Color.RGBToHSL(Color.hexToRGB(hex));
 	}
 
 	/**
@@ -135,16 +147,15 @@ export class Color {
 	 *
 	 * https://css-tricks.com/converting-color-spaces-in-javascript/
 	 *
-	 * @param rgb {string}
-	 *   RGB formatted string.
-	 * @return {string}
-	 *   HSL formatted string.
+	 * @param rgb {util.Color.RGBColor}
+	 *   RGB color representation.
+	 * @return {util.Color.HSLColor}
+	 *   HSL color representation.
 	 */
-	static RGBToHSL(rgb: string): string {
-		const tmp = Color.parseRGB(rgb);
-		const r = tmp.R / 255;
-		const g = tmp.G / 255;
-		const b = tmp.B / 255;
+	static RGBToHSL(rgb: RGBColor): HSLColor {
+		const r = rgb.R / 255;
+		const g = rgb.G / 255;
+		const b = rgb.B / 255;
 		const cmin = Math.min(r, g, b);
 		const cmax = Math.max(r, g, b);
 		const delta = cmax - cmin;
@@ -164,6 +175,7 @@ export class Color {
 		if (h < 0) {
 			h += 360;
 		}
+		h /= 360;
 
 		// lightness
 		let l = (cmax + cmin) / 2;
@@ -173,7 +185,7 @@ export class Color {
 		l = +(l * 100).toFixed(1);
 		s = +(s * 100).toFixed(1);
 
-		return "hsl(" + h + "," + s + "%," + l + "%)";
+		return {H: h, S: s / 100, L: l / 100} as HSLColor;
 	}
 
 	/**
@@ -210,7 +222,7 @@ export class Color {
 	static parseHSL(hsl: string): HSLColor {
 		const tmp = hsl.replace(/^hsl\(/, "").replace(/\)$/, "").split(",");
 		return {
-			H: Number(tmp[0]) % 360,
+			H: Number(tmp[0]),
 			S: parseFloat(tmp[1]) / 100,
 			L: parseFloat(tmp[2]) / 100
 		} as HSLColor;

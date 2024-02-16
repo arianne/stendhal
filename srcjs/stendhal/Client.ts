@@ -486,24 +486,10 @@ export class Client {
 		// Object { file: "Level 0/semos/city_easter.tmx", danger_level: "0.036429932929822995", zoneid: "", readable_name: "Semos city", id: "-1", color_method: "multiply" }
 
 		if (zoneinfo["color"]) {
-			const colorHex = Color.numToHex(Number(zoneinfo["color"]));
-			const colorRGB = Color.hexToRGB(colorHex);
-			const colorHSL = Color.RGBToHSL(colorRGB);
-			const coloring = {
-				hex: colorHex,
-				rgb: colorRGB,
-				rgbData: Color.parseRGB(colorRGB),
-				hsl: colorHSL,
-				hslData: Color.parseHSL(colorHSL),
-				color_method: zoneinfo["color_method"],
-				blend_method: zoneinfo["blend_method"]
-			};
-			stendhal.ui.gamewindow.coloring = coloring;
-			stendhal.ui.gamewindow.filter = "hue-rotate(" + coloring.hslData.H + "deg) saturate("
-					+ coloring.hslData.S + ") brightness("
-					+ coloring.hslData.L + ")";
+			const hsl = Color.hexToHSL(Color.numToHex(Number(zoneinfo["color"])));
+			stendhal.ui.gamewindow.filter = "hue-rotate(" + hsl.H + "deg) saturate(" + hsl.S
+					+ ") brightness(" + hsl.L + ")";
 		} else {
-			stendhal.ui.gamewindow.coloring = undefined;
 			stendhal.ui.gamewindow.filter = undefined;
 		}
 
