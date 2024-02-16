@@ -16,7 +16,7 @@ export class Color {
 	public static readonly BLACK = "rgb(0, 0, 0)"; // #000000
 	public static readonly BLUE = "rgb(0, 0, 255)"; // #0000FF
 	public static readonly CYAN = Color.AQUA;
-	public static readonly DARK_GRAY = "rgb(169, 169, 169)"; // #A9A9A9
+	public static readonly DARK_GRAY = "rgb(96, 96, 96)"; // #606060
 	public static readonly GRAY = "rgb(128, 128, 128)"; // #808080
 	public static readonly GREEN = "rgb(0, 128, 0)"; // #008000
 	public static readonly LIGHT_GRAY = "rgb(192, 192, 192)"; // #C0C0C0
@@ -62,7 +62,7 @@ export class Color {
 	public static readonly CHAT_PRIVATE = Color.DARK_GRAY;
 	public static readonly CHAT_RESPONSE = "rgb(0, 100, 0)"; // #006400 (dark green)
 	public static readonly CHAT_SCENE = "rgb(87, 32, 2)"; // #572002 (brown)
-	public static readonly CHAT_SERVER = Color.DARK_GRAY;
+	public static readonly CHAT_SERVER = Color.GRAY;
 	public static readonly CHAT_SIG_NEGATIVE = Color.PINK;
 	public static readonly CHAT_SIG_POSITIVE = "rgb(65, 105, 225)"; // #4169FF (light blue)
 	public static readonly CHAT_SUPPORT = "rgb(255, 114, 0)"; // #FF7200 (orange)
