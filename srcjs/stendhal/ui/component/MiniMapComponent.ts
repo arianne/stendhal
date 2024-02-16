@@ -36,9 +36,9 @@ export class MiniMapComponent extends Component {
 	private lastZone?: number[];
 
 	// ground/collision colors
-	private static readonly COLOR_COLLISION = Color.parseRGB(Color.COLLISION);
-	private static readonly COLOR_GROUND = {R: 224, G: 224, B: 224};
-	private static readonly COLOR_PROTECTION = Color.parseRGB(Color.PROTECTION);
+	private static readonly COLOR_COLLISION = Color.parseRGB(Color.COLLISION); // red
+	private static readonly COLOR_GROUND = Color.parseRGB(Color.BACKGROUND); // light gray
+	private static readonly COLOR_PROTECTION = Color.parseRGB(Color.PROTECTION); // green
 
 
 	constructor() {
