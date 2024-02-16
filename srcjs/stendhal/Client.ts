@@ -487,7 +487,9 @@ export class Client {
 
 		if (zoneinfo["color"]) {
 			const hsl = Color.hexToHSL(Color.numToHex(Number(zoneinfo["color"])));
-			stendhal.ui.gamewindow.filter = "hue-rotate(" + hsl.H + "deg) saturate(" + hsl.S
+			// workaround until able to get right saturation level from color methods
+			const sat = 1.0;
+			stendhal.ui.gamewindow.filter = "hue-rotate(" + hsl.H + "deg) saturate(" + sat
 					+ ") brightness(" + hsl.L + ")";
 		} else {
 			stendhal.ui.gamewindow.filter = undefined;

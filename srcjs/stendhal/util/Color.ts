@@ -185,7 +185,7 @@ export class Color {
 		l = +(l * 100).toFixed(1);
 		s = +(s * 100).toFixed(1);
 
-		return {H: h, S: s / 100, L: l / 100} as HSLColor;
+		return {H: Number(h.toFixed(2)), S: s / 100, L: l / 100} as HSLColor;
 	}
 
 	/**
