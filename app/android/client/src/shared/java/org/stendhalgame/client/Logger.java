@@ -75,6 +75,13 @@ public class Logger {
 	/**
 	 * Dummy method for release builds.
 	 */
+	public static void info(final boolean notify, final String text) {
+		// do nothing
+	}
+
+	/**
+	 * Dummy method for release builds.
+	 */
 	public static void warn(final String text) {
 		// do nothing
 	}
@@ -82,7 +89,21 @@ public class Logger {
 	/**
 	 * Dummy method for release builds.
 	 */
+	public static void warn(final boolean notify, final String text) {
+		// do nothing
+	}
+
+	/**
+	 * Dummy method for release builds.
+	 */
 	public static void error(final String text) {
+		// do nothing
+	}
+
+	/**
+	 * Dummy method for release builds.
+	 */
+	public static void error(final boolean notify, final String text) {
 		// do nothing
 	}
 

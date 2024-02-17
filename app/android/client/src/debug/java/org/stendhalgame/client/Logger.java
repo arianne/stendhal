@@ -127,6 +127,21 @@ public class Logger {
 	}
 
 	/**
+	 * Writes a line of text to log file at `LogLevel.INFO` verbosity.
+	 *
+	 * @param notify
+	 *   If `true` a toast notification is displayed to user.
+	 * @param text
+	 *   Text to be written.
+	 */
+	public static void info(final boolean notify, final String text) {
+		Logger.info(text);
+		if (notify) {
+			Logger.notify(text, LogLevel.INFO);
+		}
+	}
+
+	/**
 	 * Writes a line of text to log file at `LogLevel.WARN` verbosity.
 	 *
 	 * @param text
@@ -138,6 +153,21 @@ public class Logger {
 	}
 
 	/**
+	 * Writes a line of text to log file at `LogLevel.WARN` verbosity.
+	 *
+	 * @param notify
+	 *   If `true` a toast notification is displayed to user.
+	 * @param text
+	 *   Text to be written.
+	 */
+	public static void warn(final boolean notify, final String text) {
+		Logger.warn(text);
+		if (notify) {
+			Logger.notify(text, LogLevel.WARN);
+		}
+	}
+
+	/**
 	 * Writes a line of text to log file at `LogLevel.ERROR` verbosity.
 	 *
 	 * @param text
@@ -146,6 +176,21 @@ public class Logger {
 	public static void error(final String text) {
 		Log.e("Logger", text);
 		writeLine(text, LogLevel.ERROR);
+	}
+
+	/**
+	 * Writes a line of text to log file at `LogLevel.ERROR` verbosity.
+	 *
+	 * @param notify
+	 *   If `true` a toast notification is displayed to user.
+	 * @param text
+	 *   Text to be written.
+	 */
+	public static void error(final boolean notify, final String text) {
+		Logger.error(text);
+		if (notify) {
+			Logger.notify(text, LogLevel.ERROR);
+		}
 	}
 
 	/**
