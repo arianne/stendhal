@@ -121,6 +121,7 @@ public class ClientView extends WebView {
 				Uri uri = request.getUrl();
 				if (UrlHelper.isIntentUri(uri)) {
 					// prevent returned login intent from opening browser
+					// TODO: when supported by server, login intent should open in external browser
 					uri = UrlHelper.toUri(UrlHelper.getCharacterSelectUrl());
 				} else if (!UrlHelper.isInternalUri(uri)) {
 					// open external links in default browser/app
@@ -211,8 +212,9 @@ public class ClientView extends WebView {
 	 */
 	public void checkLoginIntent(final Intent intent) {
 		final Uri intentUri = intent.getData();
+		final String url = intentUri.getQueryParameter("url");
 		final String intentStateId = intentUri.getQueryParameter("state");
-		if (stateId == null || intentStateId == null || "".equals(stateId) || !stateId.equals(intentStateId)) {
+		if (stateId == null || intentStateId == null || url == null || "".equals(stateId) || !stateId.equals(intentStateId)) {
 			final String err = "There was an error verifying login";
 			Logger.error(err + " (\"" + stateId + "\" == \"" + intentStateId + "\")");
 			Notifier.showMessage(err);
@@ -222,7 +224,7 @@ public class ClientView extends WebView {
 			}
 			return;
 		}
-		loadUrl(UrlHelper.checkClientUrl(UrlHelper.getClientUrl()));
+		loadUrl(UrlHelper.checkClientUrl(url));
 	}
 
 	/**
