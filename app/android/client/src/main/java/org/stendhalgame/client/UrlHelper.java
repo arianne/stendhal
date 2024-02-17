@@ -178,6 +178,22 @@ class UrlHelper {
 	}
 
 	/**
+	 * Retrieves URL string for character select page.
+	 *
+	 * If custom client URL is used then client URL is returned.
+	 *
+	 * @return
+	 *   HTTP URL string.
+	 */
+	public static String getCharacterSelectUrl() {
+		final String custom_client = PreferencesActivity.getString("client_url").trim();
+		if (!custom_client.equals("")) {
+			return custom_client;
+		}
+		return UrlHelper.defaultServer + "account/mycharacters.html";
+	}
+
+	/**
 	 * Checks if requested URL is whitelisted to be opened within WebView client.
 	 *
 	 * @param uri
@@ -221,12 +237,24 @@ class UrlHelper {
 	 * Checks if a URI matches the intent URL scheme.
 	 *
 	 * @param uri
-	 *   URI to check.
+	 *   URI to be check.
 	 * @return
 	 *   `true` if URI's host is the intent scheme.
 	 */
 	public static boolean isIntentUri(final Uri uri) {
 		return AppInfo.getIntentUrlScheme().equals(UrlHelper.stripHost(uri.getHost()));
+	}
+
+	/**
+	 * Checks if a URL matches the intent URL scheme.
+	 *
+	 * @param url
+	 *   HTTP URL string to be check.
+	 * @return
+	 *   `true` if URI's host is the intent scheme.
+	 */
+	public static boolean isIntentUrl(final String url) {
+		return UrlHelper.isIntentUri(UrlHelper.toUri(url));
 	}
 
 	/**

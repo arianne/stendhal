@@ -122,8 +122,11 @@ public class ClientView extends WebView {
 		setWebViewClient(new WebViewClient() {
 			/* handle changing URLs */
 			@Override
-			public boolean shouldOverrideUrlLoading(final WebView view, final String url) {
-				if (!UrlHelper.isInternal(url)) {
+			public boolean shouldOverrideUrlLoading(final WebView view, String url) {
+				if (UrlHelper.isIntentUrl(url)) {
+					// prevent returned login intent from opening browser
+					url = UrlHelper.getCharacterSelectUrl();
+				} else if (!UrlHelper.isInternal(url)) {
 					// open external links in default browser/app
 					// FIXME: should we ask for confirmation?
 					MainActivity.get().startActivity(new Intent(Intent.ACTION_VIEW, UrlHelper.toUri(url)));
