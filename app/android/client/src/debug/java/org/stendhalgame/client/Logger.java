@@ -168,32 +168,33 @@ public class Logger {
 	 *   Text to be written.
 	 */
 	public static void debug(final boolean notify, final String text) {
+		Logger.debug(text);
 		if (notify) {
 			Logger.notify(text, LogLevel.DEBUG);
-			return;
 		}
-		Logger.debug(text);
 	}
 
 	/**
 	 * Displays a toast notification to user.
 	 *
-	 * @param message
+	 * @param text
 	 *   Text to display in notification.
 	 */
-	public static void notify(final String message) {
-		notify(message, LogLevel.INFO);
+	public static void notify(final String text) {
+		notify(text, LogLevel.INFO);
 	}
 
 	/**
 	 * Displays a toast notification to user.
 	 *
-	 * @param message
+	 * Does not output to log file.
+	 *
+	 * @param text
 	 *   Text to display in notification.
 	 * @param level
 	 *   Logging verbosity level.
 	 */
-	public static void notify(final String message, LogLevel level) {
+	public static void notify(final String text, LogLevel level) {
 		if (mainActivity == null) {
 			System.err.println("ERROR: Logger not initialized. Call Logger.init.");
 			return;
@@ -205,7 +206,7 @@ public class Logger {
 
 		final AlertDialog.Builder builder = new AlertDialog.Builder(ClientView.get().getContext());
 		builder.setTitle(level.label);
-		builder.setMessage(message);
+		builder.setMessage(text);
 
 		builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			@Override

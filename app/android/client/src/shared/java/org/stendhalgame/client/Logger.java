@@ -103,14 +103,14 @@ public class Logger {
 	/**
 	 * Dummy method for release builds.
 	 */
-	public static void notify(final String message) {
+	public static void notify(final String text) {
 		// do nothing
 	}
 
 	/**
 	 * Dummy method for release builds.
 	 */
-	public static void notify(final String message, final LogLevel level) {
+	public static void notify(final String text, final LogLevel level) {
 		// do nothing
 	}
 
