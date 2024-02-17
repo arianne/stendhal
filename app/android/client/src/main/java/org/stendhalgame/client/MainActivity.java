@@ -51,16 +51,24 @@ public class MainActivity extends AppCompatActivity {
 
 			client.loadTitleScreen();
 		} catch (final Exception e) {
+			// TODO: add option to save to file or copy to clipboard the error
 			e.printStackTrace();
 			Logger.error(e.toString());
 			Logger.error("// -- //");
+			final StringBuilder sb = new StringBuilder();
 			for (final StackTraceElement ste: e.getStackTrace()) {
-				Logger.error(ste.toString());
+				final String traceLine = ste.toString();
+				if (sb.length() > 0) {
+					sb.append("\n");
+				}
+				sb.append(traceLine);
+				Logger.error(traceLine);
 			}
 			Logger.error("// -- //");
 			Notifier.showPrompt(
-				"An unhandled exception has occurred: " + e.getMessage()
-				+ "\n\nYou can report this error at: https://stendhalgame.org/development/bug.html",
+				"An unhandled exception has occurred: \"" + e.getMessage() + "\""
+				+ "\n\nYou can report this error at: https://stendhalgame.org/development/bug.html"
+				+ "\n\nStack trace:\n" + sb.toString(),
 				new Notifier.Action() {
 					@Override
 					protected void onCall() {
