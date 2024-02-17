@@ -16,12 +16,12 @@ import org.stendhalgame.client.sound.MusicPlayer;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.CheckBoxPreference;
+import androidx.preference.ListPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
 
 
 public class PreferencesActivity extends AppCompatActivity {
@@ -48,8 +48,8 @@ public class PreferencesActivity extends AppCompatActivity {
 				return;
 			}
 
-			getFragmentManager().beginTransaction().add(R.id.preferencesFrame,
-				new PFragment()).commit();
+			getSupportFragmentManager().beginTransaction().add(R.id.preferencesFrame,
+					new PFragment()).commit();
 		}
 	}
 
@@ -150,14 +150,12 @@ public class PreferencesActivity extends AppCompatActivity {
 	}
 
 
-	public static class PFragment extends PreferenceFragment
+	public static class PFragment extends PreferenceFragmentCompat
 			implements OnSharedPreferenceChangeListener {
 
 		@Override
-		public void onCreate(final Bundle savedInstanceState) {
-			super.onCreate(savedInstanceState);
+		public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
 			addPreferencesFromResource(R.xml.preferences);
-
 			initListeners();
 		}
 
