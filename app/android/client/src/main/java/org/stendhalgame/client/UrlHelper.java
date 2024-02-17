@@ -164,6 +164,20 @@ class UrlHelper {
 	}
 
 	/**
+	 * Retrieves client URL.
+	 *
+	 * @return
+	 *   Client URL string.
+	 */
+	public static String getClientUrl() {
+		final String custom_client = PreferencesActivity.getString("client_url").trim();
+		if (!custom_client.equals("")) {
+			return custom_client;
+		}
+		return UrlHelper.defaultServer + "client/stendhal.html";
+	}
+
+	/**
 	 * Checks if requested URL is whitelisted to be opened within WebView client.
 	 *
 	 * @param uri
@@ -181,7 +195,7 @@ class UrlHelper {
 		final String defaultHost = UrlHelper.stripHost(UrlHelper.getDefaultHost());
 		final String host = UrlHelper.stripHost(uri.getHost());
 		if (defaultHost.equals(host)) {
-			// always allow links from stendhalgame.org
+			// allow pages from stendhalgame.org
 			return true;
 		}
 		final String cs = ClientView.get().checkCustomServer();

@@ -223,7 +223,7 @@ public class ClientView extends WebView {
 			}
 			return;
 		}
-		loadUrl(intentUri.toString());
+		loadUrl(UrlHelper.checkClientUrl(UrlHelper.getClientUrl()));
 	}
 
 	/**
