@@ -26,6 +26,7 @@ public class OpenAppByUrl extends Activity {
 		Uri data = intent.getData();
 		Logger.debug("URL: " + data);
 		ClientView.get().checkLoginIntent(intent);
+		finish();
 	 }
 
 }
