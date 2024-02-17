@@ -406,7 +406,7 @@ public class ClientView extends WebView {
 		// remove splash image
 		setSplashResource(android.R.color.transparent);
 
-		String initialPage = UrlHelper.getDefaultServer() + "account/mycharacters.html";
+		String initialPage = UrlHelper.getDefaultServer() + "account/login.html";
 		final String customPage = checkCustomServer();
 		if (customPage != null) {
 			Logger.debug("Connecing to custom page: " + customPage);
