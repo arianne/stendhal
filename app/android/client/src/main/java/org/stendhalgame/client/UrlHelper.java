@@ -220,6 +220,8 @@ class UrlHelper {
 	/**
 	 * Checks if a URI represents a login page.
 	 *
+	 * @param uri
+	 *   Page URI to check.
 	 * @return
 	 *   `true` if URI path equals "/account/login.html" or `id` parameter of query string equals
 	 *   "content/account/login".
@@ -227,6 +229,9 @@ class UrlHelper {
 	public static boolean isLoginUri(final Uri uri) {
 		if ("/account/login.html".equals(uri.getPath())) {
 			return true;
+		}
+		if (!uri.isHierarchical()) {
+			return false;
 		}
 		final String id = uri.getQueryParameter("id");
 		if (id == null) {
