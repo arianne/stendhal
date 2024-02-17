@@ -76,12 +76,6 @@ public class ClientView extends WebView {
 		onInit();
 	}
 
-	public ClientView(final Context ctx, final AttributeSet attrs, final int style,
-			final boolean prvtBrowse) {
-		super(ctx, attrs, style, prvtBrowse);
-		onInit();
-	}
-
 	private void onInit() {
 		instance = this;
 
