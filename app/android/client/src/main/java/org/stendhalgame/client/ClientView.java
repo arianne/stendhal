@@ -298,8 +298,15 @@ public class ClientView extends WebView {
 
 	@Override
 	public void loadUrl(final String url) {
-		Logger.debug("loading URL: " + url);
-		super.loadUrl(url);
+		Logger.debug("Loading URL: " + url);
+		final Uri uri = UrlHelper.toUri(url);
+		final Uri.Builder builder = uri.buildUpon();
+		if (UrlHelper.isLoginUri(uri)) {
+			builder.appendQueryParameter("build", AppInfo.getBuildType());
+			builder.appendQueryParameter("version", AppInfo.getBuildVersion());
+			builder.appendQueryParameter("state", stateId);
+		}
+		super.loadUrl(builder.toString());
 	}
 
 	/**
@@ -400,30 +407,31 @@ public class ClientView extends WebView {
 	}
 
 	/**
+	 * Retrieves initial page to load when connecting to remote server.
+	 *
+	 * @return
+	 *   Server URL.
+	 */
+	private String getInitialPage() {
+		final String customPage = checkCustomServer();
+		if (customPage != null) {
+			return customPage;
+		}
+		return UrlHelper.getDefaultServer() + "account/login.html";
+	}
+
+	/**
 	 * Connects to server & loads initial page.
 	 */
 	private void onSelectServer() {
+		// create a unique state
+		this.generateStateId();
 		// remove splash image
 		setSplashResource(android.R.color.transparent);
 
-		String initialPage = UrlHelper.getDefaultServer() + "account/login.html";
-		final String customPage = checkCustomServer();
-		if (customPage != null) {
-			Logger.debug("Connecing to custom page: " + customPage);
-			// custom client URL may add character name fragement
-			initialPage = UrlHelper.formatCharName(customPage);
-		} else {
-			if (testServer) {
-				Logger.debug("Connecting to test server");
-			} else {
-				Logger.debug("Connecting to main server");
-			}
-		}
-		final Uri.Builder builder = UrlHelper.toUri(initialPage).buildUpon();
-		builder.appendQueryParameter("build", AppInfo.getBuildType());
-		builder.appendQueryParameter("version", AppInfo.getBuildVersion());
-		builder.appendQueryParameter("state", generateStateId());
-		loadUrl(builder.toString());
+		final String initialPage = this.getInitialPage();
+		Logger.debug("Loading initial page: " + initialPage);
+		loadUrl(initialPage);
 		setPage(PageId.OTHER);
 		// hide menu after exiting title screen
 		Menu.get().hide();
