@@ -28,10 +28,17 @@ import android.util.Log;
  */
 public class Logger {
 
+	/** Logs directory. */
 	private static File logsDir;
 
+	/** Main activity instance. */
 	private static MainActivity mainActivity;
 
+	/**
+	 * Verbosity level.
+	 *
+	 * TODO: move into separate class file
+	 */
 	public static enum LogLevel {
 		INFO("INFO"),
 		WARN("WARN"),
@@ -49,17 +56,30 @@ public class Logger {
 		}
 	}
 
+	/** Singleton instance. */
 	private static Logger instance;
 
 
+	/**
+	 * Retrieves singleton instance.
+	 */
 	public static Logger get() {
-		if (instance == null) {
-			instance = new Logger();
+		if (Logger.instance == null) {
+			Logger.instance = new Logger();
 		}
-
-		return instance;
+		return Logger.instance;
 	}
 
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private Logger() {
+		// do nothing
+	}
+
+	/**
+	 * Initializes logs directory.
+	 */
 	public static void init(final File dir, final MainActivity activity) {
 		logsDir = new File(dir.getPath() + "/logs");
 		mainActivity = activity;
@@ -68,10 +88,24 @@ public class Logger {
 		writeLine("logs directory: " + logsDir.getPath());
 	}
 
+	/**
+	 * Writes a line of text to log file.
+	 *
+	 * @param text
+	 *   Text to be written.
+	 */
 	public static void writeLine(final String text) {
 		writeLine(text, LogLevel.DEBUG);
 	}
 
+	/**
+	 * Writes a line of text to log file.
+	 *
+	 * @param text
+	 *   Text to be written.
+	 * @param level
+	 *   Logging verbosity level.
+	 */
 	public static void writeLine(String text, final LogLevel level) {
 		if (logsDir == null) {
 			System.err.println("ERROR: Logger not initialized. Call Logger.init.");
@@ -103,26 +137,58 @@ public class Logger {
 		}
 	}
 
+	/**
+	 * Writes a line of text to log file at `LogLevel.INFO` verbosity.
+	 *
+	 * @param text
+	 *   Text to be written.
+	 */
 	public static void info(final String text) {
 		Log.i("Logger", text);
 		writeLine(text, LogLevel.INFO);
 	}
 
+	/**
+	 * Writes a line of text to log file at `LogLevel.WARN` verbosity.
+	 *
+	 * @param text
+	 *   Text to be written.
+	 */
 	public static void warn(final String text) {
 		Log.w("Logger", text);
 		writeLine(text, LogLevel.WARN);
 	}
 
+	/**
+	 * Writes a line of text to log file at `LogLevel.ERROR` verbosity.
+	 *
+	 * @param text
+	 *   Text to be written.
+	 */
 	public static void error(final String text) {
 		Log.e("Logger", text);
 		writeLine(text, LogLevel.ERROR);
 	}
 
+	/**
+	 * Writes a line of text to log file at `LogLevel.DEBUG` verbosity.
+	 *
+	 * @param text
+	 *   Text to be written.
+	 */
 	public static void debug(final String text) {
 		Log.d("Logger", text);
 		writeLine(text, LogLevel.DEBUG);
 	}
 
+	/**
+	 * Writes a line of text to log file at `LogLevel.DEBUG` verbosity.
+	 *
+	 * @param notify
+	 *   If `true` a toast notification is displayed to user.
+	 * @param text
+	 *   Text to be written.
+	 */
 	public static void debug(final boolean notify, final String text) {
 		if (notify) {
 			Logger.notify(text, LogLevel.DEBUG);
@@ -131,10 +197,24 @@ public class Logger {
 		Logger.debug(text);
 	}
 
+	/**
+	 * Displays a toast notification to user.
+	 *
+	 * @param message
+	 *   Text to display in notification.
+	 */
 	public static void notify(final String message) {
 		notify(message, LogLevel.INFO);
 	}
 
+	/**
+	 * Displays a toast notification to user.
+	 *
+	 * @param message
+	 *   Text to display in notification.
+	 * @param level
+	 *   Logging verbosity level.
+	 */
 	public static void notify(final String message, LogLevel level) {
 		if (mainActivity == null) {
 			System.err.println("ERROR: Logger not initialized. Call Logger.init.");
@@ -159,6 +239,12 @@ public class Logger {
 		builder.create().show();
 	}
 
+	/**
+	 * Retrieves logs directory.
+	 *
+	 * @return
+	 *   Directory path to outpu logs.
+	 */
 	public static String getLogsDir() {
 		return logsDir.getPath();
 	}

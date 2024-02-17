@@ -161,6 +161,9 @@ public class ClientView extends WebView {
 		});
 	}
 
+	/**
+	 * deprecated?
+	 */
 	@Override
 	public boolean dispatchKeyEvent(final KeyEvent event) {
 		final boolean ret = super.dispatchKeyEvent(event);

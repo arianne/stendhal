@@ -19,8 +19,14 @@ import java.io.File;
  */
 public class Logger {
 
+	/** Logs directory. */
 	private static File logsDir;
 
+	/**
+	 * Verbosity level.
+	 *
+	 * TODO: move into separate class file
+	 */
 	public static enum LogLevel {
 		INFO,
 		WARN,
@@ -28,57 +34,104 @@ public class Logger {
 		DEBUG
 	}
 
+	/** Singleton instance. */
 	private static Logger instance;
 
 
+	/**
+	 * Retrieves singleton instance.
+	 */
 	public static Logger get() {
-		if (instance == null) {
-			instance = new Logger();
+		if (Logger.instance == null) {
+			Logger.instance = new Logger();
 		}
 
-		return instance;
+		return Logger.instance;
 	}
 
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private Logger() {
+		// do nothing
+	}
+
+	/**
+	 * Initializes logs directory.
+	 */
 	public static void init(final File dir, @SuppressWarnings("unused") final MainActivity activity) {
 		logsDir = new File(dir.getPath() + "/logs");
 	}
 
+	/**
+	 * Dummy method for release builds.
+	 */
 	public static void writeLine(final String text) {
 		// do nothing
 	}
 
+	/**
+	 * Dummy method for release builds.
+	 */
 	public static void writeLine(final String text, final LogLevel level) {
 		// do nothing
 	}
 
+	/**
+	 * Dummy method for release builds.
+	 */
 	public static void info(final String text) {
 		// do nothing
 	}
 
+	/**
+	 * Dummy method for release builds.
+	 */
 	public static void warn(final String text) {
 		// do nothing
 	}
 
+	/**
+	 * Dummy method for release builds.
+	 */
 	public static void error(final String text) {
 		// do nothing
 	}
 
+	/**
+	 * Dummy method for release builds.
+	 */
 	public static void debug(final String text) {
 		// do nothing
 	}
 
+	/**
+	 * Dummy method for release builds.
+	 */
 	public static void debug(final boolean notify, final String text) {
 		// do nothing
 	}
 
+	/**
+	 * Dummy method for release builds.
+	 */
 	public static void notify(final String message) {
 		// do nothing
 	}
 
+	/**
+	 * Dummy method for release builds.
+	 */
 	public static void notify(final String message, final LogLevel level) {
 		// do nothing
 	}
 
+	/**
+	 * Retrieves logs directory.
+	 *
+	 * @return
+	 *   Directory path to outpu logs.
+	 */
 	public static String getLogsDir() {
 		return logsDir.getPath();
 	}
