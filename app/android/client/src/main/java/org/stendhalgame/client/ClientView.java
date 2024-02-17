@@ -31,6 +31,7 @@ import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.DownloadListener;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -116,17 +117,18 @@ public class ClientView extends WebView {
 		setWebViewClient(new WebViewClient() {
 			/* handle changing URLs */
 			@Override
-			public boolean shouldOverrideUrlLoading(final WebView view, String url) {
-				if (UrlHelper.isIntentUrl(url)) {
+			public boolean shouldOverrideUrlLoading(final WebView view, final WebResourceRequest request) {
+				Uri uri = request.getUrl();
+				if (UrlHelper.isIntentUri(uri)) {
 					// prevent returned login intent from opening browser
-					url = UrlHelper.getCharacterSelectUrl();
-				} else if (!UrlHelper.isInternal(url)) {
+					uri = UrlHelper.toUri(UrlHelper.getCharacterSelectUrl());
+				} else if (!UrlHelper.isInternalUri(uri)) {
 					// open external links in default browser/app
 					// FIXME: should we ask for confirmation?
-					MainActivity.get().startActivity(new Intent(Intent.ACTION_VIEW, UrlHelper.toUri(url)));
+					MainActivity.get().startActivity(new Intent(Intent.ACTION_VIEW, uri));
 					return true;
 				}
-				view.loadUrl(UrlHelper.checkClientUrl(url));
+				view.loadUrl(UrlHelper.checkClientUrl(uri.toString()));
 				return false;
 			}
 
