@@ -22,4 +22,8 @@ class AppInfo {
 	public static String getBuildVersion() {
 		return MainActivity.get().getResources().getString(R.string.build_version);
 	}
+
+	public static String getIntentUrlScheme() {
+		return MainActivity.get().getResources().getString(R.string.intent_url_scheme);
+	}
 }

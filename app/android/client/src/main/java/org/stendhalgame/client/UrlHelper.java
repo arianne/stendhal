@@ -218,6 +218,18 @@ class UrlHelper {
 	}
 
 	/**
+	 * Checks if a URI matches the intent URL scheme.
+	 *
+	 * @param uri
+	 *   URI to check.
+	 * @return
+	 *   `true` if URI's host is the intent scheme.
+	 */
+	public static boolean isIntentUri(final Uri uri) {
+		return AppInfo.getIntentUrlScheme().equals(UrlHelper.stripHost(uri.getHost()));
+	}
+
+	/**
 	 * Checks if a URI represents a login page.
 	 *
 	 * @param uri
