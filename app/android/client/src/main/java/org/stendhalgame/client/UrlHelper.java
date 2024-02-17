@@ -86,17 +86,35 @@ class UrlHelper {
 	/**
 	 * Extracts character name from URL fragment identifier & converts to query string.
 	 *
+	 * Deprecated. Should use `UrlHelper.formatCharName(Uri, Uri.Builder).
+	 *
 	 * @param url
 	 *   HTTP string to be formatted.
 	 * @return
 	 *   Formatted URL.
 	 */
+	@Deprecated
 	public static String formatCharName(String url) {
 		final int idx = url.indexOf("#");
 		if (idx > -1) {
 			url = url.substring(0, idx) + "?char=" + url.substring(idx+1);
 		}
 		return url;
+	}
+
+	/**
+	 * Converts URL fragment identifier to character name query string parameter.
+	 *
+	 * @param uri
+	 *   URI being checked for fragment identifier.
+	 * @param builder
+	 *   URI builder to update.
+	 */
+	public static void formatCharName(final Uri uri, final Uri.Builder builder) {
+		final String name = uri.getFragment();
+		if (name != null) {
+			builder.appendQueryParameter("char", name);
+		}
 	}
 
 	/**
@@ -108,6 +126,8 @@ class UrlHelper {
 	 *   URL to be loaded.
 	 */
 	public static String checkClientUrl(String url) {
+		final Uri uri = UrlHelper.toUri(url);
+		final Uri.Builder builder = uri.buildUpon();
 		if (UrlHelper.isClientUrl(url)) {
 			final ClientView client = ClientView.get();
 			final boolean testClient = client.isTestClient();
@@ -116,14 +136,14 @@ class UrlHelper {
 				replaceSuffix = "/client/";
 			}
 			// ensure website directs to configured client
-			url = url.replace(replaceSuffix, "/" + client.getClientUrlSuffix() + "/");
-			url = UrlHelper.formatCharName(url);
-			if (testClient && !client.isTestServer()) {
+			builder.path(uri.getPath().replace(replaceSuffix, "/" + client.getClientUrlSuffix() + "/"));
+			UrlHelper.formatCharName(uri, builder);
+			if (testClient && !client.isTestServer() && uri.getQueryParameter("server") == null) {
 				// connect test client to main server
-				url += "&server=main";
+				builder.appendQueryParameter("server", "main");
 			}
 		}
-		return url;
+		return builder.toString();
 	}
 
 	/**
