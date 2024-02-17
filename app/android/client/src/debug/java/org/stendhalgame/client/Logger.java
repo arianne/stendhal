@@ -34,28 +34,6 @@ public class Logger {
 	/** Main activity instance. */
 	private static MainActivity mainActivity;
 
-	/**
-	 * Verbosity level.
-	 *
-	 * TODO: move into separate class file
-	 */
-	public static enum LogLevel {
-		INFO("INFO"),
-		WARN("WARN"),
-		ERROR("ERROR"),
-		DEBUG("DEBUG");
-
-		private final String label;
-
-		private LogLevel(final String label) {
-			this.label = label;
-		}
-
-		public String getLabel() {
-			return label;
-		}
-	}
-
 	/** Singleton instance. */
 	private static Logger instance;
 

@@ -22,18 +22,6 @@ public class Logger {
 	/** Logs directory. */
 	private static File logsDir;
 
-	/**
-	 * Verbosity level.
-	 *
-	 * TODO: move into separate class file
-	 */
-	public static enum LogLevel {
-		INFO,
-		WARN,
-		ERROR,
-		DEBUG
-	}
-
 	/** Singleton instance. */
 	private static Logger instance;
 
