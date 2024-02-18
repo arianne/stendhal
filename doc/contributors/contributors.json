@@ -2435,6 +2435,17 @@
 			]
 		},
 		{
+			"name": "leechex",
+			"fullname": "Leozera",
+			"link": "https://github.com/leechex",
+			"image": "https://avatars.githubusercontent.com/u/55950846?v=4",
+			"contributions": [
+				{
+					"type": "maps"
+				}
+			]
+		},
+		{
 			"name": "lint35",
 			"fullname": "cody giesbrecht",
 			"link": "https://sourceforge.net/u/lint35/profile",

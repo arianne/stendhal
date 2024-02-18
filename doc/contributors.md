@@ -485,10 +485,12 @@ null</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/ladygambit/profile"><img src="https://secure.gravatar.com/avatar/0cc2e29dd98c10faa85f8365693994ce?s=64&rating=PG&d=https://stendhalgame.org/images/profile/ladygambit.png" width="64" height="64" alt=""><br /><sub><b>ladygambit</b></sub></a><br /><span title="bug">
 🐛</span> <span title="ideas">
 🤔</span> </td>
- <td align="center" width="0%"><a href="https://sourceforge.net/u/lint35/profile"><img src="https://secure.gravatar.com/avatar/05d3a6562f6fffd139c24fdc8cf264ed?s=64&rating=PG&d=monsterid" width="64" height="64" alt=""><br /><sub><b>cody giesbrecht</b></sub></a><br /><span title="ideas">
-🤔</span> </td>
+ <td align="center" width="0%"><a href="https://github.com/leechex"><img src="https://avatars.githubusercontent.com/u/55950846?v=4" width="64" height="64" alt=""><br /><sub><b>Leozera</b></sub></a><br /><span title="maps">
+🗺</span> </td>
 </tr>
 <tr>
+ <td align="center" width="0%"><a href="https://sourceforge.net/u/lint35/profile"><img src="https://secure.gravatar.com/avatar/05d3a6562f6fffd139c24fdc8cf264ed?s=64&rating=PG&d=monsterid" width="64" height="64" alt=""><br /><sub><b>cody giesbrecht</b></sub></a><br /><span title="ideas">
+🤔</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/love_puppet89/profile"><img src="https://secure.gravatar.com/avatar/a7dcb0311ca1e45dcc2ed2e6078a745a?s=64&rating=PG&d=https://stendhalgame.org/images/profile/love_puppet.png" width="64" height="64" alt=""><br /><sub><b>Will Scott</b></sub></a><br /><span title="bug">
 🐛</span> <span title="ideas">
 🤔</span> </td>
@@ -500,10 +502,10 @@ null</span> </td>
 🤔</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/manuellg81/profile"><img src="https://secure.gravatar.com/avatar/9b3b13b068df2175c743a645a71fbdb6?s=64&rating=PG&d=https://stendhalgame.org/images/profile/manuellg81.png" width="64" height="64" alt=""><br /><sub><b>MLG</b></sub></a><br /><span title="ideas">
 🤔</span> </td>
- <td align="center" width="0%"><a href="https://sourceforge.net/u/marcosn/profile"><img src="https://secure.gravatar.com/avatar/e18cca73281413df90b0b1b49796db51?s=64&rating=PG&d=https://stendhalgame.org/images/profile/marcosn.png" width="64" height="64" alt=""><br /><sub><b>marcosn</b></sub></a><br /><span title="ideas">
-🤔</span> </td>
 </tr>
 <tr>
+ <td align="center" width="0%"><a href="https://sourceforge.net/u/marcosn/profile"><img src="https://secure.gravatar.com/avatar/e18cca73281413df90b0b1b49796db51?s=64&rating=PG&d=https://stendhalgame.org/images/profile/marcosn.png" width="64" height="64" alt=""><br /><sub><b>marcosn</b></sub></a><br /><span title="ideas">
+🤔</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/mascht/profile"><img src="https://secure.gravatar.com/avatar/f3dd579a9e33256fb97d53cebb9bbc80?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>Mascht</b></sub></a><br /><span title="ideas">
 🤔</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/megajack64/profile"><img src="https://secure.gravatar.com/avatar/afbcc323f06b5570f799a447e4d88257?s=64&rating=PG&d=https://stendhalgame.org/images/profile/megajack64.png" width="64" height="64" alt=""><br /><sub><b>Jorge</b></sub></a><br /><span title="ideas">
@@ -516,10 +518,10 @@ null</span> </td>
 🤔</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/naggie1/profile"><img src="https://secure.gravatar.com/avatar/57826c2345668fa0b775a1d0ea48fed3?s=64&rating=PG&d=robohash" width="64" height="64" alt=""><br /><sub><b>Callan Bryant</b></sub></a><br /><span title="ideas">
 🤔</span> </td>
- <td align="center" width="0%"><a href="https://sourceforge.net/u/nathacof/profile"><img src="https://secure.gravatar.com/avatar/ef047037fe04fb19b636f55265048ae9?s=64&rating=PG&d=monsterid" width="64" height="64" alt=""><br /><sub><b>Nathanial Coffield</b></sub></a><br /><span title="ideas">
-🤔</span> </td>
 </tr>
 <tr>
+ <td align="center" width="0%"><a href="https://sourceforge.net/u/nathacof/profile"><img src="https://secure.gravatar.com/avatar/ef047037fe04fb19b636f55265048ae9?s=64&rating=PG&d=monsterid" width="64" height="64" alt=""><br /><sub><b>Nathanial Coffield</b></sub></a><br /><span title="ideas">
+🤔</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/neoneurone/profile"><img src="https://secure.gravatar.com/avatar/806e1ef6ce471b3f2f0e5da9fe7a2b63?s=64&rating=PG&d=retro" width="64" height="64" alt=""><br /><sub><b>Duong Khang NGUYEN</b></sub></a><br /><span title="bug">
 🐛</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/neongem/profile"><img src="https://secure.gravatar.com/avatar/8b04d99ac5d12598043a95ccc87921e2?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>neongem</b></sub></a><br /><span title="bug">
@@ -532,11 +534,11 @@ null</span> </td>
 🤔</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/nobun/profile"><img src="https://secure.gravatar.com/avatar/92f3024f03f22fb05a43a8ec4499346e?s=64&rating=PG&d=https://stendhalgame.org/images/profile/nobun.png" width="64" height="64" alt=""><br /><sub><b>Nobun</b></sub></a><br /><span title="ideas">
 🤔</span> </td>
+</tr>
+<tr>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/ogeretal/profile"><img src="https://secure.gravatar.com/avatar/83b7b985f0d1af66c59f51f6f11fa1e9?s=64&rating=PG&d=https://stendhalgame.org/images/profile/ogeretal.png" width="64" height="64" alt=""><br /><sub><b>Ogeretal</b></sub></a><br /><span title="bug">
 🐛</span> <span title="ideas">
 🤔</span> </td>
-</tr>
-<tr>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/palmmon/profile"><img src="https://secure.gravatar.com/avatar/328a962932d43454400a0c702618e9f8?s=64&rating=PG&d=https://stendhalgame.org/images/profile/palmmon.png" width="64" height="64" alt=""><br /><sub><b>PalmMon</b></sub></a><br /><span title="bug">
 🐛</span> <span title="ideas">
 🤔</span> </td>
@@ -549,10 +551,10 @@ null</span> </td>
 🤔</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/rangzen/profile"><img src="https://secure.gravatar.com/avatar/1a638b5a41b615590cc935b939b06677?s=64&rating=PG&d=retro" width="64" height="64" alt=""><br /><sub><b>rangzen</b></sub></a><br /><span title="bug">
 🐛</span> </td>
- <td align="center" width="0%"><a href="https://sourceforge.net/u/rimy0/profile"><img src="https://secure.gravatar.com/avatar/dfe27af75b1b079d1150e51e0c1170e2?s=64&rating=PG&d=monsterid" width="64" height="64" alt=""><br /><sub><b>rimy</b></sub></a><br /><span title="ideas">
-🤔</span> </td>
 </tr>
 <tr>
+ <td align="center" width="0%"><a href="https://sourceforge.net/u/rimy0/profile"><img src="https://secure.gravatar.com/avatar/dfe27af75b1b079d1150e51e0c1170e2?s=64&rating=PG&d=monsterid" width="64" height="64" alt=""><br /><sub><b>rimy</b></sub></a><br /><span title="ideas">
+🤔</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/rogan2/profile"><img src="https://secure.gravatar.com/avatar/458b976bd412725df2fea09926ff7841?s=64&rating=PG&d=monsterid" width="64" height="64" alt=""><br /><sub><b>Pavel Salamon</b></sub></a><br /><span title="bug">
 🐛</span> <span title="ideas">
 🤔</span> </td>
@@ -564,10 +566,10 @@ null</span> </td>
 🤔</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/sakishrist/profile"><img src="https://secure.gravatar.com/avatar/b3b650b587f2fd96f9faa99e489f949a?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>Sakis Hrist</b></sub></a><br /><span title="bug">
 🐛</span> </td>
- <td align="center" width="0%"><a href="https://sourceforge.net/u/salexey/profile"><img src="https://secure.gravatar.com/avatar/83afa53e7878def1542a106c1ca76a92?s=64&rating=PG&d=robohash" width="64" height="64" alt=""><br /><sub><b>AlexS</b></sub></a><br /><span title="bug">
-🐛</span> </td>
 </tr>
 <tr>
+ <td align="center" width="0%"><a href="https://sourceforge.net/u/salexey/profile"><img src="https://secure.gravatar.com/avatar/83afa53e7878def1542a106c1ca76a92?s=64&rating=PG&d=robohash" width="64" height="64" alt=""><br /><sub><b>AlexS</b></sub></a><br /><span title="bug">
+🐛</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/salz85/profile"><img src="https://secure.gravatar.com/avatar/4884ace57c82f7e4bf435e2a6ac36406?s=64&rating=PG&d=robohash" width="64" height="64" alt=""><br /><sub><b>Sal Z</b></sub></a><br /><span title="ideas">
 🤔</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/samsonette/profile"><img src="https://secure.gravatar.com/avatar/65b5f3a8d91e3b86e0566db5be7da27d?s=64&rating=PG&d=monsterid" width="64" height="64" alt=""><br /><sub><b>Hardy</b></sub></a><br /><span title="bug">
@@ -579,10 +581,10 @@ null</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/sf-robot/profile"><img src="https://secure.gravatar.com/avatar/954bc49aec1a4e4ce9b032903707ca1e?s=64&rating=PG&d=robohash" width="64" height="64" alt=""><br /><sub><b>SourceForge Robot</b></sub></a><br /><span title="bug">
 🐛</span> <span title="ideas">
 🤔</span> </td>
- <td align="center" width="0%"><a href="https://sourceforge.net/u/silvioto/profile"><img src="https://secure.gravatar.com/avatar/f7829d7bef851d1a2f421742c56ac299?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>Silvio</b></sub></a><br /><span title="ideas">
-🤔</span> </td>
 </tr>
 <tr>
+ <td align="center" width="0%"><a href="https://sourceforge.net/u/silvioto/profile"><img src="https://secure.gravatar.com/avatar/f7829d7bef851d1a2f421742c56ac299?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>Silvio</b></sub></a><br /><span title="ideas">
+🤔</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/simonsmall/profile"><img src="https://secure.gravatar.com/avatar/f98d217fb499ce56437e34481ac0fc6f?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>Simon Small</b></sub></a><br /><span title="bug">
 🐛</span> <span title="ideas">
 🤔</span> </td>
@@ -596,11 +598,11 @@ null</span> </td>
 🤔</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/slyerz/profile"><img src="https://secure.gravatar.com/avatar/6d2380472028c8353d1b985de822a9a7?s=64&rating=PG&d=robohash" width="64" height="64" alt=""><br /><sub><b>Sheldon Pascual</b></sub></a><br /><span title="bug">
 🐛</span> </td>
+</tr>
+<tr>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/snaketails/profile"><img src="https://secure.gravatar.com/avatar/261db9c1aa0373aee401820db04913c0?s=64&rating=PG&d=https://stendhalgame.org/images/profile/snaketails.png" width="64" height="64" alt=""><br /><sub><b>Snaketails</b></sub></a><br /><span title="bug">
 🐛</span> <span title="ideas">
 🤔</span> </td>
-</tr>
-<tr>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/snakevip/profile"><img src="https://secure.gravatar.com/avatar/09c49912436b6984160697f362ec20fa?s=64&rating=PG&d=https://stendhalgame.org/images/profile/snakevip.png" width="64" height="64" alt=""><br /><sub><b>snakevip</b></sub></a><br /><span title="security">
 🛡️</span> <span title="ideas">
 🤔</span> </td>
@@ -613,11 +615,11 @@ null</span> </td>
 🤔</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/steveread/profile"><img src="https://secure.gravatar.com/avatar/9ef25bc7527d812252239b9ae8a74bb9?s=64&rating=PG&d=robohash" width="64" height="64" alt=""><br /><sub><b>Steve Read</b></sub></a><br /><span title="bug">
 🐛</span> </td>
+</tr>
+<tr>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/swing81/profile"><img src="https://secure.gravatar.com/avatar/bfc994db5c810e1a2ab50c51ce0d0605?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>sawi</b></sub></a><br /><span title="bug">
 🐛</span> <span title="ideas">
 🤔</span> </td>
-</tr>
-<tr>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/sydno/profile"><img src="https://secure.gravatar.com/avatar/4b1087b598638bf33ab73e97f1de04fc?s=64&rating=PG&d=retro" width="64" height="64" alt=""><br /><sub><b>Igor Lima</b></sub></a><br /><span title="bug">
 🐛</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/t4shen/profile"><img src="https://secure.gravatar.com/avatar/b0a4d409891472d2ff4896a55c5c324e?s=64&rating=PG&d=monsterid" width="64" height="64" alt=""><br /><sub><b>u4981890</b></sub></a><br /><span title="ideas">
@@ -631,11 +633,11 @@ null</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/technosphere/profile"><img src="https://secure.gravatar.com/avatar/2b1d8a42919b2edcb515b94c15e48298?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>technosphere</b></sub></a><br /><span title="bug">
 🐛</span> <span title="ideas">
 🤔</span> </td>
+</tr>
+<tr>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/the_paranoid_/profile"><img src="https://secure.gravatar.com/avatar/f54e2419b2fbf3590c7e2bc3b72256cd?s=64&rating=PG&d=monsterid" width="64" height="64" alt=""><br /><sub><b>Martin Spüler</b></sub></a><br /><span title="bug">
 🐛</span> <span title="ideas">
 🤔</span> </td>
-</tr>
-<tr>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/tiagomt/profile"><img src="https://secure.gravatar.com/avatar/8272ad8bf384250e150a937295aec5da?s=64&rating=PG&d=monsterid" width="64" height="64" alt=""><br /><sub><b>tiago teixeira</b></sub></a><br /><span title="graphics">
 🎨</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/tinko92/profile"><img src="https://secure.gravatar.com/avatar/b761cc7a8ec39f141fee9de3ca89c0c2?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>Tinko</b></sub></a><br /><span title="ideas">
@@ -646,11 +648,11 @@ null</span> </td>
 🐛</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/toolchild/profile"><img src="https://secure.gravatar.com/avatar/5c686e847789cac5dcdbbe176bac6828?s=64&rating=PG&d=retro" width="64" height="64" alt=""><br /><sub><b>toolchild</b></sub></a><br /><span title="ideas">
 🤔</span> </td>
+</tr>
+<tr>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/tornado90/profile"><img src="https://secure.gravatar.com/avatar/4d5e81237148b73af9c2bbe3aa96b694?s=64&rating=PG&d=monsterid" width="64" height="64" alt=""><br /><sub><b>LuxLuka</b></sub></a><br /><span title="bug">
 🐛</span> <span title="ideas">
 🤔</span> </td>
-</tr>
-<tr>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/tuebix/profile"><img src="https://secure.gravatar.com/avatar/aa28b6f9b9f69b4f8da185c5fe42fb35?s=64&rating=PG&d=monsterid" width="64" height="64" alt=""><br /><sub><b> tuebix</b></sub></a><br /><span title="bug">
 🐛</span> <span title="ideas">
 🤔</span> </td>
@@ -663,10 +665,10 @@ null</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/vspr/profile"><img src="https://secure.gravatar.com/avatar/70c5633ece582d395d4a27c7dbb1f6bf?s=64&rating=PG&d=retro" width="64" height="64" alt=""><br /><sub><b>luca</b></sub></a><br /><span title="bug">
 🐛</span> <span title="ideas">
 🤔</span> </td>
- <td align="center" width="0%"><a href="https://sourceforge.net/u/w0lfbrother/profile"><img src="https://secure.gravatar.com/avatar/7b30d5b1c0a5c8a3d71d400e86bff4be?s=64&rating=PG&d=monsterid" width="64" height="64" alt=""><br /><sub><b>Christian Schnepf</b></sub></a><br /><span title="ideas">
-🤔</span> </td>
 </tr>
 <tr>
+ <td align="center" width="0%"><a href="https://sourceforge.net/u/w0lfbrother/profile"><img src="https://secure.gravatar.com/avatar/7b30d5b1c0a5c8a3d71d400e86bff4be?s=64&rating=PG&d=monsterid" width="64" height="64" alt=""><br /><sub><b>Christian Schnepf</b></sub></a><br /><span title="ideas">
+🤔</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/weasel75/profile"><img src="https://secure.gravatar.com/avatar/e18c337101f7a84bcde98e6dd013a010?s=64&rating=PG&d=retro" width="64" height="64" alt=""><br /><sub><b>Hans-Peter Jacobs</b></sub></a><br /><span title="bug">
 🐛</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/winterkoninkje/profile"><img src="https://secure.gravatar.com/avatar/616f87bedb76f3590090d174f7b2b592?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>wren ng thornton</b></sub></a><br /><span title="bug">
@@ -680,11 +682,11 @@ null</span> </td>
 🤔</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/yagisan/profile"><img src="https://secure.gravatar.com/avatar/c0dbf396bf587db41c778c8c69dd9a41?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>Yagisan</b></sub></a><br /><span title="bug">
 🐛</span> </td>
+</tr>
+<tr>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/yetisyny/profile"><img src="https://secure.gravatar.com/avatar/9494dd525d0729f12f0d90420d994b00?s=64&rating=PG&d=monsterid" width="64" height="64" alt=""><br /><sub><b>Rich McGrew</b></sub></a><br /><span title="bug">
 🐛</span> <span title="ideas">
 🤔</span> </td>
-</tr>
-<tr>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/yugiohjcj/profile"><img src="https://secure.gravatar.com/avatar/4aada1b94cbb2ce5417fca6f313e4223?s=64&rating=PG&d=https://stendhalgame.org/images/profile/yugiohjcj.png" width="64" height="64" alt=""><br /><sub><b>YuGiOhJCJ</b></sub></a><br /><span title="bug">
 🐛</span> <span title="ideas">
 🤔</span> </td>
@@ -697,10 +699,10 @@ null</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/zlatanmomic/profile"><img src="https://secure.gravatar.com/avatar/3d0f4b53040acd8bc9b6ab4f77cf0b9a?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>Zlatan Momic</b></sub></a><br /><span title="bug">
 🐛</span> <span title="ideas">
 🤔</span> </td>
- <td align="center" width="0%"><a href="https://sourceforge.net/u/zorrobiwan/profile"><img src="https://secure.gravatar.com/avatar/6c4633d82e57753f52951fd227a2d986?s=64&rating=PG&d=robohash" width="64" height="64" alt=""><br /><sub><b>Alberty Pascal</b></sub></a><br /><span title="ideas">
-🤔</span> </td>
 </tr>
 <tr>
+ <td align="center" width="0%"><a href="https://sourceforge.net/u/zorrobiwan/profile"><img src="https://secure.gravatar.com/avatar/6c4633d82e57753f52951fd227a2d986?s=64&rating=PG&d=robohash" width="64" height="64" alt=""><br /><sub><b>Alberty Pascal</b></sub></a><br /><span title="ideas">
+🤔</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/zty64/profile"><img src="https://secure.gravatar.com/avatar/5735659fa86d038fee28c173359c1e07?s=64&rating=PG&d=robohash" width="64" height="64" alt=""><br /><sub><b>Young</b></sub></a><br /><span title="ideas">
 🤔</span> </td>
  <td align="center" width="0%"><a href="https://sourceforge.net/u/zyebra/profile"><img src="https://secure.gravatar.com/avatar/94b6cbe6ddd30b4cf6d179fa13e4e0bd?s=64&rating=PG&d=wavatar" width="64" height="64" alt=""><br /><sub><b>Zyebra</b></sub></a><br /><span title="bug">
@@ -712,10 +714,10 @@ null</span> </td>
 🐛</span> </td>
  <td align="center" width="0%"><a href=""><img src="https://stendhalgame.org/images/profile/marcospdsf.png" width="64" height="64" alt=""><br /><sub><b>marcospdsf</b></sub></a><br /><span title="ideas">
 🤔</span> </td>
- <td align="center" width="0%"><a href=""><img src="https://stendhalgame.org/images/profile/xkimetx.png" width="64" height="64" alt=""><br /><sub><b>kimet</b></sub></a><br /><span title="ideas">
-🤔</span> </td>
 </tr>
 <tr>
+ <td align="center" width="0%"><a href=""><img src="https://stendhalgame.org/images/profile/xkimetx.png" width="64" height="64" alt=""><br /><sub><b>kimet</b></sub></a><br /><span title="ideas">
+🤔</span> </td>
  <td align="center" width="0%"><a href="https://github.com/maxgmer"><img src="https://avatars0.githubusercontent.com/u/24964174" width="64" height="64" alt=""><br /><sub><b>maxgmer</b></sub></a><br /><span title="code">
 💻</span> </td>
  <td align="center" width="0%"><a href="https://stendhalgame.org/character/Dragon.html"><img src="https://stendhalgame.org/images/profile/Dragon.png" width="64" height="64" alt=""><br /><sub><b>nudelchef</b></sub></a><br /><span title="graphics">
