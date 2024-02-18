@@ -53,6 +53,7 @@ public class ClientView extends WebView {
 	private PageId previousPage;
 
 	private String stateId = "";
+	private String seed = "";
 
 
 	/**
@@ -213,6 +214,7 @@ public class ClientView extends WebView {
 	public void checkLoginIntent(final Intent intent) {
 		final Uri intentUri = intent.getData();
 		final String url = intentUri.getQueryParameter("url");
+		final String loginseed = intentUri.getQueryParameter("loginseed");
 		final String intentStateId = intentUri.getQueryParameter("state");
 		if (stateId == null || intentStateId == null || url == null || "".equals(stateId) || !stateId.equals(intentStateId)) {
 			final String err = "There was an error verifying login";
@@ -224,7 +226,8 @@ public class ClientView extends WebView {
 			}
 			return;
 		}
-		loadUrl(UrlHelper.checkClientUrl(url));
+		String completeUrl = url + "&loginseed=" + loginseed + seed;
+		loadUrl(UrlHelper.checkClientUrl(completeUrl));
 	}
 
 	/**
@@ -260,6 +263,7 @@ public class ClientView extends WebView {
 		testServer = false;
 		clientUrlSuffix = "client";
 		stateId = "";
+		seed = "";
 	}
 
 	/**
@@ -275,9 +279,9 @@ public class ClientView extends WebView {
 	/**
 	 * Generates a random string for identifying state.
 	 */
-	private String generateStateId() {
+	private String generateRandomString() {
 		// ensure state is reset before generating
-		stateId = "";
+		String result = "";
 
 		// useable characters
 		String charList = "0123456789";
@@ -292,9 +296,9 @@ public class ClientView extends WebView {
 		final Random rand = new Random();
 		final int ccount = charList.length();
 		for (int idx = 0; idx <= 20 ; idx++) {
-				stateId += charList.charAt(rand.nextInt(ccount));
+			result += charList.charAt(rand.nextInt(ccount));
 		}
-		return stateId;
+		return result;
 	}
 
 	@Override
@@ -306,6 +310,7 @@ public class ClientView extends WebView {
 			builder.appendQueryParameter("build", AppInfo.getBuildType());
 			builder.appendQueryParameter("version", AppInfo.getBuildVersion());
 			builder.appendQueryParameter("state", stateId);
+			builder.appendQueryParameter("seed", seed);
 		}
 		super.loadUrl(builder.toString());
 	}
@@ -426,7 +431,8 @@ public class ClientView extends WebView {
 	 */
 	private void onSelectServer() {
 		// create a unique state
-		this.generateStateId();
+		stateId = generateRandomString();
+		seed = generateRandomString();
 		// remove splash image
 		setSplashResource(android.R.color.transparent);
 
