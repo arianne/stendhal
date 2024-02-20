@@ -13,16 +13,28 @@
 package org.stendhalgame.client;
 
 
+/**
+ * App configuration information.
+ */
 class AppInfo {
 
+	/**
+	 * Retrieves configured build type string.
+	 */
 	public static String getBuildType() {
 		return MainActivity.get().getResources().getString(R.string.build_type);
 	}
 
+	/**
+	 * Retrieves configured build version string.
+	 */
 	public static String getBuildVersion() {
 		return MainActivity.get().getResources().getString(R.string.build_version);
 	}
 
+	/**
+	 * Retrieves configured intent URL scheme string.
+	 */
 	public static String getIntentUrlScheme() {
 		return MainActivity.get().getResources().getString(R.string.intent_url_scheme);
 	}

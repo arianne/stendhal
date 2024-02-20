@@ -21,18 +21,27 @@ import android.widget.Button;
 import android.widget.Toolbar;
 
 
+/**
+ * Main menu for navigation & configuration.
+ */
 public class Menu {
 
-	private static Menu instance;
-
+	/** Main activity context. */
 	private final Context ctx;
+	/** Toolbar representing menu. */
 	private final Toolbar nav;
 
 	private Button btn_connect;
 	private Button btn_title;
 	private Button btn_reload;
 
+	/** Static menu instance. */
+	private static Menu instance;
 
+
+	/**
+	 * Retrieves menu instance.
+	 */
 	public static Menu get() {
 		return instance;
 	}
@@ -42,7 +51,6 @@ public class Menu {
 		this.ctx = ctx;
 
 		nav = (Toolbar) ((Activity) ctx).findViewById(R.id.menu_main);
-
 		nav.setTag(nav.getVisibility());
 		nav.getViewTreeObserver().addOnGlobalLayoutListener(
 				new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -53,20 +61,30 @@ public class Menu {
 				}
 			}
 		});
-
 		initButtonHandlers();
-
 		Logger.debug("menu initialized");
 	}
 
+	/**
+	 * Retrieves the menu toolbar.
+	 */
 	public Toolbar getInternal() {
 		return nav;
 	}
 
+	/**
+	 * Shows or hides menu.
+	 *
+	 * @param vType
+	 *   Visibility type. One of `View.VISIBLE`, `View.INVISIBLE`, or `View.GONE`.
+	 */
 	public void setVisibility(final int vType) {
 		nav.setVisibility(vType);
 	}
 
+	/**
+	 * Toggles visible state of menu.
+	 */
 	public void toggleVisibility() {
 		if (nav.getVisibility() == View.GONE) {
 			nav.setVisibility(View.VISIBLE);
@@ -75,14 +93,23 @@ public class Menu {
 		}
 	}
 
+	/**
+	 * Sets menu visibility to visible.
+	 */
 	public void show() {
 		nav.setVisibility(View.VISIBLE);
 	}
 
+	/**
+	 * Sets menu visibility to hidden.
+	 */
 	public void hide() {
 		nav.setVisibility(View.GONE);
 	}
 
+	/**
+	 * Refreshes displayed menu buttons.
+	 */
 	public void updateButtons() {
 		final PageId page = ClientView.getCurrentPageId();
 
@@ -232,6 +259,9 @@ public class Menu {
 		updateButtons();
 	}
 
+	/**
+	 * Listener to handle menu button presses.
+	 */
 	private class ClickListener implements View.OnClickListener {
 		@Override
 		public void onClick(final View v) {

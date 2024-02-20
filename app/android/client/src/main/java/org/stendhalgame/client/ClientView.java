@@ -38,22 +38,32 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
 
+/**
+ * Interface to handle web content.
+ */
 public class ClientView extends WebView {
 
-	private static ClientView instance;
-
+	/** Image used as title page background. */
 	private ImageView splash;
 
+	/** Client URL path. */
 	private String clientUrlSuffix = "client";
 
+	/** Determines type of client to connect to. */
 	private boolean testClient = false;
+	/** Determines type of server to connect to. */
 	private boolean testServer = false;
 	private Boolean debugging;
+	/** ID of page currently loaded. */
 	private static PageId currentPage;
+	/** ID of page previously loaded. */
 	private PageId previousPage;
 
 	private String stateId = "";
 	private String seed = "";
+
+	/** Singleton instance. */
+	private static ClientView instance;
 
 
 	/**
@@ -63,21 +73,49 @@ public class ClientView extends WebView {
 		return instance;
 	}
 
+	/**
+	 * Creates a new view.
+	 *
+	 * @param ctx
+	 *   Activity Context to access application assets.
+	 */
 	public ClientView(final Context ctx) {
 		super(ctx);
 		onInit();
 	}
 
+	/**
+	 * Creates a new view.
+	 *
+	 * @param ctx
+	 *   Activity Context to access application assets.
+	 * @param attrs
+	 *   AttributeSet passed to parent (may be `null`).
+	 */
 	public ClientView(final Context ctx, final AttributeSet attrs) {
 		super(ctx, attrs);
 		onInit();
 	}
 
+	/**
+	 * Creates a new view.
+	 *
+	 * @param ctx
+	 *   Activity Context to access application assets.
+	 * @param attrs
+	 *   AttributeSet passed to parent (may be `null`).
+	 * @param style
+	 *   Attribute in the current theme that contains a reference to a style resource that supplies
+	 *   default values for the view (can be 0 to not look for defaults).
+	 */
 	public ClientView(final Context ctx, final AttributeSet attrs, final int style) {
 		super(ctx, attrs, style);
 		onInit();
 	}
 
+	/**
+	 * Initializes client WebView interface.
+	 */
 	private void onInit() {
 		instance = this;
 
@@ -110,13 +148,25 @@ public class ClientView extends WebView {
 		WebClientInfo.get();
 	}
 
+	/**
+	 * Initializes method overrides to handle page loading.
+	 */
 	private void initWebViewClient() {
 		// XXX: not sure setting WebChromClient is doing anything, was recommended to
 		//      fix touchmove events not registering
 		setWebChromeClient(new WebChromeClient());
 
 		setWebViewClient(new WebViewClient() {
-			/* handle changing URLs */
+			/**
+			 * Handles pages loaded indirectly.
+			 *
+			 * @param view
+			 *   The default WebView instance handling the request.
+			 * @param request
+			 *   Web request including the URL to be loaded.
+			 * @return
+			 *   `true` to abort default loading.
+			 */
 			@Override
 			public boolean shouldOverrideUrlLoading(final WebView view, final WebResourceRequest request) {
 				Uri uri = request.getUrl();
@@ -138,16 +188,33 @@ public class ClientView extends WebView {
 				return false;
 			}
 
+			/**
+			 * Called before a URL is loaded.
+			 *
+			 * @param view
+			 *   WebView instance handling page contents.
+			 * @param url
+			 *   HTTP string of target page.
+			 * @param favicon
+			 *   Favicon bitmap image.
+			 */
 			@Override
 			public void onPageStarted(final WebView view, final String url, final Bitmap favicon) {
 				MusicPlayer.stopMusic();
 				super.onPageStarted(view, url, favicon);
 			}
 
+			/**
+			 * Called after a URL is loaded.
+			 *
+			 * @param view
+			 *   WebView instance handling page contents.
+			 * @param url
+			 *   HTTP string of target page.
+			 */
 			@Override
 			public void onPageFinished(final WebView view, final String url) {
 				super.onPageFinished(view, url);
-
 				if (UrlHelper.isClientUrl(url)) {
 					setPage(PageId.WEBCLIENT);
 					WebClientInfo.get().onClientConnected();
@@ -160,7 +227,6 @@ public class ClientView extends WebView {
 					setPage(PageId.OTHER);
 				}
 				Menu.get().updateButtons();
-
 				Logger.debug("page id: " + currentPage);
 			}
 		});
@@ -172,7 +238,6 @@ public class ClientView extends WebView {
 	@Override
 	public boolean dispatchKeyEvent(final KeyEvent event) {
 		final boolean ret = super.dispatchKeyEvent(event);
-
 		// hide keyboard when "enter" pressed
 		if (ClientView.isGameActive() && event.getAction() == KeyEvent.ACTION_UP
 				&& event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
@@ -180,21 +245,32 @@ public class ClientView extends WebView {
 				.getSystemService(Context.INPUT_METHOD_SERVICE))
 				.hideSoftInputFromWindow(this.getWindowToken(), 0);
 		}
-
 		return ret;
 	}
 
 	/**
-	 * Handles downloading screenshot created by web client.
+	 * Initializes interface for handling screenshots.
 	 */
 	private void initDownloadHandler() {
 		setDownloadListener(new DownloadListener() {
+			/**
+			 * Handles downloading screenshot created by web client.
+			 *
+			 * @param url
+			 *   Content URL to the screenshot image.
+			 * @param userAgent
+			 *   User agent used for download.
+			 * @param contentDisposition
+			 *   Content-disposition HTTP header, if present.
+			 * @param mimetype
+			 *   Content type reported by server (web client creates PNG image).
+			 * @param contentLength
+			 *   File size reported by server.
+			 */
 			@Override
 			public void onDownloadStart(final String url, final String userAgent,
-					final String contentDisposition, final String mimetype,
-					final long contentLength) {
-
-				DownloadHandler handler = new DownloadHandler();
+					final String contentDisposition, final String mimetype, final long contentLength) {
+				final DownloadHandler handler = new DownloadHandler();
 				handler.download(url, mimetype);
 				if (handler.getResult()) {
 					final String msg = "Downloaded file: " + handler.getMessage();
@@ -210,7 +286,7 @@ public class ClientView extends WebView {
 	}
 
 	/**
-	 * Verifies intent state & load URI.
+	 * Verifies intent state & parses & loads target URL.
 	 *
 	 * @param intent
 	 *   Called login intent with state verification.
@@ -250,6 +326,12 @@ public class ClientView extends WebView {
 		return testServer;
 	}
 
+	/**
+	 * Retrieves a string representing the selected client.
+	 *
+	 * @return
+	 *   One of "main", "test", or "none".
+	 */
 	public String getSelectedClient() {
 		if (ClientView.onTitleScreen()) {
 			return "none";
@@ -257,6 +339,12 @@ public class ClientView extends WebView {
 		return testClient ? "test" : "main";
 	}
 
+	/**
+	 * Retrieves a string representing the selected server.
+	 *
+	 * @return
+	 *   One of "main", "test", or "none".
+	 */
 	public String getSelectedServer() {
 		if (ClientView.onTitleScreen()) {
 			return "none";
@@ -264,6 +352,9 @@ public class ClientView extends WebView {
 		return testServer ? "test" : "main";
 	}
 
+	/**
+	 * Resets selected client & server values to default.
+	 */
 	private void reset() {
 		testClient = false;
 		testServer = false;
@@ -355,7 +446,6 @@ public class ClientView extends WebView {
 			splash = (ImageView) MainActivity.get().findViewById(R.id.splash);
 			splash.setBackgroundColor(android.graphics.Color.TRANSPARENT);
 		}
-
 		splash.setImageResource(resId);
 	}
 
@@ -436,33 +526,60 @@ public class ClientView extends WebView {
 		Menu.get().hide();
 	}
 
+	/**
+	 * Checks if user has specified a URL pointing to a custom server/client.
+	 *
+	 * @return
+	 *   Server address specified in preferences or `null`.
+	 */
 	public String checkCustomServer() {
 		final String cs = PreferencesActivity.getString("client_url", "").trim();
-
 		if (cs.equals("")) {
 			return null;
 		}
-
 		return cs;
 	}
 
+	/**
+	 * Checks if title page is currently loaded.
+	 *
+	 * @return
+	 *   `true` if current page matches `PageId.TITLE`.
+	 */
 	public static boolean onTitleScreen() {
 		return currentPage == PageId.TITLE;
 	}
 
+	/**
+	 * Checks if web client page is currently loaded.
+	 *
+	 * @return
+	 *   `true` if current page matches `PageId.WEBCLIENT`.
+	 */
 	public static boolean isGameActive() {
 		return currentPage == PageId.WEBCLIENT;
 	}
 
+	/**
+	 * Retrieves ID of current page.
+	 *
+	 * @return
+	 *   Current `PageId`.
+	 */
 	public static PageId getCurrentPageId() {
 		return currentPage;
 	}
 
+	/**
+	 * Plays selected music.
+	 *
+	 * @param musicId
+	 *   String identifier of music to play or `null` to play music configured in preferences.
+	 */
 	public static void playTitleMusic(String musicId) {
 		if (musicId == null) {
 			musicId = PreferencesActivity.getString("song_list");
 		}
-
 		int id = R.raw.title_01;
 		switch (musicId) {
 			case "title_02":
@@ -478,12 +595,13 @@ public class ClientView extends WebView {
 				id = R.raw.title_05;
 				break;
 		}
-
 		Logger.debug("playing music: " + musicId);
-
 		MusicPlayer.playMusic(id, true);
 	}
 
+	/**
+	 * Plays music configured in preferences.
+	 */
 	public static void playTitleMusic() {
 		playTitleMusic(null);
 	}
@@ -506,19 +624,17 @@ public class ClientView extends WebView {
 	 * Checks if this is a debug build.
 	 *
 	 * @return
-	 *     <code>true</code> if debug flag set.
+	 *   `true` if debug flag set.
 	 */
 	public boolean debugEnabled() {
 		if (debugging != null) {
 			return debugging;
 		}
-
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 			debugging = (MainActivity.get().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
 		} else {
 			debugging = false;
 		}
-
 		return debugging;
 	}
 }

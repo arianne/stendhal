@@ -24,15 +24,25 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
 
+/**
+ * Interface for configuring app preferences.
+ */
 public class PreferencesActivity extends AppCompatActivity {
 
+	/** Preferences activity instance. */
 	private static PreferencesActivity instance;
 
 
+	/**
+	 * Retrieves preferences activity instance.
+	 */
 	public static PreferencesActivity get() {
 		return instance;
 	}
 
+	/**
+	 * Called when the activity is created.
+	 */
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -131,21 +141,18 @@ public class PreferencesActivity extends AppCompatActivity {
 			Notifier.showError(errMsg + "\n\nSee " + Logger.getLogsDir()
 				+ " for more information.");
 		}
-
 		return null;
 	}
 
 	@Override
 	public void finish() {
 		Logger.debug(PreferencesActivity.class.getName() + ".finish() called");
-
 		super.finish();
 	}
 
 	@Override
 	protected void onDestroy() {
 		Logger.debug(PreferencesActivity.class.getName() + ".onDestroy() called");
-
 		super.onDestroy();
 	}
 

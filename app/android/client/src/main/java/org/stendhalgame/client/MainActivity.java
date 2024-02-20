@@ -20,19 +20,34 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 
+/**
+ * Main app activity.
+ */
 public class MainActivity extends AppCompatActivity {
 
-	private static MainActivity instance;
-
+	/** WebView layout. */
 	private ConstraintLayout layout;
+	/** WebView instance. */
 	private ClientView client;
+	/** Menu instance. */
 	private Menu menu;
 
+	/** Static activity instance. */
+	private static MainActivity instance;
 
+
+	/**
+	 * Retrieves activity instance.
+	 *
+	 * NOTE: This may not be necessary if Android has built-in methods to retrieve current activity.
+	 */
 	public static MainActivity get() {
 		return instance;
 	}
 
+	/**
+	 * Called when main activity is created.
+	 */
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
 		try {
@@ -78,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
 		}
 	}
 
+	/**
+	 * Handles toggling menu when the system "back" button is pressed.
+	 */
 	@Override
 	public void onBackPressed() {
 		menu.toggleVisibility();
@@ -113,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	/**
-	 * Opens a dialog confirm exiting activity.
+	 * Opens a dialog to confirm exiting activity.
 	 */
 	public void onRequestQuit() {
 		final AlertDialog.Builder builder = new AlertDialog.Builder(client.getContext());
@@ -151,20 +169,27 @@ public class MainActivity extends AppCompatActivity {
 		//~ super.onConfigurationChanged(config);
 	//~ }
 
+	/**
+	 * Called when main activity ends.
+	 */
 	@Override
 	public void finish() {
 		Logger.debug(MainActivity.class.getName() + ".finish() called");
-
 		super.finish();
 	}
 
+	/**
+	 * Called when main activity is destroyed.
+	 */
 	@Override
 	protected void onDestroy() {
 		Logger.debug(MainActivity.class.getName() + ".onDestroy() called");
-
 		super.onDestroy();
 	}
 
+	/**
+	 * Creates preferences activity.
+	 */
 	public void showSettings() {
 		startActivity(new Intent(MainActivity.this, PreferencesActivity.class));
 	}
