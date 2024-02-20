@@ -174,8 +174,9 @@ export class RPEntity extends ActiveEntity {
 		}
 
 		if (marauroa.me.isInHearingRange(this, rangeSquared)) {
+			// TODO: convert text to UTF-8 character for native emojis
 			let emoji = singletons.getEmojiStore().create(text);
-			if (emoji) {
+			if (emoji && !stendhal.config.getBoolean("emojis.native")) {
 				this.addEmoji(emoji);
 				Chat.log("emoji", emoji, this.getTitle());
 			} else if (text.startsWith("!me")) {
