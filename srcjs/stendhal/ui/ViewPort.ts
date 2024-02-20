@@ -479,9 +479,6 @@ export class ViewPort {
 					stendhal.ui.actionContextMenu.set(ui.createSingletonFloatingWindow("Action",
 						new ActionContextMenu(entity, append), pos.pageX - 50, pos.pageY - 5));
 				}
-			} else if (stendhal.ui.touch.holding()) {
-				// FIXME: this may be unnecessary
-				stendhal.ui.gamewindow.onDrop(e);
 			} else {
 				entity.onclick(pos.canvasRelativeX, pos.canvasRelativeY);
 			}
@@ -513,10 +510,6 @@ export class ViewPort {
 			e.target.removeEventListener("mousemove", mHandle.onDrag);
 			e.target.removeEventListener("touchend", mHandle.onMouseUp);
 			e.target.removeEventListener("touchmove", mHandle.onDrag);
-
-			// clean up touch handler
-			stendhal.ui.touch.setHolding(false);
-			stendhal.ui.touch.unsetOrigin();
 		}
 
 		return mHandle._onMouseDown;
