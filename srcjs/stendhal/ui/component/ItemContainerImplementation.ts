@@ -31,6 +31,7 @@ export class ItemContainerImplementation {
 	private rightClickDuration = 300;
 	private timestampMouseDown = 0;
 	private timestampMouseDownPrev = 0;
+	private lastClickedId = "";
 
 	// marked for updating certain attributes
 	private dirty = false;
@@ -295,7 +296,11 @@ export class ItemContainerImplementation {
 	}
 
 	isDoubleClick(evt: MouseEvent) {
-		return (this.timestampMouseDown - this.timestampMouseDownPrev <= this.rightClickDuration);
+		if (this.timestampMouseDown - this.timestampMouseDownPrev <= this.rightClickDuration) {
+			return (stendhal.ui.html.extractTarget(event) as HTMLElement).id === this.lastClickedId;
+		}
+		this.lastClickedId = (stendhal.ui.html.extractTarget(event) as HTMLElement).id;
+		return false;
 	}
 
 	onMouseDown(event: MouseEvent|TouchEvent) {
