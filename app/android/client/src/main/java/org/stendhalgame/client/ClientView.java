@@ -231,6 +231,8 @@ public class ClientView extends WebView {
 			return;
 		}
 		String completeUrl = url + "&loginseed=" + loginseed + seed;
+		// server-side bug temporary workaround
+		completeUrl = completeUrl.replaceAll("^STENDHAL_LOGIN_TARGET/", UrlHelper.getDefaultServer());
 		loadUrl(UrlHelper.checkClientUrl(completeUrl));
 	}
 
