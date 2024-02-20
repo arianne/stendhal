@@ -57,30 +57,42 @@ export class HTMLManager {
 		return temp.charAt(0).toUpperCase() + temp.slice(1);
 	}
 
+	/**
+	 * Retrieves target element from event.
+	 */
+	extractTarget(event: any): EventTarget {
+		if (event.changedTouches) {
+			if (["touchmove", "touchend"].indexOf(event.type) > -1) {
+				// touch events target source element
+				for (const el of document.elementsFromPoint(event.changedTouches[0].pageX, event.changedTouches[0].pageY)) {
+					if (!el.classList.contains("notarget")) {
+						return el;
+					}
+				}
+			}
+			return event.changedTouches[0].target;
+		}
+		return event.target;
+	}
+
 	extractPosition(event: any): any {
 		let pos = event;
 
-		let canvas = event.target as HTMLCanvasElement;
+		const canvas = this.extractTarget(event) as HTMLCanvasElement;
 		if (event.changedTouches) {
 			pos = {
 				pageX: Math.round(event.changedTouches[0].pageX),
 				pageY: Math.round(event.changedTouches[0].pageY),
-				target: event.changedTouches[0].target
+				target: canvas
 			}
 			if (["touchmove", "touchend"].indexOf(event.type) > -1) {
 				// touch events target source element
-				for (const el of document.elementsFromPoint(pos.pageX, pos.pageY)) {
-					if (el.tagName === "CANVAS") {
-						canvas = el as HTMLCanvasElement;
-						break;
-					}
-				}
 				const rect = canvas.getBoundingClientRect();
 				pos.offsetX = pos.pageX - rect.left;
 				pos.offsetY = pos.pageY - rect.top;
 			} else {
-				pos.offsetX = pos.pageX - event.changedTouches[0].target.offsetLeft;
-				pos.offsetY = pos.pageY - event.changedTouches[0].target.offsetTop;
+				pos.offsetX = pos.pageX - canvas.offsetLeft;
+				pos.offsetY = pos.pageY - canvas.offsetTop;
 			}
 		}
 		pos.canvasRelativeX = Math.round(pos.offsetX * canvas.width / canvas.clientWidth);
