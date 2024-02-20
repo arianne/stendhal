@@ -131,4 +131,19 @@ export class HTMLManager {
 
 		return [pre, tally, post];
 	}
+
+	/**
+	 * Extracts slot name from element ID.
+	 *
+	 * @param id {string}
+	 *   Element's ID string.
+	 * @return {string}
+	 *   Slot name.
+	 */
+	parseSlotName(id: string): string {
+		if (id.includes("-")) {
+			return id.split("-")[0];
+		}
+		return id.replace(/[0-9]$/, "");
+	}
 }

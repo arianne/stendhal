@@ -236,36 +236,28 @@ export class ItemContainerImplementation {
 	private onDrop(event: DragEvent|TouchEvent) {
 		const myobject = this.object || marauroa.me;
 		if (stendhal.ui.heldObject) {
-			let id = (event.target as HTMLElement).id;
+			const pos = stendhal.ui.html.extractPosition(event);
+			const id = (pos.target as HTMLElement).id;
+			const targetSlot = stendhal.ui.html.parseSlotName(id);
 			if (event.type === "touchend" && stendhal.ui.touch.isDebuggingEnabled()) {
-				const pos = stendhal.ui.html.extractPosition(event);
-				// "touchend" targets source element of "touchstart" so need to find the actual target
-				const targets = document.elementsFromPoint(pos.pageX, pos.pageY) as HTMLElement[];
-				for (const target of targets) {
-					if (target.id === "gamewindow") {
-						stendhal.ui.gamewindow.onDrop(event);
-						event.stopPropagation();
-						event.preventDefault();
-						return;
-					}
-					// held object element may be in the way
-					if (target.id !== "held-object") {
-						id = target.id;
-						break;
-					}
+				if (id === "gamewindow") {
+					stendhal.ui.gamewindow.onDrop(event);
+					event.stopPropagation();
+					event.preventDefault();
+					return;
 				}
 			}
 
 			const action = {
 				"source_path": stendhal.ui.heldObject.path
 			} as any;
-			const sameSlot = stendhal.ui.heldObject.slot === this.slot;
+			const sameSlot = stendhal.ui.heldObject.slot === targetSlot;
 			if (sameSlot) {
 				action["type"] = "reorder";
 				action["new_position"] = this.parseIndex(id) || "" + (this.size - 1);
 			} else {
 				action["type"] = "equip";
-				action["target_path"] = "[" + myobject["id"] + "\t" + this.slot + "]";
+				action["target_path"] = "[" + myobject["id"] + "\t" + targetSlot + "]";
 				action["zone"] = stendhal.ui.heldObject.zone;
 			}
 
