@@ -120,11 +120,15 @@ public class ClientView extends WebView {
 			@Override
 			public boolean shouldOverrideUrlLoading(final WebView view, final WebResourceRequest request) {
 				Uri uri = request.getUrl();
-				if (UrlHelper.isIntentUri(uri)) {
-					// prevent returned login intent from opening browser
-					// TODO: when supported by server, login intent should open in external browser
-					uri = UrlHelper.toUri(UrlHelper.getCharacterSelectUrl());
-				} else if (!UrlHelper.isInternalUri(uri)) {
+				final Uri.Builder builder = uri.buildUpon();
+				if (UrlHelper.isLoginUri(uri)) {
+					builder.appendQueryParameter("build", AppInfo.getBuildType());
+					builder.appendQueryParameter("version", AppInfo.getBuildVersion());
+					builder.appendQueryParameter("state", stateId);
+					builder.appendQueryParameter("seed", seed);
+				}
+				uri = builder.build();
+				if (!UrlHelper.isInternalUri(uri)) {
 					// open external links in default browser/app
 					// FIXME: should we ask for confirmation?
 					MainActivity.get().startActivity(new Intent(Intent.ACTION_VIEW, uri));
@@ -301,18 +305,16 @@ public class ClientView extends WebView {
 		return result;
 	}
 
+	/**
+	 * Opens location in client WebView.
+	 *
+	 * @param url
+	 *   URL to load.
+	 */
 	@Override
 	public void loadUrl(final String url) {
 		Logger.debug("Loading URL: " + url);
-		final Uri uri = UrlHelper.toUri(url);
-		final Uri.Builder builder = uri.buildUpon();
-		if (UrlHelper.isLoginUri(uri)) {
-			builder.appendQueryParameter("build", AppInfo.getBuildType());
-			builder.appendQueryParameter("version", AppInfo.getBuildVersion());
-			builder.appendQueryParameter("state", stateId);
-			builder.appendQueryParameter("seed", seed);
-		}
-		super.loadUrl(builder.toString());
+		super.loadUrl(url);
 	}
 
 	/**
@@ -328,6 +330,8 @@ public class ClientView extends WebView {
 
 	/**
 	 * Attempts to connect to client host.
+	 *
+	 * FIXME: rename as it may cause confusion in regards to loading page "account/login.html"
 	 */
 	public void loadLogin() {
 		if (debugEnabled() && PreferencesActivity.getString("client_url").trim().equals("")) {
@@ -413,20 +417,6 @@ public class ClientView extends WebView {
 	}
 
 	/**
-	 * Retrieves initial page to load when connecting to remote server.
-	 *
-	 * @return
-	 *   Server URL.
-	 */
-	private String getInitialPage() {
-		final String customPage = checkCustomServer();
-		if (customPage != null) {
-			return customPage;
-		}
-		return UrlHelper.getDefaultServer() + "account/login.html";
-	}
-
-	/**
 	 * Connects to server & loads initial page.
 	 */
 	private void onSelectServer() {
@@ -436,7 +426,7 @@ public class ClientView extends WebView {
 		// remove splash image
 		setSplashResource(android.R.color.transparent);
 
-		final String initialPage = this.getInitialPage();
+		final String initialPage = UrlHelper.getInitialPageUrl();
 		Logger.debug("Loading initial page: " + initialPage);
 		loadUrl(initialPage);
 		setPage(PageId.OTHER);

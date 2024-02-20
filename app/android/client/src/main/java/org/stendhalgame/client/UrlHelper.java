@@ -178,14 +178,14 @@ class UrlHelper {
 	}
 
 	/**
-	 * Retrieves URL string for character select page.
+	 * Retrieves URL string for initial page to be loaded from server.
 	 *
 	 * If custom client URL is used then client URL is returned.
 	 *
 	 * @return
 	 *   HTTP URL string.
 	 */
-	public static String getCharacterSelectUrl() {
+	public static String getInitialPageUrl() {
 		final String custom_client = PreferencesActivity.getString("client_url").trim();
 		if (!custom_client.equals("")) {
 			return custom_client;
