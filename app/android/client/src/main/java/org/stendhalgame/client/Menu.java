@@ -47,6 +47,7 @@ public class Menu {
 	}
 
 	public Menu(final Context ctx) {
+		// FIXME: may be considered unsafe as this is not technically a singleton
 		instance = this;
 		this.ctx = ctx;
 

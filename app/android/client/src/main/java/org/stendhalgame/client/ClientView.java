@@ -117,6 +117,7 @@ public class ClientView extends WebView {
 	 * Initializes client WebView interface.
 	 */
 	private void onInit() {
+		// FIXME: may be considered unsafe as this is not technically a singleton
 		instance = this;
 
 		setBackgroundColor(android.graphics.Color.TRANSPARENT);

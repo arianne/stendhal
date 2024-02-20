@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 	protected void onCreate(final Bundle savedInstanceState) {
 		try {
 			super.onCreate(savedInstanceState);
+			// FIXME: may be considered unsafe as this is not technically a singleton
 			instance = this;
 
 			// initialize debug logging mechanism
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 			updateOrientation();
 
 			setContentView(R.layout.activity_main);
+			// FIXME: is this used?
 			layout = (ConstraintLayout) findViewById(R.id.content);
 			client = (ClientView) findViewById(R.id.clientWebView);
 			menu = new Menu(client.getContext());

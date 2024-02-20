@@ -46,6 +46,7 @@ public class PreferencesActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		// FIXME: may be considered unsafe as this is not technically a singleton
 		instance = this;
 
 		// use same orientation as main activity
