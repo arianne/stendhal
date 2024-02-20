@@ -20,9 +20,9 @@ import { Point } from "../util/Point";
  */
 export interface HeldObject {
 	[index: string]: any;
-	slot: string,
 	zone: string,
 	path: string,
+	slot?: string,
 	quantity?: number,
 	origin?: Point
 }

@@ -12,6 +12,7 @@
 declare var marauroa: any;
 declare var stendhal: any;
 
+import { HeldObject } from "./HeldObject";
 import { ui } from "./UI";
 import { UIComponentEnum } from "./UIComponentEnum";
 
@@ -36,6 +37,7 @@ import { SpeechBubble } from "../sprite/SpeechBubble";
 import { TextBubble } from "../sprite/TextBubble";
 
 import { Chat } from "../util/Chat";
+import { Point } from "../util/Point";
 
 
 /**
@@ -573,16 +575,17 @@ export class ViewPort {
 		}
 
 		var img = undefined;
+		let heldObject: HeldObject;
 		if (draggedEntity && draggedEntity.type === "item") {
 			img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(draggedEntity.sprite.filename), 32, 32);
-			stendhal.ui.heldObject = {
+			heldObject = {
 				path: draggedEntity.getIdPath(),
 				zone: marauroa.currentZoneName,
 				quantity: draggedEntity.hasOwnProperty("quantity") ? draggedEntity["quantity"] : 1
 			}
 		} else if (draggedEntity && draggedEntity.type === "corpse") {
 			img = stendhal.data.sprites.get(draggedEntity.sprite.filename);
-			stendhal.ui.heldObject = {
+			heldObject = {
 				path: draggedEntity.getIdPath(),
 				zone: marauroa.currentZoneName,
 				quantity: 1
@@ -590,6 +593,13 @@ export class ViewPort {
 		} else {
 			e.preventDefault();
 			return;
+		}
+
+		if (stendhal.ui.touch.isTouchEvent(e)) {
+			singletons.getHeldObjectManager().set(heldObject, img, new Point(pos.pageX, pos.pageY));
+			stendhal.ui.touch.setHolding(true);
+		} else {
+			stendhal.ui.heldObject = heldObject;
 		}
 
 		if (e.dataTransfer) {
@@ -615,29 +625,39 @@ export class ViewPort {
 	onDrop(e: DragEvent) {
 		if (stendhal.ui.heldObject) {
 			var pos = stendhal.ui.html.extractPosition(e);
-			var action = {
-				"x": Math.floor((pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX) / 32).toString(),
-				"y": Math.floor((pos.canvasRelativeY + stendhal.ui.gamewindow.offsetY) / 32).toString(),
+			const targetSlot = stendhal.ui.html.parseSlotName((pos.target as HTMLElement).id);
+			const action: any = {
 				"zone": stendhal.ui.heldObject.zone
-			} as any;
+			};
+			if (targetSlot === "gamewindow") {
+				action.x = Math.floor((pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX) / 32).toString();
+				action.y = Math.floor((pos.canvasRelativeY + stendhal.ui.gamewindow.offsetY) / 32).toString();
 
-			var id = stendhal.ui.heldObject.path.substr(1, stendhal.ui.heldObject.path.length - 2);
-			var drop = /\t/.test(id);
-			if (drop) {
-				action["type"] = "drop";
-				action["source_path"] = stendhal.ui.heldObject.path;
+				var id = stendhal.ui.heldObject.path.substr(1, stendhal.ui.heldObject.path.length - 2);
+				var drop = /\t/.test(id);
+				if (drop) {
+					action["type"] = "drop";
+					action["source_path"] = stendhal.ui.heldObject.path;
+				} else {
+					action["type"] = "displace";
+					action["baseitem"] = id;
+				}
 			} else {
-				action["type"] = "displace";
-				action["baseitem"] = id;
+				// NOTE: should we check if object is corpse before dropping in inventory
+				action["type"] = "equip";
+				action["source_path"] = stendhal.ui.heldObject.path;
+				action["target_path"] = "[" + marauroa.me["id"] + "\t" + targetSlot + "]";
 			}
 
 			const quantity = stendhal.ui.heldObject.quantity;
+			const sourceSlot = stendhal.ui.heldObject.slot || "gamewindow";
 			// item was dropped
 			stendhal.ui.heldObject = undefined;
 
 			const touch_held = stendhal.ui.touch.holding() && quantity > 1;
 			// if ctrl is pressed or holding stackable item from touch event, we ask for the quantity
-			if (e.ctrlKey || touch_held) {
+			// NOTE: don't create selector if touch source is ground
+			if (e.ctrlKey || (touch_held && sourceSlot !== targetSlot)) {
 				ui.createSingletonFloatingWindow("Quantity", new DropQuantitySelectorDialog(action, touch_held), pos.pageX - 50, pos.pageY - 25);
 			} else {
 				singletons.getHeldObjectManager().onRelease();
