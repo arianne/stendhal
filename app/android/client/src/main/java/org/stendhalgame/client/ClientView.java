@@ -185,7 +185,7 @@ public class ClientView extends WebView {
 					return true;
 				}
 				view.loadUrl(UrlHelper.checkClientUrl(uri.toString()));
-				return false;
+				return true;
 			}
 
 			/**
