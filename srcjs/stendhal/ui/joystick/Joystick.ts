@@ -160,8 +160,13 @@ export class Joystick extends JoystickImpl {
 	 * Updates joystick positioning based on configured center X & Y coordinates.
 	 */
 	public override update() {
-		this.outer.style.left = (Joystick.getCenterX() - this.radius) + "px";
-		this.outer.style.top = (Joystick.getCenterY() - this.radius) + "px";
+		const centerX = Joystick.getCenterX();
+		const centerY = Joystick.getCenterY();
+		this.outer.style.left = (centerX - this.radius) + "px";
+		this.outer.style.top = (centerY - this.radius) + "px";
+		// we could call `updateInner` but there is no need for calling checks to keep inside radius here
+		this.inner.style.left = (centerX - Math.floor(this.inner.width / 2)) + "px";
+		this.inner.style.top = (centerY - Math.floor(this.inner.height / 2)) + "px";
 	}
 
 	/**
