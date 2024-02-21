@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -80,6 +80,7 @@ public class SeedTest {
 	@Test
 	public void testExecuteSeedInBag() {
 		final Seed seed = (Seed) SingletonRepository.getEntityManager().getItem("seed");
+		seed.setItemData("pansy");
 		final Player player = PlayerTestHelper.createPlayer("bob");
 		assertNotNull(player);
 		final StendhalRPZone zone = new StendhalRPZone("zone");
@@ -92,8 +93,22 @@ public class SeedTest {
 
 		assertNotNull(seed);
 		player.equip("bag", seed);
+		player.setPosition(1, 0);
 
-		assertFalse(seed.onUsed(player));
+		assertTrue(seed.onUsed(player));
+
+		FlowerGrower flg = null;
+		for (final Entity ent: player.getZone().getEntitiesAt(1, 0)) {
+			if (ent instanceof FlowerGrower) {
+				flg = (FlowerGrower) ent;
+				break;
+			}
+		}
+		assertNotNull(flg);
+		flg.setToFullGrowth();
+		flg.onUsed(player);
+		assertFalse(player.getZone().getEntitiesAt(1, 0).contains(flg));
+		assertTrue(player.isEquipped("pansy"));
 	}
 
 	/**
