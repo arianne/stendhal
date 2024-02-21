@@ -126,8 +126,8 @@ export class WeatherRenderer {
 			}
 
 			const canvas = document.getElementById("viewport") as HTMLCanvasElement;
-			this.tilesX = Math.ceil(canvas.width / spriteH);
-			this.tilesY = Math.ceil(canvas.height / spriteH);
+			this.tilesX = Math.ceil(canvas.width / spriteH) + 1;
+			this.tilesY = Math.ceil(canvas.height / spriteH) + 1;
 
 			if (weatherLoops[weather]) {
 				this.audio = soundMan.playGlobalizedLoop("weather/" + weather,
@@ -163,14 +163,16 @@ export class WeatherRenderer {
 
 			// width & height dimensions should be the same
 			const dim = this.sprite.height;
+			const clipLeft = stendhal.ui.gamewindow.offsetX % dim;
+			const clipTop = stendhal.ui.gamewindow.offsetY % dim;
 			for (let ix = 0; ix < this.tilesX; ix++) {
 				for (let iy = 0; iy < this.tilesY; iy++) {
 					ctx.drawImage(this.sprite,
 							this.sprite.frames[this.frameIdx]*dim,
 							0,
 							dim, dim,
-							(ix*dim)+stendhal.ui.gamewindow.offsetX,
-							(iy*dim)+stendhal.ui.gamewindow.offsetY,
+							(ix*dim)+stendhal.ui.gamewindow.offsetX-clipLeft,
+							(iy*dim)+stendhal.ui.gamewindow.offsetY-clipTop,
 							dim, dim);
 				}
 			}

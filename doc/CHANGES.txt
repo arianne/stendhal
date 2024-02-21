@@ -45,6 +45,7 @@ Changelog
 - supports displaying members' HP status in group panel
 - fixed group panel not always showing membership after login
 - supports touch drag-and-drop from ground to inventory
+- fixed weather drawing to not appear to move with player
 
 *desktop client (non-Java)*
 - experimental desktop interface for the web client using Neutralinojs
