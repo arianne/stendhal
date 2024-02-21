@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,9 +9,11 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Entity } from "./Entity";
-
 declare var stendhal: any;
+
+import { Entity } from "./Entity";
+import { MenuItem } from "../action/MenuItem";
+
 
 export class UseableEntity extends Entity {
 	override zIndex = 3000
@@ -40,4 +42,14 @@ export class UseableEntity extends Entity {
 		return true;
 	}
 
+	override buildActions(list: MenuItem[]) {
+		super.buildActions(list);
+		// FIXME: Java client adds "look" to Entity super class. Should this do the same? If so, there
+		//        is an issue where certain entities, such as signs, end up with two options, "read" &
+		//        "look" which do the same thing.
+		const lookItem = {title: "Look", type: "look"} as MenuItem;
+		if (list.indexOf(lookItem) < 0) {
+			list.push(lookItem);
+		}
+	}
 }
