@@ -47,6 +47,7 @@ export class SettingsDialog extends DialogContentComponent {
 
 		this.initialStates = {
 			"effect.blood": stendhal.config.get("effect.blood"),
+			"effect.weather": stendhal.config.get("effect.weather")
 		};
 
 
