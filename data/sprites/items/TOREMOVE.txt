@@ -1,3 +1,4 @@
 The following can be removed after 1.46 release:
 
+- food/salad.png
 - resource/iron.png
