@@ -42,9 +42,6 @@ import { Point } from "../util/Point";
 
 /**
  * game window aka world view
- *
- * @todo
- *   Change element ID from "gamewindow" to "viewport".
  */
 export class ViewPort {
 
@@ -126,7 +123,7 @@ export class ViewPort {
 	 *   Viewport `HTMLElement`.
 	 */
 	public getElement(): HTMLElement {
-		return document.getElementById("gamewindow")!;
+		return document.getElementById("viewport")!;
 	}
 
 	/**
@@ -629,7 +626,7 @@ export class ViewPort {
 			const action: any = {
 				"zone": stendhal.ui.heldObject.zone
 			};
-			if (targetSlot === "gamewindow") {
+			if (targetSlot === "viewport") {
 				action.x = Math.floor((pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX) / 32).toString();
 				action.y = Math.floor((pos.canvasRelativeY + stendhal.ui.gamewindow.offsetY) / 32).toString();
 
@@ -650,7 +647,7 @@ export class ViewPort {
 			}
 
 			const quantity = stendhal.ui.heldObject.quantity;
-			const sourceSlot = stendhal.ui.heldObject.slot || "gamewindow";
+			const sourceSlot = stendhal.ui.heldObject.slot || "viewport";
 			// item was dropped
 			stendhal.ui.heldObject = undefined;
 

@@ -116,7 +116,7 @@ export class QuickMenu {
 	public static refresh() {
 		// place buttons in upper-right corner of viewport
 		const btn_main = QuickMenu.getElement();
-		const rect = document.getElementById("gamewindow")!.getBoundingClientRect();
+		const rect = document.getElementById("viewport")!.getBoundingClientRect();
 
 		let drawLeft = rect.right - btn_main.width;
 		let drawTop = rect.top;

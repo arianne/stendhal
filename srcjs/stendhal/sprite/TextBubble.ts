@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -100,7 +100,7 @@ export abstract class TextBubble {
 	}
 
 	onClick(evt: MouseEvent) {
-		const screenRect = document.getElementById("gamewindow")!
+		const screenRect = document.getElementById("viewport")!
 				.getBoundingClientRect();
 		const pointX = evt.clientX - screenRect.x
 				+ stendhal.ui.gamewindow.offsetX;

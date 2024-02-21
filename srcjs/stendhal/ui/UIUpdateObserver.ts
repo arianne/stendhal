@@ -52,12 +52,12 @@ export class UIUpdateObserver {
 		this.vpRectObserver = new MutationObserver((mutations: MutationRecord[]) => {
 			this.onViewPortUpdate();
 		});
-		this.vpRectObserver.observe(document.getElementById("gamewindow")!,
+		this.vpRectObserver.observe(document.getElementById("viewport")!,
 				{attributes: true, attributeFilter: ["left", "right", "top", "bottom", "width", "height"]});
 		this.vpScaleObserver = new ResizeObserver((entries: ResizeObserverEntry[], observer: ResizeObserver) => {
 			this.onViewPortUpdate();
 		});
-		this.vpScaleObserver.observe(document.getElementById("gamewindow")!);
+		this.vpScaleObserver.observe(document.getElementById("viewport")!);
 
 		// listen for changes to screen orientation
 		screen.orientation.addEventListener("change", (e) => {

@@ -125,7 +125,7 @@ export class WeatherRenderer {
 				console.log("using failsafe sprite height: " + spriteH);
 			}
 
-			const canvas = document.getElementById("gamewindow") as HTMLCanvasElement;
+			const canvas = document.getElementById("viewport") as HTMLCanvasElement;
 			this.tilesX = Math.ceil(canvas.width / spriteH);
 			this.tilesY = Math.ceil(canvas.height / spriteH);
 

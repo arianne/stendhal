@@ -43,7 +43,7 @@ export class AchievementBanner extends TextBubble {
 		this.duration = TextBubble.STANDARD_DUR * 4;
 
 		const gamewindow =
-				<HTMLCanvasElement> document.getElementById("gamewindow")!;
+				<HTMLCanvasElement> document.getElementById("viewport")!;
 
 		const td = this.getTextDimensions(gamewindow.getContext("2d")!);
 		this.innerWidth = td.width + this.padding; // add padding between icon & text

@@ -315,7 +315,7 @@ div.logcolR {
 	text-align: right;
 }
 
-#gamewindow {
+#viewport {
 	display: block;
 /*
 	max-height: calc(100vh - 5em);

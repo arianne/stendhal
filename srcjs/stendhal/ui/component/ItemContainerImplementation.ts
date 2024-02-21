@@ -241,7 +241,7 @@ export class ItemContainerImplementation {
 			const id = (pos.target as HTMLElement).id;
 			const targetSlot = stendhal.ui.html.parseSlotName(id);
 			if (event.type === "touchend" && stendhal.ui.touch.isDebuggingEnabled()) {
-				if (id === "gamewindow") {
+				if (id === "viewport") {
 					stendhal.ui.gamewindow.onDrop(event);
 					event.stopPropagation();
 					event.preventDefault();
@@ -365,7 +365,7 @@ export class ItemContainerImplementation {
 		// clean up item held via touch
 		stendhal.ui.touch.setHolding(false);
 
-		document.getElementById("gamewindow")!.focus();
+		document.getElementById("viewport")!.focus();
 	}
 
 	private onMouseEnter(evt: MouseEvent) {

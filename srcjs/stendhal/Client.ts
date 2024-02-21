@@ -135,7 +135,9 @@ export class Client {
 		stendhal.ui.equip = singletons.getInventory();
 		stendhal.ui.html = singletons.getHTMLManager();
 		stendhal.ui.touch = singletons.getTouchHandler();
-		stendhal.ui.gamewindow = singletons.getViewPort();
+		stendhal.ui.viewport = singletons.getViewPort();
+		// alias for backward-compat until changed in all source
+		stendhal.ui.gamewindow = stendhal.ui.viewport;
 		stendhal.ui.soundMan = singletons.getSoundManager();
 	}
 
@@ -196,7 +198,7 @@ export class Client {
 		stendhal.data.sprites.startupCache();
 		singletons.getSoundManager().startupCache();
 
-		if (document.getElementById("gamewindow")) {
+		if (document.getElementById("viewport")) {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
 		}
 	}
@@ -338,7 +340,7 @@ export class Client {
 		};
 
 		// update user interface on perceptions
-		if (document.getElementById("gamewindow")) {
+		if (document.getElementById("viewport")) {
 			// override perception listener
 			marauroa.perceptionListener = new PerceptionListener(marauroa.perceptionListener);
 			marauroa.perceptionListener.onPerceptionEnd = function(_type: Int8Array, _timestamp: number) {
@@ -409,7 +411,7 @@ export class Client {
 
 		document.getElementById("body")!.addEventListener("mouseenter", stendhal.main.onMouseEnter);
 
-		var gamewindow = document.getElementById("gamewindow")!;
+		var gamewindow = document.getElementById("viewport")!;
 		gamewindow.setAttribute("draggable", "true");
 		gamewindow.addEventListener("mousedown", stendhal.ui.gamewindow.onMouseDown);
 		gamewindow.addEventListener("dblclick", stendhal.ui.gamewindow.onMouseDown);
