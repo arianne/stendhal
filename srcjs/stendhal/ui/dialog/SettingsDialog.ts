@@ -53,11 +53,8 @@ export class SettingsDialog extends DialogContentComponent {
 
 		/* *** left panel *** */
 
-		const chk_light = this.createCheckBox("chk_light", "effect.lighting",
-				"Lighting effects are enabled", "Lighting effects are disabled")!;
-		// FIXME: lighting effects not yet supported
-		chk_light.disabled = true;
-		chk_light.parentElement!.title = "Lighting effects not currently supported";
+		this.createCheckBox("chk_light", "effect.lighting",
+				"Lighting effects are enabled", "Lighting effects are disabled");
 
 		this.createCheckBox("chk_weather", "effect.weather",
 				"Weather is enabled", "Weather is disabled", function() {

@@ -41,7 +41,8 @@ export class ConfigManager {
 		"chat-opts.custom": "",
 		"click-indicator": "false",
 		"effect.blood": "true",
-		"effect.lighting": "true",
+		// TODO: change default to "true" when ready
+		"effect.lighting": "false",
 		"effect.weather": "true",
 		"effect.no-nude": "true",
 		"effect.shadows": "true",

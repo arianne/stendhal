@@ -178,7 +178,7 @@ export class ViewPort {
 	 * - doesn't support "blend" layers
 	 */
 	applyFilter() {
-		if (DebugAction.coloring && this.filter) {
+		if (this.filter && stendhal.config.getBoolean("effect.lighting")) {
 			// FIXME: wrong colors
 			this.ctx.filter = this.filter;
 		}
