@@ -298,6 +298,7 @@ hamsausage.png           thekingphoenix, Jordan Irwin (AntumDeluge); CC0; Stendh
 honey.png                bleutailfly; OGA BY 3.0; Stendhal
 icecream.png             thekingphoenix; CC0; https://opengameart.org/node/77345
 leek.png                 Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+lettuce.png              bluecarrot16; CC0; https://opengameart.org/node/98209
 licorice.png             tigertoes; CC BY-SA 3.0; Stendhal; Based on rope by Xenodora from OGA, Modded and Committed by tigertoes
 mackerel.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 meat.png                 Dungeon Crawl Stone Soup; CC0; https://opengameart.org/node/12210, https://crawl.develz.org/wordpress/
@@ -315,7 +316,6 @@ porcini.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 potato.png               Jordan Irwin (AntumDeluge); CC0; Stendhal, https://commons.wikimedia.org/wiki/File:Potatoes.jpg
 red-lionfish.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 roach.png                Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-salad.png                bluecarrot16; CC0; https://opengameart.org/node/98209
 sandwich.png             Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 sausage.png              thekingphoenix, Jordan Irwin (AntumDeluge); CC0; Stendhal, https://opengameart.org/node/77345
 sausage_on_bun.png       thekingphoenix; CC0; https://opengameart.org/node/77345

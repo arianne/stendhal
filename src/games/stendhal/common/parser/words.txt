@@ -596,7 +596,7 @@ lavitae	OBJ-NAM	lavitaes
 leek	OBJ-FOO	leeks
 leg	OBJ	legs
 letter	OBJ	letters
-lettuce OBJ =salad lettuces
+lettuce	OBJ-FOO	lettuces
 level	OBJ	levels
 liberty	OBJ	liberties
 library	OBJ	libraries
@@ -752,7 +752,7 @@ rose	OBJ	roses
 rug	OBJ	rugs
 sack	OBJ	sacks
 safety	OBJ	safeties
-salad	OBJ-FOO	salads
+salad	OBJ-FOO =lettuce	salads
 sanctuary	OBJ	sanctuaries
 sandwich	OBJ-FOO	sandwiches
 sapphire	OBJ	sapphires

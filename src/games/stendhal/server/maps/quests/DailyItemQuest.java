@@ -220,7 +220,7 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("porcini",10);
 		items.put("red lionfish",5);
 		items.put("roach",5);
-		items.put("salad",10);
+		items.put("lettuce",10);
 		items.put("sandwich",5);
 		items.put("spinach",5);
 		items.put("surgeonfish",5);

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -251,7 +251,7 @@ public class PassiveEntityRespawnPointFactory implements ConfigurableFactory {
 			passiveEntityrespawnPoint.put("menu", "Pick|Use");
 			break;
 		case 2:
-			passiveEntityrespawnPoint = new VegetableGrower("salad");
+			passiveEntityrespawnPoint = new VegetableGrower("lettuce");
 			break;
 		case 3:
 			passiveEntityrespawnPoint = new VegetableGrower("broccoli");

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -57,7 +57,7 @@ public class ObtainAchievementsFactory extends AbstractAchievementFactory {
 			"Harvest 3 of all vegetables that grow in Faiumoni",
 			Achievement.EASY_BASE_SCORE, true,
 			new PlayerHasHarvestedNumberOfItemsCondition(3,
-				"carrot", "salad", "broccoli", "cauliflower", "leek",
+				"carrot", "lettuce", "broccoli", "cauliflower", "leek",
 				"onion", "courgette", "spinach", "collard", "garlic", "artichoke")));
 
 		// fruit harvest achievement

@@ -566,9 +566,9 @@
 		</equipable>
 	</item>
 
-	<item name="salad">
-		<type class="food" subclass="salad" tileid="vegetable.png:2"/>
-		<description>You see a salad.</description>
+	<item name="lettuce">
+		<type class="food" subclass="lettuce" tileid="vegetable.png:2"/>
+		<description/>
 		<implementation class-name="games.stendhal.server.entity.item.Food"/>
 		<attributes>
 			<amount value="30"/>

@@ -383,10 +383,10 @@ public class GrammarTest {
 		testPluralisationAndSingularisation("pieces of cheese",
 				"piece of cheese");
 		testPluralisationAndSingularisation("carrots", "carrot");
-		testPluralisationAndSingularisation("salads", "salad");
 		testPluralisationAndSingularisation("apples", "apple");
 		testPluralisationAndSingularisation("loaves of bread",
 				"loaf of bread");
+		testPluralisationAndSingularisation("heads of lettuce", "head of lettuce");
 		testPluralisationAndSingularisation("chunks of meat", "chunk of meat");
 		testPluralisationAndSingularisation("pieces of ham", "ham");
 		testPluralisationAndSingularisation("sandwiches", "sandwich");

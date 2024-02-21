@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -66,7 +66,7 @@ public class SoupTest {
 		en.step(player, "revive");
 		assertEquals("My special soup has a magic touch. I need you to bring me the #ingredients.", getReply(npc));
 		en.step(player, "ingredients");
-		assertEquals("I need 9 ingredients before I make the soup: #carrot, #spinach, #courgette, #collard, #salad, #onion, #cauliflower, #broccoli, and #leek. Will you collect them?", getReply(npc));
+		assertEquals("I need 9 ingredients before I make the soup: #carrot, #spinach, #courgette, #collard, #lettuce, #onion, #cauliflower, #broccoli, and #leek. Will you collect them?", getReply(npc));
 		en.step(player, "no");
 		assertEquals("Oh, never mind. It's your loss.", getReply(npc));
 		en.step(player, "bye");
@@ -76,7 +76,7 @@ public class SoupTest {
 		en.step(player, "revive");
 		assertEquals("My special soup has a magic touch. I need you to bring me the #ingredients.", getReply(npc));
 		en.step(player, "ingredients");
-		assertEquals("I need 9 ingredients before I make the soup: #carrot, #spinach, #courgette, #collard, #salad, #onion, #cauliflower, #broccoli, and #leek. Will you collect them?", getReply(npc));
+		assertEquals("I need 9 ingredients before I make the soup: #carrot, #spinach, #courgette, #collard, #lettuce, #onion, #cauliflower, #broccoli, and #leek. Will you collect them?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("You made a wise choice. Do you have anything I need already?", getReply(npc));
 		en.step(player, "yes");
@@ -89,7 +89,7 @@ public class SoupTest {
 		assertEquals("Bye.", getReply(npc));
 		// [16:51] Removed contained home scroll item with ID 6 from bag
 		// [16:52] You see spinach. It is enriched with vitamins. Stats are (HP: 30).
-		// summon all except salad and onion in player's bag
+		// summon all except lettuce and onion in player's bag
 		PlayerTestHelper.equipWithItem(player, "carrot");
 		PlayerTestHelper.equipWithItem(player, "spinach");
 		PlayerTestHelper.equipWithItem(player, "courgette");
@@ -100,16 +100,16 @@ public class SoupTest {
 		en.step(player, "hi");
 		assertEquals("Welcome back! I hope you collected some #ingredients for the soup, or #everything.", getReply(npc));
 		en.step(player, "everything");
-		assertEquals("You didn't have all the ingredients I need. I still need 2 ingredients: #salad and #onion. You'll get bad karma if you keep making mistakes like that!", getReply(npc));
+		assertEquals("You didn't have all the ingredients I need. I still need 2 ingredients: #lettuce and #onion. You'll get bad karma if you keep making mistakes like that!", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 		en.step(player, "hi");
 		assertEquals("Welcome back! I hope you collected some #ingredients for the soup, or #everything.", getReply(npc));
 		en.step(player, "ingredients");
-		assertEquals("I still need 2 ingredients: #salad and #onion. Did you bring anything I need?", getReply(npc));
-		PlayerTestHelper.equipWithItem(player, "salad");
+		assertEquals("I still need 2 ingredients: #lettuce and #onion. Did you bring anything I need?", getReply(npc));
+		PlayerTestHelper.equipWithItem(player, "lettuce");
 		PlayerTestHelper.equipWithItem(player, "onion");
-		en.step(player, "salad");
+		en.step(player, "lettuce");
 		assertEquals("Thank you very much! What else did you bring?", getReply(npc));
 		en.step(player, "onion");
 		// [16:52] madmetzger earns 20 experience points.

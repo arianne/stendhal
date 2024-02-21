@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2020-2023 - Arianne                      *
+ *                    Copyright © 2020-2024 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -33,7 +33,7 @@ public class ObtainAchievementsFactoryTest extends AchievementTestHelper {
 	private Player player;
 
 	private final String[] allVeggie = {
-		"carrot", "salad", "broccoli", "cauliflower", "leek", "onion",
+		"carrot", "lettuce", "broccoli", "cauliflower", "leek", "onion",
 		"courgette", "spinach", "collard", "garlic", "artichoke"
 	};
 	private final String[] allFruit = {

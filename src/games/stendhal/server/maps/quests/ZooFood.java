@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -170,7 +170,7 @@ public class ZooFood extends AbstractQuest {
 		items.put("meat",15);
 		items.put("porcini",5);
 		items.put("roach",3);
-		items.put("salad",10);
+		items.put("lettuce",10);
 		items.put("spinach",5);
 
 

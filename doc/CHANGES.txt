@@ -5,7 +5,9 @@ Changelog
 1.46
 
 *world*
-- renamed "iron" item to "iron bar"
+- renamed items:
+  - "iron" to "iron bar"
+  - "salad" to "lettuce"
 - fixed many NPCs not responding to certain chat options
 - normalized spelling of some words to American English in most NPC dialogues
   - "colour" -> "color"

@@ -273,7 +273,7 @@
 	-->
 	<shop name="buyveggiesandherbs" type="buy">
 		<item name="carrot" price="5" />
-		<item name="salad" price="10" />
+		<item name="lettuce" price="10" />
 		<item name="leek" price="25" />
 		<item name="broccoli" price="30" />
 		<item name="courgette" price="10" />

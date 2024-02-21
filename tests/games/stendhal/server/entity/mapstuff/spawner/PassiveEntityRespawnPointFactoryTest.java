@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -201,7 +201,7 @@ public class PassiveEntityRespawnPointFactoryTest {
 				.create(clazz, 2, null, 0, 0);
 		assertNotNull(value_2);
 		assertTrue(value_2 instanceof VegetableGrower);
-		assertEquals("salad", ((VegetableGrower) value_2).getVegetableName());
+		assertEquals("lettuce", ((VegetableGrower) value_2).getVegetableName());
 
 		PassiveEntityRespawnPoint value_3 = PassiveEntityRespawnPointFactory
 				.create(clazz, 3, null, 0, 0);
