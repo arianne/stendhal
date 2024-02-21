@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -48,60 +48,74 @@ public class Seed extends StackableItem {
 
 	@Override
 	public boolean onUsed(final RPEntity user) {
+		// user player's position if in inventory
+		int pos_x = user.getX();
+		int pos_y = user.getY();
 		if (!this.isContained()) {
 			// the seed is on the ground, but not next to the player
 			if (!this.nextTo(user)) {
 				user.sendPrivateText("The " + this.getName() + " is too far away");
 				return false;
 			}
+			// use seed's location if on ground
+			pos_x = this.getX();
+			pos_y = this.getY();
+		}
+		return sow(user, pos_x, pos_y);
+	}
 
-			final StendhalRPZone userZone = user.getZone();
-			final int pos_x = this.getX();
-			final int pos_y = this.getY();
-
-			boolean fertile = false;
-			for (final Entity ent: userZone.getEntitiesAt(pos_x, pos_y)) {
-				if (ent instanceof FertileGround) {
-					// check for fertile ground
-					fertile = true;
-				} else if (ent instanceof FlowerGrower) {
-					// check if we are overwriting another flower grower so seeds are not wasted & don't
-					// allow infinite sowing in one spot
-					user.sendPrivateText("There is already something growing there.");
-					return false;
-				}
-			}
-			if (!fertile) {
-				// don't waste seeds on infertile ground
-				user.sendPrivateText("The ground is infertile.");
+	/**
+	 * Plants a seed in ground.
+	 *
+	 * @param sower
+	 *   Entity that is sowing seed.
+	 * @param x
+	 *   Map position on X axis where seed is to be sown.
+	 * @param y
+	 *   Map position on Y axis where seed is to be sown.
+	 * @return
+	 *   `true` if seed was sown.
+	 */
+	private boolean sow(final RPEntity sower, final int x, final int y) {
+		final StendhalRPZone zone = sower.getZone();
+		boolean fertile = false;
+		for (final Entity ent: zone.getEntitiesAt(x, y)) {
+			if (ent instanceof FertileGround) {
+				// check for fertile ground
+				fertile = true;
+			} else if (ent instanceof FlowerGrower) {
+				// check if we are overwriting another flower grower so seeds are not wasted & don't
+				// allow infinite sowing in one spot
+				sower.sendPrivateText("There is already something growing there.");
 				return false;
 			}
-
-			// the itemdata of the seed stores what it should grow
-			final String itemdata = this.getItemData();
-			FlowerGrower flowerGrower;
-			// choose the default flower grower if there is none set
-			if (itemdata == null) {
-				flowerGrower = new FlowerGrower();
-			} else {
-				flowerGrower = new FlowerGrower(itemdata);
-			}
-			userZone.add(flowerGrower);
-			// add the FlowerGrower where the seed was on the ground
-			flowerGrower.setPosition(pos_x, pos_y);
-			// The first stage of growth happens almost immediately
-			TurnNotifier.get().notifyInTurns(3, flowerGrower);
-			// remove the seed now that it is planted
-			this.removeOne();
-			if (user instanceof Player) {
-				// XXX: should this increment only after flower grower has fully ripened?
-				((Player) user).incSownForItem(flowerGrower.getItemName(), 1);
-			}
-			return true;
 		}
-		// the seed was 'contained' in a slot and so it cannot be planted
-		user.sendPrivateText("You have to put the " + this.getName() + " on the ground to plant it, silly!");
-		return false;
+		if (!fertile) {
+			// don't waste seeds on infertile ground
+			sower.sendPrivateText("The ground is infertile.");
+			return false;
+		}
+
+		// the itemdata of the seed stores what it should grow
+		final String itemdata = this.getItemData();
+		FlowerGrower flowerGrower;
+		// choose the default flower grower if there is none set
+		if (itemdata == null) {
+			flowerGrower = new FlowerGrower();
+		} else {
+			flowerGrower = new FlowerGrower(itemdata);
+		}
+		zone.add(flowerGrower);
+		// add the FlowerGrower where the seed was on the ground
+		flowerGrower.setPosition(x, y);
+		// The first stage of growth happens almost immediately
+		TurnNotifier.get().notifyInTurns(3, flowerGrower);
+		// remove the seed now that it is planted
+		this.removeOne();
+		if (sower instanceof Player) {
+			((Player) sower).incSownForItem(flowerGrower.getItemName(), 1);
+		}
+		return true;
 	}
 
 	@Override

@@ -18,6 +18,7 @@ Changelog
 - Orchiwald will stop after entity collision instead of reversing path
 - foghorn sounds plays when ferry arrives at mainland & island
 - added commerce sound to more NPCs when exchanging money for items/services
+- seeds can be used from inventory
 
 *graphics*
 - redrawn placeholder tiles in Oni Palace
