@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -299,7 +299,13 @@ export class Entity extends RPObject {
 	}
 
 	onclick(x: number, y: number) {
-		marauroa.clientFramework.sendAction(this.getDefaultAction());
+		const action = this.getDefaultAction();
+		if (action.type === "moveto") {
+			// call `User.moveTo` so viewport can be unfrozen
+			marauroa.me.moveTo(action);
+			return;
+		}
+		marauroa.clientFramework.sendAction(action);
 	}
 
 	/**

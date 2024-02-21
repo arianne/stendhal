@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,6 +22,7 @@ import { GroupInviteEvent } from "./event/GroupInviteEvent";
 import { ProgressStatusEvent } from "./event/ProgressStatusEvent";
 import { RPEvent } from "./event/RPEvent";
 import { TradeEvent } from "./event/TradeEvent";
+import { ViewChangeEvent } from "./event/ViewChangeEvent";
 
 import { ui } from "./ui/UI";
 
@@ -405,11 +406,7 @@ export class EventRegistry {
 			}
 		}); // transition_graph
 
-		this.register("view_change", {
-			execute: function(rpobject: RPObject) {
-				// TODO: new ViewChangeEvent();
-			}
-		}); // view_change
+		this.register("view_change", new ViewChangeEvent());
 	}
 
 	/**

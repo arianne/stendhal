@@ -229,7 +229,7 @@ export class MiniMapComponent extends Component {
 				action["double_click"] = "";
 			}
 
-			marauroa.clientFramework.sendAction(action);
+			marauroa.me.moveTo(action);
 		}
 	}
 

@@ -49,6 +49,8 @@ export class ViewPort {
 	private offsetX = 0;
 	/** Vertical screen offset in pixels. */
 	private offsetY = 0;
+	/** Prevents adjusting offset based on player position. */
+	private freeze = false;
 	/** Time of most recent redraw. */
 	private timeStamp = Date.now();
 
@@ -274,8 +276,14 @@ export class ViewPort {
 		this.ctx.setTransform(1, 0, 0, 1, 0, 0);
 
 		// Coordinates for a screen centered on player
-		var centerX = marauroa.me["_x"] * this.targetTileWidth + this.targetTileWidth / 2 - canvas.width / 2;
-		var centerY = marauroa.me["_y"] * this.targetTileHeight + this.targetTileHeight / 2 - canvas.height / 2;
+		let centerX: number, centerY: number;
+		if (this.freeze) {
+			centerX = this.offsetX + this.targetTileWidth / 2;
+			centerY = this.offsetY + this.targetTileHeight / 2;
+		} else {
+			centerX = marauroa.me["_x"] * this.targetTileWidth + this.targetTileWidth / 2 - canvas.width / 2;
+			centerY = marauroa.me["_y"] * this.targetTileHeight + this.targetTileHeight / 2 - canvas.height / 2;
+		}
 
 		// Keep the world within the screen view
 		centerX = Math.min(centerX, stendhal.data.map.zoneSizeX * this.targetTileWidth - canvas.width);
@@ -284,6 +292,10 @@ export class ViewPort {
 		centerY = Math.min(centerY, stendhal.data.map.zoneSizeY * this.targetTileHeight - canvas.height);
 		centerY = Math.max(centerY, 0);
 
+		if (this.freeze) {
+			this.ctx.translate(-Math.round(centerX), -Math.round(centerY));
+			return;
+		}
 		this.offsetX = Math.round(centerX);
 		this.offsetY = Math.round(centerY);
 		this.ctx.translate(-this.offsetX, -this.offsetY);

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -78,6 +78,6 @@ export class Ground {
 		if (extend) {
 			action.extend = extend;
 		}
-		marauroa.clientFramework.sendAction(action);
+		marauroa.me.moveTo(action);
 	}
 }
