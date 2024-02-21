@@ -99,16 +99,20 @@ export abstract class TextBubble {
 		return this.clips(x, x, y, y);
 	}
 
-	onClick(evt: MouseEvent) {
-		const screenRect = document.getElementById("viewport")!
-				.getBoundingClientRect();
-		const pointX = evt.clientX - screenRect.x
-				+ stendhal.ui.gamewindow.offsetX;
-		const pointY = evt.clientY - screenRect.y
-				+ stendhal.ui.gamewindow.offsetY + TextBubble.adjustY;
-
+	/**
+	 * Executed when viewport is clicked/tapped to detect text bubble boundaries & remove.
+	 *
+	 * @param evt
+	 *   Mouse or touch event executed on canvas context.
+	 */
+	onClick(evt: MouseEvent|TouchEvent) {
+		const pos = stendhal.ui.html.extractPosition(evt);
+		const screenRect = document.getElementById("viewport")!.getBoundingClientRect();
+		const pointX = pos.clientX - screenRect.x + stendhal.ui.gamewindow.offsetX;
+		const pointY = pos.clientY - screenRect.y + stendhal.ui.gamewindow.offsetY + TextBubble.adjustY;
 		if (this.clipsPoint(pointX, pointY)) {
 			evt.stopPropagation();
+			// remove when clicked or tapped
 			stendhal.ui.gamewindow.removeTextBubble(this, pointX, pointY);
 		}
 	}
@@ -116,20 +120,24 @@ export abstract class TextBubble {
 	/**
 	 * Action to execute when sprite is added to viewport.
 	 *
-	 * Adds a listener to remove sprite with mouse click.
+	 * Adds a listener to remove sprite with mouse click or touch.
 	 *
 	 * @param ctx
+	 *   Canvas context on which text bubble is drawn.
 	 */
 	onAdded(ctx: CanvasRenderingContext2D) {
 		// prevent multiple listeners from being added
 		if (typeof(this.onRemovedAction) === "undefined") {
 			// add click listener to remove chat bubble
-			const listener = (e: MouseEvent) => {
+			const listener = (e: MouseEvent|TouchEvent) => {
+				// FIXME: should only execute if click/touch hasn't moved too far
 				this.onClick(e);
-			}
+			};
 			ctx.canvas.addEventListener("click", listener);
+			ctx.canvas.addEventListener("touchend", listener);
 			this.onRemovedAction = function() {
 				ctx.canvas.removeEventListener("click", listener);
+				ctx.canvas.removeEventListener("touchend", listener);
 			};
 		}
 	}
