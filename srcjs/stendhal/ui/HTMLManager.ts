@@ -83,6 +83,8 @@ export class HTMLManager {
 			pos = {
 				pageX: Math.round(event.changedTouches[0].pageX),
 				pageY: Math.round(event.changedTouches[0].pageY),
+				clientX: Math.round(event.changedTouches[0].clientX),
+				clientY: Math.round(event.changedTouches[0].clientY),
 				target: canvas
 			}
 			if (["touchmove", "touchend"].indexOf(event.type) > -1) {
