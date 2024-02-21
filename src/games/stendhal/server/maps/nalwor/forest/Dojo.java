@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   Copyright © 2003-2020 - Arianne                       *
+ *                 Copyright © 2003-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -104,6 +104,8 @@ public class Dojo implements ZoneConfigurator {
 		samurai.setEntityClass("samurai1npc");
 		samurai.setIdleDirection(Direction.DOWN);
 		samurai.setPosition(24, 74);
+
+		samurai.addKnownChatOptions("train");
 
 		dojoZone.add(samurai);
 	}
