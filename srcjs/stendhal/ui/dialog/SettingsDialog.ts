@@ -58,13 +58,12 @@ export class SettingsDialog extends DialogContentComponent {
 		chk_light.disabled = true;
 		chk_light.parentElement!.title = "Lighting effects not currently supported";
 
-		const chk_weather = this.createCheckBox("chk_weather", "effect.weather",
+		this.createCheckBox("chk_weather", "effect.weather",
 				"Weather is enabled", "Weather is disabled", function() {
 					if (clog) {
 						clog.addLine("client", "Weather changes will take effect after you change maps.");
 					}
 				})!;
-		chk_weather.parentElement!.title = "Weather effects not currently supported";
 
 		const sd = this;
 		this.createCheckBox("chk_blood", "effect.blood",
