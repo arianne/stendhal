@@ -237,4 +237,37 @@ export class User extends Player {
 	public stop() {
 		marauroa.clientFramework.sendAction({type: "stop"});
 	}
+
+	/**
+	 * Sends a pathfinding action to server.
+	 *
+	 * @param action {object}
+	 *   Action definition.
+	 */
+	public moveTo(action: object): void;
+	/**
+	 * Sends a pathfinding action to server.
+	 *
+	 * @param x {number}
+	 *   Target position X coordinate.
+	 * @param y {number}
+	 *   Target position Y coordinate.
+	 * @param zone {string}
+	 *   User's zone.
+	 */
+	public moveTo(x: number, y: number, zone?: string): void;
+	public moveTo(p1: object|number, p2?: number, p3?:string) {
+		let action: any = {};
+		if (typeof(p1) === "object") {
+			action = p1;
+		} else {
+			action.x = p1.toString();
+			action.y = p2!.toString();
+			if (p3) {
+				action.zone = p3;
+			}
+		}
+		action.type = "moveto";
+		marauroa.clientFramework.sendAction(action);
+	}
 }
