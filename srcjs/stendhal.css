@@ -531,6 +531,11 @@ div.logcolR {
 	padding: 1em
 }
 
+.shortcuts-dialog {
+	min-width: 20em;
+	max-width: 37em;
+}
+
 .shopsign {
 	min-width: 35em;
 	max-width: 40em;

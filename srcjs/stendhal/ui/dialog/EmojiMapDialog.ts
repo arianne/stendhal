@@ -61,6 +61,8 @@ export class EmojiMapDialog extends DialogContentComponent {
 		"👎",
 		"👋"
 	];
+
+	/** Property determining if dialog will be loaded with built-in or native emojis. */
 	private readonly sysEmojis: boolean;
 
 
@@ -75,15 +77,9 @@ export class EmojiMapDialog extends DialogContentComponent {
 		if (!this.sysEmojis) {
 			emojiList = emojiStore.getEmojiList();
 		}
-		let idx = 0;
-		let row: HTMLDivElement = document.createElement("div");
+		const row: HTMLDivElement = document.createElement("div");
 		this.componentElement.appendChild(row);
 		for (const emoji of emojiList) {
-			if (idx > 0 && idx % 13 == 0) {
-				// new row
-				row = document.createElement("div");
-				this.componentElement.appendChild(row);
-			}
 			const button = document.createElement("button");
 			button.classList.add("shortcut-button", "emoji-text");
 			if (!this.sysEmojis) {
@@ -95,7 +91,6 @@ export class EmojiMapDialog extends DialogContentComponent {
 				this.onButtonPressed(emoji);
 			});
 			row.appendChild(button);
-			idx++;
 		}
 	}
 

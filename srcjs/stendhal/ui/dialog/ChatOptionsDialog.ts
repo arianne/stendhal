@@ -75,14 +75,9 @@ export class ChatOptionsDialog extends DialogContentComponent {
 			this.componentElement.appendChild(titleElement);
 		}
 
-		let row: HTMLDivElement = document.createElement("div");
+		const row: HTMLDivElement = document.createElement("div");
 		this.componentElement.appendChild(row);
 		for (let idx = 0; idx < options.length; idx++) {
-			if (idx > 0 && idx % 13 == 0) {
-				// new row
-				row = document.createElement("div");
-				this.componentElement.appendChild(row);
-			}
 			const keyword = options[idx];
 			const button = document.createElement("button");
 			button.className = "shortcut-button";
