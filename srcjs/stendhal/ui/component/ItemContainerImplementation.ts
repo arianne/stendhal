@@ -297,6 +297,8 @@ export class ItemContainerImplementation {
 
 	isDoubleClick(evt: MouseEvent) {
 		if (this.timestampMouseDown - this.timestampMouseDownPrev <= this.rightClickDuration) {
+			// reset so subsequent single clicks/taps aren't counted
+			this.timestampMouseDown = 0;
 			return (stendhal.ui.html.extractTarget(event) as HTMLElement).id === this.lastClickedId;
 		}
 		this.lastClickedId = (stendhal.ui.html.extractTarget(event) as HTMLElement).id;
