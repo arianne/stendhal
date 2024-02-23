@@ -209,7 +209,7 @@ export class ItemContainerImplementation {
 	 * Handles displaying an icon for objects dragged with touch.
 	 */
 	private onTouchMove(event: TouchEvent) {
-		if (!stendhal.ui.touch.isDebuggingEnabled() || stendhal.ui.heldObject) {
+		if (stendhal.ui.heldObject) {
 			return;
 		}
 		this.onDragStart(event);
@@ -247,13 +247,11 @@ export class ItemContainerImplementation {
 			const pos = stendhal.ui.html.extractPosition(event);
 			const id = (pos.target as HTMLElement).id;
 			const targetSlot = stendhal.ui.html.parseSlotName(id);
-			if (event.type === "touchend" && stendhal.ui.touch.isDebuggingEnabled()) {
-				if (id === "viewport") {
-					stendhal.ui.gamewindow.onDrop(event);
-					event.stopPropagation();
-					event.preventDefault();
-					return;
-				}
+			if (event.type === "touchend" && id === "viewport") {
+				stendhal.ui.gamewindow.onDrop(event);
+				event.stopPropagation();
+				event.preventDefault();
+				return;
 			}
 
 			let objectId = myobject["id"];

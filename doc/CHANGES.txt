@@ -47,7 +47,7 @@ Changelog
 - fixed continuous movement state not always updated at startup
 - supports displaying members' HP status in group panel
 - fixed group panel not always showing membership after login
-- supports touch drag-and-drop from ground to inventory
+- added support for touch drag-and-drop
 - fixed weather drawing to not appear to move with player
 - fixed subsequent single clicks on items to not count as double after double click
 - fixed deathmatch scrying orbs

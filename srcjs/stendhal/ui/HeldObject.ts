@@ -71,6 +71,8 @@ export class HeldObjectManager {
 	/**
 	 * Sets global held object & image to display.
 	 *
+	 * NOTE: currently this should only be used with touch events
+	 *
 	 * @param obj {ui.HeldObject.HeldObject}
 	 *   Object considered to be "held".
 	 * @param img {HTMLImageElement|string}
@@ -90,9 +92,8 @@ export class HeldObjectManager {
 	 * @param pos {util.Point.Point}
 	 *   Initial position of displayed image.
 	 */
-	public onSet(pos?: Point) {
-		const debugging = stendhal.ui.touch.isDebuggingEnabled();
-		if (debugging && pos) {
+	private onSet(pos?: Point) {
+		if (pos) {
 			this.setPosition(pos.x, pos.y);
 		} else {
 			const rect = stendhal.ui.gamewindow.getElement().getBoundingClientRect();
@@ -100,10 +101,8 @@ export class HeldObjectManager {
 		}
 		this.setVisible(true);
 
-		if (debugging) {
-			document.body.addEventListener("touchmove", this.onDragWhileHeld);
-			document.body.addEventListener("touchend", this.onReleaseWhileHeld);
-		}
+		document.body.addEventListener("touchmove", this.onDragWhileHeld);
+		document.body.addEventListener("touchend", this.onReleaseWhileHeld);
 	}
 
 	/**
