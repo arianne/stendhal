@@ -62,7 +62,7 @@ import marauroa.common.game.IRPZone;
 public class Soup extends AbstractQuest {
 
 	private static final List<String> NEEDED_FOOD = Arrays.asList("carrot",
-			"spinach", "courgette", "collard", "lettuce", "onion", "cauliflower",
+			"spinach", "zucchini", "collard", "lettuce", "onion", "cauliflower",
 			"broccoli", "leek");
 
 	private static final String QUEST_SLOT = "soup_maker";
@@ -212,7 +212,7 @@ public class Soup extends AbstractQuest {
 		// players asks about the vegetables individually
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
-			Arrays.asList("spinach", "courgette", "onion", "cauliflower", "broccoli", "leek"),
+			Arrays.asList("spinach", "zucchini", "onion", "cauliflower", "broccoli", "leek"),
 			null,
 			ConversationStates.QUEST_OFFERED,
 			"You will find that in allotments in Fado. So will you fetch the ingredients?",

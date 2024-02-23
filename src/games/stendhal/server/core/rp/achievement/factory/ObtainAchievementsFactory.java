@@ -58,7 +58,7 @@ public class ObtainAchievementsFactory extends AbstractAchievementFactory {
 			Achievement.EASY_BASE_SCORE, true,
 			new PlayerHasHarvestedNumberOfItemsCondition(3,
 				"carrot", "lettuce", "broccoli", "cauliflower", "leek",
-				"onion", "courgette", "spinach", "collard", "garlic", "artichoke")));
+				"onion", "zucchini", "spinach", "collard", "garlic", "artichoke")));
 
 		// fruit harvest achievement
 		achievements.add(createAchievement(

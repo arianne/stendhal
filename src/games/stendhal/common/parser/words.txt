@@ -410,8 +410,7 @@ cookie	OBJ-FOO	cookies
 cost	OBJ	costs
 costume	OBJ	costumes
 coupon	OBJ	coupons
-courgette	OBJ-FOO	courgettes
-zucchini OBJ-FOO =courgette zucchinis
+courgette	OBJ-FOO =zucchini	courgettes
 cow	OBJ-ANI	cows
 cream	OBJ	creams
 creature	OBJ	creatures
@@ -918,6 +917,7 @@ yrafear	OBJ-NAM	yrafears
 zant OBJ =zantedeschia zants
 zantedeschia	OBJ	zantedeschias
 zone	OBJ	zones
+zucchini	OBJ-FOO	zucchinis
 
 abe	SUB-NAM
 adena SUB-NAM

@@ -66,7 +66,7 @@ public class SoupTest {
 		en.step(player, "revive");
 		assertEquals("My special soup has a magic touch. I need you to bring me the #ingredients.", getReply(npc));
 		en.step(player, "ingredients");
-		assertEquals("I need 9 ingredients before I make the soup: #carrot, #spinach, #courgette, #collard, #lettuce, #onion, #cauliflower, #broccoli, and #leek. Will you collect them?", getReply(npc));
+		assertEquals("I need 9 ingredients before I make the soup: #carrot, #spinach, #zucchini, #collard, #lettuce, #onion, #cauliflower, #broccoli, and #leek. Will you collect them?", getReply(npc));
 		en.step(player, "no");
 		assertEquals("Oh, never mind. It's your loss.", getReply(npc));
 		en.step(player, "bye");
@@ -76,7 +76,7 @@ public class SoupTest {
 		en.step(player, "revive");
 		assertEquals("My special soup has a magic touch. I need you to bring me the #ingredients.", getReply(npc));
 		en.step(player, "ingredients");
-		assertEquals("I need 9 ingredients before I make the soup: #carrot, #spinach, #courgette, #collard, #lettuce, #onion, #cauliflower, #broccoli, and #leek. Will you collect them?", getReply(npc));
+		assertEquals("I need 9 ingredients before I make the soup: #carrot, #spinach, #zucchini, #collard, #lettuce, #onion, #cauliflower, #broccoli, and #leek. Will you collect them?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("You made a wise choice. Do you have anything I need already?", getReply(npc));
 		en.step(player, "yes");
@@ -92,7 +92,7 @@ public class SoupTest {
 		// summon all except lettuce and onion in player's bag
 		PlayerTestHelper.equipWithItem(player, "carrot");
 		PlayerTestHelper.equipWithItem(player, "spinach");
-		PlayerTestHelper.equipWithItem(player, "courgette");
+		PlayerTestHelper.equipWithItem(player, "zucchini");
 		PlayerTestHelper.equipWithItem(player, "collard");
 		PlayerTestHelper.equipWithItem(player, "cauliflower");
 		PlayerTestHelper.equipWithItem(player, "broccoli");

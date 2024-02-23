@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -168,7 +168,7 @@ public class HotelChefNPC implements ZoneConfigurator {
 				//around fado, plenty of the stuff
 				addReply(
 						Arrays.asList(
-								"garlic", "onion", "carrot", "courgette"),
+								"garlic", "onion", "carrot", "zucchini"),
 						"Very Easy! Check in Fado surroundings...");
 
 				//dropped by easy critters, goblins, orcs, kalavan housewives, cannibals

@@ -201,7 +201,7 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("chocolate bar",5);
 		items.put("clownfish",5);
 		items.put("collard",5);
-		items.put("courgette",5);
+		items.put("zucchini",5);
 		items.put("egg",1);
 		items.put("fairy cake", 5);
 		items.put("fish pie",1);

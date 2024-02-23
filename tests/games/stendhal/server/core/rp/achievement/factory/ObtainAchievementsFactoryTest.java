@@ -34,7 +34,7 @@ public class ObtainAchievementsFactoryTest extends AchievementTestHelper {
 
 	private final String[] allVeggie = {
 		"carrot", "lettuce", "broccoli", "cauliflower", "leek", "onion",
-		"courgette", "spinach", "collard", "garlic", "artichoke"
+		"zucchini", "spinach", "collard", "garlic", "artichoke"
 	};
 	private final String[] allFruit = {
 		"apple", "banana", "cherry", "coconut", "grapes", "olive", "pear",

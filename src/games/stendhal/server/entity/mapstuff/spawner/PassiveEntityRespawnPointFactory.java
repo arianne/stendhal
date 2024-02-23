@@ -269,7 +269,7 @@ public class PassiveEntityRespawnPointFactory implements ConfigurableFactory {
 			passiveEntityrespawnPoint = new VegetableGrower("onion");
 			break;
 		case 8:
-			passiveEntityrespawnPoint = new VegetableGrower("courgette");
+			passiveEntityrespawnPoint = new VegetableGrower("zucchini");
 			break;
 		case 9:
 			passiveEntityrespawnPoint = new VegetableGrower("spinach");

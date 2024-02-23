@@ -282,7 +282,6 @@ cod.png                  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 cod_smoked.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 collard.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 corn.*                   ScratchIO, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/99282
-courgette.png            Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 crab_meat.*              Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/20711
 crepesuzette.png         omero; CC BY-SA 3.0; Stendhal
 easter_egg.png           dStulle; CC0; https://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
@@ -332,6 +331,7 @@ tuna_sandwich.png        Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 unknown_fish.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 vanillashake.png         tigertoes; CC BY-SA 3.0; Stendhal
 watermelon.png           RedQueen; OGA BY 3.0; Stendhal
+zucchini.png             Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 data/sprites/items/food/furniture
 
@@ -347,7 +347,6 @@ carrot_grower.png           Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 cauliflower_grower.png      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 chinese_cabbage_grower.png  Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 collard_grower.png          Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-courgette_grower.png        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 daisies_grower.png          Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 egg_grower.png              dStulle; CC0; https://openclipart.org/detail/6695, https://freesvg.org/vector-illustration-of-white-egg
 garlic_grower.png           omero; CC BY-SA 3.0; Stendhal
@@ -368,6 +367,7 @@ tomato_grower.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 watermelon_grower.png       RedQueen; OGA BY 3.0; Stendhal
 wood_grower.png             Katie Russell (kymara); GPL 2.0 or newer; Stendhal
 zantedeschia_grower.png     omero; CC BY-SA 3.0; Stendhal
+zucchini_grower.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 
 data/sprites/items/helmet/
 

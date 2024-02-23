@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -591,7 +591,7 @@ public class MealForGroongo extends AbstractQuest {
 		final HashMap<String, Pair<Integer, Integer>> requiredIngredients_couscous = new HashMap<String, Pair<Integer, Integer>>();
 		requiredIngredients_couscous.put("flour", new Pair<Integer, Integer>(3,9));
 		requiredIngredients_couscous.put("beer", new Pair<Integer, Integer>(3,9));
-		requiredIngredients_couscous.put("courgette", new Pair<Integer, Integer>(3,9));
+		requiredIngredients_couscous.put("zucchini", new Pair<Integer, Integer>(3,9));
 		requiredIngredients_couscous.put("onion", new Pair<Integer, Integer>(3,9));
 		requiredIngredients_couscous.put("garlic", new Pair<Integer, Integer>(3,9));
 		requiredIngredients_couscous.put("vinegar", new Pair<Integer, Integer>(1,3));
