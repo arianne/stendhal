@@ -1,4 +1,6 @@
 The following can be removed after 1.46 release:
 
+- food/courgette.png
 - food/salad.png
+- grower/courgette_grower.png
 - resource/iron.png
