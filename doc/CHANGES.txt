@@ -6,6 +6,7 @@ Changelog
 
 *world*
 - renamed items:
+  - "courgette" to "zucchini"
   - "iron" to "iron bar"
   - "salad" to "lettuce"
 - fixed many NPCs not responding to certain chat options
