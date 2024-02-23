@@ -28,8 +28,6 @@ import { QuickMenuButton } from "./quickmenu/QuickMenuButton";
 import { Client } from "../Client";
 import { singletons } from "../SingletonRepo";
 
-import { DebugAction } from "../action/DebugAction";
-
 import { AchievementBanner } from "../sprite/AchievementBanner";
 import { EmojiSprite } from "../sprite/EmojiSprite";
 import { NotificationBubble } from "../sprite/NotificationBubble";
