@@ -155,13 +155,10 @@ export class ItemContainerImplementation {
 
 	private onDragStart(event: DragEvent|TouchEvent) {
 		let myobject = this.object || marauroa.me;
-		if (!myobject[this.slot]) {
+		// some mobile browsers such as Chrome call "dragstart" via long touch
+		if (!myobject[this.slot] || (event.type === "dragstart" && stendhal.ui.touch.isTouchEngaged())) {
 			event.preventDefault();
 			return;
-		}
-		// some mobile browsers such as Chrome call "dragstart" via long touch
-		if (stendhal.ui.touch.isTouchEngaged()) {
-			event.preventDefault();
 		}
 
 		let target
