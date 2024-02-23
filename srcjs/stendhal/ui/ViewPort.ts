@@ -652,10 +652,17 @@ export class ViewPort {
 					action["baseitem"] = id;
 				}
 			} else {
-				// NOTE: should we check if object is corpse before dropping in inventory
+				let objectId = marauroa.me["id"];
+				if (e.type === "touchend" && targetSlot === "content") {
+					// find the actual target ID for touch events
+					const container = stendhal.ui.equip.getByElement(stendhal.ui.html.extractTarget(event).parentElement!);
+					if (container && container.object) {
+						objectId = container.object.id;
+					}
+				}
 				action["type"] = "equip";
 				action["source_path"] = stendhal.ui.heldObject.path;
-				action["target_path"] = "[" + marauroa.me["id"] + "\t" + targetSlot + "]";
+				action["target_path"] = "[" + objectId + "\t" + targetSlot + "]";
 			}
 
 			const quantity = stendhal.ui.heldObject.quantity;

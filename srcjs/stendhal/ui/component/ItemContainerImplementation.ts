@@ -256,6 +256,20 @@ export class ItemContainerImplementation {
 				}
 			}
 
+			let objectId = myobject["id"];
+			if (event.type === "touchend") {
+				// find the actual target ID for touch events
+				if (targetSlot === "content") {
+					const container = stendhal.ui.equip.getByElement(stendhal.ui.html.extractTarget(event).parentElement!);
+					if (container && container.object) {
+						objectId = container.object.id;
+					}
+				} else {
+					// moving from content container (corpse, chest) to player container (bag, keyring, etc.)
+					objectId = marauroa.me["id"];
+				}
+			}
+
 			const action = {
 				"source_path": stendhal.ui.heldObject.path
 			} as any;
@@ -265,7 +279,7 @@ export class ItemContainerImplementation {
 				action["new_position"] = this.parseIndex(id) || "" + (this.size - 1);
 			} else {
 				action["type"] = "equip";
-				action["target_path"] = "[" + myobject["id"] + "\t" + targetSlot + "]";
+				action["target_path"] = "[" + objectId + "\t" + targetSlot + "]";
 				action["zone"] = stendhal.ui.heldObject.zone;
 			}
 
