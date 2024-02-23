@@ -90,6 +90,16 @@ export class ItemContainerImplementation {
 	}
 
 	/**
+	 * Retrieves the inventory component element associated with this container.
+	 *
+	 * @return {HTMLElement}
+	 *   Parent element.
+	 */
+	public getParentElement(): HTMLElement {
+		return this.parentElement as HTMLElement;
+	}
+
+	/**
 	 * Marks items to update cursors & tooltips.
 	 */
 	public markDirty() {

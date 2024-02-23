@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -47,6 +47,22 @@ export class Inventory {
 
 	getInventory(): ItemContainerImplementation[] {
 		return this.inventory;
+	}
+
+	/**
+	 * Retrieves an inventory item container.
+	 *
+	 * @param element {string}
+	 *   HTML element associated with container.
+	 * @return {ItemContainerImplementation}
+	 *   Container with matching element or `undefined`.
+	 */
+	getByElement(element: HTMLElement): ItemContainerImplementation|undefined {
+		for (const container of this.inventory) {
+			if (element === container.getParentElement()) {
+				return container;
+			}
+		}
 	}
 
 	add(comp: ItemContainerImplementation) {
