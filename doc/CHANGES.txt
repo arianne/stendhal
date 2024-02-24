@@ -53,6 +53,7 @@ Changelog
 - fixed deathmatch scrying orbs
 - fixed portal default action when on a collision tile
 - added autocomplete support
+- fixed positioning of door sprites (-2_orril_lich_palace 84 108)
 
 *desktop client (non-Java)*
 - experimental desktop interface for the web client using Neutralinojs

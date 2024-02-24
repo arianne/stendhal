@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -23,9 +23,9 @@ export class Door extends Portal {
 		let imagePath = stendhal.paths.sprites + "/doors/" + this["class"] + ".png";
 		let image = stendhal.data.sprites.get(imagePath);
 		if (image.height) {
-			let x = (this["x"] - 1) * 32;
-			let y = (this["y"] - 1) * 32;
 			let height = image.height / 2;
+			let x = (this["x"] * 32) - ((image.width - 32) / 2);
+			let y = (this["y"] * 32) - ((height - 32) / 2);
 
 			var offsetY = height;
 			if (this["open"] === "") {
