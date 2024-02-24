@@ -51,6 +51,7 @@ Changelog
 - fixed weather drawing to not appear to move with player
 - fixed subsequent single clicks on items to not count as double after double click
 - fixed deathmatch scrying orbs
+- fixed portal default action when on a collision tile
 
 *desktop client (non-Java)*
 - experimental desktop interface for the web client using Neutralinojs

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -58,6 +58,14 @@ export class Portal extends Entity {
 	 * default action description, interpret it as an action command.
 	 */
 	override getDefaultAction() {
+		// don't try to walk to if on collision tile
+		if (stendhal.data.map.collision(this["x"], this["y"])) {
+			return {
+				"type": "use",
+				"target": "#" + this["id"],
+				"zone": marauroa.currentZoneName
+			} as any;
+		}
 		return {
 			"type": "moveto",
 			"x": "" + this["x"],
