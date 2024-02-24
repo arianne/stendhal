@@ -10,6 +10,7 @@
  *                                                                         *
  ***************************************************************************/
 
+declare var marauroa: any;
 declare var stendhal: any;
 
 import { SlashActionRepo } from "../SlashActionRepo";
@@ -34,6 +35,18 @@ export class ChatCompletionHelper {
 		"remove",
 		"summonat", "supporta", "supportanswer",
 		"teleport", "teleportto", "tell"
+	];
+
+	/** Chat commands available only for admins/GMs. */
+	private readonly adminCommands: string[] = [
+		"adminnote", "alter", "altercreature", "alterkill", "alterquest",
+		"ban",
+		"destroy",
+		"gag", "ghostmode",
+		"inspect", "inspectkill", "inspectquest", "invisible",
+		"jail", "jailreport",
+		"script", "summon", "summonat", "supporta", "supportanswer",
+		"teleclickmode", "teleport", "teleportto", "tellall"
 	];
 
 	/** Available chat commands. */
@@ -68,8 +81,6 @@ export class ChatCompletionHelper {
 	/**
 	 * Called when tab key is pressed while chat input has focus.
 	 *
-	 * TODO:
-	 * - filter commands by admin level
 	 * FIXME: have to press tab twice at end of commands list
 	 */
 	onTabKey() {
@@ -127,8 +138,9 @@ export class ChatCompletionHelper {
 			return;
 		}
 		const excludes: string[] = ["/", "_default"];
+		const admin = marauroa.me && marauroa.me.isAdmin();
 		for (const cmd of Object.getOwnPropertyNames(SlashActionRepo.get()).sort()) {
-			if (excludes.indexOf(cmd) > -1) {
+			if (excludes.indexOf(cmd) > -1 || (this.adminCommands.indexOf(cmd) > -1 && !admin)) {
 				continue;
 			}
 			this.chatCommands.push(cmd);
