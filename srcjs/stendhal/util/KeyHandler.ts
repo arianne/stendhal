@@ -145,6 +145,9 @@ export class KeyHandler {
 			ChatCompletionHelper.get().onTabKey();
 			return;
 		}
+		// reset chat completion prefixes
+		ChatCompletionHelper.get().reset();
+
 		// handle toggling chat panel
 		if (code == KeyCode.ENTER && !singletons.getChatInput().hasFocus()) {
 			(ui.get(UIComponentEnum.BottomPanel) as ChatPanel).onEnterPressed();

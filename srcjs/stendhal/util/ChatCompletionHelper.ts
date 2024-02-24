@@ -30,6 +30,14 @@ export class ChatCompletionHelper {
 		"tell"
 	];
 
+	/** Available chat commands. */
+	private readonly chatCommands: string[] = [];
+
+	private commandPrefix?: string;
+	private commandIndex = -1;
+	private playerPrefix?: string;
+	private playerIndex = -1;
+
 	/** Singleton instance. */
 	private static instance: ChatCompletionHelper;
 
@@ -54,7 +62,10 @@ export class ChatCompletionHelper {
 	/**
 	 * Called when tab key is pressed while chat input has focus.
 	 *
-	 * FIXME: need to cycle through commands & names.
+	 * TODO:
+	 * - add more commands to `playerCommands` list
+	 * - filter commands by admin level
+	 * FIXME: have to press tab twice at end of commands list
 	 */
 	onTabKey() {
 		const parts: string[] = [];
@@ -65,31 +76,67 @@ export class ChatCompletionHelper {
 		if (parts.length == 0 || !parts[0].startsWith("/")) {
 			return;
 		}
-		const cmd = parts[0].substring(1, parts[0].length);
-		const chatCommands = Object.getOwnPropertyNames(SlashActionRepo.get()).sort();
-		if (parts.length == 1) {
-			for (const c of chatCommands) {
-				if (c.startsWith(cmd)) {
-					chatInput.setText("/" + c);
+		this.parseChatCommands();
+		if (this.commandPrefix == undefined) {
+			this.commandPrefix = parts[0].substring(1, parts[0].length);
+		}
+		this.commandIndex++;
+		if (this.commandIndex > this.chatCommands.length - 1) {
+			this.commandIndex = 0;
+		}
+		if (parts.length < 2) {
+			for (this.commandIndex; this.commandIndex < this.chatCommands.length; this.commandIndex++) {
+				const cmd = this.chatCommands[this.commandIndex];
+				if (cmd.startsWith(this.commandPrefix)) {
+					chatInput.setText("/" + cmd);
 					break;
 				}
 			}
 			return;
 		}
-		if (!stendhal.players) {
+		if (!stendhal.players || parts.length > 2 || this.playerCommands.indexOf(this.commandPrefix) < 0) {
 			return;
 		}
-		if (this.playerCommands.indexOf(cmd) < 0) {
-			return;
+		if (this.playerPrefix == undefined) {
+			this.playerPrefix = parts[1];
 		}
-		let name = parts[parts.length-1] || "";
-		for (const player of stendhal.players) {
-			if (player.startsWith(name)) {
-				name = player;
+		this.playerIndex++;
+		if (this.playerIndex > stendhal.players.length - 1) {
+			this.playerIndex = 0;
+		}
+		for (this.playerIndex; this.playerIndex < stendhal.players.length; this.playerIndex++) {
+			const name = stendhal.players[this.playerIndex];
+			if (name.startsWith(this.playerPrefix)) {
+				parts[parts.length-1] = name;
 				break;
 			}
 		}
-		parts[parts.length-1] = name;
 		chatInput.setText(parts.join(" "));
+	}
+
+	/**
+	 * Extracts usable chat commands from slash action repository.
+	 */
+	private parseChatCommands() {
+		if (this.chatCommands.length > 0) {
+			return;
+		}
+		const excludes: string[] = ["/", "_default"];
+		for (const cmd of Object.getOwnPropertyNames(SlashActionRepo.get()).sort()) {
+			if (excludes.indexOf(cmd) > -1) {
+				continue;
+			}
+			this.chatCommands.push(cmd);
+		}
+	}
+
+	/**
+	 * Resets command & player prefixes to default values.
+	 */
+	reset() {
+		this.commandPrefix = undefined;
+		this.commandIndex = -1;
+		this.playerPrefix = undefined;
+		this.playerIndex = -1;
 	}
 }

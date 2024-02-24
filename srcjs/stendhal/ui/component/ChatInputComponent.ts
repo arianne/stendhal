@@ -19,6 +19,7 @@ import { ChatOptionsDialog } from "../dialog/ChatOptionsDialog";
 import { EmojiMapDialog } from "../dialog/EmojiMapDialog";
 import { Component } from "../toolkit/Component";
 import { singletons } from "../../SingletonRepo";
+import { ChatCompletionHelper } from "../../util/ChatCompletionHelper";
 import { KeyCode } from "../../util/KeyCode";
 
 
@@ -97,6 +98,8 @@ export class ChatInputComponent extends Component {
 	 */
 	public clear() {
 		this.inputElement.value = "";
+		// reset chat completion prefixes
+		ChatCompletionHelper.get().reset();
 	}
 
 	/**
