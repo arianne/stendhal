@@ -19,6 +19,8 @@ import { ChatOptionsEvent } from "./event/ChatOptionsEvent";
 import { ExamineEvent } from "./event/ExamineEvent";
 import { GroupChangeEvent } from "./event/GroupChangeEvent";
 import { GroupInviteEvent } from "./event/GroupInviteEvent";
+import { PlayerLoggedOnEvent } from "./event/PlayerLoggedOnEvent";
+import { PlayerLoggedOutEvent } from "./event/PlayerLoggedOutEvent";
 import { ProgressStatusEvent } from "./event/ProgressStatusEvent";
 import { RPEvent } from "./event/RPEvent";
 import { TradeEvent } from "./event/TradeEvent";
@@ -204,17 +206,8 @@ export class EventRegistry {
 			}
 		}); // image_event
 
-		this.register("player_logged_on", {
-			execute: function(rpobject: RPObject) {
-				// TODO: new PlayerLoggedOnEvent();
-			}
-		}); // player_logged_on
-
-		this.register("player_logged_out", {
-			execute: function(rpobject: RPObject) {
-				// TODO: new PlayerLoggedOutEvent();
-			}
-		}); // player_logged_out
+		this.register("player_logged_on", new PlayerLoggedOnEvent());
+		this.register("player_logged_out", new PlayerLoggedOutEvent());
 
 		this.register("private_text", {
 			soundTextEvents: {

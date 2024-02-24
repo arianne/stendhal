@@ -10,6 +10,8 @@
  *                                                                         *
  ***************************************************************************/
 
+declare var stendhal: any;
+
 import { SlashActionRepo } from "../SlashActionRepo";
 
 import { ui } from "../ui/UI";
@@ -27,9 +29,6 @@ export class ChatCompletionHelper {
 		"teleportto",
 		"tell"
 	];
-
-	/** List of currrently online players. */
-	private onlinePlayers: string[] = [];
 
 	/** Singleton instance. */
 	private static instance: ChatCompletionHelper;
@@ -58,9 +57,6 @@ export class ChatCompletionHelper {
 	 * FIXME: need to cycle through commands & names.
 	 */
 	onTabKey() {
-		if (!this.onlinePlayers) {
-			return;
-		}
 		const parts: string[] = [];
 		const chatInput = (ui.get(UIComponentEnum.ChatInput) as ChatInputComponent);
 		for (const p of chatInput.getText().split(" ")) {
@@ -80,11 +76,14 @@ export class ChatCompletionHelper {
 			}
 			return;
 		}
+		if (!stendhal.players) {
+			return;
+		}
 		if (this.playerCommands.indexOf(cmd) < 0) {
 			return;
 		}
 		let name = parts[parts.length-1] || "";
-		for (const player of this.onlinePlayers) {
+		for (const player of stendhal.players) {
 			if (player.startsWith(name)) {
 				name = player;
 				break;
@@ -92,14 +91,5 @@ export class ChatCompletionHelper {
 		}
 		parts[parts.length-1] = name;
 		chatInput.setText(parts.join(" "));
-	}
-
-	/**
-	 * Parses list of online players.
-	 *
-	 * TODO: not functional
-	 */
-	private getOnlinePlayers() {
-		// TODO:
 	}
 }
