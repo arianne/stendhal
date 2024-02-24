@@ -24,10 +24,16 @@ export class ChatCompletionHelper {
 
 	/** Chat commands relating to players. */
 	private readonly playerCommands: string[] = [
+		"add", "adminlevel", "alter", "alterkill", "alterquest",
+		"ban",
+		"gag",
+		"ignore", "inspectkill", "inspectquest",
+		"jail",
 		"msg",
-		"teleport",
-		"teleportto",
-		"tell"
+		"profile",
+		"remove",
+		"summonat", "supporta", "supportanswer",
+		"teleport", "teleportto", "tell"
 	];
 
 	/** Available chat commands. */
@@ -63,7 +69,6 @@ export class ChatCompletionHelper {
 	 * Called when tab key is pressed while chat input has focus.
 	 *
 	 * TODO:
-	 * - add more commands to `playerCommands` list
 	 * - filter commands by admin level
 	 * FIXME: have to press tab twice at end of commands list
 	 */
