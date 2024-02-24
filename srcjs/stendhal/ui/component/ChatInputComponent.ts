@@ -125,6 +125,13 @@ export class ChatInputComponent extends Component {
 	}
 
 	/**
+	 * Retrieves the current text value.
+	 */
+	public getText(): string {
+		return this.inputElement.value;
+	}
+
+	/**
 	 * Sets text value from history.
 	 *
 	 * @param i {number}

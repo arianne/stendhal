@@ -15,6 +15,7 @@
  */
 export class KeyCode {
 
+	public static readonly TAB = 9;
 	public static readonly ENTER = 13;
 	public static readonly ARROW_LEFT = 37;
 	public static readonly ARROW_UP = 38;
