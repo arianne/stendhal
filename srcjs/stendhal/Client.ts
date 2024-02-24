@@ -125,6 +125,8 @@ export class Client {
 		stendhal.data.outfit = singletons.getOutfitStore();
 		stendhal.data.sprites = singletons.getSpriteStore();
 		stendhal.data.map = singletons.getMap();
+		// online players
+		stendhal.players = [];
 	}
 
 	/**

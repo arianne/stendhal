@@ -11,6 +11,7 @@
 
 declare var marauroa: any;
 
+import { ChatCompletionHelper } from "./ChatCompletionHelper";
 import { Direction } from "./Direction";
 import { KeyCode } from "./KeyCode";
 import { singletons } from "../SingletonRepo";
@@ -138,6 +139,14 @@ export class KeyHandler {
 		}
 
 		var code = KeyHandler.translate(KeyCode.extract(event));
+
+		if (code == KeyCode.TAB) {
+			event.preventDefault();
+			ChatCompletionHelper.get().onTabKey();
+			return;
+		}
+		// reset chat completion prefixes
+		ChatCompletionHelper.get().reset();
 
 		// handle toggling chat panel
 		if (code == KeyCode.ENTER && !singletons.getChatInput().hasFocus()) {

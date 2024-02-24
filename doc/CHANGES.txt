@@ -52,6 +52,7 @@ Changelog
 - fixed subsequent single clicks on items to not count as double after double click
 - fixed deathmatch scrying orbs
 - fixed portal default action when on a collision tile
+- added autocomplete support
 
 *desktop client (non-Java)*
 - experimental desktop interface for the web client using Neutralinojs
