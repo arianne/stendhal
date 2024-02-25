@@ -108,7 +108,7 @@ export class ConfigManager {
 	 *       prefix only if added after the naming convention was implemented.
 	 */
 	private readonly deprecated: {[old: string]: string} = {
-		"action.chest.quickpickup": "client.inventory.quick-pickup",
+		"action.inventory.quickpickup": "client.inventory.quick-pickup",
 		"action.item.doubleclick": "client.inventory.double-click",
 		"chat.custom_keywords": "client.chat-opts.custom",
 		"chat.history": "client.chat.history",
