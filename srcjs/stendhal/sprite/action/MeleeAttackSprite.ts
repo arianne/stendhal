@@ -46,7 +46,7 @@ export class MeleeAttackSprite extends ActionSprite {
 		}
 
 		//~ const dtime = Date.now() - this.initTime;
-		//~ const frameIndex = Math.floor(Math.min(dtime / 60, 3));
+		//~ const frameIndex = Math.floor(Math.min(dtime / 60, 2));
 		const drawWidth = this.image.width;
 		const drawHeight = this.image.height;
 		var centerX = x + (entityWidth - drawWidth) / 2;

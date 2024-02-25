@@ -1,5 +1,6 @@
 /***************************************************************************
- *                       Copyright © 2023 - Stendhal                       *
+ *                 Copyright © 2023-2024 - Faiumoni e. V.                  *
+ ***************************************************************************
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -34,7 +35,7 @@ export class BarehandAttackSprite extends ActionSprite {
 		}
 
 		const dtime = Date.now() - this.initTime;
-		const frameIndex = Math.floor(Math.min(dtime / 60, 3));
+		const frameIndex = Math.floor(Math.min(dtime / 60, 2));
 		const drawWidth = this.image.width / 3;
 		const drawHeight = this.image.height / 4;
 		const centerX = x + (entityWidth - drawWidth) / 2;
