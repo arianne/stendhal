@@ -30,13 +30,15 @@ export class MeleeAttackSprite extends ActionSprite {
 	 *
 	 * @param source {entity.RPEntity.RPEntity}
 	 *   Entity from which event occurs.
-	 * @param imagePath {HTMLImageElement}
-	 *   Sprite image.
+	 * @param imagePath {string}
+	 *   Path to sprite image.
 	 */
-	constructor(source: RPEntity, image: HTMLImageElement) {
+	constructor(source: RPEntity, imagePath: string) {
 		super();
 		this.dir = Direction.VALUES[source["dir"]];
-		this.image = image;
+		const rot = 90 * (this.dir.val - 1);
+		// TODO: rotate left & right 45 degrees & offset to center on entity
+		this.image = stendhal.data.sprites.getRotated(imagePath, rot);
 	}
 
 	public override draw(ctx: CanvasRenderingContext2D, x: number, y: number, entityWidth: number,

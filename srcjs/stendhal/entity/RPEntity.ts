@@ -775,9 +775,7 @@ export class RPEntity extends ActiveEntity {
 			if (weapon.startsWith("blade_strike")) {
 				this.attackSprite = new BarehandAttackSprite(this, stendhal.data.sprites.get(imagePath));
 			} else {
-				const entity_rot = 90 * (this["dir"] - 1);
-				// TODO: rotate left & right 45 degrees & offset to center on entity
-				this.attackSprite = new MeleeAttackSprite(this, stendhal.data.sprites.getRotated(imagePath, entity_rot));
+				this.attackSprite = new MeleeAttackSprite(this, imagePath);
 			}
 		}
 	}
