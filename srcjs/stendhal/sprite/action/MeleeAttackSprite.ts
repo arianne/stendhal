@@ -1,5 +1,6 @@
 /***************************************************************************
- *                       Copyright © 2023 - Stendhal                       *
+ *                 Copyright © 2023-2024 - Faiumoni e. V.                  *
+ ***************************************************************************
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,21 +10,32 @@
  *                                                                         *
  ***************************************************************************/
 
+declare var stendhal: any;
+
 import { ActionSprite } from "./ActionSprite";
 import { RPEntity } from "../../entity/RPEntity";
-
-declare var stendhal: any;
+import { Direction } from "../../util/Direction";
 
 
 export class MeleeAttackSprite extends ActionSprite {
 
-	private readonly dir: number;
+	/** Direction entity is facing. */
+	private readonly dir: Direction;
+	/** Sprite image. */
 	private readonly image: HTMLImageElement;
 
 
+	/**
+	 * Creates a new attack sprite.
+	 *
+	 * @param source {entity.RPEntity.RPEntity}
+	 *   Entity from which event occurs.
+	 * @param imagePath {HTMLImageElement}
+	 *   Sprite image.
+	 */
 	constructor(source: RPEntity, image: HTMLImageElement) {
 		super();
-		this.dir = source["dir"];
+		this.dir = Direction.VALUES[source["dir"]];
 		this.image = image;
 	}
 
@@ -42,20 +54,20 @@ export class MeleeAttackSprite extends ActionSprite {
 
 		// offset sprite for facing direction
 		let sx, sy;
-		switch (this.dir+"") {
-			case "1": // UP
+		switch (this.dir) {
+			case Direction.UP:
 				sx = centerX + (stendhal.ui.gamewindow.targetTileWidth / 2);
 				sy = y - (stendhal.ui.gamewindow.targetTileHeight * 1.5);
 				break;
-			case "3": // DOWN
+			case Direction.DOWN:
 				sx = centerX;
 				sy = y + entityHeight - drawHeight + (stendhal.ui.gamewindow.targetTileHeight / 2);
 				break;
-			case "4": // LEFT
+			case Direction.LEFT:
 				sx = x - (stendhal.ui.gamewindow.targetTileWidth / 2);
 				sy = centerY - (stendhal.ui.gamewindow.targetTileHeight / 2);
 				break;
-			case "2": // RIGHT
+			case Direction.RIGHT:
 				sx = x + entityWidth - drawWidth + (stendhal.ui.gamewindow.targetTileWidth / 2);
 				sy = centerY; // - ICON_OFFSET; // ICON_OFFSET = 8 in Java client
 				break;
