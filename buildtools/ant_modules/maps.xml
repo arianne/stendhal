@@ -13,7 +13,7 @@
 		</taskdef>
 
 		<mkdir dir="tiled/world"/>
-		<maprenderer imagePath="${tiled}/world/">
+		<maprenderer imagePath="${maps}/world/">
 			<fileset dir="tiled">
 				<include name="Level */**/*.tmx"/>
 				<include name="interiors/**/*.tmx"/>
@@ -42,14 +42,14 @@
 -->
 
 		<mkdir dir="tiled/world"/>
-		<maprenderer imagePath="${tiled}/world/" zoom="0.0625">
+		<maprenderer imagePath="${maps}/world/" zoom="0.0625">
 			<fileset dir="tiled">
 				<include name="Level 0/**/*.tmx"/>
 				<exclude name="**/memory/**"/>
 			</fileset>
 		</maprenderer>
 		<mkdir dir="tiled/world/large"/>
-		<maprenderer imagePath="${tiled}/world/large" zoom="0.25">
+		<maprenderer imagePath="${maps}/world/large" zoom="0.25">
 			<fileset dir="tiled">
 				<include name="Level 0/**/*.tmx"/>
 				<exclude name="**/memory/**"/>
@@ -78,7 +78,7 @@
 				<pathelement path="${tiled_jar}"/>
 			</classpath>
 		</taskdef>
-		<maprenderer imagePath="${tiled}/world/" zoom="1.0">
+		<maprenderer imagePath="${maps}/world/" zoom="1.0">
 			<fileset dir="tiled/world">
 				<include name="world.tmx"/>
 			</fileset>
