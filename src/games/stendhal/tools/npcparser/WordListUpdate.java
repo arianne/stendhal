@@ -22,6 +22,7 @@ import java.util.List;
 
 import games.stendhal.common.parser.ExpressionType;
 import games.stendhal.common.parser.WordList;
+import games.stendhal.tools.UniversalPrintWriter;
 import marauroa.common.io.UnicodeSupportingInputStreamReader;
 
 /**
@@ -67,7 +68,7 @@ public final class WordListUpdate {
 				outputPath = WordList.WORDS_FILENAME;
 			}
 
-			final PrintWriter writer = new PrintWriter(outputPath, "UTF-8");
+			final PrintWriter writer = new UniversalPrintWriter(outputPath);
 
 			for (final String c : comments) {
 				writer.println(c);
