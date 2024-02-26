@@ -15,6 +15,7 @@ import { Paths } from "./Paths";
 
 
 class SpriteImage extends Image {
+	// number of times the image has been accessed after initial creation
 	counter = 0;
 }
 
@@ -165,15 +166,23 @@ export class SpriteStore {
 		}
 		const id = filename + "-rot" + angle;
 		if (this.images[id]) {
-			return this.images[id];
+			return this.get(id);
 		}
-		const img = this.get(filename).cloneNode();
-		if (img.complete) {
+		// NOTE: cannot use HTMLImageElement.cloneNode here, must get base image then transfer
+		//       `src` property when ready
+		const img = new Image() as SpriteImage;
+		img.counter = 0;
+		img.onload = () => {
+			img.onload = null;
 			this.rotate(img, angle);
+		}
+		const baseImg = this.get(filename);
+		if (baseImg.complete) {
+			img.src = baseImg.src;
 		} else {
-			img.onload = () => {
-				this.rotate(img, angle);
-				img.onload = undefined;
+			baseImg.onload = () => {
+				baseImg.onload = null;
+				img.src = baseImg.src;
 			}
 		}
 		this.images[id] = img;
