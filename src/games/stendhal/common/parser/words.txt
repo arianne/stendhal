@@ -114,7 +114,7 @@ expire	VER
 expired	VER	=expire
 explain	VER
 explore	VER
-extend	VER =prolong
+extend	VER	=prolong
 farewell	VER
 feed	VER
 fetch	VER
@@ -198,7 +198,7 @@ release	VER
 remember	VER
 remind	VER
 remove	VER
-rent	VER =hire
+rent	VER	=hire
 report	VER
 resell	VER
 reserve	VER
@@ -280,14 +280,14 @@ ankh	OBJ	ankhs
 antidote	OBJ-FOO-FLU	antidotes
 apartment	OBJ	apartments
 apology	OBJ	apologies
-apothecary OBJ apothecaries
+apothecary	OBJ	apothecaries
 apple	OBJ-FOO	apples
 arandula	OBJ
 armor	OBJ	armors
-armour  OBJ =armor armours
+armour	OBJ	=armor	armours
 arrow	OBJ	arrows
 artichoke	OBJ-FOO	artichokes
-arum OBJ =zantedeschia arums
+arum	OBJ	=zantedeschia	arums
 arundula	OBJ	arundulas
 athor	OBJ-NAM	athors
 atmosphere	OBJ	atmospheres
@@ -400,7 +400,7 @@ collard	OBJ-FOO	collards
 collection	OBJ	collections
 collision	OBJ	collisions
 color	OBJ	colors
-colour  OBJ =color colours
+colour	OBJ	=color	colours
 command	OBJ	commands
 comment	OBJ	comments
 company	OBJ	companies
@@ -410,7 +410,7 @@ cookie	OBJ-FOO	cookies
 cost	OBJ	costs
 costume	OBJ	costumes
 coupon	OBJ	coupons
-courgette	OBJ-FOO =zucchini	courgettes
+courgette	OBJ-FOO	=zucchini	courgettes
 cow	OBJ-ANI	cows
 cream	OBJ	creams
 creature	OBJ	creatures
@@ -422,7 +422,7 @@ crustaceans	OBJ	crustaceans
 ctf	OBJ
 cuirass	OBJ	cuirasses
 dagger	OBJ	daggers
-daisy	OBJ =daisies	daisies
+daisy	OBJ	=daisies	daisies
 dart	OBJ	darts
 data	OBJ	datas
 database	OBJ	databases
@@ -474,7 +474,7 @@ fado	OBJ-NAM	fados
 faiumoni	OBJ	faiumonis
 fault	OBJ	faults
 favor	OBJ	favors
-favour	OBJ	=favor favours
+favour	OBJ	=favor	favours
 feature	OBJ	features
 fee	OBJ	fees
 ferry	OBJ	ferries
@@ -485,7 +485,7 @@ figurine	OBJ	figurines
 finger	OBJ	fingers
 fire	OBJ	fires
 fish	OBJ-FOO	fishes
-flag	OBJ
+flag	OBJ	flags
 flail	OBJ	flails
 flask	OBJ	flasks
 flour	OBJ	flours
@@ -494,17 +494,17 @@ food	OBJ-FOO	foods
 foot	OBJ	feet
 forge	OBJ	forges
 frostshade	OBJ-NAM	frostshades
-fumble	OBJ
+fumble	OBJ	fumbles
 fun	OBJ	funs
 fuse	OBJ	fuses
 future	OBJ	futures
 gambling	OBJ	gamblings
 game	OBJ	games
 garlic	OBJ-FOO
-garnet OBJ
+garnet	OBJ	garnets
 gate	OBJ	gates
 gem	OBJ	gems
-gemstone OBJ gemstones
+gemstone	OBJ	gemstones
 geography	OBJ	geographies
 germany	OBJ	germanies
 gingerbread	OBJ-FOO	gingerbreads
@@ -513,7 +513,7 @@ glas	OBJ	glas
 glass	OBJ	glasses
 glow	OBJ	glows
 glück	OBJ	glücke
-gnomess	OBJ gnomesses
+gnomess	OBJ	gnomesses
 gnu	OBJ	gnus
 goat	OBJ-ANI	goats
 goblet	OBJ	goblets
@@ -602,8 +602,8 @@ library	OBJ	libraries
 licorice	OBJ-FOO	licorices
 life	OBJ	lives
 lilia	OBJ	lilias
-lilium OBJ =lilia liliums
-lily OBJ =lilia lilies
+lilium	OBJ	=lilia	liliums
+lily	OBJ	=lilia	lilies
 limit	OBJ	limits
 lionfish	OBJ-FOO-ANI	lionfishes
 list	OBJ	lists
@@ -686,10 +686,10 @@ park	OBJ	parks
 patch	OBJ	patches
 path	OBJ	paths
 payment	OBJ	payments
-pear	OBJ-FOO
+pear	OBJ-FOO	pears
 pearl	OBJ	pearls
 pelt	OBJ	pelts
-pepper	OBJ-FOO peppers
+pepper	OBJ-FOO	peppers
 perch	OBJ-FOO-ANI	perches
 pestle	OBJ	pestles
 pet	OBJ-ANI	pets
@@ -711,7 +711,7 @@ playground	OBJ	playgrounds
 plural	OBJ	plurals
 point	OBJ	points
 poison	OBJ-FOO-FLU	poisons
-pomegranate	OBJ-FOO
+pomegranate	OBJ-FOO	pomegranates
 porcino	OBJ-FOO	porcini
 portal	OBJ	portals
 position	OBJ	positions
@@ -745,13 +745,13 @@ risecia	OBJ	risecias
 roach	OBJ-FOO-ANI	roaches
 robin	OBJ	robins
 rod	OBJ	rods
-rodent  OBJ rodents
+rodent	OBJ	rodents
 room	OBJ	rooms
 rose	OBJ	roses
 rug	OBJ	rugs
 sack	OBJ	sacks
 safety	OBJ	safeties
-salad	OBJ-FOO =lettuce	salads
+salad	OBJ-FOO	=lettuce	salads
 sanctuary	OBJ	sanctuaries
 sandwich	OBJ-FOO	sandwiches
 sapphire	OBJ	sapphires
@@ -859,7 +859,7 @@ town	OBJ	towns
 toy	OBJ	toys
 trade	OBJ	trades
 trading	OBJ	tradings
-trap OBJ traps
+trap	OBJ	traps
 treasure	OBJ	treasures
 trigger	OBJ	triggers
 trophy	OBJ	trophies
@@ -914,13 +914,13 @@ yclept	OBJ	yclepts
 youngster	OBJ	youngsters
 your	OBJ-OBS	your
 yrafear	OBJ-NAM	yrafears
-zant OBJ =zantedeschia zants
+zant	OBJ	=zantedeschia	zants
 zantedeschia	OBJ	zantedeschias
 zone	OBJ	zones
 zucchini	OBJ-FOO	zucchinis
 
 abe	SUB-NAM
-adena SUB-NAM
+adena	SUB-NAM
 admin	SUB
 admiral	SUB
 aenihata	SUB-NAM
@@ -994,7 +994,7 @@ bride	SUB
 brother	SUB
 brui	SUB-NAM
 caiman	SUB-ANI
-calla SUB-NAM
+calla	SUB-NAM
 cannibal	SUB
 captain	SUB
 captain Brownbeard SUB-NAM
@@ -1080,7 +1080,7 @@ eliza	SUB-NAM
 elodrin	SUB-NAM
 elos	SUB-NAM
 emperor	SUB
-enemy	SUB enemies
+enemy	SUB	enemies
 enrique	SUB-NAM
 ent	SUB
 entwife	SUB
@@ -1233,7 +1233,7 @@ lion	SUB-ANI	lions
 littlefairy	SUB
 littlewitch	SUB
 littlewizard	SUB
-lobelia SUB-NAM
+lobelia	SUB-NAM
 lord	SUB
 lorenz	SUB-NAM
 loretta	SUB-NAM
@@ -1262,7 +1262,7 @@ mcpegleg	SUB-NAM
 me	SUB-PRO	=i	us
 meatoch	SUB-NAM
 merenwen	SUB-NAM
-mia SUB-NAM
+mia	SUB-NAM
 mick	SUB-NAM
 milquetoast	SUB-NAM
 minotaur	SUB
@@ -1374,11 +1374,11 @@ saskia	SUB-NAM
 sato	SUB-NAM
 savanka	SUB-NAM
 scientist	SUB
-seremela SUB-NAM
+seremela	SUB-NAM
 sergeant	SUB
 sergej	SUB-NAM
 servant	SUB
-shadows SUB-NAM
+shadows	SUB-NAM
 she	SUB-PRO	they
 sheepman	SUB
 siandra	SUB-NAM
@@ -1483,8 +1483,8 @@ you	SUB-PRO	you
 yourself	SUB-PRO
 zak	SUB-NAM
 zara	SUB-NAM
-zinnia SUB-NAM
 zekiel	SUB-NAM
+zinnia	SUB-NAM
 zogfang	SUB-NAM
 zohos	SUB-NAM
 zombie	SUB	zombies
@@ -1493,7 +1493,7 @@ zynn	SUB-NAM
 
 another	ADJ
 armed	ADJ
-armored ADJ
+armored	ADJ
 available	ADJ
 awesome	ADJ
 bad	ADJ
@@ -1505,7 +1505,7 @@ big	ADJ
 biggest	ADJ
 biting	ADJ
 black	ADJ-COL
-blank	ADJ =empty
+blank	ADJ	=empty
 bloody	ADJ
 blue	ADJ-COL
 broken	ADJ
