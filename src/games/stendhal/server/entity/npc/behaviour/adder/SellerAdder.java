@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -42,9 +42,9 @@ import games.stendhal.server.events.SoundEvent;
 public class SellerAdder {
 	private static Logger logger = Logger.getLogger(SellerAdder.class);
 
-    private final MerchantsRegister merchantsRegister = SingletonRepository.getMerchantsRegister();
+	private final MerchantsRegister merchantsRegister = SingletonRepository.getMerchantsRegister();
 
-    /**
+	/**
 	 * Behaviour parse result in the current conversation.
 	 * Remark: There is only one conversation between a player and the NPC at any time.
 	 */

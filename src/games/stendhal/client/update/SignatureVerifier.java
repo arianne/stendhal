@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -162,17 +162,17 @@ class SignatureVerifier {
 		try {
 			String javaTrustStoreFile = System.getProperty("java.home") + "/lib/security/cacerts";
 			KeyStore trustStore = loadKeystore(new FileInputStream(javaTrustStoreFile));
-            Enumeration<String> aliases = ks.aliases();
-            while (aliases.hasMoreElements()) {
-                String alias = aliases.nextElement();
-                Certificate cert = ks.getCertificate(alias);
-                trustStore.setCertificateEntry(alias, cert);
-            }
-            TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
-            tmf.init(trustStore);
-            SSLContext sslContext = SSLContext.getInstance("TLS");
-            sslContext.init(null, tmf.getTrustManagers(), null);
-            SSLContext.setDefault(sslContext);
+			Enumeration<String> aliases = ks.aliases();
+			while (aliases.hasMoreElements()) {
+				String alias = aliases.nextElement();
+				Certificate cert = ks.getCertificate(alias);
+				trustStore.setCertificateEntry(alias, cert);
+			}
+			TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+			tmf.init(trustStore);
+			SSLContext sslContext = SSLContext.getInstance("TLS");
+			sslContext.init(null, tmf.getTrustManagers(), null);
+			SSLContext.setDefault(sslContext);
 
 		} catch (IOException e) {
 			e.printStackTrace();

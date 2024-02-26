@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -21,7 +21,7 @@ class WalkBlockerMapObject extends StaticMapObject {
 	/**
 	 * The colour of walk blockers (dark pink) .
 	 */
-    private static final Color COLOR = new Color(209, 144, 224);
+	private static final Color COLOR = new Color(209, 144, 224);
 
 	WalkBlockerMapObject(final IEntity entity) {
 		super(entity);

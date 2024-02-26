@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -39,7 +39,7 @@ import games.stendhal.server.entity.player.Player;
  */
 public class RepairerAdder {
 
-    private final ServicersRegister servicersRegister = SingletonRepository.getServicersRegister();
+	private final ServicersRegister servicersRegister = SingletonRepository.getServicersRegister();
 
 	/**
 	 * Add the model fragments to the given NPC
@@ -48,8 +48,8 @@ public class RepairerAdder {
 	 */
 	public void addRepairer(final SpeakerNPC npc) {
 		final RepairerBehaviour repairerBehaviour = new RepairerBehaviour(
-						new RepairingPriceCalculationStrategy(new HashSet<String>()),
-						new HashSet<String>(Arrays.asList("buckler")));
+				new RepairingPriceCalculationStrategy(new HashSet<String>()),
+				new HashSet<String>(Arrays.asList("buckler")));
 
 		servicersRegister.add(npc.getName(), repairerBehaviour);
 

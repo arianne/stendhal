@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,33 +20,33 @@ import java.util.List;
  */
 public class TriggerList extends LinkedList<Expression> {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * Create a list of normalized trigger Words from a String list.
-     *
-     * @param strings String list
-     */
-    public TriggerList(final List<String> strings) {
-        for (final String item : strings) {
-            add(ConversationParser.createTriggerExpression(item));
-        }
-    }
+	/**
+	 * Create a list of normalized trigger Words from a String list.
+	 *
+	 * @param strings String list
+	 */
+	public TriggerList(final List<String> strings) {
+		for (final String item : strings) {
+			add(ConversationParser.createTriggerExpression(item));
+		}
+	}
 
-    /**
-     * Search for the given expression in the list.
-     *
-     * @param expr
-     * @return matching expression in the list
-     */
-    public final Expression find(final Expression expr) {
-        final int idx = indexOf(expr);
+	/**
+	 * Search for the given expression in the list.
+	 *
+	 * @param expr
+	 * @return matching expression in the list
+	 */
+	public final Expression find(final Expression expr) {
+		final int idx = indexOf(expr);
 
-        if (idx != -1) {
-            return get(idx);
-        } else {
-            return null;
-        }
-    }
+		if (idx != -1) {
+			return get(idx);
+		} else {
+			return null;
+		}
+	}
 
 }

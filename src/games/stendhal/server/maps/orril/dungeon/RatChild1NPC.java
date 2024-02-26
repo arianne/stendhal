@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -47,7 +47,7 @@ public class RatChild1NPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-                                nodes.add(new Node(5, 75));
+				nodes.add(new Node(5, 75));
 				nodes.add(new Node(19, 75));
 				nodes.add(new Node(19, 79));
 				nodes.add(new Node(5, 79));

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -149,7 +149,7 @@ class SlashActionParser extends CommandlineParser {
 		}
 
 		return sbuf.toString();
-    }
+	}
 
 	/**
 	 * Read parameters into the given SlashActionCommand object.

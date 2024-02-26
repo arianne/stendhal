@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -39,7 +39,7 @@ import games.stendhal.server.events.SoundEvent;
 public class BuyerAdder {
 	private static Logger logger = Logger.getLogger(BuyerAdder.class);
 
-    private final MerchantsRegister merchantsRegister = SingletonRepository.getMerchantsRegister();
+	private final MerchantsRegister merchantsRegister = SingletonRepository.getMerchantsRegister();
 
 	/**
 	 * Behaviour parse result in the current conversation.
@@ -141,18 +141,18 @@ public class BuyerAdder {
 							final int price = buyerBehaviour.getCharge(res, player);
 
 							if (price != 0) {
-    							raiser.say(Grammar.quantityplnoun(res.getAmount(), chosenItemName, "A")
-    									+ " " + Grammar.isare(res.getAmount()) + " worth "
-    									+ price + ". Do you want to sell "
-    									+ Grammar.itthem(res.getAmount()) + "?");
+								raiser.say(Grammar.quantityplnoun(res.getAmount(), chosenItemName, "A")
+										+ " " + Grammar.isare(res.getAmount()) + " worth "
+										+ price + ". Do you want to sell "
+										+ Grammar.itthem(res.getAmount()) + "?");
 
-    							currentBehavRes = res;
-    							npc.setCurrentState(ConversationStates.SELL_PRICE_OFFERED); // success
+								currentBehavRes = res;
+								npc.setCurrentState(ConversationStates.SELL_PRICE_OFFERED); // success
 							} else {
 								raiser.say("Sorry, "
 										+ Grammar.thatthose(res.getAmount()) + " "
 										+ Grammar.plnoun(res.getAmount(), chosenItemName)
-    									+ " " + Grammar.isare(res.getAmount()) + " worth nothing.");
+										+ " " + Grammar.isare(res.getAmount()) + " worth nothing.");
 							}
 						} else {
 							raiser.say("Sorry, how many " + Grammar.plural(chosenItemName) + " do you want to sell?!");

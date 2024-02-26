@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -19,9 +19,9 @@ package games.stendhal.common.parser;
  */
 public final class CaseInsensitiveExprMatcher extends ExpressionMatcher {
 
-    public CaseInsensitiveExprMatcher() {
-        exactMatching = true;
-        caseInsensitive = true;
-    }
+	public CaseInsensitiveExprMatcher() {
+		exactMatching = true;
+		caseInsensitive = true;
+	}
 
 }

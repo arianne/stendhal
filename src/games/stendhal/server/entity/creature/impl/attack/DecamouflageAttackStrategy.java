@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2013-2023 - Stendhal                     *
+ *                    Copyright © 2013-2024 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,53 +21,53 @@ import games.stendhal.server.entity.creature.Creature;
  */
 class DecamouflageAttackStrategy implements AttackStrategy {
 
-    private final AttackStrategy base;
+	private final AttackStrategy base;
 
-    /**
-     * Create a new DecamouflageAttackStrategy with a base strategy
-     *
-     * @param base
-     */
-    public DecamouflageAttackStrategy(AttackStrategy base) {
-        this.base = base;
-    }
-
-
-    @Override
-    public void getBetterAttackPosition(Creature creature) {
-        this.base.getBetterAttackPosition(creature);
-    }
+	/**
+	 * Create a new DecamouflageAttackStrategy with a base strategy
+	 *
+	 * @param base
+	 */
+	public DecamouflageAttackStrategy(AttackStrategy base) {
+		this.base = base;
+	}
 
 
-    @Override
-    public boolean hasValidTarget(Creature creature) {
-        return this.base.hasValidTarget(creature);
-    }
+	@Override
+	public void getBetterAttackPosition(Creature creature) {
+		this.base.getBetterAttackPosition(creature);
+	}
 
-    @Override
-    public void findNewTarget(Creature creature) {
-        this.base.findNewTarget(creature);
-    }
 
-    @Override
-    public boolean canAttackNow(Creature creature) {
-        return this.base.canAttackNow(creature);
-    }
+	@Override
+	public boolean hasValidTarget(Creature creature) {
+		return this.base.hasValidTarget(creature);
+	}
 
-    @Override
-    public boolean canAttackNow(Creature attacker, RPEntity target) {
-        return this.base.canAttackNow(attacker, target);
-    }
+	@Override
+	public void findNewTarget(Creature creature) {
+		this.base.findNewTarget(creature);
+	}
 
-    @Override
-    public void attack(Creature creature) {
-        creature.setVisibility(100);
-        this.base.attack(creature);
-    }
+	@Override
+	public boolean canAttackNow(Creature creature) {
+		return this.base.canAttackNow(creature);
+	}
 
-    @Override
-    public int getRange() {
-        return this.base.getRange();
-    }
+	@Override
+	public boolean canAttackNow(Creature attacker, RPEntity target) {
+		return this.base.canAttackNow(attacker, target);
+	}
+
+	@Override
+	public void attack(Creature creature) {
+		creature.setVisibility(100);
+		this.base.attack(creature);
+	}
+
+	@Override
+	public int getRange() {
+		return this.base.getRange();
+	}
 
 }

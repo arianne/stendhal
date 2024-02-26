@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2024 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -218,9 +218,9 @@ public class CreatureRespawnPoint implements TurnListener {
 	 *
 	 * @param creature prototype creature
 	 */
-    public void setPrototypeCreature(final Creature creature) {
-    	this.prototypeCreature = creature;
-    }
+	public void setPrototypeCreature(final Creature creature) {
+		this.prototypeCreature = creature;
+	}
 
 	/**
 	 * add observer to observers list

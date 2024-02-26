@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2012 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -29,7 +29,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * @author storyteller (idea) and Vanessa Julius (implemented)
  *
  */
-
 public class GuardEntranceNPC implements ZoneConfigurator {
 
 	@Override
@@ -74,17 +73,14 @@ public class GuardEntranceNPC implements ZoneConfigurator {
 				nodes.add(new Node(13,19));
 				nodes.add(new Node(13,45));
 				nodes.add(new Node(15,45));
-               	setPath(new FixedPath(nodes, true));
+				setPath(new FixedPath(nodes, true));
 
 			}
 
+			// Greeting and goodbye message in quest code TheMissingBooks.java
 			@Override
-
-			//Greeting and goodbye message in quest code TheMissingBooks.java
-
 			protected void createDialog() {
 				addGreeting("Hey, [name]! Why are you sneaking around in here? Out with you, NOW!");
-
 
 			}
 		};

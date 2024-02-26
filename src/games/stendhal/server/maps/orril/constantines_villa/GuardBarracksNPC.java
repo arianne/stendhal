@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2012 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -29,7 +29,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * @author storyteller (idea) and Vanessa Julius (implemented)
  *
  */
-
 public class GuardBarracksNPC implements ZoneConfigurator {
 
 	@Override
@@ -41,7 +40,7 @@ public class GuardBarracksNPC implements ZoneConfigurator {
 		final SpeakerNPC npc = new SpeakerNPC("Silvester") {
 
 
-			//NPC walks around in the barracks of Constantines villa
+			// NPC walks around in the barracks of Constantines villa
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
@@ -108,8 +107,7 @@ public class GuardBarracksNPC implements ZoneConfigurator {
 				nodes.add(new Node(28,22));
 				nodes.add(new Node(30,22));
 				nodes.add(new Node(30,27));
-
-               	setPath(new FixedPath(nodes, true));
+				setPath(new FixedPath(nodes, true));
 
 			}
 
@@ -118,7 +116,6 @@ public class GuardBarracksNPC implements ZoneConfigurator {
 				addGreeting("Hey, [name]! Why are you sneaking around in here? Out with you, NOW!");
 
 			}
-
 		};
 
 		npc.setDescription("You see one of Constantines powerful guards, Silvester. Better don't jump into his side!");

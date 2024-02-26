@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -43,7 +43,7 @@ import games.stendhal.server.util.TimeUtil;
 public class OutfitChangerAdder {
 	private static Logger logger = Logger.getLogger(OutfitChangerAdder.class);
 
-    private final ServicersRegister servicersRegister = SingletonRepository.getServicersRegister();
+	private final ServicersRegister servicersRegister = SingletonRepository.getServicersRegister();
 
 	/**
 	 * Behaviour parse result in the current conversation.

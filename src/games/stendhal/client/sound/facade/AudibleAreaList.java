@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -22,54 +22,54 @@ import java.util.LinkedList;
  */
 public class AudibleAreaList extends LinkedList<AudibleArea> implements AudibleArea
 {
-    /**
+	/**
 	 * serial version uid
 	 */
 	private static final long serialVersionUID = 8277563402183797791L;
 
 	@Override
 	public float getHearingIntensity(float[] hearerPos)
-    {
-        if(isEmpty()) {
+	{
+		if(isEmpty()) {
 			return 0.0f;
 		}
 
-        Iterator<AudibleArea> iterator  = super.iterator();
-        AudibleArea           area      = iterator.next();
-        float                 intensity = area.getHearingIntensity(hearerPos);
+		Iterator<AudibleArea> iterator  = super.iterator();
+		AudibleArea           area      = iterator.next();
+		float                 intensity = area.getHearingIntensity(hearerPos);
 
-        while(iterator.hasNext())
-        {
-            area = iterator.next();
-            intensity = Math.max(intensity, area.getHearingIntensity(hearerPos));
-        }
+		while(iterator.hasNext())
+		{
+			area = iterator.next();
+			intensity = Math.max(intensity, area.getHearingIntensity(hearerPos));
+		}
 
-        return intensity;
-    }
+		return intensity;
+	}
 
-    @Override
+	@Override
 	public void getClosestPoint(float[] result, float[] hearerPos)
-    {
-        if(isEmpty()) {
+	{
+		if(isEmpty()) {
 			return;
 		}
 
-        Iterator<AudibleArea> iterator    = super.iterator();
-        AudibleArea           closestArea = iterator.next();
-        float                 intensity   = closestArea.getHearingIntensity(hearerPos);
+		Iterator<AudibleArea> iterator    = super.iterator();
+		AudibleArea           closestArea = iterator.next();
+		float                 intensity   = closestArea.getHearingIntensity(hearerPos);
 
-        while(iterator.hasNext())
-        {
-            AudibleArea area   = iterator.next();
-            float       intens = area.getHearingIntensity(hearerPos);
+		while(iterator.hasNext())
+		{
+			AudibleArea area   = iterator.next();
+			float       intens = area.getHearingIntensity(hearerPos);
 
-            if(intens > intensity)
-            {
-                intensity   = intens;
-                closestArea = area;
-            }
-        }
+			if(intens > intensity)
+			{
+				intensity   = intens;
+				closestArea = area;
+			}
+		}
 
-        closestArea.getClosestPoint(result, hearerPos);
-    }
+		closestArea.getClosestPoint(result, hearerPos);
+	}
 }

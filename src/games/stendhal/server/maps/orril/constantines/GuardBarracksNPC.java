@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2012 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -29,7 +29,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * @author storyteller (idea) and Vanessa Julius (implemented)
  *
  */
-
 public class GuardBarracksNPC implements ZoneConfigurator {
 
 	@Override
@@ -108,21 +107,18 @@ public class GuardBarracksNPC implements ZoneConfigurator {
 				nodes.add(new Node(28,22));
 				nodes.add(new Node(30,22));
 				nodes.add(new Node(30,27));
-               	setPath(new FixedPath(nodes, true));
+				setPath(new FixedPath(nodes, true));
 
 			}
 
-
+			// Greeting and goodbye message in quest code TheMissingBooks.java
 			@Override
-
-			//Greeting and goodbye message in quest code TheMissingBooks.java
-
 			protected void createDialog() {
 				addGreeting("Hey, [name]! Why are you sneaking around in here? Out with you, NOW!");
 
-
 			}
 		};
+
 		npc.setDescription("You see one of Constantines powerful guards, Silvester. Better don't jump into his side!");
 		npc.setEntityClass("nightguardbownpc");
 		npc.setPosition(14, 27);

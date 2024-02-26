@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -24,60 +24,60 @@ import games.stendhal.client.sound.system.SignalProcessor;
  */
 public class Interruptor extends SignalProcessor
 {
-    private static final int PLAY  = 0;
-    private static final int STOP  = 1;
-    private static final int PAUSE = 2;
+	private static final int PLAY  = 0;
+	private static final int STOP  = 1;
+	private static final int PAUSE = 2;
 
-    private AtomicInteger mState = new AtomicInteger(PLAY);
-    private AtomicLong    mDelay = new AtomicLong(0);
+	private AtomicInteger mState = new AtomicInteger(PLAY);
+	private AtomicLong    mDelay = new AtomicLong(0);
 
-    public void play()
-    {
-        mState.set(PLAY);
-        mDelay.set(0);
-    }
+	public void play()
+	{
+		mState.set(PLAY);
+		mDelay.set(0);
+	}
 
-    public void pause(Time delay)
-    {
-        mState.set(PAUSE);
-        mDelay.set(delay.getInNanoSeconds());
-    }
+	public void pause(Time delay)
+	{
+		mState.set(PAUSE);
+		mDelay.set(delay.getInNanoSeconds());
+	}
 
-    public void stop(Time delay)
-    {
-        mState.set(STOP);
-        mDelay.set(delay.getInNanoSeconds());
-    }
+	public void stop(Time delay)
+	{
+		mState.set(STOP);
+		mDelay.set(delay.getInNanoSeconds());
+	}
 
-    @Override
-    public synchronized boolean request()
-    {
-        if(mDelay.get() <= 0)
-        {
-            switch(mState.get())
-            {
-            case PAUSE:
-                return true;
+	@Override
+	public synchronized boolean request()
+	{
+		if(mDelay.get() <= 0)
+		{
+			switch(mState.get())
+			{
+			case PAUSE:
+				return true;
 
-            case STOP:
-                quit();
-                return false;
-            }
-        }
+			case STOP:
+				quit();
+				return false;
+			}
+		}
 
-        return super.request();
-    }
+		return super.request();
+	}
 
-    @Override
-    protected void modify(float[] data, int frames, int channels, int rate)
-    {
-        if(mState.get() != PLAY)
-        {
-            //Time delay        = new Time(mDelay.get(), Time.Unit.NANO);
-            Time delaySegment = new Time(frames, rate);
-            mDelay.addAndGet(-delaySegment.getInNanoSeconds());
-        }
+	@Override
+	protected void modify(float[] data, int frames, int channels, int rate)
+	{
+		if(mState.get() != PLAY)
+		{
+			//Time delay        = new Time(mDelay.get(), Time.Unit.NANO);
+			Time delaySegment = new Time(frames, rate);
+			mDelay.addAndGet(-delaySegment.getInNanoSeconds());
+		}
 
-        super.propagate(data, frames, channels, rate);
-    }
+		super.propagate(data, frames, channels, rate);
+	}
 }

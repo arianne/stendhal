@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -53,13 +53,13 @@ public class Dsp {
 			++sOffset;
 		}
 		/*
-        for(int i=0; i<numSamples; ++i)
-        {
-            float A = result[rOffset + i];
-            float B = samples[sOffset + i];
+		for(int i=0; i<numSamples; ++i)
+		{
+			float A = result[rOffset + i];
+			float B = samples[sOffset + i];
 
-            result[rOffset + i] = A + B - A * B;
-        }
+			result[rOffset + i] = A + B - A * B;
+		}
 		*/
 	}
 
@@ -80,16 +80,16 @@ public class Dsp {
 
 	public static float[] convertChannels(float[] samples, int numFrames,
 			int numChannels, int numRequiredChannels) {
-        /* Assignments for audio channels
-         * channel 0: Front left
-         * channel 1: Front right
-         * channel 2: Center
-         * channel 3: Low frequency (subwoofer)
-         * channel 4: Surround left       - ## NEEDS CONFIRMATION ##
-         * channel 5: Surround right      - ## NEEDS CONFIRMATION ##
-         * channel 6: Surround back left  - ## NEEDS CONFIRMATION ##
-         * channel 7: Surround back right - ## NEEDS CONFIRMATION ##
-         */
+		/* Assignments for audio channels
+		 * channel 0: Front left
+		 * channel 1: Front right
+		 * channel 2: Center
+		 * channel 3: Low frequency (subwoofer)
+		 * channel 4: Surround left       - ## NEEDS CONFIRMATION ##
+		 * channel 5: Surround right      - ## NEEDS CONFIRMATION ##
+		 * channel 6: Surround back left  - ## NEEDS CONFIRMATION ##
+		 * channel 7: Surround back right - ## NEEDS CONFIRMATION ##
+		 */
 
 		if (numChannels == numRequiredChannels) {
 			return samples;
@@ -132,13 +132,13 @@ public class Dsp {
 
 				samples = newUniformPCM;
 			} else { // stereo/multichannel to multichannel
-                /* Stereo widening (from Wikipedia):
-                 * Widening of the stereo image can be achieved by manipulating the
-                 * relationship of the side signal S and the center signal C
-                 * C = (L + R) / 2; S = (L - R) / 2
-                 * A positive part of the side signal S is now fed into the left channel
-                 * and a part with its phase inverted to the right channel.
-                 */
+				/* Stereo widening (from Wikipedia):
+				 * Widening of the stereo image can be achieved by manipulating the
+				 * relationship of the side signal S and the center signal C
+				 * C = (L + R) / 2; S = (L - R) / 2
+				 * A positive part of the side signal S is now fed into the left channel
+				 * and a part with its phase inverted to the right channel.
+				 */
 
 				// not yet implemented
 				samples = null;

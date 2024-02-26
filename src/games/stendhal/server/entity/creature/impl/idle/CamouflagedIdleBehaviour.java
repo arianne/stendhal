@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2013-2023 - Stendhal                     *
+ *                    Copyright © 2013-2024 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -19,12 +19,12 @@ import games.stendhal.server.entity.creature.Creature;
  */
 class CamouflagedIdleBehaviour implements IdleBehaviour {
 
-    private final IdleBehaviour base = new Patroller();
+	private final IdleBehaviour base = new Patroller();
 
-    @Override
-    public void perform(Creature creature) {
-        creature.setVisibility(50);
-        this.base.perform(creature);
-    }
+	@Override
+	public void perform(Creature creature) {
+		creature.setVisibility(50);
+		this.base.perform(creature);
+	}
 
 }

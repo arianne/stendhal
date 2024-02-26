@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -21,9 +21,9 @@ public class IdleBehaviourFactory {
 	public static IdleBehaviour get(final Map<String, String> aiProfiles) {
 		if (aiProfiles.containsKey("patrolling")) {
 			return new Patroller();
-        } else if (aiProfiles.containsKey("camouflage")) {
-            return new CamouflagedIdleBehaviour();
-        }
-        return nothing;
+		} else if (aiProfiles.containsKey("camouflage")) {
+			return new CamouflagedIdleBehaviour();
+		}
+		return nothing;
 	}
 }

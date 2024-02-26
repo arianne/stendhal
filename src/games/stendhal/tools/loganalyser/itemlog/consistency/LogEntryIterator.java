@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -49,7 +49,7 @@ public class LogEntryIterator extends ResultSetIterator<LogEntry> {
 	}
 
 	@Override
-    protected LogEntry createObject() {
+	protected LogEntry createObject() {
 		try {
 			return new LogEntry(
 				resultSet.getString("id"),

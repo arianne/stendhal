@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -21,141 +21,141 @@ import java.io.PrintWriter;
  */
 public final class WordEntry {
 
-    // normalised word
-    private String normalized = "";
+	// normalised word
+	private String normalized = "";
 
-    // pluralised word (or singular for entries of type ...-PLU
-    private String plurSing;
+	// pluralised word (or singular for entries of type ...-PLU
+	private String plurSing;
 
-    // Expression type, e.g. VER, ADJ, OBJ, OBJ-FOO, SUB, SUB-ANI, ...
-    private ExpressionType type;
+	// Expression type, e.g. VER, ADJ, OBJ, OBJ-FOO, SUB, SUB-ANI, ...
+	private ExpressionType type;
 
-    // numeric value for words of type NUM
-    private Integer value;
+	// numeric value for words of type NUM
+	private Integer value;
 
-    // database ID
-    private int id;
+	// database ID
+	private int id;
 
-    /**
-     * Write word entry to the given print writer.
-     *
-     * @param pw
-     * @param key
-     */
-    public void print(final PrintWriter pw, final String key) {
-        pw.printf("%s\t", key);
+	/**
+	 * Write word entry to the given print writer.
+	 *
+	 * @param pw
+	 * @param key
+	 */
+	public void print(final PrintWriter pw, final String key) {
+		pw.printf("%s\t", key);
 
-        if (type != null) {
-            pw.print(type);
-        }
+		if (type != null) {
+			pw.print(type);
+		}
 
-        if (!normalized.equals(key)) {
-            pw.printf("\t=%s", normalized);
-        }
+		if (!normalized.equals(key)) {
+			pw.printf("\t=%s", normalized);
+		}
 
-        if (value != null) {
-            pw.printf("\t%d", value);
-        }
+		if (value != null) {
+			pw.printf("\t%d", value);
+		}
 
-        if (plurSing != null) {
-            pw.printf("\t%s", plurSing);
-        }
-    }
+		if (plurSing != null) {
+			pw.printf("\t%s", plurSing);
+		}
+	}
 
-    void setNormalized(final String normalized) {
-        this.normalized = normalized;
-    }
+	void setNormalized(final String normalized) {
+		this.normalized = normalized;
+	}
 
-    public String getNormalized() {
-        return normalized;
-    }
+	public String getNormalized() {
+		return normalized;
+	}
 
-    void setType(final ExpressionType type) {
-        this.type = type;
-    }
+	void setType(final ExpressionType type) {
+		this.type = type;
+	}
 
-    public ExpressionType getType() {
-        return type;
-    }
+	public ExpressionType getType() {
+		return type;
+	}
 
-    public String getTypeString() {
-        if (type != null) {
+	public String getTypeString() {
+		if (type != null) {
 			return type.getTypeString();
 		} else {
 			return "";
 		}
-    }
+	}
 
-    public String getNormalizedWithTypeString() {
-        return normalized + "/" + getTypeString();
-    }
+	public String getNormalizedWithTypeString() {
+		return normalized + "/" + getTypeString();
+	}
 
-    void setPlurSing(final String plurSing) {
-        this.plurSing = plurSing;
-    }
+	void setPlurSing(final String plurSing) {
+		this.plurSing = plurSing;
+	}
 
-    public String getPlurSing() {
-        return plurSing;
-    }
+	public String getPlurSing() {
+		return plurSing;
+	}
 
-    public boolean isPlural() {
-        return (type != null) && type.isPlural();
-    }
+	public boolean isPlural() {
+		return (type != null) && type.isPlural();
+	}
 
-    public boolean isVerb() {
-        return (type != null) && type.isVerb();
-    }
+	public boolean isVerb() {
+		return (type != null) && type.isVerb();
+	}
 
-    public boolean isObject() {
-        return (type != null) && type.isObject();
-    }
+	public boolean isObject() {
+		return (type != null) && type.isObject();
+	}
 
-    public boolean isSubject() {
-        return (type != null) && type.isSubject();
-    }
+	public boolean isSubject() {
+		return (type != null) && type.isSubject();
+	}
 
 	public boolean isName() {
-        return (type != null) && type.isName();
+		return (type != null) && type.isName();
 	}
 
 	public boolean isNumeral() {
-        return (type != null) && type.isNumeral();
+		return (type != null) && type.isNumeral();
 	}
 
-    public boolean isDynamic() {
-        return (type != null) && type.isDynamic();
-    }
+	public boolean isDynamic() {
+		return (type != null) && type.isDynamic();
+	}
 
 	public boolean isPronoun() {
-        return (type != null) && type.isPronoun();
+		return (type != null) && type.isPronoun();
 	}
 
 	public boolean isObsessional() {
-        return (type != null) && type.isObsessional();
+		return (type != null) && type.isObsessional();
 	}
 
-    void setValue(final Integer value) {
-        this.value = value;
-    }
+	void setValue(final Integer value) {
+		this.value = value;
+	}
 
-    public Integer getValue() {
-        return value;
-    }
+	public Integer getValue() {
+		return value;
+	}
 
-    void setId(final int id) {
-        this.id = id;
-    }
+	void setId(final int id) {
+		this.id = id;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public int getId() {
+		return id;
+	}
 
-    /**
-     * Return a simple string representation of the Expression.
-     */
-    @Override
-    public String toString() {
-        return getNormalizedWithTypeString();
-    }
+	/**
+	 * Return a simple string representation of the Expression.
+	 */
+	@Override
+	public String toString() {
+		return getNormalizedWithTypeString();
+	}
 
 }

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2003-2022 - Faiumoni e.V.                  *
+ *                (C) Copyright 2003-2024 - Faiumoni e.V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -357,7 +357,7 @@ class SwingClientGUI implements J2DClientGUI {
 				screen.repaint();
 			}
 		}
-    }
+	}
 
 	private void locationHacksAndBugWorkaround() {
 		/*

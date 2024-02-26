@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -290,10 +290,10 @@ public class Bootstrap {
 				if (keyStr.equals(ClientGameConfiguration.get("UPDATE_SIGNER_KEY"))) {
 					return true;
 				}
-                System.err.println("Skipping unknown signature: " + keyStr + " from " + cert);
-                if (cert instanceof X509Certificate) {
-                    System.err.println("   " + ((X509Certificate) cert).getSubjectX500Principal());
-                }
+				System.err.println("Skipping unknown signature: " + keyStr + " from " + cert);
+				if (cert instanceof X509Certificate) {
+					System.err.println("   " + ((X509Certificate) cert).getSubjectX500Principal());
+				}
 
 			}
 			return false;

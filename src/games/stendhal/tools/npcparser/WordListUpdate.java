@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -30,103 +30,103 @@ import marauroa.common.io.UnicodeSupportingInputStreamReader;
  */
 public final class WordListUpdate {
 
-    public static void main(final String[] args) {
-        // initialise TransactionPool for DB access
-        //new DatabaseFactory().initializeDatabase();
+	public static void main(final String[] args) {
+		// initialise TransactionPool for DB access
+		//new DatabaseFactory().initializeDatabase();
 
-        // load word list and perform the update
-        String msg = updateWordList(WordList.getInstance());
+		// load word list and perform the update
+		String msg = updateWordList(WordList.getInstance());
 
-        System.out.print(msg);
-    }
+		System.out.print(msg);
+	}
 
-    public static String updateWordList(final WordList wl) {
-        StringBuilder log = new StringBuilder();
+	public static String updateWordList(final WordList wl) {
+		StringBuilder log = new StringBuilder();
 
-        try {
-            // read in the current word list including comment lines
-            final InputStream str = WordList.class.getResourceAsStream(WordList.WORDS_FILENAME);
-            final BufferedReader reader = new BufferedReader(new UnicodeSupportingInputStreamReader(str, "UTF-8"));
-            final List<String> comments = new ArrayList<String>();
+		try {
+			// read in the current word list including comment lines
+			final InputStream str = WordList.class.getResourceAsStream(WordList.WORDS_FILENAME);
+			final BufferedReader reader = new BufferedReader(new UnicodeSupportingInputStreamReader(str, "UTF-8"));
+			final List<String> comments = new ArrayList<String>();
 
-            try {
-                wl.read(reader, comments);
-            } finally {
-                reader.close();
-            }
+			try {
+				wl.read(reader, comments);
+			} finally {
+				reader.close();
+			}
 
-            // update the hash value
-            //wl.calculateHash();
+			// update the hash value
+			//wl.calculateHash();
 
-            // see if we can find the word list source file in the file system
-            String outputPath = "src/games/stendhal/common/parser/" + WordList.WORDS_FILENAME;
+			// see if we can find the word list source file in the file system
+			String outputPath = "src/games/stendhal/common/parser/" + WordList.WORDS_FILENAME;
 
-            final File file = new File(outputPath);
-            if (!file.exists()) {
-                // Otherwise just write the output file into the current directory.
-                outputPath = WordList.WORDS_FILENAME;
-            }
+			final File file = new File(outputPath);
+			if (!file.exists()) {
+				// Otherwise just write the output file into the current directory.
+				outputPath = WordList.WORDS_FILENAME;
+			}
 
-            final PrintWriter writer = new PrintWriter(outputPath, "UTF-8");
+			final PrintWriter writer = new PrintWriter(outputPath, "UTF-8");
 
-            for (final String c : comments) {
-                writer.println(c);
-            }
+			for (final String c : comments) {
+				writer.println(c);
+			}
 
-            writeWordList(wl, writer);
+			writeWordList(wl, writer);
 
-            writer.close();
+			writer.close();
 
-            log.append("The updated word list has been written to the file '" + outputPath + "'.\n");
+			log.append("The updated word list has been written to the file '" + outputPath + "'.\n");
 
-            // initialise TransactionPool if not yet ready
-            //new DatabaseFactory().initializeDatabase();
+			// initialise TransactionPool if not yet ready
+			//new DatabaseFactory().initializeDatabase();
 
-            // update database entries
-            //DBWordList.writeToDB(wl);
-            //log.append("The word list has been stored into the database.\n");
-        } catch (final IOException e) {
-            log.append("Exception: " + e.getMessage() + "\n");
-            e.printStackTrace();
-        }
+			// update database entries
+			//DBWordList.writeToDB(wl);
+			//log.append("The word list has been stored into the database.\n");
+		} catch (final IOException e) {
+			log.append("Exception: " + e.getMessage() + "\n");
+			e.printStackTrace();
+		}
 
-        return log.toString();
-    }
+		return log.toString();
+	}
 
-    /**
-     * Print all words sorted by known types.
-     *
-     * @param wl
-     *            word list
-     * @param writer
-     */
-    private static void writeWordList(final WordList wl, final PrintWriter writer) {
-        writer.println();
-        wl.printWordType(writer, ExpressionType.VERB);
+	/**
+	 * Print all words sorted by known types.
+	 *
+	 * @param wl
+	 *            word list
+	 * @param writer
+	 */
+	private static void writeWordList(final WordList wl, final PrintWriter writer) {
+		writer.println();
+		wl.printWordType(writer, ExpressionType.VERB);
 
-        writer.println();
-        wl.printWordType(writer, ExpressionType.OBJECT);
+		writer.println();
+		wl.printWordType(writer, ExpressionType.OBJECT);
 
-        writer.println();
-        wl.printWordType(writer, ExpressionType.SUBJECT);
+		writer.println();
+		wl.printWordType(writer, ExpressionType.SUBJECT);
 
-        writer.println();
-        wl.printWordType(writer, ExpressionType.ADJECTIVE);
+		writer.println();
+		wl.printWordType(writer, ExpressionType.ADJECTIVE);
 
-        writer.println();
-        wl.printWordType(writer, ExpressionType.NUMERAL);
+		writer.println();
+		wl.printWordType(writer, ExpressionType.NUMERAL);
 
-        writer.println();
-        wl.printWordType(writer, ExpressionType.PREPOSITION);
+		writer.println();
+		wl.printWordType(writer, ExpressionType.PREPOSITION);
 
-        writer.println();
-        wl.printWordType(writer, ExpressionType.QUESTION);
+		writer.println();
+		wl.printWordType(writer, ExpressionType.QUESTION);
 
-        writer.println();
-        wl.printWordType(writer, ExpressionType.IGNORE);
+		writer.println();
+		wl.printWordType(writer, ExpressionType.IGNORE);
 
-        writer.println();
-        wl.printWordType(writer, null);
-    }
+		writer.println();
+		wl.printWordType(writer, null);
+	}
 
 }

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -24,24 +24,24 @@ import marauroa.common.game.RPObject;
  */
 class LookableEntity2DView<T extends StatefulEntity> extends VariableSpriteEntity2DView<T> {
 
-    @Override
-    public int getZIndex() {
-        // blocks should be at the same z index as players
-        final RPObject obj = this.getEntity().getRPObject();
-        if (obj.has("z")) {
-            return obj.getInt("z");
-        }
-        return super.getZIndex();
-    }
+	@Override
+	public int getZIndex() {
+		// blocks should be at the same z index as players
+		final RPObject obj = this.getEntity().getRPObject();
+		if (obj.has("z")) {
+			return obj.getInt("z");
+		}
+		return super.getZIndex();
+	}
 
-    @Override
-    public void onAction() {
-        onAction(ActionType.LOOK);
-    }
+	@Override
+	public void onAction() {
+		onAction(ActionType.LOOK);
+	}
 
-    @Override
-    public StendhalCursor getCursor() {
-        return StendhalCursor.LOOK;
-    }
+	@Override
+	public StendhalCursor getCursor() {
+		return StendhalCursor.LOOK;
+	}
 
 }

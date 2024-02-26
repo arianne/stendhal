@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -39,9 +39,9 @@ public class SoundSystemNG extends Thread
 	{
 		final SourceDataLine mLine;                   // the line we will write the PCM data to
 		final AudioFormat    mFormat;
-        float[]              mAudioBuffer     = null; // the interleaved normalized audio data
+		float[]              mAudioBuffer     = null; // the interleaved normalized audio data
 		int                  mNumSamples      = 0;    //
-        byte[]               mPCMBuffer       = null; // the uniform PCM data converted to the format defined in "mAudioFormat"
+		byte[]               mPCMBuffer       = null; // the uniform PCM data converted to the format defined in "mAudioFormat"
 		int                  mPCMBufferSize   = 0;    //
 		int                  mNumBytesWritten = 0;    // number of bytes from "mPCMBuffer" we have written to "mLine"
 		int                  mNumBytesToWrite = 0;
@@ -54,7 +54,7 @@ public class SoundSystemNG extends Thread
 		}
 
 		boolean isReady             () { return mLine.isOpen() && mLine.isRunning();       }
-//		int     getNumSamples       () { return mNumSamples;                               }
+		//int     getNumSamples       () { return mNumSamples;                               }
 		int     getNumChannels      () { return mFormat.getChannels();                     }
 		int     getSampleRate       () { return (int)mFormat.getSampleRate();              }
 		int     getNumBytesPerSample() { return mFormat.getSampleSizeInBits() / 8;         }
@@ -123,19 +123,19 @@ public class SoundSystemNG extends Thread
 		}
 
 		void convert()
-        {
-            assert (mLine.getFormat().getSampleSizeInBits() % 8) == 0;
+		{
+			assert (mLine.getFormat().getSampleSizeInBits() % 8) == 0;
 
-            int numBytesPerSample = getNumBytesPerSample();
+			int numBytesPerSample = getNumBytesPerSample();
 			int numBytes          = numBytesPerSample * mNumSamples;
 
 			mPCMBuffer     = Field.expand(mPCMBuffer, numBytes, false);
-            mPCMBuffer     = Dsp.convertUniformPCM(mPCMBuffer, mAudioBuffer, mNumSamples, numBytesPerSample);
+			mPCMBuffer     = Dsp.convertUniformPCM(mPCMBuffer, mAudioBuffer, mNumSamples, numBytesPerSample);
 			mPCMBufferSize = numBytes;
-        }
+		}
 
 		boolean write(int numBytes)
-        {
+		{
 			int frameSize                 = getNumBytesPerSample() * getNumChannels();
 			int numRemainingBytesInBuffer = mPCMBufferSize - mNumBytesWritten;
 			int available                 = mLine.available();
@@ -174,7 +174,7 @@ public class SoundSystemNG extends Thread
 			}
 
 			return (mNumBytesToWrite >= frameSize);
-        }
+		}
 	}
 
 	public static class Output extends SignalProcessor
@@ -257,11 +257,11 @@ public class SoundSystemNG extends Thread
 		}
 
 		@Override
-        protected void modify(float[] buffer, int frames, int channels, int rate)
-        {
-            if (buffer != null && frames > 0 && channels > 0 && rate > 0)
-            {
-                assert (frames * channels) <= buffer.length;
+		protected void modify(float[] buffer, int frames, int channels, int rate)
+		{
+			if (buffer != null && frames > 0 && channels > 0 && rate > 0)
+			{
+				assert (frames * channels) <= buffer.length;
 				buffer = Dsp.convertChannels(buffer, frames, channels, getNumChannels());
 
 				setBuffer(buffer, (frames * getNumChannels()));
@@ -276,7 +276,7 @@ public class SoundSystemNG extends Thread
 				setBuffer(null, 0);
 				assert false: "could not convert sample rate";
 			}
-        }
+		}
 	}
 
 	private final static int    STATE_EXITING   = 0;
@@ -290,9 +290,9 @@ public class SoundSystemNG extends Thread
 
 	private final LinkedList<Output>     mMixerOutputs          = new LinkedList<Output>();
 	private volatile SystemOutput        mSystemOutput          = null;
-    private volatile AudioFormat         mAudioFormat           = null;
-    private final AtomicReference<Time>  mBufferDuration        = new AtomicReference<Time>(null);
-    private final AtomicBoolean          mUseDynamicLoadScaling = new AtomicBoolean(false);
+	private volatile AudioFormat         mAudioFormat           = null;
+	private final AtomicReference<Time>  mBufferDuration        = new AtomicReference<Time>(null);
+	private final AtomicBoolean          mUseDynamicLoadScaling = new AtomicBoolean(false);
 	private final AtomicReference<Time>  mStateChangeDelay      = new AtomicReference<Time>(ZERO_DURATION);
 	private final AtomicInteger          mTargetSystemState     = new AtomicInteger(STATE_EXITING);
 	private final AtomicInteger          mCurrentSystemState    = new AtomicInteger(STATE_EXITING);
@@ -303,8 +303,8 @@ public class SoundSystemNG extends Thread
 		init(null, audioFormat, bufferDuration);
 	}
 
-    public SoundSystemNG(SourceDataLine outputLine, Time bufferDuration)
-    {
+	public SoundSystemNG(SourceDataLine outputLine, Time bufferDuration)
+	{
 		if(outputLine == null) {
 			throw new IllegalArgumentException("outputLine argument must not be null");
 		}
@@ -313,7 +313,7 @@ public class SoundSystemNG extends Thread
 		}
 
 		init(outputLine, outputLine.getFormat(), bufferDuration);
-    }
+	}
 
 	public void suspend(Time delay, boolean closeSystemOutput)
 	{
@@ -330,7 +330,7 @@ public class SoundSystemNG extends Thread
 	}
 
 	public void proceed(Time delay, SourceDataLine outputLine)
-    {
+	{
 		if(outputLine != null && !outputLine.getFormat().matches(mAudioFormat)) {
 			throw new IllegalArgumentException("outputLine has the wrong audio format");
 		}
@@ -358,8 +358,8 @@ public class SoundSystemNG extends Thread
 		return output;
 	}
 
-    public void closeOutput(Output output)
-    {
+	public void closeOutput(Output output)
+	{
 		if(output != null)
 		{
 			output.disconnect();
@@ -370,27 +370,27 @@ public class SoundSystemNG extends Thread
 				mMixerOutputs.remove(output);
 			}
 		}
-    }
+	}
 
-    public void closeAllOutputs()
-    {
+	public void closeAllOutputs()
+	{
 		logger.debug("closing all outputs excluding the output for manual mixing");
 
 		synchronized(mMixerOutputs)
 		{
 			mMixerOutputs.clear();
 		}
-    }
+	}
 
-    public void exit(Time delay)
-    {
+	public void exit(Time delay)
+	{
 		logger.info("stopping sound system after " + ((delay != null) ? delay.getInMilliSeconds() : 0) + "ms");
 		changeSystemState(STATE_EXITING, delay);
-    }
+	}
 
-    @Override
-    public void run()
-    {
+	@Override
+	public void run()
+	{
 		class StateChanger
 		{
 			long    mSystemTime  = 0;
@@ -425,16 +425,16 @@ public class SoundSystemNG extends Thread
 			}
 		}
 
-        double       averageTimeToProcessSound = 0;
-        double       multiplicator             = 0.995;
+		double       averageTimeToProcessSound = 0;
+		double       multiplicator             = 0.995;
 		StateChanger stateChanger              = new StateChanger();
 
 		mCurrentSystemState.set(STATE_RUNNING);
 		mTargetSystemState.set(STATE_RUNNING);
 		mStateChangeDelay.set(ZERO_DURATION);
 
-        while(mCurrentSystemState.get() != STATE_EXITING)
-        {
+		while(mCurrentSystemState.get() != STATE_EXITING)
+		{
 			stateChanger.processStateChange();
 
 			switch(mCurrentSystemState.get())
@@ -484,14 +484,14 @@ public class SoundSystemNG extends Thread
 				threadSleep(SLEEP_DURATION.getInNanoSeconds());
 				break;
 			}
-        }
+		}
 
-        closeAllOutputs();
+		closeAllOutputs();
 
 		if(mSystemOutput != null) {
 			mSystemOutput.close();
 		}
-    }
+	}
 
 	private void changeSystemState(int state, Time delay)
 	{
@@ -564,7 +564,7 @@ public class SoundSystemNG extends Thread
 	private void init(SourceDataLine line, AudioFormat audioFormat, Time bufferDuration)
 	{
 		mBufferDuration.set(bufferDuration);
-        mAudioFormat = audioFormat;
+		mAudioFormat = audioFormat;
 
 		if(line != null)
 		{
@@ -577,16 +577,16 @@ public class SoundSystemNG extends Thread
 		}
 	}
 
-    private void threadSleep(long nanos)
-    {
-        try
-        {
-            long millis = nanos / Time.Unit.MILLI.getNanos();
+	private void threadSleep(long nanos)
+	{
+		try
+		{
+			long millis = nanos / Time.Unit.MILLI.getNanos();
 
-            nanos %= Time.Unit.MILLI.getNanos();
+			nanos %= Time.Unit.MILLI.getNanos();
 
-            sleep(millis, (int)nanos);
-        }
-        catch(InterruptedException ex) { }
-    }
+			sleep(millis, (int)nanos);
+		}
+		catch(InterruptedException ex) { }
+	}
 }

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,13 +18,13 @@ package games.stendhal.common.math;
  */
 public class Numeric
 {
-    public static int floatToInt(float value, float accuracy)
-    {
-        return (int)(value * accuracy);
-    }
+	public static int floatToInt(float value, float accuracy)
+	{
+		return (int)(value * accuracy);
+	}
 
-    public static float intToFloat(int value, float accuracy)
-    {
-        return value / accuracy;
-    }
+	public static float intToFloat(int value, float accuracy)
+	{
+		return value / accuracy;
+	}
 }

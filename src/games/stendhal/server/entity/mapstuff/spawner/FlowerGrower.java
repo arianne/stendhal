@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -37,7 +37,7 @@ public class FlowerGrower extends VegetableGrower {
 	/** Maximum ripeness of flowers */
 	private static final int MAX_RIPENESS = 4;
 	private static final String GROWER_NAME = "lilia";
-    /** The description depends upon the ripeness of the flower grower */
+	/** The description depends upon the ripeness of the flower grower */
 	private final String[] description = {
 			"You see something which has just been planted.",
 			"Something is sprouting from the ground.",
@@ -103,7 +103,7 @@ public class FlowerGrower extends VegetableGrower {
 		return Rand.randGaussian(meanTurnsForRegrow, (int) (0.1 * meanTurnsForRegrow));
 	}
 
-    /** The description depends upon the ripeness of the flower grower */
+	/** The description depends upon the ripeness of the flower grower */
 	@Override
 	public String describe() {
 		if ((getRipeness() < 0) || (getRipeness() > getMaxRipeness())) {
@@ -116,8 +116,8 @@ public class FlowerGrower extends VegetableGrower {
 	/**
 	 * Checks if this entity is on a free fertile spot.
 	 *
-     * If yes, the flower can grow. Otherwise it withers and dies.
-     *
+	 * If yes, the flower can grow. Otherwise it withers and dies.
+	 *
 	 * @return true if there is an item implementing FertileGround in the zone,
 	 *         and the position of this is in its area.
 	 */

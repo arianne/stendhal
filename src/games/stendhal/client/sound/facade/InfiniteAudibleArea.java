@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,10 +18,14 @@ import games.stendhal.common.math.Algebra;
  *
  * @author silvio
  */
-public class InfiniteAudibleArea implements AudibleArea
-{
-    @Override
-	public float getHearingIntensity(float[] hearerPos)                 { return 1.0f;                         }
-    @Override
-	public void  getClosestPoint    (float[] result, float[] hearerPos) { Algebra.mov_Vecf(result, hearerPos); }
+public class InfiniteAudibleArea implements AudibleArea {
+	@Override
+	public float getHearingIntensity(float[] hearerPos) {
+		return 1.0f;
+	}
+
+	@Override
+	public void getClosestPoint (float[] result, float[] hearerPos) {
+		Algebra.mov_Vecf(result, hearerPos);
+	}
 }

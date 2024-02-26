@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,6 +18,6 @@ package games.stendhal.client.sound.facade;
  */
 public interface AudibleArea
 {
-    public float getHearingIntensity(float[] hearerPos);
-    public void  getClosestPoint    (float[] result, float[] hearerPos);
+	public float getHearingIntensity(float[] hearerPos);
+	public void  getClosestPoint    (float[] result, float[] hearerPos);
 }

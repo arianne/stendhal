@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,8 +18,8 @@ package games.stendhal.common.parser;
  */
 public final class ConvCtxForMatcher extends ConversationContext {
 
-    public ConvCtxForMatcher() {
-        forMatching = true;
-    }
+	public ConvCtxForMatcher() {
+		forMatching = true;
+	}
 
 }

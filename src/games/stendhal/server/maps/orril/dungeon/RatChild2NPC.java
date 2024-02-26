@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -47,15 +47,15 @@ public class RatChild2NPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-                                //path goes here
-                                nodes.add(new Node(45, 19));
-                                nodes.add(new Node(65, 19));
-                                nodes.add(new Node(65, 54));
-                                nodes.add(new Node(69, 54));
-                                nodes.add(new Node(69, 15));
-                                nodes.add(new Node(45, 15));
+				//path goes here
+				nodes.add(new Node(45, 19));
+				nodes.add(new Node(65, 19));
+				nodes.add(new Node(65, 54));
+				nodes.add(new Node(69, 54));
+				nodes.add(new Node(69, 15));
+				nodes.add(new Node(45, 15));
 
-                                setPath(new FixedPath(nodes, true));
+				setPath(new FixedPath(nodes, true));
 			}
 		};
 

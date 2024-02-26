@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -21,67 +21,67 @@ import java.util.HashMap;
  */
 public class VolumeGroups
 {
-    private final HashMap<String,ArrayList<VolumeAdjustor>> mAdjustorGroups =
-            new HashMap<String,ArrayList<VolumeAdjustor>>();
+	private final HashMap<String,ArrayList<VolumeAdjustor>> mAdjustorGroups =
+			new HashMap<String,ArrayList<VolumeAdjustor>>();
 
-    public VolumeAdjustor add(String group, float volume)
-    {
-        ArrayList<VolumeAdjustor> adjustorList = mAdjustorGroups.get(group);
+	public VolumeAdjustor add(String group, float volume)
+	{
+		ArrayList<VolumeAdjustor> adjustorList = mAdjustorGroups.get(group);
 
-        if(adjustorList == null)
-        {
-           adjustorList = new ArrayList<VolumeAdjustor>();
-           mAdjustorGroups.put(group, adjustorList);
-        }
+		if(adjustorList == null)
+		{
+		   adjustorList = new ArrayList<VolumeAdjustor>();
+		   mAdjustorGroups.put(group, adjustorList);
+		}
 
-        VolumeAdjustor adjustor = new VolumeAdjustor(volume);
-        adjustorList.add(adjustor);
+		VolumeAdjustor adjustor = new VolumeAdjustor(volume);
+		adjustorList.add(adjustor);
 
-        return adjustor;
-    }
+		return adjustor;
+	}
 
-    public void remove(String group)
-    {
-        ArrayList<VolumeAdjustor> adjustorList = mAdjustorGroups.get(group);
+	public void remove(String group)
+	{
+		ArrayList<VolumeAdjustor> adjustorList = mAdjustorGroups.get(group);
 
-        if(adjustorList != null)
-        {
-            for(VolumeAdjustor adjustor: adjustorList) {
+		if(adjustorList != null)
+		{
+			for(VolumeAdjustor adjustor: adjustorList) {
 				adjustor.disconnect();
 			}
 
-            adjustorList.clear();
-            mAdjustorGroups.remove(group);
-        }
-    }
+			adjustorList.clear();
+			mAdjustorGroups.remove(group);
+		}
+	}
 
-    public void remove(String group, VolumeAdjustor adjustor)
-    {
-        ArrayList<VolumeAdjustor> adjustorList = mAdjustorGroups.get(group);
+	public void remove(String group, VolumeAdjustor adjustor)
+	{
+		ArrayList<VolumeAdjustor> adjustorList = mAdjustorGroups.get(group);
 
-        if(adjustorList != null) {
+		if(adjustorList != null) {
 			adjustorList.remove(adjustor);
 		}
-    }
+	}
 
-    public void setVolume(String group, float volume)
-    {
-        ArrayList<VolumeAdjustor> adjustorList = mAdjustorGroups.get(group);
+	public void setVolume(String group, float volume)
+	{
+		ArrayList<VolumeAdjustor> adjustorList = mAdjustorGroups.get(group);
 
-        if(adjustorList != null)
-        {
-            for(VolumeAdjustor adjustor: adjustorList) {
-				adjustor.setVolume(volume);
-			}
-        }
-    }
-
-    public void setVolume(float volume)
-    {
-        for(ArrayList<VolumeAdjustor> adjustorList: mAdjustorGroups.values()) {
+		if(adjustorList != null)
+		{
 			for(VolumeAdjustor adjustor: adjustorList) {
 				adjustor.setVolume(volume);
 			}
 		}
-    }
+	}
+
+	public void setVolume(float volume)
+	{
+		for(ArrayList<VolumeAdjustor> adjustorList: mAdjustorGroups.values()) {
+			for(VolumeAdjustor adjustor: adjustorList) {
+				adjustor.setVolume(volume);
+			}
+		}
+	}
 }

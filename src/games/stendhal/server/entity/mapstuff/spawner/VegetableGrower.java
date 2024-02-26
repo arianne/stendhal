@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Marauroa                    *
+ *                   (C) Copyright 2003-2024 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -34,27 +34,27 @@ public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
 		this.vegetableName = vegetableName;
 	}
 
-    protected String getVegetableName() {
+	protected String getVegetableName() {
 		return vegetableName;
-    }
+	}
 
 	protected final void setNotRipeEnoughMessage(final String notRipeEnoughMessage) {
 		this.notRipeEnoughMessage = notRipeEnoughMessage;
 	}
 
-    protected String getNotRipeEnoughMessage() {
+	protected String getNotRipeEnoughMessage() {
 		return notRipeEnoughMessage;
 	}
 
 	/**
-     * Create a VegetableGrower from an RPObject. Used when restoring growers
-     * from the DB.
-     *
-     * @param object object to be converted
-     * @param name item name
-     * @param maxRipeness maximum ripeness of the object
-     * @param growthRate average time between growth steps
-     */
+	 * Create a VegetableGrower from an RPObject. Used when restoring growers
+	 * from the DB.
+	 *
+	 * @param object object to be converted
+	 * @param name item name
+	 * @param maxRipeness maximum ripeness of the object
+	 * @param growthRate average time between growth steps
+	 */
 	public VegetableGrower(final RPObject object, final String name,
 			final int maxRipeness, final int growthRate) {
 		super(object, "items/grower/" + name + "_grower", "items/grower/" + name + " grower", "Pick", maxRipeness, growthRate);

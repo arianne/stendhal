@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -19,8 +19,8 @@ package games.stendhal.common.parser;
  */
 class TypeExprMatcher extends ExpressionMatcher {
 
-    public TypeExprMatcher() {
-        typeMatching = true;
-    }
+	public TypeExprMatcher() {
+		typeMatching = true;
+	}
 
 }

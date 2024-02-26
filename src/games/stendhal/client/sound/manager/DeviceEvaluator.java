@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -61,11 +61,11 @@ public class DeviceEvaluator
 		public <T extends Line> T getLine(Class<T> lineClass, AudioFormat audioFormat)
 		{
 			try
-            {
+			{
 				DataLine.Info info = new DataLine.Info(lineClass, audioFormat, AudioSystem.NOT_SPECIFIED);
-                return (T)mMixer.getLine(info);
-            }
-            catch(LineUnavailableException e) { }
+				return (T)mMixer.getLine(info);
+			}
+			catch(LineUnavailableException e) { }
 			catch(IllegalArgumentException e) { }
 			catch(SecurityException        e) { }
 
@@ -125,14 +125,14 @@ public class DeviceEvaluator
 	}
 
 	private static void sortDeviceList(List<Device> devices, AudioFormat audioFormat)
-    {
-        final DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
+	{
+		final DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
 
-        Collections.sort(devices, new Comparator<Device>()
-        {
-            @Override
+		Collections.sort(devices, new Comparator<Device>()
+		{
+			@Override
 			public int compare(Device device1, Device device2)
-            {
+			{
 				int numLines1 = device1.mMixer.getMaxLines(dataLineInfo);
 				int numLines2 = device2.mMixer.getMaxLines(dataLineInfo);
 
@@ -154,9 +154,9 @@ public class DeviceEvaluator
 				}
 
 				return 1;
-            }
-        });
-    }
+			}
+		});
+	}
 
 	public static void main(String[] args)
 	{

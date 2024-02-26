@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -43,7 +43,7 @@ public class CommandlineParser {
 		while (Character.isWhitespace(ci.current())) {
 			ci.next();
 		}
-    }
+	}
 
 	/**
 	 * Read next command line parameter considering quoting.
