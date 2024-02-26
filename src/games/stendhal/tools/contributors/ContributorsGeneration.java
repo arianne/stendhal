@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2020 - Faiumoni e. V.                   *
+ *                (C) Copyright 2020-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -19,7 +19,10 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import games.stendhal.tools.UniversalPrintStream;
+
 import org.json.simple.JSONValue;
+
 
 /**
  * generates contributors.md
@@ -187,17 +190,7 @@ public class ContributorsGeneration {
 
 	public void process(final String filename) throws IOException {
 		// encode to UTF-8 by default & force LF line endings
-		final PrintStream out = new PrintStream(System.out, true, "UTF-8") {
-			@Override
-			public void println() {
-				write("\n".getBytes(), 0, 1);
-			}
-
-			@Override
-			public void println(final String st) {
-				write((st + "\n").getBytes(), 0, st.length() + 1);
-			}
-		};
+		final PrintStream out = new UniversalPrintStream();
 
 		this.parse(filename);
 		this.writeHeader(out);
