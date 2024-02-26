@@ -234,6 +234,12 @@ public abstract class AccessCheckingPortal extends Portal {
                         + "). Required password: " + requiredPassword);
                 return false;
             }
+            if (!user.nextTo(this) && this.getZone().collides(this.getX(), this.getY()) && !rejectedMessage.trim().equals("")) {
+                // notify player they must stand next to portal to activate it
+                sendMessage(user, "You are too far away.");
+                // save CPU cycles
+                return false;
+            }
             return super.onUsed(user);
         }
         // Supresses sprite bounce-back in the case of non-resistant portals

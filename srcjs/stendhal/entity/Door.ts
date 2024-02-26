@@ -50,19 +50,6 @@ export class Door extends Portal {
 		return true;
 	}
 
-	/**
-	 * Create the default action for this entity. If the entity specifies a
-	 * default action description, interpret it as an action command.
-	 */
-	override getDefaultAction() {
-		return {
-			"type": "moveto",
-			"x": "" + this["x"],
-			"y": "" + this["y"],
-			"zone": marauroa.currentZoneName
-		};
-	}
-
 	override getCursor(_x: number, _y: number) {
 		return "url(" + stendhal.paths.sprites + "/cursor/portal.png) 1 3, auto";
 	}
