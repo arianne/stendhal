@@ -49,3 +49,4 @@ build_server_xmlconf
 /map.map
 /hs_err_*.log
 /node_modules/
+/log/
