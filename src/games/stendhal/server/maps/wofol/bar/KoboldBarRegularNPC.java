@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -26,52 +26,50 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
   */
 public class KoboldBarRegularNPC implements ZoneConfigurator {
 
-    /**
-     * Configure a zone.
-     *
-     * @param   zone        The zone to be configured.
-     * @param   attributes  Configuration attributes.
-     */
-    @Override
+	/**
+	 * Configure a zone.
+	 *
+	 * @param   zone        The zone to be configured.
+	 * @param   attributes  Configuration attributes.
+	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-        buildNPC(zone);
-    }
+		buildNPC(zone);
+	}
 
-    private void buildNPC(final StendhalRPZone zone) {
+	private void buildNPC(final StendhalRPZone zone) {
 
-        final SpeakerNPC npc = new SpeakerNPC("Kormic") {
+		final SpeakerNPC npc = new SpeakerNPC("Kormic") {
 
-            @Override
-            public void say(final String text) {
+			@Override
+			public void say(final String text) {
 
-                    // doesn't turn
-                    say(text, false);
-            }
+					// doesn't turn
+					say(text, false);
+			}
 
-            @Override
-            protected void createPath() {
-                setPath(null);
-            }
+			@Override
+			protected void createPath() {
+				setPath(null);
+			}
 
-            @Override
+			@Override
+			protected void createDialog() {
 
-            protected void createDialog() {
+				addGreeting("*BuRP*");
+				addHelp("*GrOaN*");
+				addQuest("*mOaN*");
+				addGoodbye("*BUrP!*");
+				addReply(Arrays.asList("wine","beer","mild","strong","torcibud"), "*Wrof!*");
+			}
+		};
 
-                addGreeting("*BuRP*");
-                addHelp("*GrOaN*");
-                addQuest("*mOaN*");
-                addGoodbye("*BUrP!*");
-                addReply(Arrays.asList("wine","beer","mild","strong","torcibud"),
-                        "*Wrof!*");
-            }
-        };
+		npc.setEntityClass("../monsters/kobold/leader_kobold");
+		npc.setPosition(6, 5);
+		npc.initHP(100);
+		npc.setDirection(Direction.UP);
+		npc.setDescription("You see Kormic, a regular here in Kobold's Den bar.");
+		zone.add(npc);
 
-        npc.setEntityClass("../monsters/kobold/leader_kobold");
-        npc.setPosition(6, 5);
-        npc.initHP(100);
-        npc.setDirection(Direction.UP);
-        npc.setDescription("You see Kormic, a regular here in Kobold's Den bar.");
-        zone.add(npc);
-
-    }
+	}
 }

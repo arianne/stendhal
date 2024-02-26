@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -691,7 +691,7 @@ public class StendhalQuestSystem {
 	 * @return list of the unique npc names for unstarted quests in a specified region
 	 */
 	public List<String> getNPCNamesForUnstartedQuestsInRegionForLevel(Player player, String region) {
-        final int playerlevel = player.getLevel();
+		final int playerlevel = player.getLevel();
 		List<String> res = new LinkedList<String>();
 		for (final IQuest quest : quests) {
 			if (region.equals(quest.getRegion()) && !quest.isStarted(player) && quest.isVisibleOnQuestStatus(player) && quest.getMinLevel()<playerlevel) {
@@ -716,10 +716,10 @@ public class StendhalQuestSystem {
 	 */
 	public List<String> getQuestDescriptionForUnstartedQuestInRegionFromNPCName(Player player, String region, String name) {
 		List<String> res = new LinkedList<String>();
-        if (name == null) {
-            return res;
-        }
-        final int playerlevel = player.getLevel();
+		if (name == null) {
+			return res;
+		}
+		final int playerlevel = player.getLevel();
 		for (final IQuest quest : quests) {
 			if (region.equals(quest.getRegion()) && !quest.isStarted(player) && quest.isVisibleOnQuestStatus(player) && quest.getMinLevel()<playerlevel && name.equals(quest.getNPCName())) {
 				res.add(quest.getQuestInfo(player).getDescription());

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -99,10 +99,10 @@ public class WellSource extends PlayerActivityEntity {
 	 */
 	@Override
 	protected boolean isPrepared(final Player player) {
-        /*
-        * The player 'throws' money into the well, like a wishing well donation.
-        * Check they have it before they use the well.
-		*/
+		/*
+		 * The player 'throws' money into the well, like a wishing well donation.
+		 * Check they have it before they use the well.
+		 */
 		if (player.isEquipped("money", 30)) {
 			return true;
 		} else {
@@ -119,10 +119,10 @@ public class WellSource extends PlayerActivityEntity {
 	@Override
 	protected boolean isSuccessful(final Player player) {
 		final int random = Rand.roll1D100();
-        /*
-        * Use some karma to help decide if the outcome is successful
-        * We want to use up quite a bit karma at once, so scale it after
-		*/
+		/*
+		 * Use some karma to help decide if the outcome is successful
+		 * We want to use up quite a bit karma at once, so scale it after
+		 */
 		double karma = player.useKarma(FINDING_PROBABILITY*10);
 
 		// if player karma is > 0 it will always return at least 20% of FINDING_PROBABILITY*10, or karma, whichever is smaller

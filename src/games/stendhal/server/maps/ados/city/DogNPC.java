@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -46,7 +46,7 @@ public class DogNPC implements ZoneConfigurator {
 		dog.moveRandomly();
 		dog.setRandomMovementRadius(5, true);
 		//dog.setCollisionAction(CollisionAction.REVERSE);
-        dog.setSounds(Arrays.asList("dog-small-bark-1", "dog-small-bark-2"));
+		dog.setSounds(Arrays.asList("dog-small-bark-1", "dog-small-bark-2"));
 		zone.add(dog);
 	}
 

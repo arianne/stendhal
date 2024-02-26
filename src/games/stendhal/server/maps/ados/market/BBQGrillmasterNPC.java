@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -44,18 +44,18 @@ public class BBQGrillmasterNPC implements ZoneConfigurator {
 				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(14, 25));
 				nodes.add(new Node(15, 25));
-                nodes.add(new Node(12, 25));
-                nodes.add(new Node(16, 25));
-                nodes.add(new Node(16, 24));
-                nodes.add(new Node(16, 25));
-                nodes.add(new Node(15, 25));
-                nodes.add(new Node(12, 25));
-                nodes.add(new Node(17, 25));
-                nodes.add(new Node(17, 24));
-                nodes.add(new Node(17, 25));
-                nodes.add(new Node(13, 25));
-                nodes.add(new Node(14, 25));
-               	setPath(new FixedPath(nodes, true));
+				nodes.add(new Node(12, 25));
+				nodes.add(new Node(16, 25));
+				nodes.add(new Node(16, 24));
+				nodes.add(new Node(16, 25));
+				nodes.add(new Node(15, 25));
+				nodes.add(new Node(12, 25));
+				nodes.add(new Node(17, 25));
+				nodes.add(new Node(17, 24));
+				nodes.add(new Node(17, 25));
+				nodes.add(new Node(13, 25));
+				nodes.add(new Node(14, 25));
+				setPath(new FixedPath(nodes, true));
 
 			}
 

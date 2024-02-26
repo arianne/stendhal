@@ -80,15 +80,15 @@ public class AllotmentLessorNPC implements ZoneConfigurator {
 				/*final List<Node> nodes = new LinkedList<Node>();
 
 				nodes.add(new Node(70, 19));
-                nodes.add(new Node(86,19));
-                nodes.add(new Node(86,3));
-                nodes.add(new Node(87,3));
-                nodes.add(new Node(87,19));
-                nodes.add(new Node(106,19));
-                nodes.add(new Node(106,3));
-                nodes.add(new Node(107,3));
-                nodes.add(new Node(107,19));
-                nodes.add(new Node(69,19));
+				nodes.add(new Node(86,19));
+				nodes.add(new Node(86,3));
+				nodes.add(new Node(87,3));
+				nodes.add(new Node(87,19));
+				nodes.add(new Node(106,19));
+				nodes.add(new Node(106,3));
+				nodes.add(new Node(107,3));
+				nodes.add(new Node(107,19));
+				nodes.add(new Node(69,19));
 
 				setPath(new FixedPath(nodes, true));*/
 				setPath(null);

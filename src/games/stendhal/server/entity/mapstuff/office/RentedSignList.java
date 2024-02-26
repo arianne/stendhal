@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -37,9 +37,9 @@ public class RentedSignList extends StorableEntityList<RentedSign> {
 	}
 
 	@Override
-    public String getName(final RentedSign rentedSign) {
+	public String getName(final RentedSign rentedSign) {
 		return rentedSign.getRenter();
-    }
+	}
 
 	@Override
 	protected boolean shouldExpire(final RentedSign entity) {

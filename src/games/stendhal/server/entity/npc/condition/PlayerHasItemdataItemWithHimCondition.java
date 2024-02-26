@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -40,7 +40,7 @@ public class PlayerHasItemdataItemWithHimCondition implements ChatCondition {
 	 *
 	 * @param itemName
 	 *            name of item
-     * @param itemdata
+	 * @param itemdata
 	 *            itemdata to check
 	 */
 	public PlayerHasItemdataItemWithHimCondition(final String itemName, final String itemdata) {

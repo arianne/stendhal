@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -44,18 +44,18 @@ public class OldFishermanNPC implements ZoneConfigurator {
 				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(67, 79));
 				nodes.add(new Node(62, 79));
-                nodes.add(new Node(62, 77));
-                nodes.add(new Node(61, 77));
-                nodes.add(new Node(61, 76));
-                nodes.add(new Node(55, 76));
-                nodes.add(new Node(55, 74));
-                nodes.add(new Node(58, 74));
-                nodes.add(new Node(58, 73));
-                nodes.add(new Node(60, 73));
-                nodes.add(new Node(60, 77));
-                nodes.add(new Node(62, 77));
+				nodes.add(new Node(62, 77));
+				nodes.add(new Node(61, 77));
+				nodes.add(new Node(61, 76));
+				nodes.add(new Node(55, 76));
+				nodes.add(new Node(55, 74));
+				nodes.add(new Node(58, 74));
+				nodes.add(new Node(58, 73));
+				nodes.add(new Node(60, 73));
+				nodes.add(new Node(60, 77));
+				nodes.add(new Node(62, 77));
 				nodes.add(new Node(62, 79));
-               	setPath(new FixedPath(nodes, true));
+				setPath(new FixedPath(nodes, true));
 
 			}
 

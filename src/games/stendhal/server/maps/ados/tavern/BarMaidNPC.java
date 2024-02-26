@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -53,10 +53,10 @@ public class BarMaidNPC implements ZoneConfigurator {
 				nodes.add(new Node(10, 12));
 				nodes.add(new Node(10, 5));
 				nodes.add(new Node(17, 5));
-                nodes.add(new Node(17, 3));
-                nodes.add(new Node(3, 3));
-                nodes.add(new Node(3, 6));
-                nodes.add(new Node(13, 6));
+				nodes.add(new Node(17, 3));
+				nodes.add(new Node(3, 3));
+				nodes.add(new Node(3, 6));
+				nodes.add(new Node(13, 6));
 				setPath(new FixedPath(nodes, true));
 			}
 

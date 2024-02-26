@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -199,7 +199,7 @@ public class SignLessorNPC implements ZoneConfigurator {
 			public boolean fire(Player player, Sentence sentence, Entity npc) {
 				String txt = sentence.getOriginalText();
 
-            	//TODO replaced by using sentence matching "[you] rent"
+				//TODO replaced by using sentence matching "[you] rent"
 				if (txt.startsWith("rent") || txt.startsWith("you rent")) {
 					return true;
 				} else {

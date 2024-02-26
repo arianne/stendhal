@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2013 - Faiumoni e. V.                   *
+ *                (C) Copyright 2013-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -141,8 +141,8 @@ public class StatusAttacker {
 	 * @return
 	 *     Name of the status that this attacker can inflict
 	 */
-    public String getStatusName() {
-        return status.getName();
-    }
+	public String getStatusName() {
+		return status.getName();
+	}
 
 }

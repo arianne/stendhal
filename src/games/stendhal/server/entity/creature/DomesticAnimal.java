@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2024 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -193,27 +193,27 @@ public abstract class DomesticAnimal extends Creature {
 	 * @return boolean flag
 	 */
 	protected boolean isOwnerCallingMe() {
-    	if (owner != null) {
-    		String text = owner.get("text");
+		if (owner != null) {
+			String text = owner.get("text");
 
-    		if (text != null) {
-    			text = text.trim().toLowerCase();
+			if (text != null) {
+				text = text.trim().toLowerCase();
 
-    			// react on calling the pet's name
-        		final String title = getTitle();
-    			if ((title != null) && text.startsWith(title.trim().toLowerCase())) {
-    				return true;
-    			}
+				// react on calling the pet's name
+				final String title = getTitle();
+				if ((title != null) && text.startsWith(title.trim().toLowerCase())) {
+					return true;
+				}
 
-    			// react on calling the pet type ("cat", "sheep", ...)
-        		final String type = get("type");
-    			if ((type != null) && text.startsWith(type)) {
-    				return true;
-    			}
-    		}
-    	}
+				// react on calling the pet type ("cat", "sheep", ...)
+				final String type = get("type");
+				if ((type != null) && text.startsWith(type)) {
+					return true;
+				}
+			}
+		}
 
-    	return false;
-    }
+		return false;
+	}
 
 }

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   Copyright (C) 2003-2022 - Arianne                     *
+ *                   Copyright (C) 2003-2024 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -54,7 +54,7 @@ public class Observable {
 	}
 
 	public synchronized void deleteObservers() {
-        observers.clear();
+		observers.clear();
 	}
 
 	@SuppressWarnings({ "unchecked" })
@@ -77,6 +77,6 @@ public class Observable {
 	}
 
 	public void notifyObservers() {
-        notifyObservers(null);
+		notifyObservers(null);
 	}
 }

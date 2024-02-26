@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   Copyright (C) 2003-2022 - Arianne                     *
+ *                   Copyright (C) 2003-2024 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -90,7 +90,7 @@ public final class NPCChatting implements Observer, TurnListener {
 			TurnNotifier.get().dontNotify(this);
 			second.setCurrentState(ConversationStates.IDLE);
 			second.followPath();
-            // going ahead
+			// going ahead
 			next.update(null, null);
 			return;
 		}

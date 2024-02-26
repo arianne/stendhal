@@ -17,7 +17,7 @@ import marauroa.common.game.IRPZone;
  */
 public final class ItemDroppingTeleporterBehaviour extends TeleporterBehaviour {
 	final SpeakerNPC speakerNPC;
-    final String itemName;
+	final String itemName;
 
 
 	/**

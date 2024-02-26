@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -38,9 +38,9 @@ public class AttackingSpell extends Spell {
 
 	@Override
 	protected boolean isTargetValid(Entity caster, Entity target) {
-        final boolean targetIsCreature = target instanceof Creature;
-        final boolean targetIsPlayer = target instanceof Player;
-        return targetIsCreature || targetIsPlayer;
+		final boolean targetIsCreature = target instanceof Creature;
+		final boolean targetIsPlayer = target instanceof Player;
+		return targetIsCreature || targetIsPlayer;
 	}
 
 	@Override

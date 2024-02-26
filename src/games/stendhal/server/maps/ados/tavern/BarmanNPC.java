@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -53,10 +53,10 @@ public class BarmanNPC implements ZoneConfigurator {
 				nodes.add(new Node(27, 8));
 				nodes.add(new Node(24, 8));
 				nodes.add(new Node(24, 12));
-                nodes.add(new Node(28, 12));
-                nodes.add(new Node(28, 6));
-                nodes.add(new Node(23, 6));
-                nodes.add(new Node(23, 2));
+				nodes.add(new Node(28, 12));
+				nodes.add(new Node(28, 6));
+				nodes.add(new Node(23, 6));
+				nodes.add(new Node(23, 2));
 				setPath(new FixedPath(nodes, true));
 			}
 

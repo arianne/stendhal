@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -24,9 +24,9 @@ public class SeedSellerBehaviour extends SellerBehaviour {
 
 	private static Map<String, Integer> pricelist = new HashMap<String, Integer>();
 	static {
-        /*
-         * flower names should be one word, no blank characters
-         */
+		/*
+		 * flower names should be one word, no blank characters
+		 */
 		pricelist.put("lilia seed", 10);
 		pricelist.put("daisies seed", 20);
 		pricelist.put("zantedeschia bulb", 15);

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -44,17 +44,17 @@ public class ForeignWomanNPC implements ZoneConfigurator {
 				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(73, 7));
 				nodes.add(new Node(73, 1));
-                nodes.add(new Node(70, 1));
-                nodes.add(new Node(69, 10));
-                nodes.add(new Node(69, 12));
-                nodes.add(new Node(70, 12));
-                nodes.add(new Node(70, 34));
-                nodes.add(new Node(75, 33));
-                nodes.add(new Node(75, 24));
-                nodes.add(new Node(74, 24));
-                nodes.add(new Node(74, 9));
-                nodes.add(new Node(73, 9));
-               	setPath(new FixedPath(nodes, true));
+				nodes.add(new Node(70, 1));
+				nodes.add(new Node(69, 10));
+				nodes.add(new Node(69, 12));
+				nodes.add(new Node(70, 12));
+				nodes.add(new Node(70, 34));
+				nodes.add(new Node(75, 33));
+				nodes.add(new Node(75, 24));
+				nodes.add(new Node(74, 24));
+				nodes.add(new Node(74, 9));
+				nodes.add(new Node(73, 9));
+				setPath(new FixedPath(nodes, true));
 
 			}
 

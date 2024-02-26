@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -47,37 +47,35 @@ public class ConditionAndActionAreaFactory implements ConfigurableFactory {
 		return ctx.getInt("width", 1);
 	}
 
-    protected ChatAction getAction(final ConfigurableFactoryContext ctx) {
-        String value = ctx.getString("action", null);
-        if (value == null) {
-            return null;
-        }
-        Binding groovyBinding = new Binding();
-        final GroovyShell interp = new GroovyShell(groovyBinding);
-        try {
-            String code = "import games.stendhal.server.entity.npc.action.*;\r\n"
-                + value;
-            return (ChatAction) interp.evaluate(code);
-        } catch (CompilationFailedException e) {
-            throw new IllegalArgumentException(e);
-        }
-    }
+	protected ChatAction getAction(final ConfigurableFactoryContext ctx) {
+		String value = ctx.getString("action", null);
+		if (value == null) {
+			return null;
+		}
+		Binding groovyBinding = new Binding();
+		final GroovyShell interp = new GroovyShell(groovyBinding);
+		try {
+			String code = "import games.stendhal.server.entity.npc.action.*;\r\n" + value;
+			return (ChatAction) interp.evaluate(code);
+		} catch (CompilationFailedException e) {
+			throw new IllegalArgumentException(e);
+		}
+	}
 
-    protected ChatCondition getCondition(final ConfigurableFactoryContext ctx) {
-        String value = ctx.getString("condition", null);
-        if (value == null) {
-            return null;
-        }
-        Binding groovyBinding = new Binding();
-        final GroovyShell interp = new GroovyShell(groovyBinding);
-        try {
-            String code = "import games.stendhal.server.entity.npc.condition.*;\r\n"
-                + value;
-            return (ChatCondition) interp.evaluate(code);
-        } catch (CompilationFailedException e) {
-            throw new IllegalArgumentException(e);
-        }
-    }
+	protected ChatCondition getCondition(final ConfigurableFactoryContext ctx) {
+		String value = ctx.getString("condition", null);
+		if (value == null) {
+			return null;
+		}
+		Binding groovyBinding = new Binding();
+		final GroovyShell interp = new GroovyShell(groovyBinding);
+		try {
+			String code = "import games.stendhal.server.entity.npc.condition.*;\r\n" + value;
+			return (ChatCondition) interp.evaluate(code);
+		} catch (CompilationFailedException e) {
+			throw new IllegalArgumentException(e);
+		}
+	}
 
 	/**
 	 * Create a damaging area.

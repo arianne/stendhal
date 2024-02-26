@@ -45,13 +45,13 @@ public class FishSoupMakerNPC implements ZoneConfigurator {
 				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(63, 14));
 				nodes.add(new Node(70, 14));
-                nodes.add(new Node(70, 10));
-                nodes.add(new Node(67, 10));
-                nodes.add(new Node(67, 14));
-                nodes.add(new Node(64, 14));
-                nodes.add(new Node(64, 10));
-                nodes.add(new Node(63, 10));
-               	setPath(new FixedPath(nodes, true));
+				nodes.add(new Node(70, 10));
+				nodes.add(new Node(67, 10));
+				nodes.add(new Node(67, 14));
+				nodes.add(new Node(64, 14));
+				nodes.add(new Node(64, 10));
+				nodes.add(new Node(63, 10));
+				setPath(new FixedPath(nodes, true));
 
 			}
 

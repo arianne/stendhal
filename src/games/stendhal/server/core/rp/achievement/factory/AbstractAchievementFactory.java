@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -46,7 +46,7 @@ public abstract class AbstractAchievementFactory {
 	 * @param title
 	 * @param description
 	 * @param score
-     * @param active
+	 * @param active
 	 * @param condition
 	 * @return the new Achievement
 	 */

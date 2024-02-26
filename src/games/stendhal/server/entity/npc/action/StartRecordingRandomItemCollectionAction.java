@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -75,8 +75,8 @@ public class StartRecordingRandomItemCollectionAction implements ChatAction {
 	 *            Message which NPC asks for items with. We add the item name and quantity to end of message.
 	 */
 	@Dev
-	public StartRecordingRandomItemCollectionAction(final String questname, @Dev(defaultValue="1") final int index, final Map<String, Integer>
-    items, final String message) {
+	public StartRecordingRandomItemCollectionAction(final String questname, @Dev(defaultValue="1") final int index,
+			final Map<String, Integer> items, final String message) {
 		this.questname = checkNotNull(questname);
 		this.index = index;
 		this.items = ImmutableMap.copyOf(items);

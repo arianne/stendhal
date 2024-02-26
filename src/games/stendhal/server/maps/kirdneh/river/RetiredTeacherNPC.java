@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -44,32 +44,32 @@ public class RetiredTeacherNPC implements ZoneConfigurator {
 				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(15, 28));
 				nodes.add(new Node(27, 28));
-                nodes.add(new Node(27, 19));
-                nodes.add(new Node(26, 19));
-                nodes.add(new Node(26, 16));
-                nodes.add(new Node(28, 16));
-                nodes.add(new Node(28, 11));
-                nodes.add(new Node(24, 11));
-                nodes.add(new Node(24, 20));
-                nodes.add(new Node(27, 20));
-                nodes.add(new Node(27, 26));
-                nodes.add(new Node(14, 26));
-                nodes.add(new Node(14, 25));
-                nodes.add(new Node(13, 25));
-                nodes.add(new Node(13, 20));
-                nodes.add(new Node(14, 20));
-                nodes.add(new Node(14, 14));
-                nodes.add(new Node(4, 14));
-                nodes.add(new Node(4, 6));
-                nodes.add(new Node(10, 6));
-                nodes.add(new Node(10, 3));
-                nodes.add(new Node(6, 3));
-                nodes.add(new Node(6, 6));
-                nodes.add(new Node(4, 6));
-                nodes.add(new Node(4, 22));
-                nodes.add(new Node(13, 22));
-                nodes.add(new Node(13, 27));
-               	setPath(new FixedPath(nodes, true));
+				nodes.add(new Node(27, 19));
+				nodes.add(new Node(26, 19));
+				nodes.add(new Node(26, 16));
+				nodes.add(new Node(28, 16));
+				nodes.add(new Node(28, 11));
+				nodes.add(new Node(24, 11));
+				nodes.add(new Node(24, 20));
+				nodes.add(new Node(27, 20));
+				nodes.add(new Node(27, 26));
+				nodes.add(new Node(14, 26));
+				nodes.add(new Node(14, 25));
+				nodes.add(new Node(13, 25));
+				nodes.add(new Node(13, 20));
+				nodes.add(new Node(14, 20));
+				nodes.add(new Node(14, 14));
+				nodes.add(new Node(4, 14));
+				nodes.add(new Node(4, 6));
+				nodes.add(new Node(10, 6));
+				nodes.add(new Node(10, 3));
+				nodes.add(new Node(6, 3));
+				nodes.add(new Node(6, 6));
+				nodes.add(new Node(4, 6));
+				nodes.add(new Node(4, 22));
+				nodes.add(new Node(13, 22));
+				nodes.add(new Node(13, 27));
+				setPath(new FixedPath(nodes, true));
 
 			}
 

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2020 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -64,11 +64,11 @@ public final class AchievementNotifier {
 	 * @return the AchievementNotifier
 	 */
 	public static AchievementNotifier get() {
-    	synchronized(AchievementNotifier.class) {
+		synchronized(AchievementNotifier.class) {
 			if(instance == null) {
 				instance = new AchievementNotifier();
 			}
-    	}
+		}
 		return instance;
 	}
 

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                      (C) Copyright 2018 - Stendhal                      *
+ *                   (C) Copyright 2018-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -24,22 +24,22 @@ import games.stendhal.server.entity.player.Player;
  * removes the specified zone from the world
  */
 public class RemoveZone extends ScriptImpl {
-    private static Logger logger = Logger.getLogger(RemoveZone.class);
+	private static Logger logger = Logger.getLogger(RemoveZone.class);
 
-    @Override
-    public void execute(Player admin, List<String> args) {
-        StendhalRPWorld world = StendhalRPWorld.get();
-        StendhalRPZone zone = world.getZone(args.get(0));
-        if (zone == null) {
-            admin.sendPrivateText("No such zone");
-            return;
-        }
+	@Override
+	public void execute(Player admin, List<String> args) {
+		StendhalRPWorld world = StendhalRPWorld.get();
+		StendhalRPZone zone = world.getZone(args.get(0));
+		if (zone == null) {
+			admin.sendPrivateText("No such zone");
+			return;
+		}
 
-        try {
-            world.removeRPZone(zone.getID());
-        } catch (Exception e) {
-            logger.error(e, e);
-            admin.sendPrivateText("Removing zone failed");
-        }
-    }
+		try {
+			world.removeRPZone(zone.getID());
+		} catch (Exception e) {
+			logger.error(e, e);
+			admin.sendPrivateText("Removing zone failed");
+		}
+	}
 }

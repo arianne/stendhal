@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -29,8 +29,8 @@ public class TPPNextPhase extends ScriptImpl {
 	public void execute(final Player admin, final List<String> args) {
 
 		//ThePiedPiper TPP = (ThePiedPiper) StendhalQuestSystem.get().getQuest("ThePiedPiper");
-        ThePiedPiper.switchToNextPhase();
+		ThePiedPiper.switchToNextPhase();
 		final String Phase = ThePiedPiper.getPhase().toString();
-        admin.sendPrivateText("Switched to "+Phase);
+		admin.sendPrivateText("Switched to "+Phase);
 	}
 }

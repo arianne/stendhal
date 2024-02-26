@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -39,7 +39,7 @@ public enum TutorialEventType {
 			"That creature with the yellow circle is attacking you! Click on it to fight back."),
 	FIRST_KILL(
 			"Click on items in corpses to transfer them to your bag."),
-    FIRST_PLAYER_KILL(
+	FIRST_PLAYER_KILL(
 			"You have been marked with the red skull of a player killer. You may find that people are wary of you now. To get it removed, you may speak to Io Flotto in Semos temple."),
 	FIRST_POISONED(
 			"You've just been poisoned. If you didn't drink poison, it was probably a poisonous creature attacking you. Kill poisonous creatures quickly, as you lose more HP each time you are poisoned."),

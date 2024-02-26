@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -354,7 +354,7 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 	public class CreateAndSayCodedMessage implements ChatAction {
 
 		@Override
-        public void fire(Player player, Sentence sentence, EventRaiser npc) {
+		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 			String codedMessage = generateRandomMessage();
 			player.setQuest(QUEST_SLOT, QUEST_INDEX_MESSAGE, codedMessage);
 			npc.say(codedMessage);
@@ -384,7 +384,7 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 	public class TriggerMightbeACodedMessageCondition implements ChatCondition {
 
 		@Override
-        public boolean fire(Player player, Sentence sentence, Entity npc) {
+		public boolean fire(Player player, Sentence sentence, Entity npc) {
 			String originalText = sentence.getOriginalText();
 			int counter = 0;
 			for (int i = 0; i < originalText.length(); i++) {

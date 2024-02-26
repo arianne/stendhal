@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -24,7 +24,7 @@ public class SilentNPC extends PassiveNPC {
 		super();
 
 		// Entity name is not drawn because of "unnamed" attribute
-        setName("SilentNPC");
+		setName("SilentNPC");
 		put("unnamed", "");
 
 		// Health bar drawing is supressed

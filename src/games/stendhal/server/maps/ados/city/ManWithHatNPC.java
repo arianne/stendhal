@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -29,7 +29,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * @author Erdnuggel (idea) and Vanessa Julius (implemented)
  *
  */
-
 public class ManWithHatNPC implements ZoneConfigurator {
 
 	@Override
@@ -45,14 +44,14 @@ public class ManWithHatNPC implements ZoneConfigurator {
 				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(41, 6));
 				nodes.add(new Node(41, 11));
-                nodes.add(new Node(64, 11));
-                nodes.add(new Node(64, 6));
-                nodes.add(new Node(63, 6));
-                nodes.add(new Node(63, 10));
-                nodes.add(new Node(42, 10));
-                nodes.add(new Node(42, 6));
-                nodes.add(new Node(41, 6));
-               	setPath(new FixedPath(nodes, true));
+				nodes.add(new Node(64, 11));
+				nodes.add(new Node(64, 6));
+				nodes.add(new Node(63, 6));
+				nodes.add(new Node(63, 10));
+				nodes.add(new Node(42, 10));
+				nodes.add(new Node(42, 6));
+				nodes.add(new Node(41, 6));
+				setPath(new FixedPath(nodes, true));
 
 			}
 

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2010-2011 - Stendhal                    *
+ *                   (C) Copyright 2010-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -25,107 +25,107 @@ import java.util.Set;
  * @param <W> type of value
  */
 public class MapOfMaps<K, V, W> implements Map<K, Map<V, W>> {
-        private final Map<K, Map<V, W>> maps = new HashMap<K, Map<V, W>>();
+	private final Map<K, Map<V, W>> maps = new HashMap<K, Map<V, W>>();
 
-        @Override
+	@Override
 		public void clear() {
-                maps.clear();
-        }
+		maps.clear();
+	}
 
-        @Override
+	@Override
 		public boolean containsKey(Object key) {
-                return maps.containsKey(key);
-        }
+		return maps.containsKey(key);
+	}
 
-        @Override
+	@Override
 		public boolean containsValue(Object value) {
-                for (Map<V, W> map : maps.values()) {
-                        if (map.containsValue(value)) {
-                                return true;
-                        }
-                }
-                return false;
-        }
+		for (Map<V, W> map : maps.values()) {
+			if (map.containsValue(value)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-        @Override
+	@Override
 		public Set<java.util.Map.Entry<K, Map<V, W>>> entrySet() {
-                return maps.entrySet();
-        }
+		return maps.entrySet();
+	}
 
-        @Override
+	@Override
 		public Map<V, W> get(Object key) {
-                return maps.get(key);
-        }
+		return maps.get(key);
+	}
 
-        /**
-         * gets a value
-         *
-         * @param key key
-         * @param subKey sub key
-         * @return value
-         */
-        public W get(Object key, Object subKey) {
-                Map<V, W> temp = maps.get(key);
-                if (temp == null) {
-                        return null;
-                }
-                return temp.get(subKey);
-        }
+	/**
+	 * gets a value
+	 *
+	 * @param key key
+	 * @param subKey sub key
+	 * @return value
+	 */
+	public W get(Object key, Object subKey) {
+		Map<V, W> temp = maps.get(key);
+		if (temp == null) {
+			return null;
+		}
+		return temp.get(subKey);
+	}
 
-        @Override
+	@Override
 		public boolean isEmpty() {
-                return maps.isEmpty();
-        }
+		return maps.isEmpty();
+	}
 
-        @Override
+	@Override
 		public Set<K> keySet() {
-                return maps.keySet();
-        }
+		return maps.keySet();
+	}
 
-        @Override
+	@Override
 		public Map<V, W> put(K key, Map<V, W> value) {
-                return maps.put(key, value);
-        }
+		return maps.put(key, value);
+	}
 
-        @Override
+	@Override
 		public void putAll(Map<? extends K, ? extends Map<V, W>> m) {
-                maps.putAll(m);
-        }
+		maps.putAll(m);
+	}
 
-        @Override
+	@Override
 		public Map<V, W> remove(Object key) {
-                return maps.remove(key);
-        }
+		return maps.remove(key);
+	}
 
-        @Override
+	@Override
 		public int size() {
-                return maps.size();
-        }
+		return maps.size();
+	}
 
-        @Override
+	@Override
 		public Collection<Map<V, W>> values() {
-                return maps.values();
-        }
+		return maps.values();
+	}
 
-        @Override
-        public String toString() {
-                return maps.toString();
-        }
+	@Override
+	public String toString() {
+		return maps.toString();
+	}
 
-        /**
-         * adds an entry to the map
-         *
-         * @param key    primary key
-         * @param subKey secondary key
-         * @param value  value
-         * @return old value
-         */
-        public W put(K key, V subKey, W value) {
-                Map<V, W> map = maps.get(key);
-                if (map == null) {
-                        map = new HashMap<V, W>();
-                        maps.put(key, map);
-                }
-                return map.put(subKey, value);
-        }
+	/**
+	 * adds an entry to the map
+	 *
+	 * @param key    primary key
+	 * @param subKey secondary key
+	 * @param value  value
+	 * @return old value
+	 */
+	public W put(K key, V subKey, W value) {
+		Map<V, W> map = maps.get(key);
+		if (map == null) {
+			map = new HashMap<V, W>();
+			maps.put(key, map);
+		}
+		return map.put(subKey, value);
+	}
 }

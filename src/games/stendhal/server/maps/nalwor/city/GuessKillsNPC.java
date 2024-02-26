@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -50,60 +50,60 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  */
 public class GuessKillsNPC implements ZoneConfigurator {
 
-    /**
-     * Configure a zone.
-     *
-     * @param	zone		The zone to be configured.
-     * @param	attributes	Configuration attributes.
-     */
-    @Override
+	/**
+	 * Configure a zone.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
+	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-        buildNPC(zone);
-    }
+		buildNPC(zone);
+	}
 
-    /**
-     * Creates the NPC and sets default responses, path and other attributes
-     *
-     * @param zone The zone to add the NPC to.
-     * @param attributes
-     */
-    private void buildNPC(final StendhalRPZone zone) {
-        final SpeakerNPC npc = new SpeakerNPC("Crearid") {
+	/**
+	 * Creates the NPC and sets default responses, path and other attributes
+	 *
+	 * @param zone The zone to add the NPC to.
+	 * @param attributes
+	 */
+	private void buildNPC(final StendhalRPZone zone) {
+		final SpeakerNPC npc = new SpeakerNPC("Crearid") {
 
-            @Override
-            protected void createPath() {
-                setPath(new FixedPath(Arrays.asList(
-                            new Node(29, 84),
-                            new Node(22, 84),
-                            new Node(17, 79),
-                            new Node(18, 69),
-                            new Node(22, 63),
-                            new Node(29, 63),
-                            new Node(29, 72),
-                            new Node(39, 72),
-                            new Node(39, 84)),
-                        true));
-            }
+			@Override
+			protected void createPath() {
+				setPath(new FixedPath(Arrays.asList(
+							new Node(29, 84),
+							new Node(22, 84),
+							new Node(17, 79),
+							new Node(18, 69),
+							new Node(22, 63),
+							new Node(29, 63),
+							new Node(29, 72),
+							new Node(39, 72),
+							new Node(39, 84)),
+						true));
+			}
 
-            @Override
-            protected void createDialog() {
-                addGreeting("Greetings");
-                addJob("I am just an old woman, I walk around and observe all around me.");
-                addHelp("I'm not sure how I can help you. On some days I like to #play #games.");
-                addOffer("I'm afraid I don't have anything to offer you.");
-                addReply(ConversationPhrases.QUEST_MESSAGES, "There's nothing I need right now although occasionally I like to #play #games.");
+			@Override
+			protected void createDialog() {
+				addGreeting("Greetings");
+				addJob("I am just an old woman, I walk around and observe all around me.");
+				addHelp("I'm not sure how I can help you. On some days I like to #play #games.");
+				addOffer("I'm afraid I don't have anything to offer you.");
+				addReply(ConversationPhrases.QUEST_MESSAGES, "There's nothing I need right now although occasionally I like to #play #games.");
 
-                //play and games reply is in the quest class: GuessKills
+				//play and games reply is in the quest class: GuessKills
 
-                addGoodbye("Goodbye deary.");
-            }
-        };
+				addGoodbye("Goodbye deary.");
+			}
+		};
 
-        npc.setEntityClass("granmanpc");
-        npc.setDescription("You see Crearid, a very attentive old lady.");
-        npc.setPosition(30, 83);
-        npc.initHP(100);
+		npc.setEntityClass("granmanpc");
+		npc.setDescription("You see Crearid, a very attentive old lady.");
+		npc.setPosition(30, 83);
+		npc.initHP(100);
 
-        zone.add(npc);
-    }
+		zone.add(npc);
+	}
 }

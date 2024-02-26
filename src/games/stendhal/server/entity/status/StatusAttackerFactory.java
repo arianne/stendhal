@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,28 +20,28 @@ public class StatusAttackerFactory {
 
 	public static StatusAttacker get(final String profile) {
 		if (profile != null) {
-            final String[] statusParams = profile.split(",");
-            final String statusName = statusParams[0];
-            final double probability = Double.parseDouble(statusParams[1]);
+			final String[] statusParams = profile.split(",");
+			final String statusName = statusParams[0];
+			final double probability = Double.parseDouble(statusParams[1]);
 
-            String className = "games.stendhal.server.entity.status." + statusName;
+			String className = "games.stendhal.server.entity.status." + statusName;
 
-            Status status;
-            try {
-                status = (Status) Class.forName(className).getDeclaredConstructor().newInstance();
-                return new StatusAttacker(status, probability);
-            } catch (InstantiationException e) {
-            	logger.error(e, e);
-            } catch (IllegalAccessException e) {
-            	logger.error(e, e);
-            } catch (ClassNotFoundException e) {
-                logger.error(e, e);
-            } catch (final NoSuchMethodException e) {
-                logger.error(e, e);
-            } catch (final java.lang.reflect.InvocationTargetException e) {
-                logger.error(e, e);
-            }
-            return null;
+			Status status;
+			try {
+				status = (Status) Class.forName(className).getDeclaredConstructor().newInstance();
+				return new StatusAttacker(status, probability);
+			} catch (InstantiationException e) {
+				logger.error(e, e);
+			} catch (IllegalAccessException e) {
+				logger.error(e, e);
+			} catch (ClassNotFoundException e) {
+				logger.error(e, e);
+			} catch (final NoSuchMethodException e) {
+				logger.error(e, e);
+			} catch (final java.lang.reflect.InvocationTargetException e) {
+				logger.error(e, e);
+			}
+			return null;
 		}
 		return null;
 	}

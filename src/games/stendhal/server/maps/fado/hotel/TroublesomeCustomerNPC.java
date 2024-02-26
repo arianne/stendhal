@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -64,8 +64,8 @@ public class TroublesomeCustomerNPC implements ZoneConfigurator {
 				addGoodbye("You... You... Buzz off now!");
 
 				/**
-                 * Additional behavior code is in games.stendhal.server.maps.quests.MealForGroongo
-                 */
+				 * Additional behavior code is in games.stendhal.server.maps.quests.MealForGroongo
+				 */
 
 			}
 

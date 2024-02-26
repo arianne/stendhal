@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -114,13 +114,13 @@ public class ProducerRegister {
 			MultiProducerBehaviour behaviour = producer.second();
 			String questSlot =  behaviour.getQuestSlot();
 			String activity =  behaviour.getProductionActivity();
-            // Retrieve all production details from the questSlot
+			// Retrieve all production details from the questSlot
 			if (player.hasQuest(questSlot) && !player.isQuestCompleted(questSlot)) {
-                final String orderString = player.getQuest(questSlot);
-                final String[] order = orderString.split(";");
-                //final long orderTime = Long.parseLong(order[2]);
-                final int amount = Integer.parseInt(order[0]);
-                final String product = order[1];
+				final String orderString = player.getQuest(questSlot);
+				final String[] order = orderString.split(";");
+				//final long orderTime = Long.parseLong(order[2]);
+				final int amount = Integer.parseInt(order[0]);
+				final String product = order[1];
 				if (behaviour.isOrderReady(player)) {
 					// put all completed orders first - player wants to collect these!
 					sb.insert(0,"\n" + npcName + " has finished " + Grammar.gerundForm(activity)
@@ -192,11 +192,11 @@ public class ProducerRegister {
 			MultiProducerBehaviour behaviour = producer.second();
 			for (String product : behaviour.getProductsNames()) {
 				if(itemName.equals(product)) {
-                    String npcName = producer.first();
-                    String activity =  behaviour.getProductionActivity();
-                    String resources = behaviour.getRequiredResourceNames(product, 1);
-                    return npcName + " " + Grammar.plural(activity) + " " + Grammar.plural(product) + ", which need " + resources + " each.";
-                }
+					String npcName = producer.first();
+					String activity =  behaviour.getProductionActivity();
+					String resources = behaviour.getRequiredResourceNames(product, 1);
+					return npcName + " " + Grammar.plural(activity) + " " + Grammar.plural(product) + ", which need " + resources + " each.";
+				}
 			}
 		}
 		return "";
@@ -222,20 +222,20 @@ public class ProducerRegister {
 			final MultiProducerBehaviour behaviour = producer.second();
 			for (String product : behaviour.getProductsNames()) {
 				final Item item = SingletonRepository.getEntityManager().getItem(product);
-                if (item.isOfClass(clazz)) {
-                    res.add(product);
-                }
+				if (item.isOfClass(clazz)) {
+					res.add(product);
+				}
 			}
 		}
 		return res;
 	}
 
 	/**
-     * gets the names of all the NPCs to whom the player has asked to produce something
-     *
+	 * gets the names of all the NPCs to whom the player has asked to produce something
+	 *
 	 * @param player player to get the details for
 	 * @return NPC names
-     */
+	 */
 	public List<String> getWorkingProducerNames(final Player player) {
 		List<String> res = new LinkedList<String>();
 		for (final Pair<String, ProducerBehaviour> producer : producers) {
@@ -299,27 +299,27 @@ public class ProducerRegister {
 		}
 		for (final Pair<String, MultiProducerBehaviour> producer : multiproducers) {
 			if(npcName.equals(producer.first())) {
-                MultiProducerBehaviour behaviour = producer.second();
-                String questSlot =  behaviour.getQuestSlot();
-                String activity =  behaviour.getProductionActivity();
-                // Retrieve all production details from the questSlot
-                if (player.hasQuest(questSlot) && !player.isQuestCompleted(questSlot)) {
-                    final String orderString = player.getQuest(questSlot);
-                    final String[] order = orderString.split(";");
-                    //final long orderTime = Long.parseLong(order[2]);
-                    final int amount = Integer.parseInt(order[0]);
-                    final String product = order[1];
-                    if (behaviour.isOrderReady(player)) {
-                        // put all completed orders first - player wants to collect these!
-                        res.add(npcName + " has finished " + Grammar.gerundForm(activity)
-                            + " your " + Grammar.plnoun(amount,product) + ".");
-                    } else {
-                        String timeleft = behaviour.getApproximateRemainingTime(player);
-                        // put all ongoing orders last
+				MultiProducerBehaviour behaviour = producer.second();
+				String questSlot =  behaviour.getQuestSlot();
+				String activity =  behaviour.getProductionActivity();
+				// Retrieve all production details from the questSlot
+				if (player.hasQuest(questSlot) && !player.isQuestCompleted(questSlot)) {
+					final String orderString = player.getQuest(questSlot);
+					final String[] order = orderString.split(";");
+					//final long orderTime = Long.parseLong(order[2]);
+					final int amount = Integer.parseInt(order[0]);
+					final String product = order[1];
+					if (behaviour.isOrderReady(player)) {
+						// put all completed orders first - player wants to collect these!
+						res.add(npcName + " has finished " + Grammar.gerundForm(activity)
+							+ " your " + Grammar.plnoun(amount,product) + ".");
+					} else {
+						String timeleft = behaviour.getApproximateRemainingTime(player);
+						// put all ongoing orders last
 						res.add("\n" + npcName + " is " + Grammar.gerundForm(activity)
 							+ " " + Grammar.quantityplnoun(amount, product, "a") + " and will be ready in " + timeleft + ".");
-                    }
-                }
+					}
+				}
 			}
 		}
 		return res;

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -93,7 +93,7 @@ public class ObsidianKnife extends AbstractQuest {
 
 	// Please note, if you want to code a quest where you're asked to collect a number of some randomly picked item, like alrak asks you to initially,
 	// please use StartRecordingRandomItemCollectionAction, SayRequiredItemAction, PlayerHasRecordedItemWithHimCondition and DropRecordedItemAction
-    // This quest was written before they were available and you should not use it as a template.
+	// This quest was written before they were available and you should not use it as a template.
 
 	private static final int MINUTES_IN_DAYS = 24 * 60;
 

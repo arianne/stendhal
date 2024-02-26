@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -39,8 +39,7 @@ import games.stendhal.server.entity.player.Player;
 public class RetireeNPC implements ZoneConfigurator {
 
 	@Override
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
@@ -53,69 +52,69 @@ public class RetireeNPC implements ZoneConfigurator {
 				addGoodbye();
 
 				addJob(
-                    "Ha ha! Job? I retired from my job as the #postman decades ago! Ha ha!"
-                );
+					"Ha ha! Job? I retired from my job as the #postman decades ago! Ha ha!"
+				);
 
 				addHelp(
-                    "I can't help you, but you can help Stendhal!" + " " +
-                    "Tell all your friends and help out with development!" + " " +
-                    "Visit https://stendhalgame.org and see how you can help!"
-                );
+					"I can't help you, but you can help Stendhal!" + " " +
+					"Tell all your friends and help out with development!" + " " +
+					"Visit https://stendhalgame.org and see how you can help!"
+				);
 
 				addReply(
-                    "postman",
-                    "I used to deliver messages. But now there's a new kid doing it." + " " +
-                    "Tell you what, I'll send him a message now, to give you.",
-                        new StoreMessageAction("Diogenes",
-                            "Hello it was nice chatting to you earlier in Semos." + " " +
-                            "If you want to use postman to send messages to others who aren't here right now, just /msg postman")
-                );
+					"postman",
+					"I used to deliver messages. But now there's a new kid doing it." + " " +
+					"Tell you what, I'll send him a message now, to give you.",
+						new StoreMessageAction("Diogenes",
+							"Hello it was nice chatting to you earlier in Semos." + " " +
+							"If you want to use postman to send messages to others who aren't here right now, just /msg postman")
+				);
 
 				addOffer(
-                    "Well... Well..." + " " +
-                    "I could still carry your letters around, but I'm retired and someone else got my job..." + " " +
-                    "You can visit that guy, new #postman is in Semos plains in the north of here."
-                );
+					"Well... Well..." + " " +
+					"I could still carry your letters around, but I'm retired and someone else got my job..." + " " +
+					"You can visit that guy, new #postman is in Semos plains in the north of here."
+				);
 
 				add(
-                    ConversationStates.ATTENDING,
-                    ConversationPhrases.QUEST_MESSAGES,
-                    null,
-                    ConversationStates.ATTENDING,
-                    null,
-                    new ChatAction() {
-                        @Override
-                        public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-                            if (Rand.throwCoin() == 1) {
-                                npc.say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird! Hmm, what? Ah, quests... just like the old days when I was young!");
-                            } else {
-                                npc.say("You know that Sato over there buys sheep? Well, rumour has it that there's a creature deep in the dungeons who also buys sheep... and it pays much better than Sato, too!");
-                            }
-                        }
-                    }
+					ConversationStates.ATTENDING,
+					ConversationPhrases.QUEST_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					null,
+					new ChatAction() {
+						@Override
+						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+							if (Rand.throwCoin() == 1) {
+								npc.say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird! Hmm, what? Ah, quests... just like the old days when I was young!");
+							} else {
+								npc.say("You know that Sato over there buys sheep? Well, rumour has it that there's a creature deep in the dungeons who also buys sheep... and it pays much better than Sato, too!");
+							}
+						}
+					}
 				);
 
 				// A convenience function to make it easier for admins to test quests.
 				add(
-                    ConversationStates.ATTENDING,
-                    "cleanme!",
-                    null,
-                    ConversationStates.IDLE,
-                    "What?!",
-                    new ChatAction() {
-                        @Override
-                        public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-                            if (AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "alter", false)) {
-                                for (final String quest : player.getQuests()) {
-                                    player.removeQuest(quest);
-                                }
-                            } else {
-                                npc.say("What?! No... You clean me! Begin with my back, thanks.");
-                                player.damage(5, npc.getEntity());
-                                player.notifyWorldAboutChanges();
-                            }
-                        }
-                    }
+					ConversationStates.ATTENDING,
+					"cleanme!",
+					null,
+					ConversationStates.IDLE,
+					"What?!",
+					new ChatAction() {
+						@Override
+						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+							if (AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "alter", false)) {
+								for (final String quest : player.getQuests()) {
+									player.removeQuest(quest);
+								}
+							} else {
+								npc.say("What?! No... You clean me! Begin with my back, thanks.");
+								player.damage(5, npc.getEntity());
+								player.notifyWorldAboutChanges();
+							}
+						}
+					}
 				);
 			}
 

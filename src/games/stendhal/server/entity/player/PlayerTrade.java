@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -215,7 +215,7 @@ class PlayerTrade {
 	}
 
 
-    /**
+	/**
 	 * marks an item offer as complete. If both players have marked their item offers
 	 * as complete, the trade is executed.
 	 */
@@ -272,14 +272,14 @@ class PlayerTrade {
 	 * @param partner partner
 	 */
 	private void transferItems(Player partner) {
-        RPSlot playerTradeSlot = player.getSlot("trade");
-        RPSlot partnerTradeSlot = partner.getSlot("trade");
-        List<Item> playerItems = moveItemsFromSlotToList(playerTradeSlot);
-        List<Item> partnerItems = moveItemsFromSlotToList(partnerTradeSlot);
+		RPSlot playerTradeSlot = player.getSlot("trade");
+		RPSlot partnerTradeSlot = partner.getSlot("trade");
+		List<Item> playerItems = moveItemsFromSlotToList(playerTradeSlot);
+		List<Item> partnerItems = moveItemsFromSlotToList(partnerTradeSlot);
 
-        moveItemsFromListToSlotOrGround(null, player.getName(), partner.getName(), playerItems, partnerTradeSlot);
-        moveItemsFromListToSlotOrGround(null, partner.getName(), player.getName(), partnerItems, playerTradeSlot);
-    }
+		moveItemsFromListToSlotOrGround(null, player.getName(), partner.getName(), playerItems, partnerTradeSlot);
+		moveItemsFromListToSlotOrGround(null, partner.getName(), player.getName(), partnerItems, playerTradeSlot);
+	}
 
 	/**
 	 * moves all items from a slot to a list, clearing the slot in the end
@@ -288,14 +288,14 @@ class PlayerTrade {
 	 * @return list of items that used to be in the slot
 	 */
 	private List<Item> moveItemsFromSlotToList(RPSlot slot) {
-        List<Item> items = new LinkedList<Item>();
-        for (RPObject item : slot) {
-            if (item instanceof Item) {
-                items.add((Item) item);
-            }
-        }
-        slot.clear();
-        return items;
+		List<Item> items = new LinkedList<Item>();
+		for (RPObject item : slot) {
+			if (item instanceof Item) {
+				items.add((Item) item);
+			}
+		}
+		slot.clear();
+		return items;
 	}
 
 
@@ -309,23 +309,23 @@ class PlayerTrade {
 	 * @param targetSlot   target slot
 	 * @return true, if items fit into the slot; false if items were put on the ground
 	 */
-    private boolean moveItemsFromListToSlotOrGround(Player source, String sourcePlayer, String targetPlayer, List<Item> items, RPSlot targetSlot) {
-        final StendhalRPZone zone = player.getZone();
-        boolean onGround = false;
-        for (Item item : items) {
-            if (!targetSlot.isFull()) {
-                targetSlot.add(item);
-                new ItemLogger().equipAction(source, item, new String[]{"slot", sourcePlayer, "trade"}, new String[]{"slot", targetPlayer, targetSlot.getName()});
-            } else {
-                item.setPosition(player.getX(), player.getY());
-                zone.add(item, player);
-                onGround = true;
-                new ItemLogger().equipAction(source, item, new String[]{"slot", sourcePlayer, "trade"}, new String[]{"ground", zone.getName(), player.getX() + " " + player.getY()});
-            }
-        }
-        items.clear();
-        return !onGround;
-    }
+	private boolean moveItemsFromListToSlotOrGround(Player source, String sourcePlayer, String targetPlayer, List<Item> items, RPSlot targetSlot) {
+		final StendhalRPZone zone = player.getZone();
+		boolean onGround = false;
+		for (Item item : items) {
+			if (!targetSlot.isFull()) {
+				targetSlot.add(item);
+				new ItemLogger().equipAction(source, item, new String[]{"slot", sourcePlayer, "trade"}, new String[]{"slot", targetPlayer, targetSlot.getName()});
+			} else {
+				item.setPosition(player.getX(), player.getY());
+				zone.add(item, player);
+				onGround = true;
+				new ItemLogger().equipAction(source, item, new String[]{"slot", sourcePlayer, "trade"}, new String[]{"ground", zone.getName(), player.getX() + " " + player.getY()});
+			}
+		}
+		items.clear();
+		return !onGround;
+	}
 
 	/**
 	 * Move items from a list to any suitable carrying slot of the player,
@@ -350,9 +350,9 @@ class PlayerTrade {
 		}
 		items.clear();
 		return !onGround;
-    }
+	}
 
-    /**
+	/**
 	 * removes the marking of an item offer as complete
 	 */
 	public void unlockItemOffer() {

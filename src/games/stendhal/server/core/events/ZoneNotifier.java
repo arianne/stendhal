@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -52,27 +52,27 @@ public class ZoneNotifier {
 	 * @param destinationZone
 	 *            destination zone
 	 */
-    public static void zoneChange(final Player player, final String sourceZone,
-            final String destinationZone) {
-        if (destinationZone.equals("-1_semos_catacombs_se")) {
-            process(player, ZoneEventType.VISIT_SUB1_SEMOS_CATACOMBS);
-        } else if (destinationZone.equals("-2_semos_catacombs")) {
-            process(player, ZoneEventType.VISIT_SUB2_SEMOS_CATACOMBS);
-        } else if (destinationZone.equals("1_kikareukin_cave")) {
-            process(player, ZoneEventType.VISIT_KIKAREUKIN_CAVE);
-        } else if (destinationZone.equals("-7_kanmararn_prison")) {
-            process(player, ZoneEventType.VISIT_KANMARARN_PRISON);
-        } else if (destinationZone.equals("-1_fado_great_cave_w2")) {
-            process(player, ZoneEventType.VISIT_IMPERIAL_CAVES);
-        } else if (destinationZone.equals("-1_fado_great_cave_n_e2")) {
-            process(player, ZoneEventType.VISIT_MAGIC_CITY_N);
-        } else if (destinationZone.equals("-1_fado_great_cave_e2")) {
-            process(player, ZoneEventType.VISIT_MAGIC_CITY);
-        } else if (destinationZone.equals("-1_semos_caves")) {
-            process(player, ZoneEventType.VISIT_SEMOS_CAVES);
-        } else if (destinationZone.equals("int_ados_castle_entrance")) {
-            process(player, ZoneEventType.VISIT_ADOS_CASTLE);
-}
-    }
+	public static void zoneChange(final Player player, final String sourceZone,
+			final String destinationZone) {
+		if (destinationZone.equals("-1_semos_catacombs_se")) {
+			process(player, ZoneEventType.VISIT_SUB1_SEMOS_CATACOMBS);
+		} else if (destinationZone.equals("-2_semos_catacombs")) {
+			process(player, ZoneEventType.VISIT_SUB2_SEMOS_CATACOMBS);
+		} else if (destinationZone.equals("1_kikareukin_cave")) {
+			process(player, ZoneEventType.VISIT_KIKAREUKIN_CAVE);
+		} else if (destinationZone.equals("-7_kanmararn_prison")) {
+			process(player, ZoneEventType.VISIT_KANMARARN_PRISON);
+		} else if (destinationZone.equals("-1_fado_great_cave_w2")) {
+			process(player, ZoneEventType.VISIT_IMPERIAL_CAVES);
+		} else if (destinationZone.equals("-1_fado_great_cave_n_e2")) {
+			process(player, ZoneEventType.VISIT_MAGIC_CITY_N);
+		} else if (destinationZone.equals("-1_fado_great_cave_e2")) {
+			process(player, ZoneEventType.VISIT_MAGIC_CITY);
+		} else if (destinationZone.equals("-1_semos_caves")) {
+			process(player, ZoneEventType.VISIT_SEMOS_CAVES);
+		} else if (destinationZone.equals("int_ados_castle_entrance")) {
+			process(player, ZoneEventType.VISIT_ADOS_CASTLE);
+		}
+	}
 
 }

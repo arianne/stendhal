@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -40,124 +40,124 @@ public class FoodMill extends Item {
 		add("rotary cutter");
 	}};
 
-    public FoodMill(final String name, final String clazz,
-            final String subclass, final Map<String, String> attributes) {
-        super(name, clazz, subclass, attributes);
-        init();
-    }
+	public FoodMill(final String name, final String clazz,
+			final String subclass, final Map<String, String> attributes) {
+		super(name, clazz, subclass, attributes);
+		init();
+	}
 
-    public FoodMill(final FoodMill item) {
-        super(item);
-        init();
-    }
+	public FoodMill(final FoodMill item) {
+		super(item);
+		init();
+	}
 
-    /** Sets up the input, output and container based on item name */
-    private void init() {
-    	final String tool = getName();
+	/** Sets up the input, output and container based on item name */
+	private void init() {
+		final String tool = getName();
 
-    	if ("sugar mill".equals(tool)) {
-    		input = "sugar cane";
-    		container = "empty sack";
-    		output = "sugar";
-    	} else if ("scroll eraser".equals(tool)) {
-    		input = "marked scroll";
-    		output = "empty scroll";
-    	} else if ("rotary cutter".equals(tool)) {
-    		input = "pelt";
-    		output = "leather thread";
-    	} else {
-    		input = "apple";
-    		container = "bottle";
-    		output = "apple juice";
-    	}
-    }
+		if ("sugar mill".equals(tool)) {
+			input = "sugar cane";
+			container = "empty sack";
+			output = "sugar";
+		} else if ("scroll eraser".equals(tool)) {
+			input = "marked scroll";
+			output = "empty scroll";
+		} else if ("rotary cutter".equals(tool)) {
+			input = "pelt";
+			output = "leather thread";
+		} else {
+			input = "apple";
+			container = "bottle";
+			output = "apple juice";
+		}
+	}
 
-    @Override
+	@Override
 	public boolean onUsed(final RPEntity user) {
-    	final String tool = getName();
-    	final boolean containerRequired = !containerNotRequired.contains(tool);
+		final String tool = getName();
+		final boolean containerRequired = !containerNotRequired.contains(tool);
 
-    	/* Items/Tools not listed in "containerNotRequired" must have a "container" defined. */
-    	if (containerRequired && container == null) {
-    		logger.error("Input \"" + input + "\" requires a container, but container value is null.");
-    		return false;
-    	}
+		/* Items/Tools not listed in "containerNotRequired" must have a "container" defined. */
+		if (containerRequired && container == null) {
+			logger.error("Input \"" + input + "\" requires a container, but container value is null.");
+			return false;
+		}
 
-    	/* is the mill equipped at all? */
-    	if (!isContained()) {
-    		user.sendPrivateText("You should be carrying the " + tool + " in order to use it.");
-    		return false;
-    	}
+		/* is the mill equipped at all? */
+		if (!isContained()) {
+			user.sendPrivateText("You should be carrying the " + tool + " in order to use it.");
+			return false;
+		}
 
-    	final String slotName = getContainerSlot().getName();
+		final String slotName = getContainerSlot().getName();
 
-    	/* is it in a hand? */
-    	if (!slotName.endsWith("hand")) {
-    		user.sendPrivateText("You should hold the " + tool + " in either hand in order to use it.");
-    		return false;
-    	}
+		/* is it in a hand? */
+		if (!slotName.endsWith("hand")) {
+			user.sendPrivateText("You should hold the " + tool + " in either hand in order to use it.");
+			return false;
+		}
 
-    	final String otherhand = getOtherHand(slotName);
+		final String otherhand = getOtherHand(slotName);
 
-    	final RPObject first = user.getSlot(otherhand).getFirst();
+		final RPObject first = user.getSlot(otherhand).getFirst();
 
-    	/* is anything in the other hand? */
-    	if (first == null) {
-    		user.sendPrivateText("Your other hand looks empty.");
-    		return false;
-    	}
+		/* is anything in the other hand? */
+		if (first == null) {
+			user.sendPrivateText("Your other hand looks empty.");
+			return false;
+		}
 
-    	/*
-    	 * the player needs to equip at least the input in his other hand
-    	 * and have the correct container in his inventory
-    	 */
-    	if (!input.equals(first.get("name"))) {
-    		user.sendPrivateText("You need to have at least " + Grammar.a_noun(input) + " in your other hand");
-    		return false;
-    	}
+		/*
+		 * the player needs to equip at least the input in his other hand
+		 * and have the correct container in his inventory
+		 */
+		if (!input.equals(first.get("name"))) {
+			user.sendPrivateText("You need to have at least " + Grammar.a_noun(input) + " in your other hand");
+			return false;
+		}
 
-    	if (containerRequired && !user.isEquipped(container)) {
-    		user.sendPrivateText("You don't have " + Grammar.a_noun(container) + " with you");
-    		return false;
-    	}
+		if (containerRequired && !user.isEquipped(container)) {
+			user.sendPrivateText("You don't have " + Grammar.a_noun(container) + " with you");
+			return false;
+		}
 
-        /* all is okay, lets process this item */
-    	final Item item = SingletonRepository.getEntityManager().getItem(output);
+		/* all is okay, lets process this item */
+		final Item item = SingletonRepository.getEntityManager().getItem(output);
 
-    	if (first instanceof StackableItem) {
+		if (first instanceof StackableItem) {
 			StackableItem dropOneOfMe = (StackableItem) first;
 			dropOneOfMe.removeOne();
 		} else {
 			user.drop((Item) first);
 		}
 
-    	if (containerRequired) {
-    		user.drop(container);
-    	}
+		if (containerRequired) {
+			user.drop(container);
+		}
 
-    	if ("rotary cutter".equals(tool)) {
-    		final StackableItem stackable = (StackableItem) item;
-    		stackable.setQuantity(5);
+		if ("rotary cutter".equals(tool)) {
+			final StackableItem stackable = (StackableItem) item;
+			stackable.setQuantity(5);
 
-    		user.equipOrPutOnGround(stackable);
-    	} else {
-    		user.equipOrPutOnGround(item);
-    	}
+			user.equipOrPutOnGround(stackable);
+		} else {
+			user.equipOrPutOnGround(item);
+		}
 
-    	return true;
-    }
+		return true;
+	}
 
 
-    /**
-     * @param handSlot should be rhand or lhand
-     * @return the opposite hand to handSlot
-     */
-    private String getOtherHand(final String handSlot) {
-        if ("rhand".equals(handSlot)) {
-            return "lhand";
-        } else {
-            return "rhand";
-        }
-    }
+	/**
+	 * @param handSlot should be rhand or lhand
+	 * @return the opposite hand to handSlot
+	 */
+	private String getOtherHand(final String handSlot) {
+		if ("rhand".equals(handSlot)) {
+			return "lhand";
+		} else {
+			return "rhand";
+		}
+	}
 
 }

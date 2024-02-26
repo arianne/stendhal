@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -25,7 +25,7 @@ import games.stendhal.server.entity.player.Player;
  */
 @Dev(category=Category.STATS, label="XP+")
 public class IncreaseXPDependentOnLevelAction implements ChatAction {
-    // player will get 1/xpDiff part of difference between his and next levels xp amount.
+	// player will get 1/xpDiff part of difference between his and next levels xp amount.
 	private final double xpDiff;
 	// player will get this bonus instead xp if have max level
 	private final double karmabonus;

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -442,7 +442,7 @@ public class KillBlordroughs extends AbstractQuest {
 			res.add("I have slain " + Integer.toString(completedCount) + " blordrough armies.");
 		}
 
-        return res;
+		return res;
 	}
 
 	@Override

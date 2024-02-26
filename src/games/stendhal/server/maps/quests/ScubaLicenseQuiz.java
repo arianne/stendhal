@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -229,24 +229,24 @@ public class ScubaLicenseQuiz extends AbstractQuest {
 	 */
 	public static class ScubaCondition implements ChatCondition {
 
-        @Override
-        public boolean fire(Player player, Sentence sentence, Entity npc) {
-            return player.isEquippedItemInSlot("armor", "scuba gear") && player.isQuestCompleted("get_diving_license");
-        }
+		@Override
+		public boolean fire(Player player, Sentence sentence, Entity npc) {
+			return player.isEquippedItemInSlot("armor", "scuba gear") && player.isQuestCompleted("get_diving_license");
+		}
 
-        @Override
-        public int hashCode() {
-            return -13527181;
-        }
+		@Override
+		public int hashCode() {
+			return -13527181;
+		}
 
-        @Override
-        public boolean equals(Object obj) {
-            return obj instanceof ScubaCondition;
-        }
+		@Override
+		public boolean equals(Object obj) {
+			return obj instanceof ScubaCondition;
+		}
 
-        @Override
-        public String toString() {
-            return "scuba?";
-        }
+		@Override
+		public String toString() {
+			return "scuba?";
+		}
 	}
 }

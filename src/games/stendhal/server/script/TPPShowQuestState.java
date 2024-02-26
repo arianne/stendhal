@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -33,7 +33,7 @@ public class TPPShowQuestState extends ScriptImpl {
 		StringBuilder sb = new StringBuilder();
 		ThePiedPiper TPP = (ThePiedPiper) StendhalQuestSystem.get().getQuest("ThePiedPiper");
 		sb.append("The Pied Piper quest state:\n");
-        sb.append("Quest phase: "+ThePiedPiper.getPhase().toString()+"\n");
+		sb.append("Quest phase: "+ThePiedPiper.getPhase().toString()+"\n");
 		sb.append("Next phase : "+ThePiedPiper.getNextPhase(ThePiedPiper.getPhase()).toString()+"\n");
 		int turns=TPP.getRemainingTurns();
 		int seconds=TPP.getRemainingSeconds();
@@ -41,9 +41,9 @@ public class TPPShowQuestState extends ScriptImpl {
 		sb.append(turns);
 		sb.append("\n");
 		sb.append("Remaining seconds: ");
-        sb.append(seconds);
-        sb.append(" ("+TimeUtil.timeUntil(seconds, true)+")");
+		sb.append(seconds);
+		sb.append(" ("+TimeUtil.timeUntil(seconds, true)+")");
 		//sb.append("\n");
-        admin.sendPrivateText(sb.toString());
+		admin.sendPrivateText(sb.toString());
 	}
 }

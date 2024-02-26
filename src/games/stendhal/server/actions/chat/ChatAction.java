@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Marauroa                    *
+ *                   (C) Copyright 2003-2024 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -35,8 +35,8 @@ public class ChatAction {
 		CommandCenter.register(CHAT, new PublicChatAction());
 		CommandCenter.register(EMOTE, new EmoteAction());
 		CommandCenter.register(GROUP_MESSAGE, new GroupMessageAction());
-        CommandCenter.register(REPORT_ERROR, new ReportErrorAction());
-        CommandCenter.register(SUPPORT, new AskForSupportAction());
+		CommandCenter.register(REPORT_ERROR, new ReportErrorAction());
+		CommandCenter.register(SUPPORT, new AskForSupportAction());
 		CommandCenter.register(TELL, new TellAction());
 	}
 }

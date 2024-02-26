@@ -13,21 +13,21 @@ import games.stendhal.server.entity.player.Player;
  */
 public class ResetBlockChatAction implements ChatAction {
 
-    private final Block blockToReset;
+	private final Block blockToReset;
 
-    /**
-     * Create a new Action to reset the given Block
-     *
-     * @param block
-     *          The Block to reset
-     */
-    public ResetBlockChatAction(Block block) {
-        this.blockToReset = block;
-    }
+	/**
+	 * Create a new Action to reset the given Block
+	 *
+	 * @param block
+	 *          The Block to reset
+	 */
+	public ResetBlockChatAction(Block block) {
+		this.blockToReset = block;
+	}
 
-    @Override
-    public void fire(Player player, Sentence sentence, EventRaiser npc) {
-        this.blockToReset.reset();
-    }
+	@Override
+	public void fire(Player player, Sentence sentence, EventRaiser npc) {
+		this.blockToReset.reset();
+	}
 
 }
