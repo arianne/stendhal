@@ -4,7 +4,7 @@ STENDHAL_VERSION="1.45.5"
 SERVER_JAR="stendhal-server-${STENDHAL_VERSION}.jar"
 
 # change to server directory
-cd "$(dirname "$0")" || exit
+#cd "$(dirname "$0")" || exit
 
 # parse arguments
 vm_args=()

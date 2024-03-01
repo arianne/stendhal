@@ -4,8 +4,8 @@ set STENDHAL_VERSION=1.45.5
 set SERVER_JAR=stendhal-server-%STENDHAL_VERSION%.jar
 
 :: change to server directory
-for %%F in ("%0") do set server_root=%%~dpF
-cd "%server_root%"
+::for %%F in ("%0") do set server_root=%%~dpF
+::cd "%server_root%"
 
 :: parse arguments
 set vm_args=
