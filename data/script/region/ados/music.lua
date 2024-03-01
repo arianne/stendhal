@@ -1,6 +1,6 @@
 --[[
  ***************************************************************************
- *                       Copyright © 2020 - Arianne                        *
+ *                 Copyright © 2020-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,34 +20,37 @@ local zones = {
 	"0_ados_city_s",
 }
 
-for _, zone in pairs(zones) do
-	if game:setZone(zone) then
-		game:setMusic("market_day", {volume=60})
+for _, zoneName in pairs(zones) do
+	local zone = game:getZone(zoneName)
+	if zone then
+		local attr = zone:getAttributes()
+		attr:put("music", "market_day")
+		attr:put("music_volume", "0.6")
 	else
-		logger:warn("Could not set zone " .. zone .. " to create BackGroundMusicSource")
+		logger:warn("Could not set zone " .. zoneName .. " to create BackGroundMusicSource")
 	end
 end
 
 
 -- music is only on part of these maps
-for _, zone in pairs({"0_ados_wall", "0_ados_wall_n"}) do
-	if game:setZone(zone) then
+for _, zoneName in pairs({"0_ados_wall", "0_ados_wall_n"}) do
+	if game:setZone(zoneName) then
 		game:setMusic("market_day", {volume=60, x=127, y=64, radius=96})
 	else
-		logger:warn("Could not set zone " .. zone .. " to create BackGroundMusicSource")
+		logger:warn("Could not set zone " .. zoneName .. " to create BackGroundMusicSource")
 	end
 end
 
-local zone = "0_ados_wall_n2"
-if game:setZone(zone) then
+local zoneName = "0_ados_wall_n2"
+if game:setZone(zoneName) then
 	game:setMusic("market_day", {volume=60, x=127, y=127, radius=96})
 else
-	logger:warn("Could not set zone " .. zone .. " to create BackGroundMusicSource")
+	logger:warn("Could not set zone " .. zoneName .. " to create BackGroundMusicSource")
 end
 
-local zone = "0_ados_wall_s"
-if game:setZone(zone) then
+local zoneName = "0_ados_wall_s"
+if game:setZone(zoneName) then
 	game:setMusic("market_day", {volume=60, x=127, y=0, radius=96})
 else
-	logger:warn("Could not set zone " .. zone .. " to create BackGroundMusicSource")
+	logger:warn("Could not set zone " .. zoneName .. " to create BackGroundMusicSource")
 end
