@@ -487,7 +487,11 @@ export class Client {
 		var deserializer = marauroa.Deserializer.fromBase64(data);
 		deserializer.readAttributes(zoneinfo);
 		(ui.get(UIComponentEnum.ZoneInfo) as ZoneInfoComponent).zoneChange(zoneinfo);
-		// Object { file: "Level 0/semos/city_easter.tmx", danger_level: "0.036429932929822995", zoneid: "", readable_name: "Semos city", id: "-1", color_method: "multiply" }
+
+		// global zone music
+		const musicVolume = parseFloat(zoneinfo["music_volume"]);
+		stendhal.ui.soundMan.playSingleGlobalizedMusic(zoneinfo["music"],
+				!Number.isNaN(musicVolume) ? musicVolume : 1.0);
 
 		if (zoneinfo["color"]) {
 			const hsl = Color.hexToHSL(Color.numToHex(Number(zoneinfo["color"])));

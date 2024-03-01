@@ -46,6 +46,9 @@ export class SoundManager {
 	/** Actively playing sounds. */
 	private active: {[layer: string]: Sound[]};
 
+	/** Music instance played globally. */
+	private globalMusic?: Sound;
+
 	/** Singleton instance. */
 	private static instance: SoundManager;
 
@@ -212,7 +215,6 @@ export class SoundManager {
 				this.active[layerName].splice(idx, 1);
 			}
 		};
-		// FIXME: loops should be preserved if sound continues on map change
 		this.active[layerName].push(sound);
 	}
 
@@ -426,6 +428,49 @@ export class SoundManager {
 	}
 
 	/**
+	 * Loops a sound with uniform volume that continues playing accross zone changes.
+	 *
+	 * Any currently playing instance will be stopped before starting a new one. Also, calling without
+	 * parameters will stop current instance if playing.
+	 *
+	 * @param musicName {string}
+	 *   Sound file basename. If value `undefined`, `null`, or empty string music will be stopped.
+	 * @param volume {number}
+	 *   Volume level between 0.0 and 1.0.
+	 */
+	playSingleGlobalizedMusic(musicName: string, volume=1.0) {
+		if (this.globalMusic && musicName === this.globalMusic.basename) {
+			// continue playing when changing maps if music is the same
+			return;
+		}
+		if (this.globalMusic) {
+			// NOTE: parameter value MUST be Sound instance as it isn't included in layer array
+			this.stop("music", this.globalMusic);
+			if (!musicName) {
+				// just stop if name not provided
+				this.globalMusic = undefined;
+				return;
+			}
+		}
+		if (musicName) {
+			this.globalMusic = this.playGlobalizedMusic(musicName, volume);
+			if (!this.globalMusic) {
+				console.error("failed to play global music:", musicName, new Error());
+				return;
+			}
+			this.globalMusic.onended = null;
+			// remove from active list to prevent stopping when player changes zone
+			const activeIndex = this.active["music"].indexOf(this.globalMusic);
+			if (activeIndex > -1) {
+				this.active["music"].splice(activeIndex, 1);
+			}
+			if (this.active["music"].indexOf(this.globalMusic) > -1) {
+				console.warn("failed to remove global music from active list, will be stopped when player changes zones");
+			}
+		}
+	}
+
+	/**
 	 * Stops a sound & removes it from active group.
 	 *
 	 * @param layer {string|number}
@@ -448,7 +493,7 @@ export class SoundManager {
 					isString ? sound as string : (sound as Sound).basename, new Error());
 			return false;
 		}
-		if (this.active[layerName].indexOf(sSound) > -1) {
+		if (this.active[layerName].indexOf(sSound) > -1 || sSound == this.globalMusic) {
 			sSound.pause();
 			sSound.currentTime = 0;
 			if (sSound.onended) {
