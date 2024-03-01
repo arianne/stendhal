@@ -9,11 +9,11 @@
  *                                                                         *
  ***************************************************************************/
 
-import { ui } from "./UI";
-import { singletons } from "../SingletonRepo";
-
 declare var marauroa: any;
 declare var stendhal: any;
+
+import { ui } from "./UI";
+import { singletons } from "../SingletonRepo";
 
 
 export interface Sound extends HTMLAudioElement {
@@ -25,16 +25,14 @@ export interface Sound extends HTMLAudioElement {
 
 export class SoundManager {
 
-	public readonly layers: string[] = ["music", "ambient", "creature", "sfx", "gui"];
-	private cacheGlobal: {[source: string]: HTMLAudioElement} = {};
-	private cache: {[source: string]: HTMLAudioElement} = {};
-	private active: {[layer: string]: Sound[]} = {
-		["music"]: [],
-		["ambient"]: [],
-		["creature"]: [],
-		["sfx"]: [],
-		["gui"]: []
-	};
+	/** Layer names & ordering. */
+	readonly layers: string[];
+	/** Session cache. */
+	private cacheGlobal: {[source: string]: HTMLAudioElement};
+	/** Cache for current map. */
+	private cache: {[source: string]: HTMLAudioElement};
+	/** Actively playing sounds. */
+	private active: {[layer: string]: Sound[]};
 
 	/** Singleton instance. */
 	private static instance: SoundManager;
@@ -54,7 +52,13 @@ export class SoundManager {
 	 * Hidden singleton constructor.
 	 */
 	private constructor() {
-		// do nothing
+		this.layers = ["music", "ambient", "creature", "sfx", "gui"];
+		this.cacheGlobal = {};
+		this.cache = {};
+		this.active = {};
+		for (const layerName of this.layers) {
+			this.active[layerName] = [];
+		}
 	}
 
 	/**
