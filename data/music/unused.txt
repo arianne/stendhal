@@ -1,0 +1,4 @@
+
+adventurers_wish.ogg
+new_hope.ogg
+warriors_fight.ogg
