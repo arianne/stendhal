@@ -20,10 +20,16 @@ import { singletons } from "../SingletonRepo";
  * Representation of a playable sound or music from zone or UI source.
  */
 export interface Sound extends HTMLAudioElement {
+	/** Base volume level unique to this sound. */
 	basevolume: number;
+	/** Distance at which sound can be heard. */
 	radius: number;
+	/** Coordinate of sound entity on X axis. */
 	x: number;
+	/** Coordinate of sound entity on Y axis. */
 	y: number;
+	/** String identifier. */
+	basename: string;
 }
 
 /**
@@ -86,6 +92,24 @@ export class SoundManager {
 			}
 		}
 		return active;
+	}
+
+	/**
+	 * Retrieves a single active sound.
+	 *
+	 * @param soundName {string}
+	 *   Basename of sound file.
+	 * @param includeGui {boolean}
+	 *   Will include sounds from the gui layer (default: false).
+	 * @return {ui.SoundManager.Sound}
+	 *   Active sound instance or `undefined`.
+	 */
+	getActiveByName(soundName: string, includeGui=false): Sound|undefined {
+		for (const sound of this.getActive(includeGui)) {
+			if (soundName === sound.basename) {
+				return sound;
+			}
+		}
 	}
 
 	/**
@@ -221,6 +245,7 @@ export class SoundManager {
 		scopy.volume = Math.min(volActual, volume);
 		scopy.loop = loop;
 		scopy.muted = muted;
+		scopy.basename = soundName;
 
 		this.onSoundAdded(layerName, scopy);
 		return scopy;
