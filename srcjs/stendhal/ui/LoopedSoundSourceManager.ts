@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2023 - Stendhal                     *
+ *                 Copyright © 2003-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,13 +9,13 @@
  *                                                                         *
  ***************************************************************************/
 
+declare var marauroa: any;
+declare var stendhal: any;
+
 import { Sound } from "./SoundManager";
 import { SoundManager } from "./SoundManager";
 
 import { LoopedSoundSource } from "../entity/LoopedSoundSource";
-
-declare var marauroa: any;
-declare var stendhal: any;
 
 
 // server doesn't distinguish between music & looped sound effects so we
@@ -26,10 +26,14 @@ const sfxLoops: {[name: string]: boolean} = {
 	"sleep-1": true
 }
 
+/**
+ * Manages playing looping sounds from entity sources.
+ */
 export class LoopedSoundSourceManager {
 
+	/** Sound manager instance. */
 	private readonly sndMan = SoundManager.get();
-
+	/** Detected sound sources in current zone. */
 	private sources: {[id: string]: any} = {};
 
 	/** Singleton instance. */
@@ -57,20 +61,22 @@ export class LoopedSoundSourceManager {
 	}
 
 	/**
-	 * Determines whether sound file should be opened from music or sounds
-	 * directory.
+	 * Determines whether sound file should be opened from music or sounds directory.
+	 *
+	 * @param path {string}
+	 *   Path sto sound file.
+	 * @return {boolean}
+	 *   `true` if "path" denotes a music sound file.
 	 */
-	private isMusic(filename: string): boolean {
-		return !filename.startsWith("loop/")
-				&& !filename.startsWith("weather/")
-				&& !sfxLoops[filename];
+	private isMusic(path: string): boolean {
+		return !path.startsWith("loop/") && !path.startsWith("weather/") && !sfxLoops[path];
 	}
 
 	/**
 	 * Retrieves the looped sound sources for the current zone.
 	 *
-	 * @return
-	 *     Sound sources.
+	 * @return {object}
+	 *   Sound sources detected in current zone.
 	 */
 	getSources(): {[id: string]: any} {
 		return this.sources;
@@ -79,10 +85,10 @@ export class LoopedSoundSourceManager {
 	/**
 	 * Adds a new looped sound source to be played.
 	 *
-	 * @param source
-	 *     Sound source.
-	 * @return
-	 *     <code>true</code> if addition succeeded.
+	 * @param source {entity.LoopedSoundSource.LoopedSoundSource}
+	 *   Sound source.
+	 * @return {boolean}
+	 *   `true` if addition succeeded.
 	 */
 	addSource(source: LoopedSoundSource): boolean {
 		const id = source["id"];
@@ -98,11 +104,11 @@ export class LoopedSoundSourceManager {
 		let snd: any;
 		const layer = source["layer"];
 		if (this.isMusic(source["sound"])) {
-			snd = this.sndMan.playLocalizedMusic(source["x"], source["y"],
-					source["radius"], layer, source["sound"], source["volume"]);
+			snd = this.sndMan.playLocalizedMusic(source["x"], source["y"], source["radius"], layer,
+					source["sound"], source["volume"]);
 		} else {
-			snd = this.sndMan.playLocalizedLoop(source["x"], source["y"],
-					source["radius"], layer, source["sound"], source["volume"]);
+			snd = this.sndMan.playLocalizedLoop(source["x"], source["y"], source["radius"], layer,
+					source["sound"], source["volume"]);
 		}
 
 		if (!snd) {
@@ -117,10 +123,10 @@ export class LoopedSoundSourceManager {
 	/**
 	 * Removes a currently playing sound source.
 	 *
-	 * @param id
-	 *     Sound source identifier.
-	 * @return
-	 *     <code>true</code> if removal succeeded.
+	 * @param id {string}
+	 *   Sound source identifier.
+	 * @return {boolean}
+	 *   `true` if removal succeeded.
 	 */
 	removeSource(id: string): boolean {
 		const source = this.sources[id];
@@ -155,9 +161,8 @@ export class LoopedSoundSourceManager {
 	 *
 	 * FIXME: not all sounds stopped/removed
 	 *
-	 * @return
-	 *     <code>true</code> if the sources list is empty & all removed
-	 *     sources returned successful.
+	 * @return {boolean}
+	 *   `true` if the sources list is empty & all removed sources returned successful.
 	 */
 	removeAll(): boolean {
 		let removed = true;
@@ -174,8 +179,8 @@ export class LoopedSoundSourceManager {
 	/**
 	 * Retrieves a list of looped sound sources.
 	 *
-	 * @return
-	 *     All <code>LoopedSoundSource</code> entities in current zone.
+	 * @return {entity.LoopedSoundSource.LoopedSoundSource[]}
+	 *   All sound source entities in current zone.
 	 */
 	private getZoneEntities(): LoopedSoundSource[] {
 		const ents: LoopedSoundSource[] = [];
@@ -186,13 +191,11 @@ export class LoopedSoundSourceManager {
 				}
 			}
 		}
-
 		return ents;
 	}
 
 	/**
-	 * This is called after zone is created to make sure looped sound
-	 * sources are added properly.
+	 * Called after zone is created to make sure looped sound sources are added properly.
 	 */
 	onZoneReady() {
 		for (const ent of this.getZoneEntities()) {
@@ -205,17 +208,17 @@ export class LoopedSoundSourceManager {
 	/**
 	 * Adjusts volume level for each looped sound source in current zone.
 	 *
-	 * @param x
-	 *     The new X coordinate of listening entity.
-	 * @param y
-	 *     The new Y coordinate of listening entity.
+	 * @param x {number}
+	 *   The new X coordinate of listening entity.
+	 * @param y {number}
+	 *   The new Y coordinate of listening entity.
 	 */
 	onDistanceChanged(x: number, y: number) {
 		for (const ent of this.getZoneEntities()) {
 			if (ent.isLoaded()) {
-				const layername = this.sndMan.getLayerName(ent["layer"]);
+				const layerName = this.sndMan.getLayerName(ent["layer"]);
 				const snd = this.sources[ent["id"]].sound;
-				this.sndMan.adjustForDistance(layername, snd, ent["radius"],
+				this.sndMan.adjustForDistance(layerName, snd, ent["radius"],
 						ent["x"], ent["y"], x, y);
 			}
 		}

@@ -16,6 +16,9 @@ import { ui } from "./UI";
 import { singletons } from "../SingletonRepo";
 
 
+/**
+ * Representation of a playable sound or music from zone or UI source.
+ */
 export interface Sound extends HTMLAudioElement {
 	basevolume: number;
 	radius: number;
@@ -23,6 +26,9 @@ export interface Sound extends HTMLAudioElement {
 	y: number;
 }
 
+/**
+ * Manages playing sounds & music.
+ */
 export class SoundManager {
 
 	/** Layer names & ordering. */
@@ -64,8 +70,10 @@ export class SoundManager {
 	/**
 	 * Retrieves active sounds.
 	 *
-	 * @param includeGui
-	 *     Will include sounds from the gui layer (default: false).
+	 * @param includeGui {boolean}
+	 *   Will include sounds from the gui layer (default: false).
+	 * @return {Sound[]}
+	 *   Array of active sounds.
 	 */
 	getActive(includeGui=false): Sound[] {
 		const active: Sound[] = [];
@@ -83,14 +91,14 @@ export class SoundManager {
 	/**
 	 * Initializes an audio object & loads into the cache.
 	 *
-	 * @param id
-	 *     Identifier string used to retrieve from cache.
-	 * @param filename
-	 *     Path to sound file.
-	 * @param global
-	 *     Store in session cache instead of map.
-	 * @return
-	 *     New audio object.
+	 * @param id {string}
+	 *   Identifier string used to retrieve from cache.
+	 * @param filename {string}
+	 *   Path to sound file.
+	 * @param global {boolean}
+	 *   Store in session cache instead of map (default: false).
+	 * @return {HTMLAudioElement}
+	 *   New audio object.
 	 */
 	private load(id: string, filename: string, global=false): HTMLAudioElement {
 		const snd = new Audio(filename);
@@ -107,61 +115,68 @@ export class SoundManager {
 
 	/**
 	 * Retrieves list of valid layer string identifiers.
+	 *
+	 * @return {string[]}
+	 *   Array of layer names.
 	 */
-	public getLayerNames(): string[] {
+	getLayerNames(): string[] {
 		return this.layers;
 	}
 
 	/**
 	 * Retrieves the string identifier of the associated layer index.
+	 *
+	 * @param layer {number}
+	 *   Layer index.
+	 * @return {string}
+	 *   Layer name.
 	 */
-	public getLayerName(layer: number): string {
+	getLayerName(layer: number): string {
 		// default to GUI
-		let layername = "gui";
+		let layerName = "gui";
 		if (layer >= 0 && layer < this.layers.length) {
-			layername = this.layers[layer];
+			layerName = this.layers[layer];
 		} else {
 			console.warn("unknown layer index: " + layer);
 		}
-		return layername;
+		return layerName;
 	}
 
 	/**
 	 * Sets event handlers for when sound finishes.
 	 *
-	 * @param layername
-	 *     Name of layer sound will play on.
-	 * @param sound
-	 *     The playing sound.
+	 * @param layerName {string}
+	 *   Name of layer sound will play on.
+	 * @param sound {ui.SoundManager.Sound}
+	 *   The playing sound.
 	 */
-	private onSoundAdded(layername: string, sound: Sound) {
+	private onSoundAdded(layerName: string, sound: Sound) {
 		sound.onended = (e) => {
 			// remove from active sounds
-			const idx = this.active[layername].indexOf(sound);
+			const idx = this.active[layerName].indexOf(sound);
 			if (idx > -1) {
-				this.active[layername].splice(idx, 1);
+				this.active[layerName].splice(idx, 1);
 			}
 		};
 		// FIXME: loops should be preserved if sound continues on map change
-		this.active[layername].push(sound);
+		this.active[layerName].push(sound);
 	}
 
 	/**
 	 * Plays a sound.
 	 *
-	 * @param soundname
-	 *     Sound file basename.
-	 * @param layername
-	 *     Name of layer sound will play on.
-	 * @param volume
-	 *     Volume level between 0.0 and 1.0.
-	 * @param loop
-	 *     Whether or not sound should be looped.
-	 * @return
-	 *     The new sound instance.
+	 * @param soundName {string}
+	 *   Sound file basename.
+	 * @param layerName {string}
+	 *   Name of layer sound will play on.
+	 * @param volume {number}
+	 *   Volume level between 0.0 and 1.0 (default 1.0).
+	 * @param loop {boolean}
+	 *   Whether or not sound should be looped (default: false).
+	 * @return {ui.SoundManager.Sound}
+	 *   The new sound instance or `undefined`.
 	 */
-	private playEffect(soundname: string, layername: string, volume=1.0,
-			loop=false): any {
+	private playEffect(soundName: string, layerName: string, volume=1.0, loop=false): Sound|undefined {
 		const muted = !stendhal.config.getBoolean("sound");
 		if (muted && !loop) {
 			// don't add non-looping sounds when muted
@@ -171,62 +186,61 @@ export class SoundManager {
 		// check volume sanity
 		volume = this.normVolume(volume);
 		// apply layer volume adjustments
-		const actualvolume = this.getAdjustedVolume(layername, volume);
+		const volActual = this.getAdjustedVolume(layerName, volume);
 
 		// check cache first
-		let snd = this.cache[soundname] || this.cacheGlobal[soundname];
+		let snd = this.cache[soundName] || this.cacheGlobal[soundName];
 		if (!snd) {
 			// add new sound to cache
-			snd = this.load(soundname,
-					stendhal.paths.sounds + "/" + soundname + ".ogg");
+			snd = this.load(soundName, stendhal.paths.sounds + "/" + soundName + ".ogg");
 		}
 
-		if (!this.cache[soundname]) {
+		if (!this.cache[soundName]) {
 			// add globally cached sounds to map cache
-			this.cache[soundname] = snd;
+			this.cache[soundName] = snd;
 		}
 
-		if (layername === "gui" && !this.cacheGlobal[soundname]) {
+		if (layerName === "gui" && !this.cacheGlobal[soundName]) {
 			// keep gui sounds in global cache
-			this.cacheGlobal[soundname] = snd;
+			this.cacheGlobal[soundName] = snd;
 		}
 
 		// create a copy so multiple instances can be played simultaneously
-		const scopy = <Sound> snd.cloneNode();
+		const scopy = snd.cloneNode() as Sound;
 		scopy.autoplay = true;
 		scopy.basevolume = volume;
-		scopy.volume = Math.min(actualvolume, volume);
+		scopy.volume = Math.min(volActual, volume);
 		scopy.loop = loop;
 		scopy.muted = muted;
 
-		this.onSoundAdded(layername, scopy);
+		this.onSoundAdded(layerName, scopy);
 		return scopy;
 	}
 
 	/**
 	 * Plays a sound with volume relative to distance.
 	 *
-	 * @param x
-	 *     X coordinate of sound source.
-	 * @param y
-	 *     Y coordinate of sound source.
-	 * @param radius
-	 *     Radius at which sound can be heard.
-	 * @param layer
-	 *     Channel index sound will play on.
-	 * @param soundname
-	 *     Sound file basename.
-	 * @param volume
-	 *     Volume level between 0.0 and 1.0.
-	 * @param loop
-	 *     Whether or not sound should be looped.
-	 * @return
-	 *     The new sound instance.
+	 * @param x {number}
+	 *   X coordinate of sound source.
+	 * @param y {number}
+	 *   Y coordinate of sound source.
+	 * @param radius {radius}
+	 *   Radius at which sound can be heard.
+	 * @param layer {number}
+	 *   Channel index sound will play on.
+	 * @param soundName {string}
+	 *   Sound file basename.
+	 * @param volume {number}
+	 *   Volume level between 0.0 and 1.0 (default: 1.0).
+	 * @param loop {boolean}
+	 *   Whether or not sound should be looped (default: false).
+	 * @return {ui.SoundManager.Sound}
+	 *   The new sound instance or `undefined`.
 	 */
-	playLocalizedEffect(x: number, y: number, radius: number,
-			layer: number, soundname: string, volume=1.0, loop=false): any {
-		const layername = this.getLayerName(layer);
-		const snd = this.playEffect(soundname, layername, volume, loop);
+	playLocalizedEffect(x: number, y: number, radius: number, layer: number, soundName: string,
+			volume=1.0, loop=false): Sound|undefined {
+		const layerName = this.getLayerName(layer);
+		const snd = this.playEffect(soundName, layerName, volume, loop);
 		if (!snd) {
 			return;
 		}
@@ -237,8 +251,7 @@ export class SoundManager {
 				// can't calculate distance yet
 				snd.volume = 0.0;
 			} else {
-				this.adjustForDistance(layername, snd, radius, x, y,
-						marauroa.me["_x"], marauroa.me["_y"]);
+				this.adjustForDistance(layerName, snd, radius, x, y, marauroa.me["_x"], marauroa.me["_y"]);
 			}
 		}
 
@@ -251,122 +264,118 @@ export class SoundManager {
 	/**
 	 * Plays a sound with uniform volume.
 	 *
-	 * @param soundname
-	 *     Sound file basename.
-	 * @param layer
-	 *     Channel index sound will play on.
-	 * @param volume
-	 *     Volume level between 0.0 and 1.0.
-	 * @param loop
-	 *     Whether or not sound should be looped.
-	 * @return
-	 *     The new sound instance.
+	 * @param soundName {string}
+	 *   Sound file basename.
+	 * @param layer {number}
+	 *   Channel index sound will play on (default: index of "gui").
+	 * @param volume {number}
+	 *   Volume level between 0.0 and 1.0 (default: 1.0).
+	 * @param loop {boolean}
+	 *   Whether or not sound should be looped (default: false).
+	 * @return {ui.SoundManager.Sound}
+	 *   The new sound instance or `undefined`.
 	 */
-	playGlobalizedEffect(soundname: string, layer?: number, volume=1.0, loop=false): any {
+	playGlobalizedEffect(soundName: string, layer?: number, volume=1.0, loop=false): Sound|undefined {
 		// default to gui layer
 		if (typeof(layer) === "undefined") {
 			layer = this.layers.indexOf("gui");
 		}
-		return this.playEffect(soundname, this.getLayerName(layer), volume, loop);
+		return this.playEffect(soundName, this.getLayerName(layer), volume, loop);
 	}
 
 	/**
 	 * Loops a sound with volume relative to distance.
 	 *
-	 * @param x
-	 *     X coordinate of sound source.
-	 * @param y
-	 *     Y coordinate of sound source.
-	 * @param radius
-	 *     Radius at which sound can be heard.
-	 * @param layer
-	 *     Channel index sound will play on.
-	 * @param soundname
-	 *     Sound file basename.
-	 * @param volume
-	 *     Volume level between 0.0 and 1.0.
-	 * @return
-	 *     The new sound instance.
+	 * @param x {number}
+	 *   X coordinate of sound source.
+	 * @param y {number}
+	 *   Y coordinate of sound source.
+	 * @param radius {number}
+	 *   Radius at which sound can be heard.
+	 * @param layer {number}
+	 *   Channel index sound will play on.
+	 * @param soundName {string}
+	 *   Sound file basename.
+	 * @param volume {number}
+	 *   Volume level between 0.0 and 1.0.
+	 * @return {Sound}
+	 *   The new sound instance or `undefind`.
 	 */
-	playLocalizedLoop(x: number, y: number, radius: number, layer: number,
-			soundname: string, volume=1.0): any {
-		return this.playLocalizedEffect(x, y, radius, layer, soundname,
-				volume, true);
+	playLocalizedLoop(x: number, y: number, radius: number, layer: number, soundName: string,
+			volume=1.0): Sound|undefined {
+		return this.playLocalizedEffect(x, y, radius, layer, soundName, volume, true);
 	}
 
 	/**
 	 * Loops a sound with uniform volume.
 	 *
-	 * @param soundname
-	 *     Sound file basename.
-	 * @param layer
-	 *     Channel index sound will play on.
-	 * @param volume
-	 *     Volume level between 0.0 and 1.0.
-	 * @return
-	 *     The new sound instance.
+	 * @param soundName {string}
+	 *   Sound file basename.
+	 * @param layer {number}
+	 *   Channel index sound will play on (default: index of "gui").
+	 * @param volume {number}
+	 *   Volume level between 0.0 and 1.0 (default: 1.0).
+	 * @return {Sound}
+	 *   The new sound instance or `undefined`.
 	 */
-	playGlobalizedLoop(soundname: string, layer?: number, volume=1.0): any {
-		return this.playGlobalizedEffect(soundname, layer, volume, true);
+	playGlobalizedLoop(soundName: string, layer?: number, volume=1.0): Sound|undefined {
+		return this.playGlobalizedEffect(soundName, layer, volume, true);
 	}
 
 	/**
 	 * Loops a sound with volume relative to distance.
 	 *
-	 * @param x
-	 *     X coordinate of sound source.
-	 * @param y
-	 *     Y coordinate of sound source.
-	 * @param radius
-	 *     Radius at which sound can be heard.
-	 * @param layer
-	 *     Channel on which to be played (currently not supported).
-	 * @param musicname
-	 *     Sound file basename.
-	 * @param volume
-	 *     Volume level between 0.0 and 1.0.
-	 * @return
-	 *     The new sound instance.
+	 * @param x {number}
+	 *   X coordinate of sound source.
+	 * @param y {number}
+	 *   Y coordinate of sound source.
+	 * @param radius {number}
+	 *   Radius at which sound can be heard.
+	 * @param layer {number}
+	 *   Channel on which to be played.
+	 * @param musicName {string}
+	 *   Sound file basename.
+	 * @param volume {number}
+	 *   Volume level between 0.0 and 1.0.
+	 * @return {ui.SoundManager.Sound}
+	 *   The new sound instance or `undefined`.
 	 */
-	playLocalizedMusic(x: number, y: number, radius: number,
-			layer: number, musicname: string, volume=1.0): any {
+	playLocalizedMusic(x: number, y: number, radius: number, layer: number, musicName: string,
+			volume=1.0): Sound|undefined {
 		// load into cache so playEffect doesn't look in "data/sounds"
-		if (!this.cache[musicname]) {
-			this.load(musicname,
-					stendhal.paths.music + "/" + musicname + ".ogg");
+		if (!this.cache[musicName]) {
+			this.load(musicName, stendhal.paths.music + "/" + musicName + ".ogg");
 		}
-		return this.playLocalizedLoop(x, y, radius, layer, musicname, volume);
+		return this.playLocalizedLoop(x, y, radius, layer, musicName, volume);
 	}
 
 	/**
 	 * Loops a sound with uniform volume.
 	 *
-	 * @param musicname
-	 *     Sound file basename.
-	 * @param volume
-	 *     Volume level between 0.0 and 1.0.
-	 * @return
-	 *     The new sound instance.
+	 * @param musicName {string}
+	 *   Sound file basename.
+	 * @param volume {number}
+	 *   Volume level between 0.0 and 1.0 (default: 1.0).
+	 * @return {ui.SoundManager.Sound}
+	 *   The new sound instance or `undefined`.
 	 */
-	playGlobalizedMusic(musicname: string, volume=1.0): any {
+	playGlobalizedMusic(musicName: string, volume=1.0): Sound|undefined {
 		// load into cache so playEffect doesn't look in "data/sounds"
-		if (!this.cache[musicname]) {
-			this.load(musicname,
-					stendhal.paths.music + "/" + musicname + ".ogg");
+		if (!this.cache[musicName]) {
+			this.load(musicName, stendhal.paths.music + "/" + musicName + ".ogg");
 		}
-		return this.playGlobalizedLoop(musicname,
-				this.layers.indexOf("music"), volume);
+		return this.playGlobalizedLoop(musicName, this.layers.indexOf("music"), volume);
 	}
 
 	/**
 	 * Stops a sound & removes it from active group.
 	 *
-	 * @param layer
-	 *     Channel index sound is playing on.
-	 * @param sound
-	 *     The sound to be stopped.
-	 * @return
-	 *     <code>true</code> if succeeded.
+	 * @param layer {number}
+	 *   Channel index or name sound is playing on.
+	 * @param sound {ui.SoundManager.Sound}
+	 *   The sound or name of sound to be stopped.
+	 * @return {boolean}
+	 *   `true` if succeeded.
 	 */
 	stop(layer: number, sound: Sound): boolean {
 		if (layer < 0 || layer >= this.layers.length) {
@@ -390,11 +399,10 @@ export class SoundManager {
 	/**
 	 * Stops all currently playing sounds.
 	 *
-	 * @param includeGui
-	 *     If <code>true</code>, sounds on the gui layer will stopped
-	 *     as well.
-	 * @return
-	 *     <code>true</code> if all sounds were aborted or paused.
+	 * @param includeGui {boolean}
+	 *   If `true`, sounds on the gui layer will stopped as well (default: false).
+	 * @return {boolean}
+	 *   `true` if all sounds were aborted or paused.
 	 */
 	stopAll(includeGui=false): boolean {
 		let stopped = true;
@@ -415,8 +423,8 @@ export class SoundManager {
 	/**
 	 * Mutes all currently playing sounds.
 	 *
-	 * @return
-	 *     <code>true</code> if all sounds were muted.
+	 * @return {boolean}
+	 *   `true` if all sounds were muted.
 	 */
 	muteAll(): boolean {
 		let muted = true;
@@ -432,8 +440,8 @@ export class SoundManager {
 	/**
 	 * Unmutes all currently playing sounds.
 	 *
-	 * @return
-	 *     <code>true</code> if all sounds were unmuted.
+	 * @return {boolean}
+	 *   `true` if all sounds were unmuted.
 	 */
 	unmuteAll(): boolean {
 		let unmuted = true;
@@ -443,7 +451,6 @@ export class SoundManager {
 				unmuted = unmuted && !snd.paused && !snd.muted;
 			}
 		}
-
 		return unmuted;
 	}
 
@@ -453,23 +460,23 @@ export class SoundManager {
 	 * FIXME: hearing distance is slightly further than in Java client
 	 *        See: games.stendhal.client.sound.facade.Audible*Area
 	 *
-	 * @param layername
-	 *    String name of layer this sound is played on.
-	 * @param snd
-	 *    The sound to be adjusted.
-	 * @param radius
-	 *     Radius at which sound can be heard.
-	 * @param sx
-	 *     X coordinate of sound entity.
-	 * @param sy
-	 *     Y coordinate of sound entity.
-	 * @param ex
-	 *     X coordinate of listening entity.
-	 * @param ey
-	 *     Y coordinate of listening entity.
+	 * @param layerName {string}
+	 *   Name of layer this sound is played on.
+	 * @param snd {ui.SoundManager.Sound}
+	 *   The sound to be adjusted.
+	 * @param radius {number}
+	 *   Radius at which sound can be heard.
+	 * @param sx {number}
+	 *   X coordinate of sound entity.
+	 * @param sy {number}
+	 *   Y coordinate of sound entity.
+	 * @param ex {number}
+	 *   X coordinate of listening entity.
+	 * @param ey {number}
+	 *   Y coordinate of listening entity.
 	 */
-	adjustForDistance(layername: string, snd: Sound, radius: number,
-			sx: number, sy: number, ex: number, ey: number) {
+	adjustForDistance(layerName: string, snd: Sound, radius: number, sx: number, sy: number,
+			ex: number, ey: number) {
 		const xdist = ex - sx;
 		const ydist = ey - sy;
 		const dist2 = xdist * xdist + ydist * ydist;
@@ -478,20 +485,20 @@ export class SoundManager {
 			// outside the specified radius
 			snd.volume = 0.0;
 		} else {
-			const maxvol = this.getAdjustedVolume(layername, snd.basevolume);
+			const volMax = this.getAdjustedVolume(layerName, snd.basevolume);
 			// The sound api does not guarantee anything about how the volume
 			// works, so it does not matter much how we scale it.
-			snd.volume = this.normVolume(Math.min(rad2 / (dist2 * 20), maxvol));
+			snd.volume = this.normVolume(Math.min(rad2 / (dist2 * 20), volMax));
 		}
 	}
 
 	/**
 	 * Normalizes volume level.
 	 *
-	 * @param vol
-	 *     The input volume.
-	 * @return
-	 *     Level between 0 and 1.
+	 * @param vol {number}
+	 *   The input volume.
+	 * @return {number}
+	 *   Normalized volume level between 0.0 and 1.0.
 	 */
 	private normVolume(vol: number): number {
 		return vol < 0 ? 0 : vol > 1 ? 1 : vol;
@@ -500,33 +507,33 @@ export class SoundManager {
 	/**
 	 * Calculates actual volume against layer volume levels.
 	 *
-	 * @param layername
-	 *     String identifier of layer sound is playing on.
-	 * @param basevol
-	 *     The sounds base volume level.
-	 * @return
-	 *     Volume level adjusted with "master" & associated layer.
+	 * @param layerName {string}
+	 *   String identifier of layer sound is playing on.
+	 * @param volBase {number}
+	 *   The sounds base volume level.
+	 * @return {number}
+	 *   Volume level adjusted with "master" & associated layer.
 	 */
-	private getAdjustedVolume(layername: string, basevol: number): number {
-		let actualvol = basevol * stendhal.config.getFloat("sound.master.volume");
-		const lvol = stendhal.config.getFloat("sound." + layername + ".volume");
+	private getAdjustedVolume(layerName: string, volBase: number): number {
+		let volActual = volBase * stendhal.config.getFloat("sound.master.volume");
+		const lvol = stendhal.config.getFloat("sound." + layerName + ".volume");
 		if (typeof(lvol) !== "number") {
-			console.warn("cannot adjust volume for layer \"" + layername + "\"");
-			return actualvol;
+			console.warn("cannot adjust volume for layer \"" + layerName + "\"");
+			return volActual;
 		}
-		return actualvol * lvol;
+		return volActual * lvol;
 	}
 
 	/**
 	 * Applies the adjusted volume level to a sound.
 	 *
-	 * @param layername
-	 *     String identifier of layer sound is playing on.
-	 * @param snd
-	 *     The sound to be adjusted.
+	 * @param layerName {string}
+	 *   String identifier of layer sound is playing on.
+	 * @param snd {ui.SoundManager.Sound}
+	 *   The sound to be adjusted.
 	 */
-	private applyAdjustedVolume(layername: string, snd: Sound) {
-		snd.volume = this.normVolume(this.getAdjustedVolume(layername, snd.basevolume));
+	private applyAdjustedVolume(layerName: string, snd: Sound) {
+		snd.volume = this.normVolume(this.getAdjustedVolume(layerName, snd.basevolume));
 	}
 
 	/**
@@ -534,35 +541,35 @@ export class SoundManager {
 	 *
 	 * TODO: return numeric value for determining what went wrong
 	 *
-	 * @param layername
-	 *     Name of layer being adjusted.
-	 * @param vol
-	 *     Volume level.
+	 * @param layerName {string}
+	 *   Name of layer being adjusted.
+	 * @param vol {number}
+	 *   Volume level between 0.0 and 1.0.
 	 * @return
-	 *     <code>true</code> if volume level was set.
+	 *   `true` if volume level was set.
 	 */
-	setVolume(layername: string, vol: number): boolean {
-		const oldvol = stendhal.config.getFloat("sound." + layername + ".volume");
-		if (typeof(oldvol) === "undefined" || oldvol === "") {
+	setVolume(layerName: string, vol: number): boolean {
+		const volOld = stendhal.config.getFloat("sound." + layerName + ".volume");
+		if (typeof(volOld) === "undefined" || volOld === "") {
 			return false;
 		}
 
-		stendhal.config.set("sound." + layername + ".volume", this.normVolume(vol));
+		stendhal.config.set("sound." + layerName + ".volume", this.normVolume(vol));
 
-		const layerset = layername === "master" ? this.layers : [layername];
-		for (const l of layerset) {
-			const layersounds = this.active[l];
-			if (typeof(layersounds) === "undefined") {
+		const layerSet = layerName === "master" ? this.layers : [layerName];
+		for (const l of layerSet) {
+			const layerSounds = this.active[l];
+			if (typeof(layerSounds) === "undefined") {
 				continue;
 			}
-			for (const snd of layersounds) {
+			for (const snd of layerSounds) {
 				if (typeof(snd.radius) === "number"
 						&& typeof(snd.x) === "number"
 						&& typeof(snd.y) === "number") {
-					this.adjustForDistance(layername, snd, snd.radius,
+					this.adjustForDistance(layerName, snd, snd.radius,
 							snd.x, snd.y, marauroa.me["_x"], marauroa.me["_y"]);
 				} else {
-					this.applyAdjustedVolume(layername, snd);
+					this.applyAdjustedVolume(layerName, snd);
 				}
 			}
 		}
@@ -572,15 +579,15 @@ export class SoundManager {
 	/**
 	 * Retrieves layer volume level.
 	 *
-	 * @param layername
-	 *     Layer string identifier.
-	 * @return
-	 *     Current volume level of layer.
+	 * @param layerName {string}
+	 *   Layer string identifier (default: "master").
+	 * @return {number}
+	 *   Current volume level of layer (returns 1 on error).
 	 */
-	getVolume(layername="master"): number {
-		let vol = stendhal.config.getFloat("sound." + layername + ".volume");
+	getVolume(layerName="master"): number {
+		let vol = stendhal.config.getFloat("sound." + layerName + ".volume");
 		if (typeof(vol) === "undefined" || isNaN(vol) || !isFinite(vol)) {
-			console.warn("could not get volume for channel \"" + layername + "\"");
+			console.warn("could not get volume for channel \"" + layerName + "\"");
 			return 1;
 		}
 		return this.normVolume(vol);
@@ -589,7 +596,7 @@ export class SoundManager {
 	/**
 	 * Toggles muted state of sound system.
 	 */
-	public toggleSound() {
+	toggleSound() {
 		const enabled = !stendhal.config.getBoolean("sound");
 		stendhal.config.set("sound", enabled);
 
