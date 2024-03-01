@@ -430,25 +430,32 @@ export class SoundManager {
 	 *
 	 * @param layer {string|number}
 	 *   Channel name or index sound is playing on.
-	 * @param sound {ui.SoundManager.Sound}
-	 *   The sound to be stopped.
+	 * @param sound {string|ui.SoundManager.Sound}
+	 *   Sound name or instance to be stopped.
 	 * @return {boolean}
 	 *   `true` if succeeded.
 	 */
-	stop(layer: string|number, sound: Sound): boolean {
+	stop(layer: string|number, sound: string|Sound): boolean {
 		const layerName = this.checkLayer(layer);
 		if (this.getLayerIndex(layerName) < 0) {
 			return false;
 		}
-		const idx = this.active[layerName].indexOf(sound);
-		if (sound && idx > -1) {
-			sound.pause();
-			sound.currentTime = 0;
-			if (sound.onended) {
-				sound.onended(new Event("stopsound"));
+		const isString = typeof(sound) === "string";
+		// use this value to avoid error "Argument of type 'string | Sound' is not assignable to parameter of type 'Sound'"
+		const sSound = !isString ? sound as Sound : this.getActiveByName(sound as string);
+		if (!sSound) {
+			console.error("cannot stop unknown sound:",
+					isString ? sound as string : (sound as Sound).basename, new Error());
+			return false;
+		}
+		if (this.active[layerName].indexOf(sSound) > -1) {
+			sSound.pause();
+			sSound.currentTime = 0;
+			if (sSound.onended) {
+				sSound.onended(new Event("stopsound"));
 			}
 		}
-		return this.active[layerName].indexOf(sound) < 0;
+		return this.active[layerName].indexOf(sSound) < 0;
 	}
 
 	/**
