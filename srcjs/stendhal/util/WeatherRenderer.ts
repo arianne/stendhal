@@ -81,6 +81,7 @@ export class WeatherRenderer {
 
 		const soundMan = singletons.getSoundManager();
 		// stop previous sounds
+		// FIXME: should continue playing if weather is same on next map
 		if (this.audio) {
 			soundMan.stop(this.soundLayer, this.audio);
 			this.audio = undefined;
