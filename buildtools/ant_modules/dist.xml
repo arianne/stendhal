@@ -794,7 +794,7 @@
 		</copy>
 
 		<replaceregexp file="${build_webclient}/stendhal.html"
-				match="data-tileset-path=&quot;/tileset&quot;"
+				match="data-tileset-path=&quot;/data/maps/tileset&quot;"
 				replace="data-tileset-path=&quot;/data/tileset&quot;"
 				byline="false"/>
 
