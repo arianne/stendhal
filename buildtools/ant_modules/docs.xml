@@ -93,7 +93,7 @@
 			<arg value="typedoc"/>
 			<arg value="--no-save"/>
 		</exec>
-		<exec executable="npx${executable.suffix}" dir="srcjs/stendhal" failonerror="true">
+		<exec executable="npx${executable.suffix}" dir="${srcjs}/stendhal" failonerror="true">
 			<arg value="typedoc"/>
 			<arg value="--entryPointStrategy"/>
 			<arg value="expand"/>

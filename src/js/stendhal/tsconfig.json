@@ -4,7 +4,7 @@
 		"lib": ["dom", "es2015"],
 		"module": "commonjs",
 		"noImplicitOverride": true,
-		"outDir": "../../build/ts",
+		"outDir": "../../../build/ts",
 		"rootDir": ".",
 		"sourceMap": true,
 		"strict": true,
@@ -12,6 +12,6 @@
 	},
 	"typedocOptions": {
 		"entryPoints": ["."],
-		"out": "../../build/build_docs/reference/typescript"
+		"out": "../../../build/build_docs/reference/typescript"
 	}
 }

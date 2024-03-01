@@ -15,7 +15,7 @@ var marauroa = window.marauroa = window.marauroa || {};
 var stendhal = window.stendhal = window.stendhal || {};
 
 
-stendhal.main = require("../../build/ts/Client").Client.get();
+stendhal.main = require("../../../build/ts/Client").Client.get();
 stendhal.main.init();
 
 document.addEventListener('DOMContentLoaded', stendhal.main.startup);

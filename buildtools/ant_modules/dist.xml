@@ -712,18 +712,18 @@
 
 
 	<target name="js-invoke-compiler">
-		<exec executable="npx${executable.suffix}" dir="srcjs/stendhal" failonerror="true">
+		<exec executable="npx${executable.suffix}" dir="${srcjs}/stendhal" failonerror="true">
 			<arg value="tsc"/>
 		</exec>
 
-		<property name="js-debug"          value="--debug --formatting=PRETTY_PRINT --create_source_map srcjs/stendhal-compiled.js.map --source_map_include_content"/>
+		<property name="js-debug"          value="--debug --formatting=PRETTY_PRINT --create_source_map ${srcjs}/stendhal-compiled.js.map --source_map_include_content"/>
 
-		<property name="js-files-license"  value="srcjs/stendhal/license.js"/>
+		<property name="js-files-license"  value="${srcjs}/stendhal/license.js"/>
 		<property name="js-files-marauroa" value="build/js/marauroa.js build/js/client-framework.js build/js/message-factory.js build/js/perception.js build/js/rpfactory.js build/js/inflate.js build/js/deserializer.js"/>
 		<property name="js-files-config"   value="build/js/build.js"/>
-		<property name="js-files-lib1"     value="srcjs/jsxgraph-util.js"/>
+		<property name="js-files-lib1"     value="${srcjs}/jsxgraph-util.js"/>
 		<property name="js-files-lib2"     value=""/>
-		<property name="js-files-data1"    value="srcjs/stendhal/data/sha3.js"/>
+		<property name="js-files-data1"    value="${srcjs}/stendhal/data/sha3.js"/>
 		<property name="js-files-data2"    value=""/>
 		<property name="js-files-entity5"  value=""/>
 		<property name="js-files-entity6"  value=""/>
@@ -732,7 +732,7 @@
 		<property name="js-files-ui3"      value=""/>
 		<property name="js-files-main1"    value=""/>
 		<property name="js-files-ui4"      value=""/>
-		<property name="js-files-main2"    value="srcjs/stendhal/main.js"/>
+		<property name="js-files-main2"    value="${srcjs}/stendhal/main.js"/>
 		<property name="js-files-main3"    value=""/>
 		<property name="js-files-ts"       value="build/ts/*.js build/ts/**/*.js"/>
 		<property name="js-files-ts2"      value=""/>
@@ -753,7 +753,7 @@
 			<!-- DEBUG: -->
 			<!--<arg value="-\-jscomp_off=globalThis"/>-->
 
-			<arg value="--js_output_file=srcjs/stendhal-compiled.js"/>
+			<arg value="--js_output_file=${srcjs}/stendhal-compiled.js"/>
 
 			<arg line="${js-files-license}"/>
 			<arg line="${js-files-marauroa}"/>
@@ -775,7 +775,7 @@
 			<arg line="${js-files-ts2}"/>
 		</java>
 
-		<echo file="srcjs/stendhal-compiled.js" append="true">
+		<echo file="${srcjs}/stendhal-compiled.js" append="true">
 //# sourceMappingURL=stendhal-compiled.js.map
 		</echo>
 
