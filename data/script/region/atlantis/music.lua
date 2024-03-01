@@ -1,6 +1,6 @@
 --[[
  ***************************************************************************
- *                       Copyright © 2020 - Arianne                        *
+ *                 Copyright © 2020-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -31,11 +31,13 @@ local zones = {
 }
 
 for _, z in pairs(zones) do
-	local zone = "-7_" .. z
-
-	if game:setZone(zone) then
-		game:setMusic("settlement_of_the_frontier", {volume=85})
+	local zoneName = "-7_" .. z
+	local zone = game:getZone(zoneName)
+	if zone then
+		local attr = zone:getAttributes()
+		attr:put("music", "settlement_of_the_frontier")
+		attr:put("music_volume", "0.85")
 	else
-		logger:warn("Could not set zone " .. zone .. " to create BackGroundMusicSource")
+		logger:warn("Could not set zone " .. zoneName .. " to create BackGroundMusicSource")
 	end
 end
