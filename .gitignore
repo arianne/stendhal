@@ -50,3 +50,4 @@ build_server_xmlconf
 /hs_err_*.log
 /node_modules/
 /log/
+/build-archive/
