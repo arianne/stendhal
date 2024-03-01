@@ -1,5 +1,5 @@
 /***************************************************************************
- *                 (C) Copyright 2003-2022 - Faiumoni e.V.                 *
+ *                 (C) Copyright 2003-2024 - Faiumoni e.V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -131,9 +131,9 @@ public class FreezeHell extends ScriptImpl {
 	private void freezeOrThaw(boolean freeze, Duration freezingDuration) {
 		String newMap;
 		if (freeze) {
-			newMap = "tiled/Level -2/nalwor/frozen_hell.tmx";
+			newMap = "Level -2/nalwor/frozen_hell.tmx";
 		} else {
-			newMap = "tiled/Level -2/nalwor/hell.tmx";
+			newMap = "Level -2/nalwor/hell.tmx";
 		}
 
 		final StendhalRPWorld world = SingletonRepository.getRPWorld();
@@ -141,7 +141,7 @@ public class FreezeHell extends ScriptImpl {
 		StendhalRPZone zone = (StendhalRPZone) zn;
 		StendhalMapStructure map;
 		try {
-			map = TMXLoader.load(newMap);
+			map = TMXLoader.load(StendhalRPWorld.MAPS_FOLDER + newMap);
 		} catch (Exception e) {
 			LOGGER.error("Failed to load map", e);
 			return;
