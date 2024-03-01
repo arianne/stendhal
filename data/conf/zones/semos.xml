@@ -4379,15 +4379,9 @@ Southwest: Fado City
 			<parameter name="color_method">multiply</parameter>
 			<parameter name="color">#806283</parameter>
 			<parameter name="blend_method">bleach</parameter>
+			<parameter name="music">dark_quest</parameter>
+			<parameter name="music_volume">0.8</parameter>
 		</attributes>
-
-		<!-- Music -->
-		<entity x="1" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">dark_quest</parameter>
-				<parameter name="volume">80</parameter>
-			</implementation>
-		</entity>
 
 		<portal x="9" y="6" ref="dragon_portal_1">
 			<destination zone="-2_semos_catacombs" ref="dragon_portal_2"/>
@@ -4590,7 +4584,10 @@ Southwest: Fado City
 			<parameter name="color_method">multiply</parameter>
 			<parameter name="color">#943348</parameter>
 			<parameter name="blend_method">bleach</parameter>
+			<parameter name="music">dark_quest</parameter>
+			<parameter name="music_volume">0.8</parameter>
 		</attributes>
+
 		<configurator
 			class-name="games.stendhal.server.maps.semos.catacombs.VampireLordCreature"/>
 		<portal x="30" y="57" ref="upstairs" replacing="true">
@@ -4598,14 +4595,14 @@ Southwest: Fado City
 		</portal>
 
 		<!-- Music -->
+		<!--
 		<entity x="1" y="1">
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<!--<parameter name="sound">the_forsaken_mine</parameter>-->
-				<parameter name="sound">dark_quest</parameter>
-				<parameter name="volume">80</parameter>
+				<parameter name="sound">the_forsaken_mine</parameter>
 			</implementation>
 		</entity>
+		-->
 
 		<entity x="60" y="61">
 			<!-- all dialogs for this NPC are quest-related, so we don't need a
