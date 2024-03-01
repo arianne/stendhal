@@ -1,6 +1,6 @@
 --[[
  ***************************************************************************
- *                       Copyright © 2020 - Arianne                        *
+ *                 Copyright © 2020-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -29,8 +29,11 @@ local zones = {
 }
 
 for _, z in pairs(zones) do
-	if game:setZone(z) then
-		game:setMusic("night_town", {volume=85})
+	local zone = game:getZone(z)
+	if zone then
+		local attr = zone:getAttributes()
+		attr:put("music", "night_town")
+		attr:put("music_volume", "0.85")
 	else
 		logger:warn("Could not set zone " .. z .. " to create BackGroundMusicSource")
 	end
@@ -51,8 +54,11 @@ local zones = {
 }
 
 for _, z in pairs(zones) do
-	if game:setZone(z) then
-		game:setMusic("spooky_forest", {volume=85})
+	local zone = game:getZone(z)
+	if zone then
+		local attr = zone:getAttributes()
+		attr:put("music", "spooky_forest")
+		attr:put("music_volume", "0.85")
 	else
 		logger:warn("Could not set zone " .. z .. " to create BackGroundMusicSource")
 	end
@@ -83,12 +89,14 @@ local zones = {
 for _, z in pairs(zones) do
 	-- music intentionally not set on level -4 because of singing mermaids
 	for _, level in pairs({"-1", "-2", "-3", "-5", "-6"}) do
-		local zone = level .. "_" .. z
-
-		if game:setZone(zone) then
-			game:setMusic("casket", {volume=85})
+		local zoneName = level .. "_" .. z
+		local zone = game:getZone(zoneName)
+		if zone then
+			local attr = zone:getAttributes()
+			attr:put("music", "casket")
+			attr:put("music_volume", "0.85")
 		else
-			logger:warn("Could not set zone " .. zone .. " to create BackGroundMusicSource")
+			logger:warn("Could not set zone " .. zoneName .. " to create BackGroundMusicSource")
 		end
 	end
 end
