@@ -124,20 +124,29 @@ export class SoundManager {
 	}
 
 	/**
-	 * Retrieves the string identifier of the associated layer index.
+	 * Checks for valid layer.
 	 *
-	 * @param layer {number}
-	 *   Layer index.
+	 * @param layer {any}
+	 *   Layer name or index.
 	 * @return {string}
-	 *   Layer name.
+	 *   Layer name or `undefined`.
 	 */
-	getLayerName(layer: number): string {
-		// default to GUI
-		let layerName = "gui";
-		if (layer >= 0 && layer < this.layers.length) {
-			layerName = this.layers[layer];
-		} else {
-			console.warn("unknown layer index: " + layer);
+	checkLayer(layer: any): string {
+		let layerIndex = -1;
+		const ltype = typeof(layer);
+		if (ltype === "number") {
+			layerIndex = layer;
+		} else if (ltype === "string") {
+			if (this.layers.indexOf(layer) > -1) {
+				return layer;
+			}
+			if (!Number.isNaN(layer)) {
+				layerIndex = parseInt(layer, 10);
+			}
+		}
+		let layerName = this.layers[layerIndex];
+		if (!layerName) {
+			console.error("invalid sound layer:", layer, new Error());
 		}
 		return layerName;
 	}
@@ -226,8 +235,8 @@ export class SoundManager {
 	 *   Y coordinate of sound source.
 	 * @param radius {radius}
 	 *   Radius at which sound can be heard.
-	 * @param layer {number}
-	 *   Channel index sound will play on.
+	 * @param layer {string|number}
+	 *   Channel name or index sound will play on.
 	 * @param soundName {string}
 	 *   Sound file basename.
 	 * @param volume {number}
@@ -237,9 +246,12 @@ export class SoundManager {
 	 * @return {ui.SoundManager.Sound}
 	 *   The new sound instance or `undefined`.
 	 */
-	playLocalizedEffect(x: number, y: number, radius: number, layer: number, soundName: string,
+	playLocalizedEffect(x: number, y: number, radius: number, layer: string|number, soundName: string,
 			volume=1.0, loop=false): Sound|undefined {
-		const layerName = this.getLayerName(layer);
+		const layerName = this.checkLayer(layer);
+		if (!layerName) {
+			return;
+		}
 		const snd = this.playEffect(soundName, layerName, volume, loop);
 		if (!snd) {
 			return;
@@ -266,8 +278,8 @@ export class SoundManager {
 	 *
 	 * @param soundName {string}
 	 *   Sound file basename.
-	 * @param layer {number}
-	 *   Channel index sound will play on (default: index of "gui").
+	 * @param layer {string|number}
+	 *   Channel name or index sound will play on (default: "gui").
 	 * @param volume {number}
 	 *   Volume level between 0.0 and 1.0 (default: 1.0).
 	 * @param loop {boolean}
@@ -275,12 +287,12 @@ export class SoundManager {
 	 * @return {ui.SoundManager.Sound}
 	 *   The new sound instance or `undefined`.
 	 */
-	playGlobalizedEffect(soundName: string, layer?: number, volume=1.0, loop=false): Sound|undefined {
-		// default to gui layer
-		if (typeof(layer) === "undefined") {
-			layer = this.layers.indexOf("gui");
+	playGlobalizedEffect(soundName: string, layer: string|number="gui", volume=1.0, loop=false): Sound|undefined {
+		const layerName = this.checkLayer(layer);
+		if (!layerName) {
+			return;
 		}
-		return this.playEffect(soundName, this.getLayerName(layer), volume, loop);
+		return this.playEffect(soundName, layerName, volume, loop);
 	}
 
 	/**
@@ -292,8 +304,8 @@ export class SoundManager {
 	 *   Y coordinate of sound source.
 	 * @param radius {number}
 	 *   Radius at which sound can be heard.
-	 * @param layer {number}
-	 *   Channel index sound will play on.
+	 * @param layer {string|number}
+	 *   Channel name or index sound will play on.
 	 * @param soundName {string}
 	 *   Sound file basename.
 	 * @param volume {number}
@@ -301,7 +313,7 @@ export class SoundManager {
 	 * @return {Sound}
 	 *   The new sound instance or `undefind`.
 	 */
-	playLocalizedLoop(x: number, y: number, radius: number, layer: number, soundName: string,
+	playLocalizedLoop(x: number, y: number, radius: number, layer: string|number, soundName: string,
 			volume=1.0): Sound|undefined {
 		return this.playLocalizedEffect(x, y, radius, layer, soundName, volume, true);
 	}
@@ -311,14 +323,14 @@ export class SoundManager {
 	 *
 	 * @param soundName {string}
 	 *   Sound file basename.
-	 * @param layer {number}
-	 *   Channel index sound will play on (default: index of "gui").
+	 * @param layer {string|number}
+	 *   Channel name or index sound will play on (default: index of "gui").
 	 * @param volume {number}
 	 *   Volume level between 0.0 and 1.0 (default: 1.0).
 	 * @return {Sound}
 	 *   The new sound instance or `undefined`.
 	 */
-	playGlobalizedLoop(soundName: string, layer?: number, volume=1.0): Sound|undefined {
+	playGlobalizedLoop(soundName: string, layer?: string|number, volume=1.0): Sound|undefined {
 		return this.playGlobalizedEffect(soundName, layer, volume, true);
 	}
 
@@ -331,7 +343,7 @@ export class SoundManager {
 	 *   Y coordinate of sound source.
 	 * @param radius {number}
 	 *   Radius at which sound can be heard.
-	 * @param layer {number}
+	 * @param layer {string|number}
 	 *   Channel on which to be played.
 	 * @param musicName {string}
 	 *   Sound file basename.
@@ -340,7 +352,7 @@ export class SoundManager {
 	 * @return {ui.SoundManager.Sound}
 	 *   The new sound instance or `undefined`.
 	 */
-	playLocalizedMusic(x: number, y: number, radius: number, layer: number, musicName: string,
+	playLocalizedMusic(x: number, y: number, radius: number, layer: string|number, musicName: string,
 			volume=1.0): Sound|undefined {
 		// load into cache so playEffect doesn't look in "data/sounds"
 		if (!this.cache[musicName]) {
@@ -364,7 +376,7 @@ export class SoundManager {
 		if (!this.cache[musicName]) {
 			this.load(musicName, stendhal.paths.music + "/" + musicName + ".ogg");
 		}
-		return this.playGlobalizedLoop(musicName, this.layers.indexOf("music"), volume);
+		return this.playGlobalizedLoop(musicName, "music", volume);
 	}
 
 	/**
