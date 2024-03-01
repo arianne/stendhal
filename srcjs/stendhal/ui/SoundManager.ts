@@ -176,6 +176,27 @@ export class SoundManager {
 	}
 
 	/**
+	 * Retrieves array index of layer name.
+	 *
+	 * @param layerName {string}
+	 *   Name of layer or index representation as string.
+	 * @return {number}
+	 *   Index or -1 if not found.
+	 */
+	getLayerIndex(layerName: string): number {
+		// layer name parameter may be string representation of index (e.g. "0")
+		let layerIndex = parseInt(layerName, 10);
+		if (Number.isNaN(layerIndex)) {
+			layerIndex = this.layers.indexOf(layerName);
+		}
+		if (layerIndex < 0 || layerIndex >= this.layers.length) {
+			console.error("invalid sound layer:", layerName, new Error());
+			layerIndex = -1;
+		}
+		return layerIndex;
+	}
+
+	/**
 	 * Sets event handlers for when sound finishes.
 	 *
 	 * @param layerName {string}
@@ -407,22 +428,19 @@ export class SoundManager {
 	/**
 	 * Stops a sound & removes it from active group.
 	 *
-	 * @param layer {number}
-	 *   Channel index or name sound is playing on.
+	 * @param layer {string|number}
+	 *   Channel name or index sound is playing on.
 	 * @param sound {ui.SoundManager.Sound}
-	 *   The sound or name of sound to be stopped.
+	 *   The sound to be stopped.
 	 * @return {boolean}
 	 *   `true` if succeeded.
 	 */
-	stop(layer: number, sound: Sound): boolean {
-		if (layer < 0 || layer >= this.layers.length) {
-			console.error("cannot stop sound on non-existent layer: " + layer);
+	stop(layer: string|number, sound: Sound): boolean {
+		const layerName = this.checkLayer(layer);
+		if (this.getLayerIndex(layerName) < 0) {
 			return false;
 		}
-
-		const layerName = this.layers[layer];
-		const group = this.active[layerName];
-		const idx = group.indexOf(sound);
+		const idx = this.active[layerName].indexOf(sound);
 		if (sound && idx > -1) {
 			sound.pause();
 			sound.currentTime = 0;
@@ -450,7 +468,7 @@ export class SoundManager {
 			const curLayer = this.active[layerName];
 			// XXX: just iterating over indexes doesn't remove all sounds. async issue?
 			while (curLayer.length > 0) {
-				this.stop(this.layers.indexOf(layerName), curLayer[0]);
+				this.stop(layerName, curLayer[0]);
 			}
 			stopped = stopped && this.active[layerName].length == 0;
 		}
