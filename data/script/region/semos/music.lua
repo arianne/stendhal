@@ -1,6 +1,6 @@
 --[[
  ***************************************************************************
- *                       Copyright © 2020 - Arianne                        *
+ *                 Copyright © 2020-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -24,10 +24,13 @@ local zones = {
 	"0_semos_road_se",
 }
 
-for _, zone in pairs(zones) do
-	if game:setZone(zone) then
-		game:setMusic("pleasant_creek_loop", {volume=85})
+for _, z in pairs(zones) do
+	local zone = game:getZone(z)
+	if zone then
+		local attr = zone:getAttributes()
+		attr:put("music", "pleasant_creek_loop")
+		attr:put("music_volume", "0.85")
 	else
-		logger:warn("Could not set zone " .. zone .. " to create BackGroundMusicSource")
+		logger:warn("Could not set zone " .. z .. " to create BackGroundMusicSource")
 	end
 end
