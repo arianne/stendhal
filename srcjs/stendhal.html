@@ -271,7 +271,7 @@
 			<label class="checksetting"><input type="checkbox" id="chk_chestqp">Quick pickup from chests and corpses</label>
 			<label class="checksetting"><input type="checkbox" id="chk_movecont">Continuous movement</label>
 			<label class="checksetting"><input type="checkbox" id="chk_pvtsnd">Private message notifications</label>
-			<label class="checksetting"><input type="checkbox" id="chk_clickindicator" class="experimental">Display clicks/touches</label>
+			<label class="checksetting"><input type="checkbox" id="chk_clickindicator">Display clicks/touches</label>
 			<label class="checksetting"><input type="checkbox" id="chk_pathfinding">Pathfinding via ground</label>
 			<label class="checksetting"><input type="checkbox" id="chk_pathfindingmm">Pathfinding via minimap</label>
 			<label class="checksetting"><input type="checkbox" id="chk_nativeemojis" class="experimental">Native emojis</label>
@@ -443,7 +443,7 @@
 	<img id="held-object" class="hidden unselectable notarget" draggable="false">
 
 	<!-- place at end of document so drawn above all other elements -->
-	<img id="click-indicator" class="notarget">
+	<img id="click-indicator" class="unclickable notarget">
 
 	<!-- hidden canvas for manipulating images before being displayed -->
 	<canvas id="drawing-stage" class="hidden"></canvas>

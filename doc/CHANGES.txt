@@ -28,7 +28,6 @@ Changelog
 - fixed some outfit errors
 
 *web client*
-- corpses optionally display an indicator when they contain items
 - improved movement handling with on-screen joystick & direction pad
 - alternate "floating" menu style
 - alternate "floating" chat panel style
@@ -54,6 +53,7 @@ Changelog
 - fixed portal default action when on a collision tile
 - added autocomplete support
 - fixed positioning of door sprites (-2_orril_lich_palace 84 108)
+- optional click/touch indicator
 
 *desktop client (non-Java)*
 - experimental desktop interface for the web client using Neutralinojs

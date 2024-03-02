@@ -399,11 +399,15 @@ div.logcolR {
 	width: 4em;
 }
 
-.unselectable, .qm-button, .joystick-button {
+.unselectable, .unclickable, .qm-button, .joystick-button {
 	-ms-user-select: none;
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	user-select: none;
+}
+
+.unclickable {
+	pointer-events: none;
 }
 
 .background {
