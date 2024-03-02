@@ -9,6 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
+declare var stendhal: any;
+
 import { Component } from "../toolkit/Component";
 import { ui } from "../UI";
 import { Paths } from "../../data/Paths";
@@ -21,6 +23,10 @@ export abstract class QuickMenuButton extends Component {
 
 	/** Property to determine if button is visible/disabled. */
 	public enabled = true;
+	/** Property denoting button was pressed with mouse click. */
+	private clickEngaged = false;
+	/** Property denoting button was pressed with tap/touch. */
+	private touchEngaged = 0;
 
 
 	/**
@@ -43,8 +49,32 @@ export abstract class QuickMenuButton extends Component {
 		this.componentElement.style["cursor"] = "url(" + Paths.sprites + "/cursor/highlight.png) 1 3, auto";
 		this.componentElement.draggable = false;
 		// listen for click events
-		this.componentElement.addEventListener("click", (evt: Event) => {
-			this.onClick(evt);
+		this.componentElement.addEventListener("mousedown", (evt: MouseEvent) => {
+			evt.preventDefault();
+			if (evt.button == 0) {
+				this.clickEngaged = true;
+			}
+		});
+		this.componentElement.addEventListener("touchstart", (evt: TouchEvent) => {
+			evt.preventDefault();
+			this.touchEngaged = evt.changedTouches.length;
+		});
+		this.componentElement.addEventListener("mouseup", (evt: MouseEvent) => {
+			evt.preventDefault();
+			if (this.clickEngaged && evt.button == 0) {
+				// FIXME: should veto if moved too much before release
+				this.onClick(evt);
+			}
+			this.clickEngaged = false;
+		});
+		this.componentElement.addEventListener("touchend", (evt: TouchEvent) => {
+			evt.preventDefault();
+			const target = stendhal.ui.html.extractTarget(evt, this.touchEngaged - 1);
+			if (this.touchEngaged == evt.changedTouches.length && target == this.componentElement) {
+				// FIXME: should veto if moved too much before release
+				this.onClick(evt);
+			}
+			this.touchEngaged = 0;
 		});
 		this.update();
 	}
