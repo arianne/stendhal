@@ -59,32 +59,49 @@ export class HTMLManager {
 
 	/**
 	 * Retrieves target element from event.
+	 *
+	 * @param event {any}
+	 *   Executed event.
+	 * @param tidx {number}
+	 *   Touch index (default: 0).
+	 * @return {EventTarget}
+	 *   Translated event target.
 	 */
-	extractTarget(event: any): EventTarget {
+	extractTarget(event: any, tidx=0): EventTarget {
 		if (event.changedTouches) {
 			if (["touchmove", "touchend"].indexOf(event.type) > -1) {
 				// touch events target source element
-				for (const el of document.elementsFromPoint(event.changedTouches[0].pageX, event.changedTouches[0].pageY)) {
+				for (const el of document.elementsFromPoint(event.changedTouches[tidx].pageX, event.changedTouches[tidx].pageY)) {
 					if (!el.classList.contains("notarget")) {
 						return el;
 					}
 				}
 			}
-			return event.changedTouches[0].target;
+			return event.changedTouches[tidx].target;
 		}
 		return event.target;
 	}
 
-	extractPosition(event: any): any {
+	/**
+	 * Normalizes an event object.
+	 *
+	 * @param event {any}
+	 *   Executed event.
+	 * @param tidx {number}
+	 *   Touch index (default: 0).
+	 * @return {any}
+	 *   Normalized event.
+	 */
+	extractPosition(event: any, tidx=0): any {
 		let pos = event;
 
 		const canvas = this.extractTarget(event) as HTMLCanvasElement;
 		if (event.changedTouches) {
 			pos = {
-				pageX: Math.round(event.changedTouches[0].pageX),
-				pageY: Math.round(event.changedTouches[0].pageY),
-				clientX: Math.round(event.changedTouches[0].clientX),
-				clientY: Math.round(event.changedTouches[0].clientY),
+				pageX: Math.round(event.changedTouches[tidx].pageX),
+				pageY: Math.round(event.changedTouches[tidx].pageY),
+				clientX: Math.round(event.changedTouches[tidx].clientX),
+				clientY: Math.round(event.changedTouches[tidx].clientY),
 				target: canvas
 			}
 			if (["touchmove", "touchend"].indexOf(event.type) > -1) {
