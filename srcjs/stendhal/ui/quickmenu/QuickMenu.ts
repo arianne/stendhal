@@ -24,6 +24,8 @@ import { ui } from "../UI";
 
 import { Paths } from "../../data/Paths";
 
+import { ElementClickHandler } from "../../util/ElementClickHandler";
+
 
 /**
  * Main button to show/hide quick menu buttons.
@@ -87,9 +89,9 @@ export class QuickMenu {
 		}
 		btn_main.src = Paths.gui + "/quickmenu/main.png";
 
-		btn_main.addEventListener("click", function(e) {
+		new ElementClickHandler(btn_main).onClick = function(evt: Event) {
 			QuickMenu.toggle();
-		});
+		};
 
 		// hide buttons by default
 		QuickMenu.update();
