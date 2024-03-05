@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2021-2023 - Stendhal                    *
+ *                   (C) Copyright 2021-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -13,9 +13,9 @@
  * abstract base class for user actions
  */
 export abstract class SlashAction {
-    abstract minParams: number;
-    abstract maxParams: number;
+	abstract minParams: number;
+	abstract maxParams: number;
 
-    abstract execute(type: string, params: string[], remainder: string): boolean;
+	abstract execute(type: string, params: string[], remainder: string): boolean;
 
 };
