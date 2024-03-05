@@ -11,9 +11,8 @@
  ***************************************************************************/
 package games.stendhal.tools;
 
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
 
