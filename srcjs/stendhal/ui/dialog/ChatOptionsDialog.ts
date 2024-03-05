@@ -19,21 +19,31 @@ declare var stendhal: any;
 
 
 /**
- * TODO: support options from multiple attending NPCs if possible
+ * A dialog window populated with keywords recognized by the attending NPC.
+ *
+ * TODO: support options from multiple attending NPCs if possible or change server to only allow
+ *       attending if no other NPC is attending to player
  */
 export class ChatOptionsDialog extends DialogContentComponent {
 
+	/** Dialog instance that is currently visible. */
 	private static activeInstance?: ChatOptionsDialog;
 
-	/* Some keywords don't need repeated in NPC options. Others, such as "task" or "favor" which
+	/**
+	 * Keywords to be replaced by a common alias.
+	 *
+	 * Some keywords don't need repeated in NPC options. Others, such as "task" or "favor" which
 	 * serve as alternatives to "quest", may be highlighted in dialogue so keep those.
 	 */
-	private static readonly aliases: {[key: string]: string} = {
+	private static readonly aliases: {[keyword: string]: string} = {
 		"bye": "goodbye",
 		"hi": "hello",
 	}
 
 
+	/**
+	 * Creates a new chat options dialog.
+	 */
 	private constructor() {
 		super("keywordmap-template");
 
@@ -68,6 +78,14 @@ export class ChatOptionsDialog extends DialogContentComponent {
 		}
 	}
 
+	/**
+	 * Adds a section of grouped keywords to dialog.
+	 *
+	 * @param title {string}
+	 *   Text label for group.
+	 * @param options {string[]}
+	 *   Keywords available in group.
+	 */
 	private addGroup(title: string|undefined, options: string[]) {
 		if (title) {
 			const titleElement = document.createElement("div");
@@ -88,7 +106,14 @@ export class ChatOptionsDialog extends DialogContentComponent {
 		}
 	}
 
+	/**
+	 * Executed when a button representing a keyword is pressed.
+	 *
+	 * @param button {HTMLButtonElement}
+	 *   The button that was pressed.
+	 */
 	private onButtonPressed(button: HTMLButtonElement) {
+		// change button color for visual feedback
 		button.style.setProperty("background-color", "#b3b3b3");
 		setTimeout(function() {
 			button.style.removeProperty("background-color");
@@ -129,10 +154,19 @@ export class ChatOptionsDialog extends DialogContentComponent {
 		ChatOptionsDialog.activeInstance = undefined;
 	}
 
+	/**
+	 * Checks for an active chat options dialog window.
+	 *
+	 * @return {boolean}
+	 *   `true` if there is currently a window open.
+	 */
 	public static isActive(): boolean {
 		return typeof(ChatOptionsDialog.activeInstance) !== "undefined";
 	}
 
+	/**
+	 * Closes the active dialog window & calls cleanup functions.
+	 */
 	public static closeActiveInstance() {
 		if (ChatOptionsDialog.activeInstance) {
 			ChatOptionsDialog.activeInstance.close();

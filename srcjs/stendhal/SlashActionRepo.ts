@@ -27,11 +27,17 @@ import { ChatLogComponent } from "./ui/component/ChatLogComponent";
 import { Chat } from "./util/Chat";
 
 
+/**
+ * Action type representation.
+ */
 interface Action {
 	[key: string]: string;
 	type: string;
 }
 
+/**
+ * Registered slash actions.
+ */
 export class SlashActionRepo {
 	[index: string]: any;
 
@@ -56,6 +62,12 @@ export class SlashActionRepo {
 		// do nothing
 	}
 
+	/**
+	 * Forwards action information to server.
+	 *
+	 * @param action {SlashActionRepo.Action}
+	 *   Action object.
+	 */
 	private sendAction(action: Action) {
 		marauroa.clientFramework.sendAction(action);
 	}
@@ -1092,6 +1104,7 @@ export class SlashActionRepo {
 		maxParams: 1
 	};
 
+	/** Default action executed if a type is not registered. */
 	"_default": SlashAction = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
@@ -1110,6 +1123,14 @@ export class SlashActionRepo {
 		maxParams: 1
 	};
 
+	/**
+	 * Parses a slash action formatted string & executes the registered action.
+	 *
+	 * @param line {string}
+	 *   Complete slash action line including parameters.
+	 * @return {boolean}
+	 *   `true` to represent successful execution.
+	 */
 	execute(line: string): boolean {
 		line = line.trim();
 
@@ -1166,12 +1187,12 @@ export class SlashActionRepo {
 	/**
 	 * Checks for quoted whitepace to be included in parameter.
 	 *
-	 * @param p
-	 *     The parameter to be amended.
-	 * @param remainder
-	 *     String to be checked for quoted whitespace.
-	 * @return
-	 *     Amended parameter.
+	 * @param p {string}
+	 *   The parameter to be amended.
+	 * @param remainder {string}
+	 *   String to be checked for quoted whitespace.
+	 * @return {string}
+	 *   Amended parameter.
 	 */
 	checkQuoted(p: string, remainder: string): string {
 		if (p.includes("\"") && remainder.includes("\"")) {
