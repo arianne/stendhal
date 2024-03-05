@@ -78,18 +78,23 @@ export class ChatOptionsDialog extends DialogContentComponent {
 		const row: HTMLDivElement = document.createElement("div");
 		this.componentElement.appendChild(row);
 		for (let idx = 0; idx < options.length; idx++) {
-			const keyword = options[idx];
 			const button = document.createElement("button");
 			button.className = "shortcut-button";
-			button.innerText = keyword;
-			button.addEventListener("click", (evt) => {
-				this.onButtonPressed(keyword);
-			});
+			button.innerText = options[idx];
+			button.onclick = () => {
+				this.onButtonPressed(button);
+			};
 			row.appendChild(button);
 		}
 	}
 
-	private onButtonPressed(keyword: string) {
+	private onButtonPressed(button: HTMLButtonElement) {
+		button.style.setProperty("background-color", "#b3b3b3");
+		setTimeout(function() {
+			button.style.removeProperty("background-color");
+		}, 600);
+
+		let keyword = button.innerText;
 		if (keyword.endsWith("...")) {
 			// add to chat input instead of sending text
 			while (keyword.endsWith(".")) {
