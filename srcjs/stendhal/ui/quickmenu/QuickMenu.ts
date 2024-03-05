@@ -89,9 +89,9 @@ export class QuickMenu {
 		}
 		btn_main.src = Paths.gui + "/quickmenu/main.png";
 
-		new ElementClickHandler(btn_main).addClickListener(function(evt: Event) {
+		new ElementClickHandler(btn_main).onClick = function(evt: Event) {
 			QuickMenu.toggle();
-		});
+		};
 
 		// hide buttons by default
 		QuickMenu.update();

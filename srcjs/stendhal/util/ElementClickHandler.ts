@@ -20,48 +20,42 @@ declare var stendhal: any;
  */
 export class ElementClickHandler {
 
+	/** Function executed when click is detected. */
+	public onClick?: Function;
 	/** Property denoting button was pressed with mouse click. */
 	private clickEngaged = false;
 	/** Property denoting button was pressed with tap/touch. */
 	private touchEngaged = 0;
 
 
-	constructor(private element: HTMLElement) {}
-
-	/**
-	 * Listens for recognized click events.
-	 *
-	 * @param onClick {Function}
-	 *   Function executed when click is detected.
-	 */
-	addClickListener(onClick: Function): ElementClickHandler {
-		this.element.addEventListener("mousedown", (evt: MouseEvent) => {
+	constructor(element: HTMLElement) {
+		// add supported listeners
+		element.addEventListener("mousedown", (evt: MouseEvent) => {
 			evt.preventDefault();
 			if (evt.button == 0) {
 				this.clickEngaged = true;
 			}
 		});
-		this.element.addEventListener("touchstart", (evt: TouchEvent) => {
+		element.addEventListener("touchstart", (evt: TouchEvent) => {
 			evt.preventDefault();
 			this.touchEngaged = evt.changedTouches.length;
 		});
-		this.element.addEventListener("mouseup", (evt: MouseEvent) => {
+		element.addEventListener("mouseup", (evt: MouseEvent) => {
 			evt.preventDefault();
-			if (this.clickEngaged && evt.button == 0) {
+			if (this.clickEngaged && evt.button == 0 && this.onClick) {
 				// FIXME: should veto if moved too much before release
-				onClick(evt);
+				this.onClick(evt);
 			}
 			this.clickEngaged = false;
 		});
-		this.element.addEventListener("touchend", (evt: TouchEvent) => {
+		element.addEventListener("touchend", (evt: TouchEvent) => {
 			evt.preventDefault();
 			const target = stendhal.ui.html.extractTarget(evt, this.touchEngaged - 1);
-			if (this.touchEngaged == evt.changedTouches.length && target == this.element) {
+			if (this.touchEngaged == evt.changedTouches.length && target == element && this.onClick) {
 				// FIXME: should veto if moved too much before release
-				onClick(evt);
+				this.onClick(evt);
 			}
 			this.touchEngaged = 0;
 		});
-		return this;
 	}
 }
