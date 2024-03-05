@@ -24,7 +24,7 @@ import { ui } from "../UI";
 
 import { Paths } from "../../data/Paths";
 
-import { ElementClickHandler } from "../../util/ElementClickHandler";
+import { ElementClickListener } from "../../util/ElementClickListener";
 
 
 /**
@@ -89,7 +89,7 @@ export class QuickMenu {
 		}
 		btn_main.src = Paths.gui + "/quickmenu/main.png";
 
-		new ElementClickHandler(btn_main).onClick = function(evt: Event) {
+		new ElementClickListener(btn_main).onClick = function(evt: Event) {
 			QuickMenu.toggle();
 		};
 

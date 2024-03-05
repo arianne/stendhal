@@ -18,7 +18,7 @@ declare var stendhal: any;
  *
  * TODO: add support long & double click/touch
  */
-export class ElementClickHandler {
+export class ElementClickListener {
 
 	/** Function executed when click is detected. */
 	public onClick?: Function;
