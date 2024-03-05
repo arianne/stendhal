@@ -72,8 +72,6 @@ export class ConfigManager {
 		"sound.sfx.volume": "100",
 		"speech.creature": "true",
 		"theme": "wood",
-		// represents most recently used client version
-		"version": document.documentElement.getAttribute("data-build-version") || "",
 		"window.chest": "160,370",
 		"window.corpse": "160,370",
 		"window.menu": "150,20",

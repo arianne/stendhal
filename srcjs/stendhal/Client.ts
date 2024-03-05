@@ -99,13 +99,6 @@ export class Client {
 		stendhal.config = singletons.getConfigManager();
 		stendhal.session = singletons.getSessionManager();
 
-		if (stendhal.config.get("version") !== stendhal.data.build.version) {
-			// TODO: find a less nagging way to notify the user
-			//alert("client version change detected, you may want to clear the cache");
-		}
-		// update most recently used version
-		//stendhal.config.set("version", stendhal.data.build.version);
-
 		this.initData();
 		this.initUI();
 		this.initZone();
