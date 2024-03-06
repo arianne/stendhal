@@ -26,6 +26,7 @@ import { UIComponentEnum } from "./ui/UIComponentEnum";
 import { ChatLogComponent } from "./ui/component/ChatLogComponent";
 
 import { Chat } from "./util/Chat";
+import { Pair } from "./util/Pair";
 
 
 /**
@@ -73,435 +74,365 @@ export class SlashActionRepo {
 		marauroa.clientFramework.sendAction(action);
 	}
 
-	"about" = new AboutAction();
-
-	"add": SlashActionImpl = {
-		execute: (type: string, params: string[], remainder: string): boolean => {
-			if (params == null) {
-				return false;
-			};
-
-			const action: Action = {
-				"type": "addbuddy",
-				"target": params[0]
-			};
-			this.sendAction(action);
-			return true;
-		},
-		minParams: 1,
-		maxParams: 1
-	};
-
-	"adminnote": SlashActionImpl = {
-		execute: (type: string, params: string[], remainder: string): boolean => {
-			const action: Action = {
-				"type": type,
-				"target": params[0],
-				"note": remainder
-			};
-			this.sendAction(action);
-			return true;
-		},
-		minParams: 1,
-		maxParams: 1
-	};
-
-	"adminlevel": SlashActionImpl = {
-		execute: (type: string, params: string[], remainder: string): boolean => {
-			const action: Action = {
-				"type": type,
-				"target": params[0],
-			};
-			if (params.length >= 2) {
-				action["newlevel"] = params[1];
-			}
-			this.sendAction(action);
-			return true;
-		},
-		minParams: 1,
-		maxParams: 2
-	};
-
-	"alter": SlashActionImpl = {
-		execute: (type: string, params: string[], remainder: string): boolean => {
-			const action: Action = {
-				"type": type,
-				"target": params[0],
-				"stat": params[1],
-				"mode": params[2],
-				"value": remainder
-			};
-			this.sendAction(action);
-			return true;
-		},
-		minParams: 3,
-		maxParams: 3
-	};
-
-	"altercreature": SlashActionImpl = {
-		execute: (type: string, params: string[], remainder: string): boolean => {
-			const action: Action = {
-				"type": "altercreature",
-				"target": params[0],
-				"text": params[1]
-			};
-
-			this.sendAction(action);
-			return true;
-		},
-		minParams: 2,
-		maxParams: 2
-	};
-
-	"alterkill": SlashActionImpl = {
-		execute: (type: string, params: string[], remainder: string): boolean => {
-			const target = params[0];
-			const killtype = params[1];
-			const count = params[2];
-			var creature = null;
-
-			if (remainder != null && remainder != "") {
-				// NOTE: unlike Java client, Javascript client automatically trims whitespace in "remainder" parameter
-				creature = remainder;
-			}
-
-			const action: Action = {
-				"type": "alterkill",
-				"target": target,
-				"killtype": killtype,
-				"count": count
-			};
-			if (creature != null) {
-				action["creature"] = creature;
-			}
-
-			this.sendAction(action);
-			return true;
-		},
-		minParams: 3,
-		maxParams: 3
-	};
-
-	"alterquest": SlashActionImpl = {
-		execute: (type: string, params: string[], remainder: string): boolean => {
-			const action: Action = {
-				"type": "alterquest",
-				"target": params[0],
-				"name": params[1]
-			};
-
-			if (params[2] != null) {
-				action["state"] = this.checkQuoted(params[2], remainder);
-			}
-
-			this.sendAction(action);
-			return true;
-		},
-		minParams: 2,
-		maxParams: 3
-	};
-
-	"answer": SlashActionImpl = {
-		execute: (type: string, params: string[], remainder: string): boolean => {
-			if (remainder == null || remainder == "") {
-				return false;
-			};
-
-			const action: Action = {
-				"type": "answer",
-				"text": remainder
-			};
-
-			this.sendAction(action);
-			return true;
-		},
-		minParams: 1,
-		maxParams: 0
-	};
-
-	"away": SlashActionImpl = {
-		execute: (type: string, params: string[], remainder: string): boolean => {
-			const action: Action = {
-				"type": "away",
-			};
-			if (remainder.length != 0) {
-				action["message"] = remainder;
-			};
-			this.sendAction(action);
-			return true;
-		},
-		minParams: 0,
-		maxParams: 0
-	};
-
-	"ban": SlashActionImpl = {
-		execute: (type: string, params: string[], remainder: string): boolean => {
-			const action: Action = {
-				"type": "ban",
-				"target": params[0],
-				"hours": params[1],
-				"reason": remainder
-			};
-			this.sendAction(action);
-			return true;
-		},
-		minParams: 2,
-		maxParams: 2
-	};
-
-	"chat": SlashActionImpl = {
-		execute: (type: string, params: string[], remainder: string): boolean => {
-			const action: Action = {
-				"type": type,
-				"text": remainder
-			};
-			this.sendAction(action);
-			return true;
-		},
-		minParams: 0,
-		maxParams: 0
-	};
-
-	"clear": SlashActionImpl = {
-		execute: (type: string, params: string[], remainder: string): boolean => {
-			(ui.get(UIComponentEnum.ChatLog) as ChatLogComponent).clear();
-			return true;
-		},
-		minParams: 0,
-		maxParams: 0
-	};
-
-	/*
-	"clickmode": SlashActionImpl = {
-		execute: (type: string, params: string[], remainder: string): boolean => {
-			const newMode = !stendhal.config.getBoolean("input.doubleclick");
-			stendhal.config.set("input.doubleclick", newMode);
-			stendhal.ui.gamewindow.updateClickMode();
-
-			if (newMode) {
-				Chat.log("info", "Click mode is now set to double click.");
-			} else {
-				Chat.log("info", "Click mode is now set to single click.");
-			}
-			return true;
-		},
-		minParams: 0,
-		maxParams: 0
-	};
-	*/
-
-	"debug" = new DebugAction();
-
-	/* FIXME:
-	 * - not in help output
+	/**
+	 * Retrieves registered types excluding generic defaults & aliases.
+	 *
+	 * FIXME: not detecting some property names such as "manual"
+	 *
+	 * @return {string[]}
+	 *   List of unique type names.
 	 */
-	"drop": SlashActionImpl = {
-		execute: (type: string, params: string[], remainder: string): boolean => {
-			console.log(type, params, remainder);
-			let name = remainder;
-			let quantity = parseInt(params[0], 10);
-			console.log(name, quantity);
-			if (isNaN(quantity)) {
-				name = (params[0] + " " + remainder).trim();
-				quantity = 0;
+	private getTypes(): string[] {
+		// type names
+		const types: string[] = [];
+		// excludes including alias duplicates
+		const actions: SlashActionImpl[] = [this["_default"], this["debug"]];
+		for (const t of Object.keys(this)) {
+			const action = this[t];
+			if (actions.indexOf(action) > -1) {
+				continue;
 			}
-			console.log(name, quantity);
-			const action: Action = {
-				"type": "drop",
-				"source_name": name,
-				"quantity": "" + quantity,
-				"x": "" + marauroa.me.x,
-				"y": "" + marauroa.me.y
-			};
-			console.log(action);
-			this.sendAction(action);
-			return true;
-		},
-		minParams: 0,
-		maxParams: 1
-	};
+			actions.push(action);
+			types.push(t);
+		}
+		return types;
+	}
 
-	"emojilist": SlashActionImpl = {
-		execute: (type: string, params: string[], remainder: string): boolean => {
-			const emojilist = singletons.getEmojiStore().getEmojiList().sort();
-			for (const idx in emojilist) {
-				emojilist[idx] = "&nbsp;&nbsp;- :" + emojilist[idx] + ":";
-			}
-			emojilist.splice(0, 0, emojilist.length + " emojis available:");
-			Chat.log("client", emojilist);
-			return true;
-		},
-		minParams: 0,
-		maxParams: 0
-	};
-
-	"gag": SlashActionImpl = {
-		execute: (type: string, params: string[], remainder: string): boolean => {
-			const action: Action = {
-				"type": "gag",
-				"target": params[0],
-				"minutes": params[1],
-				"reason": remainder
-			};
-			this.sendAction(action);
-			return true;
-		},
-		minParams: 2,
-		maxParams: 2
-	};
-
-	/* FIXME:
-	 * - not included in help info
+	/**
+	 * Retrieves help data for standard user actions.
+	 *
+	 * @return {any}
 	 */
-	"group": SlashActionImpl = {
-		execute: (type: string, params: string[], remainder: string): boolean => {
-			const action: Action = {
-				"type": "group_management",
-				"action": params[0],
-				"params": remainder
-			};
-			this.sendAction(action);
-			return true;
-		},
-		minParams: 1,
-		maxParams: 1
-	};
+	private getUserHelpData(): any {
+		const grouping: {[index: string]: any} = {
+			"CHATTING": [
+				"chat",
+				"me",
+				"msg",
+				"answer",
+				"/",
+				"p",
+				"storemessage",
+				{
+					type: "who",
+					getHelp: function(): string[] {
+						return ["", "List all players currently online."];
+					}
+				},
+				{
+					type: "where",
+					getHelp: function(): string[] {
+						return ["[<player>]", "Show the current location of #player."];
+					}
+				},
+				"sentence"
+			],
+			"TOOLS": [
+				"progressstatus",
+				"screenshot",
+				"atlas",
+				"beginnersguide"
+			],
+			"SUPPORT": [
+				"support",
+				{
+					type: "faq",
+					getHelp: function(): string[] {
+						return ["", "Open Stendhal FAQs wiki page in browser."];
+					}
+				}
+			],
+			"ITEM MANIPULATION": [
+				"drop",
+				{
+					type: "markscroll",
+					getHelp: function(): string[] {
+						return ["<text>", "Mark your empty scroll and add a #text label."];
+					}
+				}
+			],
+			"BUDDIES AND ENEMIES": [
+				"add",
+				"remove",
+				{type: "ignore", sparams: "<player> [minutes|*|- [reason...]]"},
+				"ignore",
+				{
+					type: "unignore",
+					getHelp: function(): string[] {
+						return ["<player>", "Remove #player from your ignore list."];
+					}
+				}
+			],
+			"STATUS": [
+				{type: "away", sparams: "<message>"},
+				"away",
+				{type: "grumpy", sparams: "<message>"},
+				"grumpy",
+				{
+					type: "name",
+					getHelp: function(): string[] {
+						return ["<pet> <name>", "Give a name to your pet."];
+					}
+				},
+				"profile"
+			],
+			"PLAYER CONTROL": [
+				//"clickmode", // Switches between single click mode and double click mode.
+				"walk",
+				"stopwalk",
+				"movecont"
+			],
+			"CLIENT SETTINGS": [
+				"settings",
+				"mute",
+				{type: "volume", sparams: "<layer> <value>"},
+				"volume"
+			],
+			"MISC": [
+				"about",
+				{
+					type: "info",
+					getHelp: function(): string[] {
+						return ["", "Find out what the current server time is."];
+					}
+				},
+				"clear",
+				"help",
+				{
+					type: "removedetail",
+					getHelp: function(): string[] {
+						return [
+							"",
+							"Remove the detail layer (e.g. balloon, umbrella, etc.) from character. #WARNING:"
+									+ " Cannot be undone."
+						];
+					}
+				},
+				"emojilist",
+				{type: "group", sparams: "invite <player>"},
+				{type: "group", sparams: "join <player"},
+				{type: "group", sparams: "leader <player>"},
+				{type: "group", sparams: "lootmode single|shared"},
+				{type: "group", sparams: "kick <player>"},
+				{type: "group", sparams: "part"},
+				{type: "group", sparams: "status"}
+			]
+		};
+		return {
+			info: [
+				"For a detailed reference, visit #https://stendhalgame.org/wiki/Stendhal_Manual",
+				"Here are the most-used commands:"
+			],
+			grouping: grouping
+		}
+	}
 
-	"grumpy": SlashActionImpl = {
-		execute: (type: string, params: string[], remainder: string): boolean => {
-			const action: Action = {
-				"type": "grumpy",
-			};
-			if (remainder.length != 0) {
-				action["reason"] = remainder;
-			};
-			this.sendAction(action);
-			return true;
-		},
-		minParams: 0,
-		maxParams: 0
-	};
+	/**
+	 * Retrieves help data for game master actions.
+	 *
+	 * @return {any}
+	 */
+	private getGMHelpData(): any {
+		const grouping: {[index: string]: any} = {
+			"GENERAL": [
+				{type: "gmhelp", sparams: "[alter|script|support]"},
+				"gmhelp",
+				"adminnote",
+				{
+					type: "inspect",
+					getHelp: function(): string[] {
+						return ["<player>", "Show complete details of #player."];
+					}
+				},
+				"inspectkill",
+				"inspectquest",
+				{
+					type: "script",
+					getHelp: function(): string[] {
+						return [
+							"<scriptname>",
+							"Load (or reload) a script on the server. See #/gmhelp #script for details."
+						];
+					}
+				}
+			],
+			"CHATTING": [
+				"supportanswer",
+				"tellall"
+			],
+			"PLAYER CONTROL": [
+				"teleportto",
+				{
+					type: "teleclickmode",
+					getHelp: function(): string[] {
+						return ["", "Makes you teleport to the location you double click."];
+					}
+				},
+				{
+					type: "ghostmode",
+					getHelp: function(): string[] {
+						return ["", "Makes yourself invisible and intangible."];
+					}
+				},
+				{
+					type: "invisible",
+					getHelp: function(): string[] {
+						return ["", "Toggles whether or not you are invisible to creatures."];
+					}
+				}
+			],
+			"ENTITY MANIPULATION": [
+				"adminlevel",
+				"jail",
+				"gag",
+				"ban",
+				"teleport",
+				"alter",
+				"altercreature",
+				"alterkill",
+				"alterquest",
+				{type: "summon", sparams: "<creature>|<item> [<x> <y>]"},
+				{type: "summon", sparams: "<stackable_item> [<x> <y>] [quantity]"},
+				"summonat",
+				{
+					type: "destroy",
+					getHelp: function(): string[] {
+						return ["<entity>", "Destroy an entity completely."];
+					}
+				}
+			],
+			"MISC": [
+				{
+					type: "jailreport",
+					getHelp: function(): string[] {
+						return ["[<player>]", "List the jailed players and their sentences."];
+					}
+				}
+			]
+		};
+		return {
+			info: [
+				"For a detailed reference, visit #https://stendhalgame.org/wiki/Stendhal:Administration",
+				"Here are the most-used GM commands:"
+			],
+			grouping: grouping
+		};
+	}
+
+	/**
+	 * Compiles help information for registered actions.
+	 *
+	 * TODO: cache compiled help info
+	 *
+	 * @param gm {boolean}
+	 *   Pull info for GM help commands instead of standard user help (default: `false`).
+	 * @return {string[]}
+	 *   Help info string array.
+	 */
+	private getHelp(gm=false): string[] {
+		let help: any;
+		let stripHelp: any;
+		if (gm) {
+			help = this.getGMHelpData();
+			stripHelp = this.getUserHelpData();
+		} else {
+			help = this.getUserHelpData();
+			stripHelp = this.getGMHelpData();
+		}
+
+		const types = this.getTypes();
+		// remove types not available for this help set
+		for (const gname in stripHelp.grouping) {
+			for (let t of stripHelp.grouping[gname]) {
+				if (typeof(t) !== "string") {
+					t = t.type;
+				}
+				types.splice(types.indexOf(t), 1);
+			}
+		}
+
+		const unavailable: string[] = [];
+		for (const gname in help.grouping) {
+			// add spacing for clarity
+			help.info.push("&nbsp;");
+			help.info.push(gname + ":");
+			for (let t of help.grouping[gname]) {
+				// underscore command line
+				let actionHelp = ["- §'/"];
+				let action: any;
+				if (typeof(t) === "string") {
+					actionHelp[0] += t;
+					action = this[t];
+				} else {
+					actionHelp[0] += t.type;
+					action = t || this[t.type];
+					action.getHelp = action.getHelp || this[t.type].getHelp;
+					t = t.type;
+				}
+
+				const typeIndex = types.indexOf(t);
+				if (!action || !action.getHelp) {
+					unavailable.push(t);
+					actionHelp[0] += "'";
+					help.info.push(actionHelp[0]);
+					if (typeIndex > -1) {
+						types.splice(typeIndex, 1);
+					}
+					continue;
+				}
+				const helpTemp = action.getHelp(action.sparams);
+				if (helpTemp && helpTemp.length) {
+					if (helpTemp[0]) {
+						actionHelp[0] += " " + helpTemp[0];
+					}
+					helpTemp.splice(0, 1);
+					for (const li of helpTemp) {
+						actionHelp.push("&nbsp;&nbsp;" + li);
+					}
+				} else {
+					unavailable.push(t);
+				}
+				if (action.aliases) {
+					actionHelp.push("&nbsp;&nbsp;Aliases: " + action.aliases.join(", "));
+				}
+				actionHelp[0] += "'";
+				help.info = [...help.info, ...actionHelp];
+				if (typeIndex > -1) {
+					types.splice(typeIndex, 1);
+				}
+			}
+		}
+		for (const t of types) {
+			if (unavailable.indexOf(t) < 0) {
+				unavailable.push(t);
+			}
+		}
+		if (unavailable.length) {
+			console.warn("help information is unavailable for actions:", unavailable.join(", "));
+		}
+		return help.info;
+	}
 
 	"help": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
-			var msg = [
-				"For a detailed reference, visit #https://stendhalgame.org/wiki/Stendhal_Manual",
-				"Here are the most-used commands:",
-				"* CHATTING:",
-				"- /me <action> \tShow a message about what you are doing.",
-				"- /tell <player> <message> \tSend a private message to #player.",
-				"- /answer <message>",
-				"\t\tSend a private message to the last player who sent a message to you.",
-				"- // <message>\tSend a private message to the last player you sent a message to.",
-				"- /storemessage <player> <message> \t\tStore a private message to deliver for an offline #player.",
-				"- /who \tList all players currently online.",
-				"- /where <player> \tShow the current location of #player.",
-				"- /sentence <text> \tSet message on stendhalgame.org profile page and what players see when using #Look.",
-				"* SUPPORT:",
-				"- /support <message> \t\tAsk an administrator for help.",
-				"- /faq \t\tOpen Stendhal FAQs wiki page in browser.",
-				"* ITEM MANIPULATION:",
-				"- /markscroll <text> \t\tMark your empty scroll and add a #text label.",
-				"* BUDDIES AND ENEMIES:",
-				"- /add <player> \tAdd #player to your buddy list.",
-				"- /remove <player>",
-				"\t\tRemove #player from your buddy list.",
-				"- /ignore <player> [minutes|*|- [reason...]] \t\tAdd #player to your ignore list.",
-				"- /ignore \tFind out who is on your ignore list.",
-				"- /unignore <player> \t\tRemove #player from your ignore list.",
-				"* STATUS:",
-				"- /away <message> \t\tSet an away message.",
-				"- /away \tRemove away status.",
-				"- /grumpy <message> \t\tSet a message to ignore all non-buddies.",
-				"- /grumpy \tRemove grumpy status.",
-				"- /name <pet> <name> \t\tGive a name to your pet.",
-				"- /profile [name] \tOpens a player profile page on stendhalgame.org.",
-				"* PLAYER CONTROL:",
-//				"- /clickmode \tSwitches between single click mode and double click mode.",
-				"- /walk \tToggles autowalk on/off.",
-				"- /stopwalk \tTurns autowalk off.",
-				"- /movecont <on|off> \tToggle continuous movement (allows players to continue walking after map change or teleport without releasing direction key).",
-				"* CLIENT SETTINGS:",
-				"- /mute \tMute or unmute the sounds.",
-				"- /volume \tLists or sets the volume for sound and music.",
-				"* MISC:",
-				"- /info \t\tFind out what the current server time is.",
-				"- /clear \tClear chat log.",
-				"- /help \tShow help information.",
-				"- /removedetail \tRemove the detail layer (e.g. balloon, umbrella, etc.) from character.",
-				"- /emojilist \tList available emojis."
-			];
+			const msg = this.getHelp();
 			for (var i = 0; i < msg.length; i++) {
 				Chat.log("info", msg[i]);
 			}
 			return true;
 		},
 		minParams: 0,
-		maxParams: 0
+		maxParams: 0,
+		getHelp: function(): string[] {
+			return ["", "Show this help message."];
+		}
 	};
 
 	"gmhelp": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			var msg = null;
-
 			if (params[0] == null) {
-				msg = [
-					"For a detailed reference, visit #https://stendhalgame.org/wiki/Stendhal:Administration",
-					"Here are the most-used GM commands:",
-					"* GENERAL:",
-					"- /gmhelp [alter|script|support]",
-					"\t\tFor more info about alter, script or the supportanswer shortcuts.",
-					"- /adminnote <player> <note>",
-					"\t\tLogs a note about #player.",
-					"- /inspect <player>",
-					"\t\tShow complete details of #player.",
-					"- /inspectkill <player> <creature>",
-					"\t\tShow creature kill counts of #player for #creature.",
-					"- /inspectquest <player> [<quest_slot>]",
-					"\t\tShow the state of quest for #player.",
-					"- /script <scriptname>",
-					"\t\tLoad (or reload) a script on the server. See #/gmhelp #script for details.",
-					"* CHATTING:",
-					"- /supportanswer <player> <message>",
-					"\t\tReplies to a support question. Replace #message with $faq, $faqsocial, $ignore, $faqpvp, $wiki, $knownbug, $bugstracker, $rules, $notsupport or $spam shortcuts if desired.",
-					"- /tellall <message>",
-					"\t\tSend a private message to all logged-in players.",
-					"* PLAYER CONTROL:",
-					"- /teleportto <name>",
-					"\t\tTeleport yourself near the specified player or NPC.",
-					"- /teleclickmode \tMakes you teleport to the location you double click.",
-					"- /ghostmode \tMakes yourself invisible and intangible.",
-					"- /invisible \tToggles whether or not you are invisible to creatures.",
-					"* ENTITY MANIPULATION:",
-					"- /adminlevel <player> [<newlevel>]",
-					"\t\tDisplay or set the adminlevel of the specified #player.",
-					"- /jail <player> <minutes> <reason>",
-					"\t\tImprisons #player for a given length of time.",
-					"- /gag <player> <minutes> <reason>",
-					"\t\tGags #player for a given length of time (player is unable to send messages to anyone).",
-					"- /ban <character> <hours> <reason>",
-					"\t\tBans the account of the character from logging onto the game server or website for the specified amount of hours (-1 till end of time).",
-					"- /teleport <player> <zone> <x> <y>",
-					"\t\tTeleport #player to the given location.",
-					"- /alter <player> <attrib> <mode> <value>",
-					"\t\tAlter stat #attrib of #player by the given amount; #mode can be ADD, SUB, SET or UNSET. See #/gmhelp #alter for details.",
-					"- /altercreature <id> name;atk;def;hp;xp",
-					"\t\tChange values of the creature. Use #- as a placeholder to keep default value. Useful in raids.",
-					"- /alterkill <player> <type> <count> <creature>",
-					"\t\tChange number of #creature killed #type (\"solo\" or \"shared\") to #count for #player.",
-					"- /alterquest <player> <questslot> <value>",
-					"\t\tUpdate the #questslot for #player to be #value.",
-					"- /summon <creature|item> [x] [y]",
-					"- /summon <stackable item> [quantity]",
-					"- /summon <stackable item> <x> <y> [quantity]",
-					"\t\tSummon the specified item or creature at co-ordinates #x, #y in the current zone.",
-					"- /summonat <player> <slot> [amount] <item>",
-					"\t\tSummon the specified item into the specified slot of <player>; <amount> defaults to 1 if not specified.",
-					"- /destroy <entity> \tDestroy an entity completely.",
-					"* MISC:",
-					"- /jailreport [<player>]",
-					"\t\tList the jailed players and their sentences."
-				];
+				msg = this.getHelp(true);
 			} else if ((params.length == 1) && (params[0] != null)) {
 				if ("alter" == params[0]) {
 					msg = [
@@ -556,7 +487,412 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 0,
-		maxParams: 1
+		maxParams: 1,
+		getHelp: function(sparams?: string): string[] {
+			if (sparams) {
+				return [sparams, "For more info about alter, script or the supportanswer shortcuts."];
+			}
+			return ["", "Show this help message."];
+		}
+	};
+
+	"about" = new AboutAction();
+
+	"add": SlashActionImpl = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			if (params == null) {
+				return false;
+			};
+
+			const action: Action = {
+				"type": "addbuddy",
+				"target": params[0]
+			};
+			this.sendAction(action);
+			return true;
+		},
+		minParams: 1,
+		maxParams: 1,
+		getHelp: function(): string[] {
+			return ["<player>", "Add #player to your buddy list."];
+		}
+	};
+
+	"adminnote": SlashActionImpl = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
+				"type": type,
+				"target": params[0],
+				"note": remainder
+			};
+			this.sendAction(action);
+			return true;
+		},
+		minParams: 1,
+		maxParams: 1,
+		getHelp: function(): string[] {
+			return ["<player> <note>", "Logs a note about #player."];
+		}
+	};
+
+	"adminlevel": SlashActionImpl = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
+				"type": type,
+				"target": params[0],
+			};
+			if (params.length >= 2) {
+				action["newlevel"] = params[1];
+			}
+			this.sendAction(action);
+			return true;
+		},
+		minParams: 1,
+		maxParams: 2,
+		getHelp: function(): string[] {
+			return ["<player> [<newlevel>]", "Display or set the adminlevel of the specified #player."];
+		}
+	};
+
+	"alter": SlashActionImpl = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
+				"type": type,
+				"target": params[0],
+				"stat": params[1],
+				"mode": params[2],
+				"value": remainder
+			};
+			this.sendAction(action);
+			return true;
+		},
+		minParams: 3,
+		maxParams: 3,
+		getHelp: function(): string[] {
+			return [
+				"<player> <attrib> <mode> <value>",
+				"Alter stat #attrib of #player by the given amount; #mode can be ADD, SUB, SET or UNSET."
+						+ " See #/gmhelp #alter for details."
+			];
+		}
+	};
+
+	"altercreature": SlashActionImpl = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
+				"type": "altercreature",
+				"target": params[0],
+				"text": params[1]
+			};
+
+			this.sendAction(action);
+			return true;
+		},
+		minParams: 2,
+		maxParams: 2,
+		getHelp: function(): string[] {
+			return [
+				"<id> set|unset|add|sub <attribute> [<value>]",
+				"Change values of the creature. Use #- as a placeholder to keep default value. Useful in"
+						+ " raids."
+			];
+		}
+	};
+
+	"alterkill": SlashActionImpl = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const target = params[0];
+			const killtype = params[1];
+			const count = params[2];
+			var creature = null;
+
+			if (remainder != null && remainder != "") {
+				// NOTE: unlike Java client, Javascript client automatically trims whitespace in "remainder" parameter
+				creature = remainder;
+			}
+
+			const action: Action = {
+				"type": "alterkill",
+				"target": target,
+				"killtype": killtype,
+				"count": count
+			};
+			if (creature != null) {
+				action["creature"] = creature;
+			}
+
+			this.sendAction(action);
+			return true;
+		},
+		minParams: 3,
+		maxParams: 3,
+		getHelp: function(): string[] {
+			return [
+				"<player> <type> <count> <creature>",
+				"Change number of #creature killed #type (\"solo\" or \"shared\") to #count for #player."
+			];
+		}
+	};
+
+	"alterquest": SlashActionImpl = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
+				"type": "alterquest",
+				"target": params[0],
+				"name": params[1]
+			};
+
+			if (params[2] != null) {
+				action["state"] = this.checkQuoted(params[2], remainder);
+			}
+
+			this.sendAction(action);
+			return true;
+		},
+		minParams: 2,
+		maxParams: 3,
+		getHelp: function(): string[] {
+			return ["<player> <questslot> <value>", "Update the #questslot for #player to be #value."];
+		}
+	};
+
+	"answer": SlashActionImpl = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			if (remainder == null || remainder == "") {
+				return false;
+			};
+
+			const action: Action = {
+				"type": "answer",
+				"text": remainder
+			};
+
+			this.sendAction(action);
+			return true;
+		},
+		minParams: 1,
+		maxParams: 0,
+		getHelp: function(): string[] {
+			return ["<message>", "Send a private message to the last player who sent a message to you."];
+		}
+	};
+
+	"away": SlashActionImpl = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
+				"type": "away",
+			};
+			if (remainder.length != 0) {
+				action["message"] = remainder;
+			};
+			this.sendAction(action);
+			return true;
+		},
+		minParams: 0,
+		maxParams: 0,
+		getHelp: function(sparams: string): string[] {
+			if (sparams === "<message>") {
+				return [sparams,  "Set an away message."];
+			}
+			return ["", "Remove away status."];
+		}
+	};
+
+	"ban": SlashActionImpl = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
+				"type": "ban",
+				"target": params[0],
+				"hours": params[1],
+				"reason": remainder
+			};
+			this.sendAction(action);
+			return true;
+		},
+		minParams: 2,
+		maxParams: 2,
+		getHelp: function(): string[] {
+			return [
+					"<character> <hours> <reason>",
+					"Bans the account of the character from logging onto the game server or website for the"
+							+ " specified amount of hours (-1 till end of time)."
+			];
+		}
+	};
+
+	"chat": SlashActionImpl = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
+				"type": type,
+				"text": remainder
+			};
+			this.sendAction(action);
+			return true;
+		},
+		minParams: 0,
+		maxParams: 0,
+		getHelp: function(): string[] {
+			return [
+				"<message>",
+				"Send a public chat message (same as sending text without prefixed chat command)."
+			];
+		}
+	};
+
+	"clear": SlashActionImpl = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			(ui.get(UIComponentEnum.ChatLog) as ChatLogComponent).clear();
+			return true;
+		},
+		minParams: 0,
+		maxParams: 0,
+		getHelp: function(): string[] {
+			return ["", "Clear chat log."];
+		}
+	};
+
+	/*
+	"clickmode": SlashActionImpl = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const newMode = !stendhal.config.getBoolean("input.doubleclick");
+			stendhal.config.set("input.doubleclick", newMode);
+			stendhal.ui.gamewindow.updateClickMode();
+
+			if (newMode) {
+				Chat.log("info", "Click mode is now set to double click.");
+			} else {
+				Chat.log("info", "Click mode is now set to single click.");
+			}
+			return true;
+		},
+		minParams: 0,
+		maxParams: 0
+	};
+	*/
+
+	"debug" = new DebugAction();
+
+	"drop": SlashActionImpl = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			console.log(type, params, remainder);
+			let name = remainder;
+			let quantity = parseInt(params[0], 10);
+			console.log(name, quantity);
+			if (isNaN(quantity)) {
+				name = (params[0] + " " + remainder).trim();
+				quantity = 0;
+			}
+			console.log(name, quantity);
+			const action: Action = {
+				"type": "drop",
+				"source_name": name,
+				"quantity": "" + quantity,
+				"x": "" + marauroa.me.x,
+				"y": "" + marauroa.me.y
+			};
+			console.log(action);
+			this.sendAction(action);
+			return true;
+		},
+		minParams: 0,
+		maxParams: 1,
+		getHelp: function(): string[] {
+			return ["[<quantity>] <item_name>", "Drops items from inventory where you stand."];
+		}
+	};
+
+	"emojilist": SlashActionImpl = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const emojilist = singletons.getEmojiStore().getEmojiList().sort();
+			for (const idx in emojilist) {
+				emojilist[idx] = "&nbsp;&nbsp;- :" + emojilist[idx] + ":";
+			}
+			emojilist.splice(0, 0, emojilist.length + " emojis available:");
+			Chat.log("client", emojilist);
+			return true;
+		},
+		minParams: 0,
+		maxParams: 0,
+		getHelp: function(): string[] {
+			return ["", "List available emojis."];
+		}
+	};
+
+	"gag": SlashActionImpl = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
+				"type": "gag",
+				"target": params[0],
+				"minutes": params[1],
+				"reason": remainder
+			};
+			this.sendAction(action);
+			return true;
+		},
+		minParams: 2,
+		maxParams: 2,
+		getHelp: function(): string[] {
+			return [
+				"<player> <minutes> <reason>",
+				"Gags #player for a given length of time (player is unable to send messages to anyone)."
+			];
+		}
+	};
+
+	"group": SlashActionImpl = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
+				"type": "group_management",
+				"action": params[0],
+				"params": remainder
+			};
+			this.sendAction(action);
+			return true;
+		},
+		minParams: 1,
+		maxParams: 1,
+		getHelp: function(sparams: string): string[] {
+			const desc: string[] = [];
+			if (sparams === "invite <player>") {
+				desc.push("Invite a player to join your group.");
+			} else if (sparams === "join <player") {
+				desc.push("Accept invite to join #player's group.");
+			} else if (sparams === "leader <player>") {
+				desc.push("Make #player leader of group.");
+			} else if (sparams === "lootmode single|shared") {
+				desc.push("Set looting mode for group.");
+				desc.push("&nbsp;&nbsp;single: Only group leader can loot.");
+				desc.push("&nbsp;&nbsp;shared: Any group member can loot.");
+			} else if (sparams === "kick <player>") {
+				desc.push("Kick #player from group.");
+			} else if (sparams === "part") {
+				desc.push("Leave group.");
+			} else if (sparams === "status") {
+				desc.push("Broken?");
+			}
+			return [sparams, ...desc];
+		}
+	};
+
+	"grumpy": SlashActionImpl = {
+		execute: (type: string, params: string[], remainder: string): boolean => {
+			const action: Action = {
+				"type": "grumpy",
+			};
+			if (remainder.length != 0) {
+				action["reason"] = remainder;
+			};
+			this.sendAction(action);
+			return true;
+		},
+		minParams: 0,
+		maxParams: 0,
+		getHelp: function(sparams: string): string[] {
+			if (sparams === "<message>") {
+				return [sparams,  "Set a message to ignore all non-buddies."];
+			}
+			return ["", "Remove grumpy status."];
+		}
 	};
 
 	"ignore": SlashActionImpl = {
@@ -596,7 +932,13 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 0,
-		maxParams: 2
+		maxParams: 2,
+		getHelp: function(sparams?: string): string[] {
+			if (sparams) {
+				return [sparams, "Add #player to your ignore list."];
+			}
+			return ["", "Find out who is on your ignore list."];
+		}
 	};
 
 	"inspectkill": SlashActionImpl = {
@@ -620,7 +962,10 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 1,
-		maxParams: 1
+		maxParams: 1,
+		getHelp: function(): string[] {
+			return ["<player> <creature>", "Show creature kill counts of #player for #creature."];
+		}
 	};
 
 	"inspectquest": SlashActionImpl = {
@@ -636,7 +981,10 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 1,
-		maxParams: 2
+		maxParams: 2,
+		getHelp: function(): string[] {
+			return ["<player> [<quest_slot>]", "Show the state of quest for #player."];
+		}
 	};
 
 
@@ -652,7 +1000,10 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 2,
-		maxParams: 2
+		maxParams: 2,
+		getHelp: function(): string[] {
+			return ["<player> <minutes> <reason>", "Imprisons #player for a given length of time."];
+		}
 	};
 
 	"me": SlashActionImpl = {
@@ -665,7 +1016,10 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 0,
-		maxParams: 0
+		maxParams: 0,
+		getHelp: function(): string[] {
+			return ["<action>", "Show a message about what you are doing."];
+		}
 	};
 
 	"movecont": SlashActionImpl = {
@@ -685,7 +1039,14 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 0,
-		maxParams: 0
+		maxParams: 0,
+		getHelp: function(): string[] {
+			return [
+				"",
+				"Toggle continuous movement (allows players to continue walking after map change or"
+						+ " teleport without releasing direction key)."
+			];
+		}
 	};
 
 	// name of player most recently messaged
@@ -703,7 +1064,11 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 1,
-		maxParams: 1
+		maxParams: 1,
+		aliases: ["tell"],
+		getHelp: function(): string[] {
+			return ["<player> <message>", "Send a private message to #player."];
+		}
 	};
 	"tell": SlashActionImpl = this["msg"];
 
@@ -720,7 +1085,10 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 0,
-		maxParams: 0
+		maxParams: 0,
+		getHelp: function(): string[] {
+			return ["<message>", "Send a private message to the last player you sent a message to."];
+		}
 	};
 
 	"mute": SlashActionImpl = {
@@ -734,7 +1102,10 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 0,
-		maxParams: 0
+		maxParams: 0,
+		getHelp: function(): string[] {
+			return ["", "Mute or unmute the sounds."];
+		}
 	};
 
 	"p": SlashActionImpl = {
@@ -747,12 +1118,12 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 0,
-		maxParams: 0
+		maxParams: 0,
+		getHelp: function(): string[] {
+			return ["<message>", "Send a message to group members."];
+		}
 	};
 
-	/* FIXME:
-	 * - parameters don'e work
-	 */
 	"progressstatus": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
@@ -780,7 +1151,11 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 0,
-		maxParams: 0
+		maxParams: 0,
+		getHelp: function(): string[] {
+			// FIXME: including parameter in chat command input should set visible tab
+			return ["", "Open travel log dialog window."];
+		}
 	};
 
 	"remove": SlashActionImpl = {
@@ -798,7 +1173,10 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 1,
-		maxParams: 1
+		maxParams: 1,
+		getHelp: function(): string[] {
+			return ["<player>", "Remove #player from your buddy list."];
+		}
 	};
 
 	"screenshot": SlashActionImpl = {
@@ -807,7 +1185,10 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 0,
-		maxParams: 0
+		maxParams: 0,
+		getHelp: function(): string[] {
+			return ["", "Capture a screenshot of the viewport area."];
+		}
 	};
 
 	"sentence": SlashActionImpl = {
@@ -825,7 +1206,13 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 0,
-		maxParams: 0
+		maxParams: 0,
+		getHelp: function(): string[] {
+			return [
+				"<text>",
+				"Set message on stendhalgame.org profile page and what players see when using #Look."
+			];
+		}
 	};
 
 	"settings" = new SettingsAction();
@@ -840,7 +1227,10 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 0,
-		maxParams: 0
+		maxParams: 0,
+		getHelp: function(): string[] {
+			return ["", "Turns autowalk off."];
+		}
 	};
 
 	"volume": SlashActionImpl = {
@@ -874,7 +1264,13 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 0,
-		maxParams: 2
+		maxParams: 2,
+		getHelp: function(sparams?: string): string[] {
+			if (sparams) {
+				return [sparams, "Lists or sets the volume for sound and music."];
+			}
+			return ["", "Shows current volume levels."];
+		}
 	};
 
 	"summon": SlashActionImpl = {
@@ -925,7 +1321,16 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 1,
-		maxParams: -1 // XXX: is this the proper way to allow an unlimited number of arguments?
+		maxParams: -1, // XXX: is this the proper way to allow an unlimited number of arguments?
+		getHelp: function(sparams: string): string[] {
+			let desc: any;
+			if (sparams === "<creature>|<item> [<x> <y>]") {
+				desc = "Summon a creature.";
+			} else if (sparams === "<stackable_item> [<x> <y>] [quantity]") {
+				desc = "Summon the specified item or creature at co-ordinates #x, #y in the current zone.";
+			}
+			return [sparams, desc];
+		}
 	};
 
 	"summonat": SlashActionImpl = {
@@ -952,7 +1357,14 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 3,
-		maxParams: 3
+		maxParams: 3,
+		getHelp: function(): string[] {
+			return [
+				"<player> <slot> [amount] <item>",
+				"Summon the specified item into the specified slot of <player>; <amount> defaults to 1 if"
+						+ " not specified."
+			];
+		}
 	};
 
 	"support": SlashActionImpl = {
@@ -965,7 +1377,10 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 0,
-		maxParams: 0
+		maxParams: 0,
+		getHelp: function(): string[] {
+			return ["<message>", "Ask an administrator for help."];
+		}
 	};
 
 	"supportanswer": SlashActionImpl = {
@@ -979,7 +1394,15 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 1,
-		maxParams: 1
+		maxParams: 1,
+		aliases: ["supporta"],
+		getHelp: function(): string[] {
+			return [
+				"<player> <message>",
+				"Replies to a support question. Replace #message with $faq, $faqsocial, $ignore, $faqpvp,"
+						+ " $wiki, $knownbug, $bugstracker, $rules, $notsupport or $spam shortcuts if desired."
+			];
+		}
 	};
 	"supporta": SlashActionImpl = this["supportanswer"];
 
@@ -996,7 +1419,10 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 4,
-		maxParams: 4
+		maxParams: 4,
+		getHelp: function(): string[] {
+			return ["<player> <zone> <x> <y>", "Teleport #player to the given location."];
+		}
 	};
 
 	"teleportto": SlashActionImpl = {
@@ -1009,7 +1435,10 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 0,
-		maxParams: 0
+		maxParams: 0,
+		getHelp: function(): string[] {
+			return ["<name>", "Teleport yourself near the specified player or NPC."];
+		}
 	};
 
 	"tellall": SlashActionImpl = {
@@ -1022,7 +1451,10 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 0,
-		maxParams: 0
+		maxParams: 0,
+		getHelp: function(): string[] {
+			return ["<message>", "Send a private message to all logged-in players."];
+		}
 	};
 
 	"walk": SlashActionImpl = {
@@ -1034,7 +1466,10 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 0,
-		maxParams: 0
+		maxParams: 0,
+		getHelp: function(): string[] {
+			return ["", "Toggles autowalk on/off."];
+		}
 	};
 
 	"atlas": SlashActionImpl = {
@@ -1044,7 +1479,10 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 0,
-		maxParams: 0
+		maxParams: 0,
+		getHelp: function(): string[] {
+			return ["", "Opens atlas page on stendhalgame.org."];
+		}
 	};
 
 	"beginnersguide": SlashActionImpl = {
@@ -1053,7 +1491,10 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 0,
-		maxParams: 0
+		maxParams: 0,
+		getHelp: function(): string[] {
+			return ["", "Opens beginner's guide wiki page on stendhalgame.org."];
+		}
 	};
 
 	"characterselector" = new OpenWebsiteAction("https://stendhalgame.org/account/mycharacters.html");
@@ -1081,7 +1522,10 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 0,
-		maxParams: 1
+		maxParams: 1,
+		getHelp: function(): string[] {
+			return ["[<name>]", "Opens a player profile page on stendhalgame.org."];
+		}
 	};
 
 	"rules" = new OpenWebsiteAction("https://stendhalgame.org/wiki/Stendhal_Rules");
@@ -1103,7 +1547,10 @@ export class SlashActionRepo {
 			return true;
 		},
 		minParams: 1,
-		maxParams: 1
+		maxParams: 1,
+		getHelp: function(): string[] {
+			return ["<player> <message>", "Store a private message to deliver for an offline #player."];
+		}
 	};
 
 	/** Default action executed if a type is not registered. */
