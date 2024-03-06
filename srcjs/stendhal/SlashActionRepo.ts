@@ -18,7 +18,7 @@ import { AboutAction } from "./action/AboutAction";
 import { DebugAction } from "./action/DebugAction";
 import { OpenWebsiteAction } from "./action/OpenWebsiteAction";
 import { SettingsAction } from "./action/SettingsAction";
-import { SlashAction } from "./action/SlashAction";
+import { SlashActionImpl } from "./action/SlashAction";
 
 import { ui } from "./ui/UI";
 import { UIComponentEnum } from "./ui/UIComponentEnum";
@@ -75,7 +75,7 @@ export class SlashActionRepo {
 
 	"about" = new AboutAction();
 
-	"add": SlashAction = {
+	"add": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			if (params == null) {
 				return false;
@@ -92,7 +92,7 @@ export class SlashActionRepo {
 		maxParams: 1
 	};
 
-	"adminnote": SlashAction = {
+	"adminnote": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": type,
@@ -106,7 +106,7 @@ export class SlashActionRepo {
 		maxParams: 1
 	};
 
-	"adminlevel": SlashAction = {
+	"adminlevel": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": type,
@@ -122,7 +122,7 @@ export class SlashActionRepo {
 		maxParams: 2
 	};
 
-	"alter": SlashAction = {
+	"alter": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": type,
@@ -138,7 +138,7 @@ export class SlashActionRepo {
 		maxParams: 3
 	};
 
-	"altercreature": SlashAction = {
+	"altercreature": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": "altercreature",
@@ -153,7 +153,7 @@ export class SlashActionRepo {
 		maxParams: 2
 	};
 
-	"alterkill": SlashAction = {
+	"alterkill": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const target = params[0];
 			const killtype = params[1];
@@ -182,7 +182,7 @@ export class SlashActionRepo {
 		maxParams: 3
 	};
 
-	"alterquest": SlashAction = {
+	"alterquest": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": "alterquest",
@@ -201,7 +201,7 @@ export class SlashActionRepo {
 		maxParams: 3
 	};
 
-	"answer": SlashAction = {
+	"answer": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			if (remainder == null || remainder == "") {
 				return false;
@@ -219,7 +219,7 @@ export class SlashActionRepo {
 		maxParams: 0
 	};
 
-	"away": SlashAction = {
+	"away": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": "away",
@@ -234,7 +234,7 @@ export class SlashActionRepo {
 		maxParams: 0
 	};
 
-	"ban": SlashAction = {
+	"ban": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": "ban",
@@ -249,7 +249,7 @@ export class SlashActionRepo {
 		maxParams: 2
 	};
 
-	"chat": SlashAction = {
+	"chat": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": type,
@@ -262,7 +262,7 @@ export class SlashActionRepo {
 		maxParams: 0
 	};
 
-	"clear": SlashAction = {
+	"clear": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			(ui.get(UIComponentEnum.ChatLog) as ChatLogComponent).clear();
 			return true;
@@ -272,7 +272,7 @@ export class SlashActionRepo {
 	};
 
 	/*
-	"clickmode": SlashAction = {
+	"clickmode": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const newMode = !stendhal.config.getBoolean("input.doubleclick");
 			stendhal.config.set("input.doubleclick", newMode);
@@ -295,7 +295,7 @@ export class SlashActionRepo {
 	/* FIXME:
 	 * - not in help output
 	 */
-	"drop": SlashAction = {
+	"drop": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			console.log(type, params, remainder);
 			let name = remainder;
@@ -321,7 +321,7 @@ export class SlashActionRepo {
 		maxParams: 1
 	};
 
-	"emojilist": SlashAction = {
+	"emojilist": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const emojilist = singletons.getEmojiStore().getEmojiList().sort();
 			for (const idx in emojilist) {
@@ -335,7 +335,7 @@ export class SlashActionRepo {
 		maxParams: 0
 	};
 
-	"gag": SlashAction = {
+	"gag": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": "gag",
@@ -353,7 +353,7 @@ export class SlashActionRepo {
 	/* FIXME:
 	 * - not included in help info
 	 */
-	"group": SlashAction = {
+	"group": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": "group_management",
@@ -367,7 +367,7 @@ export class SlashActionRepo {
 		maxParams: 1
 	};
 
-	"grumpy": SlashAction = {
+	"grumpy": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": "grumpy",
@@ -382,7 +382,7 @@ export class SlashActionRepo {
 		maxParams: 0
 	};
 
-	"help": SlashAction = {
+	"help": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			var msg = [
 				"For a detailed reference, visit #https://stendhalgame.org/wiki/Stendhal_Manual",
@@ -440,7 +440,7 @@ export class SlashActionRepo {
 		maxParams: 0
 	};
 
-	"gmhelp": SlashAction = {
+	"gmhelp": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			var msg = null;
 
@@ -559,8 +559,7 @@ export class SlashActionRepo {
 		maxParams: 1
 	};
 
-
-	"ignore": SlashAction = {
+	"ignore": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 					"type": "ignore"
@@ -600,7 +599,7 @@ export class SlashActionRepo {
 		maxParams: 2
 	};
 
-	"inspectkill": SlashAction = {
+	"inspectkill": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const target = params[0];
 			var creature = null;
@@ -624,7 +623,7 @@ export class SlashActionRepo {
 		maxParams: 1
 	};
 
-	"inspectquest": SlashAction = {
+	"inspectquest": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 					"type": "inspectquest",
@@ -641,7 +640,7 @@ export class SlashActionRepo {
 	};
 
 
-	"jail": SlashAction = {
+	"jail": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": "jail",
@@ -656,7 +655,7 @@ export class SlashActionRepo {
 		maxParams: 2
 	};
 
-	"me": SlashAction = {
+	"me": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": "emote",
@@ -669,7 +668,7 @@ export class SlashActionRepo {
 		maxParams: 0
 	};
 
-	"movecont": SlashAction = {
+	"movecont": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const enable = !stendhal.config.getBoolean("move.cont");
 			const action: Action = {
@@ -692,7 +691,7 @@ export class SlashActionRepo {
 	// name of player most recently messaged
 	private lastPlayerTell?: string;
 
-	"msg": SlashAction = {
+	"msg": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			this.lastPlayerTell = params[0];
 			const action: Action = {
@@ -706,9 +705,9 @@ export class SlashActionRepo {
 		minParams: 1,
 		maxParams: 1
 	};
-	"tell": SlashAction = this["msg"];
+	"tell": SlashActionImpl = this["msg"];
 
-	"/": SlashAction = {
+	"/": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			if (typeof(this.lastPlayerTell) != "undefined") {
 				const action: Action = {
@@ -724,7 +723,7 @@ export class SlashActionRepo {
 		maxParams: 0
 	};
 
-	"mute": SlashAction = {
+	"mute": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			singletons.getSoundManager().toggleSound();
 			if (stendhal.config.getBoolean("sound")) {
@@ -738,7 +737,7 @@ export class SlashActionRepo {
 		maxParams: 0
 	};
 
-	"p": SlashAction = {
+	"p": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": "group_message",
@@ -754,7 +753,7 @@ export class SlashActionRepo {
 	/* FIXME:
 	 * - parameters don'e work
 	 */
-	"progressstatus": SlashAction = {
+	"progressstatus": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": type
@@ -784,7 +783,7 @@ export class SlashActionRepo {
 		maxParams: 0
 	};
 
-	"remove": SlashAction = {
+	"remove": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			if (params == null) {
 				return false;
@@ -802,7 +801,7 @@ export class SlashActionRepo {
 		maxParams: 1
 	};
 
-	"screenshot": SlashAction = {
+	"screenshot": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			stendhal.ui.gamewindow.createScreenshot();
 			return true;
@@ -811,7 +810,7 @@ export class SlashActionRepo {
 		maxParams: 0
 	};
 
-	"sentence": SlashAction = {
+	"sentence": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			if (params == null) {
 				return false;
@@ -831,7 +830,7 @@ export class SlashActionRepo {
 
 	"settings" = new SettingsAction();
 
-	"stopwalk": SlashAction = {
+	"stopwalk": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": "walk",
@@ -844,7 +843,7 @@ export class SlashActionRepo {
 		maxParams: 0
 	};
 
-	"volume": SlashAction = {
+	"volume": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const layername = params[0];
 			let vol = params[1];
@@ -878,7 +877,7 @@ export class SlashActionRepo {
 		maxParams: 2
 	};
 
-	"summon": SlashAction = {
+	"summon": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			var x = null;
 			var y = null;
@@ -929,7 +928,7 @@ export class SlashActionRepo {
 		maxParams: -1 // XXX: is this the proper way to allow an unlimited number of arguments?
 	};
 
-	"summonat": SlashAction = {
+	"summonat": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			var amount = params[2];
 			// don't require first parameter to be integer amount
@@ -956,7 +955,7 @@ export class SlashActionRepo {
 		maxParams: 3
 	};
 
-	"support": SlashAction = {
+	"support": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": "support",
@@ -969,7 +968,7 @@ export class SlashActionRepo {
 		maxParams: 0
 	};
 
-	"supportanswer": SlashAction = {
+	"supportanswer": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": "supportanswer",
@@ -982,9 +981,9 @@ export class SlashActionRepo {
 		minParams: 1,
 		maxParams: 1
 	};
-	"supporta": SlashAction = this["supportanswer"];
+	"supporta": SlashActionImpl = this["supportanswer"];
 
-	"teleport": SlashAction = {
+	"teleport": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": "teleport",
@@ -1000,7 +999,7 @@ export class SlashActionRepo {
 		maxParams: 4
 	};
 
-	"teleportto": SlashAction = {
+	"teleportto": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": "teleportto",
@@ -1013,7 +1012,7 @@ export class SlashActionRepo {
 		maxParams: 0
 	};
 
-	"tellall": SlashAction = {
+	"tellall": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": "tellall",
@@ -1026,7 +1025,7 @@ export class SlashActionRepo {
 		maxParams: 0
 	};
 
-	"walk": SlashAction = {
+	"walk": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": "walk"
@@ -1038,7 +1037,7 @@ export class SlashActionRepo {
 		maxParams: 0
 	};
 
-	"atlas": SlashAction = {
+	"atlas": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			window.location.href = "https://stendhalgame.org/world/atlas.html?me="
 				+ marauroa.currentZoneName + "." + marauroa.me.x + "." + marauroa.me.y;
@@ -1048,7 +1047,7 @@ export class SlashActionRepo {
 		maxParams: 0
 	};
 
-	"beginnersguide": SlashAction = {
+	"beginnersguide": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			window.location.href = "https://stendhalgame.org/wiki/Stendhal_Beginner's_Guide";
 			return true;
@@ -1063,7 +1062,7 @@ export class SlashActionRepo {
 
 	"manual" = new OpenWebsiteAction("https://stendhalgame.org/wiki/Stendhal_Manual/Controls_and_Game_Settings");
 
-	"profile": SlashAction = {
+	"profile": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			var url = "https://stendhalgame.org/character/";
 			var name = marauroa.me["_name"] || singletons.getSessionManager().getCharName();
@@ -1093,7 +1092,7 @@ export class SlashActionRepo {
 
 	"halloffame" = new OpenWebsiteAction("https://stendhalgame.org/world/hall-of-fame/active_overview.html");
 
-	"storemessage": SlashAction = {
+	"storemessage": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": "storemessage",
@@ -1108,7 +1107,7 @@ export class SlashActionRepo {
 	};
 
 	/** Default action executed if a type is not registered. */
-	"_default": SlashAction = {
+	"_default": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const action: Action = {
 				"type": type
@@ -1161,7 +1160,7 @@ export class SlashActionRepo {
 			array.shift();
 		}
 		name = name.substr(1);
-		var action: SlashAction;
+		var action: SlashActionImpl;
 		if (typeof(this[name]) == "undefined") {
 			action = this["_default"];
 		} else {
