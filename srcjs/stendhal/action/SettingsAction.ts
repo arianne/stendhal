@@ -1,5 +1,6 @@
 /***************************************************************************
- *                       Copyright © 2023 - Stendhal                       *
+ *                 Copyright © 2023-2024 - Faiumoni e. V.                  *
+ ***************************************************************************
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,6 +22,9 @@ import { SettingsDialog } from "../ui/dialog/SettingsDialog";
 export class SettingsAction extends SlashAction {
 	readonly minParams = 0;
 	readonly maxParams = 0;
+
+	override readonly desc = "Opens settings dialog.";
+
 
 	execute(_type: string, _params: string[], _remainder: string): boolean {
 		const wstate = stendhal.config.getWindowState("menu");
