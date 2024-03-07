@@ -238,7 +238,7 @@
 		<jar jarfile="${lib}/${server_jarname}" basedir="${build_server}">
 			<manifest>
 				<attribute name="Main-Class" value="games.stendhal.server.StendhalServer"/>
-				<attribute name="Class-path" value=". ${maps_jarname} ${xmlconf_jarname} ${serverclasspath}"/>
+				<attribute name="Class-Path" value=". ${maps_jarname} ${xmlconf_jarname} ${log4j_jar} ${marauroa_jar} ${mysqldriver_jar} ${h2_jar} ${guava_jar} ${groovy_jar} ${luaj_jar} ${tomcatcore_jar} ${tomcatwebsocket_jar} ${jakartaannotation_jar} ${jsonsimple_jar} ${hamcrest_jar} ${serverclasspath}"/>
 			</manifest>
 		</jar>
 		<chmod file="${lib}/${server_jarname}" perm="+x"/>
