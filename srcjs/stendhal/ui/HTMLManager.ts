@@ -94,15 +94,15 @@ export class HTMLManager {
 	 */
 	extractPosition(event: any, tidx=0): any {
 		let pos = event;
-
-		const canvas = this.extractTarget(event) as HTMLCanvasElement;
+		const target = this.extractTarget(event, tidx);
+		const canvas = target as HTMLCanvasElement;
 		if (event.changedTouches) {
 			pos = {
 				pageX: Math.round(event.changedTouches[tidx].pageX),
 				pageY: Math.round(event.changedTouches[tidx].pageY),
 				clientX: Math.round(event.changedTouches[tidx].clientX),
 				clientY: Math.round(event.changedTouches[tidx].clientY),
-				target: canvas
+				target: target
 			}
 			if (["touchmove", "touchend"].indexOf(event.type) > -1) {
 				// touch events target source element
