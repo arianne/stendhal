@@ -56,16 +56,14 @@ android {
 				unsigned = true;
 			}
 		}
-	}
 
-	if (generateDebugKey && signingConfigs.main != signingConfigs.debug) {
-		// force using debug key
-		signingConfigs {
+		if (generateDebugKey && signingConfigs.main != signingConfigs.debug) {
+			// force using debug key
 			main {
 				initWith signingConfigs.debug
 			}
+			unsigned = false;
 		}
-		unsigned = false;
 	}
 
 	if (!unsigned && !generateDebugKey && !signingConfigs.main.storeFile.exists()) {
