@@ -35,8 +35,10 @@ android {
 		keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 	}
 
-	// denotes whether a signing key is configured
+	// denotes whether a signing key is found/configured
 	def unsigned = false;
+	// property to force use of ~/.android/debug.keystore signing key & generate if not found
+	def generateDebugKey = project.properties["generate-debug-key"] != null;
 
 	signingConfigs {
 		main {
@@ -56,10 +58,26 @@ android {
 		}
 	}
 
+	if (generateDebugKey && signingConfigs.main != signingConfigs.debug) {
+		// force using debug key
+		signingConfigs {
+			main {
+				initWith signingConfigs.debug
+			}
+		}
+		unsigned = false;
+	}
+
+	if (!unsigned && !generateDebugKey && !signingConfigs.main.storeFile.exists()) {
+		throw new Error("Signing key not found: " + signingConfigs.main.storeFile);
+	}
+
 	buildTypes {
 		debug {
 			applicationIdSuffix ".debug"
 			versionNameSuffix "-debug"
+			// prevent automatic generation of ~/.android/debug.keystore
+			signingConfig null
 		}
 
 		release {
@@ -67,7 +85,11 @@ android {
 			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 		}
 
-		if (!unsigned) {
+		if (generateDebugKey) {
+			// force using debug key & generate if not found
+			debug.signingConfig signingConfigs.debug
+			release.signingConfig signingConfigs.debug
+		} else if (!unsigned) {
 			// apply configured signing key to builds
 			debug.signingConfig signingConfigs.main
 			release.signingConfig signingConfigs.main
