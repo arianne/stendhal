@@ -35,34 +35,42 @@ android {
 		keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 	}
 
+	// denotes whether a signing key is configured
+	def unsigned = false;
+
 	signingConfigs {
-		release {
+		main {
 			if (keystorePropertiesFile.exists()) {
+				// use key configured in keystore.properties file
 				storeFile file(keystoreProperties["storeFile"])
 				storePassword keystoreProperties["storePassword"]
 				keyPassword keystoreProperties["keyPassword"]
 				keyAlias keystoreProperties["keyAlias"]
+			} else if (signingConfigs.debug.storeFile.exists()) {
+				// use debug key
+				initWith signingConfigs.debug
 			} else {
-				// default to debug key
-				storeFile signingConfigs.debug.storeFile
-				storePassword signingConfigs.debug.storePassword
-				keyPassword signingConfigs.debug.keyPassword
-				keyAlias signingConfigs.debug.keyAlias
+				// default to unsigned package
+				unsigned = true;
 			}
 		}
 	}
 
 	buildTypes {
-		release {
-			minifyEnabled false
-			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-			signingConfig signingConfigs.release
-		}
-
 		debug {
 			applicationIdSuffix ".debug"
 			versionNameSuffix "-debug"
-			signingConfig signingConfigs.release
+		}
+
+		release {
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+		}
+
+		if (!unsigned) {
+			// apply configured signing key to builds
+			debug.signingConfig signingConfigs.main
+			release.signingConfig signingConfigs.main
 		}
 	}
 
@@ -77,10 +85,10 @@ android {
 			def buildRoot = "../../../../"
 			if (variant.name.equals("release")) {
 				// exclude "-release" suffix
-				outputFileName = new File("${buildRoot}", "${archivesBaseName}.apk")
-			} else {
-				outputFileName = new File("${buildRoot}", "${outputFileName}")
+				outputFileName = outputFileName.replaceAll("(-release)(?!.*-release)", "")
 			}
+			// output to <source_root>/build
+			outputFileName = new File("${buildRoot}", "${outputFileName}")
 		}
 	}
 
@@ -100,7 +108,7 @@ android {
 	println("Application ID:  " + defaultConfig.applicationId)
 	println("Version:         " + defaultConfig.versionCode)
 	println("Output basename: " + archivesBaseName)
-	println("Signing key:     " + signingConfigs.release.storeFile)
+	println("Signing key:     " + (unsigned ? "unsigned" : signingConfigs.main.storeFile))
 	println("Build directory: " + project.buildDir)
 }
 
