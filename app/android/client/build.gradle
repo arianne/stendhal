@@ -36,7 +36,7 @@ android {
 	}
 
 	// denotes whether a signing key is found/configured
-	def unsigned = false;
+	def unsigned = true;
 	// property to force use of ~/.android/debug.keystore signing key & generate if not found
 	def generateDebugKey = project.properties["generate-debug-key"] != null;
 
@@ -48,12 +48,11 @@ android {
 				storePassword keystoreProperties["storePassword"]
 				keyPassword keystoreProperties["keyPassword"]
 				keyAlias keystoreProperties["keyAlias"]
+				unsigned = false;
 			} else if (signingConfigs.debug.storeFile.exists()) {
 				// use debug key
 				initWith signingConfigs.debug
-			} else {
-				// default to unsigned package
-				unsigned = true;
+				unsigned = false;
 			}
 		}
 
