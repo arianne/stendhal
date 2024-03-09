@@ -1,0 +1,22 @@
+name: Android Build Test
+
+on:
+  push:
+    paths:
+      - 'app/android/**'
+  pull_request:
+    paths:
+      - 'app/android/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Build Android Packages
+        run: cd app/android/client && gradle assemble
