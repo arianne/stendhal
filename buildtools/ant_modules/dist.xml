@@ -792,7 +792,7 @@
 			<fileset dir="${srcjs}">
 				<include name="stendhal.html"/>
 				<include name="stendhal.css"/>
-				<include name="stendhal-compiled.js*"/>
+				<include name="stendhal-compiled.js"/>
 				<include name="favicon.ico"/>
 			</fileset>
 		</copy>
