@@ -1,5 +1,6 @@
-use clap::Parser;
-
+use serde_json::Value;
+use std::io;
+use std::io::Read;
 use std::sync::Arc;
 use std::sync::atomic::AtomicBool;
 use std::sync::atomic::Ordering;
@@ -14,24 +15,19 @@ use steamworks::Client;
 use websocket::client::ClientBuilder;
 use websocket::{Message, OwnedMessage};
 
-#[derive(Parser)]
-struct Cli {
-    /// The websocket port
-    #[arg(long = "nl-port")]
-    nl_port: String,
-    /// The authentication token to use the native API
-    #[arg(long = "nl-token")]
-    nl_token: String,
-    // The extension id
-    #[arg(long = "nl-extension-id")]
-    nl_extension_id: String
-}
 
+fn connect() -> (Sender<OwnedMessage>, JoinHandle<()>) {
+	println!("Read connection parameters");
+	let mut json = String::new();
+	io::stdin().read_to_string(&mut json).expect("Read from stdin");
+	let connection_params: Value = serde_json::from_str(&json).expect("Parse json from stdin");
 
+	let nl_token = connection_params["nlToken"].as_str().expect("nlToken").to_string();
+	let nl_port = connection_params["nlPort"].as_str().expect("nlPort").to_string();
+	let nl_connect_token = connection_params["nlConnectToken"].as_str().expect("nlConnectToken").to_string();
 
-fn connect(nl_port: String) -> (Sender<OwnedMessage>, JoinHandle<()>) {
-    let connection = "ws://127.0.0.1:".to_owned() + &nl_port+ "?extensionId=nativehelper";
-	println!("Connecting to {}", connection);
+	let connection = "ws://127.0.0.1:".to_owned() + &nl_port + "?extensionId=nativehelper&connectToken=" + &nl_connect_token;
+	println!("Connecting");
 
 	let client = ClientBuilder::new(&connection)
 		.unwrap()
@@ -110,7 +106,7 @@ fn connect(nl_port: String) -> (Sender<OwnedMessage>, JoinHandle<()>) {
 				OwnedMessage::Text(data) => {
 					println!("Receive Loop Text: {:?}", data);
 					let tx_2 = tx_1.clone();
-					handle_message(tx_2, data);
+					handle_message(&nl_token, tx_2, data);
 				}
 				_ => println!("Receive Loop: {:?}", message)
 			}
@@ -120,10 +116,9 @@ fn connect(nl_port: String) -> (Sender<OwnedMessage>, JoinHandle<()>) {
     return (tx, receive_loop);
 }
 
-fn handle_message(tx: Sender<OwnedMessage>, message: String) {
+fn handle_message(nl_token: &String, tx: Sender<OwnedMessage>, message: String) {
 	if message.contains("event\":\"request_authentication\"") {
-		let args = Cli::parse();
-		authenticate(tx, args.nl_token);
+		authenticate(tx, nl_token.clone());
 	}
 }
 
@@ -151,7 +146,7 @@ fn authenticate(tx: Sender<OwnedMessage>, nl_token: String) {
                         \"event\": \"steamAuthToken\",\
                         \"data\": {:?}\
                     }}\
-                }}", &nl_token, &session_ticket));
+                }}", nl_token, &session_ticket));
                 match tx.send(message) {
                     Ok(()) => (),
                     Err(e) => {
@@ -190,7 +185,6 @@ fn authenticate(tx: Sender<OwnedMessage>, nl_token: String) {
 }
 
 fn main() {
-    let args = Cli::parse();
-    let (_tx, receive_loop) = connect(args.nl_port);
+    let (_tx, receive_loop) = connect();
 	let _ = receive_loop.join();
 }

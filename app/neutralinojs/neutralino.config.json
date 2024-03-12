@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/neutralinojs/neutralinojs/main/schemas/neutralino.config.schema.json",
   "applicationId": "stendhal_client",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "defaultMode": "window",
   "port": 0,
   "documentRoot": "/resources/",
@@ -55,7 +55,7 @@
     "resourcesPath": "/resources/",
     "extensionsPath": "/extensions/",
     "clientLibrary": "/resources/js/neutralino.js",
-    "binaryVersion": "4.15.0",
-    "clientVersion": "3.13.0"
+    "binaryVersion": "5.0.0",
+    "clientVersion": "5.0.1"
   }
 }
