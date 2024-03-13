@@ -23,18 +23,20 @@ import { ChatInputComponent } from "../ui/component/ChatInputComponent";
 
 export class ChatCompletionHelper {
 
-	/** Chat commands relating to players. */
+	/** Chat commands relating to players (tab completes player names). */
 	private readonly playerCommands: string[] = [
 		"add", "adminlevel", "alter", "alterkill", "alterquest",
 		"ban",
 		"gag",
-		"ignore", "inspectkill", "inspectquest",
+		"ignore", "inspect", "inspectkill", "inspectquest",
 		"jail",
 		"msg",
 		"profile",
 		"remove",
 		"summonat", "supporta", "supportanswer",
-		"teleport", "teleportto", "tell"
+		"teleport", "teleportto", "tell",
+		"unignore",
+		"where"
 	];
 
 	/** Chat commands available only for admins/GMs. */
@@ -47,6 +49,21 @@ export class ChatCompletionHelper {
 		"jail", "jailreport",
 		"script", "summon", "summonat", "supporta", "supportanswer",
 		"teleclickmode", "teleport", "teleportto", "tellall"
+	];
+
+	/** Chat commands not explicitly registered in SlashActionRepo. */
+	private readonly unlistedCommands: string[] = [
+		"destroy",
+		"ghostmode",
+		"info", "inspect", "invisible",
+		"jailreport",
+		"markscroll",
+		"name",
+		//"removedetail", // don't include this to prevent accidental loss of detail layer
+		"script",
+		"teleclickmode",
+		"unignore",
+		"where", "who"
 	];
 
 	/** Available chat commands. */
@@ -139,7 +156,7 @@ export class ChatCompletionHelper {
 		}
 		const excludes: string[] = ["/", "_default"];
 		const admin = marauroa.me && marauroa.me.isAdmin();
-		for (const cmd of Object.getOwnPropertyNames(SlashActionRepo.get()).sort()) {
+		for (const cmd of [...Object.getOwnPropertyNames(SlashActionRepo.get()), ...this.unlistedCommands].sort()) {
 			if (excludes.indexOf(cmd) > -1 || (this.adminCommands.indexOf(cmd) > -1 && !admin)) {
 				continue;
 			}
