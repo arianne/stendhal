@@ -410,7 +410,7 @@ div.logcolR {
 	pointer-events: none;
 }
 
-.background {
+.background, .background a {
 	background: var(--background-url);
 	color: var(--text-color);
 }
@@ -655,6 +655,12 @@ img.status-icon {
 img#click-indicator {
 	position: absolute;
 	display: none;
+}
+
+.limitedsize {
+	max-width: 70vw;
+	max-height: 70vh;
+	overflow: scroll;
 }
 
 @font-face {

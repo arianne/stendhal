@@ -19,6 +19,13 @@ export class AboutDialog extends DialogContentComponent {
 		this.child("#btn_config_close")!.addEventListener("click", () => {
 			this.close();
 		});
+		this.load();
+	}
+
+	async load() {
+		let response = await fetch("LICENSE.html");
+		let content = await response.text();
+		this.child("#license")!.innerHTML = content;
 	}
 
 	public override getConfigId(): string {

@@ -793,6 +793,7 @@
 				<include name="stendhal.html"/>
 				<include name="stendhal.css"/>
 				<include name="stendhal-compiled.js"/>
+				<include name="LICENSE.html"/>
 				<include name="favicon.ico"/>
 			</fileset>
 		</copy>
