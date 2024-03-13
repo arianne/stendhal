@@ -14,6 +14,7 @@ declare var stendhal: any;
 
 import { singletons } from "./SingletonRepo";
 
+import { AboutAction } from "./action/AboutAction";
 import { DebugAction } from "./action/DebugAction";
 import { OpenWebsiteAction } from "./action/OpenWebsiteAction";
 import { SettingsAction } from "./action/SettingsAction";
@@ -72,7 +73,7 @@ export class SlashActionRepo {
 		marauroa.clientFramework.sendAction(action);
 	}
 
-	"about" = new OpenWebsiteAction("https://stendhalgame.org/development/about.html");
+	"about" = new AboutAction();
 
 	"add": SlashAction = {
 		execute: (type: string, params: string[], remainder: string): boolean => {

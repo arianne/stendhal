@@ -72,6 +72,7 @@ export class ConfigManager {
 		"sound.sfx.volume": "100",
 		"speech.creature": "true",
 		"theme": "wood",
+		"window.about": "50,20",
 		"window.chest": "160,370",
 		"window.corpse": "160,370",
 		"window.menu": "150,20",
