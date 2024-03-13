@@ -91,6 +91,10 @@ export class ApplicationMenuDialog extends DialogContentComponent {
 					{
 						title: "Rules",
 						action: "rules",
+					},
+					{
+						title: "About",
+						action: "about",
 					}
 				]
 			},

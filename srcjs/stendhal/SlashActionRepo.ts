@@ -72,6 +72,8 @@ export class SlashActionRepo {
 		marauroa.clientFramework.sendAction(action);
 	}
 
+	"about" = new OpenWebsiteAction("https://stendhalgame.org/development/about.html");
+
 	"add": SlashAction = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			if (params == null) {
