@@ -26,6 +26,7 @@ Changelog
 *graphics*
 - redrawn placeholder tiles in Oni Palace
 - fixed some outfit errors
+- disabled unfinished weapon-style attack sprites
 
 *web client*
 - improved movement handling with on-screen joystick & direction pad

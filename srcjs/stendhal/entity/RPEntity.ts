@@ -26,7 +26,7 @@ import { SpeechBubble } from "../sprite/SpeechBubble";
 import { TextSprite } from "../sprite/TextSprite";
 
 import { BarehandAttackSprite } from "../sprite/action/BarehandAttackSprite";
-import { MeleeAttackSprite } from "../sprite/action/MeleeAttackSprite";
+//import { MeleeAttackSprite } from "../sprite/action/MeleeAttackSprite";
 import { RangedAttackSprite } from "../sprite/action/RangedAttackSprite";
 
 import { SoundManager } from "../ui/SoundManager";
@@ -765,18 +765,25 @@ export class RPEntity extends ActiveEntity {
 			this.attackSprite = new RangedAttackSprite(this, this.getAttackTarget()!,
 					Nature.VALUES[nature].color, weapon);
 		} else {
+			/* use generic "blade_strike" sprite until weapon sprite frames ready
 			if (typeof(weapon) === "undefined") {
 				weapon = "blade_strike";
 			}
 			if (weapon === "blade_strike" && nature == 0) {
+			*/
+			weapon = "blade_strike";
+			if (nature == 0) {
 				weapon += "_cut";
 			}
 			const imagePath = Nature.VALUES[nature].getWeaponPath(weapon);
+			/*
 			if (weapon.startsWith("blade_strike")) {
 				this.attackSprite = new BarehandAttackSprite(this, stendhal.data.sprites.get(imagePath));
 			} else {
 				this.attackSprite = new MeleeAttackSprite(this, imagePath);
 			}
+			*/
+			this.attackSprite = new BarehandAttackSprite(this, stendhal.data.sprites.get(imagePath));
 		}
 	}
 
