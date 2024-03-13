@@ -56,6 +56,7 @@ Changelog
 - fixed positioning of door sprites (-2_orril_lich_palace 84 108)
 - optional click/touch indicator
 - fixed difficult to move small floating windows
+- supports chat commands tab completion
 
 *desktop client (non-Java)*
 - experimental desktop interface for the web client using Neutralinojs

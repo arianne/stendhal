@@ -114,9 +114,6 @@ export class ChatCompletionHelper {
 			this.commandPrefix = parts[0].substring(1, parts[0].length);
 		}
 		this.commandIndex++;
-		if (this.commandIndex > this.chatCommands.length - 1) {
-			this.commandIndex = 0;
-		}
 		if (parts.length < 2) {
 			for (this.commandIndex; this.commandIndex < this.chatCommands.length; this.commandIndex++) {
 				const cmd = this.chatCommands[this.commandIndex];
@@ -124,6 +121,16 @@ export class ChatCompletionHelper {
 					chatInput.setText("/" + cmd);
 					break;
 				}
+			}
+			let lookahead = this.commandIndex + 1;
+			for (lookahead; lookahead < this.chatCommands.length; lookahead++) {
+				const cmd = this.chatCommands[lookahead];
+				if (cmd.startsWith(this.commandPrefix)) {
+					break;
+				}
+			}
+			if (lookahead > this.chatCommands.length - 1) {
+				this.commandIndex = 0;
 			}
 			return;
 		}
@@ -134,9 +141,6 @@ export class ChatCompletionHelper {
 			this.playerPrefix = parts[1];
 		}
 		this.playerIndex++;
-		if (this.playerIndex > stendhal.players.length - 1) {
-			this.playerIndex = 0;
-		}
 		for (this.playerIndex; this.playerIndex < stendhal.players.length; this.playerIndex++) {
 			const name = stendhal.players[this.playerIndex];
 			if (name.startsWith(this.playerPrefix)) {
@@ -145,6 +149,17 @@ export class ChatCompletionHelper {
 			}
 		}
 		chatInput.setText(parts.join(" "));
+		// FIXME: only cycles through names once
+		let lookahead = this.playerIndex + 1;
+		for (lookahead; lookahead < stendhal.players.length; lookahead++) {
+			const name = stendhal.players[lookahead];
+			if (name.startsWith(this.playerPrefix)) {
+				break;
+			}
+		}
+		if (lookahead > stendhal.players.length - 1) {
+			this.playerIndex = 0;
+		}
 	}
 
 	/**
