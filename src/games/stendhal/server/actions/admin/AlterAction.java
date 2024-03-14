@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -54,8 +54,8 @@ public class AlterAction extends AdministrationAction {
 
 			final String stat = action.get(STAT);
 
-			if ("name".equals(stat) && (changed instanceof Player)) {
-				logger.error("DENIED: Admin " + player.getName() + " trying to change player " + action.get(TARGET)
+			if ("name".equals(stat)) {
+				logger.error("DENIED: Admin " + player.getName() + " trying to change entity " + action.get(TARGET)
 						+ "'s name");
 				player.sendPrivateText("Sorry, name cannot be changed.");
 				return;

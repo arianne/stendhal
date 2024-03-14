@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -57,10 +57,9 @@ class AlterCreatureAction extends AdministrationAction {
 
 			if (parts.length != 5) {
 				logger.debug("Incorrect stats string for creature.");
-				player.sendPrivateText("/altercreature <id> name;atk;def;hp;xp - Use a - as a placeholder to keep default value.");
+				player.sendPrivateText("/altercreature <id> title;atk;def;hp;xp - Use a - as a placeholder to keep default value.");
 				return;
 			}
-
 
 			final Creature creature = (Creature) changed;
 			new GameEvent(player.getName(), ALTER, action.get(TARGET), stat).raise();
@@ -71,7 +70,7 @@ class AlterCreatureAction extends AdministrationAction {
 			final int newXP = MathHelper.parseIntDefault(parts[4], creature.getXP());
 
 			if(!"-".equals(parts[0])) {
-				creature.setName(parts[0]);
+				creature.setTitle(parts[0]);
 			}
 			creature.setAtk(newatk);
 			creature.setDef(newdef);
