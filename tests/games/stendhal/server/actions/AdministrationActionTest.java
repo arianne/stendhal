@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -530,7 +530,8 @@ public class AdministrationActionTest {
 
 		CommandCenter.execute(pl, action);
 
-		assertEquals("name", "newname", rat.getName());
+		assertEquals("name", "rat", rat.getName());
+		assertEquals("title", "newname", rat.getTitle());
 		assertEquals("atk", 5, rat.getAtk());
 		assertEquals("def", 6, rat.getDef());
 		assertEquals("hp", 7, rat.getHP());
@@ -540,7 +541,8 @@ public class AdministrationActionTest {
 
 		CommandCenter.execute(pl, action);
 
-		assertEquals("name", "newname", rat.getName());
+		assertEquals("name", "rat", rat.getName());
+		assertEquals("title", "newname", rat.getTitle());
 		assertEquals("atk", 5, rat.getAtk());
 		assertEquals("def", 6, rat.getDef());
 		assertEquals("hp", 100, rat.getHP());
