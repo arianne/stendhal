@@ -97,8 +97,6 @@ export class ChatCompletionHelper {
 
 	/**
 	 * Called when tab key is pressed while chat input has focus.
-	 *
-	 * FIXME: have to press tab twice at end of commands list
 	 */
 	onTabKey() {
 		const parts: string[] = [];
@@ -115,23 +113,13 @@ export class ChatCompletionHelper {
 		}
 		this.commandIndex++;
 		if (parts.length < 2) {
-			for (this.commandIndex; this.commandIndex < this.chatCommands.length; this.commandIndex++) {
-				const cmd = this.chatCommands[this.commandIndex];
-				if (cmd.startsWith(this.commandPrefix)) {
-					chatInput.setText("/" + cmd);
-					break;
-				}
-			}
-			let lookahead = this.commandIndex + 1;
-			for (lookahead; lookahead < this.chatCommands.length; lookahead++) {
-				const cmd = this.chatCommands[lookahead];
-				if (cmd.startsWith(this.commandPrefix)) {
-					break;
-				}
-			}
-			if (lookahead > this.chatCommands.length - 1) {
+			this.cycleNextCommand(parts);
+			if (this.commandIndex < 0 && this.chatCommands.length > 1) {
+				// restart from beginning of list
 				this.commandIndex = 0;
+				this.cycleNextCommand(parts);
 			}
+			chatInput.setText("/" + parts[0]);
 			return;
 		}
 		if (!stendhal.players || parts.length > 2 || this.playerCommands.indexOf(this.commandPrefix) < 0) {
@@ -141,24 +129,54 @@ export class ChatCompletionHelper {
 			this.playerPrefix = parts[1];
 		}
 		this.playerIndex++;
-		for (this.playerIndex; this.playerIndex < stendhal.players.length; this.playerIndex++) {
+		this.cycleNextPlayer(parts);
+		if (this.playerIndex < 0 && stendhal.players.length > 1) {
+			// restart from beginning of list
+			this.playerIndex = 0;
+			this.cycleNextPlayer(parts);
+		}
+		chatInput.setText(parts.join(" "));
+	}
+
+	/**
+	 * Iterates slash action commands for next matching instance.
+	 *
+	 * @param parts {string[]}
+	 *   Content to update chat input.
+	 */
+	private cycleNextCommand(parts: string[]) {
+		for (this.commandIndex; this.commandIndex < this.chatCommands.length + 1; this.commandIndex++) {
+			if (this.commandIndex >= this.chatCommands.length) {
+				// restart from beginning
+				this.commandIndex = -1;
+				break;
+			}
+			const cmd = this.chatCommands[this.commandIndex];
+			if (cmd.startsWith(this.commandPrefix!)) {
+				parts[0] = cmd;
+				break;
+			}
+		}
+	}
+
+	/**
+	 * Iterates player names for next matching instance.
+	 *
+	 * @param parts {string[]}
+	 *   Content to update chat input.
+	 */
+	private cycleNextPlayer(parts: string[]) {
+		for (this.playerIndex; this.playerIndex < stendhal.players.length + 1; this.playerIndex++) {
+			if (this.playerIndex >= stendhal.players.length) {
+				// restart from beginning
+				this.playerIndex = -1;
+				break;
+			}
 			const name = stendhal.players[this.playerIndex];
-			if (name.startsWith(this.playerPrefix)) {
+			if (name.startsWith(this.playerPrefix!)) {
 				parts[parts.length-1] = name;
 				break;
 			}
-		}
-		chatInput.setText(parts.join(" "));
-		// FIXME: only cycles through names once
-		let lookahead = this.playerIndex + 1;
-		for (lookahead; lookahead < stendhal.players.length; lookahead++) {
-			const name = stendhal.players[lookahead];
-			if (name.startsWith(this.playerPrefix)) {
-				break;
-			}
-		}
-		if (lookahead > stendhal.players.length - 1) {
-			this.playerIndex = 0;
 		}
 	}
 
