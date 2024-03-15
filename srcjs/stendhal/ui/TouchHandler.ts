@@ -54,7 +54,7 @@ export class TouchHandler {
 	/**
 	 * Checks for touch event.
 	 */
-	public isTouchEvent(evt: Event) {
+	public isTouchEvent(evt: Event): boolean {
 		return window["TouchEvent"] && evt instanceof TouchEvent;
 	}
 
