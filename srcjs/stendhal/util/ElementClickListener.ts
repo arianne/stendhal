@@ -50,7 +50,7 @@ export class ElementClickListener {
 		});
 		element.addEventListener("touchend", (evt: TouchEvent) => {
 			evt.preventDefault();
-			const target = stendhal.ui.html.extractTarget(evt, this.touchEngaged - 1);
+			const target = stendhal.ui.html.extractTarget(evt);
 			if (this.touchEngaged == evt.changedTouches.length && target == element && this.onClick) {
 				// FIXME: should veto if moved too much before release
 				this.onClick(evt);
