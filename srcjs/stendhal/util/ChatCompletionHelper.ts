@@ -108,7 +108,17 @@ export class ChatCompletionHelper {
 	onTabKey() {
 		const parts: string[] = [];
 		const chatInput = (ui.get(UIComponentEnum.ChatInput) as ChatInputComponent);
-		for (const p of chatInput.getText().split(" ")) {
+		let text = chatInput.getText();
+		let iterFailsafe = 0;
+		while (text.indexOf("  ") > -1) {
+			// remove extra whitepace to allow matching
+			text = text.replace(/  /, " ");
+			iterFailsafe++;
+			if (iterFailsafe > 999) {
+				break;
+			}
+		}
+		for (const p of text.split(" ")) {
 			parts.push(p);
 		}
 		if (parts.length == 0 || !parts[0].startsWith("/")) {
