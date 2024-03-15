@@ -15,6 +15,13 @@ declare var stendhal: any;
 import { RPEvent } from "./RPEvent";
 
 
+/**
+ * FIXME: doesn't appear to always receive logged on event(s) at time of client creation as
+ *        `stendhal.players` is sometimes empty event after `entity.User.User` instance is
+ *        created.
+ * NOTE:  So far have only noticed players on same map as user at login don't always register
+ *        a login event.
+ */
 export class PlayerLoggedOnEvent extends RPEvent {
 
 	public name!: string;

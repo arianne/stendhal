@@ -52,6 +52,15 @@ export class Player extends RPEntity {
 		} else if (["hp", "base_hp"].indexOf(key) !== -1) {
 			this.updateGroupStatus(true);
 		}
+
+		// partial workaround to issue with `event.PlayerLoggedOnEvent.PlayerLoggedOnEvent` not always
+		// being received
+		// NOTE: this may actually be a fix as so far I have only noticed players on same map as user
+		//       at time of login don't always invoke a "player_logged_on" event
+		if (key === "name" && stendhal.players.indexOf(value) < 0) {
+			stendhal.players.push(value);
+			stendhal.players = stendhal.players.sort();
+		}
 	}
 
 	override createTitleTextSprite() {

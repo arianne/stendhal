@@ -97,6 +97,13 @@ export class ChatCompletionHelper {
 
 	/**
 	 * Called when tab key is pressed while chat input has focus.
+	 *
+	 * FIXME: Sometimes fails to detect connected players. See FIXME note in
+	 *        `event.PlayerLoggedOnEvent`. `entity.Player.Player` will add to list when created but
+	 *        this is only a partial rememedy as only players on the same map as `entity.User.User`
+	 *        instance will be added.
+	 * NOTE:  So far have only noticed players on same map as user at login don't always register
+	 *        a login event.
 	 */
 	onTabKey() {
 		const parts: string[] = [];
@@ -109,6 +116,7 @@ export class ChatCompletionHelper {
 		}
 		this.parseChatCommands();
 		if (this.commandPrefix == undefined) {
+			// remove preceding forward slash
 			this.commandPrefix = parts[0].substring(1, parts[0].length);
 		}
 		this.commandIndex++;
@@ -166,6 +174,11 @@ export class ChatCompletionHelper {
 	 *   Content to update chat input.
 	 */
 	private cycleNextPlayer(parts: string[]) {
+		if (!stendhal.players.length) {
+			console.error("failed to detect available players");
+			this.playerIndex--;
+			return;
+		}
 		for (this.playerIndex; this.playerIndex < stendhal.players.length + 1; this.playerIndex++) {
 			if (this.playerIndex >= stendhal.players.length) {
 				// restart from beginning
