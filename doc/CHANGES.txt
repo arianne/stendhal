@@ -58,6 +58,7 @@ Changelog
 - fixed difficult to move small floating windows
 - supports chat commands tab completion
 - supports text highlighting in speech bubbles
+- fixed multi-touch support for item inventories
 
 *desktop client (non-Java)*
 - experimental desktop interface for the web client using Neutralinojs
