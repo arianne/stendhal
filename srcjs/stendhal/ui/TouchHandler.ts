@@ -14,17 +14,26 @@ declare var stendhal: any;
 import { Point } from "../util/Point";
 
 
+/**
+ * Manages touch events.
+ */
 export class TouchHandler {
 
+	/** Property denoting a touch is engaged. */
 	private touchEngaged = false;
 
+	/** Threshold determining if time between touch start & touch end represents a "long" touch. */
 	private readonly longTouchDuration = 300;
+	/** Time at which touch was engaged. */
 	private timestampTouchStart = 0;
+	/** Time at which touch was released. */
 	private timestampTouchEnd = 0;
+	/** Property denoting an object is being "held". */
 	private held = false;
 
-	// location when touch event began
+	/** Position on page when touch event began. */
 	private origin?: Point;
+	/** Number of pixels touch can move before being vetoed as a long touch or double tap. */
 	private readonly moveThreshold = 16;
 
 	/** Property for debugging. */
@@ -53,6 +62,11 @@ export class TouchHandler {
 
 	/**
 	 * Checks for touch event.
+	 *
+	 * @param evt {Event}
+	 *   Event to be checked.
+	 * @return {boolean}
+	 *   `true` if "evt" represents a `TouchEvent`.
 	 */
 	public isTouchEvent(evt: Event): boolean {
 		return window["TouchEvent"] && evt instanceof TouchEvent;
@@ -60,6 +74,11 @@ export class TouchHandler {
 
 	/**
 	 * Sets timestamp when touch applied.
+	 *
+	 * @param x {number}
+	 *   Touch position relative to page on X axis.
+	 * @param y {number}
+	 *   Touch position relative to page on Y axis.
 	 */
 	onTouchStart(x: number, y: number) {
 		this.timestampTouchStart = +new Date();
@@ -78,6 +97,9 @@ export class TouchHandler {
 
 	/**
 	 * Can be used to detect if a mouse event was triggered by touch.
+	 *
+	 * @return {boolean}
+	 *   Value of `ui.TouchHandler.TouchHandler.touchEngaged` property.
 	 */
 	isTouchEngaged(): boolean {
 		return this.touchEngaged;
@@ -85,6 +107,11 @@ export class TouchHandler {
 
 	/**
 	 * Checks if a touch event represents a long touch after release.
+	 *
+	 * @param evt {Event}
+	 *   Event object to be checked.
+	 * @return {boolean}
+	 *   `true` if touch was released after duration threshold.
 	 */
 	isLongTouch(evt?: Event): boolean {
 		if (evt && !this.isTouchEvent(evt)) {
