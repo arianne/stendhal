@@ -145,8 +145,6 @@ public class ClientView extends WebView {
 
 		initWebViewClient();
 		initDownloadHandler();
-		// initialize web client info JavaScript interface
-		WebClientInfo.get();
 	}
 
 	/**
@@ -218,7 +216,6 @@ public class ClientView extends WebView {
 				super.onPageFinished(view, url);
 				if (UrlHelper.isClientUrl(url)) {
 					setPage(PageId.WEBCLIENT);
-					WebClientInfo.get().onClientConnected();
 				} else if (url.equals("") || url.equals("about:blank")) {
 					setPage(PageId.TITLE);
 					if (PreferencesActivity.getBoolean("title_music", true)) {
