@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,11 +9,15 @@
  *                                                                         *
  ***************************************************************************/
 
-import { TextBubble } from "./TextBubble";
-import { RPEntity } from "../entity/RPEntity";
-import { Speech } from "../util/Speech";
-
 declare var stendhal: any;
+
+import { TextBubble } from "./TextBubble";
+
+import { RPEntity } from "../entity/RPEntity";
+
+import { Color } from "../util/Color";
+import { Pair } from "../util/Pair";
+import { Speech } from "../util/Speech";
 
 
 export class SpeechBubble extends TextBubble {
@@ -21,11 +25,17 @@ export class SpeechBubble extends TextBubble {
 	private entity: RPEntity;
 	private offsetY: number;
 
+	/** Formatted sections. */
+	private parts: Pair<string, string>[];
+
 
 	constructor(text: string, entity: RPEntity) {
 		text = text.replace(/\\\\/g, "\\");
 		super((text.length > 30) ? (text.substring(0, 30) + "...") : text);
 		this.entity = entity;
+
+		this.parts = [];
+		this.segregate(this.parts);
 
 		this.offsetY = 0;
 		// find free text bubble position
@@ -44,8 +54,8 @@ export class SpeechBubble extends TextBubble {
 	override draw(ctx: CanvasRenderingContext2D): boolean {
 		ctx.lineWidth = 2;
 		ctx.font = "14px Arial";
-		ctx.fillStyle = '#ffffff';
-		ctx.strokeStyle = "#000000";
+		ctx.fillStyle = Color.WHITE;
+		ctx.strokeStyle = Color.BLACK;
 
 		if (this.width < 0 || this.height < 0) {
 			// get width of text
@@ -53,11 +63,17 @@ export class SpeechBubble extends TextBubble {
 			this.height = 20;
 		}
 
-		const x = this.getX(), y = this.getY();
+		let x = this.getX(), y = this.getY();
 		Speech.drawBubbleRounded(ctx, x, y, this.width, this.height);
 
-		ctx.fillStyle = "#000000";
-		ctx.fillText(this.text, x + 4, y + TextBubble.adjustY);
+		x += 4;
+		ctx.save();
+		for (const p of this.parts) {
+			ctx.fillStyle = p.first;
+			ctx.fillText(p.second, x, y + TextBubble.adjustY);
+			x += ctx.measureText(p.second).width;
+		}
+		ctx.restore();
 
 		return this.expired();
 	}

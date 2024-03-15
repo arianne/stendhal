@@ -11,6 +11,9 @@
 
 declare var stendhal: any;
 
+import { Color } from "../util/Color";
+import { Pair } from "../util/Pair";
+
 
 export abstract class TextBubble {
 
@@ -177,5 +180,54 @@ export abstract class TextBubble {
 	 */
 	expired(): boolean {
 		return Date.now() >= this.timeStamp + this.duration;
+	}
+
+	/**
+	 * Identifies indexes for formatting & removes symbols from text.
+	 *
+	 * @param parts {util.Pair.Pair[]}
+	 *   Array to be populated.
+	 * @param defaultColor {string}
+	 *   Unformatted text color (default: `util.Color.Color.CHAT_NORMAL`).
+	 */
+	protected segregate(parts: Pair<string, string>[], defaultColor=Color.CHAT_NORMAL) {
+		let fillStyle = defaultColor;
+		let inHighlight = false, inHighlightQuote = false;
+		let idxStart = 0, idxEnd = 0;
+		for (idxEnd; idxEnd < this.text.length; idxEnd++) {
+			if (inHighlightQuote && this.text[idxEnd] === "'") {
+				inHighlightQuote = false;
+				inHighlight = false;
+				parts.push(new Pair(fillStyle, this.text.substring(idxStart, idxEnd)));
+				idxEnd++;
+				idxStart = idxEnd;
+				fillStyle = defaultColor;
+			} else if (!inHighlightQuote && inHighlight && this.text[idxEnd] === " ") {
+				inHighlight = false;
+				parts.push(new Pair(fillStyle, this.text.substring(idxStart, idxEnd)));
+				idxStart = idxEnd;
+				fillStyle = defaultColor;
+			} else if (this.text[idxEnd] === "#") {
+				inHighlight = true;
+				if (idxEnd > idxStart) {
+					parts.push(new Pair(fillStyle, this.text.substring(idxStart, idxEnd)));
+				}
+				fillStyle = Color.CHAT_HIGHLIGHT;
+				if (this.text[idxEnd+1] === "'") {
+					inHighlightQuote = true;
+					idxEnd++;
+				}
+				idxStart = idxEnd+1;
+			}
+		}
+		if (idxEnd > idxStart) {
+			// remainder
+			parts.push(new Pair(fillStyle, this.text.substring(idxStart, idxEnd)));
+		}
+		// remove symbols
+		this.text = "";
+		for (const p of parts) {
+			this.text += p.second;
+		}
 	}
 }

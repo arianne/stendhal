@@ -69,6 +69,7 @@ export class Color {
 	public static readonly CHAT_ERROR = Color.RED;
 	public static readonly CHAT_GROUP = "rgb(00, 00, 160)"; // #0000A0 (dark blue)
 	public static readonly CHAT_HEAL = Color.GREEN;
+	public static readonly CHAT_HIGHLIGHT = Color.BLUE;
 	public static readonly CHAT_INFO = Color.ORANGE;
 	public static readonly CHAT_NEGATIVE = Color.RED;
 	public static readonly CHAT_NORMAL = Color.BLACK;

@@ -57,6 +57,7 @@ Changelog
 - optional click/touch indicator
 - fixed difficult to move small floating windows
 - supports chat commands tab completion
+- supports text highlighting in speech bubbles
 
 *desktop client (non-Java)*
 - experimental desktop interface for the web client using Neutralinojs
