@@ -318,13 +318,13 @@ export class ItemContainerImplementation {
 		if (this.timestampMouseDown - this.timestampMouseDownPrev <= this.rightClickDuration) {
 			// reset so subsequent single clicks/taps aren't counted
 			this.timestampMouseDown = 0;
-			return (stendhal.ui.html.extractTarget(event) as HTMLElement).id === this.lastClickedId;
+			return (stendhal.ui.html.extractTarget(evt) as HTMLElement).id === this.lastClickedId;
 		}
-		this.lastClickedId = (stendhal.ui.html.extractTarget(event) as HTMLElement).id;
+		this.lastClickedId = (stendhal.ui.html.extractTarget(evt) as HTMLElement).id;
 		return false;
 	}
 
-	onMouseDown(event: MouseEvent|TouchEvent) {
+	onMouseDown(evt: MouseEvent|TouchEvent) {
 		this.timestampMouseDownPrev = this.timestampMouseDown;
 		this.timestampMouseDown = +new Date();
 	}
