@@ -298,6 +298,9 @@ export class ItemContainerImplementation {
 			}
 		}
 
+		// clean up item held via touch
+		stendhal.ui.touch.setHolding(false);
+
 		event.stopPropagation();
 		event.preventDefault();
 	}
@@ -335,10 +338,10 @@ export class ItemContainerImplementation {
 		}
 
 		// workaround to prevent accidentally using items when disengaging joystick
-		// FIXME: a global solution would be better
-		if (stendhal.ui.gamewindow.joystick && stendhal.ui.gamewindow.joystick.isEngaged()) {
-			return;
-		}
+		// no longer needed after fixing multi-touch support (tested on Windows touch-enabled device)
+		//~ if (stendhal.ui.gamewindow.joystick && stendhal.ui.gamewindow.joystick.isEngaged()) {
+			//~ return;
+		//~ }
 
 		let event = stendhal.ui.html.extractPosition(evt);
 		if ((event.target as any).dataItem) {
@@ -357,7 +360,7 @@ export class ItemContainerImplementation {
 
 			if (this.isRightClick(event) || long_touch) {
 				const append = [];
-				if (window['TouchEvent'] && evt instanceof TouchEvent && long_touch) {
+				if (long_touch) {
 					// XXX: better way to pass instance to action function?
 					const tmp = this;
 					// action to "hold" item for moving or dropping using touch
@@ -365,7 +368,7 @@ export class ItemContainerImplementation {
 					append.push({
 						title: "Hold",
 						action: function(entity: any) {
-							tmp.onDragStart(evt);
+							tmp.onDragStart(evt as TouchEvent);
 						}
 					});
 				}
@@ -398,21 +401,25 @@ export class ItemContainerImplementation {
 	}
 
 	private onTouchStart(evt: TouchEvent) {
+		// prevent default "mousedown" so we can call its handler manually
+		evt.preventDefault();
+
 		const pos = stendhal.ui.html.extractPosition(evt);
 		stendhal.ui.touch.onTouchStart(pos.pageX, pos.pageY);
+		this.onMouseDown(evt);
 	}
 
 	private onTouchEnd(evt: TouchEvent) {
-		stendhal.ui.touch.onTouchEnd();
-		if (stendhal.ui.touch.isLongTouch(evt) && !stendhal.ui.touch.holding()) {
-			this.onMouseUp(evt);
-		} else if (stendhal.ui.touch.holding()) {
-			evt.preventDefault();
+		// prevent default "mouseup" so we can call its handler manually
+		evt.preventDefault();
 
+		stendhal.ui.touch.onTouchEnd();
+		if (stendhal.ui.touch.holding()) {
 			this.onDrop(evt);
-			stendhal.ui.touch.setHolding(false);
+		} else {
+			this.onMouseUp(evt);
 		}
-		// clean up held object & touch handler
+		// clean up touch handler
 		stendhal.ui.touch.unsetOrigin();
 	}
 
