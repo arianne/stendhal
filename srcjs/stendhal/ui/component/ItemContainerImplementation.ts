@@ -357,7 +357,7 @@ export class ItemContainerImplementation {
 
 			if (this.isRightClick(event) || long_touch) {
 				const append = [];
-				if (window['TouchEvent'] && evt instanceof TouchEvent && long_touch) {
+				if (long_touch) {
 					// XXX: better way to pass instance to action function?
 					const tmp = this;
 					// action to "hold" item for moving or dropping using touch
@@ -365,7 +365,7 @@ export class ItemContainerImplementation {
 					append.push({
 						title: "Hold",
 						action: function(entity: any) {
-							tmp.onDragStart(evt);
+							tmp.onDragStart(evt as TouchEvent);
 						}
 					});
 				}
