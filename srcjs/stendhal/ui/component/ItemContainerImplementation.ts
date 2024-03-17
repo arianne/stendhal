@@ -433,6 +433,11 @@ export class ItemContainerImplementation {
 	 */
 	private updateCursor(target: HTMLElement, item?: Item) {
 		if (item) {
+			if (this.slot === "content" && stendhal.config.getBoolean("inventory.quick-pickup")) {
+				target.style.cursor = "url(" + stendhal.paths.sprites
+						+ "/cursor/itempickupfromslot.png) 1 3, auto";
+				return;
+			}
 			target.style.cursor = item.getCursor(0, 0);
 			return;
 		}
