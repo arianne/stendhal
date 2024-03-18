@@ -194,6 +194,7 @@ public class Menu {
 			}
 		});
 
+		/*
 		final Button btn_about = (Button) activity.findViewById(R.id.btn_about);
 		btn_about.setOnClickListener(new ClickListener() {
 			@Override
@@ -244,6 +245,7 @@ public class Menu {
 				builder.create().show();
 			}
 		});
+		*/
 
 		final Button btn_quit = (Button) activity.findViewById(R.id.btn_quit);
 		btn_quit.setOnClickListener(new ClickListener() {
