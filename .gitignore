@@ -40,7 +40,6 @@ javadocs
 statserver_stats.xml
 /*.ks
 build_client_data
-/bin
 .byecycle
 build_server_xmlconf
 *.umlproject
