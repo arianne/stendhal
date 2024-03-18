@@ -30,7 +30,7 @@ export interface HeldObject {
 /**
  * Handles displaying held object image.
  *
- * Currently only works with touch events & does not follow pointer/touch.
+ * Currently only works with touch events.
  */
 export class HeldObjectManager {
 
