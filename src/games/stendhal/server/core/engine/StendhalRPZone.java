@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Marauroa                    *
+ *                   (C) Copyright 2003-2024 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -165,45 +165,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/** Zones that some event types propagate to from this one. */
 	private String associatedZones;
 
-	/** Facing directions for portals. */
-	private final int UP_FN = 8;
-	private final int UP_FE = 9;
-	private final int UP_FS = 10;
-	private final int UP_FW = 11;
-	private final int DOWN_FN = 12;
-	private final int DOWN_FE = 13;
-	private final int DOWN_FS = 14;
-	private final int DOWN_FW = 15;
-	private final int UP_FN_CM = 16;
-	private final int UP_FE_CM = 17;
-	private final int UP_FS_CM = 18;
-	private final int UP_FW_CM = 19;
-	private final int DOWN_FN_CM = 20;
-	private final int DOWN_FE_CM = 21;
-	private final int DOWN_FS_CM = 22;
-	private final int DOWN_FW_CM = 23;
-	private final List<Integer> stairsUp = new ArrayList<Integer>() {{
-		add(2);
-		add(UP_FN);
-		add(UP_FE);
-		add(UP_FS);
-		add(UP_FW);
-		add(UP_FN_CM);
-		add(UP_FE_CM);
-		add(UP_FS_CM);
-		add(UP_FW_CM);
-	}};
-	private final List<Integer> stairsDown = new ArrayList<Integer>() {{
-		add(3);
-		add(DOWN_FN);
-		add(DOWN_FE);
-		add(DOWN_FS);
-		add(DOWN_FW);
-		add(DOWN_FN_CM);
-		add(DOWN_FE_CM);
-		add(DOWN_FS_CM);
-		add(DOWN_FW_CM);
-	}};
 
 	public StendhalRPZone(final String name) {
 		super(name);
@@ -649,7 +610,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		try {
 			if (clazz.contains("logic/portal")) {
-				if (stairsUp.contains(type) || stairsDown.contains(type) || (type == ONE_WAY_PORTAL_DESTINATION)) {
+				if (StairsIndex.up.contains(type) || StairsIndex.down.contains(type) || (type == ONE_WAY_PORTAL_DESTINATION)) {
 					createLevelPortalAt(type, x, y);
 				} else {
 					switch (type) {
@@ -734,39 +695,39 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 			switch (type) {
 
-			case UP_FN:
-			case DOWN_FN:
+			case StairsIndex.UP_FN:
+			case StairsIndex.DOWN_FN:
 				portal.setFaceDirection(Direction.UP);
 				break;
-			case UP_FE:
-			case DOWN_FE:
+			case StairsIndex.UP_FE:
+			case StairsIndex.DOWN_FE:
 				portal.setFaceDirection(Direction.RIGHT);
 				break;
-			case UP_FS:
-			case DOWN_FS:
+			case StairsIndex.UP_FS:
+			case StairsIndex.DOWN_FS:
 				portal.setFaceDirection(Direction.DOWN);
 				break;
-			case UP_FW:
-			case DOWN_FW:
+			case StairsIndex.UP_FW:
+			case StairsIndex.DOWN_FW:
 				portal.setFaceDirection(Direction.LEFT);
 				break;
-			case UP_FN_CM:
-			case DOWN_FN_CM:
+			case StairsIndex.UP_FN_CM:
+			case StairsIndex.DOWN_FN_CM:
 				portal.setFaceDirection(Direction.UP);
 				portal.put(MOVE_CONTINUOUS, "");
 				break;
-			case UP_FE_CM:
-			case DOWN_FE_CM:
+			case StairsIndex.UP_FE_CM:
+			case StairsIndex.DOWN_FE_CM:
 				portal.setFaceDirection(Direction.RIGHT);
 				portal.put(MOVE_CONTINUOUS, "");
 				break;
-			case UP_FS_CM:
-			case DOWN_FS_CM:
+			case StairsIndex.UP_FS_CM:
+			case StairsIndex.DOWN_FS_CM:
 				portal.setFaceDirection(Direction.DOWN);
 				portal.put(MOVE_CONTINUOUS, "");
 				break;
-			case UP_FW_CM:
-			case DOWN_FW_CM:
+			case StairsIndex.UP_FW_CM:
+			case StairsIndex.DOWN_FW_CM:
 				portal.setFaceDirection(Direction.LEFT);
 				portal.put(MOVE_CONTINUOUS, "");
 				break;
@@ -798,12 +759,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 			/*
 			 * Portals in the correct direction?
 			 */
-			if (stairsUp.contains(type)) {
+			if (StairsIndex.up.contains(type)) {
 				/* portal stairs up */
 				if ((zone.getLevel() - getLevel()) != 1) {
 					continue;
 				}
-			} else if (stairsDown.contains(type)) {
+			} else if (StairsIndex.down.contains(type)) {
 				/* portal stairs down */
 				if ((zone.getLevel() - getLevel()) != -1) {
 					continue;
