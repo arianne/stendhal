@@ -15,6 +15,9 @@ import { TabDialogContentComponent } from "../toolkit/TabDialogContentComponent"
 import { Layout } from "../../util/Layout";
 
 
+/**
+ * Dialog displaying licensing and contributor information.
+ */
 export class AboutDialog extends TabDialogContentComponent {
 
 	constructor() {
@@ -23,6 +26,11 @@ export class AboutDialog extends TabDialogContentComponent {
 		this.addTab("License", new Panel(this.child("#license")!));
 		this.addTab("Contributors", new Panel(this.child("#contributors")!));
 		this.addCloseButton();
+
+		this.child("#aboutdialog-content")!.addEventListener("contextmenu", (evt: MouseEvent) => {
+			// allow browser context menu in about dialog
+			evt.stopPropagation();
+		});
 
 		this.load();
 	}
