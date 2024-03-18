@@ -1,4 +1,12 @@
 
+app/android/client/src/main/res/raw/
+
+title_01.ogg (Treasure Hunter)    Tad Miller (TAD); CC0; https://opengameart.org/node/127124
+title_02.ogg (Woodland Fantasy)   Matthew Pablo; CC BY 3.0; https://opengameart.org/node/31929, https://matthewpablo.com/
+title_03.ogg (Land of Fearless)   Alexandr Zhelanov; CC BY 4.0; https://opengameart.org/node/79931, https://soundcloud.com/alexandr-zhelanov
+title_04.ogg (Rejoicing)          RandomMind; CC0; https://opengameart.org/node/100213
+title_05.ogg (The Old Tower Inn)  RandomMind; CC0; https://opengameart.org/node/87510
+
 data/music/
 
 a_weird_place.ogg               Storyteller; GPL
