@@ -102,6 +102,14 @@ export class SettingsDialog extends DialogContentComponent {
 		this.createCheckBox("chk_hidechat", "chat.autohide",
 				"Chat panel will be hidden after sending text", "Chat panel will remain on-screen");
 
+		// FIXME: are there unique properties for pinch & tap zooming?
+		this.createCheckBox("chk_zoom", "zoom.touch",
+				"Touch zooming enabled (may not work with all browsers)",
+				"Touch zooming disabled (may not work with all browsers)",
+				function() {
+					stendhal.session.update();
+				});
+
 
 		/* *** center panel *** */
 

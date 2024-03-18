@@ -130,9 +130,9 @@ public class ClientView extends WebView {
 		viewSettings.setLoadWithOverviewMode(true);
 		viewSettings.setUseWideViewPort(true);
 
-		// disable zoom
-		viewSettings.setSupportZoom(false);
-		viewSettings.setBuiltInZoomControls(false);
+		// zoom controls
+		viewSettings.setSupportZoom(true);
+		viewSettings.setBuiltInZoomControls(true);
 		viewSettings.setDisplayZoomControls(false);
 
 		// allow autoplay of music

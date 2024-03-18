@@ -80,7 +80,8 @@ export class ConfigManager {
 		"window.settings": "20,20",
 		"window.shortcuts": "20,20",
 		"window.trade": "200,100",
-		"window.travel-log": "160,50"
+		"window.travel-log": "160,50",
+		"zoom.touch": "false"
 	};
 
 	/**
