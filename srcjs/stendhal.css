@@ -8,11 +8,6 @@
 	overflow: hidden;
 }
 
-/* disable double-tap zoom in browsers that support it */
-html {
-	touch-action: pan-x pan-y; /* manipulation does not work in Chrome */
-}
-
 /* disable pull down refresh in browsers that support it */
 html, body {
 	overscroll-behavior: none;

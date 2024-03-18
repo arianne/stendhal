@@ -75,6 +75,8 @@ export class SessionManager {
 			}
 			this.set(key, value);
 		}
+
+		this.update();
 	}
 
 	/**
@@ -173,6 +175,19 @@ export class SessionManager {
 	 */
 	getCharName(): string {
 		return this.charname || "";
+	}
+
+	/**
+	 * Syncs inteface with updated settings.
+	 */
+	update() {
+		if (stendhal.config.getBoolean("zoom.touch")) {
+			document.documentElement.style.removeProperty("touch-action");
+		} else {
+			// disable double-tap zoom in browsers that support it
+			// NOTE: "manipulation" does not work in Chrome
+			document.documentElement.style.setProperty("touch-action", "pan-x pan-y");
+		}
 	}
 
 	/**
