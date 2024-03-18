@@ -506,6 +506,8 @@ export class SoundManager {
 	/**
 	 * Stops all currently playing sounds.
 	 *
+	 * NOTE: this if for map changes & should not include single global music instance
+	 *
 	 * @param includeGui {boolean}
 	 *   If `true`, sounds on the gui layer will stopped as well (default: false).
 	 * @return {boolean}
@@ -541,6 +543,11 @@ export class SoundManager {
 				muted = muted && snd.muted;
 			}
 		}
+		// global music is not tracked in layer array
+		if (this.globalMusic) {
+			this.globalMusic.muted = true;
+			muted = muted && this.globalMusic.muted;
+		}
 		return muted;
 	}
 
@@ -557,6 +564,11 @@ export class SoundManager {
 				snd.muted = false;
 				unmuted = unmuted && !snd.paused && !snd.muted;
 			}
+		}
+		// global music is not tracked in layer array
+		if (this.globalMusic) {
+			this.globalMusic.muted = false;
+			unmuted = unmuted && !this.globalMusic.paused && !this.globalMusic.muted;
 		}
 		return unmuted;
 	}
@@ -679,6 +691,10 @@ export class SoundManager {
 					this.applyAdjustedVolume(layerName, snd);
 				}
 			}
+		}
+		// global music is not tracked in layer array
+		if (this.globalMusic && (layerName === "music" || layerName === "master")) {
+			this.applyAdjustedVolume(layerName, this.globalMusic);
 		}
 		return true;
 	}
