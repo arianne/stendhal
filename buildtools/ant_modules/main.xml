@@ -14,11 +14,11 @@
 			match="out.println\(&quot;server_version=.*&quot;\);"
 			replace="out.println(&quot;server_version=${version}&quot;);"
 			byline="true"/>
-		<replaceregexp file="bin/runserver.bat"
+		<replaceregexp file="sbin/runserver.bat"
 			match="STENDHAL_VERSION=.*"
 			replace="STENDHAL_VERSION=${version}"
 			byline="true"/>
-		<replaceregexp file="bin/runserver.sh"
+		<replaceregexp file="sbin/runserver.sh"
 			match="STENDHAL_VERSION ?= ?&quot;.*&quot;"
 			replace="STENDHAL_VERSION=&quot;${version}&quot;"
 			byline="true"/>

@@ -74,8 +74,8 @@
 
 		<copy todir="${buildroot}/stendhal-${version}-src" file="README.md"/>
 		<copy todir="${buildroot}/stendhal-${version}-src" file="LICENSE.txt"/>
-		<copy todir="${buildroot}/stendhal-${version}-src/bin" file="bin/runserver.bat"/>
-		<copy todir="${buildroot}/stendhal-${version}-src/bin" file="bin/runserver.sh"/>
+		<copy todir="${buildroot}/stendhal-${version}-src/sbin" file="sbin/runserver.bat"/>
+		<copy todir="${buildroot}/stendhal-${version}-src/sbin" file="sbin/runserver.sh"/>
 		<copy todir="${buildroot}/stendhal-${version}-src/lib">
 			<fileset dir="libs">
 				<include name="*.txt"/>
@@ -354,8 +354,8 @@
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${server_jarname}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${maps_jarname}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${xmlconf_jarname}"/>
-		<copy todir="${buildroot}/stendhal-server-${version}" file="bin/runserver.sh"/>
-		<copy todir="${buildroot}/stendhal-server-${version}" file="bin/runserver.bat"/>
+		<copy todir="${buildroot}/stendhal-server-${version}" file="sbin/runserver.sh"/>
+		<copy todir="${buildroot}/stendhal-server-${version}" file="sbin/runserver.bat"/>
 		<copy todir="${buildroot}/stendhal-server-${version}/libs">
 			<fileset dir="libs"/>
 		</copy>
