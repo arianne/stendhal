@@ -2320,6 +2320,7 @@ You should never dive with a cold or severe allergy because, you may not be able
 
 		<portal x="4" y="4" ref="upstairs">
 			<destination zone="int_ados_town_hall_1" ref="downstairs"/>
+			<attribute name="move.continuous"/>
 		</portal>
 
 		<!-- Signs -->
