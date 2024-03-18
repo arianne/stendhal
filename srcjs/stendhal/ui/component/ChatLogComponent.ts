@@ -36,6 +36,16 @@ export class ChatLogComponent extends Component {
 		this.componentElement.addEventListener("mouseup", (evt: MouseEvent) => {
 			this.onContextMenu(evt)
 		});
+		this.componentElement.addEventListener("touchstart", (evt: TouchEvent) => {
+			const pos = stendhal.ui.html.extractPosition(evt);
+			stendhal.ui.touch.onTouchStart(pos.pageX, pos.pageY);
+		});
+		this.componentElement.addEventListener("touchend", (evt: TouchEvent) => {
+			stendhal.ui.touch.onTouchEnd();
+			this.onContextMenu(evt)
+			// clean up
+			stendhal.ui.touch.unsetOrigin();
+		});
 
 		this.scrollListener = (evt: Event) => {
 			this.onScroll();
@@ -439,9 +449,21 @@ export class ChatLogComponent extends Component {
 
 	/**
 	 * Handles creating a custom context menu with options "Clear" & "Copy".
+	 *
+	 * FIXME: text highlighting interferes with opening context menu with touch
+	 *
+	 * @param evt {any}
+	 *   Mouse or touch event.
 	 */
-	private onContextMenu(evt: MouseEvent) {
-		if (!evt || evt.button != 2 || stendhal.ui.actionContextMenu.isOpen()) {
+	private onContextMenu(evt: any) {
+		if (!evt || stendhal.ui.actionContextMenu.isOpen()) {
+			return;
+		}
+		if (evt.type === "mouseup" && evt.button != 2) {
+			return;
+		}
+		if (evt.type === "touchend" && !stendhal.ui.touch.isLongTouch(evt)) {
+			evt.preventDefault();
 			return;
 		}
 

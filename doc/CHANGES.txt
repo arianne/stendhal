@@ -58,6 +58,7 @@ Changelog
 - fixed difficult to move small floating windows
 - supports chat commands tab completion
 - supports text highlighting in speech bubbles
+- fixed opening chat log context menu with touch
 
 *desktop client (non-Java)*
 - experimental desktop interface for the web client using Neutralinojs
