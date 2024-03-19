@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2015-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2015-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -20,13 +20,15 @@ export class Panel extends Component {
 	protected children: Component[] = [];
 
 	/**
-	 * creates a new panel
+	 * Creates a new panel.
 	 *
-	 * @param id id of HTML element or template
+	 * @param el
+	 *   DOM element or ID of HTML element or template.
 	 * @param themable
+	 *   Inherits theming visuals (default: `false`).
 	 */
-	constructor(id: string, themable=false) {
-		super(id, themable);
+	constructor(el: string|HTMLElement, themable=false) {
+		super(el, themable);
 		this.containerElement = this.componentElement;
 	}
 
