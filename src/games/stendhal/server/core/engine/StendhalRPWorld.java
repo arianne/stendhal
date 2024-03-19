@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2024 - Marauroa                    *
+ *                      (C) Copyright 2003 - Marauroa                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -39,7 +39,17 @@ public class StendhalRPWorld extends RPWorld {
 	/** The singleton instance. */
 	protected static StendhalRPWorld instance;
 
-	public final static String MAPS_FOLDER = "data/maps/";
+	public final static String MAPS_FOLDER;
+
+	static {
+		if (StendhalRPWorld.class.getClassLoader().getResource(
+				"tiled/tileset/README") == null) {
+			MAPS_FOLDER = "data/maps/";
+		} else {
+			logger.warn("Developing mode, loading maps from tiled/ instead of data/maps");
+			MAPS_FOLDER = "tiled/";
+		}
+	}
 
 	/**
 	 * A common place for milliseconds per turn.

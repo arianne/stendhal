@@ -65,7 +65,12 @@
 
 		<copy todir="${buildroot}/stendhal-${version}-src/data">
 			<fileset dir="data">
-				<exclude name="maps/world/**"/>
+			</fileset>
+		</copy>
+
+		<copy todir="${buildroot}/stendhal-${version}-src/tiled">
+			<fileset dir="${tiled}">
+				<exclude name="world/**"/>
 			</fileset>
 		</copy>
 
@@ -118,7 +123,7 @@
 			</fileset>
 		</copy>
 		<copy todir="${build_client_data}/data/tileset">
-			<fileset dir="${maps}/tileset">
+			<fileset dir="${tiled}/tileset">
 				<exclude name="**/*.bz2"/>
 				<exclude name="**/*.gz"/>
 				<exclude name="**/*.psd"/>
@@ -259,7 +264,7 @@
 		</javac>
 
 		<copy todir="${build_server_maps}/data/maps">
-			<fileset dir="${maps}">
+			<fileset dir="${tiled}">
 				<include name="**/*.tmx"/>
 			</fileset>
 		</copy>
@@ -812,7 +817,7 @@
 		</copy>
 
 		<replaceregexp file="${build_webclient}/stendhal.html"
-				match="data-tileset-path=&quot;/data/maps/tileset&quot;"
+				match="data-tileset-path=&quot;/tileset&quot;"
 				replace="data-tileset-path=&quot;/data/tileset&quot;"
 				byline="false"/>
 

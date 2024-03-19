@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2024 - Stendhal                     *
+ *                    Copyright © 2003-2023 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,7 +22,7 @@ export class Paths {
 	public static readonly sprites = Paths.data + "/sprites";
 	public static readonly weather = Paths.sprites + "/weather";
 	public static readonly achievements = Paths.sprites + "/achievements";
-	public static readonly tileset = Paths.data + "/maps/tileset";
+	public static readonly tileset = Paths.extractPath("data-tileset-path");
 	public static readonly ws = Paths.extractPath("data-ws");
 
 	/**
