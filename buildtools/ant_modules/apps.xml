@@ -19,7 +19,7 @@
 		<!--
 			To setup up the development environment on Linux:
 			curl https://sh.rustup.rs -sSf | sh
-			apt-get install mingw-w64
+			apt-get install build-essential libssl-dev pkg-config mingw-w64
 			cargo install cargo-license
 			rustup target add x86_64-pc-windows-gnu
 		-->
@@ -57,7 +57,9 @@
 		</chmod>
 	</target>
 
-
+	<!--
+	npm install -g @neutralinojs/neu
+	-->
 	<available file="app/neutralinojs/bin/neutralino-linux_x64" property="neutralinojs.present" />
 	<target name="prepare-neutralinojs" unless="neutralinojs.present">
 		<exec executable="neu" dir="app/neutralinojs" failonerror="true">
