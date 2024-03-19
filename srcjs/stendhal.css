@@ -655,7 +655,8 @@ img#click-indicator {
 .limitedsize {
 	max-width: 70vw;
 	max-height: 70vh;
-	overflow: scroll;
+	overflow-x: auto;
+	overflow-y: scroll;
 }
 
 @font-face {
