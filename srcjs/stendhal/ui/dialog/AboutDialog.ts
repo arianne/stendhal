@@ -10,6 +10,8 @@
  ***************************************************************************/
 
 import { DialogContentComponent } from "../toolkit/DialogContentComponent";
+import { Panel } from "../toolkit/Panel";
+import { TabPanelComponent } from "../toolkit/TabPanelComponent";
 
 
 export class AboutDialog extends DialogContentComponent {
@@ -19,6 +21,16 @@ export class AboutDialog extends DialogContentComponent {
 		this.child("#btn_config_close")!.addEventListener("click", () => {
 			this.close();
 		});
+
+		const tabs = new TabPanelComponent();
+		tabs.addTab("License");
+		const licenseTab = new Panel(this.child("#license")!);
+		tabs.add(licenseTab);
+		tabs.addTab("Contributors");
+		const contribsTab = new Panel(this.child("#contributors")!);
+		tabs.add(contribsTab);
+		this.child("#aboutdialog-content")!.appendChild(tabs.componentElement);
+
 		this.load();
 	}
 
@@ -26,6 +38,10 @@ export class AboutDialog extends DialogContentComponent {
 		let response = await fetch("LICENSE.html");
 		let content = await response.text();
 		this.child("#license")!.innerHTML = content;
+
+		let response2 = await fetch("contributors.html");
+		let content2 = await response2.text();
+		this.child("#contributors")!.innerHTML = content2;
 	}
 
 	public override getConfigId(): string {
