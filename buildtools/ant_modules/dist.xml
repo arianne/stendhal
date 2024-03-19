@@ -662,23 +662,6 @@
 
 	<!-- START: web client -->
 
-	<target name="js-prepare-contribs">
-		<!-- convert contributors markdown to HTML -->
-		<exec executable="npm${executable.suffix}" failonerror="true">
-			<arg value="install"/>
-			<arg value="showdown"/>
-			<arg value="--no-save"/>
-		</exec>
-		<exec executable="npx${executable.suffix}" failonerror="true">
-			<arg value="showdown"/>
-			<arg value="makehtml"/>
-			<arg value="--input"/>
-			<arg value="doc/contributors.md"/>
-			<arg value="--output"/>
-			<arg value="${srcjs}/contributors.html"/>
-		</exec>
-	</target>
-
 	<target name="js-prepare-marauroa">
 		<mkdir dir="build/js"/>
 		<unzip dest="build" src="libs/marauroa.jar">
@@ -703,13 +686,25 @@
 	</target>
 
 
-	<extension-point name="js-prepare" depends="js-prepare-contribs,js-prepare-marauroa,js-prepare-build,js-prepare-node"/>
+	<extension-point name="js-prepare" depends="js-prepare-marauroa,js-prepare-build,js-prepare-node,js-prepare-contribs"/>
 
 
 	<target name="js-prepare-node">
 		<exec executable="npm${executable.suffix}" failonerror="true">
 			<arg value="install"/>
 			<arg value="--no-save"/>
+		</exec>
+	</target>
+
+
+	<target name="js-prepare-contribs" depends="js-prepare-node">
+		<exec executable="npx${executable.suffix}" failonerror="true">
+			<arg value="showdown"/>
+			<arg value="makehtml"/>
+			<arg value="--input"/>
+			<arg value="doc/contributors.md"/>
+			<arg value="--output"/>
+			<arg value="${srcjs}/contributors.html"/>
 		</exec>
 	</target>
 
