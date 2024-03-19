@@ -659,6 +659,23 @@
 
 	<!-- START: web client -->
 
+	<target name="js-prepare-contribs">
+		<!-- convert contributors markdown to HTML -->
+		<exec executable="npm${executable.suffix}" failonerror="true">
+			<arg value="install"/>
+			<arg value="showdown"/>
+			<arg value="--no-save"/>
+		</exec>
+		<exec executable="npx${executable.suffix}" failonerror="true">
+			<arg value="showdown"/>
+			<arg value="makehtml"/>
+			<arg value="--input"/>
+			<arg value="doc/contributors.md"/>
+			<arg value="--output"/>
+			<arg value="${srcjs}/contributors.html"/>
+		</exec>
+	</target>
+
 	<target name="js-prepare-marauroa">
 		<mkdir dir="build/js"/>
 		<unzip dest="build" src="libs/marauroa.jar">
@@ -683,7 +700,7 @@
 	</target>
 
 
-	<extension-point name="js-prepare" depends="js-prepare-marauroa,js-prepare-build,js-prepare-node"/>
+	<extension-point name="js-prepare" depends="js-prepare-contribs,js-prepare-marauroa,js-prepare-build,js-prepare-node"/>
 
 
 	<target name="js-prepare-node">
@@ -790,6 +807,7 @@
 				<include name="stendhal-compiled.js"/>
 				<include name="LICENSE.html"/>
 				<include name="favicon.ico"/>
+				<include name="contributors.html"/>
 			</fileset>
 		</copy>
 
