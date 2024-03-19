@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -19,7 +19,7 @@ export class UnknownEntity extends Entity {
 
 	constructor() {
 		super();
-		setTimeout(() => {
+		window.setTimeout(() => {
 			if (this["_rpclass"]) {
 				console.log("Unknown entity", this["_rpclass"], "at", marauroa.currentZoneName, this["x"], this["y"], "is", this);
 			}

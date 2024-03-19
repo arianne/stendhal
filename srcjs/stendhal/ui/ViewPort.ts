@@ -163,7 +163,7 @@ export class ViewPort {
 				(ui.get(UIComponentEnum.PlayerEquipment) as PlayerEquipmentComponent).update();
 			}
 		}
-		setTimeout(function() {
+		window.setTimeout(function() {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
 		}, Math.max((1000/20) - (new Date().getTime()-startTime), 1));
 	}

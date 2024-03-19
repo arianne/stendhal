@@ -234,7 +234,7 @@ export abstract class JoystickImpl {
 		this.direction = dir;
 		if (this.stopTimeoutId) {
 			// new direction pressed before timeout expired
-			clearTimeout(this.stopTimeoutId);
+			window.clearTimeout(this.stopTimeoutId);
 			this.stopTimeoutId = 0;
 		}
 		// NOTE: in `ui.joystick.Joystick.Joystick` implementation, dragging inner button into
@@ -253,7 +253,7 @@ export abstract class JoystickImpl {
 		// NOTE: `marauroa.me` will be initialized by the time any stop event is queued, so no need
 		//       to check
 		this.direction = Direction.STOP;
-		this.stopTimeoutId = setTimeout(() => {
+		this.stopTimeoutId = window.setTimeout(() => {
 			// new direction not pressed before timeout expired
 			marauroa.me.stop();
 			this.stopTimeoutId = 0;

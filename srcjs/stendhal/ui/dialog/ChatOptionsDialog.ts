@@ -115,7 +115,7 @@ export class ChatOptionsDialog extends DialogContentComponent {
 	private onButtonPressed(button: HTMLButtonElement) {
 		// change button color for visual feedback
 		button.style.setProperty("background-color", "#b3b3b3");
-		setTimeout(function() {
+		window.setTimeout(function() {
 			button.style.removeProperty("background-color");
 		}, 600);
 

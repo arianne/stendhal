@@ -347,7 +347,7 @@ export class Client {
 				if (!this.loaded) {
 					this.loaded = true;
 					// delay visibile change of client a little to allow for initialisation in the background for a smoother experience
-					setTimeout(function() {
+					window.setTimeout(function() {
 						let body = document.getElementById("body")!;
 						body.style.cursor = "auto";
 						document.getElementById("client")!.style.display = "block";
@@ -524,7 +524,7 @@ export class Client {
 			return;
 		}
 		if (Client.click_indicator_id !== undefined) {
-			clearTimeout(Client.click_indicator_id);
+			window.clearTimeout(Client.click_indicator_id);
 			Client.click_indicator_id = undefined;
 		}
 		const pos = stendhal.data.html.extractPosition(e);
@@ -532,7 +532,7 @@ export class Client {
 		click_indicator.style["left"] = (pos.pageX - (click_indicator.width / 2)) + "px";
 		click_indicator.style["top"] = (pos.pageY - (click_indicator.height / 2)) + "px";
 		click_indicator.style["display"] = "inline";
-		Client.click_indicator_id = setTimeout(function() {
+		Client.click_indicator_id = window.setTimeout(function() {
 			click_indicator.style["display"] = "none";
 		}, 300);
 	}

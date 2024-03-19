@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2022-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2022-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -23,7 +23,7 @@ export class IndividualTilesetRenderingStrategy extends LandscapeRenderingStrate
 
 	constructor() {
 		super();
-		setTimeout(() => {
+		window.setTimeout(() => {
 			Chat.log("client", "Using IndividualTilesetRenderingStrategy");
 		}, 1000);
 	}
