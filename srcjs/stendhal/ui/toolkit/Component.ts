@@ -22,10 +22,24 @@ export abstract class Component {
 	private visibleDisplay: string;
 
 
-	constructor(id: string, themable=false) {
-		let element = document.getElementById(id);
-		if (!element) {
-			throw new Error("Cannot create component because there is no HTML element with id " + id);
+	/**
+	 * Creates a new component.
+	 *
+	 * @param el
+	 *   DOM element or ID of HTML element or template.
+	 * @param themable
+	 *   Inherits theming visuals (default: `false`).
+	 */
+	constructor(el: string|HTMLElement, themable=false) {
+		let element: HTMLElement|null;
+		if (typeof(el) === "string") {
+			const id = el as string;
+			element = document.getElementById(id);
+			if (!element) {
+				throw new Error("Cannot create component because there is no HTML element with id " + id);
+			}
+		} else {
+			element = el as HTMLElement;
 		}
 
 		if (element instanceof HTMLTemplateElement) {
