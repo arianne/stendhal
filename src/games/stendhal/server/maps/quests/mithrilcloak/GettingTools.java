@@ -278,7 +278,7 @@ class GettingTools {
 				new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "need_needle"),
 				ConversationStates.ATTENDING,
 				"Ok, but I have a little rule: never do important business with someone unless"
-				+ "they can make you laugh. So, come back to tell me a #joke and I will sell you a needle.",
+				+ " they can make you laugh. So, come back to tell me a #joke and I will sell you a needle.",
 				null);
 
 		// ask for joke when player says joke
