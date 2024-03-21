@@ -15,6 +15,7 @@ package games.stendhal.server.entity.player;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -522,62 +523,81 @@ public abstract class UpdateConverter {
 		}
 	}
 
+	/**
+	 * Converts old object names to their new representation with correct grammar and without
+	 * underscores.
+	 *
+	 * @param contents
+	 *   Value of quest slot section (slots are delimited by semicolon).
+	 * @return
+	 *   Updated value for section.
+	 */
+	private static String updateQuestSection(final String contents) {
+		final EntityManager entityMgr = SingletonRepository.getEntityManager();
+
+		// object names slot section represents (may be delimited by comma to represent multiple
+		// objects in a section)
+		final List<String> names = new LinkedList<>();
+		if (contents.contains(",")) {
+			names.addAll(Arrays.asList(contents.split(",")));
+		} else {
+			names.add(contents);
+		}
+
+		final StringBuilder buffer = new StringBuilder();
+		boolean first = true;
+		for (int idx = 0; idx < names.size(); idx++) {
+			final String oldName = names.get(idx);
+			String newName = UpdateConverter.updateItemName(oldName);
+			// check for valid item and creature names if the update converter changed the name
+			if (!newName.equals(oldName)) {
+				// some quest slots use key=value pairs
+				String actualNewName = newName;
+				if (newName.contains("=")) {
+					actualNewName = newName.substring(0, newName.indexOf("="));
+				}
+				if (!entityMgr.isCreature(actualNewName) && !entityMgr.isItem(actualNewName)) {
+					// only valid item & creature names can be changed
+					newName = oldName;
+				}
+			}
+			if (buffer.length() > 0) {
+				// reinstate delimiter
+				buffer.append(',');
+			}
+			buffer.append(newName);
+		}
+		return buffer.toString();
+	}
 
 	/**
 	 * Update the quest slot to the current version.
+	 *
 	 * @param player
+	 *   Player instance being updated.
 	 */
 	public static void updateQuests(final Player player) {
-		final EntityManager entityMgr = SingletonRepository.getEntityManager();
-
 		// rename old quest slot "Valo_concoct_potion" to "valo_concoct_potion"
 		// We avoid to lose potion in case there is an entry with the old and the new name at the same
 		// time by combining them by calculating the minimum of the two times and the sum of the two amounts.
 		migrateSumTimedQuestSlot(player, "Valo_concoct_potion", "valo_concoct_potion");
 
-		// From 0.66 to 0.67
-		// update quest slot content,
-		// replace "_" with " ", for item/creature names
-		// 1.46: handle key=value pairs in quest slot strings
+		// From 0.66 to 0.67:
+		//   - update quest slot content
+		//   - replace "_" with " ", for item/creature names
+		// 1.46:
+		//   - handle key=value pairs in quest slot strings
+		//   - handle slot sections delimited by ","
 		for (final String questSlot : player.getQuests()) {
-
 			if (player.hasQuest(questSlot)) {
-				final String itemString = player.getQuest(questSlot);
-
-				final String[] parts = itemString.split(";");
-
+				final String[] parts = player.getQuest(questSlot).split(";");
 				final StringBuilder buffer = new StringBuilder();
-				boolean first = true;
-
 				for (int i = 0; i < parts.length; ++i) {
-					final String oldName = parts[i];
-
-					// Convert old item names to their new representation with correct grammar
-					// and without underscores.
-					String newName = UpdateConverter.updateItemName(oldName);
-
-					// check for valid item and creature names if the update converter changed the name
-					if (!newName.equals(oldName)) {
-						// some quest slots use key=value pairs
-						String actualNewName = newName;
-						if (newName.contains("=")) {
-							actualNewName = newName.substring(0, newName.indexOf("="));
-						}
-
-						if (!entityMgr.isCreature(actualNewName) && !entityMgr.isItem(actualNewName)) {
-							newName = oldName;
-						}
-					}
-
-					if (first) {
-						buffer.append(newName);
-						first = false;
-					} else {
+					if (buffer.length() > 0) {
 						buffer.append(';');
-						buffer.append(newName);
 					}
+					buffer.append(UpdateConverter.updateQuestSection(parts[i]));
 				}
-
 				player.setQuest(questSlot, buffer.toString());
 			}
 		}
