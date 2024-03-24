@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Marauroa                    *
+ *                   (C) Copyright 2003-2024 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -446,9 +446,9 @@ class TileStore implements Tileset {
 	private static String getResourceBase() {
 		String path = "data/";
 
-		if (DataLoader.getResource("tiled/tileset/README") != null) {
-			logger.debug("Developing mode, loading tileset from tiled/tileset instead of data/tileset");
-			path = "tiled/";
+		if (DataLoader.getResource("data/maps/tileset/README") != null) {
+			logger.debug("Developing mode, loading tileset from data/maps/tileset instead of data/tileset");
+			path = "data/maps/";
 		}
 
 		return path;
