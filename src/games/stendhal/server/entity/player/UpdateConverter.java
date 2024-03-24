@@ -545,7 +545,6 @@ public abstract class UpdateConverter {
 		}
 
 		final StringBuilder buffer = new StringBuilder();
-		boolean first = true;
 		for (int idx = 0; idx < names.size(); idx++) {
 			final String oldName = names.get(idx);
 			String newName = UpdateConverter.updateItemName(oldName);
