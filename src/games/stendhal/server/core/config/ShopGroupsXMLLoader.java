@@ -1,5 +1,5 @@
 /***************************************************************************
- *                      (C) Copyright 2023 - Stendhal                      *
+ *                   (C) Copyright 2023-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -13,6 +13,7 @@ package games.stendhal.server.core.config;
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -49,13 +50,35 @@ public class ShopGroupsXMLLoader extends DefaultHandler {
 		this(URI.create(path));
 	}
 
+	/**
+	 * Loads shops from XML and configures NPC merchants.
+	 */
 	public void load() {
 		if (loaded) {
 			logger.warn("Tried to re-load shops from XML");
 			return;
 		}
 		loaded = true;
+		loadInternal(null);
+	}
 
+	/**
+	 * Loads shops from XML and configures specific NPC merchants (used for testing).
+	 *
+	 * @param npcNames
+	 *   List of NPC names.
+	 */
+	public void load(final String... npcNames) {
+		loadInternal(Arrays.asList(npcNames));
+	}
+
+	/**
+	 * Loads shops from XML and configures NPC merchants.
+	 *
+	 * @param npcNames
+	 *   List of NPC names (if `null` will configure all parsed from XML).
+	 */
+	private void loadInternal(final List<String> npcNames) {
 		try {
 			final List<URI> groups = new GroupsXMLLoader(uri).load();
 			final ShopsXMLLoader shopsLoader = new ShopsXMLLoader();
@@ -64,11 +87,23 @@ public class ShopGroupsXMLLoader extends DefaultHandler {
 				shopsLoader.load(groupUri);
 				addShops(shopsLoader.getInventories());
 				for (final MerchantConfigurator mc: shopsLoader.getConfigurators()) {
-					// don't configure NPCs for unnamed shops or that aren't explicitily declared for configure
+					if (npcNames != null) {
+						if (npcNames.contains(mc.npc)) {
+							mc.configure();
+						}
+						// loading was called for specific NPCs only
+						continue;
+					}
+					// don't configure NPCs for unnamed shops or that aren't explicitly declared for configure
 					if (mc.id != null && mc.flags != null && mc.flags.contains("configure")) {
 						configurators.add(mc);
 					}
 				}
+			}
+
+			if (configurators.size() == 0) {
+				// don't cache runner if no merchants are to be configured at startup
+				return;
 			}
 
 			SingletonRepository.getCachedActionManager().register(new Runnable() {

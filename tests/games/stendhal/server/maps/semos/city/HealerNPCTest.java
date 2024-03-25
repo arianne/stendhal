@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -29,10 +29,12 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.npc.shop.ShopType;
 import games.stendhal.server.entity.npc.shop.ShopsList;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.server.game.db.DatabaseFactory;
+import utilities.NPCTestHelper;
 import utilities.PlayerTestHelper;
 
 
@@ -63,8 +65,9 @@ public class HealerNPCTest {
 
 		// configure Carmen's shop
 		sl = ShopsList.get();
-		slh = (LinkedHashMap<String, Integer>) sl.get("healing");
-		sl.configureNPC("Carmen", "healing", true);
+		slh = sl.get("healing", ShopType.ITEM_SELL);
+		//sl.configureNPC("Carmen", "healing", true);
+		NPCTestHelper.loadShops("Carmen");
 	}
 
 	@Test
