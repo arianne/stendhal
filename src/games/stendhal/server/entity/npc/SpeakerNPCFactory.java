@@ -4,7 +4,7 @@
  * $Id$
  */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -118,6 +118,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 		return Direction.valueOf(s.toUpperCase());
 	}
 
+	@SuppressWarnings("unused")
 	public void createDialog(final SpeakerNPC npc) {
 		// sub classes can implement this method
 	}

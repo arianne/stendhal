@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Marauroa                    *
+ *                   (C) Copyright 2003-2024 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -283,6 +283,7 @@ public abstract class RPEntity extends CombatEntity {
 	 * @param karma
 	 *            An amount of karma to add/subtract.
 	 */
+	@SuppressWarnings("unused")
 	public void addKarma(final double karma) {
 		// No nothing
 	}
@@ -2699,6 +2700,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 * @param text
 	 *            the message.
 	 */
+	@SuppressWarnings("unused")
 	public void sendPrivateText(final NotificationType type, final String text) {
 		// does nothing in this implementation.
 	}
@@ -3457,6 +3459,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 *
 	 * @param attacker
 	 */
+	@SuppressWarnings("unused")
 	public void onRejectedAttackStart(final RPEntity attacker) {
 		// override in sub-classes
 	}

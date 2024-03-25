@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Marauroa                    *
+ *                   (C) Copyright 2003-2024 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -709,6 +709,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	/**
 	 * Override in SlotActivatedItem sub-class.
 	 */
+	@SuppressWarnings("unused")
 	public void initializeActiveSlotsList(final List<String> slotList) {
 		// Do nothing
 	}
@@ -716,6 +717,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	/**
 	 * Override in StatusResistantItem sub-class.
 	 */
+	@SuppressWarnings("unused")
 	public void initializeStatusResistancesList(Map<StatusType,
 			Double> resistanceList) {
 		// Do nothing
@@ -742,6 +744,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	 * @param player the player who drops the Item.
 	 *
 	 */
+	@SuppressWarnings("unused")
 	public void onPutOnGround(final Player player) {
 		onPutOnGround(true);
 	}
