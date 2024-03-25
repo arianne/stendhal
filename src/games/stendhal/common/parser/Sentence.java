@@ -674,7 +674,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 				}
 			} else if (e1 != null) {
 				ret.append("-[" + e1.getNormalized() + "]");
-			} else {
+			} else if (e2 != null) {
 				ret.append("+[" + e2.getNormalized() + "]");
 			}
 		}

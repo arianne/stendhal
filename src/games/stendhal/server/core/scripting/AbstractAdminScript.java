@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2023 - Arianne                          *
+ *                     Copyright © 2023-2024 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.core.scripting;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import games.stendhal.common.NotificationType;
@@ -82,11 +83,9 @@ public abstract class AbstractAdminScript extends ScriptImpl {
 	public String getUsage() {
 		final String cmd = "/script " + getClass().getSimpleName() + ".class";
 		String usage = "Usage:";
-		final List<String> params = getParamStrings();
-		int pcount = 0;
-		if (params != null) {
-			pcount = params.size();
-		}
+		List<String> params = getParamStrings();
+		params = params != null ? params : new ArrayList<>();
+		final int pcount =  params.size();
 		if (pcount == 0) {
 			usage += " " + cmd;
 		} else if (pcount == 1) {
@@ -114,6 +113,8 @@ public abstract class AbstractAdminScript extends ScriptImpl {
 	 *
 	 * An empty string can be included to show execution without
 	 * parameters.
+	 *
+	 * FIXME: might be simpler to return empty list
 	 */
 	protected List<String> getParamStrings() {
 		return null;
@@ -121,6 +122,8 @@ public abstract class AbstractAdminScript extends ScriptImpl {
 
 	/**
 	 * Retrieves extended instructions on parameter usage.
+	 *
+	 * FIXME: might be simpler to return empty list
 	 */
 	protected List<String> getParamDetails() {
 		return null;
