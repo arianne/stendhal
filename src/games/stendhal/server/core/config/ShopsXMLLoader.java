@@ -45,12 +45,12 @@ public class ShopsXMLLoader extends DefaultHandler {
 
 	private static boolean initialized = false;
 
-	private Map<ShopType, Map<String, ShopInventory>> inventories;
+	private Map<ShopType, Map<String, ShopInventory<?, ?>>> inventories;
 	private List<MerchantConfigurator> configurators;
 
 	private ShopType currentType;
 	private String currentName;
-	private ShopInventory currentInventory;
+	private ShopInventory<?, ?> currentInventory;
 	private String currentItem;
 
 	/** The singleton instance. */
@@ -193,7 +193,7 @@ public class ShopsXMLLoader extends DefaultHandler {
 		}
 
 		if (!inventories.containsKey(currentType)) {
-			inventories.put(currentType, new HashMap<String, ShopInventory>());
+			inventories.put(currentType, new HashMap<String, ShopInventory<?, ?>>());
 		}
 		inventories.get(currentType).put(currentName, currentInventory);
 
@@ -215,7 +215,7 @@ public class ShopsXMLLoader extends DefaultHandler {
 		return ShopType.OUTFIT.equals(currentType);
 	}
 
-	public Map<ShopType, Map<String, ShopInventory>> getInventories() {
+	public Map<ShopType, Map<String, ShopInventory<?, ?>>> getInventories() {
 		return inventories;
 	}
 
