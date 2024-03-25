@@ -24,6 +24,7 @@ import org.junit.Test;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import utilities.NPCTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
@@ -73,7 +74,7 @@ public class BarMaidNPCTest extends ZonePlayerAndNPCTestImpl {
 		final Engine en = npc.getEngine();
 
 		// configure Margaret's shop
-		SingletonRepository.getShopsList().configureNPC("Margaret", "food&drinks", true);
+		NPCTestHelper.loadShops("Margaret");
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Greetings! How may I help you?", getReply(npc));

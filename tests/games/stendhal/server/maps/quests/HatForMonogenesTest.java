@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -33,6 +33,7 @@ import games.stendhal.server.entity.npc.quest.BuiltQuest;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.city.GreeterNPC;
 import games.stendhal.server.maps.semos.tavern.TraderNPC;
+import utilities.NPCTestHelper;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.RPClass.ItemTestHelper;
@@ -72,7 +73,7 @@ public class HatForMonogenesTest {
 		enXin = npcXin.getEngine();
 
 		// configure Xin Blanca's shop
-		SingletonRepository.getShopsList().configureNPC("Xin Blanca", "sellstuff", true, false);
+		NPCTestHelper.loadShops("Xin Blanca");
 
 		quest = new MeetMonogenes();
 		quest.addToWorld();

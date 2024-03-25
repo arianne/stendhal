@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,11 +20,11 @@ import static utilities.SpeakerNPCTestHelper.getReply;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.ados.bar.BarMaidNPC;
 import games.stendhal.server.maps.semos.tavern.RareWeaponsSellerNPC;
+import utilities.NPCTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
@@ -74,7 +74,7 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 		final Engine en = npc.getEngine();
 
 		// configure Siandra's shop
-		SingletonRepository.getShopsList().configureNPC("Siandra", "buyfood", false, true);
+		NPCTestHelper.loadShops("Siandra");
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Hi!", getReply(npc));
@@ -140,7 +140,7 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 		final Engine en = npc.getEngine();
 
 		// configure Siandra's shop
-		SingletonRepository.getShopsList().configureNPC("Siandra", "buyfood", false, true);
+		NPCTestHelper.loadShops("Siandra");
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Hi!", getReply(npc));
@@ -193,7 +193,7 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 		final Engine en = npc.getEngine();
 
 		// configure shops
-		SingletonRepository.getShopsList().configureNPC("McPegleg", "buyrare", false, false);
+		NPCTestHelper.loadShops("McPegleg");
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Yo matey! You look like you need #help.", getReply(npc));

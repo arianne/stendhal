@@ -1,5 +1,5 @@
 /***************************************************************************
- *                      (C) Copyright 2023 - Stendhal                      *
+ *                   (C) Copyright 2023-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -28,16 +28,13 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.PlayerIsWearingOutfitCondition;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.npc.shop.OutfitShopInventory;
-import games.stendhal.server.entity.npc.shop.OutfitShopsList;
 import games.stendhal.server.entity.player.Player;
 import utilities.AchievementTestHelper;
+import utilities.NPCTestHelper;
 import utilities.SpeakerNPCTestHelper;
 
 
 public class DealerNPCTest extends SpeakerNPCTestHelper {
-
-	private static final OutfitShopsList oshops = SingletonRepository.getOutfitShopsList();
-
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -61,7 +58,7 @@ public class DealerNPCTest extends SpeakerNPCTestHelper {
 		assertNotNull(gwen);
 
 		// configure Gwen's shop
-		oshops.configureNPC(gwen, "deniran_accessories", "buy", false, false);
+		NPCTestHelper.loadShops("Gwen");
 
 		testOffer(player, gwen);
 		testInsufficientFunds(player, gwen);
@@ -99,7 +96,7 @@ public class DealerNPCTest extends SpeakerNPCTestHelper {
 	}
 
 	private void testInventory(final Player player, final SpeakerNPC gwen) {
-		final OutfitShopInventory inventory = oshops.get("deniran_accessories");
+		final OutfitShopInventory inventory = SingletonRepository.getOutfitShopsList().get("deniran_accessories");
 		final Engine en = gwen.getEngine();
 		en.step(player, "hi");
 
