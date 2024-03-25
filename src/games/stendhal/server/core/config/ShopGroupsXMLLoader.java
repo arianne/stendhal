@@ -122,11 +122,11 @@ public class ShopGroupsXMLLoader extends DefaultHandler {
 		}
 	}
 
-	private void addShops(final Map<ShopType, Map<String, ShopInventory>> inventories) {
+	private void addShops(final Map<ShopType, Map<String, ShopInventory<?, ?>>> inventories) {
 		for (final ShopType stype: inventories.keySet()) {
-			for (final Map.Entry<String, ShopInventory> sentry: inventories.get(stype).entrySet()) {
+			for (final Map.Entry<String, ShopInventory<?, ?>> sentry: inventories.get(stype).entrySet()) {
 				final String id = sentry.getKey();
-				final ShopInventory inv = sentry.getValue();
+				final ShopInventory<?, ?> inv = sentry.getValue();
 				if (ShopType.ITEM_SELL.equals(stype) || ShopType.ITEM_BUY.equals(stype) || ShopType.TRADE.equals(stype)) {
 					shops.add(id, stype, (ItemShopInventory) inv);
 				} else if (ShopType.OUTFIT.equals(stype)) {
