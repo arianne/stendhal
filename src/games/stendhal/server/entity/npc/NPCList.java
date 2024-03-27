@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,6 +14,7 @@ package games.stendhal.server.entity.npc;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -59,7 +60,7 @@ public class NPCList implements Iterable<SpeakerNPC> {
 	 * @return The NPC, or null if there is no NPC with this name
 	 */
 	public SpeakerNPC get(final String name) {
-		return contents.get(name.toLowerCase());
+		return contents.get(name.toLowerCase(Locale.ENGLISH));
 	}
 
 	/**
@@ -70,7 +71,7 @@ public class NPCList implements Iterable<SpeakerNPC> {
 	 * @return true iff an NPC with the given name exists
 	 */
 	public boolean has(final String name) {
-		return contents.containsKey(name.toLowerCase());
+		return contents.containsKey(name.toLowerCase(Locale.ENGLISH));
 	}
 
 	/**
@@ -84,7 +85,7 @@ public class NPCList implements Iterable<SpeakerNPC> {
 	public void add(final SpeakerNPC npc) {
 		// insert lower case names to allow case insensitive
 		// searches for teleport commands, etc.
-		final String name = npc.getName().toLowerCase();
+		final String name = npc.getName().toLowerCase(Locale.ENGLISH);
 
 		if (contents.containsKey(name)) {
 			logger.error("Not adding " + npc
@@ -104,7 +105,7 @@ public class NPCList implements Iterable<SpeakerNPC> {
 	 * @return SpeakerNPC or null in case it was not in the list
 	 */
 	public SpeakerNPC remove(final String name) {
-		return contents.remove(name.toLowerCase());
+		return contents.remove(name.toLowerCase(Locale.ENGLISH));
 	}
 
 	/**
