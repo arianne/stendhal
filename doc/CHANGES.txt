@@ -74,11 +74,8 @@ Changelog
 - updated & fixed `runserver` scripts
 - update converter can handle quest slot sections delimited by commas
 
-
-1.45
-*changes*
+*website*
 - look and website now show the effective def attribute (the hidden factors have been made transparent)
-
 
 
 1.45
