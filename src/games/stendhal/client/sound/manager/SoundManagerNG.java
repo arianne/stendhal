@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -86,6 +86,13 @@ public class SoundManagerNG {
 
 		public void setAttachment(Object obj) {
 			object = obj;
+		}
+
+		/**
+		 * Retrieves sound filename (excluding ogg suffix).
+		 */
+		public String getName() {
+			return file.get().getName().replaceAll("\\.ogg$", "");
 		}
 	}
 

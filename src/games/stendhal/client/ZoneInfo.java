@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,6 +14,10 @@ package games.stendhal.client;
 import java.awt.Color;
 import java.awt.Composite;
 
+import games.stendhal.client.sound.facade.Time;
+import games.stendhal.client.sound.manager.SoundManagerNG.Sound;
+import games.stendhal.common.constants.SoundLayer;
+
 /**
  * General information about the current zone.
  */
@@ -27,6 +31,11 @@ public class ZoneInfo {
 	private Composite effectBlend;
 	/** Color for the current zone, or <code>null</code>. */
 	private Color color;
+
+	/** Music instance played globally. */
+	private static Sound globalMusic = null;
+	private static final Time fadeTime = new Time(1, Time.Unit.SEC);
+
 
 	/**
 	 * Create a new ZoneInfo.
@@ -108,5 +117,33 @@ public class ZoneInfo {
 	 */
 	public Color getZoneColor() {
 		return color;
+	}
+
+	/**
+	 * Loops a sound with uniform volume that continues playing across zone changes.
+	 *
+	 * Any currently playing instance will be stopped before starting a new one. Also, calling without
+	 * parameters will stop current instance if playing.
+	 *
+	 * @param name
+	 *   Sound file basename. If value is `null` music will be stopped.
+	 * @param volume
+	 *   Volume level between 0.0 and 1.0.
+	 */
+	public void setSingleGlobalizedMusic(final String musicName, final float volume) {
+		if (ZoneInfo.globalMusic != null && ZoneInfo.globalMusic.getName().equals(musicName)) {
+			// music is already playing so don't restart
+			return;
+		}
+		if (ZoneInfo.globalMusic != null) {
+			// stop previously playing
+			ClientSingletonRepository.getSound().stop(ZoneInfo.globalMusic, ZoneInfo.fadeTime);
+		}
+		ZoneInfo.globalMusic = null;
+		if (musicName != null) {
+			ZoneInfo.globalMusic = (Sound) ClientSingletonRepository.getSound()
+					.getGroup(SoundLayer.BACKGROUND_MUSIC.groupName)
+					.play(musicName, volume, 0, null, ZoneInfo.fadeTime, true, false);
+		}
 	}
 }
