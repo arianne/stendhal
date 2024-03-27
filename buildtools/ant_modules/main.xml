@@ -38,6 +38,10 @@
 			match="&lt;string name=&quot;build_version&quot;&gt;.*?&lt;/string&gt;"
 			replace="&lt;string name=&quot;build_version&quot;&gt;${version}&lt;/string&gt;"
 			byline="true"/>
+		<replaceregexp file="app/neutralinojs/neutralino.config.json"
+			match="&quot;version&quot;: &quot;.*&quot;"
+			replace="&quot;version&quot;: &quot;${version}&quot;"
+			byline="true"/>
 
 		<!-- update location of resources -->
 		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
