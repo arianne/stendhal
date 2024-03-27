@@ -61,9 +61,11 @@ Changelog
 - fixed opening chat log context menu with touch
 - supports continued zone music when changed zone matches
 
+*desktop client (Java)*
+- supports continued zone music when changed zone matches
+
 *desktop client (non-Java)*
 - experimental desktop interface for the web client using Neutralinojs
-- supports continued zone music when changed zone matches
 
 *Android*
 - added option to clear WebView cache
