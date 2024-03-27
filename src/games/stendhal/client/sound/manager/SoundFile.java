@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -235,5 +235,15 @@ public class SoundFile extends SignalProcessor implements Cloneable {
 	protected boolean generate()
 	{
 		return mPropagator.request();
+	}
+
+	/**
+	 * Retrieves audio resource name.
+	 *
+	 * @return
+	 *   Filename of audio resource.
+	 */
+	public String getName() {
+		return mAudioResource.getName();
 	}
 }

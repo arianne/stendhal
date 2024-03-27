@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -234,6 +234,20 @@ public class Zone {
 			}
 		}
 		readableName = obj.get("readable_name");
+
+		// *** zone music ***
+		final String music = obj.get("music");
+		float musicVolume = 1.0f;
+		final String mTemp = obj.get("music_volume");
+		try {
+			if (mTemp != null) {
+				musicVolume = Float.parseFloat(mTemp);
+			}
+		} catch (NumberFormatException e) {
+			Logger.getLogger(Zone.class).warn("Invalid volume level: " + mTemp, e);
+		}
+		zoneInfo.setSingleGlobalizedMusic(music, musicVolume);
+
 		// OK to try validating after this
 		requireData = false;
 	}
