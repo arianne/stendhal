@@ -74,32 +74,32 @@ export class NotificationBubble extends TextBubble {
 		const screenLeft = stendhal.ui.gamewindow.offsetX;
 		const screenCenterX = screenLeft + (ctx.canvas.width / 2);
 
-		const lcount = this.lines.length;
-
-		let longest = "";
-		for (let li = 0; li < lcount; li++) {
-			if (this.lines[li].length > longest.length) {
-				longest = this.lines[li];
-			}
-		}
 
 		// get width & height of text
 		const fontsize = 14;
 		const lheight = fontsize + 6;
-		const meas = ctx.measureText(longest);
+		ctx.lineWidth = 2;
+		ctx.font = fontsize + "px sans-serif";
+		ctx.fillStyle = "#ffffff";
+		ctx.strokeStyle = "#000000";
 
+		const lcount = this.lines.length;
 		if (this.width < 0 || this.height < 0) {
-			this.width = meas.width + (this.lmargin * 2);
+			let longest = 0;
+			for (let li = 0; li < lcount; li++) {
+				let measurement = ctx.measureText(this.lines[li]);
+				if (measurement.width > longest) {
+					longest = measurement.width;
+				}
+			}
+
+			this.width = longest + (this.lmargin * 2);
 			this.height = lcount * lheight;
 		}
 		this.x = screenCenterX - (this.width / 2);
 		// Note: border is 1 pixel
 		this.y = screenBottom - this.height + TextBubble.adjustY - 1;
 
-		ctx.lineWidth = 2;
-		ctx.font = fontsize + "px sans-serif";
-		ctx.fillStyle = "#ffffff";
-		ctx.strokeStyle = "#000000";
 
 		if (this.profile) {
 			if (!this.profile.complete || !this.profile.height) {
