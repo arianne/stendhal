@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -157,9 +157,17 @@ public class Herald extends ScriptImpl {
 				admin.sendPrivateText("Spot (right) near you is occupied, can't place herald here.");
 				return;
 			}
+			// name must be unreserved before adding
+			SingletonRepository.getNPCList().unreserve(HeraldName);
 			sandbox.setZone(admin.getZone());
 			sandbox.add(getHerald(sandbox.getZone(admin), admin.getX() + 1, admin.getY()));
 		}
+	}
+
+	@Override
+	public void unload(final Player admin, final List<String> args) {
+		// re-reserve name to prevent other NPCs from using
+		SingletonRepository.getNPCList().reserve(HeraldName);
 	}
 
 	/**
