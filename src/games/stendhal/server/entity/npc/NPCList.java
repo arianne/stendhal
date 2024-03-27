@@ -12,8 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -32,6 +34,10 @@ public class NPCList implements Iterable<SpeakerNPC> {
 	private static NPCList instance;
 
 	private final Map<String, SpeakerNPC> contents;
+
+	/** Names reserved for NPCs created dynamically. */
+	private final List<String> reserved = new ArrayList<String>() {{
+	}};
 
 
 	/**
@@ -91,6 +97,10 @@ public class NPCList implements Iterable<SpeakerNPC> {
 			logger.error("Not adding " + npc
 					+ " to NPCList because there is already an NPC called "
 					+ npc.getName());
+		} else if (reserved.contains(name)) {
+			logger.error("Not adding " + npc
+					+ " to NPCList because name "
+					+ npc.getName() + " is reserved");
 		} else {
 			contents.put(name, npc);
 		}
@@ -133,4 +143,23 @@ public class NPCList implements Iterable<SpeakerNPC> {
 		return contents.values().iterator();
 	}
 
+	/**
+	 * Call when dynamically created NPC with reserved name is removed from world.
+	 */
+	public void reserve(String name) {
+		name = name.toLowerCase(Locale.ENGLISH);
+		if (!reserved.contains(name)) {
+			reserved.add(name);
+		}
+	}
+
+	/**
+	 * Call when an NPC with reserved name is created dynamically.
+	 */
+	public void unreserve(String name) {
+		name = name.toLowerCase(Locale.ENGLISH);
+		if (reserved.contains(name)) {
+			reserved.remove(name);
+		}
+	}
 }
