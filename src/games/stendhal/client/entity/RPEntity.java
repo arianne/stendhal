@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Marauroa                    *
+ *                   (C) Copyright 2003-2024 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -832,6 +832,7 @@ public abstract class RPEntity extends AudibleEntity {
 	 *
 	 * @param amount amount healed
 	 */
+	@SuppressWarnings("unused")
 	public void onHealed(final int amount) {
 		// do nothing for normal rpentities
 	}

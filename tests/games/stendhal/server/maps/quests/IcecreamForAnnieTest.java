@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -35,6 +35,7 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.kalavan.citygardens.IceCreamSellerNPC;
 import games.stendhal.server.maps.kalavan.citygardens.LittleGirlNPC;
 import games.stendhal.server.maps.kalavan.citygardens.MummyNPC;
+import utilities.NPCTestHelper;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.RPClass.ItemTestHelper;
@@ -103,7 +104,8 @@ public class IcecreamForAnnieTest {
 		npc = SingletonRepository.getNPCList().get("Sam");
 		en = npc.getEngine();
 
-		SingletonRepository.getShopsList().configureNPC("Sam", "icecreamseller", true, true);
+		// configure ice cream seller
+		NPCTestHelper.loadShops("Sam");
 
 		Item item = ItemTestHelper.createItem("money", 30);
 		player.getSlot("bag").add(item);

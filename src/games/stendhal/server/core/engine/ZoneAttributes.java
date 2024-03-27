@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -101,6 +101,9 @@ public class ZoneAttributes {
 				 * stupid compatibility problems with octal numbers.
 				 */
 				try {
+					if (value == null) {
+						throw new RuntimeException();
+					}
 					if (value.startsWith("0x") || value.startsWith("0X") || value.startsWith("#")) {
 						value = Integer.decode(value).toString();
 					}

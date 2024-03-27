@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2023 - Arianne                      *
+ *                    Copyright © 2003-2024 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -35,10 +35,8 @@ import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.config.ShopGroupsXMLLoader.MerchantConfigurator;
 import games.stendhal.server.entity.npc.shop.ItemShopInventory;
 import games.stendhal.server.entity.npc.shop.OutfitShopInventory;
-import games.stendhal.server.entity.npc.shop.OutfitShopsList;
 import games.stendhal.server.entity.npc.shop.ShopInventory;
 import games.stendhal.server.entity.npc.shop.ShopType;
-import games.stendhal.server.entity.npc.shop.ShopsList;
 
 
 public class ShopsXMLLoader extends DefaultHandler {
@@ -47,27 +45,12 @@ public class ShopsXMLLoader extends DefaultHandler {
 
 	private static boolean initialized = false;
 
-	private final static ShopsList shops = ShopsList.get();
-	private final static OutfitShopsList oshops = OutfitShopsList.get();
-
-	private ShopType shopType;
-	private String shopName;
-	private ShopInventory inventory;
-	// configures whether merchant responds to "offer"
-	private Map<String, Boolean> offers;
-	// terms that outfit merchants respond to
-	private Map<String, String> actions;
-	// outfit exiration times
-	private Map<String, Integer> expirations;
-	// determines if outfits are returnable
-	private Map<String, Boolean> returnables;
-
-	private Map<ShopType, Map<String, ShopInventory>> inventories;
+	private Map<ShopType, Map<String, ShopInventory<?, ?>>> inventories;
 	private List<MerchantConfigurator> configurators;
 
 	private ShopType currentType;
 	private String currentName;
-	private ShopInventory currentInventory;
+	private ShopInventory<?, ?> currentInventory;
 	private String currentItem;
 
 	/** The singleton instance. */
@@ -210,7 +193,7 @@ public class ShopsXMLLoader extends DefaultHandler {
 		}
 
 		if (!inventories.containsKey(currentType)) {
-			inventories.put(currentType, new HashMap<String, ShopInventory>());
+			inventories.put(currentType, new HashMap<String, ShopInventory<?, ?>>());
 		}
 		inventories.get(currentType).put(currentName, currentInventory);
 
@@ -232,7 +215,7 @@ public class ShopsXMLLoader extends DefaultHandler {
 		return ShopType.OUTFIT.equals(currentType);
 	}
 
-	public Map<ShopType, Map<String, ShopInventory>> getInventories() {
+	public Map<ShopType, Map<String, ShopInventory<?, ?>>> getInventories() {
 		return inventories;
 	}
 

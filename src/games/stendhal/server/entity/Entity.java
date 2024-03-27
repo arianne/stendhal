@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    (C) Copyright 2003-2023 - Marauroa                   *
+ *                    (C) Copyright 2003-2024 - Marauroa                   *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -499,6 +499,7 @@ public abstract class Entity extends RPObject implements Killer {
 	 * @param newY
 	 *            The new Y coordinate.
 	 */
+	@SuppressWarnings("unused")
 	protected void onMoved(final int oldX, final int oldY, final int newX, final int newY) {
 		// sub classes can implement this method
 	}

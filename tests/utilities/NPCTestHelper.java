@@ -14,6 +14,7 @@ package utilities;
 import java.util.ArrayList;
 import java.util.List;
 
+import games.stendhal.server.core.config.ShopGroupsXMLLoader;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPC;
@@ -75,5 +76,16 @@ public class NPCTestHelper {
 			removed = removed && removeNPC(npc);
 		}
 		return removed && getAllNPCs().isEmpty();
+	}
+
+	/**
+	 * Loads shops configured in XML and configures specific NPC merchants.
+	 *
+	 * @param npcNames
+	 *   List of NPC names.
+	 */
+	public static void loadShops(final String... npcNames) {
+		final ShopGroupsXMLLoader loader = new ShopGroupsXMLLoader("/data/conf/shops.xml");
+		loader.load(npcNames);
 	}
 }

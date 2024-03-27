@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   Copyright (C) 2003-2022 - Arianne                     *
+ *                   Copyright (C) 2003-2024 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -68,6 +68,7 @@ public class AreaUseItem extends Item {
 	 * @return
 	 *     <code>true</item> if item used successfully.
 	 */
+	@SuppressWarnings("unused")
 	protected boolean onUsedInArea(final RPEntity user, final StendhalRPZone zone, final int x, final int y) {
 		return true;
 	}

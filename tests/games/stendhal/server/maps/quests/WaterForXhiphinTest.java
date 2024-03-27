@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -25,6 +25,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.fado.city.GreeterNPC;
 import games.stendhal.server.maps.fado.hotel.HotelChefNPC;
+import utilities.NPCTestHelper;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
@@ -60,7 +61,7 @@ public class WaterForXhiphinTest extends ZonePlayerAndNPCTestImpl {
 		new WaterForXhiphin().addToWorld();
 
 		// configure shop
-		SingletonRepository.getShopsList().configureNPC("Xhiphin Zohos", "fadoscrolls", true);
+		NPCTestHelper.loadShops("Xhiphin Zohos");
 	}
 
 	@Test

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -30,6 +30,7 @@ import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 import marauroa.server.game.db.DatabaseFactory;
+import utilities.NPCTestHelper;
 import utilities.PlayerTestHelper;
 import utilities.RPClass.ItemTestHelper;
 
@@ -59,7 +60,7 @@ public class BarmanNPCTest {
 		zoneconfig.configureZone(testzone , null);
 		SpeakerNPC dale = SingletonRepository.getNPCList().get("dale");
 		// configure Dale's shop
-		SingletonRepository.getShopsList().configureNPC("Dale", "adostavernbarman", true);
+		NPCTestHelper.loadShops("Dale");
 
 		Engine engine = dale.getEngine();
 		Player player = PlayerTestHelper.createPlayer("monsterdhal");

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -496,6 +496,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T> {
 	 * @param height
 	 *            The drawn entity height.
 	 */
+	@SuppressWarnings("unused")
 	protected void drawTop(final Graphics2D g2d, final int x, final int y,
 			final int width, final int height) {
 	}

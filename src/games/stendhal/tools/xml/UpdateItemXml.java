@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -98,10 +98,14 @@ public class UpdateItemXml {
 			if (testserverElement!=null) {
 				testserverElement.getParentNode().removeChild(testserverElement);
 			}
-			originalElement.removeAttribute("condition");
+			if (originalElement != null) {
+				originalElement.removeAttribute("condition");
+			}
 		} else  if (!newValue.equals(testserverValue)) {
 			if (testserverValue != null) {
-				testserverElement.setAttribute("value", newValue);
+				if (testserverElement != null) {
+					testserverElement.setAttribute("value", newValue);
+				}
 			} else {
 				if (originalElement != null) {
 					originalElement.setAttribute("condition", "!stendhal.testserver");
