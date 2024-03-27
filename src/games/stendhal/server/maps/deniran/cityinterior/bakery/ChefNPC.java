@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2019 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -38,6 +38,7 @@ public class ChefNPC implements ZoneConfigurator  {
 	}
 
 	private void buildNPC(StendhalRPZone zone) {
+		// FIXME: rename as conflicts with games.stendhal.server.script.Herald
 		final SpeakerNPC npc = new SpeakerNPC("Patrick") {
 
 			@Override
