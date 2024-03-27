@@ -37,6 +37,7 @@ public class NPCList implements Iterable<SpeakerNPC> {
 
 	/** Names reserved for NPCs created dynamically. */
 	private final List<String> reserved = new ArrayList<String>() {{
+		add("patrick"); // Herald NPC (games.stendhal.server.script.Herald)
 	}};
 
 
