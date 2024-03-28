@@ -7,6 +7,9 @@ Changelog
 *world*
 - renamed chef Patrick to Preston
 
+*web client*
+- fixed text extending past edge of notification bubbles
+
 
 1.46
 
