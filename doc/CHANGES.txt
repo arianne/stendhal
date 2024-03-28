@@ -2,6 +2,12 @@ Changelog
 ---------
 ---------
 
+1.47
+
+*world*
+- renamed chef Patrick to Preston
+
+
 1.46
 
 *world*

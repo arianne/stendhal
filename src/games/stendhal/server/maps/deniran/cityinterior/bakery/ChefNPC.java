@@ -38,8 +38,7 @@ public class ChefNPC implements ZoneConfigurator  {
 	}
 
 	private void buildNPC(StendhalRPZone zone) {
-		// FIXME: rename as conflicts with games.stendhal.server.script.Herald
-		final SpeakerNPC npc = new SpeakerNPC("Patrick") {
+		final SpeakerNPC npc = new SpeakerNPC("Preston") {
 
 			@Override
 			protected void createPath() {
@@ -89,7 +88,7 @@ public class ChefNPC implements ZoneConfigurator  {
 			}};
 			npc.setPosition(13, 3);
 			npc.setEntityClass("chefnpc");
-			npc.setDescription("You see Patrick. He wears a cute chef hat.");
+			npc.setDescription("You see Preston. He wears a cute chef hat.");
 			zone.add(npc);
 	}
 }
