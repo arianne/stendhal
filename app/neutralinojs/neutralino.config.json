@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/neutralinojs/neutralinojs/main/schemas/neutralino.config.schema.json",
   "applicationId": "org.stendhalgame.client",
-  "version": "1.45.5",
+  "version": "1.46.5",
   "defaultMode": "window",
   "port": 0,
   "documentRoot": "/resources/",
