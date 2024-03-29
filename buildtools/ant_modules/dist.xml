@@ -51,7 +51,9 @@
 		<mkdir dir="${buildroot}/stendhal-${version}-src"/>
 
 		<copy todir="${buildroot}/stendhal-${version}-src/src">
-			<fileset dir="src"/>
+			<fileset dir="src">
+				<exclude name="js/*compiled*"/>
+			</fileset>
 		</copy>
 
 		<mkdir dir="${buildroot}/stendhal-${version}-src/libs"/>
