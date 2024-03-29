@@ -117,7 +117,7 @@
 				<exclude name="items/meta/"/>
 			</fileset>
 		</copy>
-		<copy todir="${build_client_data}/data/tileset">
+		<copy todir="${build_client_data}/data/maps/tileset">
 			<fileset dir="${maps}/tileset">
 				<exclude name="**/*.bz2"/>
 				<exclude name="**/*.gz"/>

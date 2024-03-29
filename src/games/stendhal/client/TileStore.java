@@ -56,7 +56,7 @@ class TileStore implements Tileset {
 	/**
 	 * The base directory for tileset resources.
 	 */
-	private static final String baseFolder = getResourceBase();
+	private static final String baseFolder = "data/maps/";
 
 	/**
 	 * The tileset animation map.
@@ -434,24 +434,6 @@ class TileStore implements Tileset {
 		}
 
 		return map;
-	}
-
-	/**
-	 * Get the base directory for tileset resources.
-	 *
-	 * Hack: Read the tileset directly from tiled/tileset if started from an
-	 * IDE.
-	 * @return the / separated url to the resource
-	 */
-	private static String getResourceBase() {
-		String path = "data/";
-
-		if (DataLoader.getResource("data/maps/tileset/README") != null) {
-			logger.debug("Developing mode, loading tileset from data/maps/tileset instead of data/tileset");
-			path = "data/maps/";
-		}
-
-		return path;
 	}
 
 	//
