@@ -1,0 +1,65 @@
+
+1.46
+
+*world*
+- renamed items:
+  - "courgette" to "zucchini"
+  - "iron" to "iron bar"
+  - "salad" to "lettuce"
+- fixed many NPCs not responding to certain chat options
+- normalized spelling of some words to American English in most NPC dialogues
+  - "colour" -> "color"
+  - "defence" -> "defense"
+  - "favour" -> "favor"
+  - "favourite" -> "favorite"
+  - "fulfil" -> "fulfill"
+  - "organise" -> "organize"
+  - "recognise" -> "rocognize"
+- Orchiwald will stop after entity collision instead of reversing path
+- foghorn sounds plays when ferry arrives at mainland & island
+- added commerce sound to more NPCs when exchanging money for items/services
+- seeds can be used from inventory
+
+*graphics*
+- redrawn placeholder tiles in Oni Palace
+- fixed some outfit errors
+- disabled unfinished weapon-style attack sprites
+
+*web client*
+- improved movement handling with on-screen joystick & direction pad
+- alternate "floating" menu style
+- alternate "floating" chat panel style
+- software keyboard is automatically hidden after sending chat message
+- optional activity indicator for corpses & some signs
+- immediate configuration changes affect only the active client/browser tab
+- application menu dialog doesn't close when clicking on background
+- correct NPC title is displayed in chat options dialog
+- disabled highlighting joystick/d-pad button on mouse double-click & drag
+- joystick/d-pad isn't shown until user interface is ready
+- character name in stats panel uses default font size
+- fixed chest default open/close behavior (clicking on open chest opens inventory window instead of closing)
+- doesn't attempt to open corpse/chest inventory windows when character not in range
+- fixed chat history duplicates
+- chat options dialog remains open until NPC is no longer attending or player closes
+- fixed continuous movement state not always updated at startup
+- supports displaying members' HP status in group panel
+- fixed group panel not always showing membership after login
+- added support for touch drag-and-drop
+- fixed weather drawing to not appear to move with player
+- fixed subsequent single clicks on items to not count as double after double click
+- fixed deathmatch scrying orbs
+- fixed portal default action when on a collision tile
+- added autocomplete support
+- fixed positioning of door sprites (-2_orril_lich_palace 84 108)
+- optional click/touch indicator
+- fixed difficult to move small floating windows
+- supports chat commands tab completion
+- supports text highlighting in speech bubbles
+- fixed opening chat log context menu with touch
+- supports continued zone music when changed zone matches
+
+*Android*
+- added option to clear WebView cache
+- added option to lock orientation
+- fixes for using the correct software keyboard
+- app ID changed to conform with F-Droid standards
