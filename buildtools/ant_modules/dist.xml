@@ -53,6 +53,7 @@
 		<copy todir="${buildroot}/stendhal-${version}-src/src">
 			<fileset dir="src">
 				<exclude name="js/*compiled*"/>
+				<exclude name="js/contributors.html"/>
 			</fileset>
 		</copy>
 
