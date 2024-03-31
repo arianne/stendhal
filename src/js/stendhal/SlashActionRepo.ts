@@ -26,7 +26,6 @@ import { UIComponentEnum } from "./ui/UIComponentEnum";
 import { ChatLogComponent } from "./ui/component/ChatLogComponent";
 
 import { Chat } from "./util/Chat";
-import { Pair } from "./util/Pair";
 
 
 /**
@@ -1533,6 +1532,8 @@ export class SlashActionRepo {
 	"changepassword" = new OpenWebsiteAction("https://stendhalgame.org/account/change-password.html");
 
 	"loginhistory" = new OpenWebsiteAction("https://stendhalgame.org/account/history.html");
+
+	"logout" = new OpenWebsiteAction("/account/logout.html");
 
 	"halloffame" = new OpenWebsiteAction("https://stendhalgame.org/world/hall-of-fame/active_overview.html");
 

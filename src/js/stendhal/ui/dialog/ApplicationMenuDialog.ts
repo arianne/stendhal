@@ -22,16 +22,20 @@ export class ApplicationMenuDialog extends DialogContentComponent {
 				title: "Account",
 				children: [
 					{
-						title: "Change Password",
-						action: "changepassword",
-					},
-					{
 						title: "Select character",
-						action: "characterselector",
+						action: "characterselector"
 					},
 					{
 						title: "Login History",
-						action: "loginhistory",
+						action: "loginhistory"
+					},
+					{
+						title: "Change Password",
+						action: "changepassword"
+					},
+					{
+						title: "Logout",
+						action: "logout"
 					}
 				]
 			},
