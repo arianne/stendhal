@@ -655,6 +655,13 @@ public abstract class UpdateConverter {
 				}
 			}
 		}
+
+		// 1.47: an issue in update converter caused leading ";" to be trimmed
+		questSlot = "seven_cherubs";
+		String slotState = player.getQuest(questSlot);
+		if (player.hasQuest(questSlot) && !slotState.startsWith(";")) {
+			player.setQuest(questSlot, ";" + slotState);
+		}
 	}
 
 

@@ -10,6 +10,9 @@ Changelog
 *web client*
 - fixed text extending past edge of notification bubbles
 
+*server fixes*
+- fixed Seven Cherubs not showing up as completed
+
 
 1.46
 
