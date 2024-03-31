@@ -545,6 +545,7 @@ public abstract class UpdateConverter {
 		}
 
 		final StringBuilder buffer = new StringBuilder();
+		boolean first = true;
 		for (int idx = 0; idx < names.size(); idx++) {
 			final String oldName = names.get(idx);
 			String newName = UpdateConverter.updateItemName(oldName);
@@ -560,7 +561,9 @@ public abstract class UpdateConverter {
 					newName = oldName;
 				}
 			}
-			if (buffer.length() > 0) {
+			if (first) { // cannot depend on buffer.length because section might be empty string
+				first = false;
+			} else {
 				// reinstate delimiter
 				buffer.append(',');
 			}
@@ -591,8 +594,11 @@ public abstract class UpdateConverter {
 			if (player.hasQuest(questSlot)) {
 				final String[] parts = player.getQuest(questSlot).split(";");
 				final StringBuilder buffer = new StringBuilder();
+				boolean first = true;
 				for (int i = 0; i < parts.length; ++i) {
-					if (buffer.length() > 0) {
+					if (first) { // cannot depend on buffer.length because section might be empty string
+						first = false;
+					} else {
 						buffer.append(';');
 					}
 					buffer.append(UpdateConverter.updateQuestSection(parts[i]));
