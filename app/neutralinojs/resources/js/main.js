@@ -75,6 +75,12 @@ async function timeoutExtensionAuthentication() {
 }
 
 Neutralino.init();
+
+// https://github.com/neutralinojs/neutralinojs/issues/678
+Neutralino.events.on("windowClose", () => {
+	Neutralino.app.exit();
+});
+
 setTimeout(() => timeoutExtensionConnection(), 2000);
 
 Neutralino.events.on("steamAuthToken", onSteamAuthToken);
