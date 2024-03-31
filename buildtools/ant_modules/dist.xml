@@ -714,6 +714,7 @@
 	</target>
 
 
+	<!-- TODO: Do not write stendhal-compiled.js to the source directory tree but directly to the compiled directory tree -->
 	<target name="js-invoke-compiler">
 		<exec executable="npx${executable.suffix}" dir="${srcjs}/stendhal" failonerror="true">
 			<arg value="tsc"/>
@@ -783,6 +784,12 @@
 		</echo>
 
 		<antcall target="compilejs-hook" />
+
+		<copy todir="build/eclipse/js" preservelastmodified="true" failonerror="false" quiet="true">
+			<fileset dir="${srcjs}">
+				<include name="stendhal-compiled.js*" />
+			</fileset>
+		</copy>
 	</target> <!-- js-invoke-compiler -->
 
 
