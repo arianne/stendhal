@@ -15,6 +15,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -111,6 +112,17 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	/**
+	 * Retrieves app orientation.
+	 *
+	 * @return
+	 *   One of `Configuration.ORIENTATION_PORTRAIT` (1), `Configuration.ORIENTATION_LANDSCAPE` (2),
+	 *   or `Configuration.ORIENTATION_UNDEFINED` (0).
+	 */
+	public int getOrientation() {
+		return getResources().getConfiguration().orientation;
+	}
+
+	/**
 	 * Sets screen orientation to user setting or locks in landscape or portrait.
 	 */
 	public void updateOrientation() {
@@ -164,12 +176,15 @@ public class MainActivity extends AppCompatActivity {
 	//~ }
 
 	/**
-	 * Updates direction pad position when screen orientation changes.
+	 * Listens for changes to orientation.
 	 */
-	//~ @Override
-	//~ public void onConfigurationChanged(final Configuration config) {
-		//~ super.onConfigurationChanged(config);
-	//~ }
+	@Override
+	public void onConfigurationChanged(final Configuration config) {
+		super.onConfigurationChanged(config);
+		if (PageId.TITLE.equals(client.getCurrentPageId())) {
+			client.onUpdateTitleOrient(config.orientation);
+		}
+	}
 
 	/**
 	 * Called when main activity ends.
