@@ -12,9 +12,7 @@
 package org.stendhalgame.client;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
