@@ -587,6 +587,8 @@ public class ClientView extends WebView {
 	/**
 	 * Retrieves ID of current page.
 	 *
+	 * FIXME: should not be static
+	 *
 	 * @return
 	 *   Current `PageId`.
 	 */

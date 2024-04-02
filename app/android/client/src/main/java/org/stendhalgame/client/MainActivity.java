@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
 	@Override
 	public void onConfigurationChanged(final Configuration config) {
 		super.onConfigurationChanged(config);
-		if (PageId.TITLE.equals(client.getCurrentPageId())) {
+		if (PageId.TITLE.equals(ClientView.getCurrentPageId())) {
 			client.onUpdateTitleOrient(config.orientation);
 		}
 	}
