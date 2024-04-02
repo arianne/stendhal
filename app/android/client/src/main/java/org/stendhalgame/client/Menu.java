@@ -11,8 +11,6 @@
  ***************************************************************************/
 package org.stendhalgame.client;
 
-import android.app.Activity;
-import android.content.Context;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
@@ -24,8 +22,6 @@ import android.widget.Toolbar;
  */
 public class Menu {
 
-	/** Main activity context. */
-	private final Context ctx;
 	/** Toolbar representing menu. */
 	private final Toolbar nav;
 
@@ -44,12 +40,11 @@ public class Menu {
 		return instance;
 	}
 
-	public Menu(final Context ctx) {
+	public Menu() {
 		// FIXME: may be considered unsafe as this is not technically a singleton
 		instance = this;
-		this.ctx = ctx;
 
-		nav = (Toolbar) ((Activity) ctx).findViewById(R.id.menu_main);
+		nav = (Toolbar) MainActivity.get().findViewById(R.id.menu_main);
 		nav.setTag(nav.getVisibility());
 		nav.getViewTreeObserver().addOnGlobalLayoutListener(
 				new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -128,7 +123,7 @@ public class Menu {
 	 * Sets actions when buttons are pressed.
 	 */
 	private void initButtonHandlers() {
-		final MainActivity activity = (MainActivity) ctx;
+		final MainActivity activity = MainActivity.get();
 
 		btn_connect = (Button) activity.findViewById(R.id.btn_connect);
 		btn_connect.setOnClickListener(new View.OnClickListener() {
@@ -188,7 +183,7 @@ public class Menu {
 			public void onClick(final View v) {
 				super.onClick(v);
 
-				((MainActivity) ctx).showSettings();
+				activity.showSettings();
 			}
 		});
 

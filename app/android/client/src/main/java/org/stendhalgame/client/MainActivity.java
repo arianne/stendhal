@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 			// FIXME: is this used?
 			layout = (ConstraintLayout) findViewById(R.id.content);
 			client = (ClientView) findViewById(R.id.clientWebView);
-			menu = new Menu(client.getContext());
+			menu = new Menu();
 
 			client.loadTitleScreen();
 		} catch (final Exception e) {
