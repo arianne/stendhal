@@ -203,6 +203,6 @@ public class MainActivity extends AppCompatActivity {
 	 * Creates preferences activity.
 	 */
 	public void showSettings() {
-		startActivity(new Intent(MainActivity.this, PreferencesActivity.class));
+		startActivity(new Intent(this, PreferencesActivity.class));
 	}
 }
