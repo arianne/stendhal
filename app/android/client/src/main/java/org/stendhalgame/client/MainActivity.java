@@ -18,7 +18,6 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 
 /**
@@ -26,8 +25,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
  */
 public class MainActivity extends AppCompatActivity {
 
-	/** WebView layout. */
-	private ConstraintLayout layout;
 	/** WebView instance. */
 	private ClientView client;
 	/** Menu instance. */
@@ -62,8 +59,6 @@ public class MainActivity extends AppCompatActivity {
 			updateOrientation();
 
 			setContentView(R.layout.activity_main);
-			// FIXME: is this used?
-			layout = (ConstraintLayout) findViewById(R.id.content);
 			client = (ClientView) findViewById(R.id.clientWebView);
 			menu = new Menu();
 
