@@ -13,8 +13,6 @@ package org.stendhalgame.client;
 
 import java.util.Random;
 
-import org.stendhalgame.client.sound.MusicPlayer;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;

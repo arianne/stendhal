@@ -11,8 +11,6 @@
  ***************************************************************************/
 package org.stendhalgame.client;
 
-import org.stendhalgame.client.sound.MusicPlayer;
-
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;

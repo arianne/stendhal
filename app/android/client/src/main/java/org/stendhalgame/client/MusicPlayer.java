@@ -9,12 +9,9 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package org.stendhalgame.client.sound;
+package org.stendhalgame.client;
 
 import java.io.IOException;
-
-import org.stendhalgame.client.Logger;
-import org.stendhalgame.client.MainActivity;
 
 import android.content.Context;
 import android.media.MediaPlayer;
