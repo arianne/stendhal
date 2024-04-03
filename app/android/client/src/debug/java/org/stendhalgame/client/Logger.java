@@ -28,11 +28,10 @@ import android.util.Log;
  */
 public class Logger {
 
+	/** Attribute denoting state of initialization. */
+	private static boolean initialized = false;
 	/** Logs directory. */
 	private static File logsDir;
-
-	/** Main activity instance. */
-	private static MainActivity mainActivity;
 
 	/** Singleton instance. */
 	private static Logger instance;
@@ -58,10 +57,13 @@ public class Logger {
 	/**
 	 * Initializes logs directory.
 	 */
-	public static void init(final File dir, final MainActivity activity) {
+	public static void init(final File dir) {
+		if (Logger.initialized) {
+			Logger.warn(true, "tried to re-initialize logger");
+			return;
+		}
+		Logger.initialized = true;
 		logsDir = new File(dir.getPath() + "/logs");
-		mainActivity = activity;
-
 		writeLine("\n  // -- debugging initialized -- //", null);
 		writeLine("logs directory: " + logsDir.getPath());
 	}
@@ -240,7 +242,7 @@ public class Logger {
 	 *   Logging verbosity level.
 	 */
 	public static void notify(final String text, LogLevel level) {
-		if (mainActivity == null) {
+		if (!Logger.initialized) {
 			System.err.println("ERROR: Logger not initialized. Call Logger.init.");
 			return;
 		}

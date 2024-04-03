@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 			MainActivity.instance = this;
 
 			// initialize debug logging mechanism
-			Logger.init(getExternalFilesDir(null), this);
+			Logger.init(getExternalFilesDir(null));
 
 			updateOrientation();
 

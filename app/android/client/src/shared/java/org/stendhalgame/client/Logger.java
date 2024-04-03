@@ -47,7 +47,7 @@ public class Logger {
 	/**
 	 * Initializes logs directory.
 	 */
-	public static void init(final File dir, @SuppressWarnings("unused") final MainActivity activity) {
+	public static void init(final File dir) {
 		logsDir = new File(dir.getPath() + "/logs");
 	}
 
