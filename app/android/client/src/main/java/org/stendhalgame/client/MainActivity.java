@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 	 * NOTE: This may not be necessary if Android has built-in methods to retrieve current activity.
 	 */
 	public static MainActivity get() {
-		return instance;
+		return MainActivity.instance;
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 		try {
 			super.onCreate(savedInstanceState);
 			// FIXME: may be considered unsafe as this is not technically a singleton
-			instance = this;
+			MainActivity.instance = this;
 
 			// initialize debug logging mechanism
 			Logger.init(getExternalFilesDir(null), this);
