@@ -246,7 +246,7 @@ public class Logger {
 		}
 
 		if (level == null) {
-			level = LogLevel.DEBUG;
+			level = LogLevel.INFO;
 		}
 
 		final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.get());
