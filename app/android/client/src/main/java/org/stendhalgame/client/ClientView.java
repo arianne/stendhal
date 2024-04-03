@@ -475,7 +475,7 @@ public class ClientView extends WebView {
 	 * Opens a message dialog for user to choose between main & test clients.
 	 */
 	private void selectClient() {
-		final AlertDialog.Builder builder = new AlertDialog.Builder(ClientView.get().getContext());
+		final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 		builder.setMessage("Select client");
 
 		builder.setPositiveButton("Main", new DialogInterface.OnClickListener() {
@@ -506,7 +506,7 @@ public class ClientView extends WebView {
 	 * Opens a message dialog for user to choose between main & test servers.
 	 */
 	private void selectServer() {
-		final AlertDialog.Builder builder = new AlertDialog.Builder(ClientView.get().getContext());
+		final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 		builder.setMessage("Select server");
 
 		builder.setPositiveButton("Main", new DialogInterface.OnClickListener() {

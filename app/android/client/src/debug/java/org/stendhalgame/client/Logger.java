@@ -249,7 +249,7 @@ public class Logger {
 			level = LogLevel.DEBUG;
 		}
 
-		final AlertDialog.Builder builder = new AlertDialog.Builder(ClientView.get().getContext());
+		final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.get());
 		builder.setTitle(level.label);
 		builder.setMessage(text);
 

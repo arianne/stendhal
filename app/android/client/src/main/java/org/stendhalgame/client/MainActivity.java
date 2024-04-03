@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
 	 * Opens a dialog to confirm exiting activity.
 	 */
 	public void onRequestQuit() {
-		final AlertDialog.Builder builder = new AlertDialog.Builder(client.getContext());
+		final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage("Quit Stendhal?");
 
 		builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
