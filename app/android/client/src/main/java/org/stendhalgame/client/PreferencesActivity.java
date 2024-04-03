@@ -206,7 +206,7 @@ public class PreferencesActivity extends AppCompatActivity {
 							if (!((Boolean) obj)) {
 								MusicPlayer.stopMusic();
 							} else if (!MusicPlayer.isPlaying()) {
-								ClientView.playTitleMusic();
+								MusicPlayer.playTitleMusic();
 							}
 						}
 
@@ -233,7 +233,7 @@ public class PreferencesActivity extends AppCompatActivity {
 							Logger.debug("changing title music preference: " + (String) obj);
 
 							if (title_music.isChecked()) {
-								ClientView.playTitleMusic((String) obj);
+								MusicPlayer.playTitleMusic((String) obj);
 							}
 						}
 

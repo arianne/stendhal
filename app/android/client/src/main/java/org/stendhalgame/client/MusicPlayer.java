@@ -66,6 +66,42 @@ public class MusicPlayer {
 		playMusic(MainActivity.get(), id, loop);
 	}
 
+	/**
+	 * Plays selected music.
+	 *
+	 * @param musicId
+	 *   String identifier of music to play or `null` to play music configured in preferences.
+	 */
+	public static void playTitleMusic(String musicId) {
+		if (musicId == null) {
+			musicId = PreferencesActivity.getString("song_list");
+		}
+		int id = R.raw.title_01;
+		switch (musicId) {
+			case "title_02":
+				id = R.raw.title_02;
+				break;
+			case "title_03":
+				id = R.raw.title_03;
+				break;
+			case "title_04":
+				id = R.raw.title_04;
+				break;
+			case "title_05":
+				id = R.raw.title_05;
+				break;
+		}
+		Logger.debug("playing music: " + musicId);
+		MusicPlayer.playMusic(id, true);
+	}
+
+	/**
+	 * Plays music configured in preferences.
+	 */
+	public static void playTitleMusic() {
+		playTitleMusic(null);
+	}
+
 	public static void stopMusic() {
 		if (mplayer != null) {
 			if (mplayer.isPlaying()) {
