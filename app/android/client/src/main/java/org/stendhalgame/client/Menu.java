@@ -29,21 +29,24 @@ public class Menu {
 	private Button btn_title;
 	private Button btn_reload;
 
-	/** Static menu instance. */
+	/** Singleton instance. */
 	private static Menu instance;
 
 
 	/**
-	 * Retrieves menu instance.
+	 * Retrieves menu singleton instance.
 	 */
 	public static Menu get() {
+		if (Menu.instance == null) {
+			Menu.instance = new Menu();
+		}
 		return instance;
 	}
 
-	public Menu() {
-		// FIXME: may be considered unsafe as this is not technically a singleton
-		instance = this;
-
+	/**
+	 * Hidden singleton constructor.
+	 */
+	private Menu() {
 		nav = (Toolbar) MainActivity.get().findViewById(R.id.menu_main);
 		nav.setTag(nav.getVisibility());
 		nav.getViewTreeObserver().addOnGlobalLayoutListener(

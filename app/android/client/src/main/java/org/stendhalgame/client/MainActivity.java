@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
 			setContentView(R.layout.activity_main);
 			client = (ClientView) findViewById(R.id.clientWebView);
-			menu = new Menu();
+			menu = Menu.get();
 
 			client.loadTitleScreen();
 		} catch (final Exception e) {
