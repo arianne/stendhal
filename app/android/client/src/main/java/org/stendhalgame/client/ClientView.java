@@ -18,7 +18,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
@@ -32,17 +31,12 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageView;
 
 
 /**
  * Interface to handle web content.
  */
 public class ClientView extends WebView {
-
-	// TODO: move to MainActivity or its own class
-	/** Image used as title page background. */
-	private ImageView splash;
 
 	/** Client URL path. */
 	private String clientUrlSuffix = "client";
@@ -422,7 +416,7 @@ public class ClientView extends WebView {
 	public void loadTitleScreen() {
 		reset();
 		setPage(PageId.TITLE);
-		onUpdateTitleOrient(MainActivity.get().getOrientation());
+		SplashUtil.get().setVisible(true);
 		loadUrl("about:blank");
 		Menu.get().show();
 	}
@@ -439,47 +433,6 @@ public class ClientView extends WebView {
 		} else {
 			onSelectServer();
 		}
-	}
-
-	/**
-	 * Sets the background image.
-	 *
-	 * @param resId
-	 *   Resource ID.
-	 * @param bgColor
-	 *   Coloring to fill behind splash image.
-	 */
-	private void setSplashResource(final int resId, final int bgColor) {
-		if (splash == null) {
-			splash = (ImageView) MainActivity.get().findViewById(R.id.splash);
-		}
-		splash.setBackgroundColor(bgColor);
-		splash.setImageResource(resId);
-	}
-
-	/**
-	 * Sets the background image.
-	 *
-	 * @param resId
-	 *   Resource ID.
-	 */
-	private void setSplashResource(final int resId) {
-		setSplashResource(resId, Color.TRANSPARENT);
-	}
-
-	/**
-	 * Sets splash image dependent on device orientation.
-	 *
-	 * @param orient
-	 *   Current screen orientation either portrait (1) or landscape (2).
-	 */
-	public void onUpdateTitleOrient(final int orient) {
-		int splash = R.drawable.splash;
-		if (orient == Configuration.ORIENTATION_PORTRAIT) {
-			splash = R.drawable.splash_portrait;
-		}
-		// light blue background color
-		setSplashResource(splash, 0xff6c9ed1);
 	}
 
 	/**
@@ -548,8 +501,8 @@ public class ClientView extends WebView {
 		// create a unique state
 		stateId = generateRandomString();
 		seed = generateRandomString();
-		// remove splash image & background coloring
-		setSplashResource(android.R.color.transparent);
+		// hide splash image
+		SplashUtil.get().setVisible(false);
 
 		final String initialPage = UrlHelper.getInitialPageUrl();
 		Logger.debug("Loading initial page: " + initialPage);

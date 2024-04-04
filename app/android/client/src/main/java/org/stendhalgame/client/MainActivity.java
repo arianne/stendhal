@@ -110,6 +110,8 @@ public class MainActivity extends AppCompatActivity {
 		setActiveClientView(clientView);
 		clientList.addView(clientView);
 		clientView.loadTitleScreen();
+		// show splash when a new view is created
+		SplashUtil.get().setVisible(true);
 	}
 
 	/**
@@ -249,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
 		super.onConfigurationChanged(config);
 		final ClientView clientView = getActiveClientView();
 		if (clientView != null && PageId.TITLE.equals(clientView.getCurrentPageId())) {
-			clientView.onUpdateTitleOrient(config.orientation);
+			SplashUtil.get().update();
 		}
 	}
 
