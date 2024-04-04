@@ -24,6 +24,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.DownloadListener;
 import android.webkit.WebChromeClient;
@@ -101,6 +102,10 @@ public class ClientView extends WebView {
 	private void onInit() {
 		setActive(false); // main activity manages initial visibility
 		setBackgroundColor(Color.TRANSPARENT);
+
+		// expand to size of parent constraints
+		setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+				ViewGroup.LayoutParams.MATCH_PARENT));
 
 		final WebSettings viewSettings = getSettings();
 		viewSettings.setJavaScriptEnabled(true);
