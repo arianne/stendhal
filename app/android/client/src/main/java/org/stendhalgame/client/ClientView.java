@@ -59,16 +59,6 @@ public class ClientView extends WebView {
 	private String stateId = "";
 	private String seed = "";
 
-	/** Singleton instance. */
-	private static ClientView instance;
-
-
-	/**
-	 * Retrieves the static instance.
-	 */
-	public static ClientView get() {
-		return instance;
-	}
 
 	/**
 	 * Creates a new view.
@@ -116,9 +106,6 @@ public class ClientView extends WebView {
 	 * TODO: allow multiple client view instances
 	 */
 	private void onInit() {
-		// FIXME: may be considered unsafe as this is not technically a singleton
-		instance = this;
-
 		setBackgroundColor(Color.TRANSPARENT);
 
 		final WebSettings viewSettings = getSettings();

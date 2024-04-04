@@ -252,7 +252,7 @@ public class PreferencesActivity extends AppCompatActivity {
 								@Override
 								protected void onCall() {
 									Logger.debug("clearing cache");
-									final ClientView clientView = ClientView.get();
+									final ClientView clientView = MainActivity.get().getCurrentView();
 									if (clientView != null) {
 										clientView.clearCache(true);
 									}

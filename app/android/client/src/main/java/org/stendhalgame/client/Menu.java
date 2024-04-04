@@ -146,7 +146,7 @@ public class Menu {
 					new Notifier.Action() {
 						@Override
 						protected void onCall() {
-							ClientView.get().loadTitleScreen();
+							MainActivity.get().getCurrentView().loadTitleScreen();
 							updateButtons();
 						}
 					},
@@ -168,7 +168,7 @@ public class Menu {
 					new Notifier.Action() {
 						@Override
 						protected void onCall() {
-							ClientView.get().reload();
+							MainActivity.get().getCurrentView().reload();
 						}
 					},
 					new Notifier.Action() {
@@ -199,7 +199,7 @@ public class Menu {
 
 				// TODO: create proper about activity
 
-				final ClientView client = ClientView.get();
+				final ClientView client = MainActivity.get().getCurrentView();
 				final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.get());
 				final String buildType = AppInfo.getBuildType();
 				String msg = "Android client version: " + AppInfo.getBuildVersion();

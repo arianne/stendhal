@@ -26,7 +26,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
 	/** WebView instance. */
-	private ClientView client;
+	private ClientView clientView;
 	/** Menu instance. */
 	private Menu menu;
 
@@ -59,10 +59,10 @@ public class MainActivity extends AppCompatActivity {
 			updateOrientation();
 
 			setContentView(R.layout.activity_main);
-			client = (ClientView) findViewById(R.id.clientWebView);
+			clientView = (ClientView) findViewById(R.id.clientWebView);
 			menu = Menu.get();
 
-			client.loadTitleScreen();
+			clientView.loadTitleScreen();
 		} catch (final Exception e) {
 			// TODO: add option to save to file or copy to clipboard the error
 			e.printStackTrace();
@@ -100,10 +100,17 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	/**
+	 * Retrieves current active client view.
+	 */
+	public ClientView getCurrentView() {
+		return clientView;
+	}
+
+	/**
 	 * Attempts to connect to client host.
 	 */
 	public void loadLogin() {
-		client.loadLogin();
+		clientView.loadLogin();
 	}
 
 	/**
@@ -177,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
 	public void onConfigurationChanged(final Configuration config) {
 		super.onConfigurationChanged(config);
 		if (PageId.TITLE.equals(ClientView.getCurrentPageId())) {
-			client.onUpdateTitleOrient(config.orientation);
+			clientView.onUpdateTitleOrient(config.orientation);
 		}
 	}
 
