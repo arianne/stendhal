@@ -13,12 +13,19 @@ package org.stendhalgame.client;
 
 import java.io.File;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+
 
 /**
- * Dummy class for release builds.
+ * Semi-functional logger for release builds.
+ * 
+ * Displays notification dialogs but does not write to logs directory.
  */
 public class Logger {
 
+	/** Attribute denoting state of initialization. */
+	private static boolean initialized = false;
 	/** Logs directory. */
 	private static File logsDir;
 
@@ -33,7 +40,6 @@ public class Logger {
 		if (Logger.instance == null) {
 			Logger.instance = new Logger();
 		}
-
 		return Logger.instance;
 	}
 
@@ -48,6 +54,11 @@ public class Logger {
 	 * Initializes logs directory.
 	 */
 	public static void init(final File dir) {
+		if (Logger.initialized) {
+			Logger.warn("tried to re-initialize logger");
+			return;
+		}
+		Logger.initialized = true;
 		logsDir = new File(dir.getPath() + "/logs");
 	}
 
@@ -73,10 +84,17 @@ public class Logger {
 	}
 
 	/**
-	 * Dummy method for release builds.
+	 * Shows an information dialog.
+	 *
+	 * @param notify
+	 *   If `true` a toast notification is displayed to user.
+	 * @param text
+	 *   Text to be displayed.
 	 */
 	public static void info(final boolean notify, final String text) {
-		// do nothing
+		if (notify) {
+			Logger.notify(text, LogLevel.INFO);
+		}
 	}
 
 	/**
@@ -87,10 +105,17 @@ public class Logger {
 	}
 
 	/**
-	 * Dummy method for release builds.
+	 * Shows a warning dialog.
+	 *
+	 * @param notify
+	 *   If `true` a toast notification is displayed to user.
+	 * @param text
+	 *   Text to be displayed.
 	 */
 	public static void warn(final boolean notify, final String text) {
-		// do nothing
+		if (notify) {
+			Logger.notify(text, LogLevel.WARN);
+		}
 	}
 
 	/**
@@ -101,10 +126,17 @@ public class Logger {
 	}
 
 	/**
-	 * Dummy method for release builds.
+	 * Shows an error message dialog.
+	 *
+	 * @param notify
+	 *   If `true` a toast notification is displayed to user.
+	 * @param text
+	 *   Text to be displayed.
 	 */
 	public static void error(final boolean notify, final String text) {
-		// do nothing
+		if (notify) {
+			Logger.notify(text, LogLevel.ERROR);
+		}
 	}
 
 	/**
@@ -115,24 +147,59 @@ public class Logger {
 	}
 
 	/**
-	 * Dummy method for release builds.
+	 * Shows a debug message dialog.
+	 *
+	 * @param notify
+	 *   If `true` a toast notification is displayed to user.
+	 * @param text
+	 *   Text to be displayed.
 	 */
 	public static void debug(final boolean notify, final String text) {
-		// do nothing
+		if (notify) {
+			Logger.notify(text, LogLevel.DEBUG);
+		}
 	}
 
 	/**
-	 * Dummy method for release builds.
+	 * Displays a toast notification to user.
+	 *
+	 * @param text
+	 *   Text to display in notification.
 	 */
 	public static void notify(final String text) {
-		// do nothing
+		notify(text, LogLevel.INFO);
 	}
 
 	/**
-	 * Dummy method for release builds.
+	 * Displays a toast notification to user.
+	 *
+	 * @param text
+	 *   Text to display in notification.
+	 * @param level
+	 *   Logging verbosity level.
 	 */
-	public static void notify(final String text, final LogLevel level) {
-		// do nothing
+	public static void notify(final String text, LogLevel level) {
+		if (!Logger.initialized) {
+			System.err.println("ERROR: Logger not initialized. Call Logger.init.");
+			return;
+		}
+
+		if (level == null) {
+			level = LogLevel.INFO;
+		}
+
+		final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.get());
+		builder.setTitle(level.label);
+		builder.setMessage(text);
+
+		builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(final DialogInterface dialog, final int id) {
+				dialog.cancel();
+			}
+		});
+
+		builder.create().show();
 	}
 
 	/**
