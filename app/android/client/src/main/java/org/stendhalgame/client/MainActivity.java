@@ -60,12 +60,12 @@ public class MainActivity extends AppCompatActivity {
 			// initialize debug logging mechanism
 			Logger.init(getExternalFilesDir(null));
 
-			updateOrientation();
-
 			setContentView(R.layout.activity_main);
-			menu = Menu.get();
 			clientList = findViewById(R.id.clientList);
 			createClientView();
+			// NOTE: client view instance must be created before initializing menu
+			menu = Menu.get();
+			updateOrientation();
 		} catch (final Exception e) {
 			// TODO: add option to save to file or copy to clipboard the error
 			e.printStackTrace();
@@ -107,9 +107,9 @@ public class MainActivity extends AppCompatActivity {
 	 */
 	private void createClientView() {
 		final ClientView clientView = new ClientView(this);
-		clientView.loadTitleScreen();
 		setActiveClientView(clientView);
 		clientList.addView(clientView);
+		clientView.loadTitleScreen();
 	}
 
 	/**
