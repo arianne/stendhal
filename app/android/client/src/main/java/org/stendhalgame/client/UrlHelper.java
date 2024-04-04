@@ -129,7 +129,7 @@ class UrlHelper {
 		final Uri uri = UrlHelper.toUri(url);
 		final Uri.Builder builder = uri.buildUpon();
 		if (UrlHelper.isClientUrl(url)) {
-			final ClientView client = MainActivity.get().getCurrentView();
+			final ClientView client = MainActivity.get().getActiveClientView();
 			final boolean testClient = client.isTestClient();
 			String replaceSuffix = "/testclient/";
 			if (testClient) {
@@ -212,7 +212,7 @@ class UrlHelper {
 			// allow pages from stendhalgame.org
 			return true;
 		}
-		final String cs = MainActivity.get().getCurrentView().checkCustomServer();
+		final String cs = MainActivity.get().getActiveClientView().checkCustomServer();
 		if (cs != null) {
 			return UrlHelper.stripHost(cs).equals(host);
 		}

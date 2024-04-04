@@ -59,10 +59,8 @@ public class MainActivity extends AppCompatActivity {
 			updateOrientation();
 
 			setContentView(R.layout.activity_main);
-			clientView = (ClientView) findViewById(R.id.clientWebView);
 			menu = Menu.get();
-
-			clientView.loadTitleScreen();
+			createClientView();
 		} catch (final Exception e) {
 			// TODO: add option to save to file or copy to clipboard the error
 			e.printStackTrace();
@@ -100,9 +98,18 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	/**
-	 * Retrieves current active client view.
+	 * Creates view to host a client instance.
 	 */
-	public ClientView getCurrentView() {
+	private void createClientView() {
+		clientView = new ClientView(this);
+		clientView.loadTitleScreen();
+		findViewById(R.id.clientList).addView(clientView);
+	}
+
+	/**
+	 * Retrieves active client view.
+	 */
+	public ClientView getActiveClientView() {
 		return clientView;
 	}
 

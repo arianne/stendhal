@@ -40,6 +40,7 @@ import android.widget.ImageView;
  */
 public class ClientView extends WebView {
 
+	// TODO: move to MainActivity or its own class
 	/** Image used as title page background. */
 	private ImageView splash;
 

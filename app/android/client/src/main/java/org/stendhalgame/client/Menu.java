@@ -146,7 +146,7 @@ public class Menu {
 					new Notifier.Action() {
 						@Override
 						protected void onCall() {
-							MainActivity.get().getCurrentView().loadTitleScreen();
+							MainActivity.get().getActiveClientView().loadTitleScreen();
 							updateButtons();
 						}
 					},
@@ -168,7 +168,7 @@ public class Menu {
 					new Notifier.Action() {
 						@Override
 						protected void onCall() {
-							MainActivity.get().getCurrentView().reload();
+							MainActivity.get().getActiveClientView().reload();
 						}
 					},
 					new Notifier.Action() {
