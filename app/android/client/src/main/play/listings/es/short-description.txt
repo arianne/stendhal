@@ -1,1 +1,1 @@
-Un juego multijugador de aventuras en línea divertido, amigable y gratuito de código abierto
+Stendhal es una aventura multijugador con gráficos 2D clásicos. Es completamente de código abierto.

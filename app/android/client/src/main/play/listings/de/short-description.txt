@@ -1,1 +1,1 @@
-Ein unterhaltsames, freundliches und kostenloses Open-Source-Multiplayer-Online-Abenteuerspiel
+Stendhal ist ein Multiplayer-Adventure mit klassischer 2D-Grafik. Es ist vollständig Open Source.
