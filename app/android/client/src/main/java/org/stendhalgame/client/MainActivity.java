@@ -11,12 +11,16 @@
  ***************************************************************************/
 package org.stendhalgame.client;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.ViewGroup;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -25,10 +29,10 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 public class MainActivity extends AppCompatActivity {
 
-	/** WebView instance. */
-	private ClientView clientView;
 	/** Menu instance. */
 	private Menu menu;
+	/** Active clients. **/
+	private ViewGroup clientList;
 
 	/** Static activity instance. */
 	private static MainActivity instance;
@@ -60,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
 			setContentView(R.layout.activity_main);
 			menu = Menu.get();
+			clientList = findViewById(R.id.clientList);
 			createClientView();
 		} catch (final Exception e) {
 			// TODO: add option to save to file or copy to clipboard the error
@@ -101,23 +106,75 @@ public class MainActivity extends AppCompatActivity {
 	 * Creates view to host a client instance.
 	 */
 	private void createClientView() {
-		clientView = new ClientView(this);
+		final ClientView clientView = new ClientView(this);
 		clientView.loadTitleScreen();
-		findViewById(R.id.clientList).addView(clientView);
+		setActiveClientView(clientView);
+		clientList.addView(clientView);
+	}
+
+	/**
+	 * Sets client view to be shown and hides all others.
+	 *
+	 * @param clientView
+	 *   The `ClientView` instance to be visible.
+	 */
+	private void setActiveClientView(final ClientView clientView) {
+		for (int idx = 0; idx < clientList.getChildCount(); idx++) {
+			((ClientView) clientList.getChildAt(idx)).setActive(false);
+		}
+		clientView.setActive(true);
+	}
+
+	/**
+	 * Sets client view to be shown and hides all others.
+	 *
+	 * @param clientIndex
+	 *   The index of `ClientView` instance to be visible.
+	 */
+	private void setActiveClientView(final int clientIndex) {
+		if (clientIndex < 0 || clientIndex >= clientList.getChildCount()) {
+			Logger.error(true, "Tried to access invalid client index: " + clientIndex);
+			return;
+		}
+		setActiveClientView((ClientView) clientList.getChildAt(clientIndex));
 	}
 
 	/**
 	 * Retrieves active client view.
+	 *
+	 * @return
+	 *   `ClientView` instance that is visible.
 	 */
 	public ClientView getActiveClientView() {
-		return clientView;
+		for (int idx = 0; idx < clientList.getChildCount(); idx++) {
+			final ClientView clientView = (ClientView) clientList.getChildAt(idx);
+			if (clientView.isActive()) {
+				return clientView;
+			}
+		}
+		// default to first client view
+		return (ClientView) clientList.getChildAt(0);
+	}
+
+	/**
+	 * Retrieves list of available client views.
+	 *
+	 * @return
+	 *   List containing all created `ClientView` instances.
+	 */
+	public List<ClientView> getClientViewList() {
+		final List<ClientView> available = new LinkedList<>();
+		for (int idx = 0; idx < clientList.getChildCount(); idx++) {
+			available.add((ClientView) clientList.getChildAt(idx));
+		}
+		return available;
 	}
 
 	/**
 	 * Attempts to connect to client host.
 	 */
 	public void loadLogin() {
-		clientView.loadLogin();
+		getActiveClientView().loadLogin();
 	}
 
 	/**
@@ -191,7 +248,9 @@ public class MainActivity extends AppCompatActivity {
 	public void onConfigurationChanged(final Configuration config) {
 		super.onConfigurationChanged(config);
 		if (PageId.TITLE.equals(ClientView.getCurrentPageId())) {
-			clientView.onUpdateTitleOrient(config.orientation);
+			for (int idx = 0; idx < clientList.getChildCount(); idx++) {
+				((ClientView) clientList.getChildAt(idx)).onUpdateTitleOrient(config.orientation);
+			}
 		}
 	}
 

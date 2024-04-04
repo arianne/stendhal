@@ -103,10 +103,9 @@ public class ClientView extends WebView {
 
 	/**
 	 * Initializes client WebView interface.
-	 *
-	 * TODO: allow multiple client view instances
 	 */
 	private void onInit() {
+		setActive(false); // main activity manages initial visibility
 		setBackgroundColor(Color.TRANSPARENT);
 
 		final WebSettings viewSettings = getSettings();
@@ -132,6 +131,30 @@ public class ClientView extends WebView {
 
 		initWebViewClient();
 		initDownloadHandler();
+	}
+
+	/**
+	 * Sets active state of this client view.
+	 *
+	 * @param active
+	 *   If `true` shows this client view, otherwise hides it.
+	 */
+	public void setActive(final boolean active) {
+		if (active) {
+			setVisibility(ClientView.VISIBLE);
+			return;
+		}
+		setVisibility(ClientView.GONE);
+	}
+
+	/**
+	 * Checks active state of client view.
+	 *
+	 * @return
+	 *   `true` is this view is visible.
+	 */
+	public boolean isActive() {
+		return getVisibility() == ClientView.VISIBLE;
 	}
 
 	/**
