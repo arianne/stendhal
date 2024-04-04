@@ -247,10 +247,9 @@ public class MainActivity extends AppCompatActivity {
 	@Override
 	public void onConfigurationChanged(final Configuration config) {
 		super.onConfigurationChanged(config);
-		if (PageId.TITLE.equals(ClientView.getCurrentPageId())) {
-			for (int idx = 0; idx < clientList.getChildCount(); idx++) {
-				((ClientView) clientList.getChildAt(idx)).onUpdateTitleOrient(config.orientation);
-			}
+		final ClientView clientView = getActiveClientView();
+		if (clientView != null && PageId.TITLE.equals(clientView.getCurrentPageId())) {
+			clientView.onUpdateTitleOrient(config.orientation);
 		}
 	}
 

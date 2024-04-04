@@ -53,7 +53,7 @@ public class ClientView extends WebView {
 	private boolean testServer = false;
 	private Boolean debugging;
 	/** ID of page currently loaded. */
-	private static PageId currentPage;
+	private PageId currentPage;
 	/** ID of page previously loaded. */
 	private PageId previousPage;
 
@@ -247,7 +247,7 @@ public class ClientView extends WebView {
 	public boolean dispatchKeyEvent(final KeyEvent event) {
 		final boolean ret = super.dispatchKeyEvent(event);
 		// hide keyboard when "enter" pressed
-		if (ClientView.isGameActive() && event.getAction() == KeyEvent.ACTION_UP
+		if (isGameActive() && event.getAction() == KeyEvent.ACTION_UP
 				&& event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
 			((InputMethodManager) MainActivity.get()
 				.getSystemService(Context.INPUT_METHOD_SERVICE))
@@ -339,7 +339,7 @@ public class ClientView extends WebView {
 	 *   One of "main", "test", or "none".
 	 */
 	public String getSelectedClient() {
-		if (ClientView.onTitleScreen()) {
+		if (onTitleScreen()) {
 			return "none";
 		}
 		return testClient ? "test" : "main";
@@ -352,7 +352,7 @@ public class ClientView extends WebView {
 	 *   One of "main", "test", or "none".
 	 */
 	public String getSelectedServer() {
-		if (ClientView.onTitleScreen()) {
+		if (onTitleScreen()) {
 			return "none";
 		}
 		return testServer ? "test" : "main";
@@ -579,7 +579,7 @@ public class ClientView extends WebView {
 	 * @return
 	 *   `true` if current page matches `PageId.TITLE`.
 	 */
-	public static boolean onTitleScreen() {
+	public boolean onTitleScreen() {
 		return currentPage == PageId.TITLE;
 	}
 
@@ -589,19 +589,17 @@ public class ClientView extends WebView {
 	 * @return
 	 *   `true` if current page matches `PageId.WEBCLIENT`.
 	 */
-	public static boolean isGameActive() {
+	public boolean isGameActive() {
 		return currentPage == PageId.WEBCLIENT;
 	}
 
 	/**
 	 * Retrieves ID of current page.
 	 *
-	 * FIXME: should not be static
-	 *
 	 * @return
 	 *   Current `PageId`.
 	 */
-	public static PageId getCurrentPageId() {
+	public PageId getCurrentPageId() {
 		return currentPage;
 	}
 
@@ -612,10 +610,10 @@ public class ClientView extends WebView {
 	 *   Page ID to be used.
 	 */
 	private void setPage(final PageId newPage) {
-		previousPage = ClientView.currentPage;
-		ClientView.currentPage = newPage;
+		previousPage = currentPage;
+		currentPage = newPage;
 		if (previousPage == null) {
-			previousPage = ClientView.currentPage;
+			previousPage = currentPage;
 		}
 	}
 

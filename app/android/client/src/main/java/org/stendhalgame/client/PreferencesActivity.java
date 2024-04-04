@@ -202,7 +202,7 @@ public class PreferencesActivity extends AppCompatActivity {
 					@Override
 					public boolean onPreferenceChange(final Preference pref, final Object obj) {
 						// set music state as soon as preference is changed
-						if (ClientView.onTitleScreen()) {
+						if (MainActivity.get().getActiveClientView().onTitleScreen()) {
 							if (!((Boolean) obj)) {
 								MusicPlayer.stopMusic();
 							} else if (!MusicPlayer.isPlaying()) {
@@ -229,7 +229,7 @@ public class PreferencesActivity extends AppCompatActivity {
 					@Override
 					public boolean onPreferenceChange(final Preference pref, final Object obj) {
 						// set music state as soon as preference is changed
-						if (ClientView.onTitleScreen()) {
+						if (MainActivity.get().getActiveClientView().onTitleScreen()) {
 							Logger.debug("changing title music preference: " + (String) obj);
 
 							if (title_music.isChecked()) {

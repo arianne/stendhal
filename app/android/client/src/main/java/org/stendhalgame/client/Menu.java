@@ -108,7 +108,7 @@ public class Menu {
 	 * Refreshes displayed menu buttons.
 	 */
 	public void updateButtons() {
-		final PageId page = ClientView.getCurrentPageId();
+		final PageId page = MainActivity.get().getActiveClientView().getCurrentPageId();
 
 		btn_connect.setVisibility(View.GONE);
 		btn_title.setVisibility(View.GONE);
@@ -261,7 +261,7 @@ public class Menu {
 	private class ClickListener implements View.OnClickListener {
 		@Override
 		public void onClick(final View v) {
-			if (!ClientView.onTitleScreen()) {
+			if (!MainActivity.get().getActiveClientView().onTitleScreen()) {
 				nav.setVisibility(View.GONE);
 			}
 		}
