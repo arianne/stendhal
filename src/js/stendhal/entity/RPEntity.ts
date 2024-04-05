@@ -349,11 +349,10 @@ export class RPEntity extends ActiveEntity {
 	}
 
 	drawMain(ctx: CanvasRenderingContext2D) {
-		let filename;
 		if (typeof(this["outfit"]) != "undefined" || typeof(this["outfit_ext"]) != "undefined") {
 			this.drawMultipartOutfit(ctx);
 		} else {
-			filename = stendhal.paths.sprites + "/" + this.spritePath + "/" + this["class"];
+			let filename = stendhal.paths.sprites + "/" + this.spritePath + "/" + this["class"];
 			if (typeof(this["subclass"]) != "undefined") {
 				filename = filename + "/" + this["subclass"];
 			}
