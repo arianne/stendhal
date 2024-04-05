@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2007-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2007-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -180,10 +180,7 @@ export class OutfitDialog extends DialogContentComponent {
 	initialColorValue(part: string) {
 		const colors = marauroa.me["outfit_colors"];
 		if (colors != null) {
-			let colorName = part;
-			if (part === "body" || part === "head") {
-				colorName = "skin";
-			}
+			const colorName = stendhal.data.outfit.isSkinLayer(part) ? "skin" : part;
 
 			let layer_color = colors[colorName + "_orig"];
 			if (layer_color === undefined) {

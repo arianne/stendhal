@@ -314,7 +314,7 @@ export class RPEntity extends ActiveEntity {
 		const filename = stendhal.paths.sprites + "/outfit/" + part + "/" + n + ".png";
 		const colors = this["outfit_colors"];
 		let colorname;
-		if (part === "body" || part === "head") {
+		if (stendhal.data.outfit.isSkinLayer(part)) {
 			colorname = "skin";
 		} else {
 			colorname = part;

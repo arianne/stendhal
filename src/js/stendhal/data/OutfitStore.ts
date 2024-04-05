@@ -18,6 +18,8 @@ export class OutfitStore {
 	// layer names in draw order
 	private static readonly layers: string[] = ["body", "dress", "head", "mouth", "eyes", "mask", "hair", "hat", "detail"];
 	private static readonly layersLegacy: string[] = ["body", "dress", "head", "hair", "detail"];
+	// layers using skin coloring
+	private static readonly skinLayers: string[] = ["body", "head"];
 
 	private detailRearLayers: number[] = [];
 
@@ -85,6 +87,18 @@ export class OutfitStore {
 			return [...OutfitStore.layersLegacy];
 		}
 		return [...OutfitStore.layers];
+	}
+
+	/**
+	 * Determines if a layer uses skin coloring.
+	 *
+	 * @param name {string}
+	 *   Layer name.
+	 * @return {boolean}
+	 *   `true` if the layer is considered to be a "skin" layer.
+	 */
+	isSkinLayer(name: string): boolean {
+		return OutfitStore.skinLayers.indexOf(name) > -1;
 	}
 
 	/**
