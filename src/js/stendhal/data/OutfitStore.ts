@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2003-2023 - Arianne                     *
+ *                 Copyright © 2003-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -14,6 +14,10 @@ import { JSONLoader } from "../util/JSONLoader";
 
 
 export class OutfitStore {
+
+	// layer names in draw order
+	private static readonly layers: string[] = ["body", "dress", "head", "mouth", "eyes", "mask", "hair", "hat", "detail"];
+	private static readonly layersLegacy: string[] = ["body", "dress", "head", "hair", "detail"];
 
 	private detailRearLayers: number[] = [];
 
@@ -68,6 +72,19 @@ export class OutfitStore {
 			this.detailRearLayers = loader.data["detail"]["rear"];
 		}
 		loader.load(Paths.sprites + "/outfit/outfits.json");
+	}
+
+	/**
+	 * Retrieves names of applicable outfit layers.
+	 *
+	 * @returns {string[]}
+	 *   Layer names.
+	 */
+	getLayerNames(legacy=false): string[] {
+		if (legacy) {
+			return [...OutfitStore.layersLegacy];
+		}
+		return [...OutfitStore.layers];
 	}
 
 	/**

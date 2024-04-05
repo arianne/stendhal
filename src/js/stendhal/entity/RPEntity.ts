@@ -219,13 +219,12 @@ export class RPEntity extends ActiveEntity {
 	}
 
 	drawMultipartOutfit(ctx: CanvasRenderingContext2D) {
+		const store = singletons.getOutfitStore();
 		// layers in draw order
-		var layers: string[] = [];
+		var layers = store.getLayerNames();
 
 		var outfit: {[key: string]: number} = {};
 		if ("outfit_ext" in this) {
-			layers = ["body", "dress", "head", "mouth", "eyes", "mask", "hair", "hat", "detail"];
-
 			for (const part of this["outfit_ext"].split(",")) {
 				if (part.includes("=")) {
 					var tmp = part.split("=");
@@ -233,7 +232,7 @@ export class RPEntity extends ActiveEntity {
 				}
 			}
 		} else {
-			layers = ["body", "dress", "head", "hair", "detail"];
+			layers = store.getLayerNames(true);
 
 			outfit["body"] = this["outfit"] % 100;
 			outfit["dress"] = Math.floor(this["outfit"]/100) % 100;
