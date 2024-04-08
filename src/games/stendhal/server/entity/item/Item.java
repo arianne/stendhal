@@ -171,6 +171,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 		// Some items have ranged attack values
 		entity.addAttribute("ratk", Type.SHORT, Definition.HIDDEN);
 
+		// alters weapon accuracy by a percentage
+		entity.addAttribute("accuracy_bonus", Type.FLOAT, Definition.HIDDEN);
+
 		// Some items indicate how often you can attack.
 		entity.addAttribute("rate", Type.SHORT, Definition.HIDDEN);
 
@@ -874,6 +877,10 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 				stats.append(Math.round(100/entry.getValue()));
 				stats.append("%");
 			}
+		}
+		if (has("accuracy_bonus")) {
+			stats.append(" ACCURACY-BONUS: ");
+			stats.append((getDouble("accuracy_bonus") + "%").replaceFirst("\\.[0]+%$", "%"));
 		}
 
 		if (has("min_level")) {
