@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2020 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,6 +15,11 @@ package games.stendhal.common;
  * Constants about slots
  */
 public final class Constants {
+
+	public static final String[] EQUIPMENT_SLOTS = {
+		"head", "rhand", "lhand", "armor", "finger", "cloak", "legs", "feet"
+	};
+
 	/**
 	 * All the slots considered to be "with" the entity. Listed in priority
 	 * order (i.e. bag first).
