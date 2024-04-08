@@ -2379,6 +2379,18 @@ public abstract class RPEntity extends CombatEntity {
 	}
 
 	/**
+	 * Retrieves items carried in equipment slots (weapons, armor, etc.).
+	 *
+	 * @return
+	 *   Equipped items.
+	 */
+	protected List<Item> getAllEquipment() {
+		final Stream<String> slotNames = Slots.EQUIPMENT.getNames().stream();
+		final Stream<RPSlot> slots = slotNames.map(this::getSlot).filter(Objects::nonNull);
+		return slots.flatMap(this::slotStream).collect(Collectors.toList());
+	}
+
+	/**
 	 * Retrieves all of an item with matching info string.
 	 *
 	 * @param name
@@ -3450,6 +3462,8 @@ public abstract class RPEntity extends CombatEntity {
 
 	/**
 	 * Get a stream of all equipped items.
+	 *
+	 * FIXME: perhaps should be renamed to avoid confusion with equipment slots (weapons, armor, etc.)
 	 *
 	 * @return equipped items
 	 */

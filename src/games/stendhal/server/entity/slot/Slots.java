@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2014 - Faiumoni e. V.                   *
+ *                (C) Copyright 2014-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -22,6 +22,8 @@ import games.stendhal.common.Constants;
  */
 public enum Slots {
 
+	/** Slots where equipment can be carried for use (weapons, armor, and rings). */
+	EQUIPMENT(ImmutableList.copyOf(Constants.EQUIPMENT_SLOTS)),
 	/**
 	 * slots which may be carried by an entity (e. g. a bag)
 	 */

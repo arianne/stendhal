@@ -15,6 +15,11 @@ package games.stendhal.common;
  * General constants.
  */
 public final class Constants {
+
+	public static final String[] EQUIPMENT_SLOTS = {
+		"head", "rhand", "lhand", "armor", "finger", "cloak", "legs", "feet"
+	};
+
 	/**
 	 * All the slots considered to be "with" the entity. Listed in priority
 	 * order (i.e. bag first).
