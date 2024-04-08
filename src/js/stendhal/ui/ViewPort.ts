@@ -174,10 +174,10 @@ export class ViewPort {
 	 * FIXME:
 	 * - colors are wrong
 	 * - doesn't support "blend" layers
+	 * - very slow
 	 */
 	applyFilter() {
 		if (this.filter && stendhal.config.getBoolean("effect.lighting")) {
-			// FIXME: wrong colors
 			this.ctx.filter = this.filter;
 		}
 	}
