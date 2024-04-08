@@ -11,6 +11,7 @@
 						<element name="damagetype" type="Q1:attribute" minOccurs="0" maxOccurs="unbounded"/>
 						<element name="statusattack" type="Q1:attribute" minOccurs="0" maxOccurs="unbounded"/>
 						<element name="statusresist" type="Q1:statusresist" minOccurs="0" maxOccurs="unbounded"/>
+						<element name="accuracy_bonus" type="Q1:attribute" minOccurs="0" maxOccurs="1"/>
 					</sequence>
 				</extension>
 			</complexContent>
