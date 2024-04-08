@@ -144,6 +144,7 @@ export class ViewPort {
 
 				// FIXME: filter should not be applied to "blend" layers
 				//this.applyFilter();
+				stendhal.data.map.parallax.draw(this.ctx, this.offsetX, this.offsetY);
 				stendhal.data.map.strategy.render(this.ctx.canvas, this, tileOffsetX, tileOffsetY, this.targetTileWidth, this.targetTileHeight);
 
 				this.weatherRenderer.draw(this.ctx);

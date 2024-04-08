@@ -16,6 +16,7 @@ import { Paths } from "./Paths";
 
 import { LandscapeRenderingStrategy, CombinedTilesetRenderingStrategy } from "../landscape/LandscapeRenderingStrategy";
 import { IndividualTilesetRenderingStrategy } from "../landscape/IndividualTilesetRenderingStrategy";
+import { ParallaxBackground } from "../landscape/ParallaxBackground";
 
 
 export class Map {
@@ -63,6 +64,9 @@ export class Map {
 		Paths.tileset + "/item/blood/small_stains"
 	];
 
+	private parallax: ParallaxBackground;
+	private parallaxImage?: string;
+
 	/** Singleton instance. */
 	private static instance: Map;
 
@@ -86,6 +90,7 @@ export class Map {
 		} else {
 			this.strategy = new CombinedTilesetRenderingStrategy();
 		}
+		this.parallax = ParallaxBackground.get();
 	}
 
 	/**
@@ -122,6 +127,11 @@ export class Map {
 		this.layerGroupIndexes = this.mapLayerGroup();
 
 		this.strategy.onMapLoaded(this);
+
+		if (this.parallaxImage) {
+			this.parallax.setImage(this.parallaxImage, this.zoneSizeX * this.tileWidth,
+					this.zoneSizeY * this.tileHeight);
+		}
 	}
 
 	decodeTileset(content: any, name: string) {
@@ -221,5 +231,18 @@ export class Map {
 	 */
 	hasSafeTileset(filename: string) {
 		return this.knownSafeTilesets.indexOf(filename) > -1;
+	}
+
+	/**
+	 * Sets or unsets parallax image.
+	 *
+	 * @param {string=} name
+	 *   Background image filename.
+	 */
+	setParallax(name?: string) {
+		this.parallaxImage = name;
+		if (typeof(name) === "undefined") {
+			this.parallax.reset();
+		}
 	}
 }

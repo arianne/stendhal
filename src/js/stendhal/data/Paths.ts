@@ -24,6 +24,7 @@ export class Paths {
 	public static readonly achievements = Paths.sprites + "/achievements";
 	public static readonly maps = Paths.data + "/maps";
 	public static readonly tileset = Paths.maps + "/tileset";
+	public static readonly parallax = Paths.maps + "/parallax";
 	public static readonly ws = Paths.extractPath("data-ws");
 
 	/**

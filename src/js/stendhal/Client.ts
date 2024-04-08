@@ -476,6 +476,9 @@ export class Client {
 		stendhal.sound.playSingleGlobalizedMusic(zoneinfo["music"],
 				!Number.isNaN(musicVolume) ? musicVolume : 1.0);
 
+		// parallax background
+		stendhal.data.map.setParallax(zoneinfo["parallax"]);
+
 		// coloring information
 		if (zoneinfo["color"] && stendhal.config.getBoolean("effect.lighting")) {
 			if (zoneinfo["color_method"]) {
