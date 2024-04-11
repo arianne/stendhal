@@ -532,11 +532,12 @@ thing*                    IndigoFenix, olonu, Jordan Irwin (AntumDeluge); CC BY 
 data/sprites/entity/human/
 
 apprentice_assassin.*      Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://sourceforge.net/p/arianne/patches/717/
+** NOTE: "armored" was moved to "human_blordrough" directory **
 armored_captain.png        Svetlana Kushnariova (Cabbit), Eldiran, bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/87473
 armored_elite.png          Svetlana Kushnariova (Cabbit), Eldiran, Fabzy, bleutailfly, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/87473, https://opengameart.org/node/23314
 armored_general.png        Svetlana Kushnariova (Cabbit), Eldiran, bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/87473
 armored_infantry.png       Svetlana Kushnariova (Cabbit), Eldiran, bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/87473
-armored_leader.png         Svetlana Kushnariova (Cabbit), Eldiran, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/87473
+armored_leader.png         Svetlana Kushnariova (Cabbit), Eldiran, Vollrat, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/87473, https://opengameart.org/node/72575
 armored_soldier.png        Svetlana Kushnariova (Cabbit), Eldiran, bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 armored_warrior.png        Svetlana Kushnariova (Cabbit), Eldiran, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/87473
 assassin.*                 Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
