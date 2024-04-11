@@ -283,12 +283,12 @@ amazoness_vigilance.*            Svetlana Kushnariova (Cabbit), olonu, LordNeo, 
 
 data/sprites/entity/angel/
 
-angel.png           Svetlana Kushnariova (Cabbit), liftarn, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286
-archangel.png       Svetlana Kushnariova (Cabbit), liftarn, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286
-baby_angel.*        Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-dark_angel.png      Svetlana Kushnariova (Cabbit), liftarn, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286
-dark_archangel.png  Svetlana Kushnariova (Cabbit), liftarn, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286
-fallen_angel.png    Svetlana Kushnariova (Cabbit), johnny_automatic, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286
+angel.*           Svetlana Kushnariova (Cabbit), liftarn, freedo, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286
+archangel.*       Svetlana Kushnariova (Cabbit), liftarn, freedo, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286
+baby_angel.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
+dark_angel.*      Svetlana Kushnariova (Cabbit), liftarn, freedo, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286
+dark_archangel.*  Svetlana Kushnariova (Cabbit), liftarn, freedo, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286
+fallen_angel.*    Svetlana Kushnariova (Cabbit), johnny_automatic, freedo, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286
 
 
 data/sprites/entity/animal/
