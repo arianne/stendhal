@@ -286,7 +286,7 @@ data/sprites/entity/angel/
 angel.*           Svetlana Kushnariova (Cabbit), liftarn, freedo, Cethiel, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286, https://opengameart.org/node/95575
 archangel.*       Svetlana Kushnariova (Cabbit), liftarn, freedo, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286
 baby_angel.*      Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
-dark_angel.*      Svetlana Kushnariova (Cabbit), liftarn, freedo, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286
+dark_angel.*      Svetlana Kushnariova (Cabbit), liftarn, freedo, Cethiel, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286, https://opengameart.org/node/95842
 dark_archangel.*  Svetlana Kushnariova (Cabbit), liftarn, freedo, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286
 fallen_angel.*    Svetlana Kushnariova (Cabbit), johnny_automatic, freedo, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/83286
 
