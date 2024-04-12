@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -54,9 +54,9 @@ public class ItemTransformer {
 			boolean autobind = item.has("autobind");
 			if (rpobject.has("persistent")
 					&& (rpobject.getInt("persistent") == 1)) {
-				/*
-				 * Keep [new] rpclass
-				 */
+				// keep [new] menu
+				final String menuvalue = item.get("menu");
+				// keep [new] rpclass
 				final RPClass rpclass = item.getRPClass();
 				item.fill(rpobject);
 				item.setRPClass(rpclass);
@@ -66,6 +66,11 @@ public class ItemTransformer {
 				// Also autobinding must work for persistent items
 				if (autobind) {
 					item.put("autobind", "");
+				}
+
+				// prevent persistent from removing "menu" attribute
+				if (!item.has("menu") && menuvalue != null) {
+					item.put("menu", menuvalue);
 				}
 			}
 
