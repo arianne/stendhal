@@ -450,25 +450,25 @@ public class GrammarTest {
 		testPluralisationAndSingularisation("feet", "foot");
 		testPluralisationAndSingularisation("children", "child");
 
-        testPluralisationAndSingularisation("moose", "moose");
-        testPluralisationAndSingularisation("nooses", "noose");
-        testPluralisationAndSingularisation("helia", "helium");
-        testPluralisationAndSingularisation("sodia", "sodium");
-        testPluralisationAndSingularisation("men", "man");
-        testPluralisationAndSingularisation("humans", "human");
+		testPluralisationAndSingularisation("moose", "moose");
+		testPluralisationAndSingularisation("nooses", "noose");
+		testPluralisationAndSingularisation("helia", "helium");
+		testPluralisationAndSingularisation("sodia", "sodium");
+		testPluralisationAndSingularisation("men", "man");
+		testPluralisationAndSingularisation("humans", "human");
 
-        testPluralisationAndSingularisation("tomatoes", "tomato");
+		testPluralisationAndSingularisation("tomatoes", "tomato");
 		testPluralisationAndSingularisation("algae", "alga");
 		testPluralisationAndSingularisation("larvae", "larva");
 		testPluralisationAndSingularisation("hyphae", "hypha");
 		testPluralisationAndSingularisation("bureaux", "bureau");
 		testPluralisationAndSingularisation("dei", "deus");
-        testPluralisationAndSingularisation("indices", "index");
-        testPluralisationAndSingularisation("vertices", "vertex");
+		testPluralisationAndSingularisation("indices", "index");
+		testPluralisationAndSingularisation("vertices", "vertex");
 		testPluralisationAndSingularisation("vortices", "vortex");
 
 		testPluralisationAndSingularisation("matrices", "matrix");
-        testPluralisationAndSingularisation("analyses", "analysis");
+		testPluralisationAndSingularisation("analyses", "analysis");
 		testPluralisationAndSingularisation("xxxyses", "xxxysis");
 
 		testPluralisationAndSingularisation("wumpuses", "wumpus");
@@ -482,16 +482,16 @@ public class GrammarTest {
 		testPluralisationAndSingularisation("abies", "aby");
 		testPluralisationAndSingularisation("fs", "f");
 
-        testPluralisationAndSingularisation("matches", "match");
-        testPluralisationAndSingularisation("boxes", "box");
-        testPluralisationAndSingularisation("bushes", "bush");
-        testPluralisationAndSingularisation("boys", "boy");
-        testPluralisationAndSingularisation("bosses", "boss");
-        testPluralisationAndSingularisation("bodies", "body");
-        testPluralisationAndSingularisation("princesses", "princess");
-        testPluralisationAndSingularisation("wikipedias", "wikipedia");
+		testPluralisationAndSingularisation("matches", "match");
+		testPluralisationAndSingularisation("boxes", "box");
+		testPluralisationAndSingularisation("bushes", "bush");
+		testPluralisationAndSingularisation("boys", "boy");
+		testPluralisationAndSingularisation("bosses", "boss");
+		testPluralisationAndSingularisation("bodies", "body");
+		testPluralisationAndSingularisation("princesses", "princess");
+		testPluralisationAndSingularisation("wikipedias", "wikipedia");
 
-        assertEquals("cheese", Grammar.singular("cheese"));
+		assertEquals("cheese", Grammar.singular("cheese"));
 		testPluralisationAndSingularisation("pieces of cheese", "cheese");
 		testPluralisationAndSingularisation("bicycles", "bicycle");
 	}
