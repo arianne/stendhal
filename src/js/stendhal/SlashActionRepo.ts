@@ -1313,9 +1313,11 @@ export class SlashActionRepo {
 				"type": type,
 				"creature": creature,
 				"x": x,
-				"y": y,
-				"quantity": quantity || "0"
+				"y": y
 			};
+			if (quantity != null) {
+				action["quantity"] = quantity;
+			}
 			this.sendAction(action);
 			return true;
 		},
