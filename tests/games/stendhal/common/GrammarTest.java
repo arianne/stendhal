@@ -171,6 +171,8 @@ public class GrammarTest {
 		assertEquals("a ", Grammar.a_noun(""));
 		assertEquals("a eupepsia", Grammar.a_noun("eupepsia"));
 		assertEquals("a eu", Grammar.a_noun("eu"));
+		// begins with hard "u" (sounds like "you")
+		assertEquals("a unicorn", Grammar.a_noun("unicorn"));
 	}
 
 	/**
@@ -216,6 +218,8 @@ public class GrammarTest {
 		assertEquals("A s", Grammar.A_noun("s"));
 		assertEquals("An a", Grammar.A_noun("a"));
 		assertEquals("A ", Grammar.A_noun(""));
+		// begins with hard "u" (sounds like "you")
+		assertEquals("A unicorn", Grammar.A_noun("unicorn"));
 	}
 
 	/**
