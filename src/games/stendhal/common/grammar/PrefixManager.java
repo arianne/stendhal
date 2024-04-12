@@ -107,7 +107,13 @@ final class PrefixManager
 
 		registerEnd("nugget of ", "nuggets of ", " ore");
 
-		registerEnd("spool of ", "spools of ", " thread");
+		// NOTE: cannot handle registering ambiguous "thread" and "leather thread" so must explicity
+		//       register each thread type
+		//registerEnd("spool of ", "spools of ", " thread");
+		register("spool of ", "spools of ", "silk thread");
+		register("spool of ", "spools of ", "mithril thread");
+		// leather thread is a loose strand instead of on a spool
+		register("strand of ", "strands of ", "leather thread");
 
 		registerEnd("pair of ", "pairs of ", " legs");
 		registerEnd("pair of ", "pairs of ", " boots");

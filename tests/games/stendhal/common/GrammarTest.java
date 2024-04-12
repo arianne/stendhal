@@ -200,6 +200,10 @@ public class GrammarTest {
 		assertEquals("pair of iron boots", Grammar.fullForm("iron boots"));
 		assertEquals("chocolate",Grammar.fullForm("chocolate"));
 		assertEquals("ice cream", Grammar.fullForm("icecream"));
+
+		assertEquals("spool of silk thread", Grammar.fullForm("silk thread"));
+		assertEquals("spool of mithril thread", Grammar.fullForm("mithril thread"));
+		assertEquals("strand of leather thread", Grammar.fullForm("leather thread"));
 	}
 
 	/**
@@ -494,6 +498,10 @@ public class GrammarTest {
 		assertEquals("cheese", Grammar.singular("cheese"));
 		testPluralisationAndSingularisation("pieces of cheese", "cheese");
 		testPluralisationAndSingularisation("bicycles", "bicycle");
+
+		testPluralisationAndSingularisation("spools of silk thread", "silk thread");
+		testPluralisationAndSingularisation("spools of mithril thread", "mithril thread");
+		testPluralisationAndSingularisation("strands of leather thread", "leather thread");
 	}
 
 	/**
@@ -659,6 +667,19 @@ public class GrammarTest {
 			Grammar.quantityplnoun(1, "#bread", "a"));
 		assertEquals("2 loaves of #bread",
 			Grammar.quantityplnoun(2, "#bread", "a"));
+
+		assertEquals("a spool of silk thread", Grammar.quantityplnoun(1, "silk thread", "a"));
+		assertEquals("2 spools of silk thread", Grammar.quantityplnoun(2, "silk thread", "a"));
+		//assertEquals("3 spools of #'silk thread'", Grammar.quantityplnoun(3, "#'silk thread'", "a")); // FIXME: fails with result "3 #'silk thread's"
+		assertEquals("3 spools of #silk #thread", Grammar.quantityplnoun(3, "#silk #thread", "a"));
+		assertEquals("a spool of mithril thread", Grammar.quantityplnoun(1, "mithril thread", "a"));
+		assertEquals("2 spools of mithril thread", Grammar.quantityplnoun(2, "mithril thread", "a"));
+		//assertEquals("3 spools of #'mithril thread'", Grammar.quantityplnoun(3, "#'mithril thread'", "a")); // FIXME: fails with result "3 #'mithril thread's"
+		assertEquals("3 spools of #mithril #thread", Grammar.quantityplnoun(3, "#mithril #thread", "a"));
+		assertEquals("a strand of leather thread", Grammar.quantityplnoun(1, "leather thread", "a"));
+		assertEquals("2 strands of leather thread", Grammar.quantityplnoun(2, "leather thread", "a"));
+		//assertEquals("3 strands of #'leather thread'", Grammar.quantityplnoun(3, "#'leather thread'", "a")); // FIXME: fails with result "3 #'leather thread's"
+		assertEquals("3 strands of #leather #thread", Grammar.quantityplnoun(3, "#leather #thread", "a"));
 	}
 
 	/**
