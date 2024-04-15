@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2022-2023 - Faiumoni e.V.                  *
+ *                (C) Copyright 2022-2024 - Faiumoni e.V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -94,7 +94,8 @@ public class BuiltQuest extends AbstractQuest {
 		fillQuestInfo(
 				questBuilder.info().getName(),
 				questBuilder.info().getDescription(),
-				questBuilder.info().getRepeatableAfterMinutes() > 0);
+				questBuilder.info().getRepeatableAfterMinutes() > 0,
+				questBuilder.getCompletionsIndexes());
 
 		ChatCondition questCompletedCondition = questBuilder.task().buildQuestCompletedCondition(questSlot);
 		ChatAction questCompleteAction = questBuilder.task().buildQuestCompleteAction(questSlot);

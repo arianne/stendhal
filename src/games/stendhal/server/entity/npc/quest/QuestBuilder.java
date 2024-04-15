@@ -1,5 +1,5 @@
 /***************************************************************************
- *                 (C) Copyright 2022-2023 - Faiumoni e.V.                 *
+ *                 (C) Copyright 2022-2024 - Faiumoni e.V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -10,6 +10,9 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.server.entity.npc.quest;
+
+import marauroa.common.Pair;
+
 
 /**
  * builds a quest
@@ -26,6 +29,10 @@ public class QuestBuilder<T extends QuestTaskBuilder, O extends QuestOfferBuilde
 	protected C complete;
 	protected H history = null;
 
+	/** Quest slot indexes where completions count is stored. */
+	private Pair<Integer, Integer> completionsIndexes;
+
+
 	/**
 	 * creates a QuestBuilder
 	 *
@@ -33,6 +40,7 @@ public class QuestBuilder<T extends QuestTaskBuilder, O extends QuestOfferBuilde
 	 */
 	public QuestBuilder(T task) {
 		this.task = task;
+		completionsIndexes = new Pair<>(null, null);
 	}
 
 	/**
@@ -103,4 +111,37 @@ public class QuestBuilder<T extends QuestTaskBuilder, O extends QuestOfferBuilde
 		// do nothing
 	}
 
+	/**
+	 * Sets quest slot indexes to check for completions count.
+	 *
+	 * @param openIndex
+	 *   Index where count is stored while quest is in open state.
+	 * @param completeIndex
+	 *   Index where count is stored while quest is in complete state.
+	 */
+	public void setCompletionsIndexes(final Integer openIndex, final Integer completeIndex) {
+		completionsIndexes.setFirst(openIndex);
+		completionsIndexes.setSecond(completeIndex);
+	}
+
+	/**
+	 * Sets quest slot indexes to check for completions count.
+	 *
+	 * @param index
+	 *   Index where count is stored while quest in open or complete state.
+	 */
+	public void setCompletionsIndexes(final Integer index) {
+		setCompletionsIndexes(index, index);
+	}
+
+	/**
+	 * Retrieves quest slot indexes where completions count are stored.
+	 *
+	 * @return
+	 *   A `marauroa.common.Pair` where `first` attribute represents slot index while quest is in
+	 *   open state and `second` represents slot index while quest is in complete state.
+	 */
+	public Pair<Integer, Integer> getCompletionsIndexes() {
+		return completionsIndexes;
+	}
 }
