@@ -18,6 +18,7 @@ import java.util.List;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.player.Player;
+import marauroa.common.Pair;
 
 /**
  * Abstract class for quests. This is a default implementation of IQuest.
@@ -45,12 +46,55 @@ public abstract class AbstractQuest implements IQuest {
 	 * @param name - name of the quest
 	 * @param description - short description of this quest in a neutral tense (not first person)
 	 * @param repeatable - is quest repeatable or not
+	 * @param completionsOpenIndex
+	 *   Slot index where completions count is stored while quest is in open state.
+	 * @param completionsCompleteIndex
+	 *   Slot index where completions count is stored while quest is in complete state.
 	 */
-	public void fillQuestInfo(final String name, final String description, boolean repeatable) {
+	public void fillQuestInfo(final String name, final String description, boolean repeatable,
+			final Integer completionsOpenIndex, final Integer completionsCompleteIndex) {
 		questInfo.setName(name);
 		questInfo.setDescription(description);
 		questInfo.setRepeatable(repeatable);
 		questInfo.setSuggestedMinLevel(this.getMinLevel());
+		questInfo.setCompletionsIndexes(completionsOpenIndex, completionsCompleteIndex);
+	}
+
+	/**
+	 * fill fields of questInfo object with info about this quest
+	 * @param name - name of the quest
+	 * @param description - short description of this quest in a neutral tense (not first person)
+	 * @param repeatable - is quest repeatable or not
+	 * @param completionsIndex
+	 *   Slot index where completions count is stored while quest in open or complete state.
+	 */
+	public void fillQuestInfo(final String name, final String description, boolean repeatable,
+			final int completionsIndex) {
+		fillQuestInfo(name, description, repeatable, completionsIndex, completionsIndex);
+	}
+
+	/**
+	 * fill fields of questInfo object with info about this quest
+	 * @param name - name of the quest
+	 * @param description - short description of this quest in a neutral tense (not first person)
+	 * @param repeatable - is quest repeatable or not
+	 * @param completionsIndexes
+	 *   Pair of indexes where first value represents slot index for open state and second represents
+	 *   index for complete state.
+	 */
+	public void fillQuestInfo(final String name, final String description, boolean repeatable,
+			final Pair<Integer, Integer> completionsIndex) {
+		fillQuestInfo(name, description, repeatable, completionsIndex.first(), completionsIndex.second());
+	}
+
+	/**
+	 * fill fields of questInfo object with info about this quest
+	 * @param name - name of the quest
+	 * @param description - short description of this quest in a neutral tense (not first person)
+	 * @param repeatable - is quest repeatable or not
+	 */
+	public void fillQuestInfo(final String name, final String description, boolean repeatable) {
+		fillQuestInfo(name, description, repeatable, null, null);
 	}
 
 	/** NPCList. */
@@ -103,9 +147,23 @@ public abstract class AbstractQuest implements IQuest {
 
 	@Override
 	public int getCompletedCount(final Player player) {
-		// default is to check if in a completed state, quests must override to parse slot state to get
-		// actual number
-		return isCompleted(player) ? 1 : 0;
+		final String questSlot = getSlotName();
+		final boolean completed = isCompleted(player);
+		if (player.hasQuest(questSlot)) {
+			final String[] state = player.getQuest(questSlot).split(";");
+			final Pair<Integer, Integer> completionsIndexes = questInfo.getCompletionsIndexes();
+			Integer stateIndex = null;
+			if (completed) {
+				stateIndex = completionsIndexes.second();
+			} else {
+				stateIndex = completionsIndexes.first();
+			}
+			if (stateIndex != null && state.length > stateIndex) {
+				return Integer.parseInt(state[stateIndex]);
+			}
+		}
+		// default is to return 1 if quest is in complete state and 0 otherwise
+		return completed ? 1 : 0;
 	}
 
 	@Override

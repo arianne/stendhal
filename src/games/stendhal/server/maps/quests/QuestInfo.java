@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,6 +14,8 @@ package games.stendhal.server.maps.quests;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import marauroa.common.Pair;
 
 /**
  * Static info about quests, filled with fillQuestInfo in each quest
@@ -35,6 +37,14 @@ public class QuestInfo {
 	private Map<String, String> hints = new HashMap<String, String>();
 
 	private int suggestedMinLevel;
+
+	/** Quest slot indexes where completions count is stored. */
+	private final Pair<Integer, Integer> completionsIndexes;
+
+
+	public QuestInfo() {
+		completionsIndexes = new Pair<>(null, null);
+	}
 
 	public int getSuggestedMinLevel() {
 		return suggestedMinLevel;
@@ -92,4 +102,49 @@ public class QuestInfo {
 		this.repeatable = repeatable;
 	}
 
+	/**
+	 * Sets quest slot indexes to check for completions count.
+	 *
+	 * @param openIndex
+	 *   Index where count is stored while quest is in open state.
+	 * @param completeIndex
+	 *   Index where count is stored while quest is in complete state.
+	 */
+	public void setCompletionsIndexes(final Integer openIndex, final Integer completeIndex) {
+		completionsIndexes.setFirst(openIndex);
+		completionsIndexes.setSecond(completeIndex);
+	}
+
+	/**
+	 * Sets quest slot indexes to check for completions count.
+	 *
+	 * @param index
+	 *   Index where count is stored while quest in open or complete state.
+	 */
+	public void setCompletionsIndexes(final Integer index) {
+		setCompletionsIndexes(index, index);
+	}
+
+	/**
+	 * Sets quest slot indexes to check for completions count.
+	 *
+	 * @param completionsIndexes
+	 *   Pair where `first` attribute represents slot index for open state and `second` attribute
+	 *   represents index for complete state.
+	 */
+	public void setCompletionsIndexes(final Pair<Integer, Integer> completionsIndexes) {
+		this.completionsIndexes.setFirst(completionsIndexes.first());
+		this.completionsIndexes.setSecond(completionsIndexes.second());
+	}
+
+	/**
+	 * Retrieves quest slot indexes where completions count are stored.
+	 *
+	 * @return
+	 *   A `marauroa.common.Pair` where `first` attribute represents slot index while quest is in
+	 *   open state and `second` represents slot index while quest is in complete state.
+	 */
+	public Pair<Integer, Integer> getCompletionsIndexes() {
+		return completionsIndexes;
+	}
 }
