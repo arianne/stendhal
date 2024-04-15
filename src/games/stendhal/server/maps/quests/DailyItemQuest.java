@@ -489,7 +489,7 @@ public class DailyItemQuest extends AbstractQuest {
 		fillQuestInfo(
 				"Daily Item Quest",
 				"Mayor Chalmers needs supplies for Ados City.",
-				true);
+				true, 2);
 
 		buildItemsMap();
 

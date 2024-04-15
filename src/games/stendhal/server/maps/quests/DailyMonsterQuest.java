@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -545,5 +545,20 @@ public class DailyMonsterQuest extends AbstractQuest {
 	@Override
 	public String getNPCName() {
 		return npcName;
+	}
+
+	/**
+	 * Need to override because slot index value can be string "null".
+	 */
+	@Override
+	public int getCompletedCount(final Player player) {
+		int count = 0;
+		if (player.hasQuest(QUEST_SLOT)) {
+			final String[] state = player.getQuest(QUEST_SLOT).split(";");
+			if (state.length > 2 && !"null".equals(state[2])) {
+				count = Integer.parseInt(state[2]);
+			}
+		}
+		return count;
 	}
 }
