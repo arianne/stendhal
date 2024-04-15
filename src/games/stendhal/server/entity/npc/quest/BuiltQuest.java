@@ -95,6 +95,8 @@ public class BuiltQuest extends AbstractQuest {
 				questBuilder.info().getName(),
 				questBuilder.info().getDescription(),
 				questBuilder.info().getRepeatableAfterMinutes() > 0,
+				// FIXME: use static 2 if quest manuscript always stores completions count at index 2
+				//        instead of manually setting for each individual quest
 				questBuilder.getCompletionsIndexes());
 
 		ChatCondition questCompletedCondition = questBuilder.task().buildQuestCompletedCondition(questSlot);
