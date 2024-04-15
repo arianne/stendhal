@@ -302,6 +302,7 @@ public class KillBlordroughs extends AbstractQuest {
 	 * @return
 	 * 		Number of times player has completed quest.
 	 */
+	@Override
 	public int getCompletedCount(final Player player) {
 		if (player.getQuest(QUEST_SLOT) != null) {
 			final String[] slots = player.getQuest(QUEST_SLOT).split(";");

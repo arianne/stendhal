@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -99,6 +99,13 @@ public abstract class AbstractQuest implements IQuest {
 	public boolean isCompleted(final Player player) {
 		return player.hasQuest(getSlotName())
 				&& player.isQuestCompleted(getSlotName());
+	}
+
+	@Override
+	public int getCompletedCount(final Player player) {
+		// default is to check if in a completed state, quests must override to parse slot state to get
+		// actual number
+		return isCompleted(player) ? 1 : 0;
 	}
 
 	@Override

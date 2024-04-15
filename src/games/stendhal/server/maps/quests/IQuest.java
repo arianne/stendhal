@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -65,6 +65,16 @@ public interface IQuest {
 	 * @return true, if it was completed, false otherwise
 	 */
 	boolean isCompleted(Player player);
+
+	/**
+	 * Retrieves number of times player has completed quest.
+	 *
+	 * @param player
+	 *   Player for whom quest is being checked.
+	 * @return
+	 *   Number of completions.
+	 */
+	int getCompletedCount(Player player);
 
 	/**
 	 * May the quest be repeated?
