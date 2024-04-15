@@ -446,10 +446,12 @@ public class StendhalQuestSystem {
 	 * Gets a list of completed quests.
 	 *
 	 * @param player Player to return the list for
+	 * @param repeatIsCompleted
+	 *   Open quests being repeated count as completed.
 	 * @return list of completed quests
 	 */
-	public List<String> getCompletedQuests(Player player) {
-		Collection<IQuest> tmp = findCompletedQuests(player);
+	public List<String> getCompletedQuests(Player player, final boolean repeatIsCompleted) {
+		Collection<IQuest> tmp = findCompletedQuests(player, repeatIsCompleted);
 		List<String> res = new ArrayList<String>(tmp.size());
 		for (IQuest quest : tmp) {
 			if (quest.isVisibleOnQuestStatus(player)) {
@@ -457,6 +459,16 @@ public class StendhalQuestSystem {
 			}
 		}
 		return res;
+	}
+
+	/**
+	 * Gets a list of completed quests.
+	 *
+	 * @param player Player to return the list for
+	 * @return list of completed quests
+	 */
+	public List<String> getCompletedQuests(Player player) {
+		return getCompletedQuests(player, false);
 	}
 
 	/**
@@ -480,16 +492,33 @@ public class StendhalQuestSystem {
 	 * Find the quests that a player has completed.
 	 *
 	 * @param player
-	 * @return completed quests
+	 *   Player in question.
+	 * @param repeatIsCompleted
+	 *   Open quests being repeated count as completed.
+	 * @return
+	 *   Completed quests.
 	 */
-	private Collection<IQuest> findCompletedQuests(Player player) {
+	private Collection<IQuest> findCompletedQuests(Player player, final boolean repeatIsCompleted) {
 		List<IQuest> res = new ArrayList<IQuest>();
 		for (IQuest quest : quests) {
-			if (quest.isCompleted(player) && quest.isVisibleOnQuestStatus(player)) {
+			final boolean completed = repeatIsCompleted ? quest.getCompletedCount(player) > 0 : quest.isCompleted(player);
+			if (completed && quest.isVisibleOnQuestStatus(player)) {
 				res.add(quest);
 			}
 		}
 		return res;
+	}
+
+	/**
+	 * Find the quests that a player has completed.
+	 *
+	 * @param player
+	 *   Player in question.
+	 * @return
+	 *   Completed quests.
+	 */
+	private Collection<IQuest> findCompletedQuests(final Player player) {
+		return findCompletedQuests(player, false);
 	}
 
 	/**
