@@ -158,7 +158,7 @@ public abstract class AbstractQuest implements IQuest {
 			} else {
 				stateIndex = completionsIndexes.first();
 			}
-			if (stateIndex != null && state.length > stateIndex) {
+			if (stateIndex != null && state.length > stateIndex && !"".equals(state[stateIndex])) {
 				return Integer.parseInt(state[stateIndex]);
 			}
 		}
