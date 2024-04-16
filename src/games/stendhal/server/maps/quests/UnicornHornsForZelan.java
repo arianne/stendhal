@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2023 - Arianne                      *
+ *                    Copyright © 2003-2024 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -98,6 +98,9 @@ public class UnicornHornsForZelan implements QuestManuscript {
 			.rewardWith(new IncreaseKarmaAction(30.0))
 			.rewardWith(new EquipItemAction("soup", 3))
 			.rewardWith(new EquipItemAction("money", 20000));
+
+		// completions count is stored in 2nd index of quest slot
+		quest.setCompletionsIndexes(2);
 
 		return quest;
 	}
