@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -90,6 +90,9 @@ public class Campfire implements QuestManuscript {
 			.rewardWith(new IncreaseKarmaAction(10))
 			.rewardWith(new EquipItemAction("charcoal", 10))
 			.rewardWith(new EquipRandomItemAction("meat=10;ham=10", false, "Thank you! Here, take [this_these] [number_item] and charcoal!"));
+
+		// completions count is stored in 2nd index of quest slot
+		quest.setCompletionsIndexes(2);
 
 		return quest;
 	}
