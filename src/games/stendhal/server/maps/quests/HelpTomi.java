@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -180,7 +180,7 @@ public class HelpTomi extends AbstractQuest {
 		fillQuestInfo(
 				"Help Tomi",
 				"Tomi, a boy being tortured in the hot depths of hell, sweats all over his body. The only thing which can help him is... ICE!",
-				true);
+				true, null, 1);
 		questTrigger = ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, extraTrigger);
 		step1();
 	}
