@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -553,7 +553,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 		fillQuestInfo(
 				"Kirdneh Museum Needs Help!",
 				"Hazel, the curator of the Kirdneh Museum, wants as many rare exhibits as she can afford.",
-				true);
+				true, 2);
 		buildItemsMap();
 
 		getQuest();
