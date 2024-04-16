@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -50,7 +50,7 @@ public class Maze extends AbstractQuest {
 		fillQuestInfo(
 				"Maze",
 				"Haizen's maze is a great challenge for path finders.",
-				false);
+				false, 2);
 		addMazeSign();
 		setupConversation();
 	}
