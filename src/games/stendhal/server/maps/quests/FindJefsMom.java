@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -264,7 +264,7 @@ public class FindJefsMom extends AbstractQuest {
 		fillQuestInfo(
 				"Find Jefs Mother",
 				"Jef, a young boy in Kirdneh city, waits for his mum, Amber, who didn't return yet from the market.",
-				false);
+				false, 2);
 		offerQuestStep();
 		findMomStep();
 		bringFlowerToJefStep();
