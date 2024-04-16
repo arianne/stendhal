@@ -311,7 +311,7 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 		fillQuestInfo(
 			"Coded Message from Finn Farmer",
 			"Finn Farmer has important, secret information for George.",
-			false);
+			false, QUEST_INDEX_REPEATED);
 	}
 
 	@Override
