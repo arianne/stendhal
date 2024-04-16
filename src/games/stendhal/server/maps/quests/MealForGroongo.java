@@ -276,7 +276,7 @@ public class MealForGroongo extends AbstractQuest {
 		fillQuestInfo(
 			"Meal for Groongo Rahnnt",
 			"Groongo is hungry and wants to have a decent meal at Fado hotel's restaurant.",
-			true);
+			true, 7);
 		stageBeginQuest();
 		stageCollectIngredientsForMainDish();
 		stageCheckForDessert();
