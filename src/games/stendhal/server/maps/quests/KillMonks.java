@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -199,7 +199,7 @@ public class KillMonks extends AbstractQuest {
 		fillQuestInfo(
 				"Kill Monks",
 				"Andy's wife was killed by monks, now he wants revenge on them.",
-				false);
+				false, 2);
 		step_1();
 		step_2();
 		step_3();
