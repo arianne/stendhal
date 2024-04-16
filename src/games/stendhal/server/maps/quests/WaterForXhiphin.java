@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -246,7 +246,7 @@ public class WaterForXhiphin extends AbstractQuest {
 		fillQuestInfo(
 				"Water for Xhiphin Zohos",
 				"Xhiphin Zohos wants some nice fresh water.",
-				true);
+				true, 2);
 		requestStep();
 		checkWaterStep();
 		finishStep();
