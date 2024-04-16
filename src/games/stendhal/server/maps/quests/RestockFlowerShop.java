@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2023 - Arianne                      *
+ *                    Copyright © 2003-2024 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -368,7 +368,7 @@ public class RestockFlowerShop extends AbstractQuest {
 		fillQuestInfo(
 				getTitle(),
 				getNPCName() + " needs to restock the flower shop in Nalwor City.",
-				true);
+				true, 2);
 		setupBasicResponses();
 		setupActiveQuestResponses();
 		prepareRequestingStep();
