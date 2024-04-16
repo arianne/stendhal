@@ -673,6 +673,16 @@ public abstract class UpdateConverter {
 			player.setQuest(questSlot, 1, Long.toString(System.currentTimeMillis()
 					- (TimeUtil.MINUTES_IN_HALF_YEAR / 2 * TimeUtil.MILLISECONDS_IN_MINUTE)));
 		}
+
+		// 1.47: support completions tracking
+		for (String slot: Arrays.asList("chocolate_for_elisabeth", "icecream_for_annie")) {
+			if (!player.hasQuest(slot)) {
+				continue;
+			}
+			if ("eating".equals(player.getQuest(slot, 0)) && "".equals(player.getQuest(slot, 2))) {
+				player.setQuest(slot, 2, "1");
+			}
+		}
 	}
 
 

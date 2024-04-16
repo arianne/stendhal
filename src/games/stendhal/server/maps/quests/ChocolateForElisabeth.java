@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -86,7 +86,7 @@ import games.stendhal.server.maps.Region;
  * <li>Every 60 minutes</li>
  * </ul>
  */
-public class ChocolateForElisabeth extends AbstractQuest {
+public class ChocolateForElisabeth extends CompletionsTrackingQuest {
 
 	// constants
 	private static final String QUEST_SLOT = "chocolate_for_elisabeth";
@@ -104,7 +104,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestNotStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "rejected")),
+						new QuestNotStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, 0, "rejected")),
 				ConversationStates.ATTENDING,
 				"I can't remember when I smelt the good taste of #chocolate the last time...",
 				null);
@@ -117,7 +117,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("chocolate bar")),
+						new QuestInStateCondition(QUEST_SLOT, 0, "start"), new PlayerHasItemWithHimCondition("chocolate bar")),
 				ConversationStates.IDLE,
 				"My mum wants to know who I was asking for chocolate from now :(",
 				null);
@@ -126,7 +126,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("chocolate bar"))),
+						new QuestInStateCondition(QUEST_SLOT, 0, "start"), new NotCondition(new PlayerHasItemWithHimCondition("chocolate bar"))),
 				ConversationStates.ATTENDING,
 				"I hope that someone will bring me some chocolate soon...:(",
 				null);
@@ -135,7 +135,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(QUEST_SLOT, "mummy"), new PlayerHasItemWithHimCondition("chocolate bar")),
+						new QuestInStateCondition(QUEST_SLOT, 0, "mummy"), new PlayerHasItemWithHimCondition("chocolate bar")),
 				ConversationStates.QUESTION_1,
 				"Awesome! Is that chocolate for me?",
 				null);
@@ -144,7 +144,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(QUEST_SLOT, "mummy"), new NotCondition(new PlayerHasItemWithHimCondition("chocolate bar"))),
+						new QuestInStateCondition(QUEST_SLOT, 0, "mummy"), new NotCondition(new PlayerHasItemWithHimCondition("chocolate bar"))),
 				ConversationStates.ATTENDING,
 				"I hope that someone will bring me some chocolate soon...:(",
 				null);
@@ -153,7 +153,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "start"), new QuestNotInStateCondition(QUEST_SLOT, "mummy")),
+						new QuestStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, 0, "start"), new QuestNotInStateCondition(QUEST_SLOT, 0, "mummy")),
 				ConversationStates.ATTENDING,
 				"Hello.",
 				null);
@@ -162,7 +162,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(QUEST_SLOT, "rejected")),
+						new QuestInStateCondition(QUEST_SLOT, 0, "rejected")),
 				ConversationStates.ATTENDING,
 				"Hello.",
 				null);
@@ -213,7 +213,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING,
 				"Thank you!",
-				new SetQuestAction(QUEST_SLOT, "start"));
+				new SetQuestAction(QUEST_SLOT, 0, "start"));
 
 		// Player says no, they've lost karma
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -221,7 +221,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 				null,
 				ConversationStates.IDLE,
 				"Ok, I'll wait till mommy finds some helpers...",
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, 0, "rejected", -5.0));
 
 		// Player has got chocolate bar and spoken to mummy
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
@@ -239,8 +239,9 @@ public class ChocolateForElisabeth extends AbstractQuest {
 			}
 		});
 		reward.add(new IncreaseXPAction(500));
-		reward.add(new SetQuestAction(QUEST_SLOT, "eating;"));
-		reward.add(new SetQuestToTimeStampAction(QUEST_SLOT,1));
+		reward.add(new SetQuestAction(QUEST_SLOT, 0, "eating"));
+		reward.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
+		reward.add(incrementCompletionsAction());
 		reward.add(new IncreaseKarmaAction(10.0));
 		reward.add(new InflictStatusOnNPCAction("chocolate bar"));
 
@@ -284,10 +285,10 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		mummyNPC.add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
 					new AndCondition(new GreetingMatchesNameCondition(mummyNPC.getName()),
-							new QuestInStateCondition(QUEST_SLOT, "start")),
+							new QuestInStateCondition(QUEST_SLOT, 0, "start")),
 					ConversationStates.ATTENDING,
 					"Oh you met my daughter Elisabeth already. You seem like a nice person so it would be really kind, if you can bring her a chocolate bar because I'm not #strong enough for that.",
-					new SetQuestAction(QUEST_SLOT, "mummy"));
+					new SetQuestAction(QUEST_SLOT, 0, "mummy"));
 
 		mummyNPC.addReply("strong", "I tried to get some chocolate for Elisabeth a few times, but I couldn't make my way through the assassins and bandits running around #there.");
 
@@ -305,7 +306,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		fillQuestInfo(
 				"Chocolate for Elisabeth",
 				"Sweet, sweet chocolate! No one can live without it! And Elisabeth loooves to have some...",
-				true);
+				true, 2);
 		chocolateStep();
 		meetMummyStep();
 	}
@@ -318,14 +319,14 @@ public class ChocolateForElisabeth extends AbstractQuest {
 			return res;
 		}
 		res.add("Elisabeth is a sweet little girl who lives in Kirdneh together with her family.");
-		final String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT, 0);
 		if ("rejected".equals(questState)) {
 			res.add("I don't like sweet little girls.");
 		}
-		if (player.isQuestInState(QUEST_SLOT, "start","mummy") || isCompleted(player)) {
+		if (player.isQuestInState(QUEST_SLOT, 0, "start","mummy") || isCompleted(player)) {
 			res.add("Little Elisabeth wants a chocolate bar.");
 		}
-		if (player.isQuestInState(QUEST_SLOT, "start","mummy") && player.isEquipped("chocolate bar") || isCompleted(player)) {
+		if (player.isQuestInState(QUEST_SLOT, 0, "start","mummy") && player.isEquipped("chocolate bar") || isCompleted(player)) {
 			res.add("I found a tasty chocolate bar for Elisabeth.");
 		}
 		if ("mummy".equals(questState) || isCompleted(player)) {
