@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -81,7 +81,7 @@ public class BalloonForBobby extends AbstractQuest {
 	public void addToWorld() {
 		fillQuestInfo("Balloon for Bobby",
 				"Young boy Bobby in Fado stares into the sky, searching for balloons. He loves them and wants to have one really bad.",
-				true);
+				true, null, 1);
 		prepareRequestQuestStep();
 		prepareGreetWithBalloonStep();
 		prepareAttendingWithBalloonStep();
