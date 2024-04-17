@@ -15,6 +15,8 @@ package games.stendhal.server.maps.quests;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.NPCList;
@@ -165,6 +167,36 @@ public abstract class AbstractQuest implements IQuest {
 		}
 		// default is to return 1 if quest is in complete state and 0 otherwise
 		return completed ? 1 : 0;
+	}
+
+	/**
+	 * Can be used to determine at what level the player most recently completed the quest.
+	 *
+	 * Returns 0 unless overridden in quest code.
+	 *
+	 * @param index
+	 *   Slot index where player level is stored.
+	 * @param player
+	 *   Player in question.
+	 * @return
+	 *   Player's level at time of completion or -1 if never completed.
+	 */
+	protected int getLevelAtLastCompletion(final int index, final Player player) {
+		final String questSlot = getSlotName();
+		if (!player.hasQuest(questSlot)) {
+			return -1;
+		}
+		final String stateValue = player.getQuest(questSlot, index);
+		try {
+			return Integer.parseInt(stateValue);
+		} catch (final NumberFormatException e) {
+			Logger.getLogger(AbstractQuest.class).debug("State of quest " + questSlot
+					+ " not integer value at index " + index + " (\"" + stateValue + "\") for player "
+					+ player.getName());
+		}
+		// if quest was completed assume at least level 0
+		// NOTE: should we assume player's current level?
+		return 0;
 	}
 
 	@Override
