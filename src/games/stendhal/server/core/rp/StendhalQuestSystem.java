@@ -523,6 +523,22 @@ public class StendhalQuestSystem {
 	}
 
 	/**
+	 * Retrieves points total for completed quests to apply to Hall of Fame.
+	 *
+	 * @param player
+	 *   Player to whom points are being attributed.
+	 * @return
+	 *   Total score for completed quests.
+	 */
+	public int getTotalHOFScore(final Player player) {
+		int score = 0;
+		for (final IQuest quest: findCompletedQuests(player, true)) {
+			score += quest.getHOFScore(player).value;
+		}
+		return score;
+	}
+
+	/**
 	 * gets the description of a quest
 	 *
 	 * @param player player to get the details for

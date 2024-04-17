@@ -3345,4 +3345,14 @@ public class Player extends DressedEntity implements UseListener {
 	public boolean dropSubmittable(String itemName, int amount) {
 		return drop(Item.nameMatchesSubmittable(itemName), amount);
 	}
+
+	/**
+	 * Retrieves player's questing score for Hall of Fame.
+	 *
+	 * @return
+	 *   Total score of completed quests.
+	 */
+	public int getQuestingScore() {
+		return SingletonRepository.getStendhalQuestSystem().getTotalHOFScore(this);
+	}
 }

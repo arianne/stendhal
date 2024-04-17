@@ -11,6 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.quest;
 
+import games.stendhal.server.core.rp.HOFScore;
+
+
 /**
  * builds a quest
  *
@@ -25,6 +28,9 @@ public class QuestBuilder<T extends QuestTaskBuilder, O extends QuestOfferBuilde
 	private T task = null;
 	protected C complete;
 	protected H history = null;
+
+	/** Score value of this quest for Hall of Fame. */
+	private HOFScore baseScore = HOFScore.NONE;
 
 
 	/**
@@ -102,5 +108,27 @@ public class QuestBuilder<T extends QuestTaskBuilder, O extends QuestOfferBuilde
 
 	protected void setupSimulator(@SuppressWarnings("unused") QuestSimulator simulator) {
 		// do nothing
+	}
+
+	/**
+	 * Sets the completed quest score value for Hall of Fame.
+	 *
+	 * @param score
+	 *   Hall of Fame score value.
+	 */
+	public void setBaseHOFScore(final HOFScore score) {
+		baseScore = score;
+	}
+
+	/**
+	 * Retrieves the completed quest score value for Hall of Fame.
+	 *
+	 * The default value is no score.
+	 *
+	 * @return
+	 *   Hall of Fame score value.
+	 */
+	public HOFScore getBaseHOFScore() {
+		return baseScore;
 	}
 }

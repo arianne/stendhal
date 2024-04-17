@@ -15,6 +15,7 @@ package games.stendhal.server.maps.quests;
 import java.util.HashMap;
 import java.util.Map;
 
+import games.stendhal.server.core.rp.HOFScore;
 import marauroa.common.Pair;
 
 /**
@@ -40,6 +41,9 @@ public class QuestInfo {
 
 	/** Quest slot indexes where completions count is stored. */
 	private final Pair<Integer, Integer> completionsIndexes;
+
+	/** Score value of this quest for Hall of Fame. */
+	private HOFScore baseScore = HOFScore.NONE;
 
 
 	public QuestInfo() {
@@ -146,5 +150,27 @@ public class QuestInfo {
 	 */
 	public Pair<Integer, Integer> getCompletionsIndexes() {
 		return completionsIndexes;
+	}
+
+	/**
+	 * Sets the completed quest score value for Hall of Fame.
+	 *
+	 * @param score
+	 *   Hall of Fame score value.
+	 */
+	public void setBaseHOFScore(final HOFScore score) {
+		baseScore = score;
+	}
+
+	/**
+	 * Retrieves the completed quest score value for Hall of Fame.
+	 *
+	 * The default value is no score.
+	 *
+	 * @return
+	 *   Hall of Fame score value.
+	 */
+	public HOFScore getBaseHOFScore() {
+		return baseScore;
 	}
 }
