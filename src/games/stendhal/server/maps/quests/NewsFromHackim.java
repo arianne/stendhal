@@ -18,6 +18,7 @@ import java.util.List;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -172,6 +173,8 @@ public class NewsFromHackim extends AbstractQuest {
 				"News from Hackim",
 				"Hackim Easso, the Semos blacksmith assistant, needs help to send a message to someone.",
 				false);
+		setBaseHOFScore(HOFScore.EASY);
+
 		step_1();
 		step_2();
 	}

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,6 +18,7 @@ import java.util.List;
 
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -85,6 +86,8 @@ public class ToysCollector extends AbstractQuest implements
 				"Toys Collector",
 				"Anna is bored, and searches for toys for her and her friends to play with.",
 				false);
+		setBaseHOFScore(HOFScore.EASY);
+
 		setupAbstractQuest();
 		specialStuff();
 	}

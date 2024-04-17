@@ -23,6 +23,7 @@ import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -125,6 +126,8 @@ public class KoboldishTorcibud extends AbstractQuest {
 			"Koboldish Torcibud",
 			"Wrviliza needs some stuff to prepare her famous Koboldish Torcibud.",
 			true);
+		setBaseHOFScore(HOFScore.EASY);
+
 		phase_1();
 		phase_2();
 	}
