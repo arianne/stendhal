@@ -15,6 +15,7 @@ package games.stendhal.server.core.rp.achievement.factory;
 import java.util.Collection;
 import java.util.LinkedList;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.core.rp.achievement.condition.QuestCountCompletedCondition;
@@ -46,70 +47,70 @@ public class QuestAchievementFactory extends AbstractAchievementFactory {
 		achievements.add(createAchievement(
 			"quest.special.elf_princess.0025", "Faiumoni's Casanova",
 			"Finish elf princess quest 25 times",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new QuestStateGreaterThanCondition("elf_princess", 2, 24)));
 
 		// Kill Monks quest achievement
 		achievements.add(createAchievement(
 			"quest.special.kill_monks.0025", "Heretic",
 			"Finish Kill Monks quest 25 times",
-			Achievement.HARD_BASE_SCORE, true,
+			HOFScore.HARD, true,
 			new QuestStateGreaterThanCondition("kill_monks", 2, 24)));
 
 		// Maze
 		achievements.add(createAchievement(
 			"quest.special.maze", "Pathfinder",
 			"Finish the maze",
-			Achievement.EASY_BASE_SCORE, true,
+			HOFScore.EASY, true,
 			new QuestStateGreaterThanCondition("maze", 2, 0)));
 
 		// Balloon for Bobby
 		achievements.add(createAchievement(
 			"quest.bobby.balloons.0005", "Fairgoer",
 			"Bring Bobby 5 balloons",
-			Achievement.HARD_BASE_SCORE, true,
+			HOFScore.HARD, true,
 			new QuestStateGreaterThanCondition("balloon_bobby", 1, 4)));
 
 		// Meal for Groongo Rahnnt
 		achievements.add(createAchievement(
 			"quest.groongo.meals.0050", "Patiently Waiting on Grumpy",
 			"Serve up 50 decent meals to Groongo Rahnnt",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new QuestStateGreaterThanCondition("meal_for_groongo", 7, 49)));
 
 		// Restock the Flower Shop
 		achievements.add(createAchievement(
 			ID_FLOWERSHOP, "Floral Fondness",
 			"Help restock Nalwor flower shop 50 times",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new QuestStateGreaterThanCondition("restock_flowershop", 2, 49)));
 
 		// have completed all quests in Semos City?
 		achievements.add(createAchievement(
 			"quest.special.semos", "Aide to Semos Folk",
 			"Complete all quests in Semos City",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new QuestsInRegionCompletedCondition(Region.SEMOS_CITY)));
 
 		// have completed all quests in Ados City?
 		achievements.add(createAchievement(
 			"quest.special.ados", "Helper of Ados City Dwellers",
 			"Complete all quests in Ados City",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new QuestsInRegionCompletedCondition(Region.ADOS_CITY)));
 
 		// complete nearly all the quests in the game?
 		achievements.add(createAchievement(
 			"quest.count.80", "Quest Junkie",
 			"Complete at least 80 quests",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new QuestCountCompletedCondition(80)));
 
 		// deliver 5 hot pizzas
 		achievements.add(createAchievement(
 			"quest.pizza_delivery.hot.0025", "30 Minutes or Less",
 			"Deliver 25 hot pizzas",
-			Achievement.EASY_BASE_SCORE, true,
+			HOFScore.EASY, true,
 			new QuestStateGreaterThanCondition("pizza_delivery", 3, 24)));
 
 		return achievements;

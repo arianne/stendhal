@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,27 +12,19 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.achievement;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
+
+
 /**
  * An Achievement a player can reach while playing the game.
+ *
  * Achievements are given for example for doing a certain number of quests or killing a number of special creatures
  *
  * @author madmetzger
  */
 public class Achievement {
-
-	/** base score for easy achievements */
-	public static final int EASY_BASE_SCORE = 1;
-
-	/** base score for achievements of medium difficulty */
-	public static final int MEDIUM_BASE_SCORE = 2;
-
-	/** base score for difficult achievements */
-	public static final int HARD_BASE_SCORE = 5;
-
-	/** base score for extreme achievement */
-	public static final int EXTREME_BASE_SCORE = 7;
 
 	private final String identifier;
 
@@ -42,13 +34,12 @@ public class Achievement {
 
 	private final String description;
 
-	private final int baseScore;
+	private final HOFScore baseScore;
 
 	/** is this achievement visible? */
 	private final boolean active;
 
 	private final ChatCondition condition;
-
 
 
 	/**
@@ -62,7 +53,7 @@ public class Achievement {
 	 * @param active
 	 * @param condition
 	 */
-	public Achievement(String identifier, String title, Category category, String description, int baseScore, boolean active, ChatCondition condition) {
+	public Achievement(String identifier, String title, Category category, String description, HOFScore baseScore, boolean active, ChatCondition condition) {
 		this.identifier = identifier;
 		this.title = title;
 		this.category = category;
@@ -101,10 +92,23 @@ public class Achievement {
 	}
 
 	/**
-	 * @return the base score for this achievement
+	 * Retrieves base score of this achievement.
+	 *
+	 * @return
+	 *   Achievement base score.
 	 */
-	public int getBaseScore() {
+	public HOFScore getBaseScore() {
 		return this.baseScore;
+	}
+
+	/**
+	 * Retrieves base score of this achievement.
+	 *
+	 * @return
+	 *   Achievement base score integer value.
+	 */
+	public int getBaseScoreValue() {
+		return this.baseScore.value;
 	}
 
 	/**
@@ -116,6 +120,7 @@ public class Achievement {
 
 	/**
 	 * Check if a player has fulfilled this achievement
+	 *
 	 * @param p the player to check
 	 * @return true iff this achievement's condition evaluates to true
 	 */

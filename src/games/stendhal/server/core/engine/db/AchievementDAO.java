@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2020 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -22,13 +22,14 @@ import java.util.Set;
 import games.stendhal.server.core.rp.achievement.Achievement;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
+
+
 /**
- * DAO to handle achievements for the stendhal website
- * @author madmetzger
+ * DAO to handle achievements for the Stendhal website.
  *
+ * @author madmetzger
  */
 public class AchievementDAO {
-
 
 	/**
 	 * logs a reached achievement into the database
@@ -87,7 +88,7 @@ public class AchievementDAO {
 		parameters.put("title", achievement.getTitle());
 		parameters.put("category", achievement.getCategory().toString());
 		parameters.put("description", achievement.getDescription());
-		parameters.put("base_score", achievement.getBaseScore());
+		parameters.put("base_score", achievement.getBaseScoreValue());
 		parameters.put("active", achievement.isActive() ? 1 : 0);
 		transaction.execute(query, parameters);
 		achievementId = transaction.getLastInsertId("achievement", "id");
@@ -129,7 +130,7 @@ public class AchievementDAO {
 		parameters.put("title", achievement.getTitle());
 		parameters.put("category", achievement.getCategory().toString());
 		parameters.put("description", achievement.getDescription());
-		parameters.put("base_score", achievement.getBaseScore());
+		parameters.put("base_score", achievement.getBaseScoreValue());
 		parameters.put("active", achievement.isActive() ? 1 : 0);
 		parameters.put("id", id);
 		transaction.execute(query, parameters);

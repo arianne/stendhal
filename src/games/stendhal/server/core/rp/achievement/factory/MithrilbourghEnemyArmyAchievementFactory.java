@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,6 +14,7 @@ package games.stendhal.server.core.rp.achievement.factory;
 import java.util.Collection;
 import java.util.LinkedList;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.entity.npc.condition.QuestStateGreaterThanCondition;
@@ -39,31 +40,31 @@ public class MithrilbourghEnemyArmyAchievementFactory extends AbstractAchievemen
 		achievements.add(createAchievement(
 			"quest.special.kill_enemy_army.0005", "Sergeant",
 			"Finish Kill Enemy Army quest 5 times",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new QuestStateGreaterThanCondition("kill_enemy_army", IDX, 4)));
 
 		achievements.add(createAchievement(
 			"quest.special.kill_enemy_army.0025", "Major",
 			"Finish Kill Enemy Army quest 25 times",
-			Achievement.HARD_BASE_SCORE, true,
+			HOFScore.HARD, true,
 			new QuestStateGreaterThanCondition("kill_enemy_army", IDX, 24)));
 
 		achievements.add(createAchievement(
 			"quest.special.kill_enemy_army.0050", "Major General",
 			"Finish Kill Enemy Army quest 50 times",
-			Achievement.HARD_BASE_SCORE, true,
+			HOFScore.HARD, true,
 			new QuestStateGreaterThanCondition("kill_enemy_army", IDX, 49)));
 
 		achievements.add(createAchievement(
 			"quest.special.kill_enemy_army.0100", "Field Marshal",
 			"Finish Kill Enemy Army quest 100 times",
-			Achievement.HARD_BASE_SCORE, true,
+			HOFScore.HARD, true,
 			new QuestStateGreaterThanCondition("kill_enemy_army", IDX, 99)));
 
 		achievements.add(createAchievement(
 			"quest.special.kill_enemy_army.0200", "Commander in Chief",
 			"Finish Kill Enemy Army quest 200 times",
-			Achievement.EXTREME_BASE_SCORE, true,
+			HOFScore.EXTREME, true,
 			new QuestStateGreaterThanCondition("kill_enemy_army", IDX, 199)));
 
 		return achievements;
