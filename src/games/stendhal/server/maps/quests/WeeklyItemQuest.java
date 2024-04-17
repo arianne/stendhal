@@ -24,6 +24,7 @@ import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -558,6 +559,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 				"Kirdneh Museum Needs Help!",
 				"Hazel, the curator of the Kirdneh Museum, wants as many rare exhibits as she can afford.",
 				true, 2);
+		setBaseHOFScore(HOFScore.MEDIUM);
 		buildItemsMap();
 
 		getQuest();
@@ -590,5 +592,22 @@ public class WeeklyItemQuest extends AbstractQuest {
 	@Override
 	public String getNPCName() {
 		return "Hazel";
+	}
+
+	/**
+	 * Calculates Hall of Fame score based on player tier.
+	 *
+	 * Score is affected by player level because items that are more difficult to obtain may be
+	 * requested at higher levels.
+	 *
+	 * @param player
+	 *   Player instance used to adjust scoring.
+	 * @return
+	 *   Hall of Fame score value.
+	 */
+	@Override
+	public HOFScore getHOFScore(final Player player) {
+		final int lastCompletionLevel = getLevelAtLastCompletion(WeeklyItemQuest.SLOT_INDEX_LEVEL, player);
+		return new HOFScore((int) Math.floor(PlayerTier.getTier(lastCompletionLevel).multiplier * getBaseHOFScore().value));
 	}
 }

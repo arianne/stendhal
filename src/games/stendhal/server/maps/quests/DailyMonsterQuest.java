@@ -25,6 +25,7 @@ import org.apache.log4j.Logger;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.LevelBasedComparator;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -507,6 +508,8 @@ public class DailyMonsterQuest extends AbstractQuest {
 				"Daily Monster Quest",
 				"Mayor Sakhs needs warriors to keep Semos City safe.",
 				true);
+		setBaseHOFScore(HOFScore.EASY);
+
 		step_1();
 		step_2();
 		step_3();
