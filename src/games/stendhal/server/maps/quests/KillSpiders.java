@@ -17,6 +17,7 @@ import java.util.List;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -189,6 +190,8 @@ public class KillSpiders extends AbstractQuest {
 				"Kill Spiders",
 				"Morgrin, groundskeeper of the magic school, is concerned about spiders in the school basement.",
 				true);
+		setBaseHOFScore(HOFScore.MEDIUM);
+
 		step_1();
 		step_2();
 		step_3();
