@@ -36,6 +36,7 @@ import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPDependentOnLevelAction;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.RecordPlayerLevelAction;
 import games.stendhal.server.entity.npc.action.SayRequiredItemAction;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -93,6 +94,9 @@ public class WeeklyItemQuest extends AbstractQuest {
 
 	/** How often the quest may be repeated */
 	private static final int delay = TimeUtil.MINUTES_IN_WEEK;
+
+	/** Slot index where player's level is stored upon completion. */
+	private static final int SLOT_INDEX_LEVEL = 3;
 
 	/**
 	 * All items which are hard enough to find but not tooo hard and not in Daily quest. If you want to do
@@ -411,9 +415,11 @@ public class WeeklyItemQuest extends AbstractQuest {
 
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new DropRecordedItemAction(QUEST_SLOT,0));
-		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
-		actions.add(new IncrementQuestAction(QUEST_SLOT,2,1));
 		actions.add(new SetQuestAction(QUEST_SLOT, 0, "done"));
+		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
+		actions.add(new IncrementQuestAction(QUEST_SLOT, questInfo.getCompletionsIndexes().second(), 1));
+		// NOTE: store player level before XP is added
+		actions.add(new RecordPlayerLevelAction(QUEST_SLOT, WeeklyItemQuest.SLOT_INDEX_LEVEL));
 		actions.add(new IncreaseXPDependentOnLevelAction(5.0/3.0, 290.0));
 		actions.add(new IncreaseKarmaAction(10.0));
 		actions.add(new ChatAction() {
