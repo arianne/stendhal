@@ -20,6 +20,7 @@ import org.apache.log4j.Logger;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.LoginListener;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.scroll.TwilightMossScroll;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
@@ -95,6 +96,7 @@ public class MithrilCloak extends AbstractQuest {
 				"Mithril Cloak",
 				"A shiny and high defense cloak is available for those willing to complete a long list of tasks for the seamstress Ida.",
 				false);
+		setBaseHOFScore(HOFScore.HARD);
 
 		// login notifier to teleport away players logging into the twilight zone.
 		SingletonRepository.getLoginNotifier().addListener(new LoginListener() {
