@@ -3272,4 +3272,14 @@ public class Player extends DressedEntity implements UseListener {
 		// compensate for player hit chance handicap
 		return (int) Math.round(super.damageDone(defender, attackingWeaponsValue, damageType) / 1.35);
 	}
+
+	/**
+	 * Retrieves player's questing score for Hall of Fame.
+	 *
+	 * @return
+	 *   Total score of completed quests.
+	 */
+	public int getQuestingScore() {
+		return SingletonRepository.getStendhalQuestSystem().getTotalHOFScore(this);
+	}
 }

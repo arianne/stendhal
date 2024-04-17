@@ -19,6 +19,7 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.Pair;
@@ -33,6 +34,7 @@ public abstract class AbstractQuest implements IQuest {
 	private static final List<String> EMPTY_LIST = new ArrayList<String>();
 
 	protected QuestInfo questInfo = new QuestInfo();
+
 
 	@Override
 	public QuestInfo getQuestInfo(Player player) {
@@ -259,5 +261,46 @@ public abstract class AbstractQuest implements IQuest {
 	@Override
 	public String getNPCName() {
 		return null;
+	}
+
+	/**
+	 * Sets the completed quest score value for Hall of Fame.
+	 *
+	 * This is made public so that value can be set on quests created with Lua interface.
+	 *
+	 * @param score
+	 *   Hall of Fame score value.
+	 */
+	@Override
+	public void setBaseHOFScore(final HOFScore score) {
+		questInfo.setBaseHOFScore(score);
+	}
+
+	/**
+	 * Retrieves the completed quest score value for Hall of Fame.
+	 *
+	 * The default value is no score.
+	 *
+	 * @return
+	 *   Hall of Fame score value.
+	 */
+	@Override
+	public HOFScore getBaseHOFScore() {
+		return questInfo.getBaseHOFScore();
+	}
+
+	/**
+	 * Retrieves the completed quest score value for Hall of Fame.
+	 *
+	 * The default value is no score.
+	 *
+	 * @param player
+	 *   Player instance that can be used to adjust scoring.
+	 * @return
+	 *   Hall of Fame score value.
+	 */
+	@Override
+	public HOFScore getHOFScore(final Player player) {
+		return getBaseHOFScore();
 	}
 }
