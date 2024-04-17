@@ -18,6 +18,7 @@ import java.util.List;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -265,6 +266,8 @@ public class FishSoupForHughie extends AbstractQuest {
 				"Fish Soup for Hughie",
 				"Anastasia's son Hughie is sick and needs something to heal him.",
 				true);
+		setBaseHOFScore(HOFScore.EASY);
+
 		prepareRequestingStep();
 		prepareBringingStep();
 	}

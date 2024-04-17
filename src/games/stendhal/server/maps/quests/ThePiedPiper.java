@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -22,6 +22,7 @@ import org.apache.log4j.Logger;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.quests.piedpiper.AwaitingPhase;
@@ -257,6 +258,7 @@ public class ThePiedPiper extends AbstractQuest implements ITPPQuestConstants {
 				"The Pied Piper",
 				"Ados City has a rat problem from time to time.",
 				true);
+		setBaseHOFScore(HOFScore.EASY);
 
 		startQuest();
 	}

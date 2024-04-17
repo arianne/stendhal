@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.EquipRandomItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
@@ -90,6 +91,8 @@ public class Campfire implements QuestManuscript {
 			.rewardWith(new IncreaseKarmaAction(10))
 			.rewardWith(new EquipItemAction("charcoal", 10))
 			.rewardWith(new EquipRandomItemAction("meat=10;ham=10", false, "Thank you! Here, take [this_these] [number_item] and charcoal!"));
+
+		quest.setBaseHOFScore(HOFScore.EASY);
 
 		return quest;
 	}

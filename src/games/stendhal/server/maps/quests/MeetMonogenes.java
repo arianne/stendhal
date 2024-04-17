@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -57,6 +58,8 @@ public class MeetMonogenes extends AbstractQuest {
 				"Meet Monogenes",
 				"A wise old man in Semos has a map to guide newcomers through the town.",
 				false);
+		setBaseHOFScore(HOFScore.EASY);
+
 		final SpeakerNPC npc = npcs.get("Monogenes");
 
 		npc.addGreeting(null, new SayTextAction("Hi again, [name]. How can I #help you this time?"));

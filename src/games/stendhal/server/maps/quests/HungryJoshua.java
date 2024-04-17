@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,6 +18,7 @@ import java.util.List;
 
 import com.google.common.collect.ImmutableList;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -269,6 +270,8 @@ public class HungryJoshua extends AbstractQuest {
 				"Hungry Joshua",
 				"Xoderos is worried about his brother Joshua who lives in Ados because they are short of supplies.",
 				false);
+		setBaseHOFScore(HOFScore.EASY);
+
 		step_1();
 		step_2();
 		step_3();

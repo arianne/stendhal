@@ -19,6 +19,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -50,6 +51,8 @@ public class Maze extends AbstractQuest {
 				"Maze",
 				"Haizen's maze is a great challenge for path finders.",
 				false, 2);
+		setBaseHOFScore(HOFScore.EASY);
+
 		addMazeSign();
 		setupConversation();
 	}

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023- Stendhal                    *
+ *                   (C) Copyright 2003-2024- Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,6 +20,7 @@ import java.util.List;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -392,6 +393,8 @@ public class FishSoup extends AbstractQuest {
 				"Fish Soup",
 				"Florence Boullabaisse makes a healthy and tasty fish soup, but it needs rather a lot of ingredients.",
 				false);
+		setBaseHOFScore(HOFScore.EASY);
+
 		step_1();
 		step_2();
 		step_3();

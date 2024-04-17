@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -23,6 +23,7 @@ import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.LoginListener;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -233,6 +234,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 				"Meet Santa",
 				"Jingle bells, jingle bells, jingle all the way... Ho Ho Ho! Santa Claus delivers presents around Christmas time.",
 				false);
+		setBaseHOFScore(HOFScore.EASY);
 		SingletonRepository.getLoginNotifier().addListener(this);
 
 		if (System.getProperty("stendhal.santa") != null) {

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -288,6 +289,8 @@ public class IcecreamForAnnie extends AbstractQuest {
 				"Ice Cream for Annie",
 				"The best surprise for a litte girl like Annie is a cool ice cream on summer days while playing on the playground.",
 				true);
+		setBaseHOFScore(HOFScore.EASY);
+
 		icecreamStep();
 		meetMummyStep();
 	}

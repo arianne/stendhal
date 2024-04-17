@@ -19,6 +19,7 @@ import java.util.List;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -236,10 +237,7 @@ public class WaterForXhiphin extends AbstractQuest {
 
 		npc.addReply("Stefan", "Stefan is a chef over in the restaurant at Fado Hotel. I'd trust him to check if anything is safe to eat or drink, he's a professional.");
 		npc.addReply("check", "Sorry, I'm no expert on food or drink myself, try asking #Stefan.");
-
 	}
-
-
 
 	@Override
 	public void addToWorld() {
@@ -247,11 +245,12 @@ public class WaterForXhiphin extends AbstractQuest {
 				"Water for Xhiphin Zohos",
 				"Xhiphin Zohos wants some nice fresh water.",
 				true, 2);
+		setBaseHOFScore(HOFScore.EASY);
+
 		requestStep();
 		checkWaterStep();
 		finishStep();
 	}
-
 
 	@Override
 	public List<String> getHistory(final Player player) {

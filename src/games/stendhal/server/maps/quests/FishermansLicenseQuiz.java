@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -23,6 +23,7 @@ import games.stendhal.common.parser.JokerExprMatcher;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -264,6 +265,8 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				"Fishermans License Quiz",
 				"Santiago the fisherman will examine fishermen on their knowledge of fish species.",
 				false);
+		setBaseHOFScore(HOFScore.EASY);
+
 		createQuizStep();
 	}
 

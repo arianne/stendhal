@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -244,6 +245,8 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 				"Take Gold for Grafindle",
 				"Grafindle in the bank of Nalwor, searches for someone he can trust with gold.",
 				false);
+		setBaseHOFScore(HOFScore.EASY);
+
 		step_1();
 		step_2();
 		step_3();
