@@ -54,6 +54,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.player.PlayerTier;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.util.TimeUtil;
 
@@ -105,9 +106,6 @@ public class WeeklyItemQuest extends AbstractQuest {
 	private static final Map<String, Integer> items_easy = new HashMap<String, Integer>();
 	private static final Map<String, Integer> items_med = new HashMap<String, Integer>();
 	private static final Map<String, Integer> items_hard = new HashMap<String, Integer>();
-
-	private static final int LEVEL_MED = 51;
-	private static final int LEVEL_HARD = 151;
 
 
 	/**
@@ -326,7 +324,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Hazel");
 
 		final ChatCondition startEasyCondition = new AndCondition(
-				new LevelLessThanCondition(LEVEL_MED),
+				new LevelLessThanCondition(PlayerTier.NOVICE.minLevel),
 				new OrCondition(
 						new QuestNotStartedCondition(QUEST_SLOT),
 						new AndCondition(
@@ -334,8 +332,8 @@ public class WeeklyItemQuest extends AbstractQuest {
 								new TimePassedCondition(QUEST_SLOT,1,delay))));
 
 		final ChatCondition startMedCondition = new AndCondition(
-				new LevelGreaterThanCondition(LEVEL_MED - 1),
-				new LevelLessThanCondition(LEVEL_HARD),
+				new LevelGreaterThanCondition(PlayerTier.BEGINNER.maxLevel),
+				new LevelLessThanCondition(PlayerTier.VETERAN.minLevel),
 				new OrCondition(
 						new QuestNotStartedCondition(QUEST_SLOT),
 						new AndCondition(
@@ -343,7 +341,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 								new TimePassedCondition(QUEST_SLOT,1,delay))));
 
 		final ChatCondition startHardCondition = new AndCondition(
-				new LevelGreaterThanCondition(LEVEL_HARD - 1),
+				new LevelGreaterThanCondition(PlayerTier.NOVICE.maxLevel),
 				new OrCondition(
 						new QuestNotStartedCondition(QUEST_SLOT),
 						new AndCondition(
@@ -458,18 +456,18 @@ public class WeeklyItemQuest extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Hazel");
 
 		final ChatCondition startEasyCondition = new AndCondition(
-				new LevelLessThanCondition(LEVEL_MED),
+				new LevelLessThanCondition(PlayerTier.NOVICE.minLevel),
 				new QuestActiveCondition(QUEST_SLOT),
 				new TimePassedCondition(QUEST_SLOT,1,expireDelay));
 
 		final ChatCondition startMedCondition = new AndCondition(
-				new LevelGreaterThanCondition(LEVEL_MED - 1),
-				new LevelLessThanCondition(LEVEL_HARD),
+				new LevelGreaterThanCondition(PlayerTier.BEGINNER.maxLevel),
+				new LevelLessThanCondition(PlayerTier.VETERAN.minLevel),
 				new QuestActiveCondition(QUEST_SLOT),
 				new TimePassedCondition(QUEST_SLOT,1,expireDelay));
 
 		final ChatCondition startHardCondition = new AndCondition(
-				new LevelGreaterThanCondition(LEVEL_HARD - 1),
+				new LevelGreaterThanCondition(PlayerTier.NOVICE.maxLevel),
 				new QuestActiveCondition(QUEST_SLOT),
 				new TimePassedCondition(QUEST_SLOT,1,expireDelay));
 
