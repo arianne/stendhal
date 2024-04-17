@@ -22,6 +22,7 @@ import org.apache.log4j.Logger;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.StackableItem;
@@ -419,6 +420,8 @@ public class KillBlordroughs extends AbstractQuest {
 				"Kill Blordroughs",
 				"Mrotho wants some Blordrough warriors killed.",
 				true);
+		setBaseHOFScore(HOFScore.HARD);
+
 		step_1();
 	}
 

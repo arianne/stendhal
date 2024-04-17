@@ -20,6 +20,7 @@ import java.util.Map;
 
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -503,7 +504,7 @@ public class DailyItemQuest extends AbstractQuest {
 				"Daily Item Quest",
 				"Mayor Chalmers needs supplies for Ados City.",
 				true, 2);
-
+		setBaseHOFScore(HOFScore.EASY);
 		buildItemsMap();
 
 		getQuest();
