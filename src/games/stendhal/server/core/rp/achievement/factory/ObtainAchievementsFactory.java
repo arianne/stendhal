@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.entity.Entity;
@@ -48,14 +49,14 @@ public class ObtainAchievementsFactory extends AbstractAchievementFactory {
 		achievements.add(createAchievement(
 			"obtain.wish", "A Wish Came True",
 			"Get an item from the wishing well",
-			Achievement.EASY_BASE_SCORE, true,
+			HOFScore.EASY, true,
 			new PlayerGotNumberOfItemsFromWellCondition(0)));
 
 		// Vegetable harvest achievement
 		achievements.add(createAchievement(
 			"obtain.harvest.vegetable", "Farmer",
 			"Harvest 3 of all vegetables that grow in Faiumoni",
-			Achievement.EASY_BASE_SCORE, true,
+			HOFScore.EASY, true,
 			new PlayerHasHarvestedNumberOfItemsCondition(3,
 				"carrot", "lettuce", "broccoli", "cauliflower", "leek",
 				"onion", "zucchini", "spinach", "collard", "garlic", "artichoke")));
@@ -64,7 +65,7 @@ public class ObtainAchievementsFactory extends AbstractAchievementFactory {
 		achievements.add(createAchievement(
 			"obtain.harvest.fruit", "Fruit Salad",
 			"Harvest 3 of all fruit that grow in Faiumoni",
-			Achievement.EASY_BASE_SCORE, true,
+			HOFScore.EASY, true,
 			new PlayerHasHarvestedNumberOfItemsCondition(3,
 				"apple", "banana", "cherry", "coconut", "grapes", "olive", "pear",
 				"pineapple", "pomegranate", "tomato", "watermelon")));
@@ -73,7 +74,7 @@ public class ObtainAchievementsFactory extends AbstractAchievementFactory {
 		achievements.add(createAchievement(
 			"obtain.fish", "Fisherman",
 			"Catch 15 of each type of fish",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new PlayerHasHarvestedNumberOfItemsCondition(15,
 				"char", "clownfish", "cod", "mackerel", "perch",
 				"red lionfish", "roach", "surgeonfish", "trout")));
@@ -82,14 +83,14 @@ public class ObtainAchievementsFactory extends AbstractAchievementFactory {
 		achievements.add(createAchievement(
 			"quest.special.collector", "Ultimate Collector",
 			"Finish ultimate collector quest",
-			Achievement.HARD_BASE_SCORE, true,
+			HOFScore.HARD, true,
 			new QuestCompletedCondition("ultimate_collector")));
 
 		// flower harvest
 		achievements.add(createAchievement(
 			"obtain.harvest.flower", "Green Thumb",
 			"Harvest 20 of each type of growable flower",
-			Achievement.EASY_BASE_SCORE, true,
+			HOFScore.EASY, true,
 			new PlayerHasHarvestedNumberOfItemsCondition(20,
 				"daisies", "lilia", "pansy", "zantedeschia")));
 
@@ -97,7 +98,7 @@ public class ObtainAchievementsFactory extends AbstractAchievementFactory {
 		achievements.add(createAchievement(
 			"obtain.harvest.herb", "Herbal Practitioner",
 			"Harvest 20 of each type of herb found growing in Faiumoni",
-			Achievement.EASY_BASE_SCORE, true,
+			HOFScore.EASY, true,
 			new PlayerHasHarvestedNumberOfItemsCondition(20,
 				"arandula", "kekik", "mandragora", "sclaria")));
 
@@ -105,7 +106,7 @@ public class ObtainAchievementsFactory extends AbstractAchievementFactory {
 		achievements.add(createAchievement(
 				ID_APPLES, "Bobbing for Apples",
 				"Harvest or loot 1,000 apples",
-				Achievement.EASY_BASE_SCORE, true,
+				HOFScore.EASY, true,
 				new ChatCondition() {
 					@Override
 					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {

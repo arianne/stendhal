@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,6 +15,7 @@ package games.stendhal.server.core.rp.achievement.factory;
 import java.util.Collection;
 import java.util.LinkedList;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.entity.npc.condition.QuestStateGreaterThanCondition;
@@ -47,37 +48,37 @@ public class SemosMonsterQuestAchievementFactory extends AbstractAchievementFact
 		achievements.add(createAchievement(
 			ID_PROTECTOR, "Semos's Protector",
 			"Finish daily monster quest 10 times",
-			Achievement.EASY_BASE_SCORE, true,
+			HOFScore.EASY, true,
 			new QuestStateGreaterThanCondition("daily", 2, 9)));
 
 		achievements.add(createAchievement(
 			ID_GUARDIAN, "Semos's Guardian",
 			"Finish daily monster quest 50 times",
-			Achievement.EASY_BASE_SCORE, true,
+			HOFScore.EASY, true,
 			new QuestStateGreaterThanCondition("daily", 2, 49)));
 
 		achievements.add(createAchievement(
 			ID_HERO, "Semos's Hero",
 			"Finish daily monster quest 100 times",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new QuestStateGreaterThanCondition("daily", 2, 99)));
 
 		achievements.add(createAchievement(
 			ID_CHAMPION, "Semos's Champion",
 			"Finish daily monster quest 250 times",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new QuestStateGreaterThanCondition("daily", 2, 249)));
 
 		achievements.add(createAchievement(
 			ID_VANQUISHER, "Semos's Vanquisher",
 			"Finish daily monster quest 500 times",
-			Achievement.HARD_BASE_SCORE, true,
+			HOFScore.HARD, true,
 			new QuestStateGreaterThanCondition("daily", 2, 499)));
 
 		achievements.add(createAchievement(
 			ID_RULER, "Semos's Ruler",
 			"Finish daily monster quest 1,000 times",
-			Achievement.EXTREME_BASE_SCORE, true,
+			HOFScore.EXTREME, true,
 			new QuestStateGreaterThanCondition("daily", 2, 999)));
 
 		return achievements;
