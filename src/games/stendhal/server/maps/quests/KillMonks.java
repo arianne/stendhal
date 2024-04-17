@@ -21,6 +21,7 @@ import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -200,6 +201,8 @@ public class KillMonks extends AbstractQuest {
 				"Kill Monks",
 				"Andy's wife was killed by monks, now he wants revenge on them.",
 				false, 2);
+		setBaseHOFScore(HOFScore.MEDIUM);
+
 		step_1();
 		step_2();
 		step_3();

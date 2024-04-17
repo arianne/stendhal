@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -19,6 +19,7 @@ import java.util.List;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -217,13 +218,15 @@ public class CloaksForBario extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		step_1();
-		step_2();
-		step_3();
 		fillQuestInfo(
 				"Cloaks for Bario",
 				"Bario, the freezing dwarf, needs cloaks to keep himself warm.",
 				false);
+		setBaseHOFScore(HOFScore.MEDIUM);
+
+		step_1();
+		step_2();
+		step_3();
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,6 +20,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -341,6 +342,8 @@ public class HelpMrsYeti extends AbstractQuest {
 				"Help Mrs. Yeti",
 				"Mrs. Yeti is really unhappy with her current love life because her husband turned away from her. Now the couple is in deep trouble. Just a special love potion can help Mrs. Yeti to get her husband back.",
 				true);
+		setBaseHOFScore(HOFScore.MEDIUM);
+
 		startQuest();
 		makePotion();
 		makeMagicKnife();

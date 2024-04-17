@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,6 +17,7 @@ import java.util.List;
 
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -73,6 +74,8 @@ public class WeaponsCollector extends AbstractQuest implements
 				"Weapon Collector",
 				"Balduin, the hermit who is living on Ados rock, wants to expand his weapons collection.",
 				true);
+		setBaseHOFScore(HOFScore.MEDIUM);
+
 		setupAbstractQuest();
 	}
 
