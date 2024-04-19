@@ -1,1 +1,1 @@
-Stendhal ist ein Multiplayer-Adventure mit klassischer 2D-Grafik. Es ist vollständig Open Source.
+Ein Multiplayer-Adventure mit klassischer 2D-Grafik

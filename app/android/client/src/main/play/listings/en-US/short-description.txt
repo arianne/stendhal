@@ -1,1 +1,1 @@
-Stendhal is a multiplayer adventure with classic 2D graphics
+A multiplayer adventure with classic 2D graphics

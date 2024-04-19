@@ -1,1 +1,1 @@
-Stendhal es una aventura multijugador con gráficos 2D clásicos. Es completamente de código abierto.
+Una aventura multijugador con gráficos 2D clásicos
