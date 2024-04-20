@@ -23,6 +23,8 @@ Changelog
 - renamed chef Patrick to Preston
 - new achievements:
   - 30 Minutes or Less: Deliver 25 hot pizzas
+- new items:
+  - ring of clarity
 - Balduin allows requesting different item for Ultimate Collector quest
 
 *web client*

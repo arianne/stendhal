@@ -234,6 +234,7 @@
 			<item value="unicorn shield" quantity="[1,1]" probability="80.0"/>
 			<item value="lucky charm" quantity="[1,1]" probability="80.0"/>
 			<item value="diamond" quantity="[1,1]" probability="20.0"/>
+			<item value="ring of clarity" quantity="1" probability="5.0"/>
 		</drops>
 		<equips/>
 		<ai>

@@ -234,7 +234,6 @@
 		<type class="ring" subclass="clarity" tileid="-1"/>
 		<description>You see a ring of clarity. You feel more aware while wearing it.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
-		<unattainable/>
 		<attributes>
 			<min_level value="0"/>
 			<accuracy_bonus value="25.0"/>
