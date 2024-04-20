@@ -242,6 +242,7 @@ export class SettingsDialog extends DialogContentComponent {
 					sel_joystick.disabled = !chk_joystick.checked;
 					stendhal.ui.gamewindow.updateJoystick();
 				});
+		chk_joystick.checked = stendhal.session.joystickEnabled();
 		sel_joystick.disabled = !chk_joystick.checked;
 
 		// joystck positioning

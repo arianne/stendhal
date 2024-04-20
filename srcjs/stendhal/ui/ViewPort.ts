@@ -163,7 +163,7 @@ export class ViewPort {
 				(ui.get(UIComponentEnum.PlayerEquipment) as PlayerEquipmentComponent).update();
 			}
 		}
-		setTimeout(function() {
+		window.setTimeout(function() {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
 		}, Math.max((1000/20) - (new Date().getTime()-startTime), 1));
 	}
@@ -174,10 +174,10 @@ export class ViewPort {
 	 * FIXME:
 	 * - colors are wrong
 	 * - doesn't support "blend" layers
+	 * - very slow
 	 */
 	applyFilter() {
 		if (this.filter && stendhal.config.getBoolean("effect.lighting")) {
-			// FIXME: wrong colors
 			this.ctx.filter = this.filter;
 		}
 	}
@@ -755,7 +755,7 @@ export class ViewPort {
 			joystickButton.update();
 		}
 
-		if (!stendhal.config.getBoolean("joystick")) {
+		if (!stendhal.session.joystickEnabled()) {
 			this.removeJoystick();
 			return;
 		}
