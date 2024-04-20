@@ -357,6 +357,7 @@
 		<corpse name="humanoid"/>
 		<drops>
 			<item value="golden orc sword" quantity="[1,1]" probability="25.0"/>
+			<item value="ring of clarity" quantity="1" probability="8.5"/>
 		</drops>
 		<equips>
 		</equips>
