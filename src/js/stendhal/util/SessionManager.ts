@@ -211,4 +211,18 @@ export class SessionManager {
 	isServerDefault(): boolean {
 		return this.server_default;
 	}
+
+	/**
+	 * Checks if joystick/direction pad should be visible.
+	 *
+	 * @return {boolean}
+	 *   `true` if joystick property has been enabled manually or if no pointer device is detected.
+	 */
+	joystickEnabled(): boolean {
+		if (!stendhal.config.isSet("joystick") && !window.matchMedia("(pointer: fine)").matches) {
+			// display by default if a pointer device is not detected from the system
+			return true;
+		}
+		return stendhal.config.getBoolean("joystick");
+	}
 }

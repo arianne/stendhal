@@ -755,7 +755,7 @@ export class ViewPort {
 			joystickButton.update();
 		}
 
-		if (!stendhal.config.getBoolean("joystick")) {
+		if (!stendhal.session.joystickEnabled()) {
 			this.removeJoystick();
 			return;
 		}
