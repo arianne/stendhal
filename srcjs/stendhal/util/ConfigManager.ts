@@ -267,6 +267,18 @@ export class ConfigManager {
 	}
 
 	/**
+	 * Checks if a key has been changed from the default value.
+	 *
+	 * @param key {string}
+	 *   `string` identifier.
+	 * @return {boolean}
+	 *   `true` if key is found in local storage.
+	 */
+	isSet(key: string): boolean {
+		return window.localStorage.getItem("client." + key) != null;
+	}
+
+	/**
 	 * Stores a configuration setting.
 	 *
 	 * @param key
