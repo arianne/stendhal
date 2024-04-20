@@ -10,33 +10,13 @@
  *                                                                         *
  ***************************************************************************/
 
-import { RPEvent } from "./RPEvent";
-
-import { KikaPunishmentEvent } from "./generic/KikaPunishmentEvent";
-import { SubEvent } from "./generic/SubEvent";
+import { SubEvent } from "./SubEvent";
 
 
-/**
- * A generic event that will execute a registered sub-event.
- *
- * TODO: allow execution without an associated entity
- */
-export class GenericEvent extends RPEvent {
-	[index: string]: any;
+export class KikaPunishmentEvent extends SubEvent {
 
-	public subevent!: string;
-	public flags!: string;
-
-
-	override execute(entity: any) {
-		const event = this[this["subevent"]];
-		if (!(event.prototype instanceof SubEvent)) {
-			console.warn("Unknown generic event:", this["subevent"]);
-			return;
-		}
-		const flags = typeof(this["flags"]) === "string" ? this["flags"].split(",") : [];
-		new event(flags).execute(entity);
+	override execute(entity: any, flags: string[]) {
+		// TODO:
+		console.log("Kika punishment!");
 	}
-
-	"kika_punishment" = new KikaPunishmentEvent();
 }
