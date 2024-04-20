@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020-2023 - Arianne                     *
+ *                 Copyright © 2020-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -23,7 +23,9 @@ public enum SoundID {
 	ACHIEVEMENT("achievement"),
 	COMMERCE("commerce"),
 	COMMERCE2("commerce2"),
-	HEAL("heal");
+	HEAL("heal"),
+
+	THUNDERCLAP("thunderclap");
 
 	String label;
 
