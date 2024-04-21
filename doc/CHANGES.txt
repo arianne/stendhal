@@ -10,6 +10,7 @@ Changelog
   - Cutting Teeth: Accumulate 24 hours of play time
   - Adolescent: Accumulate a week of play time
   - Acclimating: Accumulate a month of play time
+  - Sturdy Foundation: Accumulate 6 months of play time
 
 *web client*
 - fixed text extending past edge of notification bubbles

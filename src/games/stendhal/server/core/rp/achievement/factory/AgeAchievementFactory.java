@@ -50,6 +50,13 @@ public class AgeAchievementFactory extends AbstractAchievementFactory {
 			Achievement.MEDIUM_BASE_SCORE, true,
 			new AgeGreaterThanCondition((MathHelper.MINUTES_IN_ONE_DAY * 31) - 1)));
 
+		// 182 days
+		achievements.add(createAchievement(
+			"age.hours.04368", "Sturdy Foundation",
+			"Accumulate 6 months of play time",
+			Achievement.HARD_BASE_SCORE, true,
+			new AgeGreaterThanCondition((MathHelper.MINUTES_IN_ONE_DAY * 182) - 1)));
+
 		return achievements;
 	}
 }
