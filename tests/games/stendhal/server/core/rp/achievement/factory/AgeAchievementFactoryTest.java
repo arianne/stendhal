@@ -105,4 +105,9 @@ public class AgeAchievementFactoryTest extends AchievementTestHelper {
 	public void testAdolescent() {
 		testAchievement(168, Achievement.EASY_BASE_SCORE);
 	}
+
+	@Test
+	public void testAcclimating() {
+		testAchievement(744, Achievement.MEDIUM_BASE_SCORE);
+	}
 }
