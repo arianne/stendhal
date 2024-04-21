@@ -6,6 +6,8 @@ Changelog
 
 *world*
 - renamed chef Patrick to Preston
+- new achievements:
+  - Cutting Teeth: Accumulate 24 hours of play time
 
 *web client*
 - fixed text extending past edge of notification bubbles
