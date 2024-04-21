@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2020-2023 - Arianne                      *
+ *                    Copyright © 2020-2024 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -67,18 +67,34 @@ public abstract class AchievementTestHelper extends PlayerTestHelper {
 	}
 
 	/**
+	 * Retrieves an achievement.
+	 *
+	 * @param id
+	 *   Achievement string identifier.
+	 * @return
+	 *   `games.stendhal.server.core.rp.achievement.Achievement` instance or `null`.
+	 */
+	public static Achievement getById(final String id) {
+		for (final Achievement ac: an.getAchievements()) {
+			if (id.equals(ac.getIdentifier())) {
+				return ac;
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * Checks if an achievement is enabled.
 	 *
 	 * @param id
-	 *     Achievement string identifier.
+	 *   Achievement string identifier.
 	 * @return
-	 *     <code>true</code> if achievement is loaded & enabled.
+	 *   `true` if achievement is loaded & enabled.
 	 */
 	public static boolean achievementEnabled(final String id) {
-		for (final Achievement ac: an.getAchievements()) {
-			if (id.equals(ac.getIdentifier())) {
-				return ac.isActive();
-			}
+		final Achievement ac = AchievementTestHelper.getById(id);
+		if (ac != null) {
+			return ac.isActive();
 		}
 		return false;
 	}
