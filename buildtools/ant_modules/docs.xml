@@ -87,12 +87,7 @@
 	</target>
 
 
-	<target name="tsdocs" depends="clean_tsdocs">
-		<exec executable="npm${executable.suffix}" failonerror="true">
-			<arg value="install"/>
-			<arg value="typedoc"/>
-			<arg value="--no-save"/>
-		</exec>
+	<target name="tsdocs" depends="clean_tsdocs,js-prepare-node">
 		<exec executable="npx${executable.suffix}" dir="${srcjs}/stendhal" failonerror="true">
 			<arg value="typedoc"/>
 			<arg value="--entryPointStrategy"/>
