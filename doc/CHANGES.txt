@@ -11,6 +11,7 @@ Changelog
   - Adolescent: Accumulate a week of play time
   - Acclimating: Accumulate a month of play time
   - Sturdy Foundation: Accumulate 6 months of play time
+  - Devout: Accumulate a year of play time
 
 *web client*
 - fixed text extending past edge of notification bubbles

@@ -115,4 +115,9 @@ public class AgeAchievementFactoryTest extends AchievementTestHelper {
 	public void testSturdyFoundation() {
 		testAchievement(4368, Achievement.HARD_BASE_SCORE);
 	}
+
+	@Test
+	public void testDevout() {
+		testAchievement(8760, Achievement.EXTREME_BASE_SCORE);
+	}
 }

@@ -57,6 +57,12 @@ public class AgeAchievementFactory extends AbstractAchievementFactory {
 			Achievement.HARD_BASE_SCORE, true,
 			new AgeGreaterThanCondition((MathHelper.MINUTES_IN_ONE_DAY * 182) - 1)));
 
+		achievements.add(createAchievement(
+			"age.hours.08760", "Devout",
+			"Accumulate a year of play time",
+			Achievement.EXTREME_BASE_SCORE, true,
+			new AgeGreaterThanCondition((MathHelper.MINUTES_IN_ONE_DAY * 365) - 1)));
+
 		return achievements;
 	}
 }
