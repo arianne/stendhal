@@ -34,7 +34,6 @@ import { NotificationBubble } from "../sprite/NotificationBubble";
 import { SpeechBubble } from "../sprite/SpeechBubble";
 import { TextBubble } from "../sprite/TextBubble";
 
-import { Chat } from "../util/Chat";
 import { Point } from "../util/Point";
 
 
@@ -699,40 +698,6 @@ export class ViewPort {
 
 	onContentMenu(e: MouseEvent) {
 		e.preventDefault();
-	}
-
-	/**
-	 * Creates a screenshot from viewport area & executes an anchor click event to be handled by browser for PNG download.
-	 */
-	createScreenshot() {
-		Chat.log("client", "creating screenshot ...");
-		const uri = this.ctx.canvas.toDataURL("image/png");
-
-		const d = new Date();
-		const ts = {
-			yyyy: "" + d.getFullYear(),
-			mm: ("00" + (d.getMonth() + 1)).slice(-2),
-			dd: ("00" + d.getDate()).slice(-2),
-			HH: ("00" + d.getHours()).slice(-2),
-			MM: ("00" + d.getMinutes()).slice(-2),
-			SS: ("00" + d.getSeconds()).slice(-2),
-			ms: "" + d.getMilliseconds()
-		};
-
-		while (ts.ms.length < 3) {
-			ts.ms = "0" + ts.ms;
-		}
-
-		// date/time stamp is formatted as yyyy-mm-dd_HH.MM.SS
-		const filename = "stendhal_" + ts.yyyy + "-" + ts.mm + "-"
-				+ ts.dd + "_" + ts.HH + "." + ts.MM + "."
-				+ ts.SS + ".png";
-
-		const anchor = document.createElement("a");
-		anchor.download = filename;
-		anchor.target = "_blank";
-		anchor.href = uri;
-		anchor.click();
 	}
 
 	/**

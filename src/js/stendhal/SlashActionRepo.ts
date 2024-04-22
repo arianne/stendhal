@@ -1180,8 +1180,7 @@ export class SlashActionRepo {
 
 	"screenshot": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
-			stendhal.ui.gamewindow.createScreenshot();
-			return true;
+			return singletons.getDownloadUtil().buildScreenshot().execute();
 		},
 		minParams: 0,
 		maxParams: 0,

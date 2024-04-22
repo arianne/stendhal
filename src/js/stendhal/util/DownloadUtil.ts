@@ -13,6 +13,7 @@
 import { Chat } from "./Chat";
 import { DownloadObject } from "./DownloadObject";
 import { StringUtil } from "./StringUtil";
+import { ViewPort } from "../ui/ViewPort";
 
 
 export class DownloadUtil {
@@ -82,5 +83,19 @@ export class DownloadUtil {
 	 */
 	static buildText(filename: string, text: string): DownloadObject {
 		return DownloadUtil.build(filename, StringUtil.toDataURL(text));
+	}
+
+	/**
+	 * Creates an image download from a canvas element.
+	 *
+	 * @param canvas {HTMLCanvasElement}
+	 *   Canvas containing data to convert to image.
+	 * @return {util.DownloadObject.DownloadObject}
+	 *   Object to be handled by browser for image download.
+	 */
+	static buildScreenshot(): DownloadObject {
+		Chat.log("client", "Creating screenshot download ...");
+		return DownloadUtil.buildImage("stendhal_" + DownloadUtil.timestamp() + ".png",
+				ViewPort.get().getElement() as HTMLCanvasElement);
 	}
 }
