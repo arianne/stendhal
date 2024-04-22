@@ -83,7 +83,7 @@ sugar_cane_field.png      geomac; GPL 2.0 or newer; Stendhal
 
 data/sprites/achievements/
 
-age.png                           Markus Keunecke; GPL 2.0 or newer; Stendhal
+age.png                           Markus Keunecke, Jordan Irwin (AntumDeluge); GPL 2.0 or newer; Stendhal
 commerce.png                      Anders Asplund (Danter); GPL 2.0 or newer; Stendhal
 deathmatch.png                    Angry Amish, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/81446
 experience.png                    bleutailfly; OGA BY 3.0; Stendhal
