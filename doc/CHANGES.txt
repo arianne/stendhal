@@ -9,6 +9,7 @@ Changelog
 
 *web client*
 - fixed text extending past edge of notification bubbles
+- added support for saving chat log to file
 
 *server fixes*
 - fixed Seven Cherubs not showing up as completed

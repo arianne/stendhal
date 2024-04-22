@@ -13,6 +13,7 @@ import { ui } from "../UI";
 import { Component } from "../toolkit/Component";
 import { MenuItem } from "../../action/MenuItem";
 import { UIComponentEnum } from "../UIComponentEnum";
+import { singletons } from "../../SingletonRepo";
 
 declare var stendhal: any;
 
@@ -417,10 +418,11 @@ export class ChatLogComponent extends Component {
 		}
 
 		if (lines.length > 0) {
-			// TODO: export to file
 			if (clipboard) {
 				navigator.clipboard.writeText(lines.join("\n"));
+				return;
 			}
+			singletons.getDownloadUtil().buildChatLog(lines.join("\n")).execute();
 		}
 	}
 
@@ -470,6 +472,7 @@ export class ChatLogComponent extends Component {
 		// setting "log" to "this" here doesn't work
 		const log = ui.get(UIComponentEnum.ChatLog) as ChatLogComponent;
 		const options: MenuItem[] = [
+			new MenuItem("Save", function() { log.exportContents(false); }),
 			new MenuItem("Clear", function() { log.clear(); })
 		];
 

@@ -12,7 +12,9 @@
 
 import { Chat } from "./Chat";
 import { DownloadObject } from "./DownloadObject";
+import { SessionManager } from "./SessionManager";
 import { StringUtil } from "./StringUtil";
+
 import { ViewPort } from "../ui/ViewPort";
 
 
@@ -97,5 +99,20 @@ export class DownloadUtil {
 		Chat.log("client", "Creating screenshot download ...");
 		return DownloadUtil.buildImage("stendhal_" + DownloadUtil.timestamp() + ".png",
 				ViewPort.get().getElement() as HTMLCanvasElement);
+	}
+
+	/**
+	 * Creates a plain text download of chat log.
+	 *
+	 * @param text {string}
+	 *   Chat log text contents.
+	 * @return {util.DownloadObject.DownloadObject}
+	 *   Object to be handled by browser for text download.
+	 */
+	static buildChatLog(text: string): DownloadObject {
+		Chat.log("client", "Creating chat log download ...");
+		const name = SessionManager.get().getCharName();
+		return DownloadUtil.buildText("stendhal_chat_" + (!name ? "" : name + "_")
+				+ DownloadUtil.timestamp() + ".txt", text);
 	}
 }
