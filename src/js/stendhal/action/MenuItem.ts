@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -14,4 +14,10 @@ export class MenuItem  {
 	type?: string;
 	action?: Function;
 	index?: number;
+
+
+	constructor(title: string, action?: Function) {
+		this.title = title;
+		this.action = action;
+	}
 }

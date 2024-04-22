@@ -469,18 +469,12 @@ export class ChatLogComponent extends Component {
 
 		// setting "log" to "this" here doesn't work
 		const log = ui.get(UIComponentEnum.ChatLog) as ChatLogComponent;
-		const options = [
-			{
-				title: "Clear",
-				action: function() {log.clear();}
-			}
-		] as MenuItem[];
+		const options: MenuItem[] = [
+			new MenuItem("Clear", function() { log.clear(); })
+		];
 
 		if (navigator && navigator.clipboard) {
-			options.unshift({
-				title: "Copy",
-				action: function() {log.exportContents();}
-			});
+			options.unshift(new MenuItem("Copy", function() { log.exportContents(); }));
 		}
 
 		const pos = stendhal.ui.html.extractPosition(evt);
