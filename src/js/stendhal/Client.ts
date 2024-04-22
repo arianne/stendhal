@@ -33,8 +33,6 @@ import { LoginDialog } from "./ui/dialog/LoginDialog";
 
 import { DesktopUserInterfaceFactory } from "./ui/factory/DesktopUserInterfaceFactory";
 
-import { Joystick } from "./ui/joystick/Joystick";
-
 import { SingletonFloatingWindow } from "./ui/toolkit/SingletonFloatingWindow";
 
 import { Chat } from "./util/Chat";
@@ -419,28 +417,7 @@ export class Client {
 		gamewindow.addEventListener("contextmenu", stendhal.ui.gamewindow.onContentMenu);
 		gamewindow.addEventListener("wheel", stendhal.ui.gamewindow.onMouseWheel);
 
-		// handle mouse cursor movement
-		document.body.addEventListener("mousemove", (e: MouseEvent) => {
-			// handle updating joystick when mouse moves outside radius
-			if (stendhal.ui.gamewindow.joystick && stendhal.ui.gamewindow.joystick.isEngaged()) {
-				if (stendhal.ui.gamewindow.joystick instanceof Joystick) {
-					(stendhal.ui.gamewindow.joystick as Joystick).onDragWhileEngaged(e);
-				}
-				// prevent default action
-				// FIXME: doesn't work
-				e.stopPropagation();
-				return;
-			}
-		});
-		// handle disengaging joystick when mouse button released outside joystick area
-		document.body.addEventListener("mouseup", (e: MouseEvent) => {
-			if (e.button == 0 && stendhal.ui.gamewindow.joystick && stendhal.ui.gamewindow.joystick.isEngaged()) {
-				stendhal.ui.gamewindow.joystick.reset();
-				// prevent executing "mouseup" on items & entities
-				// FIXME: doesn't work
-				e.stopPropagation();
-			}
-		});
+		singletons.getJoystickController().registerGlobalEventHandlers();
 
 		// main menu button
 		const menubutton = document.getElementById("menubutton")!;

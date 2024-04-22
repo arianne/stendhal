@@ -13,6 +13,7 @@ declare var marauroa: any;
 declare var stendhal: any;
 
 import { ui } from "../UI";
+import { SoftwareJoystickController } from "../SoftwareJoystickController";
 import { Direction } from "../../util/Direction";
 
 
@@ -217,7 +218,7 @@ export abstract class JoystickImpl {
 	 * Checks if client is currently using this joystick.
 	 */
 	private isInUse(): boolean {
-		return stendhal.ui.gamewindow.joystick != null && stendhal.ui.gamewindow.joystick === this;
+		return SoftwareJoystickController.get().getCurrent() === this;
 	}
 
 	/**

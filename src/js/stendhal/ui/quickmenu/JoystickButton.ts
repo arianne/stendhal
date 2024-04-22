@@ -12,6 +12,7 @@
 declare var stendhal: any;
 
 import { QuickMenuButton } from "./QuickMenuButton";
+import { SoftwareJoystickController } from "../SoftwareJoystickController";
 import { UIComponentEnum } from "../UIComponentEnum";
 
 
@@ -37,6 +38,6 @@ export class JoystickButton extends QuickMenuButton {
 	protected override onClick(evt: Event) {
 		const newState = !stendhal.config.getBoolean("joystick");
 		stendhal.config.set("joystick", newState);
-		stendhal.ui.gamewindow.updateJoystick();
+		SoftwareJoystickController.get().update();
 	}
 }

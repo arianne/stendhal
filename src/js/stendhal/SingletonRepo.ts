@@ -38,15 +38,13 @@ import { HeldObjectManager } from "./ui/HeldObject";
 import { HTMLManager } from "./ui/HTMLManager";
 import { Inventory } from "./ui/Inventory";
 import { LoopedSoundSourceManager } from "./ui/LoopedSoundSourceManager";
+import { SoftwareJoystickController } from "./ui/SoftwareJoystickController";
 import { SoundManager } from "./ui/SoundManager";
 import { TouchHandler } from "./ui/TouchHandler";
 import { UIUpdateObserver } from "./ui/UIUpdateObserver";
 import { ViewPort } from "./ui/ViewPort";
 
 import { ChatInputComponent } from "./ui/component/ChatInputComponent";
-
-import { DirectionPad } from "./ui/joystick/DirectionPad";
-import { Joystick } from "./ui/joystick/Joystick";
 
 
 export class SingletonRepo {
@@ -69,10 +67,6 @@ export class SingletonRepo {
 
 	static getConfigManager(): ConfigManager {
 		return ConfigManager.get();
-	}
-
-	static getDirectionPad(): DirectionPad {
-		return DirectionPad.get();
 	}
 
 	static getDownloadUtil(): typeof DownloadUtil {
@@ -107,8 +101,8 @@ export class SingletonRepo {
 		return Inventory.get();
 	}
 
-	static getJoystick(): Joystick {
-		return Joystick.get();
+	static getJoystickController(): SoftwareJoystickController {
+		return SoftwareJoystickController.get();
 	}
 
 	static getKeyHandler(): typeof KeyHandler {

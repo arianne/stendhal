@@ -13,6 +13,7 @@ declare var marauroa: any;
 declare var stendhal: any;
 
 import { UIComponentEnum } from "./UIComponentEnum";
+import { SoftwareJoystickController } from "./SoftwareJoystickController";
 import { ApplicationMenuDialog } from "./dialog/ApplicationMenuDialog";
 import { QuickMenu } from "./quickmenu/QuickMenu";
 import { QuickMenuButton } from "./quickmenu/QuickMenuButton";
@@ -132,7 +133,7 @@ class UI {
 		chatPanel.refresh();
 		chatPanel.setVisible(stendhal.config.getBoolean("chat.visible"));
 		// initialize on-screen joystick
-		stendhal.ui.gamewindow.updateJoystick();
+		SoftwareJoystickController.get().update();
 		QuickMenu.init();
 
 		// update menu buttons

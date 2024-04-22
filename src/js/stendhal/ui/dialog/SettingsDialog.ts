@@ -230,17 +230,20 @@ export class SettingsDialog extends DialogContentComponent {
 			stendhal.config.set("chat-opts.custom", txt_chatopts.value);
 		});
 
+
+		/* *** joystick interface *** */
+
 		// on-screen joystick
 		const sel_joystick = this.createSelectFromConfig("seljoystick", "joystick.style",
 				undefined,
 				function(e: Event) {
-					stendhal.ui.gamewindow.updateJoystick();
+					singletons.getJoystickController().update();
 				});
 		const chk_joystick = this.createCheckBox("chk_joystick", "joystick",
 				undefined, undefined,
 				function(e: Event) {
 					sel_joystick.disabled = !chk_joystick.checked;
-					stendhal.ui.gamewindow.updateJoystick();
+					singletons.getJoystickController().update();
 				});
 		chk_joystick.checked = stendhal.session.joystickEnabled();
 		sel_joystick.disabled = !chk_joystick.checked;
@@ -254,7 +257,7 @@ export class SettingsDialog extends DialogContentComponent {
 				// update configuration
 				stendhal.config.set("joystick.center." + o, orienter.value || 0);
 				// update on-screen joystick position
-				stendhal.ui.gamewindow.updateJoystick();
+				singletons.getJoystickController().update();
 			});
 		}
 

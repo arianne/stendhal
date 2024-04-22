@@ -21,10 +21,6 @@ import { PlayerEquipmentComponent } from "./component/PlayerEquipmentComponent";
 import { ActionContextMenu } from "./dialog/ActionContextMenu";
 import { DropQuantitySelectorDialog } from "./dialog/DropQuantitySelectorDialog";
 
-import { JoystickImpl } from "./joystick/JoystickImpl";
-
-import { QuickMenuButton } from "./quickmenu/QuickMenuButton";
-
 import { Client } from "../Client";
 import { singletons } from "../SingletonRepo";
 
@@ -74,9 +70,6 @@ export class ViewPort {
 	private weatherRenderer = singletons.getWeatherRenderer();
 	/** Coloring method of current zone. */
 	private filter?: string;
-
-	/** On-screen joystick. */
-	private joystick: JoystickImpl|null = null;
 
 	/** Styles to be applied when chat panel is not floating. */
 	private readonly initialStyle: {[prop: string]: string};
@@ -698,41 +691,6 @@ export class ViewPort {
 
 	onContentMenu(e: MouseEvent) {
 		e.preventDefault();
-	}
-
-	/**
-	 * Removes joystick elements from DOM and unsets `ui.ViewPort.ViewPort.joystick` property.
-	 */
-	private removeJoystick() {
-		if (this.joystick) {
-			this.joystick.removeFromDOM();
-		}
-		this.joystick = null;
-	}
-
-	/**
-	 * Updates the on-screen joystick.
-	 */
-	updateJoystick() {
-		// update quick menu button image
-		const joystickButton = ui.get(UIComponentEnum.QMJoystick) as QuickMenuButton;
-		if (joystickButton) {
-			joystickButton.update();
-		}
-
-		if (!stendhal.session.joystickEnabled()) {
-			this.removeJoystick();
-			return;
-		}
-		const newJoystick = stendhal.config.get("joystick.style") === "dpad"
-				? singletons.getDirectionPad() : singletons.getJoystick();
-		if (this.joystick && newJoystick === this.joystick) {
-			this.joystick.update();
-		} else {
-			this.removeJoystick();
-			this.joystick = newJoystick;
-			newJoystick.addToDOM();
-		}
 	}
 
 	/**

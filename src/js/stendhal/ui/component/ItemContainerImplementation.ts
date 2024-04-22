@@ -336,7 +336,7 @@ export class ItemContainerImplementation {
 
 		// workaround to prevent accidentally using items when disengaging joystick
 		// FIXME: a global solution would be better
-		if (stendhal.ui.gamewindow.joystick && stendhal.ui.gamewindow.joystick.isEngaged()) {
+		if (singletons.getJoystickController().isEngaged()) {
 			return;
 		}
 
