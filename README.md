@@ -64,11 +64,16 @@ There is a  [manual](https://stendhalgame.org/wiki/Stendhal_Manual), and there i
 
 
 ## Legal
-The server and java client are free software; you can redistribute it and/or modify it under the terms of the **GNU General Public License** 2 or later as published by the Free Software Foundation.
+
+The server, java client, and Android client are free software; you can redistribute it and/or modify
+it under the terms of the **GNU General Public License** 2 or later as published by the Free
+Software Foundation.
 
 The web client is free software; you can redistribute it and/or modify it under the terms of the **GNU Affero General Public License** 3 or later as published by the Free Software Foundation.
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the [LICENSE.txt](LICENSE.txt) file for more details.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+[LICENSE.txt](LICENSE.txt) and [src/js/LICENSE.html](src/js/LICENSE.html) file for more details.
 
 Stendhal(c) is copyright of Miguel Angel Blanch Lardin, 2005-2008, arianne_rpg at users dot sourceforge dot net and others<br>
 Stendhal(c) is copyright of the Arianne Project, 2006-2024, arianne-general at lists dot sourceforge dot net
