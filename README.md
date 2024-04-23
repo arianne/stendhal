@@ -20,10 +20,30 @@ So what are you waiting for?! A whole new world awaits...
 
 ## How to play
 
-[![Play now](https://arianne-project.org/images/playbutton.png)](https://stendhalgame.org/account/mycharacters.html) &nbsp; &nbsp; &nbsp; &nbsp;
+### Web Browser
+
+[![Play now](https://arianne-project.org/images/playbutton.png)](https://stendhalgame.org/account/mycharacters.html)
+
+Play in any web browser for desktop or mobile with JavaScript support. Click on the "play now"
+button to create or log in to your account.
+
+### Mobile
+
+Play using the [progressive web app](https://en.wikipedia.org/wiki/Progressive_web_app). Just visit
+https://stendhalgame.org/ in your mobile browser and click "install" when prompted.
+
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" height="75">](https://f-droid.org/packages/org.stendhalgame.client/)
+
+Play on your Android device using the dedicated app. You can get it from the
+[F-Droid App Store](https://f-droid.org/) or download it from https://stendhalgame.org/download.html.
+
+### Classic Desktop
+
 [![Download](https://stendhalgame.org/images/downloadbutton.png)](https://arianne-project.org/download/stendhal.zip)
 
-You need Java which you can download from [https://www.java.com](https://www.java.com/en/download) on Microsoft Windows. Java is included in most Linux distributions. Both Oracle Java and OpenJDK are supported.
+Play using the classic desktop client. You will need Java which you can download from
+[https://www.java.com](https://www.java.com/en/download) on Microsoft Windows. Java is included in
+most Linux distributions. Both Oracle Java and OpenJDK are supported.
 
 Please download Stendhal from [https://stendhalgame.org](https://stendhalgame.org)<br>
 You can double click on stendhal-starter.jar and the client will run.<br>
