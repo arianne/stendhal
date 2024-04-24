@@ -4,8 +4,7 @@
 
 	<target name="clean" description="Delete all build files and directories.">
 		<delete includeEmptyDirs="true">
-			<!-- NOTE: doesn't delete Unix hidden files (beginning with ".") -->
-			<fileset dir="${buildroot}" excludes="eclipse/"/>
+			<fileset dir="${buildroot}" excludes="eclipse/" defaultExcludes="false"/>
 		</delete>
 		<delete dir="${build_cobertura}"/>
 		<delete dir="${build_cobertura_report}"/>
