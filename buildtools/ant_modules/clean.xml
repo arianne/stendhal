@@ -3,7 +3,7 @@
 <project xmlns:if="ant:if" xmlns:unless="ant:unless">
 
 	<target name="clean" description="Delete all build files and directories.">
-		<delete includeEmptyDirs="true">
+		<delete includeEmptyDirs="true" quiet="true">
 			<fileset dir="${buildroot}" excludes="eclipse/" defaultExcludes="false"/>
 		</delete>
 		<delete dir="${build_cobertura}"/>
