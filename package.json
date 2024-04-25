@@ -1,6 +1,6 @@
 {
   "name": "stendhal",
-  "version": "1.0.0",
+  "version": "1.0.0.0",
   "description": "Stendhal is a fun friendly and free multiplayer online adventure game with an old school feel. ",
   "main": "index.js",
   "directories": {
