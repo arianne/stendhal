@@ -1,5 +1,5 @@
 /***************************************************************************
- *                 (C) Copyright 2003-2023 - Faiumoni e.V.                 *
+ *                 (C) Copyright 2003-2024 - Faiumoni e.V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -73,7 +73,8 @@ public class DeliverItemQuestCompleteBuilder extends QuestCompleteBuilder {
 						player.drop(item);
 						// Check whether the player was supposed to deliver this item.
 						if (player.hasQuest(questSlot) && !player.isQuestCompleted(questSlot)) {
-							if (deliverItemTask.isDeliveryTooLate(player, questSlot)) {
+							final boolean tooLate = deliverItemTask.isDeliveryTooLate(player, questSlot);
+							if (tooLate) {
 								npc.say(StringUtils.substitute(data.getRespondToSlowDelivery(), params));
 								player.addXP(data.getXp() / 2);
 							} else {
@@ -90,6 +91,10 @@ public class DeliverItemQuestCompleteBuilder extends QuestCompleteBuilder {
 							player.setQuest(questSlot, 0, "done");
 							new SetQuestToTimeStampAction(questSlot, 1).fire(player, null, npc);
 							new IncrementQuestAction(questSlot, 2, 1).fire(player, null, npc);
+							if (!tooLate) {
+								// store number of on-time deliveries
+								new IncrementQuestAction(questSlot, 3, 1).fire(player, null, npc);
+							}
 							deliverItemTask.putOffUniform(player);
 						} else {
 							// Item could be from a previous failed attempt to do this quest.
