@@ -73,7 +73,7 @@ import games.stendhal.server.util.TimeUtil;
  * </ul>
  * REPETITIONS: - Once per week.
  */
-public class ZooFood extends AbstractQuest {
+public class ZooFood extends CompletionsTrackingQuest {
 
 	private static final int REQUIRED_HAM = 10;
 	private static final int DELAY = TimeUtil.MINUTES_IN_WEEK;
@@ -179,7 +179,7 @@ public class ZooFood extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING, null,
-				new MultipleActions(new SetQuestAction(QUEST_SLOT, "start;"),
+				new MultipleActions(new SetQuestAction(QUEST_SLOT, 0, "start"),
 				new StartRecordingRandomItemCollectionAction(QUEST_SLOT, 1, items, "Oh, thank you! Please help us by"
 				+ " bringing [item] as soon as you can."))
 		);
@@ -234,9 +234,10 @@ public class ZooFood extends AbstractQuest {
 				new SayRequiredItemAction(QUEST_SLOT, 1, "Welcome back! Have you brought the [item]?"));
 
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
-		actions.add(new DropRecordedItemAction(QUEST_SLOT,1));
-		actions.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "done;1", 5.0));
+		actions.add(new DropRecordedItemAction(QUEST_SLOT, 1));
+		actions.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, 0, "done", 5.0));
 		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
+		actions.add(incrementCompletionsAction());
 		actions.add(new IncreaseXPAction(200));
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
@@ -284,7 +285,8 @@ public class ZooFood extends AbstractQuest {
 		fillQuestInfo(
 				"Zoo Food",
 				"The animals at the zoo are hungry and need some food!",
-				true);
+				true, 2);
+
 		step_1();
 		step_2();
 		step_3();
