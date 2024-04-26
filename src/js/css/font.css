@@ -1,0 +1,52 @@
+
+@font-face {
+	font-family: Amaranth;
+	src: url("/data/font/Amaranth-Regular.ttf");
+}
+@font-face {
+	font-family: Amaranth;
+	src: url("/data/font/Amaranth-Italic.ttf");
+	font-style: italic;
+}
+@font-face {
+	font-family: Amaranth;
+	src: url("/data/font/Amaranth-Bold.ttf");
+	font-weight: bold;
+}
+@font-face {
+	font-family: Amaranth;
+	src: url("/data/font/Amaranth-BoldItalic.ttf");
+	font-style: italic;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: Black Chancery;
+	src: url("/data/font/BlackChancery.ttf");
+}
+
+@font-face {
+	font-family: Carlito;
+	src: url("/data/font/Carlito-Regular.ttf");
+}
+@font-face {
+	font-family: Carlito;
+	src: url("/data/font/Carlito-Italic.ttf");
+	font-style: italic;
+}
+@font-face {
+	font-family: Carlito;
+	src: url("/data/font/Carlito-Bold.ttf");
+	font-weight: bold;
+}
+@font-face {
+	font-family: Carlito;
+	src: url("/data/font/Carlito-BoldItalic.ttf");
+	font-style: italic;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: Tally;
+	src: url("/data/font/Tally.ttf");
+}
