@@ -6,6 +6,8 @@ Changelog
 
 *world*
 - renamed chef Patrick to Preston
+- new achievements:
+  - 30 Minutes or Less: Deliver 5 hot pizzas
 
 *web client*
 - fixed text extending past edge of notification bubbles

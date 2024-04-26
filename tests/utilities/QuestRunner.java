@@ -395,18 +395,25 @@ public class QuestRunner {
 		ChildrensFriendStub.doQuestPlink(player);
 	}
 
-	public static void doQuestPizzaDelivery(final Player player) {
+	public static void doQuestPizzaDelivery(final Player player, final boolean fast) {
 		final String questSlot = "pizza_delivery";
 		Engine en = getSpeakerNPC("Leander").getEngine();
 		en.step(player, "hi");
 		en.step(player, "quest");
 		en.step(player, "yes");
 		en.step(player, "bye");
+		if (!fast) {
+			player.setQuest(questSlot, 1, "0");
+		}
 		en = getSpeakerNPC(player.getQuest(questSlot, 0)).getEngine();
 		en.step(player, "hi");
 		en.step(player, "pizza");
 		en.step(player, "bye");
 		assertEquals("done", player.getQuest(questSlot, 0));
+	}
+
+	public static void doQuestPizzaDelivery(final Player player) {
+		QuestRunner.doQuestPizzaDelivery(player, true);
 	}
 
 	public static void doQuestMeetSanta(final Player player) {

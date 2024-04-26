@@ -129,6 +129,58 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 		setupZone("testzone", zc);
 	}
 
+	private void preparePizzaDelivery() {
+		loadConfigurators(
+				// Balduin
+				new games.stendhal.server.maps.ados.rock.WeaponsCollectorNPC(),
+				// Eliza
+				new games.stendhal.server.maps.ados.coast.FerryConveyerNPC(),
+				// Fidorea
+				new games.stendhal.server.maps.ados.city.MakeupArtistNPC(),
+				// Haizen
+				new games.stendhal.server.maps.ados.magician_house.WizardNPC(),
+				// Jenny
+				new games.stendhal.server.maps.semos.plains.MillerNPC(),
+				// Jynath
+				new games.stendhal.server.maps.orril.magician_house.WitchNPC(),
+				// Katinka
+				new games.stendhal.server.maps.ados.outside.AnimalKeeperNPC(),
+				// Leander
+				new games.stendhal.server.maps.semos.bakery.ChefNPC(),
+				// Marcus
+				new games.stendhal.server.maps.semos.jail.GuardNPC(),
+				// Martin Farmer
+				new games.stendhal.server.maps.ados.wall.HolidayingManNPC(),
+				// Nishiya
+				new games.stendhal.server.maps.semos.village.SheepSellerNPC(),
+				// Ouchit
+				new games.stendhal.server.maps.semos.tavern.BowAndArrowSellerNPC(),
+				// Tor'Koom
+				new games.stendhal.server.maps.semos.dungeon.SheepBuyerNPC()
+			);
+		// Cyk
+		new HouseBuyingMain().createAthorNPC(testzone);
+		// Ramon
+		setupZone("-1_athor_ship_w2");
+		loadQuests(new Blackjack());
+
+		loadQuests(new BuiltQuest(new PizzaDelivery().story()));
+
+		assertNotNull(getSpeakerNPC("Leander"));
+		assertNotNull(getSpeakerNPC("Jenny"));
+		assertNotNull(getSpeakerNPC("Jynath"));
+		assertNotNull(getSpeakerNPC("Tor'Koom"));
+		assertNotNull(getSpeakerNPC("Martin Farmer"));
+		assertNotNull(getSpeakerNPC("Haizen"));
+		assertNotNull(getSpeakerNPC("Fidorea"));
+		assertNotNull(getSpeakerNPC("Eliza"));
+		assertNotNull(getSpeakerNPC("Katinka"));
+		assertNotNull(getSpeakerNPC("Cyk"));
+		assertNotNull(getSpeakerNPC("Marcus"));
+		assertNotNull(getSpeakerNPC("Ramon"));
+		assertNotNull(getSpeakerNPC("Balduin"));
+	}
+
 	/* TODO:
 	 * - Helper of Ados City Dwellers
 	 */
@@ -254,71 +306,41 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 	@Test
 	public void testAideToSemosFolk() {
 		final String id = "quest.special.semos";
+		preparePizzaDelivery();
 		loadConfigurators(
-			// Balduin
-			new games.stendhal.server.maps.ados.rock.WeaponsCollectorNPC(),
 			// Carmen
 			new games.stendhal.server.maps.semos.city.HealerNPC(),
 			// Ceryl
 			new games.stendhal.server.maps.semos.library.LibrarianNPC(),
-			// Eliza
-			new games.stendhal.server.maps.ados.coast.FerryConveyerNPC(),
-			// Fidorea
-			new games.stendhal.server.maps.ados.city.MakeupArtistNPC(),
 			// Hackim Easso
 			new games.stendhal.server.maps.semos.blacksmith.BlacksmithAssistantNPC(),
-			// Haizen
-			new games.stendhal.server.maps.ados.magician_house.WizardNPC(),
 			// Hayunn Naratha
 			new games.stendhal.server.maps.semos.guardhouse.RetiredAdventurerNPC(),
 			// Ilisa
 			new games.stendhal.server.maps.semos.temple.HealerNPC(),
 			// Io Flotto
 			new games.stendhal.server.maps.semos.temple.TelepathNPC(),
-			// Jenny
-			new games.stendhal.server.maps.semos.plains.MillerNPC(),
 			// Joshua
 			new games.stendhal.server.maps.ados.goldsmith.GoldsmithNPC(),
-			// Jynath
-			new games.stendhal.server.maps.orril.magician_house.WitchNPC(),
 			// Karl
 			new games.stendhal.server.maps.ados.forest.FarmerNPC(),
-			// Katinka
-			new games.stendhal.server.maps.ados.outside.AnimalKeeperNPC(),
 			// Ketteh Wehoh
 			new games.stendhal.server.maps.semos.townhall.DecencyAndMannersWardenNPC(),
-			// Leander
-			new games.stendhal.server.maps.semos.bakery.ChefNPC(),
-			// Marcus
-			new games.stendhal.server.maps.semos.jail.GuardNPC(),
-			// Martin Farmer
-			new games.stendhal.server.maps.ados.wall.HolidayingManNPC(),
 			// Mayor Sakhs
 			new games.stendhal.server.maps.semos.townhall.MayorNPC(),
 			// Monogenes
 			new games.stendhal.server.maps.semos.city.GreeterNPC(),
-			// Nishiya
-			new games.stendhal.server.maps.semos.village.SheepSellerNPC(),
-			// Ouchit
-			new games.stendhal.server.maps.semos.tavern.BowAndArrowSellerNPC(),
 			// Rudolph
 			new games.stendhal.server.maps.semos.city.RudolphNPC(),
 			// Sato
 			new games.stendhal.server.maps.semos.city.SheepBuyerNPC(),
 			// Tad
 			new games.stendhal.server.maps.semos.hostel.BoyNPC(),
-			// Tor'Koom
-			new games.stendhal.server.maps.semos.dungeon.SheepBuyerNPC(),
 			// Xin Blanca
 			new games.stendhal.server.maps.semos.tavern.TraderNPC(),
 			// Xoderos
 			new games.stendhal.server.maps.semos.blacksmith.BlacksmithNPC()
 		);
-		// Cyk
-		new HouseBuyingMain().createAthorNPC(testzone);
-		// Ramon
-		setupZone("-1_athor_ship_w2");
-		loadQuests(new Blackjack());
 
 		// FIXME: loading quests from resource broken
 		//~ qloaded.addAll(QuestHelper.loadRegionalQuests(Region.SEMOS_CITY));
@@ -337,7 +359,6 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 			new HungryJoshua(),
 			new BuiltQuest(new LookBookforCeryl().story()),
 			new MeetKetteh(),
-			new BuiltQuest(new PizzaDelivery().story()),
 			new HerbsForCarmen(),
 			new LearnAboutOrbs(),
 			new DailyMonsterQuest(),
@@ -433,18 +454,6 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 		assertFalse(achievementReached(player, id));
 
 		// Pizza Delivery
-		assertNotNull(getSpeakerNPC("Leander"));
-		assertNotNull(getSpeakerNPC("Jenny"));
-		assertNotNull(getSpeakerNPC("Tor'Koom"));
-		assertNotNull(getSpeakerNPC("Martin Farmer"));
-		assertNotNull(getSpeakerNPC("Haizen"));
-		assertNotNull(getSpeakerNPC("Fidorea"));
-		assertNotNull(getSpeakerNPC("Eliza"));
-		assertNotNull(getSpeakerNPC("Katinka"));
-		assertNotNull(getSpeakerNPC("Cyk"));
-		assertNotNull(getSpeakerNPC("Marcus"));
-		assertNotNull(getSpeakerNPC("Ramon"));
-		assertNotNull(getSpeakerNPC("Balduin"));
 		//~ assertTrue(QuestHelper.isLoaded("pizza_delivery"));
 		QuestRunner.doQuestPizzaDelivery(player);
 		assertFalse(achievementReached(player, id));
@@ -494,6 +503,24 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 			final String questSlot = "dummy_quest_" + (idx + 1);
 			loadQuests(new DummyQuest(questSlot));
 			player.setQuest(questSlot, "done");
+		}
+		assertTrue(achievementReached(player, id));
+	}
+
+	@Test
+	public void test30MinutesOrLess() {
+		final String id = "quest.pizza_delivery.hot.0005";
+		preparePizzaDelivery();
+
+		for (int idx = 0; idx < 10; idx++) {
+			QuestRunner.doQuestPizzaDelivery(player, false);
+		}
+		assertFalse(achievementReached(player, id));
+
+		for (int idx = 0; idx < 10; idx++) {
+			assertFalse(achievementReached(player, id));
+			boolean fast = idx != 0 && idx % 2 != 0;
+			QuestRunner.doQuestPizzaDelivery(player, fast);
 		}
 		assertTrue(achievementReached(player, id));
 	}
