@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2015-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2015-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -28,9 +28,9 @@ export class ActionContextMenu extends Component {
 		this.appendActions = append;
 		this.gatherActions();
 
-		var content = "<div class=\"actionmenu\">";
+		var content = "<div class=\"actionmenu verticalgroup\">";
 		for (var i = 0; i < this.actions.length; i++) {
-			content += "<button id=\"actionbutton." + i + "\">" + stendhal.ui.html.esc(this.actions[i].title) + "</button><br>";
+			content += "<button class=\"actionbutton" + (i > 0 ? " sub-actionbutton" : "") + "\" id=\"actionbutton." + i + "\">" + stendhal.ui.html.esc(this.actions[i].title) + "</button>";
 		}
 		content += "</div>";
 		this.componentElement.innerHTML = content;

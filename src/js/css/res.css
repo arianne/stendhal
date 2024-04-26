@@ -1,0 +1,25 @@
+
+/* small screens without fine pointing device (touch) */
+@media screen and (max-width: 1080px) and ((pointer: none) or (pointer: coarse)) {
+	button {
+		min-height: 2em;
+		min-width: 2em;
+	}
+
+	.actionbutton + .actionbutton {
+		margin-top: 4px;
+	}
+
+	input[type=text], input[type=number] {
+		min-height: 1.5em;
+	}
+
+	input[type=checkbox] {
+		min-height: 1.2em;
+		min-width: 1.2em;
+	}
+
+	select {
+		min-height: 2.2em;
+	}
+}
