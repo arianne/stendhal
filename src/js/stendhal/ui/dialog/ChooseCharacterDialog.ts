@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2015-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2015-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -24,6 +24,7 @@ export class ChooseCharacterDialog extends DialogContentComponent {
 			if (characters.hasOwnProperty(i)) {
 				let name = characters[i]["a"]["name"];
 				let button = document.createElement("button");
+				button.classList.add("menubutton");
 				button.innerText = name;
 				button.addEventListener("click", () => {
 					this.componentElement.dispatchEvent(new Event("close"));
