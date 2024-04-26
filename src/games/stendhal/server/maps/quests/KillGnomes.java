@@ -92,7 +92,7 @@ public class KillGnomes implements QuestManuscript {
 			.rewardWith(new IncreaseXPAction(100))
 			.rewardWith(new EquipItemAction("potion", 3));
 
-		// completions count is stored in 2nd index of quest slot
+		// completions count is stored in 3rd index of quest slot
 		quest.setCompletionsIndexes(2);
 
 		return quest;

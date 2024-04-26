@@ -92,7 +92,7 @@ public class AmazonPrincess implements QuestManuscript {
 			.rewardWith(new PlaySoundAction("kiss-female-01"))
 			.rewardWith(new InflictStatusOnNPCAction("pina colada"));
 
-		// completions count is stored in 2nd index of quest slot
+		// completions count is stored in 3rd index of quest slot
 		quest.setCompletionsIndexes(2);
 
 		return quest;
