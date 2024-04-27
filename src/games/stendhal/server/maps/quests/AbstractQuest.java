@@ -146,8 +146,16 @@ public abstract class AbstractQuest implements IQuest {
 				&& player.isQuestCompleted(getSlotName());
 	}
 
+	/**
+	 * Retrieves number of times player has completed quest.
+	 *
+	 * @param player
+	 *   Player for whom quest is being checked.
+	 * @return
+	 *   Number of completions.
+	 */
 	@Override
-	public int getCompletedCount(final Player player) {
+	public int getCompletions(final Player player) {
 		final String questSlot = getSlotName();
 		final boolean completed = isCompleted(player);
 		if (player.hasQuest(questSlot)) {
@@ -165,6 +173,21 @@ public abstract class AbstractQuest implements IQuest {
 		}
 		// default is to return 1 if quest is in complete state and 0 otherwise
 		return completed ? 1 : 0;
+	}
+
+	/**
+	 * Retrieves number of times player has completed quest.
+	 *
+	 * @param player
+	 *   Player for whom quest is being checked.
+	 * @return
+	 *   Number of completions.
+	 * @deprecated
+	 */
+	@Deprecated
+	@Override
+	public int getCompletedCount(final Player player) {
+		return getCompletions(player);
 	}
 
 	@Override

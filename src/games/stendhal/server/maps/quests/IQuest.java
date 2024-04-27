@@ -74,6 +74,17 @@ public interface IQuest {
 	 * @return
 	 *   Number of completions.
 	 */
+	int getCompletions(Player player);
+
+	/**
+	 * Retrieves number of times player has completed quest.
+	 *
+	 * @param player
+	 *   Player for whom quest is being checked.
+	 * @return
+	 *   Number of completions.
+	 */
+	@Deprecated
 	int getCompletedCount(Player player);
 
 	/**
