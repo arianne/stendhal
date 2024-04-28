@@ -9,6 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
+declare var marauroa: any;
+
 import { ParamList } from "./ParamList";
 import { Pair } from "../util/Pair";
 
@@ -90,5 +92,15 @@ export abstract class SlashAction extends SlashActionImpl {
 			return params;
 		}
 		return new ParamList(params).toString(namesOnly);
+	}
+
+	/**
+	 * Forwards action information to server.
+	 *
+	 * @param action {object}
+	 *   Action object.
+	 */
+	protected send(action: object) {
+		marauroa.clientFramework.sendAction(action);
 	}
 };
