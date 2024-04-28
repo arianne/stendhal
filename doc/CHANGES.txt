@@ -12,6 +12,9 @@ Changelog
 *web client*
 - fixed text extending past edge of notification bubbles
 - added support for saving chat log to file
+- bigger buttons for small touch enabled devices
+- travel log displays while waiting for response from server
+- fixed infinite request loop when travel log items technically empty
 
 *server fixes*
 - fixed Seven Cherubs not showing up as completed
