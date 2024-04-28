@@ -1,0 +1,9 @@
+Stendhal tiene un mundo enorme y rico. Puedes explorar ciudades, bosques, montañas, llanos y
+mazmorras. Puedes combatir monstruos y llegar a ser un héroe.
+
+Te encontrarás con una amplia variedad de personajes. Muchos te darán tareas y misiones para obtener
+experiencia valiosa. Es posible que se te pida proteger terrenos, alimentar a los hambrientos, curar
+a los enfermos, hacer feliz a alguien, resolver un rompecabezas, o simplemente echar una mano.
+
+Entonces, ¿a qué estás esperando? Un mundo completamente nuevo te espera... ¡Y si deseas, consigue
+el código fuente y añade tus propias ideas!
