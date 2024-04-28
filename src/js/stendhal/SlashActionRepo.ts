@@ -17,6 +17,7 @@ import { singletons } from "./SingletonRepo";
 import { AboutAction } from "./action/AboutAction";
 import { DebugAction } from "./action/DebugAction";
 import { OpenWebsiteAction } from "./action/OpenWebsiteAction";
+import { ProgressStatusAction } from "./action/ProgressStatusAction";
 import { SettingsAction } from "./action/SettingsAction";
 import { SlashActionImpl } from "./action/SlashAction";
 
@@ -1123,39 +1124,7 @@ export class SlashActionRepo {
 		}
 	};
 
-	"progressstatus": SlashActionImpl = {
-		execute: (type: string, params: string[], remainder: string): boolean => {
-			const action: Action = {
-				"type": type
-			}
-
-			if (remainder.length > 0) {
-				if (remainder.indexOf("Open Quests") > -1) {
-					action["progress_type"] = "Open Quests";
-					remainder = remainder.substring(12);
-				} else if (remainder.indexOf("Completed Quests") > -1) {
-					action["progress_type"] = "Completed Quests";
-					remainder = remainder.substring(17);
-				} else if (remainder.indexOf("Production") > -1) {
-					action["progress_type"] = "Production";
-					remainder = remainder.substring(11);
-				} else {
-
-				}
-				if (remainder) {
-					action["item"] = remainder;
-				}
-			}
-			this.sendAction(action);
-			return true;
-		},
-		minParams: 0,
-		maxParams: 0,
-		getHelp: function(): string[] {
-			// FIXME: including parameter in chat command input should set visible tab
-			return ["", "Open travel log dialog window."];
-		}
-	};
+	"progressstatus" = new ProgressStatusAction();
 
 	"remove": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
