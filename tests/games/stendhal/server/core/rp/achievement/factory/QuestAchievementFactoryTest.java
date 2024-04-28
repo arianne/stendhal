@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2023 - Arianne                          *
+ *                     Copyright © 2023-2024 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -509,15 +509,15 @@ public class QuestAchievementFactoryTest extends AchievementTestHelper {
 
 	@Test
 	public void test30MinutesOrLess() {
-		final String id = "quest.pizza_delivery.hot.0005";
+		final String id = "quest.pizza_delivery.hot.0025";
 		preparePizzaDelivery();
 
-		for (int idx = 0; idx < 10; idx++) {
+		for (int idx = 0; idx < 50; idx++) {
 			QuestRunner.doQuestPizzaDelivery(player, false);
 		}
 		assertFalse(achievementReached(player, id));
 
-		for (int idx = 0; idx < 10; idx++) {
+		for (int idx = 0; idx < 50; idx++) {
 			assertFalse(achievementReached(player, id));
 			boolean fast = idx != 0 && idx % 2 != 0;
 			QuestRunner.doQuestPizzaDelivery(player, fast);

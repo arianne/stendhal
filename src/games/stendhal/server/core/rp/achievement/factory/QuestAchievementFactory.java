@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -107,10 +107,10 @@ public class QuestAchievementFactory extends AbstractAchievementFactory {
 
 		// deliver 5 hot pizzas
 		achievements.add(createAchievement(
-			"quest.pizza_delivery.hot.0005", "30 Minutes or Less",
-			"Deliver 5 hot pizzas",
+			"quest.pizza_delivery.hot.0025", "30 Minutes or Less",
+			"Deliver 25 hot pizzas",
 			Achievement.EASY_BASE_SCORE, true,
-			new QuestStateGreaterThanCondition("pizza_delivery", 3, 4)));
+			new QuestStateGreaterThanCondition("pizza_delivery", 3, 24)));
 
 		return achievements;
 	}
