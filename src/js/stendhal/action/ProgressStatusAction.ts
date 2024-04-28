@@ -13,6 +13,14 @@
 import { ParamList } from "./ParamList";
 import { SlashAction } from "./SlashAction";
 
+import { ui } from "../ui/UI";
+import { UIComponentEnum } from "../ui/UIComponentEnum";
+
+import { TravelLogDialog } from "../ui/dialog/TravelLogDialog";
+
+import { FloatingWindow } from "../ui/toolkit/FloatingWindow";
+
+import { ConfigManager } from "../util/ConfigManager";
 import { Pair } from "../util/Pair";
 
 
@@ -26,6 +34,15 @@ export class ProgressStatusAction extends SlashAction {
 
 
 	override execute(_type: string, _params: string[], _remainder: string): boolean {
+		let travelLogDialog = ui.get(UIComponentEnum.TravelLogDialog) as TravelLogDialog;
+		if (!travelLogDialog) {
+			// display travel log dialog before sending request so player knows action executed correctly
+			// & not confused by potential delay in response
+			const dstate = ConfigManager.get().getWindowState("travel-log");
+			travelLogDialog = new TravelLogDialog();
+			new FloatingWindow("Travel Log", travelLogDialog, dstate.x, dstate.y).setId("travel-log");
+		}
+
 		const action: any = {"type": _type};
 		if (_remainder.length > 0) {
 			if (_remainder.indexOf("Open Quests") > -1) {

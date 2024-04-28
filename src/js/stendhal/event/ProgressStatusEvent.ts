@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2005-2023 - Stendhal                    *
+ *                   (C) Copyright 2005-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -37,6 +37,8 @@ export class ProgressStatusEvent extends RPEvent {
 				const dstate = stendhal.config.getWindowState("travel-log");
 				travelLogDialog = new TravelLogDialog(dataItems);
 				new FloatingWindow("Travel Log", travelLogDialog, dstate.x, dstate.y).setId("travel-log");
+			} else {
+				travelLogDialog.setDataItems(dataItems);
 			}
 			travelLogDialog.updateTabs();
 			return;

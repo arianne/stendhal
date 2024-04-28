@@ -23,11 +23,18 @@ export class TravelLogDialog extends DialogContentComponent {
 	private currentProgressType = "";
 	private repeatable: {[key: string]: boolean;} = {};
 
-	constructor(dataItems: string[]) {
+	constructor(dataItems?: string[]) {
 		super("travellogdialog-template");
 		ui.registerComponent(UIComponentEnum.TravelLogDialog, this);
 		this.refresh();
 
+		this.child(".travellogitems")!.innerHTML = "<option>(loading)</option>";
+		if (dataItems) {
+			this.setDataItems(dataItems);
+		}
+	}
+
+	public setDataItems(dataItems: string[]) {
 		this.createHtml(dataItems);
 
 		// trigger loading of content for first entry
@@ -37,7 +44,7 @@ export class TravelLogDialog extends DialogContentComponent {
 			"progress_type":  this.currentProgressType
 		}
 		marauroa.clientFramework.sendAction(action);
-	};
+	}
 
 	public override refresh() {
 		this.componentElement.style.setProperty("font-family", stendhal.config.get("font.travel-log"));
@@ -88,7 +95,7 @@ export class TravelLogDialog extends DialogContentComponent {
 		var action = {
 			"type":           "progressstatus",
 			"progress_type":  this.currentProgressType
-		}
+		};
 		marauroa.clientFramework.sendAction(action);
 
 		// request repeatable quests
@@ -105,7 +112,7 @@ export class TravelLogDialog extends DialogContentComponent {
 			"type":           "progressstatus",
 			"progress_type":  this.currentProgressType,
 			"item":           (event.target as HTMLInputElement).value
-		}
+		};
 		marauroa.clientFramework.sendAction(action);
 	}
 
@@ -139,7 +146,7 @@ export class TravelLogDialog extends DialogContentComponent {
 				"type":           "progressstatus",
 				"progress_type":  progressType,
 				"item":           dataItems[0]
-			}
+			};
 			marauroa.clientFramework.sendAction(action);
 		}
 	}

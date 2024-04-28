@@ -11,7 +11,7 @@
 
 import { QuickMenuButton } from "./QuickMenuButton";
 
-declare var marauroa: any;
+import { SlashActionRepo } from "../../SlashActionRepo";
 
 
 /**
@@ -27,6 +27,6 @@ export class TravelLogButton extends QuickMenuButton {
 	 * Opens travel log window when clicked/tapped.
 	 */
 	protected override onClick(evt: Event) {
-		marauroa.clientFramework.sendAction({"type": "progressstatus"});
+		SlashActionRepo.get().execute("/progressstatus");
 	}
 }
