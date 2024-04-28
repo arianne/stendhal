@@ -114,6 +114,10 @@ export class TravelLogDialog extends DialogContentComponent {
 		if (progressType !== this.currentProgressType) {
 			return;
 		}
+		if (dataItems.length == 1 && !dataItems[0]) {
+			// prevent infinitely re-sending request when list is technically empty
+			dataItems = [];
+		}
 		// sort items alphabetically
 		dataItems.sort();
 		var html = "";
@@ -129,7 +133,7 @@ export class TravelLogDialog extends DialogContentComponent {
 		this.child(".travellogitems")!.innerHTML = html;
 
 		// trigger loading of content for first entry
-		if (dataItems) {
+		if (dataItems.length > 0) {
 			// this.child(".travellogitems")!.value = dataItems[0];
 			var action = {
 				"type":           "progressstatus",
