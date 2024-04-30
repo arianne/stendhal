@@ -1,0 +1,9 @@
+Stendhal hat eine riesige und reiche Welt. Du kannst Städte, Wälder, Berge, Ebenen und Dungeons
+erkunden. Du kannst gegen Monster kämpfen und ein Held werden.
+
+Du wirst eine Vielzahl von Charakteren treffen. Viele von ihnen werden dir Aufgaben und Quests für
+wertvolle Erfahrung geben. Du könntest gebeten werden, dabei zu helfen Land zu schützen, Hungrigen
+zu füttern, Kranken zu heilen, jemanden glücklich zu machen, Rätsel zu lösen oder einfach nur eine Hand leihen.
+
+Also, worauf wartest du? Eine ganz neue Welt erwartet dich... Und wenn du magst, hol dir den
+Quellcode und füge deine eigenen Ideen hinzu!
