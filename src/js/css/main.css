@@ -666,3 +666,7 @@ img#click-indicator {
 	overflow-x: auto;
 	overflow-y: scroll;
 }
+
+.pad-contents {
+	padding: 0.5em;
+}
