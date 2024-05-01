@@ -20,14 +20,12 @@ export class AboutDialog extends DialogContentComponent {
 
 	constructor() {
 		super("aboutdialog-template");
-		this.child("#btn_config_close")!.addEventListener("click", () => {
-			this.close();
-		});
 
 		const tabs = new TabPanelComponent(Layout.TOP);
 		tabs.addTab("License", new Panel(this.child("#license")!));
 		tabs.addTab("Contributors", new Panel(this.child("#contributors")!));
 		this.child("#aboutdialog-content")!.appendChild(tabs.componentElement);
+		this.addCloseButton();
 
 		this.load();
 	}

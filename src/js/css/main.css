@@ -618,6 +618,10 @@ div.logcolR {
 	padding-top: 15px;
 }
 
+.dialogbutton + .dialogbutton {
+	margin-left: 5px;
+}
+
 .checksetting {
 	margin-left: 0px;
 	margin-right: auto;
@@ -632,10 +636,6 @@ div.logcolR {
 	margin-bottom: auto;
 	margin-top: 0px;
 	padding-left: 15px;
-}
-
-.btnleft {
-	margin-right: 5px;
 }
 
 .tally {

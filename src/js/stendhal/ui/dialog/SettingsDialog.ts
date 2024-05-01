@@ -30,7 +30,6 @@ export class SettingsDialog extends DialogContentComponent {
 
 	private storedStates: {[index: string]: string};
 	private initialStates: {[index: string]: string};
-	private btn_reload: HTMLButtonElement;
 
 
 	constructor() {
@@ -264,19 +263,15 @@ export class SettingsDialog extends DialogContentComponent {
 
 		/* *** buttons *** */
 
-		this.btn_reload = this.createButton("btn_config_reload",
-				"Reloads page if required by changes");
-		this.btn_reload.disabled = true;
-		this.btn_reload.addEventListener("click", (e: Event) => {
+		const btn_reload = this.addButton("Reload", () => {
 			this.close();
 			location.reload();
-		});
+		}, "button-reload");
+		btn_reload.title = "Reloads page if required by changes";
+		btn_reload.disabled = true;
 
-		const btn_close = this.createButton("btn_config_close",
-				"Close this dialog without reloading page");
-		btn_close.addEventListener("click", (e: Event) => {
-			this.close();
-		});
+		const btn_close = this.addCloseButton();
+		btn_close.title = "Close this dialog without reloading page";
 	}
 
 	public override getConfigId(): string {
@@ -294,8 +289,7 @@ export class SettingsDialog extends DialogContentComponent {
 				break;
 			}
 		}
-
-		this.btn_reload.disabled = !reloadRequired;
+		(this.child("#button-reload")! as HTMLButtonElement).disabled = !reloadRequired;
 	}
 
 	/**
