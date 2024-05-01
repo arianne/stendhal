@@ -277,9 +277,6 @@ export class SettingsDialog extends DialogContentComponent {
 		btn_close.addEventListener("click", (e: Event) => {
 			this.close();
 		});
-
-		const button_layout = this.btn_reload.parentElement!;
-		button_layout.style.setProperty("padding-top", "15px");
 	}
 
 	public override getConfigId(): string {
