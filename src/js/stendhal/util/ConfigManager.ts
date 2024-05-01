@@ -590,4 +590,18 @@ export class ConfigManager {
 	usingDarkTheme(): boolean {
 		return this.themes.dark[this.getTheme()] == true;
 	}
+
+	/**
+	 * Retreives themes mappings.
+	 */
+	getThemesMap(): {[name: string]: string} {
+		return this.themes.map;
+	}
+
+	/**
+	 * Retrieves fonts mappings.
+	 */
+	getFontsMap(): {[name: string]: string} {
+		return this.fonts;
+	}
 }
