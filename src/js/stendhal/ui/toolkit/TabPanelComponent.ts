@@ -33,18 +33,18 @@ export class TabPanelComponent extends Panel {
 	 * Creates a new tabbed panel.
 	 *
 	 * @param layout {util.Layout.Layout}
-	 *   Positioning of tabs relative to contents (default: `util.Layout.Layout.BOTTOM`).
+	 *   Positioning of tabs relative to contents.
 	 */
-	constructor(layout: Layout=Layout.BOTTOM) {
+	constructor(layout: Layout) {
 		super("tabpanel-template");
 		this.containerElement = this.child(".tabpanel-content")!;
 		const tabs = this.child(".tabpanel-tabs")! as HTMLElement;
-		if (Layout.BOTTOM.equals(layout)) {
-			tabs.classList.add("tabpanel-tabs-bottom");
-		} else if (Layout.TOP.equals(layout)) {
+		if (Layout.TOP.equals(layout)) {
 			tabs.classList.add("tabpanel-tabs-top");
-			this.componentElement.removeChild(tabs);
-			this.componentElement.insertBefore(tabs, this.containerElement);
+		} else if (Layout.BOTTOM.equals(layout)) {
+			tabs.classList.add("tabpanel-tabs-bottom");
+			// move to end of elements list
+			this.componentElement.appendChild(tabs);
 		} else {
 			// currently only supports positioning tabs at top & bottom
 			console.warn("unsupported layout:", layout);

@@ -30,6 +30,8 @@ import { ZoneInfoComponent } from "../component/ZoneInfoComponent";
 import { PlayerEquipmentComponent } from "../component/PlayerEquipmentComponent";
 import { PlayerStatsComponent } from "../component/PlayerStatsComponent";
 
+import { Layout } from "../../util/Layout";
+
 
 export class DesktopUserInterfaceFactory {
 
@@ -44,7 +46,7 @@ export class DesktopUserInterfaceFactory {
 		let leftPanel = new Panel("leftColumn");
 		ui.registerComponent(UIComponentEnum.LeftPanel, leftPanel);
 
-		let socialPanel = new TabPanelComponent();
+		let socialPanel = new TabPanelComponent(Layout.BOTTOM);
 		ui.registerComponent(UIComponentEnum.SocialPanel, socialPanel);
 
 		this.add(leftPanel, UIComponentEnum.MiniMap, new MiniMapComponent());
