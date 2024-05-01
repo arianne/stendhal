@@ -45,8 +45,17 @@ export class TabPanelComponent extends Panel {
 			tabs.classList.add("tabpanel-tabs-bottom");
 			// move to end of elements list
 			this.componentElement.appendChild(tabs);
+		} else if (Layout.LEFT.equals(layout)) {
+			this.componentElement.className = "tabpanel-h";
+			tabs.classList.add("tabpanel-tabs-h");
+			tabs.classList.add("tabpanel-tabs-left");
+		} else if (Layout.RIGHT.equals(layout)) {
+			this.componentElement.className = "tabpanel-h";
+			tabs.classList.add("tabpanel-tabs-h");
+			tabs.classList.add("tabpanel-tabs-right");
+			// move to end of elements list
+			this.componentElement.appendChild(tabs);
 		} else {
-			// currently only supports positioning tabs at top & bottom
 			console.warn("unsupported layout:", layout);
 		}
 	}

@@ -71,11 +71,18 @@ ul.uniform {
 	flex: 1;
 }
 
-.tabpanel {
+.tabpanel, .tabpanel-h {
 	display: flex;
-	flex-direction: column;
 	overflow-y: auto;
 	overflow-x: hidden;
+}
+
+.tabpanel {
+	flex-direction: column;
+}
+
+.tabpanel-h {
+	flex-direction: row;
 }
 
 .tabpanel-content {
@@ -87,6 +94,11 @@ ul.uniform {
 	flex: 1;
 }
 
+.tabpanel-tabs-h {
+	display: flex;
+	flex-direction: column;
+}
+
 .tabpanel-tabs button {
 	background: var(--background-url);
 	color: var(--text-color-inactive);
@@ -96,12 +108,20 @@ ul.uniform {
 	color: var(--text-color);
 }
 
+.tabpanel-tabs-top button {
+	border-bottom: 0;
+}
+
 .tabpanel-tabs-bottom button {
 	border-top: 0;
 }
 
-.tabpanel-tabs-top button {
-	border-bottom: 0;
+.tabpanel-tabs-left button {
+	border-right: 0;
+}
+
+.tabpanel-tabs-right button {
+	border-left: 0;
 }
 
 
