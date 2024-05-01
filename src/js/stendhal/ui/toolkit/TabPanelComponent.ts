@@ -12,6 +12,9 @@
 import { Component } from "./Component";
 import { Panel } from "./Panel";
 
+import { Layout } from "../../util/Layout";
+
+
 /**
  * a tabbed panel
  */
@@ -27,13 +30,25 @@ export class TabPanelComponent extends Panel {
 
 
 	/**
-	 * creates a new panel
+	 * Creates a new tabbed panel.
 	 *
-	 * @param id id of HTML element or template
+	 * @param layout {util.Layout.Layout}
+	 *   Positioning of tabs relative to contents (default: `util.Layout.Layout.BOTTOM`).
 	 */
-	constructor() {
+	constructor(layout: Layout=Layout.BOTTOM) {
 		super("tabpanel-template");
 		this.containerElement = this.child(".tabpanel-content")!;
+		const tabs = this.child(".tabpanel-tabs")! as HTMLElement;
+		if (Layout.BOTTOM.equals(layout)) {
+			tabs.classList.add("tabpanel-tabs-bottom");
+		} else if (Layout.TOP.equals(layout)) {
+			tabs.classList.add("tabpanel-tabs-top");
+			this.componentElement.removeChild(tabs);
+			this.componentElement.insertBefore(tabs, this.containerElement);
+		} else {
+			// currently only supports positioning tabs at top & bottom
+			console.warn("unsupported layout:", layout);
+		}
 	}
 
 	override add(child: Component) {

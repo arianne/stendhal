@@ -90,11 +90,18 @@ ul.uniform {
 .tabpanel-tabs button {
 	background: var(--background-url);
 	color: var(--text-color-inactive);
-	border-top: 0;
 }
 
 .tabpanel-tabs button.active {
 	color: var(--text-color);
+}
+
+.tabpanel-tabs-bottom button {
+	border-top: 0;
+}
+
+.tabpanel-tabs-top button {
+	border-bottom: 0;
 }
 
 
