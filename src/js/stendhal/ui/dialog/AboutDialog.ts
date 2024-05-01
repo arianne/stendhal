@@ -25,12 +25,8 @@ export class AboutDialog extends DialogContentComponent {
 		});
 
 		const tabs = new TabPanelComponent(Layout.TOP);
-		tabs.addTab("License");
-		const licenseTab = new Panel(this.child("#license")!);
-		tabs.add(licenseTab);
-		tabs.addTab("Contributors");
-		const contribsTab = new Panel(this.child("#contributors")!);
-		tabs.add(contribsTab);
+		tabs.addTab("License", new Panel(this.child("#license")!));
+		tabs.addTab("Contributors", new Panel(this.child("#contributors")!));
 		this.child("#aboutdialog-content")!.appendChild(tabs.componentElement);
 
 		this.load();

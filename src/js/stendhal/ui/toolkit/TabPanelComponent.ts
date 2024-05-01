@@ -58,7 +58,15 @@ export class TabPanelComponent extends Panel {
 		super.add(child);
 	}
 
-	addTab(label: string) {
+	/**
+	 * Adds a new tab.
+	 *
+	 * @param label {string}
+	 *   Tab button label.
+	 * @param content {ui.toolkit.Component.Component}
+	 *   Contents to display when this tab is active (default: `undefined`).
+	 */
+	addTab(label: string, content?: Component) {
 		let button = document.createElement("button");
 		button.innerText = label;
 		button.dataset.index = "" + this.child(".tabpanel-tabs")!.children.length;
@@ -70,6 +78,9 @@ export class TabPanelComponent extends Panel {
 		}
 		this.buttons.push(button);
 		this.child(".tabpanel-tabs")!.append(button);
+		if (content) {
+			this.add(content);
+		}
 	}
 
 	/**
