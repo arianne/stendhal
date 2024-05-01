@@ -23,7 +23,7 @@ export class ActionContextMenu extends Component {
 	private appendActions: any[];
 
 	constructor(entity: any, append: any[] = []) {
-		super("contextmenu-template");
+		super("contextmenu-template", true);
 		this.entity = entity;
 		this.appendActions = append;
 		this.gatherActions();

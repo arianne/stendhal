@@ -500,7 +500,7 @@ class LogContextMenu extends Component {
 
 
 	constructor(options: MenuItem[]) {
-		super("contextmenu-template");
+		super("contextmenu-template", true);
 		this.options = options;
 
 		let content = "<div class=\"actionmenu\">";
