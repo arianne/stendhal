@@ -13,6 +13,8 @@ import { DialogContentComponent } from "../toolkit/DialogContentComponent";
 import { Panel } from "../toolkit/Panel";
 import { TabPanelComponent } from "../toolkit/TabPanelComponent";
 
+import { Layout } from "../../util/Layout";
+
 
 export class AboutDialog extends DialogContentComponent {
 
@@ -22,7 +24,7 @@ export class AboutDialog extends DialogContentComponent {
 			this.close();
 		});
 
-		const tabs = new TabPanelComponent();
+		const tabs = new TabPanelComponent(Layout.TOP);
 		tabs.addTab("License");
 		const licenseTab = new Panel(this.child("#license")!);
 		tabs.add(licenseTab);
