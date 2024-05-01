@@ -102,7 +102,7 @@ export class TabPanelComponent extends Panel {
 		this.currentIndex = idx;
 
 		// show
-		this.children[this.currentIndex].componentElement.style.display = "block";
+		this.children[this.currentIndex].componentElement.style.display = "";
 		this.buttons[this.currentIndex].classList.add("active");
 
 		if (this.onTabChanged) {
