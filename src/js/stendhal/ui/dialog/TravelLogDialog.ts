@@ -79,9 +79,9 @@ export class TravelLogDialog extends DialogContentComponent {
 			const element = document.getElementById(tab.id)! as HTMLElement;
 			if (element.id == this.currentProgressType) {
 				// highlight selected tab
-				element.style.setProperty("background-color", "#b3b3b3");
+				element.classList.add("active");
 			} else {
-				element.style.removeProperty("background-color");
+				element.classList.remove("active");
 			}
 		});
 	}
