@@ -265,7 +265,9 @@
 	<template id="settingsdialog-template">
 		<div class="verticalgroup">
 
-		<div class="horizontalgroup">
+		<div class="verticalgroup" id="settings-tabs">
+
+		<div class="horizontalgroup" id="settings-general">
 		<div id="settings_panel1" class="verticalgroup vgroupcol">
 			<label class="checksetting"><input type="checkbox" id="chk_light" class="experimental">Light effects</label>
 			<label class="checksetting"><input type="checkbox" id="chk_weather">Weather</label>
@@ -286,8 +288,6 @@
 			<label class="checksetting"><input type="checkbox" id="chk_movecont">Continuous movement</label>
 			<label class="checksetting"><input type="checkbox" id="chk_pvtsnd">Private message notifications</label>
 			<label class="checksetting"><input type="checkbox" id="chk_clickindicator">Display clicks/touches</label>
-			<label class="checksetting"><input type="checkbox" id="chk_pathfinding">Pathfinding via ground</label>
-			<label class="checksetting"><input type="checkbox" id="chk_pathfindingmm">Pathfinding via minimap</label>
 			<label class="checksetting"><input type="checkbox" id="chk_nativeemojis" class="experimental">Native emojis</label>
 		</div>
 		<div id="settings_panel3" class="verticalgroup vgroupcolr">
@@ -315,20 +315,33 @@
 				<label for="txtchatopts">Custom chat keywords:</label>
 				<input type="text" id="txtchatopts">
 			</div>
-			<div>
-				<label class="checksetting"><input type="checkbox" id="chk_joystick">On-screen joystick:</label>
-				<select id="seljoystick"></select>
-			</div>
-			<div>
-				<label for="txtjoystickx">Joystick center X:</label>
-				<input type="number" id="txtjoystickx">
-			</div>
-			<div>
-				<label for="txtjoysticky">Joystick center Y:</label>
-				<input type="number" id="txtjoysticky">
-			</div>
 		</div>
 		</div>
+
+		<!--<div class="horizontalgroup" id="settings-sound"></div>-->
+
+		<div class="horizontalgroup" id="settings-input">
+			<div class="verticalgroup vgroupcol">
+				<label class="checksetting"><input type="checkbox" id="chk_pathfinding">Pathfinding via ground</label>
+				<label class="checksetting"><input type="checkbox" id="chk_pathfindingmm">Pathfinding via minimap</label>
+			</div>
+			<div class="verticalgroup vgroupcolr">
+				<div>
+					<label class="checksetting"><input type="checkbox" id="chk_joystick">On-screen joystick:</label>
+					<select id="seljoystick"></select>
+				</div>
+				<div>
+					<label for="txtjoystickx">Joystick center X:</label>
+					<input type="number" id="txtjoystickx">
+				</div>
+				<div>
+					<label for="txtjoysticky">Joystick center Y:</label>
+					<input type="number" id="txtjoysticky">
+				</div>
+			</div>
+		</div>
+
+		</div> <!-- #settings-tabs -->
 
 		<div class="horizontalgroup dialogbuttons"></div>
 

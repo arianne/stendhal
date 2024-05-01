@@ -9,35 +9,29 @@
  *                                                                         *
  ***************************************************************************/
 
-import { ChatPanel } from "../ChatPanel";
-import { ui } from "../UI";
-import { ChatLogComponent } from "../component/ChatLogComponent";
-import { PlayerEquipmentComponent } from "../component/PlayerEquipmentComponent";
-import { PlayerStatsComponent } from "../component/PlayerStatsComponent";
-import { ItemInventoryComponent } from "../component/ItemInventoryComponent";
-import { DialogContentComponent } from "../toolkit/DialogContentComponent";
-import { TravelLogDialog } from "./TravelLogDialog";
-import { UIComponentEnum } from "../UIComponentEnum";
-import { singletons } from "../../SingletonRepo";
-
-declare var marauroa: any;
 declare var stendhal: any;
 
+import { GeneralTab } from "./settings/GeneralTab";
+import { InputTab } from "./settings/InputTab";
+import { SoundTab } from "./settings/SoundTab";
 
-export class SettingsDialog extends DialogContentComponent {
+import { TabDialogContentComponent } from "../toolkit/TabDialogContentComponent";
+
+import { Layout } from "../../util/Layout";
+
+
+export class SettingsDialog extends TabDialogContentComponent {
 
 	public static debugging = false;
 
-	private storedStates: {[index: string]: string};
-	private initialStates: {[index: string]: string};
+	public readonly storedStates: {[index: string]: string};
+	private readonly initialStates: {[index: string]: string};
 
 
 	constructor() {
-		super("settingsdialog-template");
+		super("settingsdialog-template", Layout.TOP, "#settings-tabs");
 
 		// TODO: add option to reset defaults
-
-		const clog = (ui.get(UIComponentEnum.ChatLog) as ChatLogComponent);
 
 		this.storedStates = {
 			"txtjoystickx": stendhal.config.get("joystick.center.x"),
@@ -49,216 +43,9 @@ export class SettingsDialog extends DialogContentComponent {
 			"effect.weather": stendhal.config.get("effect.weather")
 		};
 
-
-		/* *** left panel *** */
-
-		this.createCheckBox("chk_light", "effect.lighting",
-				"Lighting effects are enabled", "Lighting effects are disabled");
-
-		this.createCheckBox("chk_weather", "effect.weather",
-				"Weather is enabled", "Weather is disabled", function() {
-					if (clog) {
-						clog.addLine("client", "Weather changes will take effect after you change maps.");
-					}
-				})!;
-
-		const sd = this;
-		this.createCheckBox("chk_blood", "effect.blood",
-				"Gory images are enabled", "Gory images are disabled");
-
-		this.createCheckBox("chk_nonude", "effect.no-nude",
-				"Naked entities have undergarments", "Naked entities are not covered");
-
-		this.createCheckBox("chk_shadows", "effect.shadows",
-				"Shadows are enabled", "Shadows are disabled");
-
-		this.createCheckBox("chk_speechcr", "speech.creature",
-				"Creature speech bubbles are enabled", "Creature speech bubbles are disabled");
-
-		const player_stats = ui.get(UIComponentEnum.PlayerStats) as PlayerStatsComponent;
-
-		const chk_charname = this.createCheckBox("chk_charname", "panel.stats.charname",
-				undefined, undefined,
-				function() {
-					player_stats.enableCharName(chk_charname.checked);
-				})!;
-
-		const chk_hpbar = this.createCheckBox("chk_hpbar", "panel.stats.hpbar",
-				undefined, undefined,
-				function() {
-					player_stats.enableBar("hp", chk_hpbar.checked);
-				})!;
-
-		this.createCheckBox("chk_activityindicator", "activity-indicator",
-				"Indicator will be drawn", "Indicator will not be drawn");
-
-		const chk_floatchat = this.createCheckBox("chk_floatchat", "chat.float",
-				undefined, undefined,
-				function() {
-					(ui.get(UIComponentEnum.BottomPanel) as ChatPanel).setFloating(chk_floatchat.checked);
-				});
-
-		this.createCheckBox("chk_hidechat", "chat.autohide",
-				"Chat panel will be hidden after sending text", "Chat panel will remain on-screen");
-
-		// FIXME: are there unique properties for pinch & tap zooming?
-		this.createCheckBox("chk_zoom", "zoom.touch",
-				"Touch zooming enabled (may not work with all browsers)",
-				"Touch zooming disabled (may not work with all browsers)",
-				function() {
-					stendhal.session.update();
-				});
-
-
-		/* *** center panel *** */
-
-		this.createCheckBox("chk_dblclick", "inventory.double-click",
-				"Items are used/consumed with double click/touch",
-				"Items are used/consumed with single click/touch",
-				function() {
-					// update cursors
-					(ui.get(UIComponentEnum.PlayerEquipment) as PlayerEquipmentComponent).markDirty();
-					for (const cid of [UIComponentEnum.Bag, UIComponentEnum.Keyring]) {
-						(ui.get(cid) as ItemInventoryComponent).markDirty();
-					}
-				});
-
-		// FIXME: open chest windows are not refreshed
-		this.createCheckBox("chk_chestqp", "inventory.quick-pickup",
-				"Click tranfers items from chests and corpses to player inventory",
-				"Click executes default action on items in chests and corpses");
-
-		const chk_movecont = this.createCheckBox("chk_movecont", "move.cont",
-				"Player will continue to walk after changing areas",
-				"Player will stop after changing areas",
-				function() {
-					const action = {"type": "move.continuous"} as {[index: string]: string;};
-					if (chk_movecont.checked) {
-						action["move.continuous"] = "";
-					}
-					marauroa.clientFramework.sendAction(action);
-				})!;
-
-		// TODO: make this multiple choice
-		const chk_pvtsnd = this.createCheckBox("chk_pvtsnd", "chat.private.sound",
-				"Private message audio notifications enabled",
-				"Private message audio notifications disabled",
-				undefined, "ui/notify_up", "null");
-		chk_pvtsnd.checked = stendhal.config.get("chat.private.sound") === "ui/notify_up";
-
-		this.createCheckBox("chk_clickindicator", "click-indicator",
-				"Displaying clicks", "Not displaying clicks");
-
-		this.createCheckBox("chk_pathfinding", "pathfinding",
-				"Click/Tap ground to walk", "Ground pathfinding disabled");
-
-		this.createCheckBox("chk_pathfindingmm", "pathfinding.minimap",
-				"Click/Tap minimap to walk", "Minimap pathfinding disabled");
-
-		this.createCheckBox("chk_nativeemojis", "emojis.native",
-				"Using native emojis", "Using built-in emojis",
-				function() {
-					singletons.getChatInput().refresh();
-				});
-
-
-		/* *** right panel *** */
-
-		const themes = {} as {[index: string]: string};
-		for (const t of Object.keys(stendhal.config.themes.map)) {
-			if (t === "wood") {
-				themes[t] = t + " (default)";
-			} else {
-				themes[t] = t;
-			}
-		}
-
-		const sel_theme = this.createSelect("selecttheme", themes,
-				Object.keys(themes).indexOf(stendhal.config.getTheme()));
-
-		sel_theme.addEventListener("change", (o) => {
-			stendhal.config.setTheme(Object.keys(themes)[sel_theme.selectedIndex]);
-			stendhal.config.refreshTheme();
-		});
-
-		/* TODO:
-		 *   - create components to change font size, weight, style, etc.
-		 */
-
-		const fonts = Object.keys(stendhal.config.fonts);
-
-		const sel_fontbody = this.createFontSelect("selfontbody",
-				fonts.indexOf(stendhal.config.get("font.body")));
-		sel_fontbody.addEventListener("change", (e) => {
-			const new_font = fonts[sel_fontbody.selectedIndex];
-			stendhal.config.set("font.body", new_font);
-			document.body.style.setProperty("font-family", new_font);
-		});
-
-		const sel_fontchat = this.createFontSelect("selfontchat",
-				fonts.indexOf(stendhal.config.get("font.chat")));
-		sel_fontchat.addEventListener("change", (e) => {
-			stendhal.config.set("font.chat", fonts[sel_fontchat.selectedIndex]);
-			// make sure component is open before trying to refresh
-			if (clog) {
-				clog.refresh();
-			}
-		});
-
-		const sel_fonttlog = this.createFontSelect("selfonttlog",
-				fonts.indexOf(stendhal.config.get("font.travel-log")))
-		sel_fonttlog.addEventListener("change", (e) => {
-			stendhal.config.set("font.travel-log", fonts[sel_fonttlog.selectedIndex]);
-			const tlog = (ui.get(UIComponentEnum.TravelLogDialog) as TravelLogDialog);
-			// make sure component is open before trying to refresh
-			if (tlog) {
-				tlog.refresh();
-			}
-		});
-
-		this.createSelectFromConfig("selmenustyle", "menu.style",
-				undefined,
-				function(e: Event) {
-					ui.onMenuUpdate();
-				});
-
-		// common chat keyword options
-		const txt_chatopts = this.createTextInput("txtchatopts", stendhal.config.get("chat-opts.custom"),
-				"Comma-separated list accessible from the chat options dialog");
-		txt_chatopts.addEventListener("change", (e) => {
-			stendhal.config.set("chat-opts.custom", txt_chatopts.value);
-		});
-
-
-		/* *** joystick interface *** */
-
-		// on-screen joystick
-		const sel_joystick = this.createSelectFromConfig("seljoystick", "joystick.style",
-				undefined,
-				function(e: Event) {
-					singletons.getJoystickController().update();
-				});
-		const chk_joystick = this.createCheckBox("chk_joystick", "joystick",
-				undefined, undefined,
-				function(e: Event) {
-					sel_joystick.disabled = !chk_joystick.checked;
-					singletons.getJoystickController().update();
-				});
-		chk_joystick.checked = stendhal.session.joystickEnabled();
-		sel_joystick.disabled = !chk_joystick.checked;
-
-		// joystck positioning
-		for (const o of ["x", "y"]) {
-			const orienter = this.createNumberInput("txtjoystick" + o,
-					parseInt(this.storedStates["txtjoystick" + o], 10),
-					"Joystick position on " + o.toUpperCase() + " axis");
-			orienter.addEventListener("input", (e) => {
-				// update configuration
-				stendhal.config.set("joystick.center." + o, orienter.value || 0);
-				// update on-screen joystick position
-				singletons.getJoystickController().update();
-			});
-		}
+		this.addTab("General", new GeneralTab(this, this.child("#settings-general")!));
+		//this.addTab("Sound", new SoundTabthis, this.child("#settings-sound")!));
+		this.addTab("Input", new InputTab(this, this.child("#settings-input")!));
 
 
 		/* *** buttons *** */
@@ -347,7 +134,7 @@ export class SettingsDialog extends DialogContentComponent {
 	 * @return
 	 *     HTMLInputElement.
 	 */
-	private createCheckBox(id: string, setid: string, ttpos: string="",
+	createCheckBox(id: string, setid: string, ttpos: string="",
 			ttneg: string="", action?: Function,
 			von?: string, voff?: string): HTMLInputElement {
 
@@ -386,7 +173,7 @@ export class SettingsDialog extends DialogContentComponent {
 	 * @return
 	 *     HTMLButtonElement.
 	 */
-	private createButton(id: string, tooltip?: string): HTMLButtonElement {
+	createButton(id: string, tooltip?: string): HTMLButtonElement {
 		const button = <HTMLButtonElement> this.child(
 			"button[id=" + id + "]")!;
 		if (tooltip) {
@@ -412,7 +199,7 @@ export class SettingsDialog extends DialogContentComponent {
 	 * @return
 	 *   `HTMLSelectElement`.
 	 */
-	private createSelect(id: string, opts: {[index: string]: string}, idx: number,
+	createSelect(id: string, opts: {[index: string]: string}, idx: number,
 			tooltip?: string, action?: Function): HTMLSelectElement {
 		if (Object.keys(opts).length == 0) {
 			console.warn("initializing empty values for selector ID \"" + id + "\"");
@@ -462,7 +249,7 @@ export class SettingsDialog extends DialogContentComponent {
 	 * @return
 	 *   `HTMLSelectElement`.
 	 */
-	private createSelectFromConfig(id: string, ckey: string, tooltip?: string, action?: Function): HTMLSelectElement {
+	createSelectFromConfig(id: string, ckey: string, tooltip?: string, action?: Function): HTMLSelectElement {
 		const cvalue = stendhal.config.get(ckey);
 		const opts = stendhal.config.getOpts(ckey);
 		let idx = Object.keys(opts).indexOf(cvalue);
@@ -495,7 +282,7 @@ export class SettingsDialog extends DialogContentComponent {
 	 * @return
 	 *   `HTMLSelectElement`.
 	 */
-	private createFontSelect(id: string, idx: number, tooltip?: string): HTMLSelectElement {
+	createFontSelect(id: string, idx: number, tooltip?: string): HTMLSelectElement {
 		return this.createSelect(id, Object.assign({}, stendhal.config.fonts), idx, tooltip);
 	}
 
@@ -513,7 +300,7 @@ export class SettingsDialog extends DialogContentComponent {
 	 * @return
 	 *     HTMLInputElement
 	 */
-	private createTextInput(id: string, value: string="", tooltip?: string, type: string="text"): HTMLInputElement {
+	createTextInput(id: string, value: string="", tooltip?: string, type: string="text"): HTMLInputElement {
 		const input = <HTMLInputElement> this.child("input[type=" + type + "][id=" + id + "]")!;
 		input.style.setProperty("width", "9em");
 		input.parentElement!.style.setProperty("margin-right", "0");
@@ -538,7 +325,7 @@ export class SettingsDialog extends DialogContentComponent {
 	 * @return
 	 *     HTMLInputElement
 	 */
-	private createNumberInput(id: string, value: number=0, tooltip?: string): HTMLInputElement {
+	createNumberInput(id: string, value: number=0, tooltip?: string): HTMLInputElement {
 		const input = this.createTextInput(id, ""+value, tooltip, "number");
 		// allow numbers & empty string only
 		input.addEventListener("input", (e: Event) => {
