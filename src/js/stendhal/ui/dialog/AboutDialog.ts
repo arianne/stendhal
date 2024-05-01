@@ -9,22 +9,19 @@
  *                                                                         *
  ***************************************************************************/
 
-import { DialogContentComponent } from "../toolkit/DialogContentComponent";
 import { Panel } from "../toolkit/Panel";
-import { TabPanelComponent } from "../toolkit/TabPanelComponent";
+import { TabDialogContentComponent } from "../toolkit/TabDialogContentComponent";
 
 import { Layout } from "../../util/Layout";
 
 
-export class AboutDialog extends DialogContentComponent {
+export class AboutDialog extends TabDialogContentComponent {
 
 	constructor() {
-		super("aboutdialog-template");
+		super("aboutdialog-template", Layout.TOP, "#aboutdialog-content");
 
-		const tabs = new TabPanelComponent(Layout.TOP);
-		tabs.addTab("License", new Panel(this.child("#license")!));
-		tabs.addTab("Contributors", new Panel(this.child("#contributors")!));
-		this.child("#aboutdialog-content")!.appendChild(tabs.componentElement);
+		this.addTab("License", new Panel(this.child("#license")!));
+		this.addTab("Contributors", new Panel(this.child("#contributors")!));
 		this.addCloseButton();
 
 		this.load();
