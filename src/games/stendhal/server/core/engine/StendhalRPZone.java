@@ -39,6 +39,7 @@ import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
 import games.stendhal.common.Line;
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.Rand;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.tiled.LayerDefinition;
@@ -64,6 +65,7 @@ import games.stendhal.server.entity.mapstuff.area.WalkBlockerFactory;
 import games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
+import games.stendhal.server.entity.mapstuff.spawner.DynamicCreatureSpawner;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPointFactory;
 import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
@@ -73,6 +75,7 @@ import games.stendhal.server.entity.npc.TrainingDummy;
 import games.stendhal.server.entity.npc.TrainingDummyFactory;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.StringUtils;
+import marauroa.common.Pair;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -113,7 +116,11 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 */
 	private final List<SheepFood> sheepFoods;
 
+	/** Statically spawned creatures. */
 	private final List<CreatureRespawnPoint> respawnPoints;
+
+	/** Dynamically spawned creatures. */
+	private DynamicCreatureSpawner dynamicSpawner;
 
 	private final List<PassiveEntityRespawnPoint> plantGrowers;
 
@@ -309,6 +316,30 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 */
 	public void remove(final CreatureRespawnPoint point) {
 		respawnPoints.remove(point);
+	}
+
+	/**
+	 * Retrieves the dynamic creature spawner associated with this zone.
+	 *
+	 * @return
+	 *   Creature spawner instance.
+	 */
+	public DynamicCreatureSpawner getDynamicSpawner() {
+		return dynamicSpawner;
+	}
+
+	/**
+	 * Sets the dynamic creature spawner associated with this zone.
+	 *
+	 * @param spawner
+	 *   Creature spawner instance.
+	 */
+	public void setDynamicSpawner(final DynamicCreatureSpawner spawner) {
+		if (dynamicSpawner != null) {
+			dynamicSpawner.remove();
+		}
+		dynamicSpawner = spawner;
+		dynamicSpawner.init();
 	}
 
 	/**
@@ -1517,6 +1548,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			os.append("playersAndFriends: " + playersAndFriends.size() + "\n");
 			os.append("portals: " + portals.size() + "\n");
 			os.append("respawnPoints: " + respawnPoints.size() + "\n");
+			os.append("dynamicRespawns: " + dynamicSpawner.maxTotal() + "\n");
 			os.append("sheepFoods: " + sheepFoods.size() + "\n");
 			os.append("objects: " + objects.size() + "\n");
 			logger.info(os);
@@ -1970,5 +2002,25 @@ public class StendhalRPZone extends MarauroaRPZone {
 			logger.warn("Found multiple weather entities in zone " + getName() + ".");
 		}
 		return (WeatherEntity) entities.get(0);
+	}
+
+	/**
+	 * Attempts to find a position where an entity can be spawned.
+	 *
+	 * @param entity
+	 *   Entity attempting to spawn.
+	 * @return
+	 *   Appropriate position or `null` if none found.
+	 */
+	public Pair<Integer, Integer> getRandomSpawnPosition(final Entity entity) {
+		final short retries = 50;
+		for (short t = 0; t < retries; t++) {
+			final int x = Rand.rand(getWidth());
+			final int y = Rand.rand(getHeight());
+			if (!collides(entity, x, y)) {
+				return new Pair<>(x, y);
+			}
+		}
+		return null;
 	}
 }
