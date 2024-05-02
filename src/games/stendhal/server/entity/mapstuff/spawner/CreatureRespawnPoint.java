@@ -21,7 +21,6 @@ import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.util.Observer;
@@ -38,12 +37,7 @@ import games.stendhal.server.util.Observer;
  * pattern is used; the <i>prototypeCreature</i> will be copied to create new
  * creatures.
  */
-public class CreatureRespawnPoint implements TurnListener {
-	/** longest possible respawn time in turns. half a year - should be longer than the
-	 * server is up in one phase */
-	private static final int MAX_RESPAWN_TIME = 200 * 60 * 24 * 30 * 6;
-	/** minimum respawn time in turns. about 10s */
-	private static final int MIN_RESPAWN_TIME = 33;
+public class CreatureRespawnPoint implements CreatureSpawner {
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(CreatureRespawnPoint.class);
@@ -143,6 +137,24 @@ public class CreatureRespawnPoint implements TurnListener {
 		this.respawnTime = respawnTime;
 	}
 
+	@Override
+	public void onSpawned(Creature spawned) {
+		spawned.init();
+		spawned.setRespawnPoint(this);
+		creatures.add(spawned);
+	}
+
+	@Override
+	public void onRemoved(Creature removed) {
+		if (!respawning) {
+			// start respawning a new creature
+			respawning = true;
+			SingletonRepository.getTurnNotifier().notifyInTurns(
+					calculateNextRespawnTurn(), this);
+		}
+		creatures.remove(removed);
+	}
+
 	/**
 	 * Notifies this respawn point about the death of a creature that was
 	 * spawned here.
@@ -150,16 +162,9 @@ public class CreatureRespawnPoint implements TurnListener {
 	 * @param dead
 	 *            The creature that has died
 	 */
+	@Deprecated
 	public void notifyDead(final Creature dead) {
-
-		if (!respawning) {
-			// start respawning a new creature
-			respawning = true;
-			SingletonRepository.getTurnNotifier().notifyInTurns(
-					calculateNextRespawnTurn(), this);
-		}
-
-		creatures.remove(dead);
+		onRemoved(dead);
 	}
 
 	/**
@@ -226,6 +231,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	 * add observer to observers list
 	 * @param observer - observer to add
 	 */
+	@Override
 	public void addObserver(final Observer observer) {
 		observers.add(observer);
 	}
@@ -234,6 +240,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	 * remove observer from list
 	 * @param observer - observer to remove
 	 */
+	@Override
 	public void removeObserver(final Observer observer) {
 		observers.remove(observer);
 	}
@@ -256,10 +263,7 @@ public class CreatureRespawnPoint implements TurnListener {
 			newentity.registerObjectsForNotification(observers);
 
 			if (StendhalRPAction.placeat(zone, newentity, x, y)) {
-				newentity.init();
-				newentity.setRespawnPoint(this);
-
-				creatures.add(newentity);
+				onSpawned(newentity);
 			} else {
 				// Could not place the creature anywhere.
 				// Treat it like it just had died.
