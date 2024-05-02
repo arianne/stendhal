@@ -25,6 +25,7 @@
 					maxOccurs="unbounded"/>
 				<element name="associated" type="Q1:associatedZones" minOccurs="0"
 					maxOccurs="1"/>
+				<element name="spawns" type="Q1:spawnsGroup" minOccurs="0" maxOccurs="1"/>
 			</choice>
 		</sequence>
 		<attribute name="name" type="string"/>
@@ -176,6 +177,29 @@
 
 	<complexType name="associatedZones">
 		<attribute name="zones" type="string" use="required"></attribute>
+	</complexType>
+
+	<complexType name="spawnsGroup">
+		<choice minOccurs="1" maxOccurs="unbounded">
+			<element name="creatures" type="Q1:creaturesSpawnsGroup" minOccurs="0" maxOccurs="1"/>
+		</choice>
+	</complexType>
+
+	<!--
+		adding a dynamic creature spawner to zone:
+			<spawns>
+				<creatures>
+					<parameter name="bat">15</parameter>
+				</creatures>
+			</spans> 
+
+		"name" attribute is the creature to be spawned, value is the maximum number that can be active
+		at same time
+	-->
+	<complexType name="creaturesSpawnsGroup">
+		<sequence>
+			<element name="parameter" type="Q1:parameterType" minOccurs="1" maxOccurs="unbounded"/>
+		</sequence>
 	</complexType>
 
 </schema>
