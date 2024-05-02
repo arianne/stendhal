@@ -70,7 +70,7 @@ pauldroned iron cuirass=
 You see a formidable pauldroned iron cuirass. The pauldrons (shoulder pieces) will protect your upper half.=
 
 pauldroned leather cuirass=
-You see a pauldroned leather cuirass.  It was crafted to withstand minor attacks.=
+You see a pauldroned leather cuirass. It was crafted to withstand minor attacks.=
 
 plate armor=
 You see a suit of plate armor. You imagine it would be heavy but the steel is well tempered and the suit is very strong.=
@@ -109,7 +109,7 @@ steel arrow=
 You see a shining steel arrow. With plenty of these, and a good bow, you'll be a formidable archer.=
 
 golden arrow=
-You see a golden arrow.  With a fist full of these and a good bow, you will surely take down your enemies quicker.=
+You see a golden arrow. With a fist full of these and a good bow, you will surely take down your enemies quicker.=
 
 fire arrow=
 You see a fire arrow. The tip burns brightly.=
@@ -124,7 +124,7 @@ dark arrow=
 You see a dark arrow. It's hard to describe.=
 
 power arrow=
-You see a power arrow.  The sting of this arrow will surely defeat your enemies, when equipped with a bow.=
+You see a power arrow. The sting of this arrow will surely defeat your enemies, when equipped with a bow.=
 
 
 ## axes
@@ -151,7 +151,7 @@ durin axe=
 You see a durin axe, a great prize from the dwarves.=
 
 golden twoside axe=
-You see a golden twoside axe.  This axe is a rare find.=
+You see a golden twoside axe. This axe is a rare find.=
 
 halberd=
 You see a rare halberd, with an axe's blade fused onto a shaft. It is both heavy and keen-edged.=
@@ -231,7 +231,7 @@ red boots=
 You see a pair of red boots, the color reminds you of fresh blood.=
 
 royal boots=
-You see a pair of royal boots.  They have magical properties=
+You see a pair of royal boots. They have magical properties=
 
 shadow boots=
 You see a pair of shadow boots. You can't fathom what they are made of.=
@@ -240,7 +240,7 @@ steel boots=
 You see a pair of steel boots, fit for any soldier.=
 
 stone boots=
-You see a pair of stone boots.  They may be heavy, but they protect your feet well.=
+You see a pair of stone boots. They may be heavy, but they protect your feet well.=
 
 studded boots=
 You see a pair of worn studded boots with moderate protection for your feet.=
@@ -321,7 +321,7 @@ red dragon cloak=
 You see a red dragon cloak. He didn't have one for a long time but finally caved in to peer pressure and got one.=
 
 royal cloak=
-You see a royal cloak.  It will protect you against mighty foes.=
+You see a royal cloak. It will protect you against mighty foes.=
 
 shadow cloak=
 You see a shadow cloak, in colors of the shadow armor.=
@@ -369,10 +369,10 @@ mace=
 You see a mace, much neglected in years of use.=
 
 morning star=
-You see a morning star.  This is a very rare item indeed.=
+You see a morning star. This is a very rare item indeed.=
 
 rod of the gm=
-You see a rod of the GM.  This rod is reserved for those with special powers, be careful not to let it fall into the wrong hands.=
+You see a rod of the GM. This rod is reserved for those with special powers, be careful not to let it fall into the wrong hands.=
 
 skull staff=
 You see a rare skull staff. It appears mystical but will work like any other staff.=
@@ -411,10 +411,10 @@ fat bottle=
 You see a fat bottle. It is empty, someone drank the contents.=
 
 empty goblet=
-You see an empty goblet.  You wonder what could it hold.=
+You see an empty goblet. You wonder what could it hold.=
 
 goblet=
-You see a goblet.  You look at its contents, and shiver at the blood inside.=
+You see a goblet. You look at its contents, and shiver at the blood inside.=
 
 vial=
 You see a vial used in chemestry.=
@@ -521,7 +521,7 @@ deadly poison=
 You see a deadly poison. Don't drink it!=
 
 disease poison=
-You see a disease poison.  Be careful, it's wicked.=
+You see a disease poison. Be careful, it's wicked.=
 
 mega poison=
 You see a mega poison. This is some wicked poison.=
@@ -643,8 +643,8 @@ You see a carrot. It can be an ingredient, or you can eat it.=
 cauliflower=
 You see a fresh head of cauliflower.=
 
-courgette=
-You see a courgette. It can be an ingredient, or you can eat it.=
+zucchini=
+You see a zucchini. It can be an ingredient, or you can eat it.=
 
 collard=
 You see a collard. It's rare and strangely magical.=
@@ -658,8 +658,7 @@ You see a fresh leek.=
 onion=
 You see an onion.=
 
-salad=
-You see a salad.=
+lettuce=
 
 spinach=
 You see spinach. It is enriched with vitamins.=
@@ -1053,10 +1052,10 @@ decent meal=
 You see a decent meal for Groongo Rahnnt. Deliver it to him quickly!=
 
 bulb=
-You see a bulb. It can be planted anywhere, but it will only thrive on fertile ground.=
+You see a bulb. It can be planted in fertile ground where it will thrive.=
 
 seed=
-You see a seed. It can be planted anywhere, but it will only thrive on fertile ground.=
+You see a seed. It can be planted in fertile ground where it will thrive.=
 
 giant heart=
 You see a giant heart. This proves that a giant was defeated, and has magical properties that you are not sure of.=
@@ -1192,7 +1191,7 @@ You see a gold nugget. Its rich golden color shines, and it may be useful.=
 mithril nugget=
 You see a mithril nugget. Its pale silvery color shines, and it may be useful.=
 
-iron=
+iron bar=
 
 gold bar=
 You see a gold bar. It will make beautiful jewelry, or fetch a fine price.=
@@ -1418,7 +1417,7 @@ biting sword=
 The tip of this biting sword is chiseled to a lethal point. It will serve you well.=
 
 black sword=
-You see a black sword.  Its darkness will surely protect you.=
+You see a black sword. Its darkness will surely protect you.=
 
 broadsword=
 You see a mighty broadsword. Enemies will see their death.=
@@ -2242,7 +2241,7 @@ blordrough corporal=
 You see a man who feels his past indicates how he should be treated now but desperately wishes to exercise his intelect in a game of chess.=
 
 blordrough storm trooper=
-You see a man who is but a fraction of his former glory as one of the most feared foes of Faiumoni.  Now, his main concern is keeping his house clean and tidy.=
+You see a man who is but a fraction of his former glory as one of the most feared foes of Faiumoni. Now, his main concern is keeping his house clean and tidy.=
 
 blordrough soldier=
 You see a man who is fast and strong.=
