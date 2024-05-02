@@ -50,7 +50,7 @@ import games.stendhal.server.entity.creature.impl.idle.IdleBehaviourFactory;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
+import games.stendhal.server.entity.mapstuff.spawner.CreatureSpawner;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
@@ -123,7 +123,7 @@ public class Creature extends NPC {
 	private int corpseWidth = 1;
 	private int corpseHeight = 1;
 
-	private CreatureRespawnPoint point;
+	private CreatureSpawner spawner;
 
 	/** Respawn time in turns */
 	private int respawnTime;
@@ -547,9 +547,30 @@ public class Creature extends NPC {
 		return aiProfiles;
 	}
 
-	public void setRespawnPoint(final CreatureRespawnPoint point) {
-		this.point = point;
+	/**
+	 * Registers this creature with a spawner.
+	 *
+	 * @param spawner
+	 *   Spawner instance.
+	 */
+	public void setSpawner(final CreatureSpawner spawner) {
+		this.spawner = spawner;
 		setRespawned(true);
+	}
+
+	@Deprecated
+	public void setRespawnPoint(final CreatureSpawner spawner) {
+		setSpawner(spawner);
+	}
+
+	/**
+	 * Gets the spawner of this creature.
+	 *
+	 * @return
+	 *   Spawner instance.
+	 */
+	public CreatureSpawner getRespawner() {
+		return spawner;
 	}
 
 	/**
@@ -557,8 +578,9 @@ public class Creature extends NPC {
 	 *
 	 * @return CreatureRespawnPoint
 	 */
-	public CreatureRespawnPoint getRespawnPoint() {
-		return point;
+	@Deprecated
+	public CreatureSpawner getRespawnPoint() {
+		return getRespawner();
 	}
 
 	/**
@@ -683,8 +705,8 @@ public class Creature extends NPC {
 
 		notifyRegisteredObjects();
 
-		if (this.point != null) {
-			this.point.notifyDead(this);
+		if (this.spawner != null) {
+			this.spawner.onRemoved(this);
 		}
 
 		super.onDead(killer, remove);
