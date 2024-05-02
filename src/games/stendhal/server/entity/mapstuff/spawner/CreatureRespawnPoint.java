@@ -250,18 +250,9 @@ public class CreatureRespawnPoint implements TurnListener {
 	 * Pops up a new creature.
 	 */
 	protected void respawn() {
-
 		try {
 			// clone the prototype creature
-			final Creature newentity = prototypeCreature.getNewInstance();
-
-			// A bit of randomization to make Joan and Snaketails a bit happier.
-			// :)
-			newentity.setAtk(Rand.randGaussian(newentity.getAtk(),
-					newentity.getAtk() / 10));
-			newentity.setDef(Rand.randGaussian(newentity.getDef(),
-					newentity.getDef() / 10));
-
+			final Creature newentity = prototypeCreature.getNewInstanceRandomizeStats();
 			newentity.registerObjectsForNotification(observers);
 
 			if (StendhalRPAction.placeat(zone, newentity, x, y)) {

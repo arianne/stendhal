@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Marauroa                    *
+ *                   (C) Copyright 2003-2024 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -380,6 +380,16 @@ public class DefaultCreature {
 		}
 
 		return creature;
+	}
+
+	/**
+	 * Creates a creature instance with randomized stats.
+	 *
+	 * @return
+	 *   New creature instance.
+	 */
+	public Creature getCreatureRandomizeStats() {
+		return getCreature().getNewInstanceRandomizeStats();
 	}
 
 	/** @return the tileid. */
