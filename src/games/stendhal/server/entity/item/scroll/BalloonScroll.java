@@ -15,8 +15,10 @@ package games.stendhal.server.entity.item.scroll;
 import java.util.Map;
 
 import games.stendhal.common.NotificationType;
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.server.core.events.DelayedPlayerTextSender;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.maps.kikareukin.islands.Gatekeeper;
 import games.stendhal.server.maps.kikareukin.islands.Gatekeeper.RequestState;
 import games.stendhal.server.util.TimeUtil;
@@ -79,9 +81,7 @@ public class BalloonScroll extends TimedTeleportScroll {
 
 		final RequestState requestState = Gatekeeper.requestEntrance(player);
 		if (RequestState.DENIED.equals(requestState)) {
-			// balloon is used if player was punished
-			removeOne();
-			player.sendPrivateText(NotificationType.NEGATIVE, "Your balloon popped.");
+			onPopped(player);
 			return false;
 		} else if (RequestState.PUNISH_QUEUED.equals(requestState)) {
 			// player tried to use balloon again immediately after being denied
@@ -107,5 +107,18 @@ public class BalloonScroll extends TimedTeleportScroll {
 		}
 
 		return super.useTeleportScroll(player);
+	}
+
+	/**
+	 * Events when a balloon "pops".
+	 *
+	 * @param player
+	 *   Player using balloon.
+	 */
+	private void onPopped(final Player player) {
+		player.addEvent(new SoundEvent("balloon/pop", SoundLayer.FIGHTING_NOISE));
+		// balloon is used
+		removeOne();
+		player.sendPrivateText(NotificationType.NEGATIVE, "Your balloon popped.");
 	}
 }
