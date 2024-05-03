@@ -1034,6 +1034,39 @@ public class Player extends DressedEntity implements UseListener {
 	}
 
 	/**
+	 * Sends a message that only this entity can read.
+	 *
+	 * @param sender
+	 *   Name of entity sending message.
+	 * @param text
+	 *   Message contents.
+	 */
+	@Override
+	public void sendPrivateText(final String sender, final String text) {
+		sendPrivateText(getServerNotificationType(clientVersion), sender, text);
+	}
+
+	/**
+	 * Sends a message that only this entity can read.
+	 *
+	 * @param type
+	 *   NotificationType.
+	 * @param sender
+	 *   Name of entity sending message.
+	 * @param text
+	 *   Message contents.
+	 */
+	@Override
+	public void sendPrivateText(final NotificationType type, final String sender, final String text) {
+		/*
+		RPEvent event = new PrivateTextEvent(type, sender, text);
+		this.addEvent(event);
+		this.notifyWorldAboutChanges();
+		*/
+		sendPrivateText(type, sender + " tells you: " + text);
+	}
+
+	/**
 	 * Sets the name of the last player who privately talked to this player
 	 * using the /tell command. It needs to be stored non-persistently so that
 	 * /answer can be used.
