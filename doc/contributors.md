@@ -998,6 +998,7 @@ The following people released their work to the public with a suitable license f
 * [Inchadney](http://inchadney.com/sounds.html)
 * [Bart Kelsey](https://opengameart.org/users/bart)
 * [Aidan Walker](https://opengameart.org/users/aidanwalker)
+* [Gniffelbaf](https://freesound.org/people/Gniffelbaf/)
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
