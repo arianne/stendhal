@@ -28,7 +28,7 @@ export class TravelLogDialog extends DialogContentComponent {
 		ui.registerComponent(UIComponentEnum.TravelLogDialog, this);
 		this.refresh();
 
-		this.child(".travellogitems")!.innerHTML = "<option>(loading)</option>";
+		this.child(".travellogitems")!.innerHTML = "<option value=\"\">(loading)</option>";
 		if (dataItems) {
 			this.setDataItems(dataItems);
 		}
@@ -108,10 +108,15 @@ export class TravelLogDialog extends DialogContentComponent {
 	}
 
 	private onTravelLogItemsChange(event: Event) {
+		const value = (event.target as HTMLInputElement).value;
+		if (!value) {
+			// ignore options without value
+			return;
+		}
 		var action = {
 			"type":           "progressstatus",
 			"progress_type":  this.currentProgressType,
-			"item":           (event.target as HTMLInputElement).value
+			"item":           value
 		};
 		marauroa.clientFramework.sendAction(action);
 	}
