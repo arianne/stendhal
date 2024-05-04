@@ -1,4 +1,3 @@
-/* $Id$ */
 /***************************************************************************
  *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
@@ -12,16 +11,16 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
 import org.apache.log4j.Logger;
+
+import com.google.common.collect.Sets;
 
 /**
  * This Singleton should contain all NPCs in the Stendhal world that are unique.
@@ -36,9 +35,7 @@ public class NPCList implements Iterable<SpeakerNPC> {
 	private final Map<String, SpeakerNPC> contents;
 
 	/** Names reserved for NPCs created dynamically. */
-	private final List<String> reserved = new ArrayList<String>() {{
-		add("patrick"); // Herald NPC (games.stendhal.server.script.Herald)
-	}};
+	private final Set<String> reserved = Sets.newHashSet("patrick"); // Herald NPC (games.stendhal.server.script.Herald)
 
 
 	/**
@@ -149,9 +146,7 @@ public class NPCList implements Iterable<SpeakerNPC> {
 	 */
 	public void reserve(String name) {
 		name = name.toLowerCase(Locale.ENGLISH);
-		if (!reserved.contains(name)) {
-			reserved.add(name);
-		}
+		reserved.add(name);
 	}
 
 	/**
@@ -159,8 +154,6 @@ public class NPCList implements Iterable<SpeakerNPC> {
 	 */
 	public void unreserve(String name) {
 		name = name.toLowerCase(Locale.ENGLISH);
-		if (reserved.contains(name)) {
-			reserved.remove(name);
-		}
+		reserved.remove(name);
 	}
 }
