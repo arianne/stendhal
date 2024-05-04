@@ -219,10 +219,20 @@ export class SessionManager {
 	 *   `true` if joystick property has been enabled manually or if no pointer device is detected.
 	 */
 	joystickEnabled(): boolean {
-		if (!stendhal.config.isSet("joystick") && !window.matchMedia("(pointer: fine)").matches) {
+		if (!stendhal.config.isSet("joystick") && this.touchOnly()) {
 			// display by default if a pointer device is not detected from the system
 			return true;
 		}
 		return stendhal.config.getBoolean("joystick");
+	}
+
+	/**
+	 * Detectes if system is touch enabled without fine pointing device (mouse).
+	 *
+	 * @return {boolean}
+	 *   `true` if fine pointing device not detected.
+	 */
+	touchOnly(): boolean {
+		return !window.matchMedia("(pointer: fine)").matches;
 	}
 }
