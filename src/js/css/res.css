@@ -1,6 +1,6 @@
 
-/* small screens without fine pointing device (touch) */
-@media screen and (max-width: 1080px) and ((pointer: none) or (pointer: coarse)) {
+/* systems without fine pointing device (touch) */
+@media screen and (pointer: coarse) {
 	button {
 		min-height: 2em;
 		min-width: 2em;
