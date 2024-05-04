@@ -26,3 +26,28 @@ export interface SoundObject extends HTMLAudioElement {
 	/** String identifier. */
 	basename?: string;
 }
+
+/**
+ * Factory for creating sound objects.
+ */
+export class SoundFactory {
+
+	/**
+	 * Hidden constructor (use `SoundFactory.create`).
+	 */
+	private constructor() {
+		// do nothing
+	}
+
+	/**
+	 * Creates a new sound object.
+	 *
+	 * @param src {string}
+	 *   Sound filename path (default: `undefined`).
+	 */
+	static create(src?: string): SoundObject {
+		const sound = new Audio(src) as SoundObject;
+		sound.basevolume = sound.volume;
+		return sound;
+	}
+}

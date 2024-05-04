@@ -16,6 +16,7 @@ import { ui } from "./UI";
 
 import { singletons } from "../SingletonRepo";
 
+import { SoundFactory } from "../data/SoundFactory";
 import { SoundObject } from "../data/SoundFactory";
 
 
@@ -27,9 +28,9 @@ export class SoundManager {
 	/** Layer names & ordering. */
 	readonly layers: string[];
 	/** Session cache. */
-	private cacheGlobal: {[source: string]: HTMLAudioElement};
+	private cacheGlobal: {[source: string]: SoundObject};
 	/** Cache for current map. */
-	private cache: {[source: string]: HTMLAudioElement};
+	private cache: {[source: string]: SoundObject};
 	/** Actively playing sounds. */
 	private active: {[layer: string]: SoundObject[]};
 
@@ -111,11 +112,11 @@ export class SoundManager {
 	 *   Path to sound file.
 	 * @param global {boolean}
 	 *   Store in session cache instead of map (default: false).
-	 * @return {HTMLAudioElement}
+	 * @return {data.SoundFactory.SoundObject}
 	 *   New audio object.
 	 */
-	private load(id: string, filename: string, global=false): HTMLAudioElement {
-		const snd = new Audio(filename);
+	private load(id: string, filename: string, global=false): SoundObject {
+		const snd = SoundFactory.create(filename);
 		snd.autoplay = false;
 		// load into cache
 		if (global) {
