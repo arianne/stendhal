@@ -149,6 +149,10 @@ export class TravelLogDialog extends DialogContentComponent {
 			// trigger loading of content for first entry
 			itemList.selectedIndex = 0;
 			itemList.dispatchEvent(new Event("change"));
+		} else if (stendhal.session.touchOnly()) {
+			// show a "none" option for touch enabled devices
+			itemList.innerHTML = "<option value=\"\">(none)</option>";
+			itemList.selectedIndex = 0;
 		}
 	}
 
