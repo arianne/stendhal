@@ -142,17 +142,13 @@ export class TravelLogDialog extends DialogContentComponent {
 			}
 			html += "</option>";
 		}
-		this.child(".travellogitems")!.innerHTML = html;
+		const itemList = this.child(".travellogitems")! as HTMLSelectElement;
+		itemList.innerHTML = html;
 
-		// trigger loading of content for first entry
 		if (dataItems.length > 0) {
-			// this.child(".travellogitems")!.value = dataItems[0];
-			var action = {
-				"type":           "progressstatus",
-				"progress_type":  progressType,
-				"item":           dataItems[0]
-			};
-			marauroa.clientFramework.sendAction(action);
+			// trigger loading of content for first entry
+			itemList.selectedIndex = 0;
+			itemList.dispatchEvent(new Event("change"));
 		}
 	}
 
