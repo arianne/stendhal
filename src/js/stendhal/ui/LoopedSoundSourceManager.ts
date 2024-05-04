@@ -12,7 +12,6 @@
 declare var marauroa: any;
 declare var stendhal: any;
 
-import { Sound } from "./SoundManager";
 import { SoundManager } from "./SoundManager";
 
 import { LoopedSoundSource } from "../entity/LoopedSoundSource";
