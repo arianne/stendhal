@@ -65,11 +65,11 @@ There is a  [manual](https://stendhalgame.org/wiki/Stendhal_Manual), and there i
 
 ## Legal
 
-The server, java client, and Android client are free software; you can redistribute it and/or modify
-it under the terms of the **GNU General Public License** 2 or later as published by the Free
-Software Foundation.
+Stendhal is free software. You can redistribute it and/or modify under the following terms:
 
-The web client is free software; you can redistribute it and/or modify it under the terms of the **GNU Affero General Public License** 3 or later as published by the Free Software Foundation.
+- The **server**, **java client**, and **Android client**: *GNU General Public License* 2 or later as published by the Free
+- The **web client** and **native client**: *GNU Affero General Public License* 3 or later as published by the Free Software Foundation with the definition of "System libraries" being extended to include authentication providers and software distribution platforms.
+- The **nativehelper** extensions: *GNU Lesser General Public License* 3 or later as published by the Free Software Foundation 
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
 even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
