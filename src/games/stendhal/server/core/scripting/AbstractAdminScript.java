@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2023-2024 - Arianne                     *
+ *                 Copyright © 2023-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -93,7 +93,7 @@ public abstract class AbstractAdminScript extends ScriptImpl {
 			usage += " " + cmd + " " + params.get(0);
 		} else {
 			for (final String paramset: params) {
-				usage += "\n  " + cmd;
+				usage += "\n&nbsp;&nbsp;" + cmd;
 				if (paramset.length() > 0) {
 					usage += " " + paramset;
 				}
@@ -103,7 +103,7 @@ public abstract class AbstractAdminScript extends ScriptImpl {
 		if (details != null && details.size() > 0) {
 			usage += "\nParameters:";
 			for (final String detail: details) {
-				usage += "\n  " + detail;
+				usage += "\n&nbsp;&nbsp;" + detail;
 			}
 		}
 		return usage;
