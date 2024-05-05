@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import games.stendhal.common.NotificationType;
+import games.stendhal.server.constants.StandardMessages;
 import games.stendhal.server.entity.player.Player;
 
 
@@ -42,11 +43,11 @@ public abstract class AbstractAdminScript extends ScriptImpl {
 		}
 		final int argc = args.size();
 		if (argc < minparams) {
-			admin.sendPrivateText(NotificationType.ERROR, "Missing parameter.");
+			StandardMessages.missingParameter(admin);
 			showUsage(admin);
 			return;
 		} else if (maxparams > -1 && argc > maxparams) {
-			admin.sendPrivateText(NotificationType.ERROR, "Too many parameters.");
+			StandardMessages.excessParameter(admin);
 			showUsage(admin);
 			return;
 		}

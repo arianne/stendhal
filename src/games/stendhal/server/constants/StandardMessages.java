@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2022 - Arianne                      *
+ *                 Copyright © 2003-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -31,10 +31,33 @@ public abstract class StandardMessages {
 	}
 
 	/**
-	 * Script or command executed with wrong number of parameters.
+	 * Script or command executed with too few parameters.
 	 */
 	public static void missingParameter(final Player target) {
 		target.sendPrivateText(NotificationType.ERROR, "Missing parameter.");
+	}
+
+	/**
+	 * Script or command executed with too few parameters.
+	 */
+	public static void missingParameter(final Player target, final String command) {
+		target.sendPrivateText(NotificationType.ERROR, "Missing parameter for command \"" + command
+				+ "\".");
+	}
+
+	/**
+	 * Script or command executed with too many parameters.
+	 */
+	public static void excessParameter(final Player target) {
+		target.sendPrivateText(NotificationType.ERROR, "Too many parameters.");
+	}
+
+	/**
+	 * Script or command executed with too many parameters.
+	 */
+	public static void excessParameter(final Player target, final String command) {
+		target.sendPrivateText(NotificationType.ERROR, "Too many parameters for command \"" + command
+				+ "\".");
 	}
 
 	/**
@@ -57,5 +80,29 @@ public abstract class StandardMessages {
 
 	public static void paramMustBeNumber(final Player target) {
 		paramMustBeNumber(target, "Parameter");
+	}
+
+
+	/**
+	 * Messages admin and player when admin makes a change to player's quest state.
+	 *
+	 * @param admin
+	 *   Admin making change.
+	 * @param player
+	 *   Player being update.
+	 * @param questName
+	 *   Quest ID/name.
+	 * @param oldState
+	 *   Quest state before change.
+	 * @param newState
+	 *   Quest state after change.
+	 */
+	public static void changedQuestState(final Player admin, final Player player,
+			final String questName, final String oldState, final String newState) {
+		player.sendPrivateText(NotificationType.SUPPORT, "Admin " + admin.getTitle()
+				+ " changed your state of the quest '" + questName + "' from '" + oldState + "' to '"
+				+ newState + "'");
+		admin.sendPrivateText("Changed the state of quest '" + questName + "' from '" + oldState
+				+ "' to '" + newState + "'");
 	}
 }

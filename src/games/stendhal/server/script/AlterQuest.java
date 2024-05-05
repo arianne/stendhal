@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,7 +14,7 @@ package games.stendhal.server.script;
 
 import java.util.List;
 
-import games.stendhal.common.NotificationType;
+import games.stendhal.server.constants.StandardMessages;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.scripting.ScriptImpl;
@@ -58,15 +58,9 @@ public class AlterQuest extends ScriptImpl {
 			target.setQuest(questName, newQuestState);
 
 			// notify admin and altered player
-			target.sendPrivateText(NotificationType.SUPPORT, "Admin " + admin.getTitle()
-					+ " changed your state of the quest '" + questName
-					+ "' from '" + oldQuestState + "' to '" + newQuestState
-					+ "'");
-			admin.sendPrivateText("Changed the state of quest '" + questName
-					+ "' from '" + oldQuestState + "' to '" + newQuestState
-					+ "'");
+			StandardMessages.changedQuestState(admin, target, questName, oldQuestState, newQuestState);
 		} else {
-			admin.sendPrivateText(args.get(0) + " is not logged in");
+			StandardMessages.playerNotOnline(admin, args.get(0));
 		}
 	}
 
