@@ -11,7 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.core.scripting;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import games.stendhal.common.NotificationType;
@@ -84,8 +84,7 @@ public abstract class AbstractAdminScript extends ScriptImpl {
 	public String getUsage() {
 		final String cmd = "/script " + getClass().getSimpleName() + ".class";
 		String usage = "Usage:";
-		List<String> params = getParamStrings();
-		params = params != null ? params : new ArrayList<>();
+		final List<String> params = getParamStrings();
 		final int pcount =  params.size();
 		if (pcount == 0) {
 			usage += " " + cmd;
@@ -99,8 +98,8 @@ public abstract class AbstractAdminScript extends ScriptImpl {
 				}
 			}
 		}
-		List<String> details = getParamDetails();
-		if (details != null && details.size() > 0) {
+		final List<String> details = getParamDetails();
+		if (details.size() > 0) {
 			usage += "\nParameters:";
 			for (final String detail: details) {
 				usage += "\n&nbsp;&nbsp;" + detail;
@@ -114,19 +113,15 @@ public abstract class AbstractAdminScript extends ScriptImpl {
 	 *
 	 * An empty string can be included to show execution without
 	 * parameters.
-	 *
-	 * FIXME: might be simpler to return empty list
 	 */
 	protected List<String> getParamStrings() {
-		return null;
+		return new LinkedList<String>();
 	}
 
 	/**
 	 * Retrieves extended instructions on parameter usage.
-	 *
-	 * FIXME: might be simpler to return empty list
 	 */
 	protected List<String> getParamDetails() {
-		return null;
+		return new LinkedList<String>();
 	}
 }
