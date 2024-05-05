@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.core.scripting;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,18 +25,21 @@ import games.stendhal.server.entity.player.Player;
 
 public abstract class AbstractAdminScript extends ScriptImpl {
 
+	/** Admin player executing script. */
+	protected Player admin;
+
+
 	/**
 	 * Instructions to execute after parameter count sanity is checked.
 	 *
-	 * @param admin
-	 *     The player executing the script.
 	 * @param args
-	 *     Parameters passed to the script.
+	 *   Parameters passed to the script.
 	 */
-	protected abstract void run(final Player admin, final List<String> args);
+	protected abstract void run(final List<String> args);
 
 	@Override
 	public void execute(final Player admin, final List<String> args) {
+		this.admin = checkNotNull(admin);
 		final int minparams = getMinParams();
 		final int maxparams = getMaxParams();
 		if (maxparams > -1 && maxparams < minparams) {
@@ -46,19 +51,19 @@ public abstract class AbstractAdminScript extends ScriptImpl {
 		final int argc = args.size();
 		if (argc > 0 && Arrays.asList("-?", "-h", "-help", "--help")
 				.contains(args.get(0).toLowerCase(Locale.ENGLISH))) {
-			showUsage(admin);
+			showUsage();
 			return;
 		}
 		if (argc < minparams) {
 			StandardMessages.missingParameter(admin);
-			showUsage(admin);
+			showUsage();
 			return;
 		} else if (maxparams > -1 && argc > maxparams) {
 			StandardMessages.excessParameter(admin);
-			showUsage(admin);
+			showUsage();
 			return;
 		}
-		run(admin, args);
+		run(args);
 	}
 
 	/**
@@ -84,12 +89,9 @@ public abstract class AbstractAdminScript extends ScriptImpl {
 	}
 
 	/**
-	 * Displays usage information.
-	 *
-	 * @param admin
-	 *     Player to whom information is sent.
+	 * Displays usage information to admin.
 	 */
-	public void showUsage(final Player admin) {
+	public void showUsage() {
 		admin.sendPrivateText(getUsage());
 	}
 

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   Copyright © 2003-2023 - Arianne                       *
+ *                 Copyright © 2003-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,7 +18,6 @@ import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.scripting.AbstractAdminScript;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
-import games.stendhal.server.entity.player.Player;
 
 
 /**
@@ -29,7 +28,7 @@ import games.stendhal.server.entity.player.Player;
 public class SpawnCreature extends AbstractAdminScript {
 
 	@Override
-	protected void run(final Player admin, final List<String> args) {
+	protected void run(final List<String> args) {
 		int x;
 		int y;
 		try {

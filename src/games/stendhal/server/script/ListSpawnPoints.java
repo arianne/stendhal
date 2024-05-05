@@ -23,7 +23,6 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.scripting.AbstractAdminScript;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
-import games.stendhal.server.entity.player.Player;
 
 
 /**
@@ -37,14 +36,14 @@ public class ListSpawnPoints extends AbstractAdminScript {
 
 
 	@Override
-	protected void run(final Player admin, final List<String> args) {
+	protected void run(final List<String> args) {
 		final int argc = args.size();
 		String zonename = null;
 		String spawntype = null;
 		for (int idx = 0; idx < argc; idx++) {
 			final String key = args.get(idx);
 			if ("-help".equals(key)) {
-				showUsage(admin);
+				showUsage();
 				return;
 			}
 			if (!params.contains(key)) {
