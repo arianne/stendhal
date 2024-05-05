@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2023 - Arianne                          *
+ *                 Copyright © 2023-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -136,7 +136,7 @@ public class ListSpawnPoints extends AbstractAdminScript {
 
 	@Override
 	protected List<String> getParamStrings() {
-		return Arrays.asList("[-zone <zone>] [-type <type>]", "-help");
+		return Arrays.asList("[-zone <zone>] [-type <type>]");
 	}
 
 	@Override

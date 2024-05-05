@@ -11,8 +11,10 @@
  ***************************************************************************/
 package games.stendhal.server.core.scripting;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.constants.StandardMessages;
@@ -42,6 +44,11 @@ public abstract class AbstractAdminScript extends ScriptImpl {
 			return;
 		}
 		final int argc = args.size();
+		if (argc > 0 && Arrays.asList("-?", "-h", "-help", "--help")
+				.contains(args.get(0).toLowerCase(Locale.ENGLISH))) {
+			showUsage(admin);
+			return;
+		}
 		if (argc < minparams) {
 			StandardMessages.missingParameter(admin);
 			showUsage(admin);
@@ -62,10 +69,18 @@ public abstract class AbstractAdminScript extends ScriptImpl {
 	}
 
 	/**
-	 * Retrieves maximum number of parameters required to run script.
+	 * Retrieves maximum number of parameters required to run script. An indefinite amount can be
+	 * specified with {@code -1}.
 	 */
 	protected int getMaxParams() {
 		return -1;
+	}
+
+	/**
+	 * The script is assumed to have help info if it accepts any number of parameters.
+	 */
+	private boolean hasHelp() {
+		return getMaxParams() != 0;
 	}
 
 	/**
@@ -82,9 +97,15 @@ public abstract class AbstractAdminScript extends ScriptImpl {
 	 * Retrieves a string representation of usage information.
 	 */
 	public String getUsage() {
+		final boolean includeHelp = hasHelp();
 		final String cmd = "/script " + getClass().getSimpleName() + ".class";
 		String usage = "Usage:";
-		final List<String> params = getParamStrings();
+		final List<String> params = new LinkedList<>();
+		// make a copy in case returned value is immutable
+		params.addAll(getParamStrings());
+		if (includeHelp) {
+			params.add("-?");
+		}
 		final int pcount =  params.size();
 		if (pcount == 0) {
 			usage += " " + cmd;
@@ -98,7 +119,12 @@ public abstract class AbstractAdminScript extends ScriptImpl {
 				}
 			}
 		}
-		final List<String> details = getParamDetails();
+		final List<String> details = new LinkedList<>();
+		// make a copy in case returned value is immutable
+		details.addAll(getParamDetails());
+		if (includeHelp) {
+			details.add("-?: Show this help information.");
+		}
 		if (details.size() > 0) {
 			usage += "\nParameters:";
 			for (final String detail: details) {
