@@ -47,11 +47,12 @@ public class DoctorNPC implements ZoneConfigurator {
 				addOffer("I can offer #advice, and it is even free of charge");
 				addGoodbye("Be fantastic!");
 				addReply(Arrays.asList("advice", "doctor", "promise", "kind", "cowardly", "pear", "pears"),
-						"Never be cruel, never be cowardly. And never ever eat pears! Remember: Hate is always foolish and love is always wise.");
+						"Never be cruel, never be cowardly. And never ever eat pears! Remember: Hate is always foolish and #love is always wise.");
 				addReply(Arrays.asList("faith", "love", "wedding", "marriage"),
 						"Something I believe in, my faith: Love in all its forms is the most powerful weapon because love is a form of hope.");
 				addReply(Arrays.asList("war", "army", "fight", "gun", "attack"),
 						"When you fire that first shot, no matter how right you feel, you have no idea, who’s going to die! You don’t know, whose children are going to scream and burn! How many hearts will be broken! How many lives shattered! How much blood will spill, until everybody does, what they were always going to do from the very beginning! – Sit down and talk! ");
+				addReply("dark", "These are dark times, but they don't sustain. Darkness never sustains, even through sometimes, it feels, like it might.");
 				addReply(Arrays.asList("tardis", "blue", "box"),
 						"I stole it. Well, I borrowed it; I was always going to take it back. Oh, that box. Big and little at the same time, brand-new and ancient, and the bluest blue ever.");
 				addReply(Arrays.asList("sonic", "screwdriver"),
@@ -77,10 +78,10 @@ public class DoctorNPC implements ZoneConfigurator {
 						"There's one thing you never put in a trap? If you're smart, if you value your continued existence, if you have any plans about seeing tomorrow, there is one thing you never, ever put in a trap. - Me.");
 				addReply(Arrays.asList("time", "cause", "effect", "wibbly", "wobbly", "linear", "nonlinear"),
 						"People assume that time is a strict progression of cause to effect, but actually, from a nonlinear, non-subjective viewpoint, it's more like a big ball of wibbly-wobbly, timey-wimey... stuff.");
-				addReply("motive",
+				addReply(Arrays.asList("motive", "motivation"),
 						"I do what I do because it's right! Because it's decent! And above all, it's #kind! It's just that. Just kind.");
 				addReply("childish",
-						"There's no point in being grown, up if you can't act childish sometimes.");
+						"There's no point in being grown up, if you can't act childish sometimes.");
 				addReply("coincidence",
 						"Never ignore coincidence. Unless, of course, you're busy. In which case, always ignore coincidence.");
 				addReply("important",
