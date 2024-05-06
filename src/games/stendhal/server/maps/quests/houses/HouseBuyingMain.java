@@ -119,7 +119,8 @@ public class HouseBuyingMain {
 	}
 
 	public boolean isCompleted(final Player player) {
-		return HouseUtilities.getPlayersHouse(player)!=null;
+		return HouseUtilities.getPlayersHouse(player) != null
+				&& houseTax.getUnpaidTaxPeriods(player) == 0;
 	}
 
 	/**
