@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2018 - Arianne                     *
+ *                   (C) Copyright 2003-2024 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -19,7 +19,7 @@ public class SettingsProperties {
 	/** property used for double-tap direction to initiate auto-walk. */
 	public static final String DOUBLE_TAP_AUTOWALK_PROPERTY = "move.doubletapautowalk";
 
-	/** Property for continuous movement through map changes & portals (currently disabled for portals). */
+	/** Property for continuous movement through map changes & portals. */
 	public static final String  MOVE_CONTINUOUS_PROPERTY = "move.continuous";
 
 	/** property for display HP bar */

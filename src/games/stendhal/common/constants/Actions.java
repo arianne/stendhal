@@ -199,6 +199,7 @@ public final class Actions {
 	// indicates player is using auto-walk
 	public static final String AUTOWALK = "autowalk";
 	// indicates player is using continuous movement
+	// TODO: rename to "ontransfer_cont"
 	public static final String MOVE_CONTINUOUS = MOVE_CONTINUOUS_PROPERTY;
 	public static final String COND_STOP = "conditional_stop";
 

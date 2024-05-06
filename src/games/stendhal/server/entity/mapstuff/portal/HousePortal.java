@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,8 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.portal;
+
+import static games.stendhal.common.constants.Actions.MOVE_CONTINUOUS;
 
 import java.util.Arrays;
 import java.util.List;
@@ -81,6 +83,9 @@ public class HousePortal extends AccessCheckingPortal {
 		put(DOOR_ID, doorId);
 		put(OWNER, "");
 		put(LOCK_NUMBER, 0);
+		// should be safe to assume player ends up on opposite side of house portal destination
+		put(MOVE_CONTINUOUS, "");
+
 		store();
 	}
 
@@ -96,6 +101,8 @@ public class HousePortal extends AccessCheckingPortal {
 		super.setDestination(get(DESTINATION_ZONE), idToObject(DESTINATION_ID));
 		super.setIdentifier(idToObject(PORTAL_REFERENCE));
 		setRejectedMessage("The door is locked.");
+		// should be safe to assume player ends up on opposite side of house portal destination
+		put(MOVE_CONTINUOUS, "");
 
 		store();
 	}
