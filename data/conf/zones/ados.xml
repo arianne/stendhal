@@ -4274,7 +4274,6 @@ My fee:
 		<!-- Portals -->
 		<portal x="12" y="22" ref="in">
 			<destination zone="0_ados_city" ref="house_70"/>
-			<attribute name="resistance">0</attribute>
 		</portal>
 
 		<!-- Clock -->
