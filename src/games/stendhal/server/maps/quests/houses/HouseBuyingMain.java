@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -120,5 +120,15 @@ public class HouseBuyingMain {
 
 	public boolean isCompleted(final Player player) {
 		return HouseUtilities.getPlayersHouse(player)!=null;
+	}
+
+	/**
+	 * Retrieves house tax manager.
+	 *
+	 * @return
+	 *   {@code HouseTax} instance.
+	 */
+	public HouseTax getHouseTax() {
+		return houseTax;
 	}
 }

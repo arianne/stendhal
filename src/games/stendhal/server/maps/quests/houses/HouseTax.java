@@ -48,13 +48,13 @@ import marauroa.server.game.db.DAORegister;
 /**
  * House tax, and confiscation of houses.
  */
-class HouseTax implements TurnListener {
+public class HouseTax implements TurnListener {
 	/** The base amount of tax per month. */
 	protected static final int BASE_TAX = 1000;
 
 	private static final Logger logger = Logger.getLogger(HouseTax.class);
 	/** How often the tax should be paid. Time in seconds. */
-	private static final int TAX_PAYMENT_PERIOD = 30 * TimeUtil.SECONDS_IN_DAY;
+	public static final int TAX_PAYMENT_PERIOD = 30 * TimeUtil.SECONDS_IN_DAY;
 	/** How often the payments should be checked. Time in seconds */
 	private static final int TAX_CHECKING_PERIOD = TimeUtil.SECONDS_IN_DAY;
 	/** How many tax payments can be unpaid. Any more and the house will be confiscated */
@@ -67,7 +67,7 @@ class HouseTax implements TurnListener {
 
 	private long previouslyChecked = 0;
 
-	public HouseTax() {
+	HouseTax() {
 		setupTaxman();
 		SingletonRepository.getTurnNotifier().notifyInSeconds(TAX_CHECKING_PERIOD, this);
 	}
@@ -88,7 +88,7 @@ class HouseTax implements TurnListener {
 	 * @param periods the number of months the player has to pay at once
 	 * @return the amount of debt
 	 */
-	private int getTaxDebt(final int periods) {
+	public int getTaxDebt(final int periods) {
 		int debt = 0;
 
 		for (int i = 0; i < periods; i++) {
@@ -104,7 +104,7 @@ class HouseTax implements TurnListener {
 	 * @param player the player to be checked
 	 * @return number of periods
 	 */
-	protected int getUnpaidTaxPeriods(final Player player) {
+	public int getUnpaidTaxPeriods(final Player player) {
 		final HousePortal portal = HouseUtilities.getPlayersHouse(player);
 		int payments = 0;
 
@@ -120,7 +120,7 @@ class HouseTax implements TurnListener {
 	 * @param portal the portal to be checked
 	 * @return number of periods
 	 */
-	private int getUnpaidTaxPeriods(final HousePortal portal) {
+	public int getUnpaidTaxPeriods(final HousePortal portal) {
 		final int timeDiffSeconds = (int) ((System.currentTimeMillis() - portal.getExpireTime()) / 1000);
 		return Math.max(0, timeDiffSeconds / TAX_PAYMENT_PERIOD);
 	}

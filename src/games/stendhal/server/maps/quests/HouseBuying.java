@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,6 +16,7 @@ import java.util.LinkedList;
 
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.houses.HouseBuyingMain;
+import games.stendhal.server.maps.quests.houses.HouseTax;
 
 public class HouseBuying extends AbstractQuest {
 	private static final String QUEST_SLOT = "house";
@@ -61,5 +62,15 @@ public class HouseBuying extends AbstractQuest {
 	@Override
 	public String getNPCName() {
 		return "Barrett Holmes";
+	}
+
+	/**
+	 * Retrieves house tax manager.
+	 *
+	 * @return
+	 *   {@code HouseTax} instance.
+	 */
+	public HouseTax getHouseTax() {
+		return quest.getHouseTax();
 	}
 }
