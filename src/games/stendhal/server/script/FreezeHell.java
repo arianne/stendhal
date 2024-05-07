@@ -19,6 +19,7 @@ import java.time.LocalTime;
 import java.time.Month;
 import java.time.Year;
 import java.time.format.DateTimeParseException;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -222,5 +223,13 @@ public class FreezeHell extends AbstractAdminScript {
 		if (layer != null) {
 			zone.addLayer(zone.getName() + "." + layerName, layer);
 		}
+	}
+
+	/**
+	 * Schedules hell freezing for April 1st.
+	 */
+	public static void scheduleDefault() {
+		// is this safe or should it be executed through ScriptRunner?
+		new FreezeHell().run(Arrays.asList());
 	}
 }
