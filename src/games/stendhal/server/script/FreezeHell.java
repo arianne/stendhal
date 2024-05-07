@@ -31,8 +31,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.ZoneAttributes;
-import games.stendhal.server.core.scripting.ScriptImpl;
-import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.core.scripting.AbstractAdminScript;
 import marauroa.common.game.IRPZone;
 
 /**
@@ -48,35 +47,35 @@ import marauroa.common.game.IRPZone;
  * Second argument is the freezing duration in HH:MM[:SS] format. Default is one
  * day.
  */
-public class FreezeHell extends ScriptImpl {
+public class FreezeHell extends AbstractAdminScript {
 	private static final Logger LOGGER = Logger.getLogger(FreezeHell.class);
 
 	private static final LocalDateTime DEFAULT_FREEZING_TIME = Year.now().atMonth(Month.APRIL).atDay(1).atStartOfDay();
 	private static final Duration DEFAULT_FREEZING_DURATION = Duration.ofDays(1);
 
 	@Override
-	public void execute(final Player admin, final List<String> args) {
+	protected void run(final List<String> args) {
 		LocalDateTime startTime;
 		LocalDateTime now = LocalDateTime.now();
-		startTime = determineStartTime(admin, args, now);
+		startTime = determineStartTime(args, now);
 		int waitSec = (int) Duration.between(now, startTime).getSeconds();
 
-		Duration freezingDuration = determineDuration(admin, args);
+		Duration freezingDuration = determineDuration(args);
 
 		String message = "Scheduling freezing hell in " + waitSec
 				+ " seconds at " + startTime + ". Freeze for " + freezingDuration + ".";
-		admin.sendPrivateText(message);
+		sendText(message);
 		LOGGER.info(message);
 		SingletonRepository.getTurnNotifier().notifyInSeconds(waitSec, currentTurn -> freezeOrThaw(true, freezingDuration));
 	}
 
-	private Duration determineDuration(final Player admin, final List<String> args) {
+	private Duration determineDuration(final List<String> args) {
 		if (args.size() > 1) {
 			try {
 				LocalTime time = LocalTime.parse(args.get(1));
 				return Duration.between(LocalTime.MIN, time);
 			} catch (DateTimeParseException e) {
-				admin.sendPrivateText(e.getMessage());
+				sendText(e.getMessage());
 				throw e;
 			}
 		}
@@ -84,11 +83,10 @@ public class FreezeHell extends ScriptImpl {
 		return DEFAULT_FREEZING_DURATION;
 	}
 
-	private LocalDateTime determineStartTime(final Player admin, final List<String> args,
-			LocalDateTime now) {
+	private LocalDateTime determineStartTime(final List<String> args, LocalDateTime now) {
 		LocalDateTime startTime;
 		if (!args.isEmpty()) {
-			startTime = parseStartTime(admin, args, now);
+			startTime = parseStartTime(args, now);
 		} else {
 			startTime = DEFAULT_FREEZING_TIME;
 		}
@@ -98,8 +96,7 @@ public class FreezeHell extends ScriptImpl {
 		return startTime;
 	}
 
-	private LocalDateTime parseStartTime(Player admin, final List<String> args,
-			LocalDateTime now) {
+	private LocalDateTime parseStartTime(final List<String> args, LocalDateTime now) {
 		LocalDateTime startTime;
 		try {
 			LocalTime time = LocalTime.parse(args.get(0));
@@ -115,7 +112,7 @@ public class FreezeHell extends ScriptImpl {
 					throw new DateTimeParseException("The specified start time is in the past.", args.get(0), 0);
 				}
 			} catch (DateTimeParseException ex) {
-				admin.sendPrivateText(ex.getMessage());
+				sendText(ex.getMessage());
 				throw ex;
 			}
 		}
