@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import games.stendhal.common.NotificationType;
+import games.stendhal.server.constants.StandardMessages;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.scripting.AbstractAdminScript;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
@@ -34,13 +35,13 @@ public class SpawnCreature extends AbstractAdminScript {
 		try {
 			x = Integer.parseInt(args.get(0));
 		} catch (final NumberFormatException e) {
-			admin.sendPrivateText(NotificationType.ERROR, "X coordinate must be a number");
+			StandardMessages.paramMustBeNumber(admin, "X coordinate");
 			return;
 		}
 		try {
 			y = Integer.parseInt(args.get(1));
 		} catch (final NumberFormatException e) {
-			admin.sendPrivateText(NotificationType.ERROR, "Y coordinate must be a number");
+			StandardMessages.paramMustBeNumber(admin, "Y coordinate");
 			return;
 		}
 

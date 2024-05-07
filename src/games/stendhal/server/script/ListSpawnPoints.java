@@ -18,6 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import games.stendhal.common.NotificationType;
+import games.stendhal.server.constants.StandardMessages;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.scripting.AbstractAdminScript;
@@ -47,7 +48,7 @@ public class ListSpawnPoints extends AbstractAdminScript {
 				return;
 			}
 			if (!params.contains(key)) {
-				admin.sendPrivateText(NotificationType.ERROR, "Unknown parameter: " + key);
+				StandardMessages.unknownParameter(admin, key);
 				return;
 			}
 			String value = null;
@@ -56,7 +57,7 @@ public class ListSpawnPoints extends AbstractAdminScript {
 				value = args.get(idx);
 			}
 			if (value == null) {
-				admin.sendPrivateText(NotificationType.ERROR, "Missing value for parameter: " + key);
+				StandardMessages.missingParamValue(admin, key);
 				return;
 			}
 

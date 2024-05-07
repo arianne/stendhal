@@ -46,6 +46,19 @@ public abstract class StandardMessages {
 	}
 
 	/**
+	 * Command parameter requires an additional value parameter.
+	 *
+	 * @param target
+	 *   Player being notified.
+	 * @param param
+	 *   Parameter name.
+	 */
+	public static void missingParamValue(final Player target, final String param) {
+		target.sendPrivateText(NotificationType.ERROR, "Missing value for parameter \"" + param
+				+ "\".");
+	}
+
+	/**
 	 * Script or command executed with too many parameters.
 	 */
 	public static void excessParameter(final Player target) {
