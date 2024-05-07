@@ -14,7 +14,6 @@ package games.stendhal.server.script;
 import java.util.Arrays;
 import java.util.List;
 
-import games.stendhal.common.NotificationType;
 import games.stendhal.server.constants.StandardMessages;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.scripting.AbstractAdminScript;
@@ -47,8 +46,7 @@ public class SpawnCreature extends AbstractAdminScript {
 
 		final StendhalRPZone zone = admin.getZone();
 		if (zone == null) {
-			admin.sendPrivateText(NotificationType.ERROR, "You are not in a"
-					+ " suitable location for spawning creatures");
+			sendError("You are not in a suitable location for spawning creatures");
 			return;
 		}
 
@@ -56,8 +54,8 @@ public class SpawnCreature extends AbstractAdminScript {
 		boolean spawned = false;
 		for (final CreatureRespawnPoint p: zone.getRespawnPointList()) {
 			if (p.getX() == x && p.getY() == y) {
-				admin.sendPrivateText("Spawning " + p.getPrototypeCreature().getName()
-						+ " at " + zoneName + " " + x + "," + y);
+				sendText("Spawning " + p.getPrototypeCreature().getName() + " at "
+						+ zoneName + " " + x + "," + y);
 				p.spawnNow();
 				spawned = true;
 			}
@@ -66,10 +64,8 @@ public class SpawnCreature extends AbstractAdminScript {
 			return;
 		}
 
-		admin.sendPrivateText(NotificationType.ERROR, "Spawn point not found at "
-				+ zoneName + " " + x + "," + y + ". Execute `/script "
-				+ ListSpawnPoints.class.getSimpleName()
-				+ ".class` for a list of available points.");
+		sendError("Spawn point not found at " + zoneName + " " + x + "," + y + ". Execute `/script "
+				+ ListSpawnPoints.class.getSimpleName() + ".class` for a list of available points.");
 	}
 
 	@Override

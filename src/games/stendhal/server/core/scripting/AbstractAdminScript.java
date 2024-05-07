@@ -67,6 +67,46 @@ public abstract class AbstractAdminScript extends ScriptImpl {
 	}
 
 	/**
+	 * Wrapper for sending standard text to admin.
+	 *
+	 * @param msg
+	 *   Message contents.
+	 */
+	protected void sendText(final String msg) {
+		admin.sendPrivateText(msg);
+	}
+
+	/**
+	 * Wrapper for sending information text to admin.
+	 *
+	 * @param msg
+	 *   Messag contents.
+	 */
+	protected void sendInfo(final String msg) {
+		admin.sendPrivateText(NotificationType.INFORMATION, msg);
+	}
+
+	/**
+	 * Wrapper for sending warning text to admin.
+	 *
+	 * @param msg
+	 *   Message contents.
+	 */
+	protected void sendWarning(final String msg) {
+		admin.sendPrivateText(NotificationType.WARNING, msg);
+	}
+
+	/**
+	 * Wrapper for sending error text to admin.
+	 *
+	 * @param msg
+	 *   Message contents.
+	 */
+	protected void sendError(final String msg) {
+		admin.sendPrivateText(NotificationType.ERROR, msg);
+	}
+
+	/**
 	 * Retrieves minumum number of parameters required to run script.
 	 */
 	protected int getMinParams() {

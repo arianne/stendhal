@@ -17,7 +17,6 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import games.stendhal.common.NotificationType;
 import games.stendhal.server.constants.StandardMessages;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -75,7 +74,7 @@ public class ListSpawnPoints extends AbstractAdminScript {
 			zone = SingletonRepository.getRPWorld().getZone(zonename);
 		}
 		if (zone == null) {
-			admin.sendPrivateText(NotificationType.ERROR, "Unknown zone" + (zonename == null ? "." : ": " + zonename));
+			sendError("Unknown zone" + (zonename == null ? "." : ": " + zonename));
 			return;
 		}
 		zonename = zone.getName();
@@ -93,14 +92,14 @@ public class ListSpawnPoints extends AbstractAdminScript {
 		}
 		if (count == 0) {
 			if (unknowntype) {
-				admin.sendPrivateText(NotificationType.ERROR, "Unknown spawn type: " + spawntype);
+				sendError("Unknown spawn type: " + spawntype);
 			} else {
-				admin.sendPrivateText("No" + (spawntype == null ? "" : " " + spawntype) + " spawn points found in " + zonename + ".");
+				sendText("No" + (spawntype == null ? "" : " " + spawntype) + " spawn points found in " + zonename + ".");
 			}
 			return;
 		}
 		spawns.add(0, count + (spawntype == null ? "" : " " + spawntype) + " spawn points found in " + zonename + ":");
-		admin.sendPrivateText(String.join("\n", spawns));
+		sendText(String.join("\n", spawns));
 	}
 
 	private List<String> getCreatureSpawns(final StendhalRPZone zone) {
