@@ -58,6 +58,7 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.mapstuff.WeatherEntity;
 import games.stendhal.server.entity.mapstuff.area.WalkBlocker;
 import games.stendhal.server.entity.mapstuff.area.WalkBlockerFactory;
 import games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination;
@@ -1944,5 +1945,28 @@ public class StendhalRPZone extends MarauroaRPZone {
 		}
 
 		return Arrays.asList(getAssociatedZones().split(","));
+	}
+
+	/**
+	 * Retrieves the zone's weather management entity.
+	 *
+	 * @return
+	 *   Weather entity instance.
+	 */
+	public WeatherEntity getWeatherEntity() {
+		final List<Entity> entities = getFilteredEntities(new FilterCriteria<Entity>() {
+			@Override
+			public boolean passes(final Entity e) {
+				return "weather_entity".equals(e.getRPClass().getName());
+			}
+		});
+		final int count = entities.size();
+		if (count == 0) {
+			logger.warn("Weather entity not found in zone " + getName() + ".");
+			return null;
+		} else if (count > 1) {
+			logger.warn("Found multiple weather entities in zone " + getName() + ".");
+		}
+		return (WeatherEntity) entities.get(0);
 	}
 }

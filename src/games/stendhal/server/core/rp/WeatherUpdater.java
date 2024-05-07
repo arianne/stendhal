@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2003-2014 - Faiumoni E.V.                  *
+ *                (C) Copyright 2003-2024 - Faiumoni E.V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,14 +15,18 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Objects;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 
+import com.google.common.collect.Sets;
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.ZoneAttributes;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.mapstuff.WeatherEntity;
@@ -105,6 +109,33 @@ public class WeatherUpdater implements TurnListener {
 	 */
 	private WeatherUpdater() {
 		onTurnReached(0);
+	}
+
+	/**
+	 * Retrieves names of available weather types.
+	 *
+	 * @return
+	 *   List of weather.
+	 */
+	public Set<String> getTypes() {
+		final Set<String> registered = Sets.newLinkedHashSet();
+		if (rain != null) {
+			for (final String rainSnow: new String[] {"rain", "snow"}) {
+				registered.add(rainSnow);
+				for (final String rainSnowType: rain.getDescriptions()) {
+					registered.add(rainSnow + rainSnowType);
+				}
+			}
+		}
+		if (fog != null) {
+			for (final String fogType: fog.getDescriptions()) {
+				registered.add(fogType);
+			}
+		}
+		if (thunder != null) {
+			registered.add("thunder");
+		}
+		return registered;
 	}
 
 	/**
@@ -249,6 +280,20 @@ public class WeatherUpdater implements TurnListener {
 	}
 
 	/**
+	 * Update a zone's weather attribute for debugging, and notify players of the changes.
+	 *
+	 * @param zone
+	 *   Zone where weather is being updated.
+	 * @param weather
+	 *   Weather description.
+	 */
+	public void updateAndNotify(final StendhalRPZone zone, final Pair<String, Boolean> weather) {
+		final ZoneData zoneData = new ZoneData(zone.getAttributes(),
+				Modifiers.getModifiers(weather.first()), zone.getWeatherEntity());
+		updateAndNotify(zoneData, weather);
+	}
+
+	/**
 	 * Check and update all managed zones.
 	 */
 	private void updateZones() {
@@ -315,6 +360,9 @@ public class WeatherUpdater implements TurnListener {
 		 * @return modifiers
 		 */
 		static Modifiers getModifiers(String weatherDesc) {
+			if (weatherDesc == null) {
+				return NO_MODS;
+			}
 			weatherDesc = weatherDesc.trim();
 			Matcher matcher = PATTERN.matcher(weatherDesc);
 			if (!matcher.matches()) {
@@ -452,6 +500,16 @@ public class WeatherUpdater implements TurnListener {
 				return desc[idx];
 			}
 			return null;
+		}
+
+		/**
+		 * Gets available descriptions for this weather type.
+		 *
+		 * @return
+		 *   Array of descriptions.
+		 */
+		public String[] getDescriptions() {
+			return desc;
 		}
 	}
 
