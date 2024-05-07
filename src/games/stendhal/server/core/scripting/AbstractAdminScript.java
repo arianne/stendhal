@@ -11,8 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.core.scripting;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -39,7 +37,7 @@ public abstract class AbstractAdminScript extends ScriptImpl {
 
 	@Override
 	public void execute(final Player admin, final List<String> args) {
-		this.admin = checkNotNull(admin);
+		this.admin = admin;
 		final int minparams = getMinParams();
 		final int maxparams = getMaxParams();
 		if (maxparams > -1 && maxparams < minparams) {
@@ -65,13 +63,32 @@ public abstract class AbstractAdminScript extends ScriptImpl {
 	}
 
 	/**
+	 * Sends a private text to admin if set.
+	 *
+	 * @param _type
+	 *   Notification type.
+	 * @param msg
+	 *   Message contents.
+	 */
+	private void sendTextInternal(final NotificationType _type, final String msg) {
+		if (admin == null) {
+			return;
+		}
+		if (_type == null) {
+			admin.sendPrivateText(msg);
+		} else {
+			admin.sendPrivateText(_type, msg);
+		}
+	}
+
+	/**
 	 * Wrapper for sending standard text to admin.
 	 *
 	 * @param msg
 	 *   Message contents.
 	 */
 	protected void sendText(final String msg) {
-		admin.sendPrivateText(msg);
+		sendTextInternal(null, msg);
 	}
 
 	/**
@@ -81,7 +98,7 @@ public abstract class AbstractAdminScript extends ScriptImpl {
 	 *   Messag contents.
 	 */
 	protected void sendInfo(final String msg) {
-		admin.sendPrivateText(NotificationType.INFORMATION, msg);
+		sendTextInternal(NotificationType.INFORMATION, msg);
 	}
 
 	/**
@@ -91,7 +108,7 @@ public abstract class AbstractAdminScript extends ScriptImpl {
 	 *   Message contents.
 	 */
 	protected void sendWarning(final String msg) {
-		admin.sendPrivateText(NotificationType.WARNING, msg);
+		sendTextInternal(NotificationType.WARNING, msg);
 	}
 
 	/**
@@ -101,7 +118,7 @@ public abstract class AbstractAdminScript extends ScriptImpl {
 	 *   Message contents.
 	 */
 	protected void sendError(final String msg) {
-		admin.sendPrivateText(NotificationType.ERROR, msg);
+		sendTextInternal(NotificationType.ERROR, msg);
 	}
 
 	/**
@@ -130,7 +147,7 @@ public abstract class AbstractAdminScript extends ScriptImpl {
 	 * Displays usage information to admin.
 	 */
 	public void showUsage() {
-		admin.sendPrivateText(getUsage());
+		sendTextInternal(null, getUsage());
 	}
 
 	/**

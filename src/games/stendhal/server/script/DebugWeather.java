@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -31,6 +33,7 @@ public class DebugWeather extends AbstractAdminScript {
 
 	@Override
 	protected void run(final List<String> args) {
+		checkNotNull(admin);
 		final int argc = args.size();
 		final Set<String> registered = Collections.unmodifiableSet(getTypes());
 		if (registered.size() == 0) {

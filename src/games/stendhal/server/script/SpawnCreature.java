@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,6 +31,7 @@ public class SpawnCreature extends AbstractAdminScript {
 
 	@Override
 	protected void run(final List<String> args) {
+		checkNotNull(admin);
 		int x;
 		int y;
 		try {
