@@ -43,10 +43,8 @@ public abstract class AbstractAdminScript extends ScriptImpl {
 		final int minparams = getMinParams();
 		final int maxparams = getMaxParams();
 		if (maxparams > -1 && maxparams < minparams) {
-			admin.sendPrivateText(NotificationType.ERROR, "Maximum parameters ("
-					+ maxparams + ") is less than minimum parameters ("
-					+ minparams + ").");
-			return;
+			throw new IllegalArgumentException("Maximum parameters (" + maxparams
+					+ ") is less than minimum parameters (" + minparams + ").");
 		}
 		final int argc = args.size();
 		if (argc > 0 && Arrays.asList("-?", "-h", "-help", "--help")
