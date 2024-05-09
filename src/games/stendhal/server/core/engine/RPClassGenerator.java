@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,11 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.server.core.engine;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.log4j.Logger;
 
 import games.stendhal.common.constants.Events;
 import games.stendhal.server.entity.ActiveEntity;
@@ -85,6 +90,7 @@ import games.stendhal.server.events.TextEvent;
 import games.stendhal.server.events.TradeStateChangeEvent;
 import games.stendhal.server.events.TransitionGraphEvent;
 import games.stendhal.server.events.ViewChangeEvent;
+import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
@@ -403,5 +409,90 @@ public class RPClassGenerator {
 		clazz.add(DefinitionClass.ATTRIBUTE, "type", Type.STRING);
 		clazz.add(DefinitionClass.ATTRIBUTE, "text", Type.LONG_STRING);
 		clazz.add(DefinitionClass.ATTRIBUTE, "target", Type.LONG_STRING);
+	}
+
+
+	/**
+	 * Wrapper to protect against overwriting reserved {@code RPClass} attributes.
+	 *
+	 * TODO: replace this by adding attribute checking to {@code RPClass} and internal {@code add}
+	 *       method to be called by constructor that bypasses check
+	 */
+	public static class RPClassWrapper {
+
+		/** Standard attributes added by {@code RPClass} constructor that should not be overwritten. */
+		private static final List<String> reserved = Arrays.asList("id", "name", "zoneid", "#clientid",
+				"#db_id");
+
+		/** The RP class instance. */
+		private final RPClass rpclass;
+
+
+		/**
+		 * Hidden constructor as this class should not be instantiated on its own, rather it should
+		 * be cast to from an RPClass instance.
+		 *
+		 * @param name
+		 *   The class name.
+		 */
+		public RPClassWrapper(final String name) {
+			rpclass = new RPClass(name);
+		}
+
+		/**
+		 * Retrieves RP class.
+		 *
+		 * @return
+		 *   RP class instance.
+		 */
+		public RPClass getRPClass() {
+			return rpclass;
+		}
+
+		/**
+		 * Checks for usable attribute name.
+		 *
+		 * @param attribute
+		 *   Attribute name.
+		 * @return
+		 *   {@code true} if attribute is not in reserved list.
+		 */
+		private boolean checkAttributeName(final String name) {
+			if (reserved.contains(name)) {
+				Logger.getLogger(RPClassGenerator.class).error("Cannot use reserved attribute name: "
+						+ name, new Throwable());
+				return false;
+			}
+			return true;
+		}
+
+		/**
+		 * Add an attribute to class.
+		 *
+		 * @param name
+		 *   Attribute name.
+		 * @param type
+		 *   Attribute data type.
+		 * @param flags
+		 *   Attribute flags such as visibility, storability, etc.
+		 */
+		public void addAttribute(final String name, final Type type, final byte flags) {
+			if (!checkAttributeName(name)) {
+				return;
+			}
+			rpclass.addAttribute(name, type, flags);
+		}
+
+		/**
+		 * Add an attribute to class.
+		 *
+		 * @param name
+		 *   Attribute name.
+		 * @param type
+		 *   Attribute data type.
+		 */
+		public void addAttribute(final String name, final Type type) {
+			addAttribute(name, type, Definition.STANDARD);
+		}
 	}
 }
