@@ -17,7 +17,7 @@ local zone = "int_deniran_weapons_shop"
 
 local ringsmith = nil
 local questSlot = "raven_forge_ring"
-local waitTime = MathHelper.MINUTES_IN_ONE_HOUR * 6
+local waitTime = TimeUtil.MINUTES_IN_HOUR * 6
 local ring = "enhanced imperial ring"
 
 local fee = 260000
