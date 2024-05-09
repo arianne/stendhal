@@ -153,6 +153,12 @@ npc:setOutfitColor("skin", SkinColor.DARK)
 ```
 
 
+---
+# TimeUtil
+
+The [TimeUtil] class.
+
+
 [java.awt.Color]: https://docs.oracle.com/javase/8/docs/api/java/awt/Color.html
 
 [CloneManager]: /reference/java/games/stendhal/server/entity/npc/CloneManager.html
@@ -168,3 +174,4 @@ npc:setOutfitColor("skin", SkinColor.DARK)
 [ShopType]: /reference/java/games/stendhal/server/entity/npc/shop/ShopType.html
 [SingletonRepository]: /reference/java/games/stendhal/server/core/engine/SingletonRepository.html
 [SkinColor]: /reference/java/games/stendhal/common/constants/SkinColor.html
+[TimeUtil]: /reference/java/games/stendhal/server/util/TimeUtil.html
