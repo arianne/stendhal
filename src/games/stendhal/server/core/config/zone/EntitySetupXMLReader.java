@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2007-2016 - Stendhal                    *
+ *                   (C) Copyright 2007-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -43,6 +43,7 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 	 *
 	 * @return An entity setup descriptor.
 	 */
+	@SuppressWarnings("unused")
 	protected EntitySetupDescriptor read(final Element element, final int x, final int y) {
 		return new EntitySetupDescriptor(x, y);
 	}

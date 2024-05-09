@@ -3,7 +3,6 @@
  *
  * $Id$
  */
-
 package games.stendhal.server.core.config.zone;
 
 import java.util.List;
@@ -43,6 +42,7 @@ public class PortalSetupXMLReader extends EntitySetupXMLReader {
 	 *
 	 * @return A portal setup descriptor.
 	 */
+	@SuppressWarnings("unused")
 	protected PortalSetupDescriptor read(final Element element, final int x,
 			final int y, final Object identifier) {
 		return new PortalSetupDescriptor(x, y, identifier);

@@ -1184,6 +1184,7 @@ public abstract class RPEntity extends CombatEntity {
 	 * @param type Type of the damage
 	 * @return damage multiplier
 	 */
+	@SuppressWarnings("unused")
 	protected double getSusceptibility(Nature type) {
 		return 1.0;
 	}

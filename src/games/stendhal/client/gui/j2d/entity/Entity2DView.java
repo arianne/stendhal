@@ -448,6 +448,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T> {
 	 * @param height
 	 *            The drawn entity height.
 	 */
+	@SuppressWarnings("unused")
 	protected void drawEntity(final Graphics2D g2d, final int x, final int y,
 			final int width, final int height) {
 		getSprite().draw(g2d, x, y);
@@ -679,6 +680,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T> {
 	 * @param list
 	 *            The list to reorder.
 	 */
+	@SuppressWarnings("unused")
 	protected void reorderActions(final List<String> list) {
 	}
 

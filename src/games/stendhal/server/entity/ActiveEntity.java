@@ -4,7 +4,7 @@
  * $Id$
  */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -88,11 +88,13 @@ public abstract class ActiveEntity extends Entity {
 		update();
 	}
 
+	@SuppressWarnings("unused")
 	protected void move(final int x, final int y, final int nx, final int ny) {
 		setPosition(nx, ny);
 		notifyWorldAboutChanges();
 	}
 
+	@SuppressWarnings("unused")
 	protected boolean handlePortal(final Portal portal) {
 
 		return false;

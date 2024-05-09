@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2024 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -310,6 +310,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	 * @param diff
 	 *            The changes.
 	 */
+	@SuppressWarnings("unused")
 	protected void processPositioning(final RPObject base, final RPObject diff) {
 		boolean moved = false;
 
@@ -344,6 +345,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	 * @param y
 	 *            The new Y coordinate.
 	 */
+	@SuppressWarnings("unused")
 	protected void onPosition(final double x, final double y) {
 		fireChange(PROP_POSITION);
 	}

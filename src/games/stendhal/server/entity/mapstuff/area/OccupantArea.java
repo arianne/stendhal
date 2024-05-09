@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2007-2023 - Stendhal                     *
+ *                    Copyright © 2007-2024 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -104,6 +104,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	 * @return <code>false</code> if this entity should not be processed,
 	 *         <code>true</code> otherwise.
 	 */
+	@SuppressWarnings("unused")
 	protected boolean handleAdded(final RPEntity entity) {
 		return true;
 	}
@@ -117,6 +118,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	 * @return <code>false</code> if this entity should be removed from
 	 *         further processing, <code>true</code> otherwise.
 	 */
+	@SuppressWarnings("unused")
 	protected boolean handleInterval(final RPEntity entity) {
 		return true;
 	}
@@ -130,6 +132,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	 * @return <code>false</code> if this entity should be removed from
 	 *         further processing, <code>true</code> otherwise.
 	 */
+	@SuppressWarnings("unused")
 	protected boolean handleMovement(final RPEntity entity) {
 		return true;
 	}
@@ -141,6 +144,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	 * @param entity
 	 *            The RPEntity that was added.
 	 */
+	@SuppressWarnings("unused")
 	protected void handleRemoved(final RPEntity entity) {
 		// can be implemented by sub classes.
 	}

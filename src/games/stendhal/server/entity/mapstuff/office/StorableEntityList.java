@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -173,6 +173,7 @@ public abstract class StorableEntityList<T extends Entity> implements TurnListen
 
 	protected abstract String getName(T entity);
 
+	@SuppressWarnings("unused")
 	protected boolean shouldExpire(final T entity) {
 		return false;
 	}
