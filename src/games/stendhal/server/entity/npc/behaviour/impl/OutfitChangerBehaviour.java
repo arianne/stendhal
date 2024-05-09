@@ -9,7 +9,6 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-
 package games.stendhal.server.entity.npc.behaviour.impl;
 
 import java.util.ArrayList;

@@ -1384,7 +1384,7 @@ public abstract class RPEntity extends CombatEntity {
 			int attackerRoll = Rand.roll1D20();
 			int defenderRoll = Rand.roll1D20();
 
-System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
+			System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 			if (attackerRoll > defenderRoll) {
 				this.dropDroppableItem(droppable);

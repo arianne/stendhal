@@ -16,9 +16,6 @@
  ***************************************************************************/
 package games.stendhal.server.core.config.zone;
 
-//
-//
-
 import org.apache.log4j.Logger;
 import org.w3c.dom.Element;
 

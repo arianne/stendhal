@@ -21,9 +21,6 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Element;
 
-//
-//
-
 import games.stendhal.server.core.config.XMLUtil;
 
 /**

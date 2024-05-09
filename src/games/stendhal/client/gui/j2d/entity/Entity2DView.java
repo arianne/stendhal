@@ -26,9 +26,6 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.apache.log4j.Logger;
 
-//
-//
-
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.entity.ActionType;

@@ -14,7 +14,6 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-
 package games.stendhal.server.entity;
 
 import static games.stendhal.common.constants.Actions.MOVE_CONTINUOUS;
@@ -96,7 +95,6 @@ public abstract class ActiveEntity extends Entity {
 
 	@SuppressWarnings("unused")
 	protected boolean handlePortal(final Portal portal) {
-
 		return false;
 	}
 
