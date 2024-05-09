@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -28,6 +28,7 @@ import games.stendhal.server.entity.GuidedEntity;
  */
 public class EntityGuide {
 
+	@SuppressWarnings("unused")
 	public void guideMe(final GuidedEntity ge) {
 		// empty default implementation
 	}

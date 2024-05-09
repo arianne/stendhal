@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2012-2016 - Stendhal                    *
+ *                   (C) Copyright 2012-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -93,6 +93,7 @@ public class BlockTarget extends AreaEntity implements PuzzleEntity {
 	 * @param b The Block that was pushed on this target
 	 * @param p The Player who has pushed the triggering Block on this target
 	 */
+	@SuppressWarnings("unused")
 	public void trigger(Block b, Player p) {
 		if(this.action != null) {
 			this.action.fire(p, null, null);
@@ -103,7 +104,7 @@ public class BlockTarget extends AreaEntity implements PuzzleEntity {
 	}
 
 	/**
-	 * Untriggeres this BlockTarget
+	 * Untriggers this BlockTarget
 	 */
 	public void untrigger() {
 		if (puzzleBuildingBlock != null) {

@@ -148,6 +148,7 @@ public class ProducerRegister {
 	 * @param npcName name of quest
 	 * @return details
 	 */
+	@SuppressWarnings("unused")
 	public String getProductionDescription(final Player player, final String npcName) {
 		for (final Pair<String, ProducerBehaviour> producer : producers) {
 			if(npcName.equals(producer.first())) {

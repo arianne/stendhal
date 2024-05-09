@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -147,6 +147,7 @@ public class ItemLogger {
 	}
 
 
+	@SuppressWarnings("unused")
 	public void splitOff(final RPEntity player, final Item item, final Item newItem, final int quantity) {
 		if (!(player instanceof Player)) {
 			return;

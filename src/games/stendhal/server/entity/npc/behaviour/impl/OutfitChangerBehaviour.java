@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Marauroa                    *
+ *                   (C) Copyright 2003-2024 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -120,6 +120,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 	 * 		If <code>true</code>, player's original outfit will be restored before setting
 	 * 		setting the new one.
 	 */
+	@SuppressWarnings("unused")
 	@Deprecated
 	public OutfitChangerBehaviour(final Map<String, Integer> priceList, final int endurance,
 			final String wearOffMessage, final boolean reset) {

@@ -310,6 +310,7 @@ public abstract class RPEntity extends CombatEntity {
 	 *
 	 * @return A number between -scale and scale.
 	 */
+	@SuppressWarnings("unused")
 	public double useKarma(final double scale) {
 		// No impact
 		return 0.0;
@@ -327,6 +328,7 @@ public abstract class RPEntity extends CombatEntity {
 	 *
 	 * @return A number within negLimit &lt;= 0 &lt;= posLimit.
 	 */
+	@SuppressWarnings("unused")
 	public double useKarma(final double negLimit, final double posLimit) {
 		// No impact
 		return 0.0;
@@ -346,6 +348,7 @@ public abstract class RPEntity extends CombatEntity {
 	 *
 	 * @return A number within negLimit &lt;= 0 &lt;= posLimit.
 	 */
+	@SuppressWarnings("unused")
 	public double useKarma(final double negLimit, final double posLimit,
 			final double granularity) {
 		// No impact
@@ -1367,6 +1370,7 @@ public abstract class RPEntity extends CombatEntity {
 	 * @param attacker
 	 * @return event description
 	 */
+	@SuppressWarnings("unused")
 	public String maybeDropDroppables(RPEntity attacker) {
 		List<Item> droppables = getDroppables();
 		if (droppables.isEmpty()) {
@@ -2688,6 +2692,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 * @param text
 	 *            The message.
 	 */
+	@SuppressWarnings("unused")
 	public void sendPrivateText(final String text) {
 		// does nothing in this implementation.
 	}

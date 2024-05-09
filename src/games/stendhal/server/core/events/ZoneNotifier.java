@@ -52,6 +52,7 @@ public class ZoneNotifier {
 	 * @param destinationZone
 	 *            destination zone
 	 */
+	@SuppressWarnings("unused")
 	public static void zoneChange(final Player player, final String sourceZone,
 			final String destinationZone) {
 		if (destinationZone.equals("-1_semos_catacombs_se")) {

@@ -844,7 +844,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return collisionMap.leavesZone(area);
 	}
 
-	public boolean simpleCollides(final Entity entity, final double x, final double y, final double w, final double h) {
+	@SuppressWarnings("unused")
+	public boolean simpleCollides(final Entity entity, final double x, final double y, final double w,
+			final double h) {
 		return collisionMap.collides(x, y, w, h);
 	}
 

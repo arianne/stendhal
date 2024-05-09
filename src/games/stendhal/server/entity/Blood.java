@@ -114,6 +114,7 @@ public class Blood extends PassiveEntity {
 	 * @param currentTurn
 	 *            The current turn number.
 	 */
+	@SuppressWarnings("unused")
 	public void onTurnReached(final int currentTurn) {
 		getZone().remove(this);
 	}

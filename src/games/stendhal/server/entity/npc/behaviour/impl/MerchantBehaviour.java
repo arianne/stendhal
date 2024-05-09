@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -141,6 +141,7 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 	 *
 	 * @return The price; 0 if no item was chosen or if the amount is 0.
 	 */
+	@SuppressWarnings("unused")
 	public int getCharge(ItemParserResult res, final Player player) {
 		if (res.getChosenItemName() == null) {
 			return 0;

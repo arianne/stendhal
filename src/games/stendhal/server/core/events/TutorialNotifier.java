@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2015 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -177,6 +177,7 @@ public class TutorialNotifier {
 	 * @param player
 	 *            Player
 	 */
+	@SuppressWarnings("unused")
 	public static void newrelease(final Player player) {
 		// process(player, TutorialEventType.NEW_RELEASE77);
 	}

@@ -1003,6 +1003,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	 * @param slot slot where the item is equipped
 	 * @return unknown, see the note above
 	 */
+	@SuppressWarnings("unused")
 	public boolean onEquipped(RPEntity equipper, String slot) {
 
 		// this.prevEntity = equipper;

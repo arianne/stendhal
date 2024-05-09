@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2006-2012 - Stendhal                    *
+ *                   (C) Copyright 2006-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -38,6 +38,7 @@ public abstract class StendhalServerExtension implements StendhalServerExtension
 	 * @param name
 	 * @return <code>true</code> on success, otherwise <code>false>/code>
 	 */
+	@SuppressWarnings("unused")
 	public synchronized boolean perform(final String name) {
 		return (false);
 	}
@@ -46,6 +47,7 @@ public abstract class StendhalServerExtension implements StendhalServerExtension
 	 * @param name
 	 * @return message
 	 */
+	@SuppressWarnings("unused")
 	public String getMessage(final String name) {
 		return (null);
 	}

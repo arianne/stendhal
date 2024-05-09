@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -61,6 +61,7 @@ abstract class AbstractBehaviourAction<B extends Behaviour> implements ChatActio
 	 * @param sentence
 	 * @param npc
 	 */
+	@SuppressWarnings("unused")
 	public void fireSentenceError(Player player, Sentence sentence, EventRaiser npc) {
 		npc.say("Sorry, I did not understand you. " + sentence.getErrorString());
 	}

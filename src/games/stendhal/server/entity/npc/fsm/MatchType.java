@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -78,8 +78,9 @@ public enum MatchType {
 		}
 	};
 
-	public boolean match(final Transition transition,
-			final ConversationStates currentState, final Sentence sentence) {
+	@SuppressWarnings("unused")
+	public boolean match(final Transition transition, final ConversationStates currentState,
+			final Sentence sentence) {
 		return false;
 	}
 

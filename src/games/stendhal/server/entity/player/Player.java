@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                    (C) Copyright 2003-2023 - Arianne                    *
+ *                    (C) Copyright 2003-2024 - Arianne                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -319,6 +319,7 @@ public class Player extends DressedEntity implements UseListener {
 	 *            Stop movement if no (valid) directions are active if
 	 *            <code>true</code>.
 	 */
+	@SuppressWarnings("unused")
 	public void applyClientDirection(final boolean stopOnNone) {
 		int size;
 		Direction direction;
@@ -1697,6 +1698,7 @@ public class Player extends DressedEntity implements UseListener {
 	 *
 	 * @param entity
 	 */
+	@SuppressWarnings("unused")
 	public void onPush(final RPEntity entity) {
 		turnOfLastPush = SingletonRepository.getRuleProcessor().getTurn();
 	}
