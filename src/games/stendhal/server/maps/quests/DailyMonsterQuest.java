@@ -22,7 +22,6 @@ import java.util.Random;
 
 import org.apache.log4j.Logger;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -53,6 +52,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.semos.townhall.MayorNPC;
 import games.stendhal.server.util.ResetSpeakerNPC;
+import games.stendhal.server.util.TimeUtil;
 
 /**
  * QUEST: Daily Monster Kill Quest.
@@ -82,8 +82,8 @@ public class DailyMonsterQuest extends AbstractQuest {
 	private final String npcName = "Mayor Sakhs";
 	private static Logger logger = Logger.getLogger("DailyMonsterQuest");
 
-	private final static int delay = MathHelper.MINUTES_IN_ONE_DAY;
-	private final static int expireDelay = MathHelper.MINUTES_IN_ONE_WEEK;
+	private final static int delay = TimeUtil.MINUTES_IN_DAY;
+	private final static int expireDelay = TimeUtil.MINUTES_IN_WEEK;
 
 
 	/** All creatures, sorted by level. */
@@ -303,7 +303,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 		if (player.isQuestCompleted(QUEST_SLOT)) {
 			final String[] tokens = (questState + ";0;0;0").split(";");
 			final String questLast = tokens[1];
-			final long timeRemaining = Long.parseLong(questLast) + MathHelper.MILLISECONDS_IN_ONE_DAY
+			final long timeRemaining = Long.parseLong(questLast) + TimeUtil.MILLISECONDS_IN_DAY
 					- System.currentTimeMillis();
 
 			if (timeRemaining > 0L) {

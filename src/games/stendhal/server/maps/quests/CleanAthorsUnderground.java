@@ -11,13 +11,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.quest.KillCreaturesQuestBuilder;
 import games.stendhal.server.entity.npc.quest.QuestManuscript;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.util.TimeUtil;
 
 /**
  * QUEST: Clean Athors underground
@@ -55,7 +55,7 @@ public class CleanAthorsUnderground implements QuestManuscript {
 			.name("Clean Athor's Underground")
 			.description("John and his wife Jane want to explore Athor underground on their vacation, but unfortunately they can't.")
 			.internalName("clean_athors_underground")
-			.repeatableAfterMinutes(MathHelper.MINUTES_IN_ONE_WEEK)
+			.repeatableAfterMinutes(TimeUtil.MINUTES_IN_WEEK)
 			.minLevel(70)
 			.region(Region.ATHOR_ISLAND)
 			.questGiverNpc("John");

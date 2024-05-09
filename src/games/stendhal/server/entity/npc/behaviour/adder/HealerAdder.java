@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.adder;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.constants.SoundID;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.ItemParserResult;
@@ -28,6 +27,7 @@ import games.stendhal.server.entity.npc.behaviour.journal.ServicersRegister;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
+import games.stendhal.server.util.TimeUtil;
 
 public class HealerAdder {
 
@@ -98,7 +98,7 @@ public class HealerAdder {
 							&& (player.getLastPVPActionTime() > System
 									.currentTimeMillis()
 									- 2
-									* MathHelper.MILLISECONDS_IN_ONE_HOUR) || player.isBadBoy())) {
+									* TimeUtil.MILLISECONDS_IN_HOUR) || player.isBadBoy())) {
 						// ignore the PVP flag for very young
 						// characters
 						// (low atk, low def AND low level)

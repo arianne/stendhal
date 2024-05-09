@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2024 - Arianne                      *
+ *                 Copyright © 2003-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -44,6 +44,7 @@ import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.nalwor.flowershop.FlowerGrowerNPC;
 import games.stendhal.server.util.ItemCollection;
 import games.stendhal.server.util.ResetSpeakerNPC;
+import games.stendhal.server.util.TimeUtil;
 
 /**
  * QUEST: Restock the Flower Shop
@@ -86,7 +87,7 @@ public class RestockFlowerShop extends AbstractQuest {
 	private static final int REQ_WATER = 15;
 
 	// Time player must wait to repeat quest (3 days)
-	private static final int WAIT_TIME = 3 * MathHelper.MINUTES_IN_ONE_DAY;
+	private static final int WAIT_TIME = 3 * TimeUtil.MINUTES_IN_DAY;
 
 	// Quest NPC
 	private SpeakerNPC npc;

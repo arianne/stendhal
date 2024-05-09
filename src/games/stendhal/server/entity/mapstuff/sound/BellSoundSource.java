@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,13 +14,13 @@ package games.stendhal.server.entity.mapstuff.sound;
 
 import java.util.Calendar;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.events.SoundEvent;
+import games.stendhal.server.util.TimeUtil;
 
 /**
  * A sound event generating object for the churches. Plays bell sound every half
@@ -35,7 +35,7 @@ public class BellSoundSource extends PassiveEntity implements TurnListener {
 	private static final int VOLUME = 120;
 
 	/** Time between bell playings in minutes. */
-	private static final int TIME_SLICE = MathHelper.MINUTES_IN_ONE_HOUR / 2;
+	private static final int TIME_SLICE = TimeUtil.MINUTES_IN_HOUR / 2;
 
 	/** Time between individual bell sounds when playing */
 	private static final int TIME_BETWEEN_SOUNDS = 3;
@@ -83,7 +83,7 @@ public class BellSoundSource extends PassiveEntity implements TurnListener {
 		 */
 		Calendar now = Calendar.getInstance();
 		int timeToNext = TIME_SLICE - (now.get(Calendar.MINUTE) % TIME_SLICE);
-		SingletonRepository.getTurnNotifier().notifyInSeconds(Math.max(1, timeToNext * MathHelper.SECONDS_IN_ONE_MINUTE), this);
+		SingletonRepository.getTurnNotifier().notifyInSeconds(Math.max(1, timeToNext * TimeUtil.SECONDS_IN_MINUTE), this);
 	}
 
 	/**

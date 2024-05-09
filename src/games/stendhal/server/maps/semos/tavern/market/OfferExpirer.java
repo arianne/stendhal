@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,7 +16,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.dbcommand.StoreMessageCommand;
 import games.stendhal.server.core.events.TurnListener;
@@ -50,24 +49,24 @@ public class OfferExpirer implements TurnListener{
 	/**
 	 * Total time in seconds before sending the player a warning.
 	 */
-	private static final int TIME_TO_WARNING = DAYS_TO_WARNING * MathHelper.SECONDS_IN_ONE_DAY;
+	private static final int TIME_TO_WARNING = DAYS_TO_WARNING * TimeUtil.SECONDS_IN_DAY;
 	/**
 	 * Total time in seconds before expiring an offer.
 	 */
-	protected static final int TIME_TO_EXPIRING = (DAYS_TO_WARNING + DAYS_TO_EXPIRING) * MathHelper.SECONDS_IN_ONE_DAY;
+	protected static final int TIME_TO_EXPIRING = (DAYS_TO_WARNING + DAYS_TO_EXPIRING) * TimeUtil.SECONDS_IN_DAY;
 	/**
 	 * Total time in seconds before removing an offer completely.
 	 */
-	private static final int TIME_TO_REMOVING = (DAYS_TO_WARNING + DAYS_TO_EXPIRING + DAYS_TO_REMOVING) * MathHelper.SECONDS_IN_ONE_DAY;
+	private static final int TIME_TO_REMOVING = (DAYS_TO_WARNING + DAYS_TO_EXPIRING + DAYS_TO_REMOVING) * TimeUtil.SECONDS_IN_DAY;
 	private long timeStamp = 0;
 
-	private static final int TIME_TO_REMOVING_EARNINGS = DAYS_BEFORE_REMOVING_EARNINGS * MathHelper.SECONDS_IN_ONE_DAY;
+	private static final int TIME_TO_REMOVING_EARNINGS = DAYS_BEFORE_REMOVING_EARNINGS * TimeUtil.SECONDS_IN_DAY;
 
 	/**
 	 * Time between checks in seconds.
 	 */
-	private static final int CHECKING_INTERVAL = MathHelper.SECONDS_IN_ONE_HOUR;
-	// MathHelper.SECONDS_IN_ONE_MINUTE;
+	private static final int CHECKING_INTERVAL = TimeUtil.SECONDS_IN_HOUR;
+	// TimeUtil.SECONDS_IN_MINUTE;
 
 	private Market market;
 

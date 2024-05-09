@@ -16,7 +16,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -70,7 +69,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (player.hasQuest(QUEST_SLOT)) {
-							final long delay = REQUIRED_DAYS * MathHelper.MILLISECONDS_IN_ONE_DAY;
+							final long delay = REQUIRED_DAYS * TimeUtil.MILLISECONDS_IN_DAY;
 							final long timeRemaining = (Long.parseLong(player.getQuest(QUEST_SLOT))
 									+ delay) - System.currentTimeMillis();
 							if (timeRemaining > 0L) {

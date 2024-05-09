@@ -14,9 +14,9 @@ package games.stendhal.server.entity.item.scroll;
 
 import java.util.Map;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.events.DelayedPlayerTextSender;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.TimeUtil;
 
 /**
  * Represents the balloon that takes the player to 7 kikareukin clouds,
@@ -24,7 +24,7 @@ import games.stendhal.server.entity.player.Player;
  */
 public class BalloonScroll extends TimedTeleportScroll {
 
-	private static final long DELAY = 6 * MathHelper.MILLISECONDS_IN_ONE_HOUR;
+	private static final long DELAY = 6 * TimeUtil.MILLISECONDS_IN_HOUR;
 	private static final int NEWTIME = 540;
 
 	/**

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -23,7 +23,6 @@ import java.util.Queue;
 
 import org.apache.log4j.Logger;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.color.ARGB;
 import games.stendhal.common.color.HSL;
@@ -548,7 +547,7 @@ public class MazeGenerator {
 	 */
 	protected void rewardPlayer(Player player) {
 		long timediff = System.currentTimeMillis() - timeStamp;
-		double normalized = timediff / (double) (DEFAULT_SOLVING_TIME * MathHelper.MILLISECONDS_IN_ONE_MINUTE);
+		double normalized = timediff / (double) (DEFAULT_SOLVING_TIME * TimeUtil.MILLISECONDS_IN_MINUTE);
 		// theoretical maximum e * DEFAULT_REWARD_POINTS
 		int points = (int) (DEFAULT_REWARD_POINTS * Math.exp(1 - normalized));
 		// Give at least one xp for persistent but hopelessly slow players

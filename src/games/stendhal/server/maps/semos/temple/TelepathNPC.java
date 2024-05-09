@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,7 +15,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -122,10 +121,10 @@ public class TelepathNPC implements ZoneConfigurator {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if ((player.getLastPVPActionTime() > System.currentTimeMillis()
-								- 2 * MathHelper.MILLISECONDS_IN_ONE_WEEK)) {
+								- 2 * TimeUtil.MILLISECONDS_IN_WEEK)) {
 							// player attacked another within the last two weeks
 							long timeRemaining = player.getLastPVPActionTime() - System.currentTimeMillis()
-									+ 2 * MathHelper.MILLISECONDS_IN_ONE_WEEK;
+									+ 2 * TimeUtil.MILLISECONDS_IN_WEEK;
 							raiser.say("You will have to abstain from even attacking other people for two full weeks. So come back in " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ". And remember, I will know if you even think bad thoughts!");
 						} else if (player.getKarma() < 5) {
 							// player does not have much good karma

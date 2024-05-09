@@ -1,5 +1,5 @@
 /***************************************************************************
- *                       Copyright © 2023 - Stendhal                       *
+ *                 Copyright © 2023-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,12 +17,12 @@ import static games.stendhal.server.maps.magic.house1.ChallengerNPC.QUEST_SLOT;
 import java.util.LinkedList;
 import java.util.List;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.TimeUtil;
 
 
 /**
@@ -128,7 +128,7 @@ public class AdventureIsland extends AbstractQuest {
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return isCompleted(player)
-			&& new TimePassedCondition(QUEST_SLOT, MathHelper.MINUTES_IN_ONE_DAY * DAYS_BEFORE_REPEAT)
+			&& new TimePassedCondition(QUEST_SLOT, TimeUtil.MINUTES_IN_DAY * DAYS_BEFORE_REPEAT)
 				.fire(player, null, null);
 	}
 

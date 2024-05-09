@@ -20,7 +20,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.constants.SoundID;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.Grammar;
@@ -39,6 +38,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
+import games.stendhal.server.util.TimeUtil;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.command.AbstractDBCommand;
 import marauroa.server.db.command.DBCommandQueue;
@@ -54,9 +54,9 @@ class HouseTax implements TurnListener {
 
 	private static final Logger logger = Logger.getLogger(HouseTax.class);
 	/** How often the tax should be paid. Time in seconds. */
-	private static final int TAX_PAYMENT_PERIOD = 30 * MathHelper.SECONDS_IN_ONE_DAY;
+	private static final int TAX_PAYMENT_PERIOD = 30 * TimeUtil.SECONDS_IN_DAY;
 	/** How often the payments should be checked. Time in seconds */
-	private static final int TAX_CHECKING_PERIOD = MathHelper.SECONDS_IN_ONE_DAY;
+	private static final int TAX_CHECKING_PERIOD = TimeUtil.SECONDS_IN_DAY;
 	/** How many tax payments can be unpaid. Any more and the house will be confiscated */
 	private static final int MAX_UNPAID_TAXES = 5;
 

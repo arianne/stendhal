@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2018 - Arianne                          *
+ *                 Copyright © 2018-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.Direction;
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.constants.Testing;
 import games.stendhal.common.parser.ConversationParser;
 import games.stendhal.common.parser.Sentence;
@@ -80,7 +79,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 	private static final int COST = 5000;
 
 	/** time (in seconds) allowed for training session */
-	private static final int TRAIN_TIME = 15 * MathHelper.SECONDS_IN_ONE_MINUTE;
+	private static final int TRAIN_TIME = 15 * TimeUtil.SECONDS_IN_MINUTE;
 
 	/** time player must wait to train again */
 	private static final int COOLDOWN = 15;
@@ -424,7 +423,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 				ConversationPhrases.YES_MESSAGES,
 				new PlayerHasItemWithHimCondition("money", COST),
 				ConversationStates.IDLE,
-				"You can train for up to " + Integer.toString(TRAIN_TIME / MathHelper.SECONDS_IN_ONE_MINUTE) + " minutes. So make good use of yer time.",
+				"You can train for up to " + Integer.toString(TRAIN_TIME / TimeUtil.SECONDS_IN_MINUTE) + " minutes. So make good use of yer time.",
 				new MultipleActions(
 						new DropItemAction("money", COST),
 						new SetQuestAction(QUEST_SLOT, STATE_ACTIVE + ";" + Integer.toString(TRAIN_TIME)),
@@ -599,8 +598,8 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 			if (playerTemp != null) {
 				if (timeRemaining != null && timeRemaining > 0) {
 					// notify players at 10 minute mark & every minute after 5 minute mark
-					if (timeRemaining == 10 * MathHelper.SECONDS_IN_ONE_MINUTE ||
-							(timeRemaining <= 5 * MathHelper.SECONDS_IN_ONE_MINUTE && timeRemaining % 60 == 0)) {
+					if (timeRemaining == 10 * TimeUtil.SECONDS_IN_MINUTE ||
+							(timeRemaining <= 5 * TimeUtil.SECONDS_IN_MINUTE && timeRemaining % 60 == 0)) {
 						ranger.say(playerTemp.getName() + ", you have " + TimeUtil.timeUntil(timeRemaining) + " left.");
 					}
 					// remaining time needs to be updated every second in order to be saved if player logs out

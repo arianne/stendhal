@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,7 +14,6 @@ package games.stendhal.server.entity.npc.condition;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
@@ -22,6 +21,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConditionBuilder;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.TimeUtil;
 
 /**
  * Has 'delay' time passed since the quest was last done?
@@ -74,7 +74,7 @@ public class TimePassedCondition implements ChatCondition {
 			return true;
 		} else {
 			final String[] tokens = player.getQuest(questname).split(";");
-			final long delayInMilliseconds = delay * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
+			final long delayInMilliseconds = delay * TimeUtil.MILLISECONDS_IN_MINUTE;
 			if (tokens.length - 1 < index) {
 				// old quest status, the split did not work, so we assume enough time is passed.
 				return true;

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
@@ -94,7 +93,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 							raiser.setCurrentState(ConversationStates.ATTENDING);
 						}  else if (player.getQuest(QUEST_SLOT).startsWith("killed;")) {
 							final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-							final long delay = 2 * MathHelper.MILLISECONDS_IN_ONE_WEEK;
+							final long delay = 2 * TimeUtil.MILLISECONDS_IN_WEEK;
 							final long timeRemaining = Long.parseLong(tokens[1]) + delay - System.currentTimeMillis();
 							if (timeRemaining > 0) {
 								raiser.say("Thank you for helping us. Maybe you could come back later. The dwarves might return. Try coming back in " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
@@ -216,7 +215,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed"),
-				new TimePassedCondition(QUEST_SLOT, 1, 2*MathHelper.MINUTES_IN_ONE_WEEK)).fire(player,null, null);
+				new TimePassedCondition(QUEST_SLOT, 1, 2*TimeUtil.MINUTES_IN_WEEK)).fire(player,null, null);
 	}
 
 	@Override

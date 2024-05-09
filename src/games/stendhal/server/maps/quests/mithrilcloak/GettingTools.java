@@ -16,7 +16,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.ConversationParser;
 import games.stendhal.common.parser.ExpressionType;
@@ -152,7 +151,7 @@ class GettingTools {
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String[] tokens = player.getQuest(mithrilcloak.getQuestSlot()).split(";");
 					// minutes -> milliseconds
-					final long delay = REQUIRED_MINUTES_SCISSORS * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
+					final long delay = REQUIRED_MINUTES_SCISSORS * TimeUtil.MILLISECONDS_IN_MINUTE;
 					final long timeRemaining = (Long.parseLong(tokens[1]) + delay)
 							- System.currentTimeMillis();
 					if (timeRemaining > 0L) {
@@ -463,7 +462,7 @@ class GettingTools {
 						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 							final String[] tokens = player.getQuest(mithrilcloak.getQuestSlot()).split(";");
 							// hours -> milliseconds
-							final long delay = REQUIRED_HOURS_SEWING * MathHelper.MILLISECONDS_IN_ONE_HOUR;
+							final long delay = REQUIRED_HOURS_SEWING * TimeUtil.MILLISECONDS_IN_HOUR;
 							final long timeRemaining = (Long.parseLong(tokens[1]) + delay)
 								- System.currentTimeMillis();
 							if (timeRemaining > 0L) {

@@ -19,7 +19,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -71,7 +70,7 @@ public class KillBlordroughs extends AbstractQuest {
 
 	private static final String QUEST_NPC = "Mrotho";
 	private static final String QUEST_SLOT = "kill_blordroughs";
-	private final long questdelay = MathHelper.MILLISECONDS_IN_ONE_WEEK;
+	private final long questdelay = TimeUtil.MILLISECONDS_IN_WEEK;
 	protected final int killsnumber = 100;
 	private SpeakerNPC npc;
 	private static Logger logger = Logger.getLogger(KillBlordroughs.class);
@@ -450,7 +449,7 @@ public class KillBlordroughs extends AbstractQuest {
 	public boolean isRepeatable(final Player player) {
 		return new AndCondition(
 				new QuestCompletedCondition(QUEST_SLOT),
-				new TimePassedCondition(QUEST_SLOT, 1, MathHelper.MINUTES_IN_ONE_WEEK)).fire(player, null, null);
+				new TimePassedCondition(QUEST_SLOT, 1, TimeUtil.MINUTES_IN_WEEK)).fire(player, null, null);
 	}
 
 	/**

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,7 +15,6 @@ package games.stendhal.server.maps.quests;
 import java.util.ArrayList;
 import java.util.List;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -29,6 +28,7 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.TimeUtil;
 
 /**
  * QUEST: Dragon Lair Access
@@ -74,14 +74,14 @@ public class DragonLair extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, MathHelper.MINUTES_IN_ONE_WEEK))),
+				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, TimeUtil.MINUTES_IN_WEEK))),
 				ConversationStates.ATTENDING,
 				null,
-				new SayTimeRemainingAction(QUEST_SLOT, 1, MathHelper.MINUTES_IN_ONE_WEEK, "I think they've had enough excitement for a while. Come back in"));
+				new SayTimeRemainingAction(QUEST_SLOT, 1, TimeUtil.MINUTES_IN_WEEK, "I think they've had enough excitement for a while. Come back in"));
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT, 1, MathHelper.MINUTES_IN_ONE_WEEK)),
+				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT, 1, TimeUtil.MINUTES_IN_WEEK)),
 				ConversationStates.QUEST_OFFERED,
 				"Be warned, the dragons have started breathing fire! Anyway, would you like to visit our dragons again?",
 				null);
@@ -162,7 +162,7 @@ public class DragonLair extends AbstractQuest {
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return	new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
-				new TimePassedCondition(QUEST_SLOT,1,MathHelper.MINUTES_IN_ONE_WEEK)).fire(player, null, null);
+				new TimePassedCondition(QUEST_SLOT,1,TimeUtil.MINUTES_IN_WEEK)).fire(player, null, null);
 	}
 	@Override
 	public String getNPCName() {

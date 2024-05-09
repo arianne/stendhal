@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                 Copyright © 2020-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -21,7 +21,6 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.SkinColor;
 import games.stendhal.common.constants.SoundLayer;
@@ -50,6 +49,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
+import games.stendhal.server.util.TimeUtil;
 import marauroa.common.Pair;
 
 
@@ -169,7 +169,7 @@ public class CollectEnemyData extends AbstractQuest {
 			}
 		};
 
-		teleporterBehaviour.setTarryDuration(MathHelper.SECONDS_IN_ONE_MINUTE * 15); // spends 15 minutes on a map
+		teleporterBehaviour.setTarryDuration(TimeUtil.SECONDS_IN_MINUTE * 15); // spends 15 minutes on a map
 		teleporterBehaviour.setExitsConversation(false);
 		teleporterBehaviour.setTeleportWarning("I must leave soon.");
 

@@ -18,7 +18,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -47,6 +46,7 @@ import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.util.TimeUtil;
 
 /**
  * QUEST: Zoo Food
@@ -76,7 +76,7 @@ import games.stendhal.server.maps.Region;
 public class ZooFood extends AbstractQuest {
 
 	private static final int REQUIRED_HAM = 10;
-	private static final int DELAY = MathHelper.MINUTES_IN_ONE_WEEK;
+	private static final int DELAY = TimeUtil.MINUTES_IN_WEEK;
 
 	private static final String QUEST_SLOT = "zoo_food";
 

@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.Direction;
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.constants.SoundID;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.parser.Sentence;
@@ -41,6 +40,7 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.maps.nalwor.forest.TrainingArea.TrainerNPC;
+import games.stendhal.server.util.TimeUtil;
 
 
 public class Dojo implements ZoneConfigurator {
@@ -154,7 +154,7 @@ public class Dojo implements ZoneConfigurator {
 				samurai.say("You can train for up to " + trainTime + " minutes. So make good use of your time.");
 				player.drop("money", dojoArea.calculateFee(player.getAtk()));
 				samurai.addEvent(new SoundEvent(SoundID.COMMERCE, SoundLayer.CREATURE_NOISE));
-				dojoArea.startSession(player, trainTime * MathHelper.SECONDS_IN_ONE_MINUTE);
+				dojoArea.startSession(player, trainTime * TimeUtil.SECONDS_IN_MINUTE);
 			}
 		};
 

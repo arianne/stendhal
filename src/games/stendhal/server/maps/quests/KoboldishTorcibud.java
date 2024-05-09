@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -10,7 +10,6 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-
 package games.stendhal.server.maps.quests;
 
 import java.util.ArrayList;
@@ -20,7 +19,6 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
@@ -103,8 +101,8 @@ public class KoboldishTorcibud extends AbstractQuest {
 	public static final String QUEST_SLOT = "koboldish_torcibud";
 
 	// the torcibud quest cannot be repeated before 3 to 6 days
-	private static final int MIN_DELAY = 3 * MathHelper.MINUTES_IN_ONE_DAY;
-	private static final int MAX_DELAY = 6 * MathHelper.MINUTES_IN_ONE_DAY;
+	private static final int MIN_DELAY = 3 * TimeUtil.MINUTES_IN_DAY;
+	private static final int MAX_DELAY = 6 * TimeUtil.MINUTES_IN_DAY;
 
 	// how much XP is given as the reward
 	private static final int XP_REWARD = 500;

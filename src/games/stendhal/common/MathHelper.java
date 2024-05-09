@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,19 +16,6 @@ package games.stendhal.common;
  * Helper functions for various mathematical tasks.
  */
 public class MathHelper {
-	public static final long MILLISECONDS_IN_ONE_MINUTE = 60 * 1000;
-	public static final long MILLISECONDS_IN_ONE_HOUR = 60 * MILLISECONDS_IN_ONE_MINUTE;
-	public static final long MILLISECONDS_IN_ONE_DAY = 24 * MILLISECONDS_IN_ONE_HOUR;
-	public static final long MILLISECONDS_IN_ONE_WEEK = 7 * MILLISECONDS_IN_ONE_DAY;
-	public static final int SECONDS_IN_ONE_MINUTE = 60;
-	public static final int SECONDS_IN_ONE_HOUR = 60 * SECONDS_IN_ONE_MINUTE;
-	public static final int SECONDS_IN_ONE_DAY = 24 * SECONDS_IN_ONE_HOUR;
-	public static final int SECONDS_IN_ONE_WEEK = 7 * SECONDS_IN_ONE_DAY;
-	public static final int MINUTES_IN_ONE_HOUR = 60;
-	public static final int MINUTES_IN_ONE_DAY = MINUTES_IN_ONE_HOUR * 24;
-	public static final int MINUTES_IN_ONE_WEEK = MINUTES_IN_ONE_DAY * 7;
-
-	public static final int TURNS_IN_ONE_MINUTE = (int) (60 / 0.3); // 200
 
 	/**
 	 * Parses a double safely, returning a default if nothing can be sanely

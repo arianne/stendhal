@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                 Copyright © 2020-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.Direction;
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.constants.SkinColor;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -70,7 +69,7 @@ public class TannerNPC implements ZoneConfigurator {
 	// players must have looted at least 1,000,000 money to get the money pouch
 	private static final int requiredMoneyLoot = 100000;
 	private static final int serviceFee = 50000;
-	private static final int TAN_TIME = MathHelper.MINUTES_IN_ONE_DAY;
+	private static final int TAN_TIME = TimeUtil.MINUTES_IN_DAY;
 	// required items to make pouch
 	private static final Map<String, Integer> requiredItems = new LinkedHashMap<String, Integer>() {{
 		put("leather needle", 1);
@@ -346,7 +345,7 @@ public class TannerNPC implements ZoneConfigurator {
 						res.add(tannerName + " has finished making my money pouch.");
 					} else {
 						try {
-							final long timeRemains = Long.parseLong(questState) + (TAN_TIME * MathHelper.MILLISECONDS_IN_ONE_MINUTE) - System.currentTimeMillis();
+							final long timeRemains = Long.parseLong(questState) + (TAN_TIME * TimeUtil.MILLISECONDS_IN_MINUTE) - System.currentTimeMillis();
 							final int secondsRemain = (int) (timeRemains / 1000L);
 
 							res.add(tannerName + " is making my money pouch. He will be done in "

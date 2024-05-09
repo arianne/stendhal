@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
@@ -54,6 +53,7 @@ import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.nalwor.tower.PrincessNPC;
 import games.stendhal.server.maps.semos.house.FlowerSellerNPC;
 import games.stendhal.server.util.ResetSpeakerNPC;
+import games.stendhal.server.util.TimeUtil;
 
 
 /**
@@ -195,7 +195,7 @@ public class ElfPrincess extends AbstractQuest {
 				// just to check there is space
 				new PlayerCanEquipItemCondition("rhosyd"),
 				// note: older quest slots will pass this automatically, but they are old now.
-				new TimePassedCondition(QUEST_SLOT, 1, 12*MathHelper.MINUTES_IN_ONE_WEEK));
+				new TimePassedCondition(QUEST_SLOT, 1, 12*TimeUtil.MINUTES_IN_WEEK));
 
 		// if the player never had a timestamp stored (older quest) we have now added timestamp 1.
 		// but that was a while ago that we changed it (November 2010?)

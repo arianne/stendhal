@@ -18,7 +18,6 @@ import static games.stendhal.common.constants.Actions.TEXT;
 import java.util.HashMap;
 import java.util.Map;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.messages.SupportMessageTemplatesFactory;
@@ -30,6 +29,7 @@ import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnListenerDecorator;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.TimeUtil;
 import marauroa.common.Pair;
 import marauroa.common.game.RPAction;
 import marauroa.server.db.command.DBCommand;
@@ -51,7 +51,7 @@ public class SupportAnswerAction extends AdministrationAction implements TurnLis
 	/**
 	 * Amount of time after which an admin name 'anonymiser' will be replaced
 	 */
-	private static final int DELAY = 3 * MathHelper.SECONDS_IN_ONE_HOUR;
+	private static final int DELAY = 3 * TimeUtil.SECONDS_IN_HOUR;
 
 	/**
 	 * increments as new names are added to the admin list.

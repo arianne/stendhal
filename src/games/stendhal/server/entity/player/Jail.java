@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -23,7 +23,6 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.Direction;
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -35,6 +34,7 @@ import games.stendhal.server.core.events.ZoneEnterExitListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrantList;
+import games.stendhal.server.util.TimeUtil;
 import marauroa.common.game.RPObject;
 
 /**
@@ -321,7 +321,7 @@ public class Jail implements ZoneConfigurator, LoginListener {
 
 			public boolean removeVeryOldWarrants(final ArrestWarrant arrestWarrant) {
 				final long timestamp = arrestWarrant.getTimestamp();
-				if (timestamp + 30 * MathHelper.MILLISECONDS_IN_ONE_DAY < System.currentTimeMillis()) {
+				if (timestamp + 30 * TimeUtil.MILLISECONDS_IN_DAY < System.currentTimeMillis()) {
 					arrestWarrants.removeByName(arrestWarrant.getCriminal());
 					return true;
 				}

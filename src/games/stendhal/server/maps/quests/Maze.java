@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import games.stendhal.common.Direction;
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -41,7 +40,7 @@ import games.stendhal.server.util.TimeUtil;
 
 public class Maze extends AbstractQuest {
 	/** Minimum time between repeats. */
-	private static final int COOLING_TIME = MathHelper.MINUTES_IN_ONE_HOUR * 24;
+	private static final int COOLING_TIME = TimeUtil.MINUTES_IN_HOUR * 24;
 	private MazeSign sign;
 	private MazeGenerator maze = null;
 

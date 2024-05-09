@@ -1,3 +1,13 @@
+/***************************************************************************
+ *                 Copyright © 2011-2024 - Faiumoni e. V.                  *
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.maps.quests.allotment;
 
 import java.util.ArrayList;
@@ -5,7 +15,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -16,6 +25,7 @@ import games.stendhal.server.entity.mapstuff.ExpirationTracker;
 import games.stendhal.server.entity.mapstuff.area.Allotment;
 import games.stendhal.server.entity.mapstuff.portal.Gate;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.TimeUtil;
 
 public class AllotmentUtilities implements TurnListener {
 
@@ -37,17 +47,17 @@ public class AllotmentUtilities implements TurnListener {
 	/**
 	 * Time interval to check if any allotment rentals have expired
 	 */
-	private static int EXPIRATION_CHECKING_PERIOD = MathHelper.SECONDS_IN_ONE_MINUTE;
+	private static int EXPIRATION_CHECKING_PERIOD = TimeUtil.SECONDS_IN_MINUTE;
 
 	/**
 	 * Amount of time which an allotment can be rented out
 	 */
-	public static long RENTAL_TIME = MathHelper.MILLISECONDS_IN_ONE_MINUTE * 2;
+	public static long RENTAL_TIME = TimeUtil.MILLISECONDS_IN_MINUTE * 2;
 
 	/**
 	 *
 	 */
-	private static int WARN_TIME = MathHelper.SECONDS_IN_ONE_MINUTE / 2;
+	private static int WARN_TIME = TimeUtil.SECONDS_IN_MINUTE / 2;
 
 	/**
 	 * List of zones which have allotments that can be rented

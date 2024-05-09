@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2024 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,7 +17,6 @@ import java.awt.geom.Rectangle2D;
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.ItemTools;
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -29,6 +28,7 @@ import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.LootableSlot;
+import games.stendhal.server.util.TimeUtil;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -94,7 +94,7 @@ public class Corpse extends PassiveEntity implements EquipListener {
 	private static final Logger logger = Logger.getLogger(Corpse.class);
 
 	/** Time (in seconds) until a corpse disappears. */
-	private static final int DEGRADATION_TIMEOUT = 15 * MathHelper.SECONDS_IN_ONE_MINUTE;
+	private static final int DEGRADATION_TIMEOUT = 15 * TimeUtil.SECONDS_IN_MINUTE;
 
 	/** number of degradation steps. */
 	private static final int MAX_STAGE = 5;

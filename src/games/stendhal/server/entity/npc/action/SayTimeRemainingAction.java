@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -152,7 +152,7 @@ public class SayTimeRemainingAction implements ChatAction {
 			return;
 		} else {
 			final String[] tokens = player.getQuest(questname).split(";");
-			final long delayInMilliseconds = delay * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
+			final long delayInMilliseconds = delay * TimeUtil.MILLISECONDS_IN_MINUTE;
 			if (tokens.length - 1 < index) {
 				logger.warn("Incorrect argument " + index + " given for quest slot " + questname);
 				return;

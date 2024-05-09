@@ -19,7 +19,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
@@ -49,6 +48,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.util.TimeUtil;
 import marauroa.common.Pair;
 
 
@@ -80,7 +80,7 @@ public class KillEnemyArmy extends AbstractQuest {
 
 	private static final String QUEST_NPC = "Despot Halb Errvl";
 	private static final String QUEST_SLOT = "kill_enemy_army";
-	private static final int delay = MathHelper.MINUTES_IN_ONE_WEEK;
+	private static final int delay = TimeUtil.MINUTES_IN_WEEK;
 
 	protected HashMap<String, Pair<Integer, String>> enemyForces = new HashMap<String, Pair<Integer,String>>();
 	protected HashMap<String, List<String>> enemys = new HashMap<String, List<String>>();

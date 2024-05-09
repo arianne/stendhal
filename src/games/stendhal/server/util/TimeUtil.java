@@ -4,7 +4,7 @@
  * $Id$
  */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -23,13 +23,20 @@ import games.stendhal.common.grammar.Grammar;
  */
 public class TimeUtil {
 
-	protected static final int SECONDS_IN_WEEK = 60 * 60 * 24 * 7;
+	public static final long MILLISECONDS_IN_MINUTE = 60 * 1000;
+	public static final long MILLISECONDS_IN_HOUR = 60 * MILLISECONDS_IN_MINUTE;
+	public static final long MILLISECONDS_IN_DAY = 24 * MILLISECONDS_IN_HOUR;
+	public static final long MILLISECONDS_IN_WEEK = 7 * MILLISECONDS_IN_DAY;
+	public static final int SECONDS_IN_MINUTE = 60;
+	public static final int SECONDS_IN_HOUR = 60 * SECONDS_IN_MINUTE;
+	public static final int SECONDS_IN_DAY = 24 * SECONDS_IN_HOUR;
+	public static final int SECONDS_IN_WEEK = 7 * SECONDS_IN_DAY;
+	public static final int MINUTES_IN_HOUR = 60;
+	public static final int MINUTES_IN_DAY = MINUTES_IN_HOUR * 24;
+	public static final int MINUTES_IN_WEEK = MINUTES_IN_DAY * 7;
 
-	protected static final int SECONDS_IN_DAY = 60 * 60 * 24;
+	public static final int TURNS_IN_MINUTE = (int) (SECONDS_IN_MINUTE / 0.3); // 200
 
-	protected static final int SECONDS_IN_HOUR = 60 * 60;
-
-	protected static final int SECONDS_IN_MINUTE = 60;
 
 	/**
 	 * Create a text representing a saying of approximate time until.

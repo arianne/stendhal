@@ -18,7 +18,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -45,6 +44,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.util.TimeUtil;
 
 /**
  * QUEST: Daily Item Fetch Quest.
@@ -73,10 +73,10 @@ public class DailyItemQuest extends AbstractQuest {
 	private static final String QUEST_SLOT = "daily_item";
 
 	/** How long until the player can give up and start another quest */
-	private static final int expireDelay = MathHelper.MINUTES_IN_ONE_WEEK;
+	private static final int expireDelay = TimeUtil.MINUTES_IN_WEEK;
 
 	/** How often the quest may be repeated */
-	private static final int delay = MathHelper.MINUTES_IN_ONE_DAY;
+	private static final int delay = TimeUtil.MINUTES_IN_DAY;
 
 	/**
 	 * All items which are possible/easy enough to find. If you want to do

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -13,7 +13,6 @@ package games.stendhal.server.entity.npc.action;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
@@ -21,6 +20,7 @@ import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.TimeUtil;
 
 /**
  * Sets the state of a quest to a timestamp,
@@ -72,7 +72,7 @@ public class SetQuestToFutureRandomTimeStampAction implements ChatAction {
 	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		String timestamp = Long.toString(
-				System.currentTimeMillis() + ( Rand.randUniform(min_delay, max_delay) * MathHelper.MILLISECONDS_IN_ONE_MINUTE));
+				System.currentTimeMillis() + ( Rand.randUniform(min_delay, max_delay) * TimeUtil.MILLISECONDS_IN_MINUTE));
 		if (index > -1) {
 			player.setQuest(questname, index, timestamp);
 		} else {

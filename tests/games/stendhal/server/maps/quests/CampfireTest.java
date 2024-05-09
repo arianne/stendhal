@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -23,7 +23,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -36,6 +35,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.orril.river.CampingGirlNPC;
+import games.stendhal.server.util.TimeUtil;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject.ID;
 import utilities.PlayerTestHelper;
@@ -101,7 +101,7 @@ public class CampfireTest {
 				getReply(npc));
 		assertTrue(en.step(player, "bye"));
 
-		final long SIXMINUTESAGO = System.currentTimeMillis() - 6 * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
+		final long SIXMINUTESAGO = System.currentTimeMillis() - 6 * TimeUtil.MILLISECONDS_IN_MINUTE;
 		player.setQuest(CampfireTest.CAMPFIRE, 1, String.valueOf(SIXMINUTESAGO));
 		en.step(player, "hi");
 		assertEquals("delay is 5 minutes, so 6 minutes should be enough", "Hi, how are you?", getReply(npc));

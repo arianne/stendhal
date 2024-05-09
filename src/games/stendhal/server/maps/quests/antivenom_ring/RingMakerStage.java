@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   Copyright (C) 2019 - Arianne                          *
+ *                 Copyright © 2019-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,7 +14,6 @@ package games.stendhal.server.maps.quests.antivenom_ring;
 import java.util.Arrays;
 import java.util.List;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -31,13 +30,14 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
+import games.stendhal.server.util.TimeUtil;
 
 public class RingMakerStage extends AVRStage {
 	private final SpeakerNPC ringmaker;
 
 	// time required to fuse the ring
 	private static final int FUSE_TIME_DAYS = 3;
-	private static final int FUSE_TIME = MathHelper.MINUTES_IN_ONE_DAY * FUSE_TIME_DAYS;
+	private static final int FUSE_TIME = TimeUtil.MINUTES_IN_DAY * FUSE_TIME_DAYS;
 
 	public static final String QUEST_STATE_NAME = "fusing";
 

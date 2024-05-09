@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,7 +14,6 @@ package games.stendhal.server.entity.player;
 
 import org.apache.log4j.Logger;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.LoginListener;
@@ -85,7 +84,7 @@ public class GagManager implements LoginListener {
 		}
 
 		// Set the gag
-		final long expireDate = System.currentTimeMillis() + (MathHelper.MILLISECONDS_IN_ONE_MINUTE * minutes);
+		final long expireDate = System.currentTimeMillis() + (TimeUtil.MILLISECONDS_IN_MINUTE * minutes);
 		criminal.setQuest("gag", "" + expireDate);
 
 		// Send messages

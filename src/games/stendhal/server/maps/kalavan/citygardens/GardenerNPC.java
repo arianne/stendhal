@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -100,7 +99,7 @@ public class GardenerNPC implements ZoneConfigurator {
 							// she is eating. number of lunches is in tokens[1]
 							final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 							// delay is number of lunches * one day - eats one lunch per day
-							final long delay = (Long.parseLong(tokens[1])) * MathHelper.MILLISECONDS_IN_ONE_DAY;
+							final long delay = (Long.parseLong(tokens[1])) * TimeUtil.MILLISECONDS_IN_DAY;
 							final long timeRemaining = (Long.parseLong(tokens[2]) + delay)
 								- System.currentTimeMillis();
 							if (timeRemaining > 0) {

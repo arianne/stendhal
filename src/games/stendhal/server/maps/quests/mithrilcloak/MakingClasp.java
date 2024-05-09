@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,7 +14,6 @@ package games.stendhal.server.maps.quests.mithrilcloak;
 
 import java.util.Arrays;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
@@ -41,10 +40,8 @@ import games.stendhal.server.util.TimeUtil;
 
 /**
  * @author kymara
-*/
-
+ */
 class MakingClasp {
-
 
 	private static final int REQUIRED_MINUTES_CLASP = 60;
 
@@ -109,7 +106,7 @@ class MakingClasp {
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String[] tokens = player.getQuest(mithrilcloak.getQuestSlot()).split(";");
 					// minutes -> milliseconds
-					final long delay = REQUIRED_MINUTES_CLASP * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
+					final long delay = REQUIRED_MINUTES_CLASP * TimeUtil.MILLISECONDS_IN_MINUTE;
 					final long timeRemaining = (Long.parseLong(tokens[1]) + delay)
 							- System.currentTimeMillis();
 					if (timeRemaining > 0L) {

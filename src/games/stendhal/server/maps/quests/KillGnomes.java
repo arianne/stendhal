@@ -11,12 +11,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.quest.KillCreaturesQuestBuilder;
 import games.stendhal.server.entity.npc.quest.QuestManuscript;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.util.TimeUtil;
 
 /**
  * QUEST: Kill Gnomes
@@ -55,7 +55,7 @@ public class KillGnomes implements QuestManuscript {
 			.name("Kill Gnomes")
 			.description("Jenny isn't happy that gnomes keep stealing her carrots.")
 			.internalName("kill_gnomes")
-			.repeatableAfterMinutes(MathHelper.MINUTES_IN_ONE_WEEK)
+			.repeatableAfterMinutes(TimeUtil.MINUTES_IN_WEEK)
 			.minLevel(10)
 			.region(Region.SEMOS_SURROUNDS)
 			.questGiverNpc("Jenny");

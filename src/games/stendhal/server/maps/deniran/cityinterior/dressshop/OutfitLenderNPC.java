@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020-2023 - Arianne                     *
+ *                 Copyright © 2020-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,7 +20,6 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.Direction;
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.constants.SkinColor;
 import games.stendhal.common.constants.SoundID;
 import games.stendhal.common.constants.SoundLayer;
@@ -49,7 +48,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 	private SpeakerNPC lender;
 
 	// how long player can wear outfit (10 hours)
-	private static final int endurance = 10 * MathHelper.MINUTES_IN_ONE_HOUR;
+	private static final int endurance = 10 * TimeUtil.MINUTES_IN_HOUR;
 
 
 	private enum OutfitType {
@@ -132,7 +131,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 
 		lender.setPathAndPosition(new FixedPath(nodes, true));
 		lender.setRetracePath();
-		lender.addSuspend(MathHelper.TURNS_IN_ONE_MINUTE / 4, Direction.DOWN, 0);
+		lender.addSuspend(TimeUtil.TURNS_IN_MINUTE / 4, Direction.DOWN, 0);
 
 		zone.add(lender);
 	}

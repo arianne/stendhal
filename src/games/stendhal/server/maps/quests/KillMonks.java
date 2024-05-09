@@ -17,7 +17,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
@@ -48,6 +47,7 @@ import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.ados.city.ManWithHatNPC;
 import games.stendhal.server.util.KillsForQuestCounter;
 import games.stendhal.server.util.ResetSpeakerNPC;
+import games.stendhal.server.util.TimeUtil;
 import marauroa.common.Pair;
 
 /**
@@ -108,17 +108,17 @@ public class KillMonks extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed"),
-						new TimePassedCondition(QUEST_SLOT, 1, MathHelper.MINUTES_IN_ONE_WEEK*2)),
+						new TimePassedCondition(QUEST_SLOT, 1, TimeUtil.MINUTES_IN_WEEK*2)),
 				ConversationStates.QUEST_OFFERED,
 				"Those monks are cruel and I still didn't get my revenge. May you help me again please?",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new AndCondition(new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, MathHelper.MINUTES_IN_ONE_WEEK*2)), new QuestStateStartsWithCondition(QUEST_SLOT, "killed")),
+				new AndCondition(new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, TimeUtil.MINUTES_IN_WEEK*2)), new QuestStateStartsWithCondition(QUEST_SLOT, "killed")),
 				ConversationStates.ATTENDING,
 				null,
-				new SayTimeRemainingAction(QUEST_SLOT, 1, MathHelper.MINUTES_IN_ONE_WEEK*2, "These monks learned their lesson for now but I could need your help again in"));
+				new SayTimeRemainingAction(QUEST_SLOT, 1, TimeUtil.MINUTES_IN_WEEK*2, "These monks learned their lesson for now but I could need your help again in"));
 
 
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
@@ -282,7 +282,7 @@ public class KillMonks extends AbstractQuest {
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed"),
-				new TimePassedCondition(QUEST_SLOT, 1, MathHelper.MINUTES_IN_ONE_WEEK*2)).fire(player,null, null);
+				new TimePassedCondition(QUEST_SLOT, 1, TimeUtil.MINUTES_IN_WEEK*2)).fire(player,null, null);
 	}
 
 	@Override

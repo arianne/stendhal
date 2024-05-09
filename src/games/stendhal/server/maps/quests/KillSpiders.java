@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,7 +15,6 @@ package games.stendhal.server.maps.quests;
 import java.util.LinkedList;
 import java.util.List;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
@@ -34,6 +33,7 @@ import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.util.TimeUtil;
 
 /**
  * QUEST: Kill Spiders
@@ -89,7 +89,7 @@ public class KillSpiders extends AbstractQuest {
 							raiser.say("I already asked you to kill all creatures in the basement!");
 						}  else if (player.getQuest(QUEST_SLOT).startsWith("killed;")) {
 							final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-							final long delay = MathHelper.MILLISECONDS_IN_ONE_WEEK;
+							final long delay = TimeUtil.MILLISECONDS_IN_WEEK;
 							final long timeRemaining = Long.parseLong(tokens[1]) + delay - System.currentTimeMillis();
 							if (timeRemaining > 0) {
 								raiser.say("Sorry there is nothing to do for you yet. But maybe you could come back later. I have to clean the school once a week.");
@@ -266,7 +266,7 @@ public class KillSpiders extends AbstractQuest {
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed;"),
-				new TimePassedCondition(QUEST_SLOT, 1, MathHelper.MINUTES_IN_ONE_WEEK)).fire(player,null, null);
+				new TimePassedCondition(QUEST_SLOT, 1, TimeUtil.MINUTES_IN_WEEK)).fire(player,null, null);
 	}
 
 	@Override

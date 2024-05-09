@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,7 +17,6 @@ import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.common.parser.Sentence;
@@ -50,8 +49,7 @@ import games.stendhal.server.util.TimeUtil;
 
 /**
  * @author kymara
-*/
-
+ */
 class MakingFabric {
 
 	private static final int REQUIRED_MINUTES_THREAD = 10;
@@ -125,7 +123,7 @@ class MakingFabric {
 							+ " "
 							+ getProductName()
 							+ " for you. Please be discreet and come back in "
-							+ TimeUtil.approxTimeUntil(REQUIRED_MINUTES_THREAD * amount * MathHelper.SECONDS_IN_ONE_MINUTE) + ".");
+							+ TimeUtil.approxTimeUntil(REQUIRED_MINUTES_THREAD * amount * TimeUtil.SECONDS_IN_MINUTE) + ".");
 					return true;
 				}
 			}
@@ -149,7 +147,7 @@ class MakingFabric {
 				// String productName = order[1];
 				final long orderTime = Long.parseLong(order[3]);
 				final long timeNow = new Date().getTime();
-				final long timeRemaining = orderTime + ((long)REQUIRED_MINUTES_THREAD * numberOfProductItems * MathHelper.MILLISECONDS_IN_ONE_MINUTE) - timeNow;
+				final long timeRemaining = orderTime + ((long)REQUIRED_MINUTES_THREAD * numberOfProductItems * TimeUtil.MILLISECONDS_IN_MINUTE) - timeNow;
 				if (timeRemaining > 0L) {
 					npc.say("Shhhh, I'm still working on your request to "
 							+ getProductionActivity() + " " + getProductName()
@@ -164,7 +162,7 @@ class MakingFabric {
 		}
 
 		final ProducerBehaviour behaviour = new SpecialProducerBehaviour("make", "silk thread",
-				requiredResources, REQUIRED_MINUTES_THREAD * MathHelper.SECONDS_IN_ONE_MINUTE);
+				requiredResources, REQUIRED_MINUTES_THREAD * TimeUtil.SECONDS_IN_MINUTE);
 
 		npc.add(ConversationStates.ATTENDING,
 				"make",
@@ -281,7 +279,7 @@ class MakingFabric {
 						final int numberOfProductItems = Integer.parseInt(order[1]);
 						final long orderTime = Long.parseLong(order[3]);
 						final long timeNow = new Date().getTime();
-						if (timeNow - orderTime < (long)REQUIRED_MINUTES_THREAD * numberOfProductItems * MathHelper.MILLISECONDS_IN_ONE_MINUTE) {
+						if (timeNow - orderTime < (long)REQUIRED_MINUTES_THREAD * numberOfProductItems * TimeUtil.MILLISECONDS_IN_MINUTE) {
 							npc.say("Haaaa heee woooo hoo!");
 						} else {
 							npc.say("The boss gave me these "
@@ -342,7 +340,7 @@ class MakingFabric {
 						final long timeNow = new Date().getTime();
 						player.setQuest(mithrilcloak.getQuestSlot(), "fusingthread;" + timeNow);
 						npc.say("I will fuse 40 mithril thread for you. Please come back in "
-								+ TimeUtil.approxTimeUntil((int) (REQUIRED_HOURS_MITHRIL_THREAD * MathHelper.MILLISECONDS_IN_ONE_HOUR / 1000L))
+								+ TimeUtil.approxTimeUntil((int) (REQUIRED_HOURS_MITHRIL_THREAD * TimeUtil.MILLISECONDS_IN_HOUR / 1000L))
 								+ ".");
 						player.notifyWorldAboutChanges();
 					} else {
@@ -361,7 +359,7 @@ class MakingFabric {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						final String orderString = player.getQuest(mithrilcloak.getQuestSlot());
 						final String[] order = orderString.split(";");
-						final long delay = REQUIRED_HOURS_MITHRIL_THREAD * MathHelper.MILLISECONDS_IN_ONE_HOUR;
+						final long delay = REQUIRED_HOURS_MITHRIL_THREAD * TimeUtil.MILLISECONDS_IN_HOUR;
 						final long timeRemaining = (Long.parseLong(order[1]) + delay)
 							- System.currentTimeMillis();
 						if (timeRemaining > 0L) {
@@ -516,7 +514,7 @@ class MakingFabric {
 				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String[] tokens = player.getQuest(mithrilcloak.getQuestSlot()).split(";");
-					final long delay = REQUIRED_HOURS_FABRIC * MathHelper.MILLISECONDS_IN_ONE_HOUR;
+					final long delay = REQUIRED_HOURS_FABRIC * TimeUtil.MILLISECONDS_IN_HOUR;
 					final long timeRemaining = (Long.parseLong(tokens[1]) + delay)
 							- System.currentTimeMillis();
 					if (timeRemaining > 0L) {

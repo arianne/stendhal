@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2012-2016 - Stendhal                    *
+ *                   (C) Copyright 2012-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -19,7 +19,6 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.Direction;
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -32,6 +31,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
+import games.stendhal.server.util.TimeUtil;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -48,7 +48,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	private static final Logger logger = Logger.getLogger(Block.class);
 
 	/** number of seconds until a block is reset to its original position */
-	static final int RESET_TIMEOUT_IN_SECONDS = 5 * MathHelper.SECONDS_IN_ONE_MINUTE;
+	static final int RESET_TIMEOUT_IN_SECONDS = 5 * TimeUtil.SECONDS_IN_MINUTE;
 
 	/** number of seconds until another attempt to rest the block to its original position is attempted */
 	static final int RESET_AGAIN_DELAY = 10;

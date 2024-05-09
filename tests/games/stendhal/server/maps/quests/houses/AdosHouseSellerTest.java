@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -30,7 +30,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.StackableItem;
@@ -43,6 +42,7 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
+import games.stendhal.server.util.TimeUtil;
 import utilities.PlayerTestHelper;
 
 public class AdosHouseSellerTest {
@@ -147,7 +147,7 @@ public class AdosHouseSellerTest {
 		assertThat(en.getCurrentState(), is(ATTENDING));
 		assertThat("player is too young", getReply(seller), containsString("you have spent at least"));
 
-		george.setAge(300 * MathHelper.MINUTES_IN_ONE_HOUR + 1);
+		george.setAge(300 * TimeUtil.MINUTES_IN_HOUR + 1);
 		en.step(george, "cost");
 		assertThat(en.getCurrentState(), is(ATTENDING));
 		assertThat("player is old enough but has no quests done", getReply(seller), containsString("you must first prove yourself a worthy"));

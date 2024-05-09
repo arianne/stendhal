@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2024 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.util.TimeUtil;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 
@@ -28,7 +28,7 @@ public class Blood extends PassiveEntity {
 	/**
 	 * Blood will disappear after so many seconds.
 	 */
-	public static final int DEGRADATION_TIMEOUT = 10 * MathHelper.SECONDS_IN_ONE_MINUTE;
+	public static final int DEGRADATION_TIMEOUT = 10 * TimeUtil.SECONDS_IN_MINUTE;
 
 	public static void generateRPClass() {
 		final RPClass blood = new RPClass("blood");
