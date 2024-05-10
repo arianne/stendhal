@@ -999,6 +999,7 @@ The following people released their work to the public with a suitable license f
 * [Bart Kelsey](https://opengameart.org/users/bart)
 * [David Kvistorf (fluffclipse)](https://soundcloud.com/david-kvistorf)
 * [Gniffelbaf](https://freesound.org/people/Gniffelbaf/)
+* [Kevin Luce (kevp888)](https://freesound.org/people/kevp888/)
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->

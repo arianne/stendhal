@@ -12,11 +12,21 @@
 
 import { SubEvent } from "./SubEvent";
 
+import { SoundLayer } from "../../data/enum/SoundLayer";
+
+import { SoundManager } from "../../ui/SoundManager";
+
 
 export class KikaPunishmentEvent extends SubEvent {
 
 	override execute(entity: any, flags: string[]) {
-		// TODO:
+		// DEBUG:
 		console.log("Kika punishment!");
+
+		SoundManager.get().playGlobalizedEffect("event/thunderclap", SoundLayer.SFX.value);
+
+		// TODO:
+		// - lightning flash
+		// - maybe make thunderclap louder
 	}
 }
