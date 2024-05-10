@@ -10,32 +10,36 @@
  *                                                                         *
  ***************************************************************************/
 
+import { AbstractEnum } from "./AbstractEnum";
+
 
 /**
- * Represents an enumaration type.
+ * Represents a numeric enumeration type.
  */
-export abstract class Enumeration<T> {
+export class NumericEnum extends AbstractEnum<number> {
+
+	/** Tracks value of most recent instance created. */
+	private static currentValue = -1;
+
+	/** Numeric value representation of this instance. */
+	override readonly value: number;
+
 
 	/**
-	 * Creates a new enumeration instance.
+	 * Creates a new numeric enumeration.
 	 *
-	 * @param value {T}
-	 *   Value representation of this instance.
+	 * @param value {number}
+	 *   Numeric value representation of this instance. If `undefined`, increments value from most
+	 *   recent instance created (default: `undefined`).
 	 */
-	constructor(readonly value?: T) {}
-
-	/**
-	 * Checks for equality between two objects.
-	 *
-	 * @param obj {any}
-	 *   The other object to compare against this instance.
-	 * @return {boolean}
-	 *   `true` if `obj` is instance of same type & their values are the same.
-	 */
-	equals(obj: any): boolean {
-		if (!(obj instanceof Enumeration)) {
-			return false;
+	constructor(value?: number) {
+		super(value);
+		if (typeof(value) === "undefined") {
+			NumericEnum.currentValue++;
+			value = NumericEnum.currentValue;
+		} else {
+			NumericEnum.currentValue = value;
 		}
-		return this.value === obj.value;
+		this.value = value;
 	}
 }
