@@ -19,6 +19,8 @@ import { singletons } from "../SingletonRepo";
 import { SoundFactory } from "../data/SoundFactory";
 import { SoundObject } from "../data/SoundFactory";
 
+import { SoundLayer } from "../data/enum/SoundLayer";
+
 
 /**
  * Manages playing sounds & music.
@@ -55,7 +57,7 @@ export class SoundManager {
 	 * Hidden singleton constructor.
 	 */
 	private constructor() {
-		this.layers = ["music", "ambient", "creature", "sfx", "gui"];
+		this.layers = SoundLayer.names();
 		this.cacheGlobal = {};
 		this.cache = {};
 		this.active = {};
