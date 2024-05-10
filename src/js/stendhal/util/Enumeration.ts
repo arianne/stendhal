@@ -14,7 +14,7 @@
 /**
  * Represents an enumaration type.
  */
-export class Enumeration<T> {
+export abstract class Enumeration<T> {
 
 	/**
 	 * Creates a new enumeration instance.
