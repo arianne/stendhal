@@ -44,7 +44,7 @@ export class SettingsDialog extends TabDialogContentComponent {
 		};
 
 		this.addTab("General", new GeneralTab(this, this.child("#settings-general")!));
-		//this.addTab("Sound", new SoundTabthis, this.child("#settings-sound")!));
+		this.addTab("Sound", new SoundTab(this, this.child("#settings-sound")!));
 		this.addTab("Input", new InputTab(this, this.child("#settings-input")!));
 
 

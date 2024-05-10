@@ -710,10 +710,15 @@ export class SoundManager {
 	 * Toggles muted state of sound system.
 	 */
 	toggleSound() {
-		const enabled = !stendhal.config.getBoolean("sound");
-		stendhal.config.set("sound", enabled);
+		stendhal.config.set("sound", !stendhal.config.getBoolean("sound"));
+		this.onStateChanged();
+	}
 
-		if (enabled) {
+	/**
+	 * Called when sound enabled/disabled state is changed.
+	 */
+	onStateChanged() {
+		if (stendhal.config.getBoolean("sound")) {
 			if (!this.unmuteAll()) {
 				let errmsg = "Failed to unmute sounds:";
 				for (const snd of this.getActive()) {
@@ -734,7 +739,6 @@ export class SoundManager {
 				console.warn(errmsg);
 			}
 		}
-
 		// notify client
 		ui.onSoundUpdate();
 	}

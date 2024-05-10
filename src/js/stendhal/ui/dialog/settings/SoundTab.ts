@@ -14,11 +14,30 @@ import { AbstractSettingsTab } from "./AbstractSettingsTab";
 
 import { SettingsDialog } from "../SettingsDialog";
 
+import { SoundManager } from "../../SoundManager";
+
+import { SettingsComponent } from "../../toolkit/SettingsComponent";
+
+import { ConfigManager } from "../../../util/ConfigManager";
+
 
 export class SoundTab extends AbstractSettingsTab {
 
 	constructor(parent: SettingsDialog, element: HTMLElement) {
 		super(element);
-		// TODO:
+		const config = ConfigManager.get();
+
+		const col1 = this.child("#col1")!;
+
+		// TODO: add DOM element creation to `SettingsDialog.createCheckBox`
+		const chkSound = new SettingsComponent("chk_sound", "Enable sound");
+		chkSound.setValue(config.getBoolean("sound"));
+		chkSound.onchange = function(evt: Event) {
+			config.set("sound", (chkSound.componentElement as HTMLInputElement).checked);
+			SoundManager.get().onStateChanged();
+		};
+		chkSound.addTo(col1);
+
+		// TODO: add sliders to adjust each layer's volume
 	}
 }
