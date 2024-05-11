@@ -12,6 +12,8 @@
 declare var marauroa: any;
 declare var stendhal: any;
 
+import { SoundID } from "./data/sound/SoundID";
+
 import { RPEntity } from "./entity/RPEntity";
 import { RPObject } from "./entity/RPObject";
 
@@ -31,7 +33,6 @@ import { ui } from "./ui/UI";
 import { DialogContentComponent } from "./ui/toolkit/DialogContentComponent";
 
 import { Chat } from "./util/Chat";
-import { SoundId } from "./util/SoundId";
 
 
 export class EventRegistry {
@@ -376,7 +377,7 @@ export class EventRegistry {
 				let sound = this["sound"];
 				const sound_id = this["sound_id"];
 				if (sound_id) {
-					sound = SoundId[sound_id];
+					sound = SoundID[sound_id];
 				}
 
 				stendhal.ui.soundMan.playLocalizedEffect(rpobject["_x"], rpobject["_y"], radius, this["layer"], sound, volume);
