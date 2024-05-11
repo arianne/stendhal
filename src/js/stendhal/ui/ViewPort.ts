@@ -78,6 +78,14 @@ export class ViewPort {
 	/** Styles to be applied when chat panel is not floating. */
 	private readonly initialStyle: {[prop: string]: string};
 
+	/**
+	 * Callback for instructions to execute when a drawing cycle on the viewport is complete.
+	 *
+	 * The function is called with the parameters `ctx` (CanvasRenderingContext2D), `offsetX`,
+	 * and `offsetY`.
+	 */
+	public onDrawComplete?: Function;
+
 	/** Singleton instance. */
 	private static instance: ViewPort;
 
@@ -158,6 +166,10 @@ export class ViewPort {
 				// redraw inventory sprites
 				stendhal.ui.equip.update();
 				(ui.get(UIComponentEnum.PlayerEquipment) as PlayerEquipmentComponent).update();
+
+				if (this.onDrawComplete) {
+					this.onDrawComplete(this.ctx, this.offsetX, this.offsetY);
+				}
 			}
 		}
 		window.setTimeout(function() {

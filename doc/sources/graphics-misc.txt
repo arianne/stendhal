@@ -64,6 +64,10 @@ rotate*       rg1024; CC0; https://openclipart.org/detail/20247
 settings*     ben; CC0; https://openclipart.org/detail/192629
 sound*        mightyman; CC0; https://openclipart.org/detail/165992
 
+data/maps/effect/
+
+lightning  Gordon Dylan Johnson (GDJ); CC0; https://openclipart.org/detail/268835
+
 data/maps/parallax/
 
 stars  Jordan Irwin (AntumDeluge); CC0; Stendhal
