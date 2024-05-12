@@ -1,10 +1,9 @@
-Stendhal hat eine riesige und reiche Welt. Du kannst Städte, Wälder, Berge, Ebenen und Dungeons
-erkunden. Du kannst gegen Monster kämpfen und ein Held werden.
+Stendhal has a huge and rich world. You can explore cities, forest, mountains, plains and dungeons.
+You can fight monsters and become a hero.
 
-Du wirst eine Vielzahl von Charakteren treffen. Viele von ihnen werden dir Aufgaben und Quests für
-wertvolle Erfahrung geben. Du könntest gebeten werden, dabei zu helfen Land zu schützen, Hungrigen
-zu füttern, Kranken zu heilen, jemanden glücklich zu machen, Rätsel zu lösen oder einfach nur eine
-Hand leihen.
+You will meet a wide variety of characters. Many will give you tasks and quests for valuable
+experience. You may be asked to help protect land, feed the hungry, heal the sick, make someone
+happy, solve a puzzle or simply lend a hand.
 
-Also, worauf wartest du? Eine ganz neue Welt erwartet dich... Und wenn du magst, hol dir den
-Quellcode und füge deine eigenen Ideen hinzu!
+So what are you waiting for? A whole new world awaits... And if you like, get the source code, and
+add your own ideas!
