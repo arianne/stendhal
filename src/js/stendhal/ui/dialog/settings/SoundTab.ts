@@ -17,6 +17,7 @@ import { SettingsDialog } from "../SettingsDialog";
 import { SoundManager } from "../../SoundManager";
 
 import { SettingsComponent } from "../../toolkit/SettingsComponent";
+import { SliderComponent } from "../../toolkit/SliderComponent";
 
 import { ConfigManager } from "../../../util/ConfigManager";
 
@@ -26,6 +27,7 @@ export class SoundTab extends AbstractSettingsTab {
 	constructor(parent: SettingsDialog, element: HTMLElement) {
 		super(element);
 		const config = ConfigManager.get();
+		const sound = SoundManager.get();
 
 		const col1 = this.child("#col1")!;
 
@@ -34,10 +36,20 @@ export class SoundTab extends AbstractSettingsTab {
 		chkSound.setValue(config.getBoolean("sound"));
 		chkSound.onchange = function(evt: Event) {
 			config.set("sound", (chkSound.componentElement as HTMLInputElement).checked);
-			SoundManager.get().onStateChanged();
+			sound.onStateChanged();
 		};
 		chkSound.addTo(col1);
 
-		// TODO: add sliders to adjust each layer's volume
+		const volMaster = new SliderComponent("setting-vol-master", "Master", 0, 100);
+		volMaster.setValue(sound.getVolume("master") * 100);
+		volMaster.onchange = function(evt: Event) {
+			sound.setVolume("master", volMaster.getValue() / 100);
+		}
+		volMaster.addTo(col1);
+
+		// TODO:
+		// - add sliders for remaining sound channels
+		// - disable sliders when sound is disabled
+		// - show volume level value
 	}
 }
