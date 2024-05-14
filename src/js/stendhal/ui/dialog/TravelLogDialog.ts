@@ -126,7 +126,7 @@ export class TravelLogDialog extends DialogContentComponent {
 		if (progressType !== this.currentProgressType) {
 			return;
 		}
-		if (dataItems.length == 1 && !dataItems[0]) {
+		if (dataItems.length == 1 && dataItems[0] === "") {
 			// prevent infinitely re-sending request when list is technically empty
 			dataItems = [];
 		}
