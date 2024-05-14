@@ -31,6 +31,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.slot.KeyedSlot;
 import games.stendhal.server.entity.slot.PlayerSlot;
+import games.stendhal.server.util.TimeUtil;
 import marauroa.common.Pair;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -661,6 +662,16 @@ public abstract class UpdateConverter {
 		String slotState = player.getQuest(questSlot);
 		if (player.hasQuest(questSlot) && !slotState.startsWith(";")) {
 			player.setQuest(questSlot, ";" + slotState);
+		}
+
+		// 1.47: Ultimate Collector supports aborting & requesting another item after 6 months
+		questSlot = "ultimate_collector";
+		if (player.hasQuest(questSlot) && !"done".equals(player.getQuest(questSlot, 0))
+				&& "".equals(player.getQuest(questSlot, 1))) {
+			// since we don't know when quest was started assume that at least half the required time (3
+			// months) have passed
+			player.setQuest(questSlot, 1, Long.toString(System.currentTimeMillis()
+					- (TimeUtil.MINUTES_IN_HALF_YEAR / 2 * TimeUtil.MILLISECONDS_IN_MINUTE)));
 		}
 	}
 

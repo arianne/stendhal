@@ -36,6 +36,7 @@ import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayRequiredItemAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectionAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
@@ -47,9 +48,11 @@ import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.maps.Region;
+import games.stendhal.server.util.TimeUtil;
 
 
 /**
@@ -214,11 +217,16 @@ public class UltimateCollector extends AbstractQuest {
 
 	}
 
-	private void requestItem() {
-
-		final SpeakerNPC npc = npcs.get("Balduin");
-		final Map<String,Integer> items = new HashMap<String, Integer>();
-
+	/**
+	 * Determines items to select from.
+	 *
+	 * @param exclude
+	 *   An item name to exclude from returned value or {@code null} to include all. Used to prevent
+	 *   re-requesting same item when player asks for "another".
+	 * @return
+	 *   Items that may be requested from player.
+	 */
+	private Map<String, Integer> getItems(final String exclude) {
 		/* Updated 2022-05-22
 		 *
 		 * Rarity calculations (lower means more rare):
@@ -231,20 +239,28 @@ public class UltimateCollector extends AbstractQuest {
 		 * Items given as rewards from quests or otherwise acquirable via
 		 * methods other than creature drops should not be included.
 		 */
+		final Map<String, Integer> items = new HashMap<>();
+		items.put("nihonto", 1); // 1.39
+		items.put("magic twoside axe", 1); // 1.72
+		items.put("imperator sword", 1); // 0.33
+		items.put("durin axe", 1); // 0.39
+		items.put("vulcano hammer", 1); // 0.18
+		items.put("xeno sword", 1); // 0.67
+		items.put("black scythe", 1); // 0.09
+		items.put("chaos dagger", 1); // 2.0
+		items.put("black sword", 1); // 0.15
+		items.put("golden orc sword", 1); // 0.09
+		items.put("ice war hammer", 1); // 0.15
+		items.put("orcish sword", 1); // 0.86
+		items.put("black halberd", 1); // 0.12
+		if (exclude != null) {
+			items.remove(exclude);
+		}
+		return items;
+	}
 
-		items.put("nihonto",1); // 1.39
-		items.put("magic twoside axe",1); // 1.72
-		items.put("imperator sword",1); // 0.33
-		items.put("durin axe",1); // 0.39
-		items.put("vulcano hammer",1); // 0.18
-		items.put("xeno sword",1); // 0.67
-		items.put("black scythe",1); // 0.09
-		items.put("chaos dagger",1); // 2.0
-		items.put("black sword",1); // 0.15
-		items.put("golden orc sword",1); // 0.09
-		items.put("ice war hammer",1); // 0.15
-		items.put("orcish sword",1); // 0.86
-		items.put("black halberd",1); // 0.12
+	private void requestItem() {
+		final SpeakerNPC npc = npcs.get("Balduin");
 
 		// If all quests are completed, ask for an item
 		npc.add(ConversationStates.ATTENDING,
@@ -264,8 +280,11 @@ public class UltimateCollector extends AbstractQuest {
 						new QuestCompletedCondition(IMMORTAL_SWORD_QUEST_SLOT)),
 				ConversationStates.ATTENDING,
 				null,
-				new StartRecordingRandomItemCollectionAction(QUEST_SLOT, items, "Well, you've certainly proved to the residents of Faiumoni " +
-						"that you could be the ultimate collector, but I have one more task for you. Please bring me [item]."));
+				new MultipleActions(
+					new StartRecordingRandomItemCollectionAction(QUEST_SLOT, 0, getItems(null),
+							"Well, you've certainly proved to the residents of Faiumoni that you could be the"
+							+ " ultimate collector, but I have one more task for you. Please bring me [item]."),
+					new SetQuestToTimeStampAction(QUEST_SLOT, 1)));
 	}
 
 	private void collectItem() {
@@ -327,6 +346,58 @@ public class UltimateCollector extends AbstractQuest {
 				new QuestNotCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"I'll buy black items from you when you have completed each #challenge I set you.", null);
+	}
+
+	private void abortQuest() {
+		final SpeakerNPC npc = npcs.get("Balduin");
+		// approximately 6 months
+		final int expireTime = TimeUtil.MINUTES_IN_HALF_YEAR;
+
+		npc.add(
+				ConversationStates.ATTENDING,
+				ConversationPhrases.ABORT_MESSAGES,
+				new AndCondition(
+						new QuestActiveCondition(QUEST_SLOT),
+						new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, expireTime))
+				),
+				ConversationStates.ATTENDING,
+				null,
+				new SayRequiredItemAction(QUEST_SLOT, 0, "You are on a quest to find [item]. You cannot"
+						+ " request a new item yet."));
+
+		npc.add(
+				ConversationStates.ATTENDING,
+				ConversationPhrases.ABORT_MESSAGES,
+				new AndCondition(
+						new QuestActiveCondition(QUEST_SLOT),
+						new TimePassedCondition(QUEST_SLOT, 1, expireTime)
+				),
+				ConversationStates.QUEST_OFFERED,
+				null,
+				new SayRequiredItemAction(QUEST_SLOT, 0, "You are on a quest to find [item]. Would you like"
+						+ " to look for a different item?"));
+
+		npc.add(
+				ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.YES_MESSAGES,
+				new AndCondition(
+						new QuestActiveCondition(QUEST_SLOT),
+						new TimePassedCondition(QUEST_SLOT, 1, expireTime)
+				),
+				ConversationStates.ATTENDING,
+				null,
+				new RequestAnotherAction());
+
+		npc.add(
+				ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.NO_MESSAGES,
+				new AndCondition(
+						new QuestActiveCondition(QUEST_SLOT),
+						new TimePassedCondition(QUEST_SLOT, 1, expireTime)
+				),
+				ConversationStates.ATTENDING,
+				null,
+				new SayRequiredItemAction(QUEST_SLOT, 0, "Then bring me [item]."));
 	}
 
 	private void replaceLRSwords() {
@@ -468,6 +539,7 @@ public class UltimateCollector extends AbstractQuest {
 		requestItem();
 		collectItem();
 		offerSteps();
+		abortQuest();
 		replaceLRSwords();
 	}
 
@@ -490,5 +562,17 @@ public class UltimateCollector extends AbstractQuest {
 	@Override
 	public String getRegion() {
 		return Region.ADOS_SURROUNDS;
+	}
+
+
+	private class RequestAnotherAction implements ChatAction {
+		@Override
+		public void fire(Player player, Sentence sentence, EventRaiser npc) {
+			final String previousItem = player.getQuest(QUEST_SLOT, 0).split("=")[0];
+			new StartRecordingRandomItemCollectionAction(QUEST_SLOT, 0, getItems(previousItem),
+					"Perhaps finding " + Grammar.a_noun(previousItem) + " proved to be too difficult for you."
+							+ " This time, I want you to find [item].").fire(player, sentence, npc);
+			new SetQuestToTimeStampAction(QUEST_SLOT, 1).fire(player, sentence, npc);
+		}
 	}
 }

@@ -14,7 +14,9 @@ package games.stendhal.server.maps.quests;
 
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.oneOf;
+import static org.hamcrest.Matchers.startsWith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -22,11 +24,13 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
+import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -35,10 +39,13 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ados.rock.WeaponsCollectorNPC;
+import games.stendhal.server.util.TimeUtil;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
 public class UltimateCollectorTest {
+
+	private static final Logger logger = Logger.getLogger(UltimateCollectorTest.class);
 
 	private Player player = null;
 	private SpeakerNPC npc = null;
@@ -66,24 +73,35 @@ public class UltimateCollectorTest {
 		SingletonRepository.getNPCList().remove("Balduin");
 	}
 
+	private void initPrerequisites(boolean all) {
+		// [22:23] Admin kymara changed your state of the quest 'weapons_collector' from '' to 'done'
+		// [22:23] Changed the state of quest 'weapons_collector' from '' to 'done'
+		player.setQuest("weapons_collector", "done");
+		// [22:23] Admin kymara changed your state of the quest 'weapons_collector2' from 'null' to 'done'
+		// [22:23] Changed the state of quest 'weapons_collector2' from 'null' to 'done'
+		player.setQuest("weapons_collector2", "done");
+
+		if (all) {
+			player.setQuest("mithril_cloak", "done");
+			player.setQuest("mithrilshield_quest", "done");
+			player.setQuest("immortalsword_quest", "done");
+			player.setQuest("club_thorns", "done");
+			player.setQuest("soldier_henry", "done");
+			player.setQuest("cloaks_collector_2", "done");
+			player.setQuest("cloaks_for_bario", "done");
+			player.setQuest("elvish_armor", "done");
+			player.setQuest("obsidian_knife", "done");
+			player.setQuest("vs_quest", "done");
+		}
+	}
+
 	@Test
 	public void testQuest() {
-
-
-
 		npc = SingletonRepository.getNPCList().get("Balduin");
 		en = npc.getEngine();
 		// -----------------------------------------------
 
-		// [22:23] Admin kymara changed your state of the quest 'weapons_collector' from '' to 'done'
-		// [22:23] Changed the state of quest 'weapons_collector' from '' to 'done'
-
-		player.setQuest("weapons_collector", "done");
-
-		// [22:23] Admin kymara changed your state of the quest 'weapons_collector2' from 'null' to 'done'
-		// [22:23] Changed the state of quest 'weapons_collector2' from 'null' to 'done'
-
-		player.setQuest("weapons_collector2", "done");
+		initPrerequisites(false);
 
 		en.step(player, "hi");
 		assertEquals("Greetings old friend. I have another collecting #challenge for you.", getReply(npc));
@@ -362,5 +380,81 @@ public class UltimateCollectorTest {
 		assertEquals(500000, player.getCommerceTransactionAmount(
 			npc.getName(),
 			false));
+	}
+
+	@Test
+	public void testAbort() {
+		npc = SingletonRepository.getNPCList().get("Balduin");
+		en = npc.getEngine();
+		final String questSlot = "ultimate_collector";
+
+		initPrerequisites(true);
+
+		assertThat(player.hasQuest(questSlot), is(false));
+
+		assertThat(en.step(player, "hi"), is(true));
+		assertThat(getReply(npc),
+				is("Greetings old friend. I have another collecting #challenge for you."));
+		assertThat(en.step(player, "challenge"), is(true));
+		assertThat(getReply(npc),
+				startsWith("Well, you've certainly proved to the residents of Faiumoni that you could be"
+						+ " the ultimate collector, but I have one more task for you. Please bring me "));
+
+		assertThat(player.hasQuest(questSlot), is(true));
+		final String initialItem = player.getQuest(questSlot, 0).split("=")[0];
+		logger.info("initial item: " + initialItem);
+
+		final long startTime = Long.parseLong(player.getQuest(questSlot, 1));
+		final long msInHalfYear = TimeUtil.MINUTES_IN_HALF_YEAR * TimeUtil.MILLISECONDS_IN_MINUTE;
+
+		// no time has passed
+		assertThat(en.step(player, "another"), is(true));
+		assertThat(getReply(npc), is("You are on a quest to find " + Grammar.a_noun(initialItem)
+				+ ". You cannot request a new item yet."));
+
+		// approx. 3 months have passed (2,190 hours)
+		player.setQuest(questSlot, 1, String.valueOf(startTime - (msInHalfYear / 2)));
+		assertThat(en.step(player, "another"), is(true));
+		assertThat(getReply(npc), is("You are on a quest to find " + Grammar.a_noun(initialItem)
+		+ ". You cannot request a new item yet."));
+
+		// 26 weeks have passed (4,368 hours, approx half year)
+		player.setQuest(questSlot, 1, String.valueOf(startTime - (TimeUtil.MILLISECONDS_IN_WEEK * 26)));
+		assertThat(en.step(player, "another"), is(true));
+		assertThat(getReply(npc), is("You are on a quest to find " + Grammar.a_noun(initialItem)
+		+ ". You cannot request a new item yet."));
+
+		// half year has passed (4,380 hours)
+		player.setQuest(questSlot, 1, String.valueOf(startTime - msInHalfYear));
+		assertThat(en.step(player, "another"), is(true));
+		assertThat(getReply(npc), is("You are on a quest to find " + Grammar.a_noun(initialItem)
+				+ ". Would you like to look for a different item?"));
+		// doesn't want a new item
+		assertThat(en.step(player, "no"), is(true));
+		assertThat(getReply(npc), is("Then bring me " + Grammar.a_noun(initialItem) + "."));
+
+		// requested item should not have changed
+		assertThat(player.getQuest(questSlot, 0).split("=")[0], is(initialItem));
+
+		// ask again
+		assertThat(en.step(player, "another"), is(true));
+		assertThat(getReply(npc), is("You are on a quest to find " + Grammar.a_noun(initialItem)
+				+ ". Would you like to look for a different item?"));
+		// does want a new item
+		assertThat(en.step(player, "yes"), is(true));
+
+		final String newItem = player.getQuest(questSlot, 0).split("=")[0];
+
+		assertThat(getReply(npc), is("Perhaps finding " + Grammar.a_noun(initialItem)
+				+ " proved to be too difficult for you. This time, I want you to find "
+				+ Grammar.a_noun(newItem) + "."));
+
+		logger.info("new item: " + newItem + " != " + initialItem);
+		assertThat(newItem, not(initialItem));
+
+		// ask for another immediately after receiving new quest
+		assertThat(en.step(player, "another"), is(true));
+		assertThat(getReply(npc), is("You are on a quest to find " + Grammar.a_noun(newItem)
+				+ ". You cannot request a new item yet."));
 	}
 }
