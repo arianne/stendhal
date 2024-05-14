@@ -10,7 +10,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { ComponentBase } from "./ComponentBase";
+import { WidgetComponent } from "./WidgetComponent";
 
 import { OptionsEnum } from "../../data/enum/OptionsEnum";
 import { SettingsType } from "../../data/enum/SettingsType";
@@ -18,17 +18,15 @@ import { SettingsType } from "../../data/enum/SettingsType";
 
 /**
  * Unthemed component representing a configuration setting.
+ *
+ * TODO: rename so not exclusively used for "settings" or separate into individual classes
  */
-export class SettingsComponent extends ComponentBase {
+export class SettingsComponent extends WidgetComponent {
 
 	/** The `HTMLElement` associated with this component. */
 	override readonly componentElement!: HTMLElement;
 	/** Text description. */
-	readonly labelElement: HTMLLabelElement;
-	/** Setting type. */
-	private readonly _type: SettingsType;
-	/** Called when the settings state or value changes. */
-	public onchange?: Function;
+	override readonly labelElement: HTMLLabelElement;
 
 
 	/**
@@ -47,8 +45,7 @@ export class SettingsComponent extends ComponentBase {
 	 */
 	constructor(id: string, label: string, _type=SettingsType.CHECK, options: OptionsEnum={},
 			experimental=false) {
-		super();
-		this._type = _type;
+		super(_type);
 		// create label first
 		this.labelElement = document.createElement("label") as HTMLLabelElement;
 
@@ -57,13 +54,8 @@ export class SettingsComponent extends ComponentBase {
 		} else {
 			this.componentElement = this.initInput(id, label);
 		}
-
 		// listen for changes to component element
-		this.componentElement.addEventListener("change", (evt: Event) => {
-			if (this.onchange) {
-				this.onchange(evt);
-			}
-		});
+		this.initChangeListener();
 
 		if (experimental) {
 			this.componentElement.classList.add("experimental");
@@ -192,23 +184,5 @@ export class SettingsComponent extends ComponentBase {
 		opt.value = value;
 		opt.textContent = label;
 		selectElement.appendChild(opt);
-	}
-
-	/**
-	 * Adds as child to DOM element.
-	 *
-	 * @param parent {ui.toolkit.ComponentBase.ComponentBase|HTMLElement}
-	 *   Component or element to which to add.
-	 */
-	override addTo(parent: ComponentBase|HTMLElement) {
-		const isComponent = parent instanceof ComponentBase;
-		this.parentComponent = isComponent ? parent as ComponentBase : undefined;
-		const parentElement = isComponent ? this.parentComponent!.componentElement
-				: parent as HTMLElement;
-		parentElement.appendChild(this.labelElement);
-		if (!SettingsType.CHECK.equals(this._type)) {
-			// check box component element is already child of label
-			parentElement.appendChild(this.componentElement);
-		}
 	}
 }
