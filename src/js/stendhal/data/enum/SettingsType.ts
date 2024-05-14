@@ -15,6 +15,8 @@ import { Enum } from "../enum/Enum";
 
 /**
  * Defines the different types of settings elements available.
+ *
+ * TODO: rename to "WidgetType"
  */
 export class SettingsType extends Enum {
 	/** Type for text input. */
@@ -25,4 +27,6 @@ export class SettingsType extends Enum {
 	static readonly CHECK = new SettingsType("checkbox");
 	/** Type for multi-select enumeration. */
 	static readonly SELECT = new SettingsType("select");
+	/** Type for slider with numeric range. */
+	static readonly SLIDER = new SettingsType("range");
 }
