@@ -132,6 +132,8 @@ export class Client {
 		// alias for backward-compat until changed in all source
 		stendhal.ui.gamewindow = stendhal.ui.viewport;
 		stendhal.ui.soundMan = singletons.getSoundManager();
+		// update sound levels from config at startup
+		stendhal.ui.soundMan.onConfigUpdate();
 	}
 
 	/**

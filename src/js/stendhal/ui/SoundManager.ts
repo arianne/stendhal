@@ -744,6 +744,21 @@ export class SoundManager {
 	}
 
 	/**
+	 * Can be called when configuration values change.
+	 */
+	onConfigUpdate() {
+		for (const layerName of ["master", ...this.layers]) {
+			let vol = stendhal.config.getFloat("sound." + layerName + ".volume");
+			if (typeof(vol) !== "number") {
+				console.warn("Unrecognized volume value for layer \"" + layerName + "\":", vol);
+				// default to 100%
+				vol = 1.0;
+			}
+			this.setVolume(layerName, vol);
+		}
+	}
+
+	/**
 	 * Called at startup to pre-cache certain sounds.
 	 */
 	startupCache() {
