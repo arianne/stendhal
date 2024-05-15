@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,6 +18,7 @@ import java.util.Map;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SilentNPC;
+import games.stendhal.server.entity.npc.behaviour.impl.idle.WanderIdleBehaviour;
 
 /**
  * Rabbits
@@ -50,7 +51,7 @@ public class RabbitNPC implements ZoneConfigurator {
 			mammal.setDescription("You see a rabbit.");
 			mammal.setEntityClass("animal/rabbit");
 			mammal.setBaseSpeed(0.2);
-			mammal.moveRandomly();
+			mammal.setIdleBehaviour(new WanderIdleBehaviour());
 			mammal.setTitle("rabbit");
 			mammal.setPathCompletedPause(20);
 			zone.add(mammal);
