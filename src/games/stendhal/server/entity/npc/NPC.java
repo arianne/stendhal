@@ -388,4 +388,25 @@ public abstract class NPC extends DressedEntity {
 			}
 		}
 	}
+
+	/**
+	 * Faces a new random direction.
+	 */
+	public void changeDirection() {
+		final Direction oldDir = getDirection();
+		Direction newDir = Direction.rand();
+		short failsafe = 50;
+		while (newDir.equals(oldDir)) {
+			// find a direction different than previous
+			newDir = Direction.rand();
+			failsafe--;
+			if (failsafe < 1) {
+				break;
+			}
+		}
+		if (newDir.equals(oldDir)) {
+			logger.warn("Failed to change entity's direction");
+		}
+		setDirection(newDir);
+	}
 }
