@@ -33,6 +33,7 @@
 			<profile name="animal"/>
 			<profile name="offensive"/>
 			<profile name="patrolling"/>
+			<profile name="wander"/>
 		</ai>
 	</creature>
 
