@@ -937,7 +937,7 @@ public class Creature extends NPC {
 			}
 			maybeMakeSound();
 
-			// FIXME: Play a looped sound for walking creatrue
+			// FIXME: this should probably be done client-side
 			if (movementSound != null && movementSoundEvent == null) {
 				loopMovementSound();
 			}
