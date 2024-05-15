@@ -516,7 +516,7 @@ public class Creature extends NPC {
 				}
 			}
 		}
-		idler = IdleBehaviourFactory.get(aiProfiles);
+		setIdleBehaviour(IdleBehaviourFactory.get(aiProfiles));
 	}
 
 	/**

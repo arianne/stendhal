@@ -314,19 +314,28 @@ public abstract class NPC extends DressedEntity {
 	}
 
 	public void preLogic() {
+		if (idler != null) {
+			// handled in pre-logic to minimize sprite jumping
+			idler.perform(this);
+		}
 	}
 
 	@Override
 	public void logic() {
-		if (atMovementRadius()) {
-			onOutsideMovementRadius();
-		}
-		if (!hasPath()) {
-			if (logger.isDebugEnabled()) {
-				String title = getTitle();
-				String zone = getZone().getName();
-				String coords = Integer.toString(getX()) + ", " + Integer.toString(getY());
-				logger.debug("Moving entity " + title + " at " + zone + " " + coords + " does not have a path");
+		if (idler != null) {
+			// handled in pre-logic
+			return;
+		} else {
+			if (atMovementRadius()) {
+				onOutsideMovementRadius();
+			}
+			if (!hasPath()) {
+				if (logger.isDebugEnabled()) {
+					String title = getTitle();
+					String zone = getZone().getName();
+					String coords = Integer.toString(getX()) + ", " + Integer.toString(getY());
+					logger.debug("Moving entity " + title + " at " + zone + " " + coords + " does not have a path");
+				}
 			}
 		}
 
@@ -337,7 +346,10 @@ public abstract class NPC extends DressedEntity {
 
 	/**
 	 * Give NPC a random path
+	 *
+	 * @deprecated Use {@code NPC.setIdleBehaviour(new WanderIdleBehaviour())} for random movement.
 	 */
+	@Deprecated
 	public void moveRandomly() {
 			setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
 	}
@@ -396,6 +408,18 @@ public abstract class NPC extends DressedEntity {
 				this.notifyWorldAboutChanges();
 			}
 		}
+	}
+
+	/**
+	 * Sets the idle movement behavior manager.
+	 *
+	 * Not related to idle conversation state.
+	 *
+	 * @param idler
+	 *   Manager for executing behavior.
+	 */
+	public void setIdleBehaviour(final IdleBehaviour idler) {
+		this.idler = idler;
 	}
 
 	/**

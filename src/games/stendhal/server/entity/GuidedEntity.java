@@ -527,7 +527,9 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 *
 	 * @return <code>true</code> if the entity has moved outside its movement
 	 * 	area, othwewise <code>false</code>
+	 * @deprecated Use {@code NPC.setIdleBehaviour(new WanderIdleBehaviour())} for random movement.
 	 */
+	@Deprecated
 	public final boolean atMovementRadius() {
 		Point difference = getDistanceFromOrigin();
 
@@ -568,7 +570,10 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 	/**
 	 * Changed path of entity when radius is reached
+	 *
+	 * @deprecated Use {@code NPC.setIdleBehaviour(new WanderIdleBehaviour())} for random movement.
 	 */
+	@Deprecated
 	public void onOutsideMovementRadius() {
 		List<Node> nodes = new LinkedList<Node>();
 

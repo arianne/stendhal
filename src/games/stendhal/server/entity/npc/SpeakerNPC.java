@@ -441,10 +441,14 @@ public class SpeakerNPC extends PassiveNPC {
 			if (getAttending() != null) {
 				setAttending(null);
 			}
-			if (hasPath()) {
-				setSpeed(getBaseSpeed());
+			if (idler != null) {
+				idler.perform(this);
+			} else {
+				if (hasPath()) {
+					setSpeed(getBaseSpeed());
+				}
+				applyMovement();
 			}
-			applyMovement();
 		} else if (attending != null) {
 			// If the player is too far away
 			if ((attending.squaredDistance(this) > squaredGoodByeRange)
