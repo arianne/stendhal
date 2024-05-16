@@ -16,6 +16,8 @@
  ***************************************************************************/
 package games.stendhal.server.util;
 
+import java.time.LocalTime;
+
 import games.stendhal.common.grammar.Grammar;
 
 /**
@@ -255,4 +257,13 @@ public class TimeUtil {
 		}
 	}
 
+	/**
+	 * Retrieves seconds to next day.
+	 *
+	 * @return
+	 *   Remaining seconds to midnight hour in local time.
+	 */
+	public static int secondsToMidnight() {
+		return SECONDS_IN_DAY - LocalTime.now().toSecondOfDay();
+	}
 }
