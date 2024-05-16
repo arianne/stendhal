@@ -38,7 +38,6 @@ import { SingletonFloatingWindow } from "./ui/toolkit/SingletonFloatingWindow";
 import { Chat } from "./util/Chat";
 import { Color } from "./util/Color";
 import { DialogHandler } from "./util/DialogHandler";
-import { MathUtil } from "./util/MathUtil";
 
 
 /**
@@ -466,13 +465,21 @@ export class Client {
 		stendhal.ui.soundMan.playSingleGlobalizedMusic(zoneinfo["music"],
 				!Number.isNaN(musicVolume) ? musicVolume : 1.0);
 
+		// coloring information
+		if (zoneinfo["color_method"]) {
+			stendhal.ui.gamewindow.setColorMethod(zoneinfo["color_method"]);
+		}
+		if (zoneinfo["blend_method"]) {
+			stendhal.ui.gamewindow.setBlendMethod(zoneinfo["blend_method"]);
+		}
 		if (zoneinfo["color"]) {
-			const hsl = Color.hexToHSL(MathUtil.toHex(Number(zoneinfo["color"])));
-			// workaround until able to get right saturation level from color methods
-			const sat = 1.0;
-			stendhal.ui.gamewindow.filter = "hue-rotate(" + hsl.H + "deg) saturate(" + sat
+			const hsl = Color.numToHSL(Number(zoneinfo["color"]));
+			stendhal.ui.gamewindow.HSLFilter = hsl.toString();
+			// deprecated
+			stendhal.ui.gamewindow.filter = "hue-rotate(" + hsl.H + "deg) saturate(" + hsl.S
 					+ ") brightness(" + hsl.L + ")";
 		} else {
+			stendhal.ui.gamewindow.HSLFilter = undefined;
 			stendhal.ui.gamewindow.filter = undefined;
 		}
 

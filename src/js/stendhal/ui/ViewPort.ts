@@ -69,7 +69,11 @@ export class ViewPort {
 	/** Handles drawing weather in viewport. */
 	private weatherRenderer = singletons.getWeatherRenderer();
 	/** Coloring method of current zone. */
-	private filter?: string;
+	private filter?: string; // deprecated, use `HSLFilter`
+	/** Coloring filter of current zone. */
+	private HSLFilter?: string;
+	private colorMethod = "";
+	private blendMethod = ""; // FIXME: unused
 
 	/** Styles to be applied when chat panel is not floating. */
 	private readonly initialStyle: {[prop: string]: string};
@@ -94,7 +98,6 @@ export class ViewPort {
 	private constructor() {
 		const element = this.getElement() as HTMLCanvasElement;
 		this.ctx = element.getContext("2d")!;
-		//~ this.compositeOperation = this.ctx.globalCompositeOperation;
 		this.width = element.width;
 		this.height = element.height;
 
@@ -140,11 +143,12 @@ export class ViewPort {
 				var tileOffsetY = Math.floor(this.offsetY / this.targetTileHeight);
 
 				// FIXME: filter should not be applied to "blend" layers
-				this.applyFilter();
+				//this.applyFilter();
 				stendhal.data.map.strategy.render(this.ctx.canvas, this, tileOffsetX, tileOffsetY, this.targetTileWidth, this.targetTileHeight);
 
 				this.weatherRenderer.draw(this.ctx);
-				this.removeFilter();
+				//this.removeFilter();
+				this.applyHSLFilter();
 				this.drawEntitiesTop();
 				this.drawEmojiSprites();
 				this.drawTextSprites();
@@ -167,6 +171,8 @@ export class ViewPort {
 	 * - colors are wrong
 	 * - doesn't support "blend" layers
 	 * - very slow
+	 *
+	 * @deprecated
 	 */
 	applyFilter() {
 		if (this.filter && stendhal.config.getBoolean("effect.lighting")) {
@@ -176,9 +182,79 @@ export class ViewPort {
 
 	/**
 	 * Removes map's coloring filter from viewport.
+	 *
+	 * @deprecated
 	 */
 	removeFilter() {
 		this.ctx.filter = "none";
+	}
+
+	/**
+	 * Add coloring filter to viewport.
+	 */
+	private applyHSLFilter() {
+		if (!this.HSLFilter || !stendhal.config.getBoolean("effect.lighting")) {
+			return;
+		}
+		this.ctx.save();
+		// FIXME: is this the appropriate alpha level to use? "color_method" value from server doesn't
+		//        appear to include alpha information
+		this.ctx.globalAlpha = 0.5;
+		this.ctx.globalCompositeOperation = (this.colorMethod || this.ctx.globalCompositeOperation) as GlobalCompositeOperation;
+		this.ctx.fillStyle = this.HSLFilter;
+		this.ctx.fillRect(this.offsetX, this.offsetY, this.ctx.canvas.width, this.ctx.canvas.height);
+		this.ctx.restore();
+	}
+
+	/**
+	 * Sets color method used for current zone.
+	 *
+	 * @param method {string}
+	 *   Color method.
+	 */
+	setColorMethod(method: string) {
+		switch(method) {
+			case "softlight":
+				method = "soft-light";
+				break;
+		}
+		const known = [
+			"source-over", "source-in", "source-out", "source-atop",
+			"destination-over", "destination-in", "destination-out", "destination-atop",
+			"lighter",
+			"copy",
+			"xor",
+			"multiply",
+			"screen",
+			"overlay",
+			"darken",
+			"lighten",
+			"color-dodge",
+			"color-burn",
+			"hard-light",
+			"soft-light",
+			"difference",
+			"exclusion",
+			"hue",
+			"saturation",
+			"color",
+			"luminosity"
+		];
+		if (known.indexOf(method) < 0) {
+			console.warn("Unknown color method:", method);
+			return;
+		}
+		this.colorMethod = method;
+	}
+
+	/**
+	 * Sets blend method used for current zone.
+	 *
+	 * @param method {string}
+	 *   Blend method.
+	 */
+	setBlendMethod(method: string) {
+		this.blendMethod = method;
 	}
 
 	/**
