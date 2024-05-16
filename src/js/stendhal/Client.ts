@@ -38,6 +38,7 @@ import { SingletonFloatingWindow } from "./ui/toolkit/SingletonFloatingWindow";
 import { Chat } from "./util/Chat";
 import { Color } from "./util/Color";
 import { DialogHandler } from "./util/DialogHandler";
+import { MathUtil } from "./util/MathUtil";
 
 
 /**
@@ -466,7 +467,7 @@ export class Client {
 				!Number.isNaN(musicVolume) ? musicVolume : 1.0);
 
 		if (zoneinfo["color"]) {
-			const hsl = Color.hexToHSL(Color.numToHex(Number(zoneinfo["color"])));
+			const hsl = Color.hexToHSL(MathUtil.toHex(Number(zoneinfo["color"])));
 			// workaround until able to get right saturation level from color methods
 			const sat = 1.0;
 			stendhal.ui.gamewindow.filter = "hue-rotate(" + hsl.H + "deg) saturate(" + sat

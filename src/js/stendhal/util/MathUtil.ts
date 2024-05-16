@@ -118,4 +118,26 @@ export class MathUtil {
 		// NOTE: JavaScript has signed 0 value so get absolute just for safety
 		return Math.abs(n < 0 ? n + 360 : n);
 	}
+
+	/**
+	 * Converts a number value to hex string.
+	 *
+	 * @param n {number}
+	 *   Number value to be converted.
+	 * @param pad {boolean}
+	 *   Left pad with zeros for up to six characters (default: `true`).
+	 * @param slice {boolean}
+	 *   If `true`, strip any characters preceding last six (default: `false`).
+	 * @return {string}
+	 *   Hexadecimal string representation (excluding "#" prefix).
+	 */
+	static toHex(n: number, pad=true, slice=false): string {
+		// ensure number is unsigned & convert to hexadecimal string
+		let h = (n >>> 0).toString(16).toUpperCase();
+		if (h.length < 6 && pad) {
+			// pad to make at least 6 characters long
+			h = ("000000" + h).slice(-6);
+		}
+		return slice ? h.slice(-6) : h;
+	}
 }

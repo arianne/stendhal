@@ -100,20 +100,6 @@ export class Color {
 	}
 
 	/**
-	 * Converts a number value to hex string.
-	 *
-	 * https://stackoverflow.com/a/37796055/4677917
-	 *
-	 * @param num {number}
-	 *   Value to be converted.
-	 * @return {string}
-	 *   Hex representation.
-	 */
-	static numToHex(num: number): string {
-		return "#" + (num >>> 0).toString(16).slice(-6).toUpperCase();
-	}
-
-	/**
 	 * Converts hex string to RGB color.
 	 *
 	 * FIXME: this should do error checking
