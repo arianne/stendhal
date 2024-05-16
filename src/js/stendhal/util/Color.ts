@@ -10,22 +10,146 @@
  *                                                                         *
  ***************************************************************************/
 
+import { MathUtil } from "./MathUtil";
 
-export interface RGBColor {
-	[index: string]: number|undefined;
-	readonly R: number,
-	readonly G: number,
-	readonly B: number,
-	readonly A?: number
+
+// TODO: move to `data/color` directory
+
+/**
+ * Color representation class.
+ */
+abstract class ColorType {
+	[index: string]: number|Function|undefined;
+
+	/** Alpha level. */
+	readonly A?: number;
+
+
+	/**
+	 * Creates a new color representation with alpha level.
+	 *
+	 * @param A {number}
+	 *   Alpha level. Float value where 0 represents fully transparent and 1 fully opaque (min: 0,
+	 *   max: 1, default: `undefined`).
+	 */
+	constructor(A?: number) {
+		if (typeof(A) === "number") {
+			this.A = Math.max(Math.min(A, 1), 0);
+		}
+	}
+
+	/**
+	 * Converts color to string representation.
+	 *
+	 * @return {string}
+	 *   String representation.
+	 */
+	abstract toString(): string;
 }
 
-export interface HSLColor {
-	[index: string]: number|undefined;
-	readonly H: number,
-	readonly S: number,
-	readonly L: number
+/**
+ * RGB color representation class.
+ */
+export class RGBColor extends ColorType {
+
+	/** Red level. */
+	readonly R: number;
+	/** Green level. */
+	readonly G: number;
+	/** Blue level. */
+	readonly B: number;
+	/** Alpha level. */
+	//~ readonly A?: number;
+
+
+	/**
+	 * Creates a new RGB color representation.
+	 *
+	 * @param R {number}
+	 *   Red color level (min: 0, max: 255).
+	 * @param G {number}
+	 *   Green color level (min: 0, max: 255).
+	 * @param B {number}
+	 *   Blue color level (min: 0, max: 255).
+	 * @param A {number}
+	 *   Alpha level. Float value where 0 represents fully transparent and 1 fully opaque (min: 0,
+	 *   max: 1, default: 1).
+	 */
+	constructor(R: number, G: number, B: number, A?: number) {
+		super(A);
+		this.R = Math.max(Math.min(R, 255), 0);
+		this.G = Math.max(Math.min(G, 255), 0);
+		this.B = Math.max(Math.min(B, 255), 0);
+	}
+
+	/**
+	 * Converts RGB color to string representation.
+	 *
+	 * @return {string}
+	 *   RGB or RGBA formatted string. Example: "rgb(255, 255, 255)"
+	 */
+	override toString(): string {
+		const rgb = this.R + ", " + this.G + ", " + this.B;
+		if (typeof(this.A) === "number") {
+			return "rgba(" + rgb + ", " + this.A + ")";
+		}
+		return "rgb(" + rgb + ")";
+	}
 }
 
+/**
+ * HSL color representation class.
+ */
+export class HSLColor extends ColorType {
+
+	/** Hue degree. */
+	readonly H: number;
+	/** Saturation level. */
+	readonly S: number;
+	/** Lightness level. */
+	readonly L: number;
+	/** Alpha level. */
+	//readonly A?: number;
+
+
+	/**
+	 * Creates a new HSL color representation.
+	 *
+	 * @param H {number}
+	 *   Hue degree.
+	 * @param S {number}
+	 *   Saturation level. Float value representing between 0%-100% (min: 0, max: 1).
+	 * @param L {number}
+	 *   Lightness level. Float value representing between 0%-100% (min: 0, max: 1).
+	 * @param A {number}
+	 *   Alpha level. Float value where 0 represents fully transparent and 1 fully opaque (min: 0,
+	 *   max: 1, default: 1).
+	 */
+	constructor(H: number, S: number, L: number, A?: number) {
+		super(A);
+		this.H = MathUtil.normDeg(H);
+		this.S = Math.max(Math.min(S, 1), 0);
+		this.L = Math.max(Math.min(L, 1), 0);
+	}
+
+	/**
+	 * Converts HSL color to string representation.
+	 *
+	 * @return {string}
+	 *   HSL or HSLA formatted string. Example: "hsl(300, 100%, 50%)"
+	 */
+	override toString(): string {
+		const hsl = this.H + ", " + (this.S * 100) + "%, " + (this.L * 100) + "%";
+		if (typeof(this.A) === "number") {
+			return "hsla(" + hsl + ", " + this.A + ")";
+		}
+		return "hsl(" + hsl + ")";
+	}
+}
+
+/**
+ * Static class for color string representations and conversion.
+ */
 export class Color {
 	public static readonly AQUA = "rgb(0, 255, 255)"; // #00FFFF
 	public static readonly BLACK = "rgb(0, 0, 0)"; // #000000
@@ -100,33 +224,63 @@ export class Color {
 	}
 
 	/**
+	 * Converts a number value to RGB color.
+	 *
+	 * @param n {number}
+	 *   Value to be converted.
+	 * @return {util.Color.RGBColor}
+	 *   RGB color representation.
+	 */
+	static numToRGB(n: number): RGBColor {
+		const r = (n >> 16) & 255;
+		const g = (n >> 8) & 255;
+		const b = n & 255;
+		return new RGBColor(r, g, b);
+	}
+
+	/**
+	 * Converts a number value to HSL color.
+	 *
+	 * @param n {number}
+	 *   Value to be converted.
+	 * @return {util.Color.HSLColor}
+	 *   HSL color representation.
+	 */
+	static numToHSL(n: number): HSLColor {
+		return Color.RGBToHSL(Color.numToRGB(n));
+	}
+
+	/**
 	 * Converts hex string to RGB color.
 	 *
 	 * FIXME: this should do error checking
 	 *
-	 * @param hex {string}
+	 * @param h {string}
 	 *   Hex value to be converted.
 	 * @return {util.Color.RGBColor}
 	 *   RGB color representation.
 	 */
-	static hexToRGB(hex: string): RGBColor {
-		return {
-			R: parseInt(hex.substring(1, 3), 16),
-			G: parseInt(hex.substring(3, 5), 16),
-			B: parseInt(hex.substring(5, 7), 16)
-		} as RGBColor;
+	static hexToRGB(h: string): RGBColor {
+		h = h.replace(/^#/, "");
+		/*
+		const r = parseInt(h.substring(0, 2), 16);
+		const g = parseInt(h.substring(2, 4), 16);
+		const b = parseInt(h.substring(4, 6), 16);
+		return new RGBColor(r, g, b);
+		*/
+		return Color.numToRGB(parseInt(h, 16));
 	}
 
 	/**
 	 * Converts hex string to HSL color.
 	 *
-	 * @param hex {string}
+	 * @param h {string}
 	 *   Hex value to be converted.
 	 * @return {util.Color.HSLColor}
 	 *   HSL color representation.
 	 */
-	static hexToHSL(hex: string): HSLColor {
-		return Color.RGBToHSL(Color.hexToRGB(hex));
+	static hexToHSL(h: string): HSLColor {
+		return Color.RGBToHSL(Color.hexToRGB(h));
 	}
 
 	/**
@@ -159,20 +313,24 @@ export class Color {
 			h = (r - g) / delta + 4;
 		}
 		h = Math.round(h * 60);
+		/*
 		if (h < 0) {
 			h += 360;
 		}
 		h /= 360;
+		*/
 
 		// lightness
 		let l = (cmax + cmin) / 2;
 		// saturation
 		let s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
 
+		/*
 		l = +(l * 100).toFixed(1);
 		s = +(s * 100).toFixed(1);
+		*/
 
-		return {H: Number(h.toFixed(2)), S: s / 100, L: l / 100} as HSLColor;
+		return new HSLColor(h, Number(s.toFixed(3)), Number(l.toFixed(3)));
 	}
 
 	/**
@@ -184,18 +342,8 @@ export class Color {
 	 *   Object with R/G/B numerical values.
 	 */
 	static parseRGB(rgb: string): RGBColor {
-		const tmp: number[] = [];
-		for (const s of rgb.replace(/^rgb\(/, "").replace(/\)$/, "").split(",")) {
-			let n = Number(s);
-			if (n > 255) {
-				n = 255;
-			}
-			if (n < 0) {
-				n = 0;
-			}
-			tmp.push(n);
-		}
-		return {R: tmp[0], G: tmp[1], B: tmp[2]} as RGBColor;
+		const tmp = rgb.replace(/^rgb\(/, "").replace(/\)$/, "").split(",");
+		return new RGBColor(Number(tmp[0]), Number(tmp[1]), Number(tmp[2]));
 	}
 
 	/**
@@ -208,10 +356,10 @@ export class Color {
 	 */
 	static parseHSL(hsl: string): HSLColor {
 		const tmp = hsl.replace(/^hsl\(/, "").replace(/\)$/, "").split(",");
-		return {
-			H: Number(tmp[0]),
-			S: parseFloat(tmp[1]) / 100,
-			L: parseFloat(tmp[2]) / 100
-		} as HSLColor;
+		const h = Number(tmp[0]);
+		// NOTE: `parseFloat` automatically trims trailing "%"
+		const s = parseFloat(tmp[1]) / 100;
+		const l = parseFloat(tmp[2]) / 100;
+		return new HSLColor(h, s, l);
 	}
 }
