@@ -18,6 +18,7 @@ Changelog
 - fixed infinite request loop when travel log items technically empty
 - supports optional tab placement above panel contents
 - travel log tabs match theme
+- added basic lighting effects support
 
 *server fixes*
 - fixed Seven Cherubs not showing up as completed
