@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # ***************************************************************************
-# *                       Copyright © 2023 - Stendhal                       *
+# *                    Copyright © 2023-2024 - Stendhal                     *
 # ***************************************************************************
 # *                                                                         *
 # *   This program is free software; you can redistribute it and/or modify  *
