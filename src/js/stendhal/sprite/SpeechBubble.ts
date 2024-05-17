@@ -13,9 +13,10 @@ declare var stendhal: any;
 
 import { TextBubble } from "./TextBubble";
 
+import { Color } from "../data/color/Color";
+
 import { RPEntity } from "../entity/RPEntity";
 
-import { Color } from "../util/Color";
 import { Pair } from "../util/Pair";
 import { Speech } from "../util/Speech";
 

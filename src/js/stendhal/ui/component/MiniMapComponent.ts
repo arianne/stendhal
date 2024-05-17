@@ -16,7 +16,7 @@ import { Component } from "../toolkit/Component";
 
 import { Player } from "../../entity/Player";
 
-import { Color } from "../../util/Color";
+import { Color } from "../../data/color/Color";
 
 
 /**

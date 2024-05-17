@@ -9,10 +9,10 @@
  *                                                                         *
  ***************************************************************************/
 
-import { MenuItem } from "../action/MenuItem";
 import { Entity } from "./Entity";
+import { MenuItem } from "../action/MenuItem";
 
-import { Color } from "../util/Color";
+import { Color } from "../data/color/Color";
 
 declare var marauroa: any;
 declare var stendhal: any;

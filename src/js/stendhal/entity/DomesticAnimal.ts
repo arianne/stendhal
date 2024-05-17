@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -12,7 +12,7 @@
 import { RPEntity } from "./RPEntity";
 import { MenuItem} from "../action/MenuItem";
 
-import { Color } from "../util/Color";
+import { Color } from "../data/color/Color";
 
 declare var marauroa: any;
 declare var stendhal: any;

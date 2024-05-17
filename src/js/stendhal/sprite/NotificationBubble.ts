@@ -13,8 +13,10 @@
 declare var stendhal: any;
 
 import { TextBubble } from "./TextBubble";
+
+import { Color } from "../data/color/Color";
+
 import { NotificationType } from "../util/NotificationType";
-import { Color } from "../util/Color";
 import { Speech } from "../util/Speech";
 
 

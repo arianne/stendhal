@@ -21,7 +21,7 @@ import { UIComponentEnum } from "../ui/UIComponentEnum";
 
 import { GroupPanelComponent } from "../ui/component/GroupPanelComponent";
 
-import { Color } from "../util/Color";
+import { Color } from "../data/color/Color";
 
 
 export class Player extends RPEntity {

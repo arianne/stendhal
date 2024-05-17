@@ -17,6 +17,8 @@ import { singletons } from "./SingletonRepo";
 
 import { Paths } from "./data/Paths";
 
+import { Color } from "./data/color/Color";
+
 import { Ground } from "./entity/Ground";
 import { RPObject } from "./entity/RPObject";
 
@@ -36,7 +38,6 @@ import { DesktopUserInterfaceFactory } from "./ui/factory/DesktopUserInterfaceFa
 import { SingletonFloatingWindow } from "./ui/toolkit/SingletonFloatingWindow";
 
 import { Chat } from "./util/Chat";
-import { Color } from "./util/Color";
 import { DialogHandler } from "./util/DialogHandler";
 
 

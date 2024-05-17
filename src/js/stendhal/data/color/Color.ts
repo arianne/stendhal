@@ -10,10 +10,8 @@
  *                                                                         *
  ***************************************************************************/
 
-import { MathUtil } from "./MathUtil";
+import { MathUtil } from "../../util/MathUtil";
 
-
-// TODO: move to `data/color` directory
 
 /**
  * Color representation class.
@@ -228,7 +226,7 @@ export class Color {
 	 *
 	 * @param n {number}
 	 *   Value to be converted.
-	 * @return {util.Color.RGBColor}
+	 * @return {data.color.Color.RGBColor}
 	 *   RGB color representation.
 	 */
 	static numToRGB(n: number): RGBColor {
@@ -243,7 +241,7 @@ export class Color {
 	 *
 	 * @param n {number}
 	 *   Value to be converted.
-	 * @return {util.Color.HSLColor}
+	 * @return {data.color.Color.HSLColor}
 	 *   HSL color representation.
 	 */
 	static numToHSL(n: number): HSLColor {
@@ -257,7 +255,7 @@ export class Color {
 	 *
 	 * @param h {string}
 	 *   Hex value to be converted.
-	 * @return {util.Color.RGBColor}
+	 * @return {data.color.Color.RGBColor}
 	 *   RGB color representation.
 	 */
 	static hexToRGB(h: string): RGBColor {
@@ -276,7 +274,7 @@ export class Color {
 	 *
 	 * @param h {string}
 	 *   Hex value to be converted.
-	 * @return {util.Color.HSLColor}
+	 * @return {data.color.Color.HSLColor}
 	 *   HSL color representation.
 	 */
 	static hexToHSL(h: string): HSLColor {
@@ -288,9 +286,9 @@ export class Color {
 	 *
 	 * https://css-tricks.com/converting-color-spaces-in-javascript/
 	 *
-	 * @param rgb {util.Color.RGBColor}
+	 * @param rgb {data.color.Color.RGBColor}
 	 *   RGB color representation.
-	 * @return {util.Color.HSLColor}
+	 * @return {data.color.Color.HSLColor}
 	 *   HSL color representation.
 	 */
 	static RGBToHSL(rgb: RGBColor): HSLColor {
@@ -338,7 +336,7 @@ export class Color {
 	 *
 	 * @param rbg {string}
 	 *   RGB formatted string.
-	 * @return {util.Color.RGBColor}
+	 * @return {data.color.Color.RGBColor}
 	 *   Object with R/G/B numerical values.
 	 */
 	static parseRGB(rgb: string): RGBColor {
@@ -351,7 +349,7 @@ export class Color {
 	 *
 	 * @parm hsl (strong}
 	 *   HSL formatted string.
-	 * @return {util.Color.HSLColor}
+	 * @return {data.color.Color.HSLColor}
 	 *   Object with H/S/L numerical values.
 	 */
 	static parseHSL(hsl: string): HSLColor {

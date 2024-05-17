@@ -19,6 +19,8 @@ import { singletons } from "../SingletonRepo";
 
 import { MenuItem } from "../action/MenuItem";
 
+import { Color } from "../data/color/Color";
+
 import { ui } from "../ui/UI";
 import { UIComponentEnum } from "../ui/UIComponentEnum";
 
@@ -30,7 +32,6 @@ import { OutfitDialog } from "../ui/dialog/outfit/OutfitDialog";
 
 import { FloatingWindow } from "../ui/toolkit/FloatingWindow";
 
-import { Color } from "../util/Color";
 import { Direction } from "../util/Direction";
 
 

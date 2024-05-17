@@ -10,7 +10,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Color } from "./Color";
+import { Color } from "../data/color/Color";
 
 
 export const NotificationType = {

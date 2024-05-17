@@ -11,7 +11,7 @@
 
 declare var stendhal: any;
 
-import { Color } from "../util/Color";
+import { Color } from "../data/color/Color";
 import { Pair } from "../util/Pair";
 
 

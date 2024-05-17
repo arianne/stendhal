@@ -10,7 +10,7 @@
  ***************************************************************************/
 
 import { Component } from "../toolkit/Component";
-import { Color } from "../../util/Color";
+import { Color } from "../../data/color/Color";
 
 /**
  * TODO: move this to `ui.toolkit`.

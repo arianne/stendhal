@@ -11,7 +11,7 @@
 
 import { RPEntity } from "./RPEntity";
 
-import { Color } from "../util/Color";
+import { Color } from "../data/color/Color";
 
 declare var stendhal: any;
 

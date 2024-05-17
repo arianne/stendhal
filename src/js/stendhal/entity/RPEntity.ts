@@ -16,8 +16,10 @@ import { ActiveEntity } from "./ActiveEntity";
 import { Entity } from "./Entity";
 import { singletons } from "../SingletonRepo";
 import { MenuItem } from "../action/MenuItem";
+
+import { Color } from "../data/color/Color";
+
 import { Chat } from "../util/Chat";
-import { Color } from "../util/Color";
 import { Nature } from "../util/Nature";
 
 import { Floater } from "../sprite/Floater";
