@@ -12,8 +12,8 @@
 
 import { RPEvent } from "./RPEvent";
 
-import { KikaPunishmentEvent } from "./generic/KikaPunishmentEvent";
 import { SubEvent } from "./generic/SubEvent";
+import { ThunderclapEvent } from "./generic/ThunderclapEvent";
 
 
 /**
@@ -38,5 +38,5 @@ export class GenericEvent extends RPEvent {
 		new event(flags).execute(entity);
 	}
 
-	"thunderclap" = new KikaPunishmentEvent();
+	"thunderclap" = new ThunderclapEvent();
 }

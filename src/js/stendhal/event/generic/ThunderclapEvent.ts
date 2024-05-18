@@ -26,14 +26,12 @@ import { ViewPort } from "../../ui/ViewPort";
 
 
 /**
- * Creates effects for Kika punishment.
+ * Creates a thunder & lightning effect.
  *
  * TODO:
  * - maybe make thunderclap louder
- * - add some type of beforehand notice, maybe in travel log, about potential punishment
- * - move to more generic name such as "LightningStrikeEvent" for use by other events
  */
-export class KikaPunishmentEvent extends SubEvent {
+export class ThunderclapEvent extends SubEvent {
 
 	private startTime = 0;
 	private image = store.get(Paths.maps + "/effect/lightning.png");
