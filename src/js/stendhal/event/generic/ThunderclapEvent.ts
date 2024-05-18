@@ -30,16 +30,26 @@ import { ViewPort } from "../../ui/ViewPort";
  */
 export class ThunderclapEvent extends SubEvent {
 
-	private startTime = 0;
-	private image = store.get(Paths.maps + "/effect/lightning.png");
-	private flash = true;
-	private lightning = true;
+	/** Thunder image. */
+	private static readonly image = store.get(Paths.maps + "/effect/lightning.png");
+
+	/** Determines if screen should flash white. */
+	private readonly flash;
+	/** Determines if lightning bolt should be drawn. */
+	private readonly lightning;
+	/** Time that event execution began. */
+	private startTime;
 
 
-	override execute(entity: any, flags: string[]) {
+	constructor(flags: string[]) {
+		super(flags);
+		this.flash = !this.flagEnabled("no-flash");
+		this.lightning = !this.flagEnabled("no-lightning");
+		this.startTime = 0;
+	}
+
+	override execute(entity: any) {
 		this.startTime = Date.now();
-		this.flash = flags.indexOf("no-flash") < 0;
-		this.lightning = flags.indexOf("no-lightning") < 0;
 		// thunder sound
 		SoundManager.get().playLocalizedEffect(entity["x"], entity["y"], SoundManager.DEFAULT_RADIUS,
 				SoundLayer.SFX.value, SoundID["thunderclap"]!);
@@ -74,12 +84,12 @@ export class ThunderclapEvent extends SubEvent {
 				ctx.globalAlpha = 0.75;
 			}
 			ctx.fillStyle = Color.WHITE;
-			ctx.fillRect(offsetX, offsetY, 640, 480);
+			ctx.fillRect(offsetX, offsetY, ctx.canvas.width, ctx.canvas.height);
+			// restore composite info to make lightning opaque
 			ctx.restore();
 		}
-		if (this.lightning && this.image.height) {
-			ctx.drawImage(this.image, offsetX, offsetY);
+		if (this.lightning && ThunderclapEvent.image.height) {
+			ctx.drawImage(ThunderclapEvent.image, offsetX, offsetY);
 		}
-		ctx.restore();
 	}
 }
