@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2020 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,7 +12,7 @@
 package games.stendhal.common;
 
 /**
- * Constants about slots
+ * General constants.
  */
 public final class Constants {
 	/**
@@ -24,4 +24,7 @@ public final class Constants {
 			"pouch", "bag", "keyring", "portfolio", "back", "belt", "head", "rhand", "lhand", "armor", "finger", "cloak",
 			"legs", "feet"
 	};
+
+	/** Distance at which entity sounds can be heard. */
+	public static final int DEFAULT_SOUND_RADIUS = 23;
 }

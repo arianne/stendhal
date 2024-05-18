@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,8 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
+
+import static games.stendhal.common.Constants.DEFAULT_SOUND_RADIUS;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -989,7 +991,7 @@ public class Creature extends NPC {
 	 * FIXME: doesn't play sound
 	 */
 	private void loopMovementSound() {
-		movementSoundEvent = new SoundEvent(movementSound, SOUND_RADIUS, 100, SoundLayer.CREATURE_NOISE);
+		movementSoundEvent = new SoundEvent(movementSound, DEFAULT_SOUND_RADIUS, 100, SoundLayer.CREATURE_NOISE);
 		this.addEvent(movementSoundEvent);
 		this.notifyWorldAboutChanges();
 	}
