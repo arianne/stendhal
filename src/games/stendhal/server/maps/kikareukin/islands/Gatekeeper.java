@@ -28,10 +28,13 @@ import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.util.TimeUtil;
 
 
+/**
+ * An "entity" that tracks and manages requests to enter Kika Clouds.
+ */
 public class Gatekeeper {
 
 	/** Slot name used for tracking requests. */
-	private static final String SLOT = "heaven_gatekeeper";
+	private static final String SLOT = "kika_gatekeeper";
 	/** Name of entity that messages player. */
 	private static final String ENTITY_NAME = "Kikareukin's Gatekeeper";
 	/** Number of requests allowed before being punished. */
