@@ -79,12 +79,12 @@ export class ViewPort {
 	private readonly initialStyle: {[prop: string]: string};
 
 	/**
-	 * Callback for instructions to execute when a drawing cycle on the viewport is complete.
+	 * Callback for instructions to execute when scene drawing is complete for a cycle.
 	 *
 	 * The function is called with the parameters `ctx` (CanvasRenderingContext2D), `offsetX`,
 	 * and `offsetY`.
 	 */
-	public onDrawComplete?: Function;
+	public onSceneComplete?: Function;
 
 	/** Singleton instance. */
 	private static instance: ViewPort;
@@ -167,8 +167,8 @@ export class ViewPort {
 				stendhal.ui.equip.update();
 				(ui.get(UIComponentEnum.PlayerEquipment) as PlayerEquipmentComponent).update();
 
-				if (this.onDrawComplete) {
-					this.onDrawComplete(this.ctx, this.offsetX, this.offsetY);
+				if (this.onSceneComplete) {
+					this.onSceneComplete(this.ctx, this.offsetX, this.offsetY);
 				}
 			}
 		}
