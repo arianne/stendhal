@@ -192,7 +192,7 @@ public class Gatekeeper {
 					public void onTurnReached(int currentTurn) {
 						if (!notified) {
 							player.addEvent(new GenericEvent("thunderclap"));
-							player.sendPrivateText(NotificationType.PRIVMSG, Gatekeeper.ENTITY_NAME,
+							player.sendPrivateText(NotificationType.WARNING, Gatekeeper.ENTITY_NAME,
 									"You have worn out your welcome because of your greed!");
 							notified = true;
 							notifier.notifyInTurns(15, this);
