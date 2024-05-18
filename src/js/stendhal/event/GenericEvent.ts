@@ -21,11 +21,14 @@ import { ThunderclapEvent } from "./generic/ThunderclapEvent";
  *
  * TODO: allow execution without an associated entity
  */
-export class GenericEvent extends RPEvent {
+export class GenericEvent extends RPEvent  {
 	[index: string]: any;
 
 	public subevent!: string;
 	public flags!: string;
+
+	// registered sub-events
+	"thunderclap" = ThunderclapEvent;
 
 
 	override execute(entity: any) {
@@ -37,6 +40,4 @@ export class GenericEvent extends RPEvent {
 		const flags = typeof(this["flags"]) === "string" ? this["flags"].split(",") : [];
 		new event(flags).execute(entity);
 	}
-
-	"thunderclap" = new ThunderclapEvent();
 }
