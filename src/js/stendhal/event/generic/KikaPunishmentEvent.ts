@@ -15,14 +15,14 @@ import { SubEvent } from "./SubEvent";
 import { Paths } from "../../data/Paths";
 import { store } from "../../data/SpriteStore";
 
+import { Color } from "../../data/color/Color";
+
 import { SoundLayer } from "../../data/enum/SoundLayer";
 
 import { SoundID } from "../../data/sound/SoundID";
 
 import { SoundManager } from "../../ui/SoundManager";
 import { ViewPort } from "../../ui/ViewPort";
-
-import { Color } from "../../util/Color";
 
 
 /**
