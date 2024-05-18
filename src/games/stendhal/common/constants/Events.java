@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -64,4 +64,6 @@ public final class Events {
 	public static final String OUTFIT_LIST = "show_outfit_list";
 
 	public static final String CHAT_OPTIONS = "chat_options";
+
+	public static final String GENERIC = "generic_event";
 }
