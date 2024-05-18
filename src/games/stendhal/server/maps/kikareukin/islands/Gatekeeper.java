@@ -195,7 +195,7 @@ public class Gatekeeper {
 							player.sendPrivateText(NotificationType.PRIVMSG, Gatekeeper.ENTITY_NAME,
 									"You have worn out your welcome because of your greed!");
 							notified = true;
-							notifier.notifyInTurns(10, this);
+							notifier.notifyInTurns(15, this);
 						} else {
 							Gatekeeper.applyResult(player);
 						}
