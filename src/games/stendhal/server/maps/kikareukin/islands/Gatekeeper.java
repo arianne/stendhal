@@ -125,8 +125,8 @@ public class Gatekeeper {
 		*/
 
 		NotificationType ntype = NotificationType.INFORMATION;
-		String msg = "It appears you you are not welcome in the clouds at this time. Perhaps in time"
-				+ " you will again be granted entrance.";
+		String msg = "It appears you you are not welcome in the clouds. Perhaps in time you will again"
+				+ " be granted entrance.";
 		/*
 		if (xpLoss > 0 || hpLoss > 0) {
 			ntype = NotificationType.NEGATIVE;
