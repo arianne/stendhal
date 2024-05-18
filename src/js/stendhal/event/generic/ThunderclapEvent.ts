@@ -27,9 +27,6 @@ import { ViewPort } from "../../ui/ViewPort";
 
 /**
  * Creates a thunder & lightning effect.
- *
- * TODO:
- * - maybe make thunderclap louder
  */
 export class ThunderclapEvent extends SubEvent {
 
@@ -44,7 +41,8 @@ export class ThunderclapEvent extends SubEvent {
 		this.flash = flags.indexOf("no-flash") < 0;
 		this.lightning = flags.indexOf("no-lightning") < 0;
 		// thunder sound
-		SoundManager.get().playGlobalizedEffect(SoundID["thunderclap"]!, SoundLayer.SFX.value);
+		SoundManager.get().playLocalizedEffect(entity["x"], entity["y"], SoundManager.DEFAULT_RADIUS,
+				SoundLayer.SFX.value, SoundID["thunderclap"]!);
 		if (this.flash || this.lightning) {
 			// lightning visual effect
 			const viewport = ViewPort.get();
