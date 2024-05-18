@@ -267,6 +267,8 @@ export class SoundManager {
 	/**
 	 * Plays a sound with volume relative to distance.
 	 *
+	 * TODO: re-order parameters to put sound name first
+	 *
 	 * @param x {number}
 	 *   X coordinate of sound source.
 	 * @param y {number}
@@ -336,6 +338,8 @@ export class SoundManager {
 	/**
 	 * Loops a sound with volume relative to distance.
 	 *
+	 * TODO: re-order parameters to put sound name first
+	 *
 	 * @param x {number}
 	 *   X coordinate of sound source.
 	 * @param y {number}
@@ -374,6 +378,8 @@ export class SoundManager {
 
 	/**
 	 * Loops a sound with volume relative to distance.
+	 *
+	 * TODO: re-order parameters to put music name first
 	 *
 	 * @param x {number}
 	 *   X coordinate of sound source.
