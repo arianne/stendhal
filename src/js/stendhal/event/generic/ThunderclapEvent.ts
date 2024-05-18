@@ -46,15 +46,16 @@ export class ThunderclapEvent extends SubEvent {
 		if (this.flash || this.lightning) {
 			// lightning visual effect
 			const viewport = ViewPort.get();
-			viewport.onDrawComplete = (ctx: CanvasRenderingContext2D, offsetX: number, offsetY: number) => {
+			viewport.onSceneComplete = (ctx: CanvasRenderingContext2D, offsetX: number,
+					offsetY: number) => {
 				this.drawLightning(ctx, offsetX, offsetY);
 			}
-			window.setTimeout(function() { viewport.onDrawComplete = undefined; }, 300);
+			window.setTimeout(function() { viewport.onSceneComplete = undefined; }, 300);
 		}
 	}
 
 	/**
-	 * Draws a lighning effect on the viewport.
+	 * Draws a lightning effect on the viewport.
 	 *
 	 * @param ctx {CanvasRenderingContext2D}
 	 *   Canvas drawing context.
