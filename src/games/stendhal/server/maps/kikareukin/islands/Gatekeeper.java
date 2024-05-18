@@ -16,15 +16,12 @@ import java.util.List;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
-import games.stendhal.common.constants.SoundID;
-import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.GenericEvent;
-import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.util.TimeUtil;
 
 
@@ -211,7 +208,7 @@ public class Gatekeeper {
 			SingletonRepository.getTurnNotifier().notifyInTurns(30, new TurnListener() {
 				@Override
 				public void onTurnReached(int currentTurn) {
-					player.addEvent(new SoundEvent(SoundID.THUNDERCLAP, SoundLayer.FIGHTING_NOISE));
+					player.addEvent(new GenericEvent("thunderclap"));
 					player.sendPrivateText(NotificationType.WARNING, Gatekeeper.ENTITY_NAME, "Your request to"
 							+ " enter the clouds has been granted... this time. But do not get greedy lest you"
 							+ " face the wrath of heaven.");
