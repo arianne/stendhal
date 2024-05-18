@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,6 +16,7 @@ import java.util.Collection;
 import java.util.List;
 
 import games.stendhal.client.listener.PositionChangeListener;
+import games.stendhal.common.constants.SoundLayer;
 
 /**
  * this class is the interface between the game logic and the
@@ -41,4 +42,13 @@ public interface SoundSystemFacade extends PositionChangeListener {
 	public void changeVolume(float volume);
 
 	public List<String> getDeviceNames();
+
+	public SoundHandle playLocalizedEffect(String name, int x, int y, int radius, SoundLayer layer,
+			float volume, boolean loop);
+
+	public SoundHandle playLocalizedEffect(String name, int x, int y, SoundLayer layer);
+
+	public SoundHandle playGlobalizedEffect(String name, SoundLayer layer, float volume, boolean loop);
+
+	public SoundHandle playGlobalizedEffect(String name, SoundLayer layer);
 }
