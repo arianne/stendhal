@@ -20,6 +20,7 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.events.generic.SubEvent;
+import games.stendhal.client.events.generic.ThunderclapEvent;
 
 
 /**
@@ -31,7 +32,9 @@ public class GenericEvent extends Event<Entity> {
 
 	/** Registered sub-events. */
 	private static Map<String, Class<? extends SubEvent>> registry = new HashMap<String,
-			Class<? extends SubEvent>>();
+			Class<? extends SubEvent>>() {{
+		put("thunderclap", ThunderclapEvent.class);
+	}};
 
 
 	@Override
