@@ -169,42 +169,46 @@ public class Gatekeeper {
 	 *
 	 * @param player
 	 *   Player requesting entrance.
+	 * @param inCooldown
+	 *   Players in the cooldown period are considered to be using the same request instance.
 	 * @return
 	 *   Whether player can enter.
 	 */
-	public static RequestState requestEntrance(final Player player) {
+	public static RequestState requestEntrance(final Player player, final boolean inCooldown) {
 		final boolean firstRequest = !player.hasQuest(Gatekeeper.SLOT);
-		final String name = player.getName();
-		if (Gatekeeper.punishmentQueue.contains(name)) {
-			return RequestState.PUNISH_QUEUED;
-		}
-		Gatekeeper.addRequest(player);
-		if (Gatekeeper.inViolation(player)) {
-			// add name to queue in case player tries to use balloon again
-			Gatekeeper.punishmentQueue.add(name);
-			// first delay is to notify player, second is to apply punishment
-			final TurnNotifier notifier = SingletonRepository.getTurnNotifier();
-			final TurnListener listener = new TurnListener() {
-				private boolean notified = false;
-				@Override
-				public void onTurnReached(int currentTurn) {
-					if (!notified) {
-						player.addEvent(new GenericEvent("kika_punishment"));
-						player.sendPrivateText(NotificationType.PRIVMSG, Gatekeeper.ENTITY_NAME,
-								"You have worn out your welcome and shall be punished for your greed!");
-						notified = true;
-						notifier.notifyInTurns(10, this);
-					} else {
-						Gatekeeper.punish(player);
+		if (!inCooldown) {
+			final String name = player.getName();
+			if (Gatekeeper.punishmentQueue.contains(name)) {
+				return RequestState.PUNISH_QUEUED;
+			}
+			Gatekeeper.addRequest(player);
+			if (Gatekeeper.inViolation(player)) {
+				// add name to queue in case player tries to use balloon again
+				Gatekeeper.punishmentQueue.add(name);
+				// first delay is to notify player, second is to apply punishment
+				final TurnNotifier notifier = SingletonRepository.getTurnNotifier();
+				final TurnListener listener = new TurnListener() {
+					private boolean notified = false;
+					@Override
+					public void onTurnReached(int currentTurn) {
+						if (!notified) {
+							player.addEvent(new GenericEvent("kika_punishment"));
+							player.sendPrivateText(NotificationType.PRIVMSG, Gatekeeper.ENTITY_NAME,
+									"You have worn out your welcome and shall be punished for your greed!");
+							notified = true;
+							notifier.notifyInTurns(10, this);
+						} else {
+							Gatekeeper.punish(player);
+						}
 					}
-				}
-			};
-			notifier.notifyInTurns(10, listener);
-			return RequestState.DENIED;
+				};
+				notifier.notifyInTurns(10, listener);
+				return RequestState.DENIED;
+			}
 		}
 
 		if (firstRequest) {
-			// first time player has been granted entrace so give a warning about potential punishment
+			// first time granted entrance so show warning that future requests may be rejected
 			SingletonRepository.getTurnNotifier().notifyInTurns(30, new TurnListener() {
 				@Override
 				public void onTurnReached(int currentTurn) {

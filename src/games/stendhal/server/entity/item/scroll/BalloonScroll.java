@@ -79,7 +79,13 @@ public class BalloonScroll extends TimedTeleportScroll {
 			return false;
 		}
 
-		final RequestState requestState = Gatekeeper.requestEntrance(player);
+		long lastuse = -1;
+		if (player.hasQuest("balloon")) {
+			lastuse = Long.parseLong(player.getQuest("balloon"));
+		}
+		final boolean inCooldown = (lastuse + DELAY) - System.currentTimeMillis() > 0;
+
+		final RequestState requestState = Gatekeeper.requestEntrance(player, inCooldown);
 		if (RequestState.DENIED.equals(requestState)) {
 			onPopped(player);
 			return false;
@@ -88,15 +94,10 @@ public class BalloonScroll extends TimedTeleportScroll {
 			return false;
 		}
 
-		long lastuse = -1;
-		if (player.hasQuest("balloon")) {
-			lastuse = Long.parseLong(player.getQuest("balloon"));
-		}
-
+		// player is allowed entrance so update time that balloon was used
 		player.setQuest("balloon", Long.toString(System.currentTimeMillis()));
 
-		final long timeRemaining = (lastuse + DELAY) - System.currentTimeMillis();
-		if (timeRemaining > 0) {
+		if (inCooldown) {
 			// player used the balloon within the last DELAY hours
 			// so this use of balloon is going to be shortened
 			// (the clouds can't take so much weight on them)
