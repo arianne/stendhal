@@ -14,13 +14,11 @@ package games.stendhal.server.maps.kikareukin.islands;
 import java.util.ArrayList;
 import java.util.List;
 
-import games.stendhal.common.Level;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.SoundID;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
@@ -41,15 +39,15 @@ public class Gatekeeper {
 	/** Time period in which player requests are tracked (4 days). */
 	private static final long TIME_BUFFER = TimeUtil.MILLISECONDS_IN_DAY * 4;
 	/** XP modifier for trying to requesting too often (15% of excess). */
-	private static final float XP_MODIFIER = 0.15f;
+	//private static final float XP_MODIFIER = 0.15f;
 
 	/** Punishment queue to prevent multiple uses of balloon & multiple punishments. */
-	private static final List<String> punishmentQueue = new ArrayList<>();
+	private static final List<String> responseQueue = new ArrayList<>();
 
 	public static enum RequestState {
 		ALLOWED,
 		DENIED,
-		PUNISH_QUEUED;
+		RESPONSE_QUEUED;
 	}
 
 
@@ -94,21 +92,13 @@ public class Gatekeeper {
 	}
 
 	/**
-	 * Punishment from heaven.
-	 *
-	 * - sent to afterlife
-	 * - loses all but 1 HP
-	 * - loses 15% of excess XP
-	 * - negative karma
-	 *
-	 * TODO:
-	 *   - add lightning (spell effect)
-	 *   - play thunder sound
+	 * Notifies player they must wait before being granted entrance again and applies negative karma.
 	 *
 	 * @param player
-	 *   Player being punished.
+	 *   Player being notified.
 	 */
-	private static void punish(final Player player) {
+	private static void applyResult(final Player player) {
+		/*
 		// send to afterlife
 		final StendhalRPZone afterlife = SingletonRepository.getRPWorld().getZone("int_afterlife");
 		if (afterlife != null) {
@@ -124,12 +114,17 @@ public class Gatekeeper {
 		final int hpStart = player.getHP();
 		player.addXP(-xpDiff);
 		player.setHP(1);
+		*/
 		player.addKarma(-50);
+		/*
 		final int xpLoss = xpStart - player.getXP();
 		final int hpLoss = hpStart - player.getHP();
+		*/
 
 		NotificationType ntype = NotificationType.INFORMATION;
-		String msg = "It appears you you are not welcome in the clouds at this time.";
+		String msg = "It appears you you are not welcome in the clouds at this time. Perhaps in time"
+				+ " you will again be granted entrance.";
+		/*
 		if (xpLoss > 0 || hpLoss > 0) {
 			ntype = NotificationType.NEGATIVE;
 			msg += " You lost ";
@@ -144,11 +139,12 @@ public class Gatekeeper {
 			}
 			msg += ".";
 		}
+		*/
 		player.sendPrivateText(ntype, msg);
 		// update queue
 		final String name = player.getName();
-		if (Gatekeeper.punishmentQueue.contains(name)) {
-			Gatekeeper.punishmentQueue.remove(name);
+		if (Gatekeeper.responseQueue.contains(name)) {
+			Gatekeeper.responseQueue.remove(name);
 		}
 	}
 
@@ -178,13 +174,13 @@ public class Gatekeeper {
 		final boolean firstRequest = !player.hasQuest(Gatekeeper.SLOT);
 		if (!inCooldown) {
 			final String name = player.getName();
-			if (Gatekeeper.punishmentQueue.contains(name)) {
-				return RequestState.PUNISH_QUEUED;
+			if (Gatekeeper.responseQueue.contains(name)) {
+				return RequestState.RESPONSE_QUEUED;
 			}
 			Gatekeeper.addRequest(player);
 			if (Gatekeeper.inViolation(player)) {
 				// add name to queue in case player tries to use balloon again
-				Gatekeeper.punishmentQueue.add(name);
+				Gatekeeper.responseQueue.add(name);
 				// first delay is to notify player, second is to apply punishment
 				final TurnNotifier notifier = SingletonRepository.getTurnNotifier();
 				final TurnListener listener = new TurnListener() {
@@ -192,13 +188,13 @@ public class Gatekeeper {
 					@Override
 					public void onTurnReached(int currentTurn) {
 						if (!notified) {
-							player.addEvent(new GenericEvent("kika_punishment"));
+							player.addEvent(new GenericEvent("thunderclap"));
 							player.sendPrivateText(NotificationType.PRIVMSG, Gatekeeper.ENTITY_NAME,
-									"You have worn out your welcome and shall be punished for your greed!");
+									"You have worn out your welcome because of your greed!");
 							notified = true;
 							notifier.notifyInTurns(10, this);
 						} else {
-							Gatekeeper.punish(player);
+							Gatekeeper.applyResult(player);
 						}
 					}
 				};
