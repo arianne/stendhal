@@ -89,7 +89,7 @@ public class BalloonScroll extends TimedTeleportScroll {
 		if (RequestState.DENIED.equals(requestState)) {
 			onPopped(player);
 			return false;
-		} else if (RequestState.PUNISH_QUEUED.equals(requestState)) {
+		} else if (RequestState.RESPONSE_QUEUED.equals(requestState)) {
 			// player tried to use balloon again immediately after being denied
 			return false;
 		}

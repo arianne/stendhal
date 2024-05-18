@@ -38,5 +38,5 @@ export class GenericEvent extends RPEvent {
 		new event(flags).execute(entity);
 	}
 
-	"kika_punishment" = new KikaPunishmentEvent();
+	"thunderclap" = new KikaPunishmentEvent();
 }
