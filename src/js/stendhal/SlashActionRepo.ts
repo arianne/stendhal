@@ -20,6 +20,7 @@ import { OpenWebsiteAction } from "./action/OpenWebsiteAction";
 import { ProgressStatusAction } from "./action/ProgressStatusAction";
 import { SettingsAction } from "./action/SettingsAction";
 import { SlashActionImpl } from "./action/SlashAction";
+import { TellAction } from "./action/TellAction";
 
 import { ui } from "./ui/UI";
 import { UIComponentEnum } from "./ui/UIComponentEnum";
@@ -108,7 +109,7 @@ export class SlashActionRepo {
 			"CHATTING": [
 				"chat",
 				"me",
-				"msg",
+				"tell",
 				"answer",
 				"/",
 				"p",
@@ -1049,35 +1050,16 @@ export class SlashActionRepo {
 		}
 	};
 
-	// name of player most recently messaged
-	private lastPlayerTell?: string;
-
-	"msg": SlashActionImpl = {
-		execute: (type: string, params: string[], remainder: string): boolean => {
-			this.lastPlayerTell = params[0];
-			const action: Action = {
-				"type": "tell",
-				"target": params[0],
-				"text": remainder
-			};
-			this.sendAction(action);
-			return true;
-		},
-		minParams: 1,
-		maxParams: 1,
-		aliases: ["tell"],
-		getHelp: function(): string[] {
-			return ["<player> <message>", "Send a private message to #player."];
-		}
-	};
-	"tell": SlashActionImpl = this["msg"];
+	"tell" = new TellAction();
+	"msg" = this["tell"];
 
 	"/": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
-			if (typeof(this.lastPlayerTell) != "undefined") {
+			const lastPlayerTell = TellAction.getLastPlayerTell();
+			if (typeof(lastPlayerTell) != "undefined") {
 				const action: Action = {
 					"type": "tell",
-					"target": this.lastPlayerTell,
+					"target": lastPlayerTell,
 					"text": remainder
 				};
 				this.sendAction(action);
