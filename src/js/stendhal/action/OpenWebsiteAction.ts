@@ -15,21 +15,21 @@ import { SlashAction } from "./SlashAction";
  * opens the specified website in the browser
  */
 export class OpenWebsiteAction extends SlashAction {
-    readonly minParams = 0;
-    readonly maxParams = 0;
+	readonly minParams = 0;
+	readonly maxParams = 0;
 
-    /**
-     * creates a OpenWebsiteAction
-     *
-     * @param url website to open
-     */
-    constructor(private url: string) {
-        super();
-    }
+	/**
+	 * creates a OpenWebsiteAction
+	 *
+	 * @param url website to open
+	 */
+	constructor(private url: string) {
+		super();
+	}
 
-    execute(_type: string, _params: string[], _remainder: string): boolean {
-        window.location.href = this.url;
-        return true;
-    }
+	execute(_type: string, _params: string[], _remainder: string): boolean {
+		window.location.href = this.url;
+		return true;
+	}
 
 };
