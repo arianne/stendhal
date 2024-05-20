@@ -23,9 +23,6 @@ import { ChatCompletionHelper } from "../../util/ChatCompletionHelper";
 import { KeyCode } from "../../util/KeyCode";
 
 
-const config = singletons.getConfigManager();
-const slashActions = singletons.getSlashActionRepo();
-
 /**
  * Chat input text field.
  */
@@ -48,8 +45,8 @@ export class ChatInputComponent extends Component {
 			this.onKeyPress(event);
 		});
 		// restore from previous session
-		this.history = config.getObject("chat.history") || [];
-		this.historyIndex = config.getInt("chat.history.index", 0);
+		this.history = stendhal.config.getObject("chat.history") || [];
+		this.historyIndex = stendhal.config.getInt("chat.history.index", 0);
 
 		const btn_send = document.getElementById("send-button")!;
 		btn_send.addEventListener("click", (e) => {
@@ -195,7 +192,7 @@ export class ChatInputComponent extends Component {
 		// don't add duplicates of last remembered string
 		if (this.history.length > 0 && text === this.history[this.history.length-1]) {
 			this.historyIndex = this.history.length;
-			config.set("chat.history.index", this.historyIndex);
+			stendhal.config.set("chat.history.index", this.historyIndex);
 			return;
 		}
 
@@ -206,8 +203,8 @@ export class ChatInputComponent extends Component {
 		this.historyIndex = this.history.length;
 		// preserve across sessions
 		// XXX: should this be done at logout/destruction for performance?
-		config.set("chat.history", this.history);
-		config.set("chat.history.index", this.historyIndex);
+		stendhal.config.set("chat.history", this.history);
+		stendhal.config.set("chat.history.index", this.historyIndex);
 	}
 
 	/**
@@ -221,7 +218,7 @@ export class ChatInputComponent extends Component {
 		} else if (val === '/close') {
 			marauroa.clientFramework.close();
 		} else {
-			if (slashActions.execute(val)) {
+			if (stendhal.actions.execute(val)) {
 				this.remember(val);
 			}
 		}
