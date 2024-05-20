@@ -30,6 +30,9 @@ class MessageAction implements SlashAction {
 	/**
 	 * Execute a chat command.
 	 *
+	 * TODO:
+	 * - rename to "TellAction" to match server
+	 *
 	 * @param params
 	 *            The formal parameters.
 	 * @param remainder
