@@ -18,6 +18,7 @@ import { AboutAction } from "./action/AboutAction";
 import { DebugAction } from "./action/DebugAction";
 import { OpenWebsiteAction } from "./action/OpenWebsiteAction";
 import { ProgressStatusAction } from "./action/ProgressStatusAction";
+import { ReTellAction } from "./action/ReTellAction";
 import { SettingsAction } from "./action/SettingsAction";
 import { SlashActionImpl } from "./action/SlashAction";
 import { TellAction } from "./action/TellAction";
@@ -1052,26 +1053,7 @@ export class SlashActionRepo {
 
 	"tell" = new TellAction();
 	"msg" = this["tell"];
-
-	"/": SlashActionImpl = {
-		execute: (type: string, params: string[], remainder: string): boolean => {
-			const lastPlayerTell = TellAction.getLastPlayerTell();
-			if (typeof(lastPlayerTell) != "undefined") {
-				const action: Action = {
-					"type": "tell",
-					"target": lastPlayerTell,
-					"text": remainder
-				};
-				this.sendAction(action);
-			}
-			return true;
-		},
-		minParams: 0,
-		maxParams: 0,
-		getHelp: function(): string[] {
-			return ["<message>", "Send a private message to the last player you sent a message to."];
-		}
-	};
+	"/" = new ReTellAction();
 
 	"mute": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {

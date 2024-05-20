@@ -18,12 +18,28 @@ import { Pair } from "../util/Pair";
 
 export class TellAction extends SlashAction {
 
-	override readonly minParams = 1;
-	override readonly maxParams = 1;
+	override readonly minParams;
+	override readonly maxParams;
 	override readonly aliases = ["msg"];
 
 	private static lastPlayerTell?: string;
 
+
+	/**
+	 * Creates a new tell action.
+	 *
+	 * NOTE: only inheriting classes should call constructor with min/max params
+	 *
+	 * @param {number=} minParams
+	 *   Minimum required number of parameters.
+	 * @param {number=} maxParams
+	 *   Maximum allowed number of parameters.
+	 */
+	constructor(minParams?: number, maxParams?: number) {
+		super();
+		this.minParams = typeof(minParams) !== "undefined" ? minParams : 1;
+		this.maxParams = typeof(maxParams) !== "undefined" ? maxParams : 1;
+	}
 
 	override execute(_type: string, params: string[], remainder: string): boolean {
 		const target = params[0];
