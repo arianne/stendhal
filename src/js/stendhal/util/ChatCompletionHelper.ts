@@ -144,7 +144,7 @@ export class ChatCompletionHelper {
 			return;
 		}
 		if (this.playerPrefix == undefined) {
-			this.playerPrefix = parts[1];
+			this.playerPrefix = parts[1].toLowerCase();
 		}
 		this.playerIndex++;
 		this.cycleNextPlayer(parts);
@@ -196,7 +196,7 @@ export class ChatCompletionHelper {
 				break;
 			}
 			const name = stendhal.players[this.playerIndex];
-			if (name.startsWith(this.playerPrefix!)) {
+			if (name.toLowerCase().startsWith(this.playerPrefix!)) {
 				parts[parts.length-1] = name;
 				break;
 			}
