@@ -10,7 +10,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Enum } from "../enum/Enum";
+import { AbstractEnum } from "../enum/AbstractEnum";
 
 
 /**
@@ -18,7 +18,7 @@ import { Enum } from "../enum/Enum";
  *
  * NOTE: string names should match `games.stendhal.common.constants.SoundLayer`
  */
-export class SoundLayer extends Enum {
+export class SoundLayer extends AbstractEnum<string> {
 
 	/** Reference to layers. */
 	private static readonly layers: SoundLayer[] = [];
@@ -28,6 +28,9 @@ export class SoundLayer extends Enum {
 	static readonly CREATURE = new SoundLayer("creature");
 	static readonly SFX = new SoundLayer("sfx");
 	static readonly GUI = new SoundLayer("gui");
+
+	/** Value is required. */
+	override readonly value!: string;
 
 
 	private constructor(value: string) {
