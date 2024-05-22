@@ -74,7 +74,7 @@ export abstract class WidgetComponent extends ComponentBase {
 		const parentElement = isComponent ? this.parentComponent!.componentElement
 				: parent as HTMLElement;
 		parentElement.appendChild(this.labelElement);
-		if (!WidgetType.CHECK.equals(this._type)) {
+		if (WidgetType.CHECK !== this._type) {
 			// check box component element is already child of label
 			parentElement.appendChild(this.componentElement);
 		}

@@ -51,7 +51,7 @@ export class SettingsComponent extends WidgetComponent {
 		// create label first
 		this.labelElement = document.createElement("label") as HTMLLabelElement;
 
-		if (WidgetType.SELECT.equals(_type)) {
+		if (WidgetType.SELECT === _type) {
 			this.componentElement = this.initSelect(id, label, options);
 		} else {
 			this.componentElement = this.initInput(id, label);
@@ -79,7 +79,7 @@ export class SettingsComponent extends WidgetComponent {
 		switch(this._type) {
 			case WidgetType.CHECK:
 				this.labelElement.classList.add("checksetting");
-				const inputHTML = "<input type=\"" + this._type.value + "\" id=\"" + id + "\">";
+				const inputHTML = "<input type=\"" + this._type + "\" id=\"" + id + "\">";
 				this.labelElement.innerHTML = inputHTML + label;
 				componentElement = this.labelElement.querySelector("#" + id)!;
 				break;
@@ -88,7 +88,7 @@ export class SettingsComponent extends WidgetComponent {
 				this.labelElement.innerText = label;
 				componentElement = document.createElement("input");
 				const inputElement = (componentElement as HTMLInputElement);
-				inputElement.type = this._type.value;
+				inputElement.type = this._type;
 				inputElement.id = id;
 		}
 		return componentElement;
@@ -127,8 +127,8 @@ export class SettingsComponent extends WidgetComponent {
 	 *   Index to set as selected.
 	 */
 	setSelected(idx: number) {
-		if (!WidgetType.SELECT.equals(this._type)) {
-			throw new Error("Settings component of type \"" + this._type.value
+		if (WidgetType.SELECT !== this._type) {
+			throw new Error("Settings component of type \"" + this._type
 					+ "\" does not support index selection");
 		}
 		const selectElement = this.componentElement as HTMLSelectElement;
@@ -173,8 +173,8 @@ export class SettingsComponent extends WidgetComponent {
 	 *   Value the option represents.
 	 */
 	addOption(label: string, value="") {
-		if (!WidgetType.SELECT.equals(this._type)) {
-			throw new Error("Settings component of type \"" + this._type.value
+		if (WidgetType.SELECT !== this._type) {
+			throw new Error("Settings component of type \"" + this._type
 					+ "\" does not support adding selection options");
 		}
 		if (!value) {
