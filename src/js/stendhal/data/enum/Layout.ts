@@ -10,15 +10,13 @@
  *                                                                         *
  ***************************************************************************/
 
-import { NumericEnum } from "./NumericEnum";
-
 
 /**
  * Enumeration type representing layout of elements.
  */
-export class Layout extends NumericEnum {
-	public static readonly TOP = new Layout(1);
-	public static readonly BOTTOM = new Layout();
-	public static readonly LEFT = new Layout();
-	public static readonly RIGHT = new Layout();
+export const enum Layout {
+	TOP = 1,
+	BOTTOM,
+	LEFT,
+	RIGHT
 }

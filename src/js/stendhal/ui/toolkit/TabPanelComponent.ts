@@ -32,24 +32,24 @@ export class TabPanelComponent extends Panel {
 	/**
 	 * Creates a new tabbed panel.
 	 *
-	 * @param layout {util.Layout.Layout}
+	 * @param {Layout} layout
 	 *   Positioning of tabs relative to contents.
 	 */
 	constructor(layout: Layout) {
 		super("tabpanel-template");
 		this.containerElement = this.child(".tabpanel-content")!;
 		const tabs = this.child(".tabpanel-tabs")! as HTMLElement;
-		if (Layout.TOP.equals(layout)) {
+		if (Layout.TOP === layout) {
 			tabs.classList.add("tabpanel-tabs-top");
-		} else if (Layout.BOTTOM.equals(layout)) {
+		} else if (Layout.BOTTOM === layout) {
 			tabs.classList.add("tabpanel-tabs-bottom");
 			// move to end of elements list
 			this.componentElement.appendChild(tabs);
-		} else if (Layout.LEFT.equals(layout)) {
+		} else if (Layout.LEFT === layout) {
 			this.componentElement.className = "tabpanel-h";
 			tabs.classList.add("tabpanel-tabs-h");
 			tabs.classList.add("tabpanel-tabs-left");
-		} else if (Layout.RIGHT.equals(layout)) {
+		} else if (Layout.RIGHT === layout) {
 			this.componentElement.className = "tabpanel-h";
 			tabs.classList.add("tabpanel-tabs-h");
 			tabs.classList.add("tabpanel-tabs-right");
@@ -70,10 +70,10 @@ export class TabPanelComponent extends Panel {
 	/**
 	 * Adds a new tab.
 	 *
-	 * @param label {string}
+	 * @param {string} label
 	 *   Tab button label.
-	 * @param content {ui.toolkit.Component.Component}
-	 *   Contents to display when this tab is active (default: `undefined`).
+	 * @param {Component=} content
+	 *   Contents to display when this tab is active.
 	 */
 	addTab(label: string, content?: Component) {
 		let button = document.createElement("button");
@@ -95,8 +95,8 @@ export class TabPanelComponent extends Panel {
 	/**
 	 * Sets the visible child panel.
 	 *
-	 * @param idx
-	 *     Index of child panel to show.
+	 * @param {number} idx
+	 *   Index of child panel to show.
 	 */
 	setCurrentTab(idx: number) {
 		if (idx == this.currentIndex) {
@@ -122,7 +122,7 @@ export class TabPanelComponent extends Panel {
 	/**
 	 * Retrieves index value of current tab.
 	 *
-	 * @return {number}
+	 * @returns {number}
 	 *   Indexed number value.
 	 */
 	getCurrentIndex(): number {
