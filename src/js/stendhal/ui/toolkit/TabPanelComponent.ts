@@ -12,7 +12,7 @@
 import { Component } from "./Component";
 import { Panel } from "./Panel";
 
-import { Layout } from "../../util/Layout";
+import { Layout } from "../../data/enum/Layout";
 
 
 /**

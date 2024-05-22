@@ -14,7 +14,7 @@ import { Component } from "./Component";
 import { DialogContentComponent } from "./DialogContentComponent";
 import { TabPanelComponent } from "./TabPanelComponent";
 
-import { Layout } from "../../util/Layout";
+import { Layout } from "../../data/enum/Layout";
 
 
 export class TabDialogContentComponent extends DialogContentComponent {

@@ -10,7 +10,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { NumericEnum } from "../data/enum/NumericEnum";
+import { NumericEnum } from "./NumericEnum";
 
 
 /**

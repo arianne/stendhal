@@ -17,7 +17,7 @@ import { SoundTab } from "./settings/SoundTab";
 
 import { TabDialogContentComponent } from "../toolkit/TabDialogContentComponent";
 
-import { Layout } from "../../util/Layout";
+import { Layout } from "../../data/enum/Layout";
 
 
 export class SettingsDialog extends TabDialogContentComponent {

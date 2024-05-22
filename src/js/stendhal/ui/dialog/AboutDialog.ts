@@ -12,7 +12,7 @@
 import { Panel } from "../toolkit/Panel";
 import { TabDialogContentComponent } from "../toolkit/TabDialogContentComponent";
 
-import { Layout } from "../../util/Layout";
+import { Layout } from "../../data/enum/Layout";
 
 
 /**
