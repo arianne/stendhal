@@ -12,7 +12,7 @@
 
 import { WidgetComponent } from "./WidgetComponent";
 
-import { SettingsType } from "../../data/enum/SettingsType";
+import { WidgetType } from "../../data/enum/WidgetType";
 
 
 /**
@@ -29,19 +29,19 @@ export class SliderComponent extends WidgetComponent {
 	/**
 	 * Creates a new slider settings component.
 	 *
-	 * @param id {string}
+	 * @param {string} id
 	 *   DOM element ID.
-	 * @param label {string}
+	 * @param {string} label
 	 *   Text label to display.
-	 * @param min {number}
+	 * @param {number} min
 	 *   Lowest possible value this component can represent.
-	 * @param max {number}
+	 * @param {number} max
 	 *   Highest possible value this component can represent.
-	 * @param experimental {boolean}
+	 * @param {boolean} [experimental=false]
 	 *   Marks this element to be hidden unless settings debugging is enabled.
 	 */
 	constructor(id: string, label: string, min: number, max: number, experimental=false) {
-		super(SettingsType.SLIDER);
+		super(WidgetType.SLIDER);
 
 		this.labelElement = document.createElement("label");
 		this.labelElement.htmlFor = id;
@@ -63,7 +63,7 @@ export class SliderComponent extends WidgetComponent {
 	/**
 	 * Sets component's current value representation.
 	 *
-	 * @param value {number}
+	 * @param {number} value
 	 *   Current value.
 	 */
 	public setValue(value: number) {
@@ -73,7 +73,7 @@ export class SliderComponent extends WidgetComponent {
 	/**
 	 * Retrieves component's current value representation.
 	 *
-	 * @return {number}
+	 * @returns {number}
 	 *   Current value.
 	 */
 	public getValue(): number {

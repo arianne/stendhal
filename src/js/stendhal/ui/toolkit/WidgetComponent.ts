@@ -12,7 +12,7 @@
 
 import { ComponentBase } from "./ComponentBase";
 
-import { SettingsType } from "../../data/enum/SettingsType";
+import { WidgetType } from "../../data/enum/WidgetType";
 
 
 /**
@@ -23,14 +23,20 @@ export abstract class WidgetComponent extends ComponentBase {
 	/** Text description. */
 	abstract labelElement: HTMLLabelElement;
 	/** Setting type. */
-	protected readonly _type: SettingsType;
+	protected readonly _type: WidgetType;
 	/** Called when the settings state or value changes. */
 	public onchange?: Function;
 
 	private initialized = false;
 
 
-	constructor(_type: SettingsType) {
+	/**
+	 * Creates a widget component.
+	 *
+	 * @param {WidgetType} _type
+	 *   Widget type.
+	 */
+	constructor(_type: WidgetType) {
 		super();
 		this._type = _type;
 	}
@@ -59,7 +65,7 @@ export abstract class WidgetComponent extends ComponentBase {
 	/**
 	 * Adds as child to DOM element.
 	 *
-	 * @param parent {ui.toolkit.ComponentBase.ComponentBase|HTMLElement}
+	 * @param {ComponentBase|HTMLElement} parent
 	 *   Component or element to which to add.
 	 */
 	override addTo(parent: ComponentBase|HTMLElement) {
@@ -68,7 +74,7 @@ export abstract class WidgetComponent extends ComponentBase {
 		const parentElement = isComponent ? this.parentComponent!.componentElement
 				: parent as HTMLElement;
 		parentElement.appendChild(this.labelElement);
-		if (!SettingsType.CHECK.equals(this._type)) {
+		if (!WidgetType.CHECK.equals(this._type)) {
 			// check box component element is already child of label
 			parentElement.appendChild(this.componentElement);
 		}

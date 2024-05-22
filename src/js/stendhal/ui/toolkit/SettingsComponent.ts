@@ -13,13 +13,15 @@
 import { WidgetComponent } from "./WidgetComponent";
 
 import { OptionsEnum } from "../../data/enum/OptionsEnum";
-import { SettingsType } from "../../data/enum/SettingsType";
+import { WidgetType } from "../../data/enum/WidgetType";
 
 
 /**
  * Unthemed component representing a configuration setting.
  *
- * TODO: rename so not exclusively used for "settings" or separate into individual classes
+ * TODO:
+ * - rename, such as "InputComponent" so not exclusively used for "settings" or separate into
+ *   individual classes
  */
 export class SettingsComponent extends WidgetComponent {
 
@@ -32,24 +34,24 @@ export class SettingsComponent extends WidgetComponent {
 	/**
 	 * Creates a new settings component.
 	 *
-	 * @param id {string}
+	 * @param {string} id
 	 *   DOM element ID.
-	 * @param label {string}
+	 * @param {string} label
 	 *   Text label to display.
-	 * @param _type {data.enum.SettingsType.SettingsType}
-	 *   The type of this component. E.g. check box, text input, etc. (default: check box).
-	 * @param options {data.enum.OptionsEnum.OptionsEnum}
-	 *   Options for multi-select enumeration (default: empty object).
-	 * @param experimental {boolean}
+	 * @param {WidgetType} [_type=WidgetType.CHECK]
+	 *   The type of this component. E.g. check box, text input, etc.
+	 * @param {OptionsEnum} [options={}]
+	 *   Options for multi-select enumeration.
+	 * @param {boolean} [experimental=false]
 	 *   Marks this element to be hidden unless settings debugging is enabled.
 	 */
-	constructor(id: string, label: string, _type=SettingsType.CHECK, options: OptionsEnum={},
+	constructor(id: string, label: string, _type=WidgetType.CHECK, options: OptionsEnum={},
 			experimental=false) {
 		super(_type);
 		// create label first
 		this.labelElement = document.createElement("label") as HTMLLabelElement;
 
-		if (SettingsType.SELECT.equals(_type)) {
+		if (WidgetType.SELECT.equals(_type)) {
 			this.componentElement = this.initSelect(id, label, options);
 		} else {
 			this.componentElement = this.initInput(id, label);
@@ -65,17 +67,17 @@ export class SettingsComponent extends WidgetComponent {
 	/**
 	 * Initializes main component element as input type.
 	 *
-	 * @param id {string}
+	 * @param {string} id
 	 *   DOM element ID.
-	 * @param label {string}
+	 * @param {string} label
 	 *   Text label to display.
-	 * @return {HTMLElement}
+	 * @returns {HTMLElement}
 	 *   Main component element.
 	 */
 	private initInput(id: string, label: string): HTMLElement {
 		let componentElement: HTMLElement;
 		switch(this._type) {
-			case SettingsType.CHECK:
+			case WidgetType.CHECK:
 				this.labelElement.classList.add("checksetting");
 				const inputHTML = "<input type=\"" + this._type.value + "\" id=\"" + id + "\">";
 				this.labelElement.innerHTML = inputHTML + label;
@@ -95,13 +97,13 @@ export class SettingsComponent extends WidgetComponent {
 	/**
 	 * Initializes main component element as select type.
 	 *
-	 * @param id {string}
+	 * @param {string} id
 	 *   DOM element ID.
-	 * @param label {string}
+	 * @param {string} label
 	 *   Text label to display.
-	 * @param options {data.enum.OptionsEnum.OptionsEnum}
-	 *   Options for multi-select enumeration (default: empty object).
-	 * @return {HTMLElement}
+	 * @param {OptionsEnum} [options={}]
+	 *   Options for multi-select enumeration.
+	 * @returns {HTMLElement}
 	 *   Main component element.
 	 */
 	private initSelect(id: string, label: string, options: OptionsEnum={}): HTMLElement {
@@ -121,11 +123,11 @@ export class SettingsComponent extends WidgetComponent {
 	/**
 	 * Sets selected index.
 	 *
-	 * @param idx {number}
+	 * @param {number} idx
 	 *   Index to set as selected.
 	 */
 	setSelected(idx: number) {
-		if (!SettingsType.SELECT.equals(this._type)) {
+		if (!WidgetType.SELECT.equals(this._type)) {
 			throw new Error("Settings component of type \"" + this._type.value
 					+ "\" does not support index selection");
 		}
@@ -142,18 +144,18 @@ export class SettingsComponent extends WidgetComponent {
 	/**
 	 * Sets value of component element.
 	 *
-	 * @param value {string|number|boolean}
+	 * @param {string|number|boolean} value
 	 *   New value to be used.
 	 */
 	setValue(value: string|number|boolean) {
 		switch(this._type) {
-			case SettingsType.SELECT:
+			case WidgetType.SELECT:
 				const options = Array.from((this.componentElement as HTMLSelectElement).options)
 						.map(o => o.value);
 				const idx = typeof(value) === "number" ? value as number : options.indexOf(value as string);
 				this.setSelected(idx);
 				break;
-			case SettingsType.CHECK:
+			case WidgetType.CHECK:
 				(this.componentElement as HTMLInputElement).checked = value as boolean;
 				break;
 			default:
@@ -165,13 +167,13 @@ export class SettingsComponent extends WidgetComponent {
 	/**
 	 * Adds a selectable option.
 	 *
-	 * @param label {string}
+	 * @param {string} label
 	 *   Displayed text.
-	 * @param value {string}
-	 *   Value the option represents (default: empty string).
+	 * @param {string} [value=""]
+	 *   Value the option represents.
 	 */
 	addOption(label: string, value="") {
-		if (!SettingsType.SELECT.equals(this._type)) {
+		if (!WidgetType.SELECT.equals(this._type)) {
 			throw new Error("Settings component of type \"" + this._type.value
 					+ "\" does not support adding selection options");
 		}
