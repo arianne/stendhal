@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -27,6 +27,9 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * this is the internal class which handles an active deathmatch session.
+ *
+ * FIXME: much of the code here overwrites entire slot string, should probably be changed to only
+ *        affect relevant parts
  */
 public class DeathmatchEngine implements TurnListener {
 	/** The amount of milliseconds to wait before bail takes effect. */
