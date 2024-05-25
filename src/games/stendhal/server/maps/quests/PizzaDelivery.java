@@ -11,6 +11,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import java.util.List;
+
+import games.stendhal.common.MathHelper;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
@@ -18,7 +22,9 @@ import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.quest.DeliverItemQuestBuilder;
+import games.stendhal.server.entity.npc.quest.QuestHistoryResult;
 import games.stendhal.server.entity.npc.quest.QuestManuscript;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.quests.houses.HouseBuyingMain;
 import games.stendhal.server.maps.semos.bakery.ChefNPC;
@@ -60,6 +66,9 @@ import games.stendhal.server.util.ResetSpeakerNPC;
  */
 public class PizzaDelivery implements QuestManuscript {
 
+	private static final String questSlot = "pizza_delivery";
+
+
 	@Override
 	public DeliverItemQuestBuilder story() {
 		DeliverItemQuestBuilder quest = new DeliverItemQuestBuilder();
@@ -68,7 +77,7 @@ public class PizzaDelivery implements QuestManuscript {
 		quest.info()
 			.name("Pizza Delivery")
 			.description("Leander's pizza business is doing so well that he now recruits delivery boys and girls.")
-			.internalName("pizza_delivery")
+			.internalName(questSlot)
 			.repeatableAfterMinutes(0)
 			.minLevel(0)
 			.region(Region.SEMOS_CITY)
@@ -84,7 +93,8 @@ public class PizzaDelivery implements QuestManuscript {
 			.whenInTime("If I hurry, I might still get there, with the pizza hot.")
 			.whenOutOfTime("The pizza has already gone cold.")
 			.whenQuestWasCompleted("I delivered the last pizza Leander gave to me.")
-			.whenQuestCanBeRepeated("But I'd bet, Leander has more orders.");
+			.whenQuestCanBeRepeated("But I'd bet, Leander has more orders.")
+			.addResult(new HotDeliveryResult());
 
 
 		quest.offer()
@@ -354,4 +364,16 @@ public class PizzaDelivery implements QuestManuscript {
 		return res;
 	}
 
+	/**
+	 * Adds number of hot deliveries to quest history.
+	 */
+	private class HotDeliveryResult implements QuestHistoryResult {
+		@Override
+		public void apply(Player player, List<String> res) {
+			final int count = MathHelper.parseIntDefault(player.getQuest(questSlot, 3), 0);
+			if (count > 0) {
+				res.add("I have delivered " + count + " hot " + Grammar.plnoun(count, "pizza") + ".");
+			}
+		}
+	}
 }
