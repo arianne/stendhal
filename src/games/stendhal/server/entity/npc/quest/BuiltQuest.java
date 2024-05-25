@@ -86,6 +86,7 @@ public class BuiltQuest extends AbstractQuest {
 				res.add(completionsShown);
 			}
 		}
+		history.applyOtherResults(player, res);
 		return res;
 	}
 

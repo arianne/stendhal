@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2022 - Faiumoni e.V.                    *
+ *                 (C) Copyright 2022-2024 - Faiumoni e.V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -10,6 +10,12 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.server.entity.npc.quest;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import games.stendhal.server.entity.player.Player;
+
 
 /**
  * defines the "history" of player progress as shown in the travel log
@@ -25,9 +31,13 @@ public class QuestHistoryBuilder {
 	private String whenQuestCanBeRepeated;
 	private String whenCompletionsShown;
 
+	private List<QuestHistoryResult> otherResults;
+
+
 	// hide constructor
 	QuestHistoryBuilder() {
 		super();
+		otherResults = new LinkedList<>();
 	}
 
 	public QuestHistoryBuilder whenNpcWasMet(String whenNpcWasMet) {
@@ -72,6 +82,16 @@ public class QuestHistoryBuilder {
 		return this;
 	}
 
+	/**
+	 * Adds a custom conditional result to history.
+	 *
+	 * @param result
+	 *   History result object to be called when history is requested.
+	 */
+	public void addResult(final QuestHistoryResult result) {
+		otherResults.add(result);
+	}
+
 	String getWhenNpcWasMet() {
 		return whenNpcWasMet;
 	}
@@ -100,4 +120,17 @@ public class QuestHistoryBuilder {
 		return this.whenCompletionsShown;
 	}
 
+	/**
+	 * Calls results objects to update history items list.
+	 *
+	 * @param player
+	 *   Player for which history is requested.
+	 * @param res
+	 *   History items.
+	 */
+	void applyOtherResults(final Player player, List<String> res) {
+		for (final QuestHistoryResult result: otherResults) {
+			result.apply(player, res);
+		}
+	}
 }
