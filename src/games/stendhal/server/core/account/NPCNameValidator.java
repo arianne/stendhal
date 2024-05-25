@@ -19,6 +19,9 @@ import marauroa.common.game.Result;
 /**
  * validates name is not an NPC name
  *
+ * TODO: this should also check the reserved names list for dynamically created NPCs
+ *       `games.stendhal.server.entity.npc.NPCList.reserved`
+ *
  * @author kymara
  */
 public class NPCNameValidator implements AccountParameterValidator {
