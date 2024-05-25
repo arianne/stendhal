@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -54,6 +54,8 @@ public class DeathmatchArea implements LoginListener {
 			"0_semos_mountain_n2_w"), 104, 123);
 		}
 		player.teleport(cowardSpot.getZone(), cowardSpot.getX(), cowardSpot.getY(), Direction.DOWN, player);
+		// update slot so player can start again
+		player.setQuest("deathmatch", 0, "cancel");
 		player.sendPrivateText("You wake up far away from the city in the mountains. But you don't know what happened.");
 	}
 
