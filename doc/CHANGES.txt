@@ -13,7 +13,7 @@ Changelog
 *web client*
 - fixed text extending past edge of notification bubbles
 - added support for saving chat log to file
-- bigger buttons for small touch enabled devices
+- larger buttons for touch-only devices
 - travel log displays while waiting for response from server
 - fixed infinite request loop when travel log items technically empty
 - supports optional tab placement above panel contents
