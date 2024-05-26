@@ -27,7 +27,7 @@ import android.util.Base64;
  */
 public class DownloadHandler {
 	private boolean result = false;
-	private String message = null;;
+	private String message = null;
 
 	public void download(final String url, final String mimetype) {
 
