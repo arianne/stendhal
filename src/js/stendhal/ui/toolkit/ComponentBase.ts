@@ -57,4 +57,14 @@ export abstract class ComponentBase {
 	hasFocus(): boolean {
 		return document.activeElement == this.componentElement;
 	}
+
+	/**
+	 * Enables or disables the HTML element.
+	 *
+	 * @param {boolean} enabled
+	 *   Enabled state to be set.
+	 */
+	setEnabled(enabled: boolean) {
+		(this.componentElement as any).disabled = !enabled;
+	}
 }
