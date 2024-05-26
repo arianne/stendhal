@@ -131,7 +131,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 
 		lender.setPathAndPosition(new FixedPath(nodes, true));
 		lender.setRetracePath();
-		lender.addSuspend(TimeUtil.TURNS_IN_MINUTE / 4, Direction.DOWN, 0);
+		lender.addSuspend(15, Direction.DOWN, 0);
 
 		zone.add(lender);
 	}

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2022 - Arianne                      *
+ *                    Copyright © 2003-2024 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -388,7 +388,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 				final GuidedEntity tmp = this;
 
-				TurnNotifier.get().notifyInTurns(guide.path.getSuspendValue(guide.pathPosition), new TurnListener() {
+				TurnNotifier.get().notifyInSeconds(guide.path.getSuspendValue(guide.pathPosition), new TurnListener() {
 					@Override
 					public void onTurnReached(final int currentTurn) {
 						setBaseSpeed(storedSpeed);
@@ -422,7 +422,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 * Add a suspension to the entity's path.
 	 *
 	 * @param duration
-	 * 		Amount of time (in turns) the entity will be suspended.
+	 * 		Amount of time (in seconds) the entity will be suspended.
 	 * @param dir
 	 * 		Direction to face while suspended, or <code>null</code>
 	 * 		if direction should not be changed.
@@ -437,8 +437,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 * Add a suspension to the entity's path.
 	 *
 	 * @param duration
-	 * 		Amount of time (in turns) the entity will be suspended.
-	 * 		if direction should not be changed.
+	 * 		Amount of time (in seconds) the entity will be suspended.
 	 * @param pos
 	 * 		The position(s) in the path where to add the suspension.
 	 */

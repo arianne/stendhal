@@ -4,7 +4,7 @@
  * $Id$
  */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -61,7 +61,7 @@ public class FixedPath {
 	protected int pos;
 
 	/**
-	 * Positions in the entity's path where it will suspend for a determined amount of turns.
+	 * Positions in the entity's path where it will suspend for a determined amount of time.
 	 */
 	protected Map<Integer, Pair<Integer, Direction>> suspensions = new HashMap<>();
 
@@ -226,7 +226,7 @@ public class FixedPath {
 	 * Add a suspension to the entity's path.
 	 *
 	 * @param duration
-	 * 		Amount of time (in turns) the entity will be suspended.
+	 * 		Amount of time (in seconds) the entity will be suspended.
 	 * @param dir
 	 * 		Direction to face while suspended, or <code>null</code>
 	 * 		if direction should not be changed.
@@ -244,7 +244,7 @@ public class FixedPath {
 	 *
 	 *
 	 * @param duration
-	 * 		Amount of time (in turns) the entity will be suspended.
+	 * 		Amount of time (in seconds) the entity will be suspended.
 	 * @param pos
 	 * 		The position(s) in the path where to add the suspension.
 	 */
@@ -282,7 +282,7 @@ public class FixedPath {
 	 * @param pos
 	 * 		Path position to check.
 	 * @return
-	 * 		Duration (in turns) the entity should suspend or <code>null</code>.
+	 * 		Duration (in seconds) the entity should suspend or <code>null</code>.
 	 */
 	public Integer getSuspendValue(final int pos) {
 		return suspensions.get(pos).first();
