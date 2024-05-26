@@ -306,6 +306,7 @@ public class PizzaDelivery implements QuestManuscript {
 	}
 
 
+	// TODO: Remove program logic from manuscript classes
 	public boolean removeFromWorld() {
 		boolean res = ResetSpeakerNPC.reload(new ChefNPC(), "Leander")
 			&& ResetSpeakerNPC.reload(new games.stendhal.server.maps.ados.rock.WeaponsCollectorNPC(), "Balduin")
@@ -367,6 +368,7 @@ public class PizzaDelivery implements QuestManuscript {
 	/**
 	 * Adds number of hot deliveries to quest history.
 	 */
+	// TODO: Remove program logic from manuscript classes
 	private class HotDeliveryResult implements QuestHistoryResult {
 		@Override
 		public void apply(Player player, List<String> res) {
