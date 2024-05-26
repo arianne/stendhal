@@ -503,9 +503,9 @@ class LogContextMenu extends Component {
 		super("contextmenu-template", true);
 		this.options = options;
 
-		let content = "<div class=\"actionmenu\">";
+		let content = "<div class=\"actionmenu verticalgroup\">";
 		for (let i = 0; i < this.options.length; i++) {
-			content += "<button id=\"actionbutton." + i + "\">" + stendhal.ui.html.esc(this.options[i].title) + "</button><br>";
+			content += "<button class=\"actionbutton\" id=\"actionbutton." + i + "\">" + stendhal.ui.html.esc(this.options[i].title) + "</button>";
 		}
 		content += "</div>";
 		this.componentElement.innerHTML = content;
