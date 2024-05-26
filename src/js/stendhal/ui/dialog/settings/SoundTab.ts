@@ -40,15 +40,27 @@ export class SoundTab extends AbstractSettingsTab {
 		};
 		chkSound.addTo(col1);
 
-		const volMaster = new SliderComponent("setting-vol-master", "Master", 0, 100);
-		volMaster.setValue(sound.getVolume("master") * 100);
-		volMaster.onchange = function(evt: Event) {
-			sound.setVolume("master", volMaster.getValue() / 100);
+		const layers = [
+			["master", "Master"],
+			["gui", "GUI"],
+			["sfx", "Effects"],
+			["creature", "Creatures"],
+			["ambient", "Ambient"],
+			["music", "Music"]
+		];
+
+		for (const group of layers) {
+			const layer = group[0];
+			const label = group[1];
+			const slider = new SliderComponent("setting-vol-" + layer, label, 0, 100);
+			slider.setValue(sound.getVolume(layer) * 100);
+			slider.onchange = function(evt: Event) {
+				sound.setVolume(layer, slider.getValue() / 100);
+			}
+			slider.addTo(col1);
 		}
-		volMaster.addTo(col1);
 
 		// TODO:
-		// - add sliders for remaining sound channels
 		// - disable sliders when sound is disabled
 		// - show volume level value
 	}
