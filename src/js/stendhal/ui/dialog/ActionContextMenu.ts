@@ -30,6 +30,7 @@ export class ActionContextMenu extends Component {
 
 		var content = "<div class=\"actionmenu verticalgroup\">";
 		for (var i = 0; i < this.actions.length; i++) {
+			// FIXME: the addition of "sub-actionbutton" class should no longer be needed
 			content += "<button class=\"actionbutton" + (i > 0 ? " sub-actionbutton" : "") + "\" id=\"actionbutton." + i + "\">" + stendhal.ui.html.esc(this.actions[i].title) + "</button>";
 		}
 		content += "</div>";
