@@ -35,7 +35,7 @@ export class SoundTab extends AbstractSettingsTab {
 		const chkSound = new SettingsComponent("chk_sound", "Enable sound");
 		chkSound.setValue(config.getBoolean("sound"));
 		chkSound.onchange = function(evt: Event) {
-			config.set("sound", (chkSound.componentElement as HTMLInputElement).checked);
+			config.set("sound", chkSound.getValue() as boolean);
 			sound.onStateChanged();
 		};
 		chkSound.addTo(col1);
