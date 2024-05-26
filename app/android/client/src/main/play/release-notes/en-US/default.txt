@@ -13,6 +13,7 @@
 - supports optional tab placement above panel contents
 - travel log tabs match theme
 - added basic lighting effects support
+- added volume tab to settings dialog
 
 *server fixes*
 - fixed Seven Cherubs not showing up as completed
