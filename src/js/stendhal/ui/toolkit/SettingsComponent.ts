@@ -165,6 +165,33 @@ export class SettingsComponent extends WidgetComponent {
 	}
 
 	/**
+	 * Retrieves current value of component.
+	 *
+	 * Returns the following for each component type:
+	 * - select: (`number`) selected index
+	 * - check box: (`boolean`) checked state
+	 * - default: (`string`) elements text value
+	 *
+	 * @returns {string|number|boolean}
+	 *   Component value.
+	 */
+	getValue(): string|number|boolean {
+		switch(this._type) {
+			case WidgetType.SELECT:
+				// selected number index
+				return (this.componentElement as HTMLSelectElement).selectedIndex;
+				break;
+			case WidgetType.CHECK:
+				// checked boolean state
+				return (this.componentElement as HTMLInputElement).checked;
+				break;
+			default:
+				// text value
+				return (this.componentElement as HTMLInputElement).value;
+		}
+	}
+
+	/**
 	 * Adds a selectable option.
 	 *
 	 * @param {string} label
