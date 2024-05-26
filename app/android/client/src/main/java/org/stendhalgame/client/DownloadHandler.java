@@ -112,8 +112,10 @@ public class DownloadHandler {
 	 *   A data URL.
 	 * @param mimetype
 	 *   Detected MIME type.
+	 * @param targetName
+	 *   Filename for new file.
 	 */
-	public void download(final String url, final String mimetype) {
+	public void download(final String url, final String mimetype, String targetName) {
 
 		final Uri uri = Uri.parse(url);
 		final String scheme = uri.getScheme();
@@ -132,8 +134,11 @@ public class DownloadHandler {
 		} else if (DownloadType.IMAGE_PNG.equals(dtype)) {
 			final File targetDir = new File(Environment.getExternalStorageDirectory()
 					+ "/Pictures/Screenshots");
-			final String targetName = "stendhal_"
-					+ new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss").format(new Date()) + ".png";
+			if (targetName == null) {
+				// default filename
+				targetName = "stendhal_" + new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss").format(new Date())
+						+ ".png";
+			}
 
 			Logger.debug("Saving screenshot: " + targetDir.getPath()
 					+ "/" + targetName + " (" + mimetype + ")");
@@ -147,9 +152,11 @@ public class DownloadHandler {
 			// `Environment.DIRECTORY_DOWNLOADS` fails on newer Android versions
 			//final File targetDir = new File(Environment.DIRECTORY_DOWNLOADS);
 			final File targetDir = new File(Environment.getExternalStorageDirectory() + "/Download");
-			// default filename
-			final String targetName = "stendhal_" + new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss")
-					.format(new Date()) + ".txt";
+			if (targetName == null) {
+				// default filename
+				targetName = "stendhal_" + new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss").format(new Date())
+						+ ".txt";
+			}
 
 			Logger.debug("Saving file: " + targetDir.getPath()
 			+ "/" + targetName + " (" + mimetype + ")");
@@ -176,6 +183,18 @@ public class DownloadHandler {
 		} else {
 			this.message = "an unknown error occurred";
 		}
+	}
+
+	/**
+	 * Writes file data to device storage.
+	 *
+	 * @param url
+	 *   A data URL.
+	 * @param mimetype
+	 *   Detected MIME type.
+	 */
+	public void download(final String url, final String mimetype) {
+		download(url, mimetype, null);
 	}
 
 	public boolean getResult() {

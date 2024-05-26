@@ -263,6 +263,9 @@ public class ClientView extends WebView {
 			/**
 			 * Handles downloading screenshot created by web client.
 			 *
+			 * TODO: get filename to pass to `DownloadHandler.download` from "download" property of
+			 *       anchor
+			 *
 			 * @param url
 			 *   Content URL to the screenshot image.
 			 * @param userAgent
