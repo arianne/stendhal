@@ -37,8 +37,6 @@ public class TimeUtil {
 	public static final int MINUTES_IN_YEAR = MINUTES_IN_DAY * 365; // 525,600
 	public static final int MINUTES_IN_HALF_YEAR = MINUTES_IN_YEAR / 2; // 262,800
 
-	public static final int TURNS_IN_MINUTE = (int) (SECONDS_IN_MINUTE / 0.3); // 200
-
 
 	/**
 	 * Create a text representing a saying of approximate time until.
