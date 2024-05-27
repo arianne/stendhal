@@ -34,7 +34,9 @@ export namespace EntityOverlayRegistry {
 			"Tywysoga": "magic_sparkles"
 		},
 
-		"creature": {}
+		"creature": {
+			"archrat": "flame"
+		}
 	}
 
 	/** Entities with direction dependent animation. */

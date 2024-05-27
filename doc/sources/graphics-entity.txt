@@ -767,12 +767,13 @@ training_dummy.*  Danimal, Kimmo Rundelin (kiheru), ScratchIO, Jordan Irwin (Ant
 
 data/sprites/entity/overlay/
 
+flame           DkuCook, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/76781, https://opengameart.org/node/82451
 magic_sparkles  Rawdanitsu, olonu; CC0; https://opengameart.org/node/18068
 
 
 data/sprites/entity/ratfolk/
 
-archrat.*   Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), DkuCook, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82451
+archrat.*   Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82451
 ratman.*    Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82451
 ratwoman.*  Svetlana Kushnariova (Cabbit), Stephen Challener (Redshrike), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/82451
 
