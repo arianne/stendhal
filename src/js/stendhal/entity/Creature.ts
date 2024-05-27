@@ -11,6 +11,8 @@
 
 import { RPEntity } from "./RPEntity";
 
+import { EntityOverlayRegistry } from "../data/EntityOverlayRegistry";
+
 import { Color } from "../data/color/Color";
 
 declare var marauroa: any;
@@ -21,6 +23,19 @@ export class Creature extends RPEntity {
 	override minimapStyle = Color.CREATURE;
 	override spritePath = "monsters";
 	override titleStyle = "#ffc8c8";
+
+
+	override set(key: string, value: string) {
+		super.set(key, value);
+
+		if (key === "name") {
+			// overlay animation
+			const aniDef = EntityOverlayRegistry.get("creature", value);
+			if (aniDef) {
+				this.setOverlayAnimation(aniDef[0], aniDef[1]);
+			}
+		}
+	}
 
 	override onclick(_x: number, _y: number) {
 		var action = {

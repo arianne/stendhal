@@ -57,6 +57,9 @@ export class RPEntity extends ActiveEntity {
 
 	private attackers: {[key: string]: any} = { size: 0 };
 
+	/** Animation drawn over entity sprite. */
+	protected overlay?: HTMLImageElement;
+
 
 	override set(key: string, value: any) {
 		// Ugly hack to detect changes. The old value is no
@@ -270,6 +273,7 @@ export class RPEntity extends ActiveEntity {
 
 		if (this.octx) {
 			this.drawSpriteImage(ctx, this.octx.canvas);
+			this.drawOverlayAnimation(ctx);
 		}
 	}
 
@@ -382,6 +386,7 @@ export class RPEntity extends ActiveEntity {
 			}
 
 			this.drawSpriteImage(ctx, image);
+			this.drawOverlayAnimation(ctx);
 		}
 	}
 
@@ -587,7 +592,13 @@ export class RPEntity extends ActiveEntity {
 				ctx.globalAlpha = opacity * 0.01;
 			}
 
-			ctx.drawImage(image, frame * this["drawWidth"], yRow * this["drawHeight"], this["drawWidth"], this["drawHeight"], localX + drawX, localY + drawY, this["drawWidth"], this["drawHeight"]);
+			// store offset for use by other drawing methods
+			this["drawOffsetX"] = localX + drawX;
+			this["drawOffsetY"] = localY + drawY;
+
+			ctx.drawImage(image, frame * this["drawWidth"], yRow * this["drawHeight"], this["drawWidth"],
+					this["drawHeight"], this["drawOffsetX"], this["drawOffsetY"], this["drawWidth"],
+					this["drawHeight"]);
 			// restore opacity
 			ctx.globalAlpha = opacity_orig;
 		}
@@ -660,6 +671,43 @@ export class RPEntity extends ActiveEntity {
 		var localW = this["width"] * stendhal.ui.gamewindow.targetTileWidth;
 		var localH = this["height"] * stendhal.ui.gamewindow.targetTileHeight;
 		this.attackSprite.draw(ctx, localX, localY, localW, localH);
+	}
+
+	/**
+	 * Draws an animation over entity sprite.
+	 *
+	 * @param {CanvasRenderingContext2D} ctx
+	 *   Canvas context to draw on.
+	 */
+	private drawOverlayAnimation(ctx: CanvasRenderingContext2D) {
+		if (!this.overlay || !this.overlay.height) {
+			return;
+		}
+
+		const drawTime = Date.now();
+		let cycleStart: number = this["overlay_animation_start"];
+		if (!cycleStart) {
+			cycleStart = drawTime;
+			this["overlay_animation_start"] = drawTime;
+		}
+		const timeDiff = drawTime - cycleStart;
+
+		const width: number = this["drawWidth"];
+		const height: number = this["drawHeight"];
+		const offsetX: number = this["drawOffsetX"] || 0;
+		const offsetY: number = this["drawOffsetY"] || 0;
+		const fcount = Math.floor(this.overlay.width / width);
+
+		// frame delay in milliseconds
+		const delay: number = this["overlay_animation_delay"] || 100;
+		let frame = Math.floor(timeDiff / delay);
+		if (frame >= fcount) {
+			// start new frame cycle
+			frame = 0;
+			this["overlay_animation_start"] = drawTime;
+		}
+
+		ctx.drawImage(this.overlay, frame * width, 0, width, height, offsetX, offsetY, width, height);
 	}
 
 	// attack handling
@@ -815,5 +863,23 @@ export class RPEntity extends ActiveEntity {
 		if (this._target) {
 			this._target.onAttackStopped(this);
 		}
+	}
+
+	/**
+	 * Sets an animating for drawing over entity sprite.
+	 *
+	 * @param {string} overlay
+	 *   Image filename (excluding .png suffix).
+	 * @param {number} delay
+	 *   Millisecond delay that each frame should be displayed. Any value less than 1 will result
+	 *   in using a default of 100ms.
+	 */
+	protected setOverlayAnimation(overlay: string, delay: number) {
+		if (delay < 1) {
+			delay = 100;
+		}
+		this.overlay = stendhal.data.sprites.get(stendhal.paths.sprites + "/entity/overlay/" + overlay
+				+ ".png");
+		this["overlay_animation_delay"] = delay;
 	}
 }
