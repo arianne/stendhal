@@ -55,7 +55,7 @@ elfbankladynpc.*              Svetlana Kushnariova (Cabbit), Jordan Irwin (Antum
 elfbuyernpc.*                 Svetlana Kushnariova (Cabbit), bleutailfly; OGA BY 3.0; https://opengameart.org/node/24944
 elfflowergrowernpc.*          Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661
 elfmayornpc.*                 Svetlana Kushnariova (Cabbit), Fabzy, bleutailfly; CC BY-SA 3.0; https://opengameart.org/node/24944, https://opengameart.org/node/23314
-elfprincessnpc.*              Svetlana Kushnariova (Cabbit), diamonddmgirl, Rawdanitsu, olonu, Jordan Irwin (AntumDeluge); CC BY 3.0/4.0; https://opengameart.org/node/72969, https://opengameart.org/node/74802, https://opengameart.org/node/18068
+elfprincessnpc.*              Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu, Jordan Irwin (AntumDeluge); CC BY 3.0/4.0; https://opengameart.org/node/72969, https://opengameart.org/node/74802
 estateagentnpc.*              Svetlana Kushnariova (Cabbit), diamonddmgirl, olonu, bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969, https://opengameart.org/node/72198, https://github.com/arianne/stendhal/issues/131
 estateagent2npc.*             Svetlana Kushnariova (Cabbit), olonu, bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969, https://github.com/arianne/stendhal/issues/132
 executivenpc.*                Svetlana Kushnariova (Cabbit), olonu, bleutailfly, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://opengameart.org/node/72969, https://github.com/arianne/stendhal/issues/131
@@ -763,6 +763,11 @@ data/sprites/entity/other/
 
 bullseye.*        Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 training_dummy.*  Danimal, Kimmo Rundelin (kiheru), ScratchIO, Jordan Irwin (AntumDeluge); Danimal; CC BY-SA 3.0; Stendhal, https://opengameart.org/node/17272; https://opengameart.org/users/danimal, https://opengameart.org/node/108295
+
+
+data/sprites/entity/overlay/
+
+magic_sparkles  Rawdanitsu, olonu; CC0; https://opengameart.org/node/18068
 
 
 data/sprites/entity/ratfolk/

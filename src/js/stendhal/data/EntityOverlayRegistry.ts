@@ -30,7 +30,9 @@ type AnimationEntry = Record<string, string|AnimationTuple>;
 export namespace EntityOverlayRegistry {
 	/** Table containing animation definitions. */
 	const AnimationTable: Record<string, AnimationEntry> = {
-		"NPC": {},
+		"NPC": {
+			"Tywysoga": "magic_sparkles"
+		},
 
 		"creature": {}
 	}
