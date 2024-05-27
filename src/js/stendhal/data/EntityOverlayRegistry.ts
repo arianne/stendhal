@@ -35,7 +35,8 @@ export namespace EntityOverlayRegistry {
 		},
 
 		"creature": {
-			"archrat": "flame"
+			"archrat": "flame",
+			"emperor dalmung": "flame_blue"
 		}
 	}
 
