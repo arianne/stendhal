@@ -10,6 +10,9 @@
  ***************************************************************************/
 
 
+/**
+ * TODO: replace or implement with OverlayImpl
+ */
 export abstract class ActionSprite {
 
 	protected readonly initTime: number;
