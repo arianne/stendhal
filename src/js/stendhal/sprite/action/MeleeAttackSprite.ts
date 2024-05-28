@@ -108,15 +108,15 @@ export class MeleeAttackSprite extends AttackSprite {
 		}
 	}
 
-	public override draw(ctx: CanvasRenderingContext2D, x: number, y: number, entityWidth: number,
-			entityHeight: number) {
+	override draw(ctx: CanvasRenderingContext2D, x: number, y: number, entityWidth: number,
+			entityHeight: number): boolean {
 		const dtime = Date.now() - this.initTime;
 		const frameIndex = Math.floor(Math.min(dtime / 60, 2));
 		// TODO: add rotated images for each attack type
 		//~ const frame = this.frames[frameIndex];
 		const frame = this.frames[1];
 		if (!frame || !frame.height) {
-			return;
+			return this.expired();
 		}
 
 		const cx = x + Math.floor(entityWidth / 2);
@@ -128,5 +128,6 @@ export class MeleeAttackSprite extends AttackSprite {
 		const dy = cy + this.offsetY[1];
 
 		ctx.drawImage(frame, 0, 0, frame.width, frame.height, dx, dy, frame.width, frame.height);
+		return this.expired();
 	}
 }

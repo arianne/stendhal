@@ -10,11 +10,15 @@
  *                                                                         *
  ***************************************************************************/
 
+import { OverlaySpriteImpl } from "../OverlaySpriteImpl";
+
 
 /**
- * TODO: replace or implement with OverlayImpl
+ * Sprite representing an attack animation.
+ *
+ * FIXME: animation looks different somehow
  */
-export abstract class AttackSprite {
+export abstract class AttackSprite implements OverlaySpriteImpl {
 
 	protected readonly initTime: number;
 
@@ -23,10 +27,10 @@ export abstract class AttackSprite {
 		this.initTime = Date.now();
 	}
 
-	public abstract draw(ctx: CanvasRenderingContext2D, x: number, y: number, entityWidth: number,
-			entityHeight: number): void;
+	abstract draw(ctx: CanvasRenderingContext2D, x: number, y: number, entityWidth: number,
+			entityHeight: number): boolean;
 
-	public expired(): boolean {
+	expired(): boolean {
 		return Date.now() - this.initTime > 180;
 	}
 }

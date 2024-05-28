@@ -44,7 +44,7 @@ export class RPEntity extends ActiveEntity {
 	spritePath = "";
 	titleStyle = "#FFFFFF";
 	_target?: RPEntity;
-	attackSprite: any = undefined; // TODO
+	protected attackSprite?: OverlaySpriteImpl;
 	attackResult: any = undefined; // TODO
 	dir = 3;
 	titleTextSprite?: TextSprite;
@@ -664,18 +664,17 @@ export class RPEntity extends ActiveEntity {
 	}
 
 	drawAttack(ctx: CanvasRenderingContext2D) {
-		if (this.attackSprite == null) {
-			return;
-		}
-		if (this.attackSprite.expired()) {
-			this.attackSprite = null;
+		if (!this.attackSprite) {
 			return;
 		}
 		var localX = this["_x"] * 32;
 		var localY = this["_y"] * 32;
 		var localW = this["width"] * stendhal.ui.gamewindow.targetTileWidth;
 		var localH = this["height"] * stendhal.ui.gamewindow.targetTileHeight;
-		this.attackSprite.draw(ctx, localX, localY, localW, localH);
+		if (this.attackSprite.draw(ctx, localX, localY, localW, localH)) {
+			// sprite expired & should be removed
+			this.attackSprite = undefined;
+		}
 	}
 
 	/**

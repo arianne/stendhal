@@ -35,8 +35,8 @@ export class RangedAttackSprite extends AttackSprite {
 		this.weapon = weapon;
 	}
 
-	public override draw(ctx: CanvasRenderingContext2D, x: number, y: number, entityWidth: number,
-			entityHeight: number) {
+	override draw(ctx: CanvasRenderingContext2D, x: number, y: number, entityWidth: number,
+			entityHeight: number): boolean {
 		// FIXME: alignment with entity is not correct
 
 		var dtime = Date.now() - this.initTime;
@@ -98,5 +98,6 @@ export class RangedAttackSprite extends AttackSprite {
 			ctx.drawImage(this.image, frame * drawWidth, yRow * drawHeight,
 					drawWidth, drawHeight, sx, sy, drawWidth, drawHeight);
 		}
+		return this.expired();
 	}
 }
