@@ -26,6 +26,7 @@ type AnimationEntry = Record<string, string|AnimationTuple>;
  *
  * TODO:
  * - move declarations to JSON file if we want support in Java client
+ * - better animation for electricity
  */
 export namespace EntityOverlayRegistry {
 	/** Table containing animation definitions. */
@@ -37,7 +38,8 @@ export namespace EntityOverlayRegistry {
 		"creature": {
 			"albino elf magician": "beams",
 			"archrat": "flame",
-			"emperor dalmung": "flame_blue"
+			"emperor dalmung": "flame_blue",
+			"imperial demon lord": "electricity_red"
 		}
 	}
 
