@@ -10,6 +10,10 @@
  *                                                                         *
  ***************************************************************************/
 
+declare var stendhal: any;
+
+import { SkillEffect } from "../sprite/action/SkillEffect";
+
 type AnimationTuple = [string, number];
 type AnimationEntry = Record<string, string|AnimationTuple>;
 
@@ -37,19 +41,25 @@ export namespace EntityOverlayRegistry {
 	 *   Entity type.
 	 * @param {string} name
 	 *   Entity name.
-	 * @returns {AnimationTuple|undefined}
-	 *   Animation definition or `undefined` if no definition available.
+	 * @returns {SkillEffect|undefined}
+	 *   Overlay effect or `undefined` if no effect available.
 	 */
-	export function get(type: string, name: string): AnimationTuple|undefined {
-		const group = AnimationTable[type];
-		if (typeof(group) === "undefined") {
+	export function get(type: string, name: string): SkillEffect|undefined {
+		if (!stendhal.config.getBoolean("effect.entity-overlay")) {
 			return undefined;
 		}
-		const aniDef = group[name];
+		const group = AnimationTable[type];
+		if (!group) {
+			return undefined;
+		}
+		let aniDef: string|AnimationTuple = group[name];
+		if (!aniDef) {
+			return undefined;
+		}
 		if (typeof(aniDef) === "string") {
 			// use a default delay value if none specified
-			return [aniDef as string, 0];
+			aniDef = [aniDef as string, 0];
 		}
-		return aniDef as AnimationTuple;
+		return new SkillEffect(aniDef[0], aniDef[1]);
 	}
 }

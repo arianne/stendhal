@@ -15,8 +15,6 @@ import { EntityOverlayRegistry } from "../data/EntityOverlayRegistry";
 
 import { Color } from "../data/color/Color";
 
-import { SkillEffect } from "../sprite/action/SkillEffect";
-
 declare var stendhal: any;
 
 export class NPC extends RPEntity {
@@ -35,10 +33,7 @@ export class NPC extends RPEntity {
 
 		if (key === "name") {
 			// overlay animation
-			const aniDef = EntityOverlayRegistry.get("NPC", value);
-			if (aniDef && stendhal.config.getBoolean("effect.entity-overlay")) {
-				this.overlay = new SkillEffect(aniDef[0], aniDef[1]);
-			}
+			this.overlay = EntityOverlayRegistry.get("NPC", value);
 
 			if (value.startsWith("Zekiel")) {
 				// Zekiel uses transparentnpc sprite but he is taller
