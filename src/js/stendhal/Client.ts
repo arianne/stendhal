@@ -468,13 +468,13 @@ export class Client {
 				!Number.isNaN(musicVolume) ? musicVolume : 1.0);
 
 		// coloring information
-		if (zoneinfo["color_method"]) {
-			stendhal.ui.gamewindow.setColorMethod(zoneinfo["color_method"]);
-		}
-		if (zoneinfo["blend_method"]) {
-			stendhal.ui.gamewindow.setBlendMethod(zoneinfo["blend_method"]);
-		}
-		if (zoneinfo["color"]) {
+		if (zoneinfo["color"] && stendhal.config.getBoolean("effect.lighting")) {
+			if (zoneinfo["color_method"]) {
+				stendhal.ui.gamewindow.setColorMethod(zoneinfo["color_method"]);
+			}
+			if (zoneinfo["blend_method"]) {
+				stendhal.ui.gamewindow.setBlendMethod(zoneinfo["blend_method"]);
+			}
 			const hsl = Color.numToHSL(Number(zoneinfo["color"]));
 			stendhal.ui.gamewindow.HSLFilter = hsl.toString();
 			// deprecated

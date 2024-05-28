@@ -43,6 +43,7 @@ export class SettingsDialog extends TabDialogContentComponent {
 			"activity-indicator": stendhal.config.get("activity-indicator"),
 			"activity-indicator.animate": stendhal.config.get("activity-indicator.animate"),
 			"effect.blood": stendhal.config.get("effect.blood"),
+			"effect.lighting": stendhal.config.get("effect.lighting"),
 			"effect.weather": stendhal.config.get("effect.weather")
 		};
 

@@ -30,7 +30,9 @@ export class VisualsTab extends AbstractSettingsTab {
 		const col1 = this.child("#col1")!;
 
 		parent.createCheckBox("chk_light", "effect.lighting",
-				"Lighting effects are enabled", "Lighting effects are disabled");
+				"Lighting effects are enabled", "Lighting effects are disabled", function() {
+					StandardMessages.changeNeedsRefresh();
+				});
 
 		parent.createCheckBox("chk_weather", "effect.weather",
 				"Weather is enabled", "Weather is disabled", function() {

@@ -193,7 +193,7 @@ export class ViewPort {
 	 * Add coloring filter to viewport.
 	 */
 	private applyHSLFilter() {
-		if (!this.HSLFilter || !stendhal.config.getBoolean("effect.lighting")) {
+		if (!this.HSLFilter) {
 			return;
 		}
 		this.ctx.save();
