@@ -14,11 +14,6 @@ import { AbstractSettingsTab } from "./AbstractSettingsTab";
 
 import { SettingsDialog } from "../SettingsDialog";
 
-import { ui } from "../../UI";
-import { UIComponentEnum } from "../../UIComponentEnum";
-
-import { ChatLogComponent } from "../../component/ChatLogComponent";
-
 import { SettingsComponent } from "../../toolkit/SettingsComponent";
 
 import { singletons } from "../../../SingletonRepo";
@@ -31,7 +26,6 @@ export class VisualsTab extends AbstractSettingsTab {
 	constructor(parent: SettingsDialog, element: HTMLElement) {
 		super(element);
 		const config = singletons.getConfigManager();
-		const chatLog = (ui.get(UIComponentEnum.ChatLog) as ChatLogComponent);
 
 		const col1 = this.child("#col1")!;
 
@@ -40,9 +34,7 @@ export class VisualsTab extends AbstractSettingsTab {
 
 		parent.createCheckBox("chk_weather", "effect.weather",
 				"Weather is enabled", "Weather is disabled", function() {
-					if (chatLog) {
-						chatLog.addLine("client", "Weather changes will take effect after you change maps.");
-					}
+					StandardMessages.changeNeedsRefresh();
 				})!;
 
 		parent.createCheckBox("chk_blood", "effect.blood",
