@@ -770,6 +770,7 @@ data/sprites/entity/overlay/
 beams           Rawdanitsu, olonu; CC0; https://opengameart.org/node/18068, https://github.com/arianne/stendhal/issues/104
 electricity*    Andrew Kelley (superjoe), olonu; CC0; https://opengameart.org/node/17839, https://github.com/arianne/stendhal/issues/78, https://github.com/arianne/stendhal/issues/112, https://github.com/arianne/stendhal/issues/116
 flame*          DkuCook, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/76781, https://opengameart.org/node/82451
+ice_sparkles*   Jordan Irwin (AntumDeluge); OGA BY 3.0 or newer; Stendhal
 magic_sparkles  Rawdanitsu, olonu; CC0; https://opengameart.org/node/18068
 
 
