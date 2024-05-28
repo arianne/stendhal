@@ -23,6 +23,12 @@ export class ActivityIndicatorSprite {
 	private frameIdx = 0;
 	private lastFrameUpdate = 0;
 
+	private readonly animate: boolean;
+
+
+	constructor() {
+		this.animate = stendhal.config.getBoolean("activity-indicator.animate");
+	}
 
 	/**
 	 * Draws an indicator.
@@ -41,19 +47,22 @@ export class ActivityIndicatorSprite {
 			return;
 		}
 
-		const cycleStart = Date.now();
-		if (this.lastFrameUpdate == 0) {
-			this.lastFrameUpdate = cycleStart;
-		}
-
 		// NOTE: indicator image should be square
 		const dim = ActivityIndicatorSprite.img.height;
-		if (cycleStart - this.lastFrameUpdate > 150) {
-			this.frameIdx++;
-			if ((this.frameIdx + 1) * dim >= ActivityIndicatorSprite.img.width) {
-				this.frameIdx = 0;
+
+		if (this.animate) {
+			const cycleStart = Date.now();
+			if (this.lastFrameUpdate == 0) {
+				this.lastFrameUpdate = cycleStart;
 			}
-			this.lastFrameUpdate = cycleStart;
+
+			if (cycleStart - this.lastFrameUpdate > 150) {
+				this.frameIdx++;
+				if ((this.frameIdx + 1) * dim >= ActivityIndicatorSprite.img.width) {
+					this.frameIdx = 0;
+				}
+				this.lastFrameUpdate = cycleStart;
+			}
 		}
 
 		// draw in upper-right of target area

@@ -658,6 +658,10 @@ div.logcolR {
 	padding-left: 15px;
 }
 
+.indented {
+	margin-left: 1.5em;
+}
+
 .tally {
 	font-family: Tally;
 }

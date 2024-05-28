@@ -41,6 +41,7 @@ export class SettingsDialog extends TabDialogContentComponent {
 
 		this.initialStates = {
 			"activity-indicator": stendhal.config.get("activity-indicator"),
+			"activity-indicator.animate": stendhal.config.get("activity-indicator.animate"),
 			"effect.blood": stendhal.config.get("effect.blood"),
 			"effect.weather": stendhal.config.get("effect.weather")
 		};

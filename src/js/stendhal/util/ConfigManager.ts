@@ -31,6 +31,7 @@ export class ConfigManager {
 	 */
 	private readonly defaults: {[id: string]: string} = {
 		"activity-indicator": "true",
+		"activity-indicator.animate": "false",
 		// TODO: possible change key prefixes pertaining directly to chat panel to "panel.chat."
 		"chat.autohide": "false",
 		"chat.float": "false",

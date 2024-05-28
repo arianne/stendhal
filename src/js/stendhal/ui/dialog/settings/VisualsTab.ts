@@ -58,6 +58,17 @@ export class VisualsTab extends AbstractSettingsTab {
 				"Displaying clicks", "Not displaying clicks");
 
 		let indicateActivity = config.getBoolean("activity-indicator");
+		let animate = config.getBoolean("activity-indicator.animate");
+		const chkAnimate = new SettingsComponent("chk_animate", "Animate");
+		chkAnimate.setValue(animate);
+		chkAnimate.setEnabled(indicateActivity);
+		chkAnimate.onchange = (evt: Event) => {
+			animate = chkAnimate.getValue() as boolean;
+			config.set("activity-indicator.animate", animate);
+			StandardMessages.changeNeedsRefresh();
+			parent.refresh();
+		}
+
 		const chkActivityInd = new SettingsComponent("chk_activityindicator", "Object activity indicator");
 		chkActivityInd.setValue(indicateActivity);
 		chkActivityInd.componentElement.title = indicateActivity ? "Indicator will be drawn" : "Indicator will not be drawn";
@@ -65,9 +76,12 @@ export class VisualsTab extends AbstractSettingsTab {
 			indicateActivity = chkActivityInd.getValue() as boolean;
 			config.set("activity-indicator", indicateActivity);
 			chkActivityInd.componentElement.title = indicateActivity ? "Indicator will be drawn" : "Indicator will not be drawn";
+			chkAnimate.setEnabled(indicateActivity);
 			StandardMessages.changeNeedsRefresh();
 			parent.refresh();
 		};
 		chkActivityInd.addTo(col1);
+		chkAnimate.addTo(col1);
+		chkAnimate.componentElement.classList.add("indented");
 	}
 }
