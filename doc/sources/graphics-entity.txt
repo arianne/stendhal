@@ -353,7 +353,7 @@ dark_elf_master.*        Svetlana Kushnariova (Cabbit), olonu, Andrew Kelley (su
 dark_elf_matronmother.*  Svetlana Kushnariova (Cabbit), olonu, 59naga, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/119, https://opengameart.org/node/72969, https://opengameart.org/node/15101
 dark_elf_ranger.*        Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/95, https://opengameart.org/node/72969
 dark_elf_sacerdotist.*   Svetlana Kushnariova (Cabbit), olonu, Jason Rebuck (jaschon), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/105, https://opengameart.org/node/72969, https://openclipart.org/detail/92953
-dark_elf_viceroy.*       Svetlana Kushnariova (Cabbit), olonu, LordNeo, Andrew Kelley (superjoe), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/112, https://opengameart.org/node/72969, https://opengameart.org/node/17839
+dark_elf_viceroy.*       Svetlana Kushnariova (Cabbit), olonu, LordNeo, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/112, https://opengameart.org/node/72969
 dark_elf_wizard.*        Svetlana Kushnariova (Cabbit), olonu, Jason Rebuck (jaschon), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/107, https://opengameart.org/node/72969, https://openclipart.org/detail/92953
 
 
@@ -768,7 +768,7 @@ training_dummy.*  Danimal, Kimmo Rundelin (kiheru), ScratchIO, Jordan Irwin (Ant
 data/sprites/entity/overlay/
 
 beams           Rawdanitsu, olonu; CC0; https://opengameart.org/node/18068, https://github.com/arianne/stendhal/issues/104
-electricity*    Andrew Kelley (superjoe), olonu; CC0; https://opengameart.org/node/17839, https://github.com/arianne/stendhal/issues/78
+electricity*    Andrew Kelley (superjoe), olonu; CC0; https://opengameart.org/node/17839, https://github.com/arianne/stendhal/issues/78, https://github.com/arianne/stendhal/issues/112
 flame*          DkuCook, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/76781, https://opengameart.org/node/82451
 magic_sparkles  Rawdanitsu, olonu; CC0; https://opengameart.org/node/18068
 
