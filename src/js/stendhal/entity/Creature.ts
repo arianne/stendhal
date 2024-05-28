@@ -33,7 +33,7 @@ export class Creature extends RPEntity {
 		if (key === "name") {
 			// overlay animation
 			const aniDef = EntityOverlayRegistry.get("creature", value);
-			if (aniDef) {
+			if (aniDef && stendhal.config.getBoolean("effect.entity-overlay")) {
 				this.overlay = new SkillEffect(aniDef[0], aniDef[1]);
 			}
 		}

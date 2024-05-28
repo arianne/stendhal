@@ -80,5 +80,15 @@ export class VisualsTab extends AbstractSettingsTab {
 			parent.refresh();
 		});
 		chkParallax.addTo(col1);
+
+		const chkEntityOverlay = new SettingsComponent("chk_entity_overlay",
+				"Entity overlay effects");
+		chkEntityOverlay.setValue(config.getBoolean("effect.entity-overlay"));
+		chkEntityOverlay.addListener((evt: Event) => {
+			config.set("effect.entity-overlay", chkEntityOverlay.getValue());
+			StandardMessages.changeNeedsRefresh();
+			parent.refresh();
+		});
+		chkEntityOverlay.addTo(col1);
 	}
 }

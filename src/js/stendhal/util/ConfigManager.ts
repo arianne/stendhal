@@ -42,6 +42,7 @@ export class ConfigManager {
 		"chat-opts.custom": "",
 		"click-indicator": "false",
 		"effect.blood": "true",
+		"effect.entity-overlay": "true",
 		"effect.lighting": "true",
 		"effect.weather": "true",
 		"effect.no-nude": "true",
