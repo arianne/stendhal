@@ -32,6 +32,7 @@ export namespace EntityOverlayRegistry {
 	/** Table containing animation definitions. */
 	const AnimationTable: Record<string, AnimationEntry> = {
 		"NPC": {
+			"Aenihata": "electricity_blue",
 			"Tywysoga": "magic_sparkles"
 		},
 

@@ -82,7 +82,7 @@ gypsywomannpc.png             Svetlana Kushnariova (Cabbit), Jordan Irwin (Antum
 halfelfnpc.*                  Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, Stendhal
 hanknpc.*                     Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969
 heraldnpc.png                 CC0 (placeholder)
-highpriestnpc.*               Svetlana kushnariova (Cabbit), Sollision, Andrew Kelley (superjoe), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/76967, https://opengameart.org/node/17839
+highpriestnpc.*               Svetlana kushnariova (Cabbit), Sollision, olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/76967
 hoeingmannpc.*                Svetlana Kushnariova (Cabbit), diamonddmgirl, Jordan Irwin (AntumDeluge); CC BY 3.0/4.0; https://opengameart.org/node/72969, https://opengameart.org/node/74802; Original Pepper&Carrot webcomic created by David Revoy.
 holidaymakernpc.png           Svetlana Kushnariova (Cabbit), Sebastian Riedel (Baŝto), Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/90784
 hotelchefnpc.*                Svetlana Kushnariova (Cabbit), diamonddmgirl, One Man Army, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/83661, https://opengameart.org/node/69527
