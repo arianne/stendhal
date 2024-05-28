@@ -33,7 +33,7 @@ export class NPC extends RPEntity {
 
 		if (key === "name") {
 			// overlay animation
-			this.overlay = EntityOverlayRegistry.get("NPC", value);
+			this.overlay = EntityOverlayRegistry.get("NPC", this);
 
 			if (value.startsWith("Zekiel")) {
 				// Zekiel uses transparentnpc sprite but he is taller

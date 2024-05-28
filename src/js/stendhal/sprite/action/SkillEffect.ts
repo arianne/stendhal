@@ -21,7 +21,7 @@ import { singletons } from "../../SingletonRepo";
 export class SkillEffect implements OverlaySpriteImpl {
 
 	/** Image to be drawn on canvas. */
-	private readonly image: HTMLImageElement;
+	protected readonly image: HTMLImageElement;
 	/** Time for which each frame should be displayed. */
 	private readonly delay: number;
 	/** Timestamp at which this sprite should expire. */
@@ -53,6 +53,28 @@ export class SkillEffect implements OverlaySpriteImpl {
 		this.expires = duration > 0 ? this.cycleTime + duration : 0;
 	}
 
+	/**
+	 * Draws sprite to canvas.
+	 *
+	 * @param {CanvasRenderingContext2D} ctx
+	 *   Canvas drawing context.
+	 * @param {number} colIdx
+	 *   Horizontal frame index.
+	 * @param {number} x
+	 *   Horizonal pixel position of where to draw on canvas.
+	 * @param {number} y
+	 *   Vertical pixel position of where to draw on canvas.
+	 * @param {number} drawWidth
+	 *   Width of each frame to draw.
+	 * @param {number} drawHeight
+	 *   Height of each frame to draw.
+	 */
+	protected drawInternal(ctx: CanvasRenderingContext2D, colIdx: number, x: number, y: number,
+			drawWidth: number, drawHeight: number) {
+		ctx.drawImage(this.image, colIdx*drawWidth, 0, drawWidth, drawHeight, x, y, drawWidth,
+				drawHeight);
+	}
+
 	draw(ctx: CanvasRenderingContext2D, x=0, y=0, drawWidth=48, drawHeight=64): boolean {
 		this.drawTime = Date.now();
 		if (!this.image.height) {
@@ -68,8 +90,7 @@ export class SkillEffect implements OverlaySpriteImpl {
 			this.cycleTime = this.drawTime;
 		}
 
-		ctx.drawImage(this.image, frame*drawWidth, 0, drawWidth, drawHeight, x, y, drawWidth,
-				drawHeight);
+		this.drawInternal(ctx, frame, x, y, drawWidth, drawHeight);
 		return this.expired();
 	}
 

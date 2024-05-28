@@ -30,7 +30,7 @@ export class Creature extends RPEntity {
 
 		if (key === "name") {
 			// overlay animation
-			this.overlay = EntityOverlayRegistry.get("creature", value);
+			this.overlay = EntityOverlayRegistry.get("creature", this);
 		}
 	}
 

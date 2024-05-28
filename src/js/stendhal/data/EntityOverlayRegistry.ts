@@ -12,6 +12,9 @@
 
 declare var stendhal: any;
 
+import { Entity } from "../entity/Entity";
+
+import { DirectionalSkillEffect } from "../sprite/action/DirectionalSkillEffect";
 import { SkillEffect } from "../sprite/action/SkillEffect";
 
 type AnimationTuple = [string, number];
@@ -23,8 +26,6 @@ type AnimationEntry = Record<string, string|AnimationTuple>;
  *
  * TODO:
  * - move declarations to JSON file if we want support in Java client
- * - support alternate animation for side view (example: necrosophia sprite) or...
- * - scale to height (using scale2x algorithm)
  */
 export namespace EntityOverlayRegistry {
 	/** Table containing animation definitions. */
@@ -34,17 +35,20 @@ export namespace EntityOverlayRegistry {
 		"creature": {}
 	}
 
+	/** Entities with direction dependent animation. */
+	const directional = [];
+
 	/**
 	 * Function for handling retrieval of animation definitions.
 	 *
 	 * @param {string} type
 	 *   Entity type.
-	 * @param {string} name
-	 *   Entity name.
+	 * @param {Entity} entity
+	 *   Entity with which the overlay is associated.
 	 * @returns {SkillEffect|undefined}
 	 *   Overlay effect or `undefined` if no effect available.
 	 */
-	export function get(type: string, name: string): SkillEffect|undefined {
+	export function get(type: string, entity: Entity): SkillEffect|undefined {
 		if (!stendhal.config.getBoolean("effect.entity-overlay")) {
 			return undefined;
 		}
@@ -52,6 +56,7 @@ export namespace EntityOverlayRegistry {
 		if (!group) {
 			return undefined;
 		}
+		const name = entity["name"];
 		let aniDef: string|AnimationTuple = group[name];
 		if (!aniDef) {
 			return undefined;
@@ -59,6 +64,9 @@ export namespace EntityOverlayRegistry {
 		if (typeof(aniDef) === "string") {
 			// use a default delay value if none specified
 			aniDef = [aniDef as string, 0];
+		}
+		if (directional.indexOf(name) > -1) {
+			return new DirectionalSkillEffect(entity, aniDef[0], aniDef[1]);
 		}
 		return new SkillEffect(aniDef[0], aniDef[1]);
 	}
