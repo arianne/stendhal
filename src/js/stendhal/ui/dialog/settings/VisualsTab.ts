@@ -19,6 +19,8 @@ import { UIComponentEnum } from "../../UIComponentEnum";
 
 import { ChatLogComponent } from "../../component/ChatLogComponent";
 
+import { StandardMessages } from "../../../util/StandardMessages";
+
 
 export class VisualsTab extends AbstractSettingsTab {
 
@@ -46,7 +48,11 @@ export class VisualsTab extends AbstractSettingsTab {
 				"Shadows are enabled", "Shadows are disabled");
 
 		parent.createCheckBox("chk_activityindicator", "activity-indicator",
-				"Indicator will be drawn", "Indicator will not be drawn");
+				"Indicator will be drawn", "Indicator will not be drawn",
+				function() {
+					StandardMessages.changeNeedsRefresh();
+					parent.refresh();
+				});
 
 		parent.createCheckBox("chk_clickindicator", "click-indicator",
 				"Displaying clicks", "Not displaying clicks");

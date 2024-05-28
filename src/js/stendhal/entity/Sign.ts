@@ -27,7 +27,7 @@ export class Sign extends Entity {
 
 	override set(key: string, value: object) {
 		super.set(key, value);
-		if (key === "activity-indicator") {
+		if (key === "activity-indicator" && stendhal.config.getBoolean("activity-indicator")) {
 			this.indicator = new ActivityIndicatorSprite();
 		}
 	}
@@ -41,7 +41,7 @@ export class Sign extends Entity {
 			var localX = this["x"] * 32;
 			var localY = this["y"] * 32;
 			ctx.drawImage(image, localX, localY);
-			if (this.indicator && stendhal.config.getBoolean("activity-indicator")) {
+			if (this.indicator) {
 				this.indicator.draw(ctx, localX, localY, image.width);
 			}
 		}

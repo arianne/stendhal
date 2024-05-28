@@ -27,12 +27,14 @@ export class Corpse extends PopupInventory {
 	override zIndex = 5500;
 	autoOpenedAlready = false;
 
-	private readonly indicator: ActivityIndicatorSprite;
+	private readonly indicator?: ActivityIndicatorSprite;
 
 
 	constructor() {
 		super();
-		this.indicator = new ActivityIndicatorSprite();
+		if (stendhal.config.getBoolean("activity-indicator")) {
+			this.indicator = new ActivityIndicatorSprite();
+		}
 	}
 
 	override set(key: string, value: any) {
@@ -54,7 +56,7 @@ export class Corpse extends PopupInventory {
 		}
 		super.draw(ctx);
 
-		if (stendhal.config.getBoolean("activity-indicator") && !this.isEmpty()) {
+		if (this.indicator && !this.isEmpty()) {
 			const tileW = stendhal.ui.gamewindow.targetTileWidth;
 			const tileH = stendhal.ui.gamewindow.targetTileHeight;
 			if (this.sprite.width == undefined || this.sprite.height == undefined) {
