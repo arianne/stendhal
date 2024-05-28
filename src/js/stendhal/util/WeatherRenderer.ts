@@ -75,6 +75,10 @@ export class WeatherRenderer {
 	 */
 	update(weather?: string) {
 		this.enabled = stendhal.config.getBoolean("effect.weather");
+		if (!this.enabled) {
+			// prevent playing sound & other weather-related instructions
+			return;
+		}
 		this.frameIdx = 0;
 		this.lastUpdate = Date.now();
 		// reset warning messages
