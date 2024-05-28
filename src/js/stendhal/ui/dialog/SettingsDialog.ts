@@ -14,6 +14,7 @@ declare var stendhal: any;
 import { GeneralTab } from "./settings/GeneralTab";
 import { InputTab } from "./settings/InputTab";
 import { SoundTab } from "./settings/SoundTab";
+import { VisualsTab } from "./settings/VisualsTab";
 
 import { TabDialogContentComponent } from "../toolkit/TabDialogContentComponent";
 
@@ -44,6 +45,7 @@ export class SettingsDialog extends TabDialogContentComponent {
 		};
 
 		this.addTab("General", new GeneralTab(this, this.child("#settings-general")!));
+		this.addTab("Visuals", new VisualsTab(this, this.child("#settings-visuals")!));
 		this.addTab("Sound", new SoundTab(this, this.child("#settings-sound")!));
 		this.addTab("Input", new InputTab(this, this.child("#settings-input")!));
 

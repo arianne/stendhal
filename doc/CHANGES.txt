@@ -2,6 +2,12 @@ Changelog
 ---------
 ---------
 
+1.48
+
+*web client*
+- added visuals tab to settings dialog
+
+
 1.47
 
 *world*

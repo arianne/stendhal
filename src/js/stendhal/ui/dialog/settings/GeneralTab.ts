@@ -38,26 +38,6 @@ export class GeneralTab extends AbstractSettingsTab {
 
 		/* *** left panel *** */
 
-		parent.createCheckBox("chk_light", "effect.lighting",
-				"Lighting effects are enabled", "Lighting effects are disabled");
-
-		parent.createCheckBox("chk_weather", "effect.weather",
-				"Weather is enabled", "Weather is disabled", function() {
-					if (chatLog) {
-						chatLog.addLine("client", "Weather changes will take effect after you change maps.");
-					}
-				})!;
-
-		//const sd = this;
-		parent.createCheckBox("chk_blood", "effect.blood",
-				"Gory images are enabled", "Gory images are disabled");
-
-		parent.createCheckBox("chk_nonude", "effect.no-nude",
-				"Naked entities have undergarments", "Naked entities are not covered");
-
-		parent.createCheckBox("chk_shadows", "effect.shadows",
-				"Shadows are enabled", "Shadows are disabled");
-
 		parent.createCheckBox("chk_speechcr", "speech.creature",
 				"Creature speech bubbles are enabled", "Creature speech bubbles are disabled");
 
@@ -74,9 +54,6 @@ export class GeneralTab extends AbstractSettingsTab {
 				function() {
 					player_stats.enableBar("hp", chk_hpbar.checked);
 				})!;
-
-		parent.createCheckBox("chk_activityindicator", "activity-indicator",
-				"Indicator will be drawn", "Indicator will not be drawn");
 
 		const chk_floatchat = parent.createCheckBox("chk_floatchat", "chat.float",
 				undefined, undefined,
@@ -131,9 +108,6 @@ export class GeneralTab extends AbstractSettingsTab {
 				"Private message audio notifications disabled",
 				undefined, "ui/notify_up", "null");
 		chk_pvtsnd.checked = config.get("chat.private.sound") === "ui/notify_up";
-
-		parent.createCheckBox("chk_clickindicator", "click-indicator",
-				"Displaying clicks", "Not displaying clicks");
 
 		parent.createCheckBox("chk_nativeemojis", "emojis.native",
 				"Using native emojis", "Using built-in emojis",
