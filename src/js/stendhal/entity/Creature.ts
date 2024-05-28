@@ -15,6 +15,8 @@ import { EntityOverlayRegistry } from "../data/EntityOverlayRegistry";
 
 import { Color } from "../data/color/Color";
 
+import { SkillEffect } from "../sprite/action/SkillEffect";
+
 declare var marauroa: any;
 declare var stendhal: any;
 
@@ -32,7 +34,7 @@ export class Creature extends RPEntity {
 			// overlay animation
 			const aniDef = EntityOverlayRegistry.get("creature", value);
 			if (aniDef) {
-				this.setOverlayAnimation(aniDef[0], aniDef[1]);
+				this.overlay = new SkillEffect(aniDef[0], aniDef[1]);
 			}
 		}
 	}
