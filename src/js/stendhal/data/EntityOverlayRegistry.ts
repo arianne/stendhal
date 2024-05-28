@@ -41,6 +41,7 @@ export namespace EntityOverlayRegistry {
 			"dark elf master": "electricity_violet",
 			"dark elf viceroy": "electricity_blue",
 			"emperor dalmung": "flame_blue",
+			"ice golem": "ice_sparkles",
 			"imperial demon lord": "electricity_red"
 		}
 	}
