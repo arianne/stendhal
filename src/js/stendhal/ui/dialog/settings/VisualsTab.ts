@@ -19,6 +19,10 @@ import { UIComponentEnum } from "../../UIComponentEnum";
 
 import { ChatLogComponent } from "../../component/ChatLogComponent";
 
+import { SettingsComponent } from "../../toolkit/SettingsComponent";
+
+import { singletons } from "../../../SingletonRepo";
+
 import { StandardMessages } from "../../../util/StandardMessages";
 
 
@@ -26,7 +30,10 @@ export class VisualsTab extends AbstractSettingsTab {
 
 	constructor(parent: SettingsDialog, element: HTMLElement) {
 		super(element);
+		const config = singletons.getConfigManager();
 		const chatLog = (ui.get(UIComponentEnum.ChatLog) as ChatLogComponent);
+
+		const col1 = this.child("#col1")!;
 
 		parent.createCheckBox("chk_light", "effect.lighting",
 				"Lighting effects are enabled", "Lighting effects are disabled");
@@ -47,14 +54,20 @@ export class VisualsTab extends AbstractSettingsTab {
 		parent.createCheckBox("chk_shadows", "effect.shadows",
 				"Shadows are enabled", "Shadows are disabled");
 
-		parent.createCheckBox("chk_activityindicator", "activity-indicator",
-				"Indicator will be drawn", "Indicator will not be drawn",
-				function() {
-					StandardMessages.changeNeedsRefresh();
-					parent.refresh();
-				});
-
 		parent.createCheckBox("chk_clickindicator", "click-indicator",
 				"Displaying clicks", "Not displaying clicks");
+
+		let indicateActivity = config.getBoolean("activity-indicator");
+		const chkActivityInd = new SettingsComponent("chk_activityindicator", "Object activity indicator");
+		chkActivityInd.setValue(indicateActivity);
+		chkActivityInd.componentElement.title = indicateActivity ? "Indicator will be drawn" : "Indicator will not be drawn";
+		chkActivityInd.onchange = (evt: Event) => {
+			indicateActivity = chkActivityInd.getValue() as boolean;
+			config.set("activity-indicator", indicateActivity);
+			chkActivityInd.componentElement.title = indicateActivity ? "Indicator will be drawn" : "Indicator will not be drawn";
+			StandardMessages.changeNeedsRefresh();
+			parent.refresh();
+		};
+		chkActivityInd.addTo(col1);
 	}
 }
