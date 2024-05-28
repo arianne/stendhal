@@ -10,13 +10,13 @@
  *                                                                         *
  ***************************************************************************/
 
-import { ActionSprite } from "./ActionSprite";
+import { AttackSprite } from "./AttackSprite";
 import { RPEntity } from "../../entity/RPEntity";
 
 declare var stendhal: any;
 
 
-export class BarehandAttackSprite extends ActionSprite {
+export class BarehandAttackSprite extends AttackSprite {
 
 	private readonly dir: number;
 	private readonly image: HTMLImageElement;

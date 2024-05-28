@@ -12,12 +12,12 @@
 
 declare var stendhal: any;
 
-import { ActionSprite } from "./ActionSprite";
+import { AttackSprite } from "./AttackSprite";
 import { RPEntity } from "../../entity/RPEntity";
 import { Direction } from "../../util/Direction";
 
 
-export class MeleeAttackSprite extends ActionSprite {
+export class MeleeAttackSprite extends AttackSprite {
 
 	/** Direction entity is facing. */
 	private readonly dir: Direction;

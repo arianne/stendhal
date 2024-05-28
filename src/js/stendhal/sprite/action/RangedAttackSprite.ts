@@ -1,5 +1,6 @@
 /***************************************************************************
- *                       Copyright © 2023 - Stendhal                       *
+ *                    Copyright © 2023-2024 - Stendhal                     *
+ ***************************************************************************
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,13 +10,13 @@
  *                                                                         *
  ***************************************************************************/
 
-import { ActionSprite } from "./ActionSprite";
+import { AttackSprite } from "./AttackSprite";
 import { RPEntity } from "../../entity/RPEntity";
 
 declare var stendhal: any;
 
 
-export class RangedAttackSprite extends ActionSprite {
+export class RangedAttackSprite extends AttackSprite {
 
 	private readonly dir: number;
 	private readonly targetX: number;

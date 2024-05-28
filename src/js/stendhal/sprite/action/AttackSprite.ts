@@ -1,5 +1,6 @@
 /***************************************************************************
- *                       Copyright © 2023 - Stendhal                       *
+ *                    Copyright © 2023-2024 - Stendhal                     *
+ ***************************************************************************
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -13,7 +14,7 @@
 /**
  * TODO: replace or implement with OverlayImpl
  */
-export abstract class ActionSprite {
+export abstract class AttackSprite {
 
 	protected readonly initTime: number;
 
