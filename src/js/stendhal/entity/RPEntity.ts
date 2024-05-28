@@ -667,14 +667,17 @@ export class RPEntity extends ActiveEntity {
 		if (!this.attackSprite) {
 			return;
 		}
+		if (this.attackSprite.expired()) {
+			// sprite expired & should be removed
+			// NOTE: if this is done after `this.attackSprite.draw` animation doesn't look right
+			this.attackSprite = undefined;
+			return;
+		}
 		var localX = this["_x"] * 32;
 		var localY = this["_y"] * 32;
 		var localW = this["width"] * stendhal.ui.gamewindow.targetTileWidth;
 		var localH = this["height"] * stendhal.ui.gamewindow.targetTileHeight;
-		if (this.attackSprite.draw(ctx, localX, localY, localW, localH)) {
-			// sprite expired & should be removed
-			this.attackSprite = undefined;
-		}
+		this.attackSprite.draw(ctx, localX, localY, localW, localH);
 	}
 
 	/**

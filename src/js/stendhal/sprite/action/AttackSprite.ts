@@ -15,8 +15,6 @@ import { OverlaySpriteImpl } from "../OverlaySpriteImpl";
 
 /**
  * Sprite representing an attack animation.
- *
- * FIXME: animation looks different somehow
  */
 export abstract class AttackSprite implements OverlaySpriteImpl {
 
