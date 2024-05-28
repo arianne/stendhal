@@ -772,6 +772,7 @@ electricity*    Andrew Kelley (superjoe), olonu; CC0; https://opengameart.org/no
 flame*          DkuCook, Jordan Irwin (AntumDeluge); CC0; https://opengameart.org/node/76781, https://opengameart.org/node/82451
 ice_sparkles*   Jordan Irwin (AntumDeluge); OGA BY 3.0 or newer; Stendhal
 magic_sparkles  Rawdanitsu, olonu; CC0; https://opengameart.org/node/18068
+necro_flames    Wolf W. (Ouren), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/45981
 
 
 data/sprites/entity/ratfolk/

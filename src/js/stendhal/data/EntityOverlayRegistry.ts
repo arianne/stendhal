@@ -44,12 +44,15 @@ export namespace EntityOverlayRegistry {
 			"emperor dalmung": "flame_blue",
 			"ice giant": "ice_sparkles_2x",
 			"ice golem": "ice_sparkles",
-			"imperial demon lord": "electricity_red"
+			"imperial demon lord": "electricity_red",
+			"necrosophia": "necro_flames"
 		}
 	}
 
 	/** Entities with direction dependent animation. */
-	const directional = [];
+	const directional = [
+		"necrosophia"
+	];
 
 	/**
 	 * Function for handling retrieval of animation definitions.
