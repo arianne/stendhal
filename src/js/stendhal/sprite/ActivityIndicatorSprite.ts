@@ -27,6 +27,8 @@ export class ActivityIndicatorSprite {
 	/**
 	 * Draws an indicator.
 	 *
+	 * TODO: add option enable/disable animation
+	 *
 	 * @param dx
 	 *   Pixel position where parent object is drawn on X axis.
 	 * @param dy
