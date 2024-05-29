@@ -75,7 +75,7 @@ import marauroa.common.game.IRPZone;
  * <li> Unlimited, but 7 days of waiting are required between repetitions</li>
  * </ul>
  */
-public class FishSoupForHughie extends AbstractQuest {
+public class FishSoupForHughie extends CompletionsTrackingQuest {
 
 	private static final int REQUIRED_MINUTES = 7 * TimeUtil.MINUTES_IN_DAY;
 
@@ -88,12 +88,13 @@ public class FishSoupForHughie extends AbstractQuest {
 
 	@Override
 	public boolean isCompleted(final Player player) {
-		return player.hasQuest(QUEST_SLOT) && !"start".equals(player.getQuest(QUEST_SLOT)) && !"rejected".equals(player.getQuest(QUEST_SLOT));
+		return player.hasQuest(QUEST_SLOT) && !"start".equals(player.getQuest(QUEST_SLOT, 0))
+				&& !"rejected".equals(player.getQuest(QUEST_SLOT, 0));
 	}
 
 	@Override
 	public boolean isRepeatable(final Player player) {
-		return new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, "start"), new QuestStartedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES)).fire(player, null, null);
+		return new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, 0, "start"), new QuestStartedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT, 0, REQUIRED_MINUTES)).fire(player, null, null);
 	}
 
 	@Override
@@ -103,7 +104,7 @@ public class FishSoupForHughie extends AbstractQuest {
 			return res;
 		}
 		res.add("Anastasia asked me to bring fish soup for her boy Hughie.");
-		final String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT, 0);
 		if ("rejected".equals(questState)) {
 			res.add("I do not want to help Hughie.");
 			return res;
@@ -130,7 +131,7 @@ public class FishSoupForHughie extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-					new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("fish soup")),
+					new QuestInStateCondition(QUEST_SLOT, 0, "start"), new PlayerHasItemWithHimCondition("fish soup")),
 			ConversationStates.QUEST_ITEM_BROUGHT,
 			"Hi, you've got fish soup, I see, is that for Hughie?",
 			null);
@@ -139,7 +140,7 @@ public class FishSoupForHughie extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-					new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("fish soup"))),
+					new QuestInStateCondition(QUEST_SLOT, 0, "start"), new NotCondition(new PlayerHasItemWithHimCondition("fish soup"))),
 			ConversationStates.ATTENDING,
 			"You're back already? Hughie is getting sicker! Don't forget the fish soup for him, please. I promise to reward you.",
 			null);
@@ -156,7 +157,7 @@ public class FishSoupForHughie extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-					new QuestNotInStateCondition(QUEST_SLOT, "start"),
+					new QuestNotInStateCondition(QUEST_SLOT, 0, "start"),
 					new QuestStartedCondition(QUEST_SLOT)),
 			ConversationStates.ATTENDING,
 			"Hello again.",
@@ -165,7 +166,7 @@ public class FishSoupForHughie extends AbstractQuest {
 		// if they ask for quest while on it, remind them
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
-			new QuestInStateCondition(QUEST_SLOT, "start"),
+			new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 			ConversationStates.ATTENDING,
 			"You already promised me to bring me some fish soup for Hughie! Please hurry!",
 			null);
@@ -181,7 +182,7 @@ public class FishSoupForHughie extends AbstractQuest {
 		// player returns - enough time has passed
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, "start"), new QuestStartedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES)),
+				new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, 0, "start"), new QuestStartedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT, 0, REQUIRED_MINUTES)),
 				ConversationStates.QUEST_OFFERED,
 				"My Hughie is getting sick again! Please could you bring another bowl of fish soup? It helped last time.",
 				null);
@@ -189,7 +190,7 @@ public class FishSoupForHughie extends AbstractQuest {
 		// player returns - not enough time has passed
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, "start"), new QuestStartedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES))),
+				new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, 0, "start"), new QuestStartedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT, 0, REQUIRED_MINUTES))),
 				ConversationStates.ATTENDING,
 				"Hughie is sleeping off his fever now and I'm hopeful he recovers. Thank you so much.",
 				null);
@@ -200,7 +201,7 @@ public class FishSoupForHughie extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Thank you! You can ask Florence Bouillabaisse to make you fish soup. I think she's in Ados market somewhere.",
-			new SetQuestAction(QUEST_SLOT, "start"));
+			new SetQuestAction(QUEST_SLOT, 0, "start"));
 
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -208,7 +209,7 @@ public class FishSoupForHughie extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Oh no, please, he's so sick.",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, 0, "rejected", -5.0));
 	}
 
 	private void prepareBringingStep() {
@@ -218,7 +219,8 @@ public class FishSoupForHughie extends AbstractQuest {
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("fish soup"));
 		reward.add(new IncreaseXPAction(200));
-		reward.add(new SetQuestToTimeStampAction(QUEST_SLOT));
+		reward.add(new SetQuestToTimeStampAction(QUEST_SLOT, 0));
+		reward.add(incrementCompletionsAction());
 		reward.add(new IncreaseKarmaAction(5));
 		reward.add(new EquipItemAction("potion",10));
 		reward.add(new ChatAction() {
@@ -264,7 +266,7 @@ public class FishSoupForHughie extends AbstractQuest {
 		fillQuestInfo(
 				"Fish Soup for Hughie",
 				"Anastasia's son Hughie is sick and needs something to heal him.",
-				true);
+				true, 1);
 		prepareRequestingStep();
 		prepareBringingStep();
 	}
