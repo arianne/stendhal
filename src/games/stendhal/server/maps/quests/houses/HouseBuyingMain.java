@@ -90,7 +90,7 @@ public class HouseBuyingMain {
 		if(playerHousePortal!=null) {
 			int unpaidPeriods = houseTax.getUnpaidTaxPeriods(player);
 			if (unpaidPeriods>0) {
-				hist.add("I owe " + Grammar.quantityplnoun(unpaidPeriods, "month", "one") + " worth of tax.");
+				hist.add("I owe " + Grammar.quantityplnounPossessive(unpaidPeriods, "month", "one") + " worth of taxes.");
 			} else {
 				hist.add("I am up to date with my house tax payments.");
 			}
