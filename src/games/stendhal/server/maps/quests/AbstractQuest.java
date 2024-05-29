@@ -146,6 +146,11 @@ public abstract class AbstractQuest implements IQuest {
 				&& player.isQuestCompleted(getSlotName());
 	}
 
+	@Override
+	public boolean hasCompleted(final Player player) {
+		return getCompletions(player) > 0;
+	}
+
 	/**
 	 * Retrieves number of times player has completed quest.
 	 *
