@@ -66,7 +66,7 @@ import marauroa.common.Pair;
  * </ul>
  */
 
-public class KillDhohrNuggetcutter extends AbstractQuest {
+public class KillDhohrNuggetcutter extends CompletionsTrackingQuest {
 
 	private static final String QUEST_SLOT = "kill_dhohr_nuggetcutter";
 
@@ -86,7 +86,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 				new ChatAction() {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
+						if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT, 0).equals("rejected")) {
 							raiser.say("We are unable to rid our area of dwarves. Especially one mighty one named Dhohr Nuggetcutter. Would you please kill them?");
 						}  else if (player.getQuest(QUEST_SLOT, 0).equals("start")) {
 							raiser.say("I already asked you to kill Dhohr Nuggetcutter!");
@@ -131,7 +131,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING,
 				"Ok, I will await someone having the guts to have the job done.",
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, 0, "rejected", -5.0));
 	}
 
 	private void step_2() {
@@ -169,7 +169,9 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 							player.equipOrPutOnGround(mithrilnug);
 							player.addKarma(25.0);
 							player.addXP(4000);
-							player.setQuest(QUEST_SLOT, "killed;" + System.currentTimeMillis());
+							incrementCompletions(player);
+							player.setQuest(QUEST_SLOT, 0, "killed");
+							player.setQuest(QUEST_SLOT, 1, String.valueOf(System.currentTimeMillis()));
 					}
 				});
 	}
@@ -179,7 +181,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 		fillQuestInfo(
 				"Kill Dhohr Nuggetcutter",
 				"Zogfang, the orc who guards the entrance of the Abandoned Keep, isn't feeling safe while some dwarves still remain in the Keep.",
-				false);
+				false, 2);
 		step_1();
 		step_2();
 		step_3();
