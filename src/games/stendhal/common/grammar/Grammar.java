@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2009-2023 - Stendhal                    *
+ *                   (C) Copyright 2009-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -778,6 +778,23 @@ public class Grammar {
 	}
 
 	/**
+	 * Converts a noun to possessive form.
+	 *
+	 * @param noun
+	 *   The noun to examine.
+	 * @param plural
+	 *   Whether the noun is considered to be plural.
+	 * @return
+	 *   Possessive form.
+	 */
+	public static String possessive(final String noun, final boolean plural) {
+		if (plural && noun.endsWith("s")) {
+			return noun + "'";
+		}
+		return noun + "'s";
+	}
+
+	/**
 	 * Returns either the plural or singular form of the given noun, depending
 	 * on the quantity; also prefixes the quantity.
 	 *
@@ -826,25 +843,74 @@ public class Grammar {
 	 * @param noun
 	 *            The noun to examine
 	 * @param one replacement for "1".
+	 * @param possessive Whether the noun should be considered to be in possessive form.
+	 * @return Either "[quantity] [noun]" or "[quantity]" + plural("[noun]") as
+	 *         appropriate
+	 */
+	public static String quantityplnoun(final int quantity, String noun, final String one,
+			final boolean possessive) {
+		final String word = plnoun(quantity, noun);
+
+		if (quantity == 1) {
+			String phrase;
+			if (one.equals("a")) {
+				phrase = a_noun(word);
+			} else if (one.equals("A")) {
+				phrase = A_noun(word);
+			} else if (one.equals("")) {
+				phrase = word;
+			} else {
+				phrase = one + " " + word;
+			}
+			if (possessive) {
+				phrase = phrase.replaceAll(word + "$", possessive(word, false));
+			}
+			return phrase;
+		} else {
+			noun = plural(noun);
+			if (possessive) {
+				noun = possessive(noun, true);
+			}
+			return Integer.toString(quantity) + " " + noun;
+		}
+	}
+
+	/**
+	 * Returns either the plural or singular form of the given noun, depending
+	 * on the quantity; also prefixes the quantity. In case the quantity is exactly
+	 * 1, the specified prefix is used. Note: There is some additional magic to convert
+	 * "a" and "A" to "an" and "An" in case that is required by the noun.
+	 *
+	 * @param quantity
+	 *            The quantity to examine
+	 * @param noun
+	 *            The noun to examine
+	 * @param one replacement for "1".
 	 * @return Either "[quantity] [noun]" or "[quantity]" + plural("[noun]") as
 	 *         appropriate
 	 */
 	public static String quantityplnoun(final int quantity, final String noun, final String one) {
-		final String word = plnoun(quantity, noun);
+		return quantityplnoun(quantity, noun, one, false);
+	}
 
-		if (quantity == 1) {
-			if (one.equals("a")) {
-				return a_noun(word);
-			} else if (one.equals("A")) {
-				return A_noun(word);
-			} else if (one.equals("")) {
-				return word;
-			} else {
-				return one + " " + word;
-			}
-		} else {
-			return Integer.toString(quantity) + " " + plural(noun);
-		}
+
+	/**
+	 * Returns either the plural or singular possessive form of the given noun, depending
+	 * on the quantity; also prefixes the quantity. In case the quantity is exactly
+	 * 1, the specified prefix is used. Note: There is some additional magic to convert
+	 * "a" and "A" to "an" and "An" in case that is required by the noun.
+	 *
+	 * @param quantity
+	 *            The quantity to examine
+	 * @param noun
+	 *            The noun to examine
+	 * @param one replacement for "1".
+	 * @return Either "[quantity] [noun]" or "[quantity]" + plural("[noun]") as
+	 *         appropriate
+	 */
+	public static String quantityplnounPossessive(final int quantity, final String noun,
+			final String one) {
+		return quantityplnoun(quantity, noun, one, true);
 	}
 
 	/**
