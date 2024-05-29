@@ -99,9 +99,6 @@ public class UnicornHornsForZelan implements QuestManuscript {
 			.rewardWith(new EquipItemAction("soup", 3))
 			.rewardWith(new EquipItemAction("money", 20000));
 
-		// completions count is stored in 3rd index of quest slot
-		quest.setCompletionsIndexes(2);
-
 		return quest;
 	}
 }

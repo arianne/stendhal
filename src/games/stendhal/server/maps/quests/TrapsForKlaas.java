@@ -155,9 +155,6 @@ public class TrapsForKlaas implements QuestManuscript {
 				"You lost the note? Well, I could write another one. But it doesn't look like you have room to carry it.",
 				null);
 
-		// completions count is stored in 3rd index of quest slot
-		quest.setCompletionsIndexes(2);
-
 		return quest;
 	}
 

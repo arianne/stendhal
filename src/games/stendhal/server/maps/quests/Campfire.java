@@ -91,9 +91,6 @@ public class Campfire implements QuestManuscript {
 			.rewardWith(new EquipItemAction("charcoal", 10))
 			.rewardWith(new EquipRandomItemAction("meat=10;ham=10", false, "Thank you! Here, take [this_these] [number_item] and charcoal!"));
 
-		// completions count is stored in 3rd index of quest slot
-		quest.setCompletionsIndexes(2);
-
 		return quest;
 	}
 

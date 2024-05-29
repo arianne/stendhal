@@ -97,9 +97,6 @@ public class EggsForMarianne implements QuestManuscript {
 			.rewardWith(new IncreaseKarmaAction(50))
 			.rewardWith(new EquipRandomItemAction("pansy=12;daisies=12", false, "Thank you! Here, take [this_these] [number_item]!"));
 
-		// completions count is stored in 3rd index of quest slot
-		quest.setCompletionsIndexes(2);
-
 		return quest;
 	}
 
