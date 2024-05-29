@@ -72,22 +72,37 @@ public class BuiltQuest extends AbstractQuest {
 		if (isRepeatable(player)){
 			res.add(history.getWhenQuestCanBeRepeated());
 		}
-		String completionsShown = history.getWhenCompletionsShown();
+
+		// completions
+		int count = MathHelper.parseIntDefault(player.getQuest(questSlot, 2), 0);
+		final String completionsShown = formatCompletionsString(history.getWhenCompletionsShown(),
+				count);
 		if (completionsShown != null) {
-			final int count = MathHelper.parseIntDefault(player.getQuest(questSlot, 2), 0);
-			if (count > 0) {
-				completionsShown = completionsShown.replace("[count]", String.valueOf(count));
-				final int idx1 = completionsShown.indexOf("[");
-				final int idx2 = completionsShown.indexOf("]");
-				if (idx1 > -1 && idx2 > idx1+1) {
-					final String ctype = completionsShown.substring(idx1+1, idx2);
-					completionsShown = completionsShown.replace("[" + ctype + "]", Grammar.plnoun(count, ctype));
-				}
-				res.add(completionsShown);
-			}
+			res.add(completionsShown);
 		}
-		history.applyOtherResults(player, res);
+		// early completions
+		count = MathHelper.parseIntDefault(player.getQuest(questSlot, 3), 0);
+		final String earlyCompletionsShown = formatCompletionsString(
+				history.getWhenEarlyCompletionsShown(), count);
+		if (earlyCompletionsShown != null) {
+			res.add(earlyCompletionsShown);
+		}
+
 		return res;
+	}
+
+	private String formatCompletionsString(String st, final int count) {
+		if (st == null || count < 1) {
+			return null;
+		}
+		st = st.replace("[count]", String.valueOf(count));
+		final int idx1 = st.indexOf("[");
+		final int idx2 = st.indexOf("]");
+		if (idx1 > -1 && idx2 > idx1+1) {
+			final String ctype = st.substring(idx1+1, idx2);
+			st = st.replace("[" + ctype + "]", Grammar.plnoun(count, ctype));
+		}
+		return st;
 	}
 
 	@Override

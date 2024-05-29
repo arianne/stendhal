@@ -11,10 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import java.util.List;
-
-import games.stendhal.common.MathHelper;
-import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
@@ -22,9 +18,7 @@ import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.quest.DeliverItemQuestBuilder;
-import games.stendhal.server.entity.npc.quest.QuestHistoryResult;
 import games.stendhal.server.entity.npc.quest.QuestManuscript;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.quests.houses.HouseBuyingMain;
 import games.stendhal.server.maps.semos.bakery.ChefNPC;
@@ -94,7 +88,7 @@ public class PizzaDelivery implements QuestManuscript {
 			.whenOutOfTime("The pizza has already gone cold.")
 			.whenQuestWasCompleted("I delivered the last pizza Leander gave to me.")
 			.whenQuestCanBeRepeated("But I'd bet, Leander has more orders.")
-			.addResult(new HotDeliveryResult());
+			.whenEarlyCompletionsShown("I have delivered [count] hot [pizza].");
 
 
 		quest.offer()
@@ -360,19 +354,5 @@ public class PizzaDelivery implements QuestManuscript {
 			}
 		}
 		return res;
-	}
-
-	/**
-	 * Adds number of hot deliveries to quest history.
-	 */
-	// TODO: Remove program logic from manuscript classes
-	private class HotDeliveryResult implements QuestHistoryResult {
-		@Override
-		public void apply(Player player, List<String> res) {
-			final int count = MathHelper.parseIntDefault(player.getQuest(questSlot, 3), 0);
-			if (count > 0) {
-				res.add("I have delivered " + count + " hot " + Grammar.plnoun(count, "pizza") + ".");
-			}
-		}
 	}
 }

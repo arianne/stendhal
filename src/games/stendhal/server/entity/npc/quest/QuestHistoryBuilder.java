@@ -11,12 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.quest;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import games.stendhal.server.entity.player.Player;
-
-
 /**
  * defines the "history" of player progress as shown in the travel log
  *
@@ -30,14 +24,12 @@ public class QuestHistoryBuilder {
 	private String whenQuestWasCompleted;
 	private String whenQuestCanBeRepeated;
 	private String whenCompletionsShown;
-
-	private List<QuestHistoryResult> otherResults;
+	private String whenEarlyCompletionsShown;
 
 
 	// hide constructor
 	QuestHistoryBuilder() {
 		super();
-		otherResults = new LinkedList<>();
 	}
 
 	public QuestHistoryBuilder whenNpcWasMet(String whenNpcWasMet) {
@@ -83,13 +75,19 @@ public class QuestHistoryBuilder {
 	}
 
 	/**
-	 * Adds a custom conditional result to history.
+	 * Will be shown in travel log when player has complete quest within time limit at least
+	 * 1 time. Instances of "[count"] in the string will be replaced with the number of on-time
+	 * completions. Anything else within square brackets ("[]") will be replaced with the
+	 * equivalent singular or plural noun form.
 	 *
-	 * @param result
-	 *   History result object to be called when history is requested.
+	 * @param whenEarlyCompletionsShown
+	 *   Text to display in history.
+	 * @return
+	 *   This history builder instance.
 	 */
-	public void addResult(final QuestHistoryResult result) {
-		otherResults.add(result);
+	public QuestHistoryBuilder whenEarlyCompletionsShown(String whenEarlyCompletionsShown) {
+		this.whenEarlyCompletionsShown = whenEarlyCompletionsShown;
+		return this;
 	}
 
 	String getWhenNpcWasMet() {
@@ -120,17 +118,7 @@ public class QuestHistoryBuilder {
 		return this.whenCompletionsShown;
 	}
 
-	/**
-	 * Calls results objects to update history items list.
-	 *
-	 * @param player
-	 *   Player for which history is requested.
-	 * @param res
-	 *   History items.
-	 */
-	void applyOtherResults(final Player player, List<String> res) {
-		for (final QuestHistoryResult result: otherResults) {
-			result.apply(player, res);
-		}
+	String getWhenEarlyCompletionsShown() {
+		return this.whenEarlyCompletionsShown;
 	}
 }
