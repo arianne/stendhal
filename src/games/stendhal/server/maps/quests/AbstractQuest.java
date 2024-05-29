@@ -15,6 +15,7 @@ package games.stendhal.server.maps.quests;
 import java.util.ArrayList;
 import java.util.List;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.player.Player;
@@ -159,7 +160,7 @@ public abstract class AbstractQuest implements IQuest {
 				stateIndex = completionsIndexes.first();
 			}
 			if (stateIndex != null && state.length > stateIndex && !"".equals(state[stateIndex])) {
-				return Integer.parseInt(state[stateIndex]);
+				return MathHelper.parseIntDefault(state[stateIndex], completed ? 1 : 0);
 			}
 		}
 		// default is to return 1 if quest is in complete state and 0 otherwise
