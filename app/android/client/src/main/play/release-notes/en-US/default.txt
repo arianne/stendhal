@@ -1,20 +1,9 @@
-*world*
-- renamed chef Patrick to Preston
-- new achievements:
-  - 30 Minutes or Less: Deliver 25 hot pizzas
-- Balduin allows requesting different item for Ultimate Collector quest
+Pizza is a popular meal of choice. With growing demand, Leander is looking to hire reliable workers to transport his hot and delicious cuisine to patrons. Couriers with reputations of on-time deliveries are being recognized for their work ethic.
 
-*web client*
-- fixed text extending past edge of notification bubbles
-- added support for saving chat log to file
-- larger buttons for touch-only devices
-- travel log displays while waiting for response from server
-- fixed infinite request loop when travel log items technically empty
-- supports optional tab placement above panel contents
-- travel log tabs match theme
-- added basic lighting effects support
-- added sound tab to settings dialog
+Some adventurers may be distressed and feel that their quest for the title of "Ultimate Collector" is in vain. Well fret no more, as Balduin is offering a ray of hope. Requests to bring him a different item are now accepted afer some time has passed.
 
-*server fixes*
-- fixed Seven Cherubs not showing up as completed
-- fixed unable to start deathmatch after logout while in arena
+Speaking of weapons, some creatures have once again taken up arms. For example the angel and dark angel have new swords.
+
+Last but not least: We released an official Android App, which is available in the download section of our website or on F-Droid.
+
+Please see the complete change log for further details: http://localhost/game/stendhal.html#changes
