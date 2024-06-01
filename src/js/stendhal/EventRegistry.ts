@@ -239,7 +239,7 @@ export class EventRegistry {
 				// play notification sound
 				const notif = stendhal.config.get("chat.private.sound");
 				if (notif && this.soundTextEvents[ttype]) {
-					stendhal.ui.soundMan.playGlobalizedEffect(notif);
+					stendhal.sound.playGlobalizedEffect(notif);
 				}
 			}
 		}); // private_text
@@ -380,7 +380,7 @@ export class EventRegistry {
 					sound = SoundID[sound_id];
 				}
 
-				stendhal.ui.soundMan.playLocalizedEffect(rpobject["_x"], rpobject["_y"], radius, this["layer"], sound, volume);
+				stendhal.sound.playLocalizedEffect(rpobject["_x"], rpobject["_y"], radius, this["layer"], sound, volume);
 			}
 		}); // sound_event
 

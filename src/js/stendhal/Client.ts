@@ -134,7 +134,6 @@ export class Client {
 		// alias for backward-compat until changed in all source
 		stendhal.ui.gamewindow = stendhal.ui.viewport;
 		stendhal.sound = singletons.getSoundManager();
-		stendhal.ui.soundMan = stendhal.sound; // backward compatibility
 		// update sound levels from config at startup
 		stendhal.sound.onConfigUpdate();
 	}
@@ -433,7 +432,7 @@ export class Client {
 		// main sound button
 		const soundButton = document.getElementById("soundbutton")!;
 		soundButton.addEventListener("click", function(e: Event) {
-			stendhal.ui.soundMan.toggleSound();
+			stendhal.sound.toggleSound();
 		});
 
 		// click/touch indicator
@@ -465,7 +464,7 @@ export class Client {
 
 		// global zone music
 		const musicVolume = parseFloat(zoneinfo["music_volume"]);
-		stendhal.ui.soundMan.playSingleGlobalizedMusic(zoneinfo["music"],
+		stendhal.sound.playSingleGlobalizedMusic(zoneinfo["music"],
 				!Number.isNaN(musicVolume) ? musicVolume : 1.0);
 
 		// coloring information

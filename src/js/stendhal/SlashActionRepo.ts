@@ -1169,22 +1169,22 @@ export class SlashActionRepo {
 			const layername = params[0];
 			let vol = params[1];
 			if (typeof(layername) === "undefined") {
-				const layers = ["master", ...stendhal.ui.soundMan.getLayerNames()];
+				const layers = ["master", ...stendhal.sound.getLayerNames()];
 				Chat.log("info", "Please use /volume <layer> <value> to adjust the volume.");
 				Chat.log("client", "<layer> is one of \"" + layers.join("\", \"") + "\"");
 				Chat.log("client", "<value> is a number in the range 0 to 100.");
 				Chat.log("client", "Current volume levels:");
 				for (const l of layers) {
-					Chat.log("client", "&nbsp;&nbsp;- " + l + " -> " + stendhal.ui.soundMan.getVolume(l) * 100);
+					Chat.log("client", "&nbsp;&nbsp;- " + l + " -> " + stendhal.sound.getVolume(l) * 100);
 				}
 			} else if (typeof(vol) !== "undefined") {
 				if (!/^\d+$/.test(vol)) {
 					Chat.log("error", "Value must be a number.");
 					return true;
 				}
-				if (stendhal.ui.soundMan.setVolume(layername, parseInt(vol, 10) / 100)) {
+				if (stendhal.sound.setVolume(layername, parseInt(vol, 10) / 100)) {
 					Chat.log("client", "Channel \"" + layername + "\" volume set to "
-							+ (stendhal.ui.soundMan.getVolume(layername) * 100) + ".");
+							+ (stendhal.sound.getVolume(layername) * 100) + ".");
 				} else {
 					Chat.log("error", "Unknown layer \"" + layername + "\".");
 				}
