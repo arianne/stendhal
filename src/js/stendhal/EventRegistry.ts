@@ -385,11 +385,11 @@ export class EventRegistry {
 		}); // sound_event
 
 		this.register("text", {
-			execute: function(rpobject: RPObject) {
+			execute: function(entity: RPEntity) {
 				if (this.hasOwnProperty("range")) {
-					rpobject.say(this["text"], this["range"]);
+					entity.say(this["text"], this["range"]);
 				} else {
-					rpobject.say(this["text"]);
+					entity.say(this["text"]);
 				}
 			}
 		}); // text
