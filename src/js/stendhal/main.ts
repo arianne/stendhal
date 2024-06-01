@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,14 +9,27 @@
  *                                                                         *
  ***************************************************************************/
 
-"use strict";
+import { Client } from "./Client";
 
-var marauroa = window.marauroa = window.marauroa || {};
-var stendhal = window.stendhal = window.stendhal || {};
+declare var stendhal: any;
 
 
-stendhal.main = require("../../../build/ts/Client").Client.get();
-stendhal.main.init();
+/**
+ * Initializes "stendhal" object.
+ */
+function initGlobals() {
+	const win = window as any;
+	//win.marauroa = win.marauroa || {}; // marauroa object should already be intialized
+	win.stendhal = win.stendhal || {};
+	stendhal.main = Client.get();
+}
 
-document.addEventListener('DOMContentLoaded', stendhal.main.startup);
-window.addEventListener('error', stendhal.main.onerror);
+// entry point
+(function() {
+	initGlobals();
+
+	stendhal.main.init();
+
+	document.addEventListener('DOMContentLoaded', stendhal.main.startup);
+	window.addEventListener('error', stendhal.main.onerror);
+})();
