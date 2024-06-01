@@ -16,10 +16,9 @@ import { ui } from "./UI";
 
 import { singletons } from "../SingletonRepo";
 
-import { SoundLayer } from "../data/enum/SoundLayer";
-
 import { SoundFactory } from "../data/sound/SoundFactory";
 import { SoundObject } from "../data/sound/SoundFactory";
+import { SoundLayer } from "../data/sound/SoundLayer";
 
 
 /**
