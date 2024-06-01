@@ -23,6 +23,10 @@ import { ui } from "../../ui/UI";
 
 /**
  * Manages playing sounds & music.
+ *
+ * TODO:
+ * - rework to handle looped sounds/music better (without gap)
+ * - move "<js-root>/data/sound" directory to "<js-root>/sound"
  */
 export class SoundManager {
 
