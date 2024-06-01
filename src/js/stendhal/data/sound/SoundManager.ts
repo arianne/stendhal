@@ -12,13 +12,13 @@
 declare var marauroa: any;
 declare var stendhal: any;
 
-import { ui } from "./UI";
+import { SoundFactory } from "./SoundFactory";
+import { SoundObject } from "./SoundFactory";
+import { SoundLayer } from "./SoundLayer";
 
-import { singletons } from "../SingletonRepo";
+import { singletons } from "../../SingletonRepo";
 
-import { SoundFactory } from "../data/sound/SoundFactory";
-import { SoundObject } from "../data/sound/SoundFactory";
-import { SoundLayer } from "../data/sound/SoundLayer";
+import { ui } from "../../ui/UI";
 
 
 /**

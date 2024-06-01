@@ -31,8 +31,9 @@ import { BarehandAttackSprite } from "../sprite/action/BarehandAttackSprite";
 //import { MeleeAttackSprite } from "../sprite/action/MeleeAttackSprite";
 import { RangedAttackSprite } from "../sprite/action/RangedAttackSprite";
 
-import { SoundManager } from "../ui/SoundManager";
 import { ImageWithDimensions } from "data/ImageWithDimensions";
+
+import { SoundManager } from "../data/sound/SoundManager";
 
 var HEALTH_BAR_HEIGHT = 6;
 

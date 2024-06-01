@@ -14,12 +14,10 @@ import { AbstractSettingsTab } from "./AbstractSettingsTab";
 
 import { SettingsDialog } from "../SettingsDialog";
 
-import { SoundManager } from "../../SoundManager";
-
 import { SettingsComponent } from "../../toolkit/SettingsComponent";
 import { SliderComponent } from "../../toolkit/SliderComponent";
 
-import { ConfigManager } from "../../../util/ConfigManager";
+import { singletons } from "../../../SingletonRepo";
 
 
 export class SoundTab extends AbstractSettingsTab {
@@ -29,8 +27,8 @@ export class SoundTab extends AbstractSettingsTab {
 
 	constructor(parent: SettingsDialog, element: HTMLElement) {
 		super(element);
-		const config = ConfigManager.get();
-		const sound = SoundManager.get();
+		const config = singletons.getConfigManager();
+		const sound = singletons.getSoundManager();
 		this.sliders = [];
 
 		const col1 = this.child("#col1")!;

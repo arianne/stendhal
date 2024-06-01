@@ -14,7 +14,7 @@ declare var stendhal: any;
 
 import { SoundManager } from "./SoundManager";
 
-import { LoopedSoundSource } from "../entity/LoopedSoundSource";
+import { LoopedSoundSource } from "../../entity/LoopedSoundSource";
 
 
 // server doesn't distinguish between music & looped sound effects so we

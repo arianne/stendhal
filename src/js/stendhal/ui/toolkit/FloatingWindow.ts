@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2015-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2015-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -13,7 +13,9 @@ declare var stendhal: any;
 
 import { Component } from "./Component";
 import { DialogContentComponent } from "./DialogContentComponent";
-import { SoundManager } from "../SoundManager";
+
+import { SoundManager } from "../../data/sound/SoundManager";
+
 import { Point } from "../../util/Point";
 
 

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2023 - Stendhal                     *
+ *                    Copyright © 2003-2024 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -11,7 +11,7 @@
 
 import { InvisibleEntity } from "./InvisibleEntity";
 
-import { LoopedSoundSourceManager } from "../ui/LoopedSoundSourceManager";
+import { LoopedSoundSourceManager } from "../data/sound/LoopedSoundSourceManager";
 
 
 export class LoopedSoundSource extends InvisibleEntity {

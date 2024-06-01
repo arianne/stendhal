@@ -32,14 +32,15 @@ import { Paths } from "./data/Paths";
 import { SpriteStore, store } from "./data/SpriteStore";
 import { TileStore } from "./data/TileStore";
 
+import { LoopedSoundSourceManager } from "./data/sound/LoopedSoundSourceManager";
+import { SoundManager } from "./data/sound/SoundManager";
+
 import { ui } from "./ui/UI";
 import { UIComponentEnum } from "./ui/UIComponentEnum";
 import { HeldObjectManager } from "./ui/HeldObject";
 import { HTMLManager } from "./ui/HTMLManager";
 import { Inventory } from "./ui/Inventory";
-import { LoopedSoundSourceManager } from "./ui/LoopedSoundSourceManager";
 import { SoftwareJoystickController } from "./ui/SoftwareJoystickController";
-import { SoundManager } from "./ui/SoundManager";
 import { TouchHandler } from "./ui/TouchHandler";
 import { UIUpdateObserver } from "./ui/UIUpdateObserver";
 import { ViewPort } from "./ui/ViewPort";
