@@ -13,7 +13,6 @@ declare var stendhal: any;
 
 import { QuickMenuButton } from "./QuickMenuButton";
 import { UIComponentEnum } from "../UIComponentEnum";
-import { singletons } from "../../SingletonRepo";
 
 
 /**
@@ -36,6 +35,6 @@ export class SoundButton extends QuickMenuButton {
 	 * Toggles sound muted state when clicked/tapped.
 	 */
 	protected override onClick(evt: Event) {
-		singletons.getSoundManager().toggleSound();
+		stendhal.sound.toggleSound();
 	}
 }

@@ -1057,7 +1057,7 @@ export class SlashActionRepo {
 
 	"mute": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
-			singletons.getSoundManager().toggleSound();
+			stendhal.sound.toggleSound();
 			if (stendhal.config.getBoolean("sound")) {
 				Chat.log("info", "Sounds are now on.");
 			} else {

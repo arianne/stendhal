@@ -9,8 +9,6 @@
  *                                                                         *
  ***************************************************************************/
 
-import { singletons } from "../SingletonRepo";
-
 import { TileStore } from "../data/TileStore";
 
 import { SoundObject } from "../data/sound/SoundFactory";
@@ -40,7 +38,7 @@ export class WeatherRenderer {
 	private tilesX = 0;
 	private tilesY = 0;
 	private audio?: SoundObject;
-	private soundLayer = singletons.getSoundManager().layers.indexOf("ambient");
+	private soundLayer = stendhal.sound.layers.indexOf("ambient");
 
 	/** Singleton instance. */
 	private static instance: WeatherRenderer;

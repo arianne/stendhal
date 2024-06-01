@@ -100,6 +100,7 @@ export class Client {
 		stendhal.actions = singletons.getSlashActionRepo();
 
 		this.initData();
+		this.initSound();
 		this.initUI();
 		this.initZone();
 	}
@@ -123,6 +124,17 @@ export class Client {
 	}
 
 	/**
+	 * Initializes sound manager.
+	 *
+	 * Should be called after config is initialized.
+	 */
+	private initSound() {
+		stendhal.sound = singletons.getSoundManager();
+		// update sound levels from config at startup
+		stendhal.sound.onConfigUpdate();
+	}
+
+	/**
 	 * Initializes GUI elements, input management, sound management, & other interface tools.
 	 */
 	private initUI() {
@@ -133,9 +145,6 @@ export class Client {
 		stendhal.ui.viewport = singletons.getViewPort();
 		// alias for backward-compat until changed in all source
 		stendhal.ui.gamewindow = stendhal.ui.viewport;
-		stendhal.sound = singletons.getSoundManager();
-		// update sound levels from config at startup
-		stendhal.sound.onConfigUpdate();
 	}
 
 	/**
@@ -193,7 +202,7 @@ export class Client {
 
 		// pre-cache images & sounds
 		stendhal.data.sprites.startupCache();
-		singletons.getSoundManager().startupCache();
+		stendhal.sound.startupCache();
 
 		if (document.getElementById("viewport")) {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
@@ -373,7 +382,7 @@ export class Client {
 		Chat.log("client", "Loading world...");
 
 		// play login sound for this user
-		singletons.getSoundManager().playGlobalizedEffect("ui/login");
+		stendhal.sound.playGlobalizedEffect("ui/login");
 	}
 
 	/**
