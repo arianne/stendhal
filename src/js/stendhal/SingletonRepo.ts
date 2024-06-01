@@ -17,6 +17,7 @@ import { Zone } from "./entity/Zone";
 
 import { ConfigManager } from "./util/ConfigManager";
 import { DownloadUtil } from "./util/DownloadUtil";
+import { DrawingStage } from "./util/DrawingStage";
 import { FacingHandler } from "./util/FacingHandler";
 import { KeyHandler } from "./util/KeyHandler";
 import { SessionManager } from "./util/SessionManager";
@@ -72,6 +73,10 @@ export class SingletonRepo {
 
 	static getDownloadUtil(): typeof DownloadUtil {
 		return DownloadUtil;
+	}
+
+	static getDrawingStage(): DrawingStage {
+		return DrawingStage.get();
 	}
 
 	static getEmojiStore(): EmojiStore {
