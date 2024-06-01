@@ -33,14 +33,10 @@ import { RangedAttackSprite } from "../sprite/action/RangedAttackSprite";
 
 import { ImageWithDimensions } from "data/ImageWithDimensions";
 
-import { SoundManager } from "../data/sound/SoundManager";
-
 var HEALTH_BAR_HEIGHT = 6;
 
 
 export class RPEntity extends ActiveEntity {
-
-	private static readonly soundManager = SoundManager.get();
 
 	override zIndex = 8000;
 	drawY = 0;
@@ -683,14 +679,14 @@ export class RPEntity extends ActiveEntity {
 		this.attackResult = this.createResultIcon(stendhal.paths.sprites + "/combat/hitted.png");
 		var sounds = ["attack-melee-01", "attack-melee-02", "attack-melee-03", "attack-melee-04", "attack-melee-05", "attack-melee-06", "attack-melee-07"];
 		var index = Math.floor(Math.random() * Math.floor(sounds.length));
-		RPEntity.soundManager.playLocalizedEffect(this["_x"], this["_y"], 20, 3, sounds[index], 1);
+		stendhal.sound.playLocalizedEffect(this["_x"], this["_y"], 20, 3, sounds[index], 1);
 	}
 
 	onBlocked(_source: Entity) {
 		this.attackResult = this.createResultIcon(stendhal.paths.sprites + "/combat/blocked.png");
 		var sounds = ["clang-metallic-1", "clang-dull-1"];
 		var index = Math.floor(Math.random() * Math.floor(sounds.length));
-		RPEntity.soundManager.playLocalizedEffect(this["_x"], this["_y"], 20, 3, sounds[index], 1);
+		stendhal.sound.playLocalizedEffect(this["_x"], this["_y"], 20, 3, sounds[index], 1);
 	}
 
 	onMissed(_source: Entity) {

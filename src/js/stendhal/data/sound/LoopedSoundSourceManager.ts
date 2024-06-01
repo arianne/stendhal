@@ -12,8 +12,6 @@
 declare var marauroa: any;
 declare var stendhal: any;
 
-import { SoundManager } from "./SoundManager";
-
 import { LoopedSoundSource } from "../../entity/LoopedSoundSource";
 
 
@@ -30,8 +28,6 @@ const sfxLoops: {[name: string]: boolean} = {
  */
 export class LoopedSoundSourceManager {
 
-	/** Sound manager instance. */
-	private readonly sndMan = SoundManager.get();
 	/** Detected sound sources in current zone. */
 	private sources: {[id: string]: any} = {};
 
@@ -103,10 +99,10 @@ export class LoopedSoundSourceManager {
 		let snd: any;
 		const layer = source["layer"];
 		if (this.isMusic(source["sound"])) {
-			snd = this.sndMan.playLocalizedMusic(source["x"], source["y"], source["radius"], layer,
+			snd = stendhal.sound.playLocalizedMusic(source["x"], source["y"], source["radius"], layer,
 					source["sound"], source["volume"]);
 		} else {
-			snd = this.sndMan.playLocalizedLoop(source["x"], source["y"], source["radius"], layer,
+			snd = stendhal.sound.playLocalizedLoop(source["x"], source["y"], source["radius"], layer,
 					source["sound"], source["volume"]);
 		}
 
@@ -137,7 +133,7 @@ export class LoopedSoundSourceManager {
 		// FIXME: doesn't always delete reference
 		delete this.sources[id];
 		const errmsg = [];
-		if (!this.sndMan.stop(source.layer, source.sound)) {
+		if (!stendhal.sound.stop(source.layer, source.sound)) {
 			errmsg.push("failed to stop looped sound source with ID '" + id + "' ("
 					+ source.sound.src + ")");
 		}
@@ -215,9 +211,9 @@ export class LoopedSoundSourceManager {
 	onDistanceChanged(x: number, y: number) {
 		for (const ent of this.getZoneEntities()) {
 			if (ent.isLoaded()) {
-				const layerName = this.sndMan.checkLayer(ent["layer"]);
+				const layerName = stendhal.sound.checkLayer(ent["layer"]);
 				const snd = this.sources[ent["id"]].sound;
-				this.sndMan.adjustForDistance(layerName, snd, ent["radius"],
+				stendhal.sound.adjustForDistance(layerName, snd, ent["radius"],
 						ent["x"], ent["y"], x, y);
 			}
 		}

@@ -40,9 +40,6 @@ import { Direction } from "../util/Direction";
  */
 export class User extends Player {
 
-	private readonly soundMan = singletons.getSoundManager();
-	private readonly lssMan = singletons.getLoopedSoundSourceManager();
-
 	override minimapStyle = Color.USER;
 
 
@@ -58,7 +55,7 @@ export class User extends Player {
 
 		if ((key === "x" || key === "y") && this["x"] && this["y"]
 				&& (this["x"] !== oldX || this["y"] !== oldY)) {
-			this.lssMan.onDistanceChanged(this["x"], this["y"]);
+			singletons.getLoopedSoundSourceManager().onDistanceChanged(this["x"], this["y"]);
 		}
 
 		queueMicrotask( () => {
@@ -148,18 +145,19 @@ export class User extends Player {
 		stendhal.ui.gamewindow.onExitZone();
 		// stop sounds & clear map sounds cache on zone change
 		const msgs: string[] = [];
-		if (!this.lssMan.removeAll()) {
+		const lssm = singletons.getLoopedSoundSourceManager();
+		if (!lssm.removeAll()) {
 			let tmp = "LoopedSoundSourceManager reported not all sources stopped on zone change:";
-			const loopSources = this.lssMan.getSources();
+			const loopSources = lssm.getSources();
 			for (const id in loopSources) {
 				const snd = loopSources[id].sound;
 				tmp += "\n- ID: " + id + " (" + snd.src + ")";
 			}
 			msgs.push(tmp);
 		}
-		if (!this.soundMan.stopAll()) {
+		if (!stendhal.sound.stopAll()) {
 			let tmp = "SoundManager reported not all sounds stopped on zone change:";
-			for (const snd of this.soundMan.getActive()) {
+			for (const snd of stendhal.sound.getActive()) {
 				tmp += "\n- " + snd.src;
 				if (snd.loop) {
 					tmp += " (loop)";
@@ -179,7 +177,7 @@ export class User extends Player {
 	override onEnterZone() {
 		super.onEnterZone();
 		// play looped sound sources
-		this.lssMan.onZoneReady();
+		singletons.getLoopedSoundSourceManager().onZoneReady();
 	}
 
 	/**

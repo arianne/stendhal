@@ -16,9 +16,6 @@ import { LoopedSoundSourceManager } from "../data/sound/LoopedSoundSourceManager
 
 export class LoopedSoundSource extends InvisibleEntity {
 
-	private readonly lssMan = LoopedSoundSourceManager.get();
-
-
 	/**
 	 * Checks if a looped sound source has been loaded with this
 	 * entity's ID.
@@ -27,6 +24,6 @@ export class LoopedSoundSource extends InvisibleEntity {
 	 *     <code>true</code> if the ID is found in the sources list.
 	 */
 	isLoaded(): boolean {
-		return typeof(this.lssMan.getSources()[this["id"]]) !== "undefined";
+		return typeof(LoopedSoundSourceManager.get().getSources()[this["id"]]) !== "undefined";
 	}
 }
