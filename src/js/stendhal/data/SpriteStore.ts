@@ -541,6 +541,8 @@ export class SpriteStore {
 	 * Called at startup to pre-cache certain images.
 	 */
 	startupCache() {
+		// failsafe image
+		this.getFailsafe();
 		// tutorial profile
 		this.get(Paths.sprites + "/npc/floattingladynpc.png");
 		// achievement assets
