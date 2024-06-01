@@ -12,7 +12,8 @@
 import { singletons } from "../SingletonRepo";
 
 import { TileStore } from "../data/TileStore";
-import { SoundObject } from "../data/SoundFactory";
+
+import { SoundObject } from "../data/sound/SoundFactory";
 
 declare var stendhal: any;
 

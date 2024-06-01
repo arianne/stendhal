@@ -16,10 +16,10 @@ import { ui } from "./UI";
 
 import { singletons } from "../SingletonRepo";
 
-import { SoundFactory } from "../data/SoundFactory";
-import { SoundObject } from "../data/SoundFactory";
-
 import { SoundLayer } from "../data/enum/SoundLayer";
+
+import { SoundFactory } from "../data/sound/SoundFactory";
+import { SoundObject } from "../data/sound/SoundFactory";
 
 
 /**

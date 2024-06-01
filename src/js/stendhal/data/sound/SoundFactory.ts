@@ -13,8 +13,6 @@
 
 /**
  * A playable sound.
- *
- * TODO: move file to `data/sound` directory
  */
 export interface SoundObject extends HTMLAudioElement {
 	/** Base volume level unique to this sound. */
