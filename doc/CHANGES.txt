@@ -9,6 +9,7 @@ Changelog
 
 *web client*
 - added visuals tab to settings dialog
+- animated fog
 
 
 1.47
