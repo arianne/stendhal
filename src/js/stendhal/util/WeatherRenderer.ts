@@ -85,11 +85,10 @@ export class WeatherRenderer {
 		// reset warning messages
 		this.warned = {};
 
-		const soundMan = singletons.getSoundManager();
 		// stop previous sounds
 		// FIXME: should continue playing if weather is same on next map
 		if (this.audio) {
-			soundMan.stop(this.soundLayer, this.audio);
+			stendhal.sound.stop(this.soundLayer, this.audio);
 			this.audio = undefined;
 		}
 
@@ -137,8 +136,7 @@ export class WeatherRenderer {
 			this.tilesY = Math.ceil(canvas.height / spriteH) + 1;
 
 			if (weatherLoops[weather]) {
-				this.audio = soundMan.playGlobalizedLoop("weather/" + weather,
-						this.soundLayer);
+				this.audio = stendhal.sound.playGlobalizedLoop("weather/" + weather, this.soundLayer);
 			}
 		}
 	}
