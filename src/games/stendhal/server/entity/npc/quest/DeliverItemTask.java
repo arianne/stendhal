@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.log4j.Logger;
 
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
@@ -103,19 +105,22 @@ public class DeliverItemTask extends QuestTaskBuilder {
 	 *         time, or if he doesn't have a delivery to do currently.
 	 */
 	boolean isDeliveryTooLate(final Player player, String questSlot) {
-		if (player.hasQuest(questSlot) && !player.isQuestCompleted(questSlot)) {
-			final String[] questData = player.getQuest(questSlot).split(";");
-			final String customerName = questData[0];
-			final DeliverItemOrder customerData = orders.get(customerName);
-			final long bakeTime = Long.parseLong(questData[1]);
-			final long expectedTimeOfDelivery = bakeTime
-				+ (long) 60 * 1000 * customerData.getExpectedMinutes();
-			if (System.currentTimeMillis() > expectedTimeOfDelivery) {
-				return true;
+		try {
+			if (player.hasQuest(questSlot) && !player.isQuestCompleted(questSlot)) {
+				final String[] questData = player.getQuest(questSlot).split(";");
+				final String customerName = questData[0];
+				final DeliverItemOrder customerData = orders.get(customerName);
+				final long bakeTime = Long.parseLong(questData[1]);
+				final long expectedTimeOfDelivery = bakeTime
+					+ (long) 60 * 1000 * customerData.getExpectedMinutes();
+				if (System.currentTimeMillis() > expectedTimeOfDelivery) {
+					return true;
+				}
 			}
+		} catch (final NumberFormatException | ArrayIndexOutOfBoundsException e) {
+			Logger.getLogger(DeliverItemTask.class).error(e);
 		}
 		return false;
-
 	}
 
 	/** Takes away the player's uniform, if the he is wearing it.
