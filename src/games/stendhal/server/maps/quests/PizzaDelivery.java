@@ -99,13 +99,15 @@ public class PizzaDelivery implements QuestManuscript {
 			.respondToReject("Too bad. I hope my daughter #Sally will soon come back from her camp to help me with the deliveries.")
 			.remind("You still have to deliver a pizza to [customerName], and hurry!")
 			.respondIfLastQuestFailed("I see you failed to deliver the pizza to [customerName] in time. Are you sure you will be more reliable this time?")
-			.respondIfInventoryIsFull("Come back when you have space to carry the pizza!");
+			.respondIfInventoryIsFull("Come back when you have space to carry the pizza!")
+			.respondToAnotherIfLostItem("You lost the [item]? Well, it will cost you [charge] money. Do you want another?");
 
 
 		quest.task()
 			.itemName("pizza")
 			.itemDescription("You see a [flavor].")
-			.outfitUniform(new Outfit(null, Integer.valueOf(990), null, null, null, null, null, null, null));
+			.outfitUniform(new Outfit(null, Integer.valueOf(990), null, null, null, null, null, null, null))
+			.chargeForLostItem(500);
 
 		// Don't add Sally here, as it would conflict with Leander telling
 		// about his daughter.
