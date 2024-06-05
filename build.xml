@@ -7,28 +7,26 @@
 	-->
 	<property environment="env"/>
 
-	<condition property="os.win">
-		<os family="windows"/>
-	</condition>
 
+	<!-- system executables -->
 	<condition property="exe.ext" value=".exe" else="">
-		<equals arg1="${os.win}" arg2="true"/>
+		<os family="windows"/>
 	</condition>
 	<condition property="executable.npm" value="npm.cmd" else="npm">
-		<equals arg1="${os.win}" arg2="true"/>
-	</condition>
-	<condition property="executable.npx" value="npx.cmd" else="npx">
-		<equals arg1="${os.win}" arg2="true"/>
-	</condition>
-	<condition property="executable.neu" value="neu.cmd" else="neu">
-		<equals arg1="${os.win}" arg2="true"/>
-	</condition>
-
-	<!-- Windows fails to execute "ng" unless it is invoked as "ng.cmd" -->
-	<condition property="executable.suffix" value=".cmd">
 		<os family="windows"/>
 	</condition>
-	<property name="executable.suffix" value=""/>
+	<condition property="executable.npx" value="npx.cmd" else="npx">
+		<os family="windows"/>
+	</condition>
+	<condition property="executable.neu" value="neu.cmd" else="neu">
+		<os family="windows"/>
+	</condition>
+
+	<condition property="executable.python" value="python3${exe.ext}" else="python${exe.ext}">
+		<available file="python3${exe.ext}" filepath="${env.PATH}"/>
+	</condition>
+	<available property="python.present" file="${executable.python}" filepath="${env.PATH}"/>
+
 
 	<property file="build.ant-private.properties"/>
 	<property file="build.ant.properties"/>
@@ -94,10 +92,6 @@
 		<format property="time" pattern="HH:mm:ss"/>
 	</tstamp>
 	<property name="datetime" value="${date} ${time}"/>
-
-	<!-- check for some executables -->
-	<available property="python.present" file="python${exe.ext}" filepath="${env.PATH}"/>
-	<available property="python3.present" file="python3${exe.ext}" filepath="${env.PATH}"/>
 
 
 	<!-- Ant sub-modules -->

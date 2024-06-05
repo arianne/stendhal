@@ -59,13 +59,10 @@
 
 
 	<target name="renderworldmap" description="Export world.tmx map to PNG image." depends="rendermaps">
-		<property name="pycmd" value="python3" if:true="${python3.present}"/>
-		<property name="pycmd" value="python" unless:true="${python3.present}" if:true="${python.present}"/>
-
 		<!-- embed area images with area name -->
 		<!-- FIXME: need to detect the Python "PIL" module to ensure script can run or
 				write Java class that can do this -->
-		<exec executable="${pycmd}" if:set="pycmd">
+		<exec executable="${executable.python}" if:true="${python.present}">
 			<arg value="./data/maps/vampire_maplabel.py"/>
 			<arg value="-world"/>
 		</exec>

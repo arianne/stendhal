@@ -88,7 +88,7 @@
 
 
 	<target name="tsdocs" depends="clean_tsdocs,js-prepare-node">
-		<exec executable="npx${executable.suffix}" dir="${srcjs}/stendhal" failonerror="true">
+		<exec executable="${executable.npx}" dir="${srcjs}/stendhal" failonerror="true">
 			<arg value="typedoc"/>
 			<arg value="--entryPointStrategy"/>
 			<arg value="expand"/>
@@ -108,7 +108,7 @@
 			message="Python unavailable, cannot run mkdocs"/>
 
 		<!-- NOTE: MkDocs create the top-level index.html -->
-		<exec if:true="${python.present}" executable="python" failonerror="true"
+		<exec executable="${executable.python}" if:true="${python.present}" failonerror="true"
 				dir="./buildtools/mkdocs/">
 			<arg value="-u"/>
 			<arg value="build.py"/>
