@@ -1,0 +1,29 @@
+<?xml version='1.0'?>
+
+<project>
+	<!-- system dependent properties -->
+
+	<property environment="env"/>
+
+	<condition property="exe.ext" value=".exe" else="">
+		<os family="windows"/>
+	</condition>
+
+	<!-- Node modules -->
+	<condition property="executable.npm" value="npm.cmd" else="npm">
+		<os family="windows"/>
+	</condition>
+	<condition property="executable.npx" value="npx.cmd" else="npx">
+		<os family="windows"/>
+	</condition>
+	<condition property="executable.neu" value="neu.cmd" else="neu">
+		<os family="windows"/>
+	</condition>
+
+	<!-- Python executables -->
+	<condition property="executable.python" value="python3${exe.ext}" else="python${exe.ext}">
+		<available file="python3${exe.ext}" filepath="${env.PATH}"/>
+	</condition>
+	<available property="python.present" file="${executable.python}" filepath="${env.PATH}"/>
+
+</project>

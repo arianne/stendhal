@@ -5,28 +5,6 @@
 		Sets a property (by name and value), or set of properties (from file or resource) in the project. Properties are case sensitive.
 		Properties are immutable: whoever sets a property first freezes it for the rest of the build; they are most definitely not variables.
 	-->
-	<property environment="env"/>
-
-
-	<!-- system executables -->
-	<condition property="exe.ext" value=".exe" else="">
-		<os family="windows"/>
-	</condition>
-	<condition property="executable.npm" value="npm.cmd" else="npm">
-		<os family="windows"/>
-	</condition>
-	<condition property="executable.npx" value="npx.cmd" else="npx">
-		<os family="windows"/>
-	</condition>
-	<condition property="executable.neu" value="neu.cmd" else="neu">
-		<os family="windows"/>
-	</condition>
-
-	<condition property="executable.python" value="python3${exe.ext}" else="python${exe.ext}">
-		<available file="python3${exe.ext}" filepath="${env.PATH}"/>
-	</condition>
-	<available property="python.present" file="${executable.python}" filepath="${env.PATH}"/>
-
 
 	<property file="build.ant-private.properties"/>
 	<property file="build.ant.properties"/>
@@ -98,6 +76,7 @@
 
 	<import file="build-private.xml" optional="true"/>
 
+	<import file="${ant_modules}/system.xml"/>
 	<import file="${ant_modules}/apps.xml"/>
 	<import file="${ant_modules}/main.xml"/>
 	<import file="${ant_modules}/clean.xml"/>
