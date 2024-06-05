@@ -17,6 +17,9 @@
 	<condition property="executable.npm" value="npm.cmd" else="npm">
 		<equals arg1="${os.win}" arg2="true"/>
 	</condition>
+	<condition property="executable.npx" value="npx.cmd" else="npx">
+		<equals arg1="${os.win}" arg2="true"/>
+	</condition>
 
 	<!-- Windows fails to execute "ng" unless it is invoked as "ng.cmd" -->
 	<condition property="executable.suffix" value=".cmd">
