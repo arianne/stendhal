@@ -62,14 +62,12 @@
 	-->
 	<available file="app/neutralinojs/bin/neutralino-linux_x64" property="neutralinojs.present" />
 	<target name="prepare-neutralinojs" unless="neutralinojs.present">
-		<exec executable="${executable.npx}" dir="app/neutralinojs" failonerror="true">
-			<arg value="@neutralinojs/neu" />
+		<exec executable="${executable.neu}" dir="app/neutralinojs" failonerror="true">
 			<arg value="update" />
 		</exec>
 	</target>
 	<target name="neutralinojs" depends="prepare-neutralinojs">
-		<exec executable="${executable.npx}" dir="app/neutralinojs" failonerror="true">
-			<arg value="@neutralinojs/neu" />
+		<exec executable="${executable.neu}" dir="app/neutralinojs" failonerror="true">
 			<arg value="build" />
 		</exec>
 		<delete failonerror="false">
