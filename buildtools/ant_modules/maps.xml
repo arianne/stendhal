@@ -12,9 +12,9 @@
 			</classpath>
 		</taskdef>
 
-		<mkdir dir="tiled/world"/>
+		<mkdir dir="${maps}/world"/>
 		<maprenderer imagePath="${maps}/world/">
-			<fileset dir="tiled">
+			<fileset dir="${maps}">
 				<include name="Level */**/*.tmx"/>
 				<include name="interiors/**/*.tmx"/>
 				<exclude name="**/memory/**"/>
@@ -41,16 +41,16 @@
 0 128  0.0078125
 -->
 
-		<mkdir dir="tiled/world"/>
+		<mkdir dir="${maps}/world"/>
 		<maprenderer imagePath="${maps}/world/" zoom="0.0625">
-			<fileset dir="tiled">
+			<fileset dir="${maps}">
 				<include name="Level 0/**/*.tmx"/>
 				<exclude name="**/memory/**"/>
 			</fileset>
 		</maprenderer>
-		<mkdir dir="tiled/world/large"/>
+		<mkdir dir="${maps}/world/large"/>
 		<maprenderer imagePath="${maps}/world/large" zoom="0.25">
-			<fileset dir="tiled">
+			<fileset dir="${maps}">
 				<include name="Level 0/**/*.tmx"/>
 				<exclude name="**/memory/**"/>
 			</fileset>
@@ -76,7 +76,7 @@
 			</classpath>
 		</taskdef>
 		<maprenderer imagePath="${maps}/world/" zoom="1.0">
-			<fileset dir="tiled/world">
+			<fileset dir="${maps}/world">
 				<include name="world.tmx"/>
 			</fileset>
 		</maprenderer>
@@ -94,7 +94,7 @@
 		</taskdef>
 
 		<mapupdater>
-			<fileset dir="tiled">
+			<fileset dir="${maps}">
 				<include name="Level */**/*.tmx"/>
 				<include name="interiors/**/*.tmx"/>
 			</fileset>
