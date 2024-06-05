@@ -66,7 +66,7 @@
 		<!-- FIXME: need to detect the Python "PIL" module to ensure script can run or
 				write Java class that can do this -->
 		<exec executable="${pycmd}" if:set="pycmd">
-			<arg value="./tiled/vampire_maplabel.py"/>
+			<arg value="./data/maps/vampire_maplabel.py"/>
 			<arg value="-world"/>
 		</exec>
 
