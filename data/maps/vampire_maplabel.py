@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-#Tue Sep 10 23:32:58 CEST 2019, slightly tweaked -- omero
 
 """
 This script is used to create the world map with labeled zone names.
@@ -10,20 +9,19 @@ To create the labeled world map:
   * Open a command line
   * Change to your stendhal directory
   * Run
-	  ant rendermaps
+      ant rendermaps
   * Change to the tiled directory
   * Run
-	  python vampire_maplabel.py -world
+      python vampire_maplabel.py -world
   * Open tiled/world/world.tmx in tiled
   * Set the floor layer to opaque (no transparency)
   * Set the zoom to 1:1 (CTRL-0)
   * From the file menu, select "Save as Image"
   * Crop the black border (e.g. use "Crop Automatically" in The GIMP)
   * Upload the image, e.g. at http://imageshack.us
-  * Replace your labeled image files from the tiled/world directory with
-	the clean (unlabeled) ones from CVS.
-  * Edit http://stendhalgame.org/wiki/Template:SmallWorldMap
-	and add a link to your uploaded image.
+  * Replace your labeled image files from the tiled/world directory with the clean (unlabeled) ones
+    from CVS.
+  * Edit http://stendhalgame.org/wiki/Template:SmallWorldMap and add a link to your uploaded image.
 """
 
 import sys
@@ -44,18 +42,18 @@ script_name = os.path.basename(__file__)
 protected = ('world', 'logo', 'reserved', 'empty', 'empty-white')
 
 def showUsage():
-	print ('Usage: {} [image-filenames...]'.format(script_name))
-	print ('  This will label each PNG file passed as argument.')
-	print ('  E.g: ./world/int_*.png will label all interiors, etc. etc.')
-	print
-	print ('Alternatively, you can run: {} -world'.format(script_name))
-	print ('  This will label each PNG file in the world subdirectory.')
+	print('Usage: {} [image-filenames...]'.format(script_name))
+	print('  This will label each PNG file passed as argument.')
+	print('  E.g: ./world/int_*.png will label all interiors, etc. etc.')
+	print()
+	print('Alternatively, you can run: {} -world'.format(script_name))
+	print('  This will label each PNG file in the world subdirectory.')
 
 def do_label(fname):
-	print ('Processing {}'.format(fname))
+	print('Processing {}'.format(fname))
 	# remove directory and file extension
 	label = os.path.basename(fname).split('/')[-1].replace('.png', '')
-	print ('Processing LABEL: {}'.format(label))
+	print('Processing LABEL: {}'.format(label))
 
 	img = Image.open(fname)
 	img = img.convert('RGBA')
@@ -104,7 +102,7 @@ else:
 		if not os.path.isfile(absolute_fname):
 			print('\nERROR: Cannot process {}\n       File does not exist.'.format(absolute_fname))
 			sys.exit(1)
-		print ( 'Labeling {}...'.format(fname ))
+		print('Labeling {}...'.format(fname ))
 		do_label(absolute_fname)
 
-print ('All Done.')
+print('All Done.')
