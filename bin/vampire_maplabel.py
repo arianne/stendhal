@@ -37,7 +37,7 @@ script_name = os.path.basename(__file__)
 # directory from where script was executed
 dir_start = os.getcwd()
 # path to root directory
-os.chdir(os.path.join(os.path.dirname(__file__), '../../'))
+os.chdir(os.path.join(os.path.dirname(__file__), '../'))
 dir_root = os.getcwd()
 # directory relative to root where images are located
 subdir_world = os.path.normpath('data/maps/world')

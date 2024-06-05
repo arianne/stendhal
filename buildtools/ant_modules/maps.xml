@@ -63,7 +63,7 @@
 		<!-- FIXME: need to detect the Python "PIL" module to ensure script can run or
 				write Java class that can do this -->
 		<exec executable="${executable.python}" if:true="${python.present}">
-			<arg value="./data/maps/vampire_maplabel.py"/>
+			<arg value="./bin/vampire_maplabel.py"/>
 			<arg value="-world"/>
 		</exec>
 
