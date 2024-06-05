@@ -7,7 +7,7 @@
 
 		<exec if:true="${python.present}" executable="python" failonerror="true" dir="${buildtools}">
 			<arg value="-u"/>
-			<arg value="locale_template.py"/>
+			<arg value="./bin/locale-template.py"/>
 		</exec>
 	</target>
 
@@ -16,7 +16,7 @@
 
 		<exec if:true="${python.present}" executable="python" failonerror="true" dir="${buildtools}">
 			<arg value="-u"/>
-			<arg value="locale_template.py"/>
+			<arg value="./bin/locale-template.py"/>
 			<arg value="--update"/>
 		</exec>
 	</target>
