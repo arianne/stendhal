@@ -31,25 +31,34 @@ import os
 
 from PIL import Image, ImageFont, ImageDraw
 
-# get absolute path where script is located
-dir_root = os.path.dirname(__file__)
-if dir_root:
-	os.chdir(dir_root)
-dir_root = os.getcwd()
-dir_world = os.path.join(dir_root, 'world')
+
 script_name = os.path.basename(__file__)
+
+# directory from where script was executed
+dir_start = os.getcwd()
+# path to root directory
+os.chdir(os.path.join(os.path.dirname(__file__), '../../'))
+dir_root = os.getcwd()
+# directory relative to root where images are located
+subdir_world = os.path.normpath('data/maps/world')
+# absolute path to directory where images are located
+dir_world = os.path.join(dir_root, subdir_world)
 
 protected = ('world', 'logo', 'reserved', 'empty', 'empty-white')
 
 def showUsage():
 	print('Usage: {} [image-filenames...]'.format(script_name))
 	print('  This will label each PNG file passed as argument.')
-	print('  E.g: ./world/int_*.png will label all interiors, etc. etc.')
+	print('  E.g: data/maps/world/int_*.png will label all\n    interiors, etc.')
+	print('  Note: If filename parameters aren\'t found they\n    are assumed to be nested within the\n    {} directory.'.format(subdir_world))
 	print()
 	print('Alternatively, you can run: {} -world'.format(script_name))
 	print('  This will label each PNG file in the world subdirectory.')
 
+processed = 0
 def do_label(fname):
+	global processed
+
 	print('Processing {}'.format(fname))
 	# remove directory and file extension
 	label = os.path.basename(fname).split('/')[-1].replace('.png', '')
@@ -73,12 +82,43 @@ def do_label(fname):
 	img.paste(img2, img2)
 
 	img.save(fname)
+	processed += 1
+
+
+## Checks file path & converts to absolute.
+#
+#  @param imagepath
+#    Path to image file.
+def checkAbsPath(imagepath):
+	if not imagepath.lower().endswith('.png'):
+			# only PNG images supported
+			imagepath += '.png'
+	imagepath = os.path.normpath(imagepath)
+
+	# check from root directory
+	if os.path.isfile(imagepath):
+		return os.path.abspath(imagepath)
+
+	# check from directory where script was executed
+	os.chdir(dir_start)
+	if os.path.isfile(imagepath):
+		imagepath = os.path.abspath(imagepath)
+	else:
+		# assume file is nested in `subdir_world`
+		imagepath = os.path.join(dir_world, imagepath)
+	# change back to root dir remaining execution
+	os.chdir(dir_root)
+
+	return imagepath
+
 
 if len(sys.argv) < 2:
 	print('\nERROR: Not enough arguments\n')
 	showUsage()
 	sys.exit(1)
-elif len(sys.argv) == 2 and sys.argv[1] == '-world':
+
+
+if len(sys.argv) == 2 and sys.argv[1] == '-world':
 	for fname in os.listdir(dir_world):
 		if fname.endswith('.png'):
 			absolute_fname = os.path.join(dir_world, fname)
@@ -87,14 +127,8 @@ elif len(sys.argv) == 2 and sys.argv[1] == '-world':
 				continue
 			do_label(absolute_fname)
 else:
-	# This doesn't work for me. --mort
-	#for fname in reduce(operator.add, map(glob.glob, sys.argv[1:])):
-
-	# This works for me. --omero
 	for fname in list(sys.argv[1:]):
-		if not fname.endswith('.png'):
-			fname = '{}.png'.format(fname)
-		absolute_fname = os.path.join(dir_world, fname)
+		absolute_fname = checkAbsPath(fname)
 		if fname.rstrip('.png') in protected:
 			print('NOTE: skipping protected file: {}'.format(absolute_fname))
 			continue
@@ -105,4 +139,7 @@ else:
 		print('Labeling {}...'.format(fname ))
 		do_label(absolute_fname)
 
-print('All Done.')
+if processed == 0:
+	print('\nWARNING: no images were processed')
+else:
+	print('\nprocessed {} {}'.format(processed, 'image' if processed == 1 else 'images'))
