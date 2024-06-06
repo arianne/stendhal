@@ -31,6 +31,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.slot.KeyedSlot;
 import games.stendhal.server.entity.slot.PlayerSlot;
+import games.stendhal.server.maps.quests.FindRatChildren;
 import games.stendhal.server.util.TimeUtil;
 import marauroa.common.Pair;
 import marauroa.common.game.RPObject;
@@ -674,7 +675,7 @@ public abstract class UpdateConverter {
 					- (TimeUtil.MINUTES_IN_HALF_YEAR / 2 * TimeUtil.MILLISECONDS_IN_MINUTE)));
 		}
 
-		// 1.47: support completions tracking
+		// 1.48: support completions tracking in Chocolate for Elisabeth & Ice Cream for Annie
 		for (String slot: Arrays.asList("chocolate_for_elisabeth", "icecream_for_annie")) {
 			if (!player.hasQuest(slot)) {
 				continue;
@@ -683,6 +684,9 @@ public abstract class UpdateConverter {
 				player.setQuest(slot, 2, "1");
 			}
 		}
+
+		// update Find Rat Children
+		FindRatChildren.checkPlayerUpdate(player);
 	}
 
 

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -13,6 +13,7 @@
 package games.stendhal.server.maps.quests;
 
 import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
@@ -129,7 +130,7 @@ public class FindRatChildrenTest {
 		assertEquals("Bye", getReply(npc));
 
 		// check quest slot
-		assertEquals(player.getQuest(QUEST_SLOT),"looking:said");
+		assertThat(player.getQuest(QUEST_SLOT), is("found=;said="));
 	}
 
 	@Test
@@ -165,6 +166,8 @@ public class FindRatChildrenTest {
 
 		// the state wasn't remembered across the new test method so we need to set it to what it was when we ended the last
 		player.setQuest(QUEST_SLOT, "looking:said");
+		FindRatChildren.checkPlayerUpdate(player);
+		assertThat(player.getQuest(QUEST_SLOT), is("found=;said="));
 
 		// remember the xp and karma, did it go up?
 		final int xp = player.getXP();
@@ -173,16 +176,16 @@ public class FindRatChildrenTest {
 		assertEquals("Hello my name is Cody. Please tell mother that I am ok.", getReply(npc));
 		// [11:49] kymara earns 500 experience points.
 
-		assertThat(player.getXP(), greaterThan(xp));
 		// check quest slot
-		assertEquals(player.getQuest(QUEST_SLOT),"looking;cody:said");
+		assertThat(player.getQuest(QUEST_SLOT), is("found=cody;said="));
+		assertThat(player.getXP(), greaterThan(xp));
 
 		// return after having met in this quest run
 		en.step(player, "hi");
 		assertEquals("Oh hello again.", getReply(npc));
 
 		// check quest slot
-		assertEquals(player.getQuest(QUEST_SLOT),"looking;cody:said");
+		assertThat(player.getQuest(QUEST_SLOT), is("found=cody;said="));
 	}
 
 	@Test
@@ -193,6 +196,8 @@ public class FindRatChildrenTest {
 
 		// the state wasn't remembered across the new test method so we need to set it to what it was when we ended the last
 		player.setQuest(QUEST_SLOT, "looking;cody:said");
+		FindRatChildren.checkPlayerUpdate(player);
+		assertThat(player.getQuest(QUEST_SLOT), is("found=cody;said="));
 
 		en.step(player, "hi");
 		assertEquals("If you found any of my #children, please tell me their name.", getReply(npc));
@@ -206,7 +211,7 @@ public class FindRatChildrenTest {
 		assertEquals("No problem, come back later.", getReply(npc));
 
 		// check quest slot
-		assertEquals(player.getQuest(QUEST_SLOT),"looking;cody:said;cody");
+		assertThat(player.getQuest(QUEST_SLOT), is("found=cody;said=cody"));
 	}
 
 	@Test
@@ -216,6 +221,8 @@ public class FindRatChildrenTest {
 
 		// the state wasn't remembered across the new test method so we need to set it to what it was when we ended the last
 		player.setQuest(QUEST_SLOT, "looking;cody:said;cody");
+		FindRatChildren.checkPlayerUpdate(player);
+		assertThat(player.getQuest(QUEST_SLOT), is("found=cody;said=cody"));
 
 		en.step(player, "hi");
 		assertEquals("Hello my name is Mariel. Please tell mother that I am ok.", getReply(npc));
@@ -239,17 +246,19 @@ public class FindRatChildrenTest {
 		// [11:50] kymara earns 500 experience points.
 
 		// check quest slot
-		assertEquals(player.getQuest(QUEST_SLOT),"looking;cody;mariel;opal;avalon:said;cody");
+		assertThat(player.getQuest(QUEST_SLOT), is("found=cody,mariel,opal,avalon;said=cody"));
 
 	}
+
 	@Test
 	public void testNamingRemainingKids() {
-
 		npc = SingletonRepository.getNPCList().get("Agnus");
 		en = npc.getEngine();
 
 		// the state wasn't remembered across the new test method so we need to set it to what it was when we ended the last
 		player.setQuest(QUEST_SLOT, "looking;cody;mariel;opal;avalon:said;cody");
+		FindRatChildren.checkPlayerUpdate(player);
+		assertThat(player.getQuest(QUEST_SLOT), is("found=cody,mariel,opal,avalon;said=cody"));
 
 		en.step(player, "hi");
 		assertEquals("If you found any of my #children, please tell me their name.", getReply(npc));
@@ -259,7 +268,7 @@ public class FindRatChildrenTest {
 		assertEquals("No problem, come back later.", getReply(npc));
 
 		// check quest slot
-		assertEquals(player.getQuest(QUEST_SLOT),"looking;cody;mariel;opal;avalon:said;cody;mariel");
+		assertThat(player.getQuest(QUEST_SLOT), is("found=cody,mariel,opal,avalon;said=cody,mariel"));
 
 		// remember the xp and karma, did it go up?
 		final int xp = player.getXP();
@@ -303,7 +312,7 @@ public class FindRatChildrenTest {
 		assertEquals("Bye", getReply(npc));
 	}
 
-    @Test
+	@Test
 	public void testReturningAfterTimePassed() {
 
 		// [11:51] Admin kymara changed your state of the quest 'find_rat_kids' from 'done;1270205441630' to 'done;1'
@@ -331,5 +340,29 @@ public class FindRatChildrenTest {
 		assertEquals("Hello my name is Cody. Please tell mother that I am ok.", getReply(npc));
 		// [11:51] kymara earns 500 experience points.
 		en.step(player, "bye");
+	}
+
+	@Test
+	public void testUpdates() {
+		// 1.47-1.48
+		String found = "looking;";
+		String said = "said;";
+		String foundResult = "found=";
+		String saidResult = "said=";
+		for (final String name: new String[] {"avalon", "cody", "mariel", "opal"}) {
+			if (!"avalon".equals(name)) {
+				found += ";";
+				said += ";";
+				foundResult += ",";
+				saidResult += ",";
+			}
+			found += name;
+			said += name;
+			foundResult += name;
+			saidResult += name;
+			player.setQuest(QUEST_SLOT, found + ":" + said);
+			FindRatChildren.checkPlayerUpdate(player);
+			assertThat(player.getQuest(QUEST_SLOT), is(foundResult + ";" + saidResult));
+		}
 	}
 }
