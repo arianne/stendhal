@@ -115,12 +115,14 @@ public class DeliverItemTask extends QuestTaskBuilder {
 					+ (long) 60 * 1000 * customerData.getExpectedMinutes();
 				if (System.currentTimeMillis() > expectedTimeOfDelivery) {
 					return true;
+				} else {
+					return false;
 				}
 			}
 		} catch (final NumberFormatException | ArrayIndexOutOfBoundsException e) {
 			Logger.getLogger(DeliverItemTask.class).error(e);
 		}
-		return false;
+		return true;
 	}
 
 	/** Takes away the player's uniform, if the he is wearing it.
