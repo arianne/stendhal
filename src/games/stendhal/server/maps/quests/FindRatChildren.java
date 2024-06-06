@@ -69,7 +69,7 @@ import games.stendhal.server.maps.Region;
  * <li> Once every 24 hours.</li>
  * </ul>
  */
-public class FindRatChildren extends AbstractQuest {
+public class FindRatChildren extends CompletionsTrackingQuest {
 
 	private static final String QUEST_SLOT = "find_rat_kids";
 
@@ -366,6 +366,7 @@ public class FindRatChildren extends AbstractQuest {
 								npc.say(reply);
 								player.setQuest(QUEST_SLOT, 0, "done");
 								player.setQuest(QUEST_SLOT, 1, String.valueOf(System.currentTimeMillis()));
+								incrementCompletions(player);
 								player.notifyWorldAboutChanges();
 								npc.setCurrentState(ConversationStates.ATTENDING);
 							}
@@ -406,7 +407,7 @@ public class FindRatChildren extends AbstractQuest {
 		fillQuestInfo(
 				"Find Rat Children",
 				"Agnus, who lives in Rat City, asks young heroes to find her children and look after them. They went down into the dark tunnels and haven't returned ...",
-				true);
+				true, 2);
 		askingStep();
 		findingStep();
 		retrievingStep();
