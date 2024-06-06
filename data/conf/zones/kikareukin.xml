@@ -52,6 +52,7 @@
 		<attributes>
 			<parameter name="color_method">time</parameter>
 			<parameter name="weather">varying(temperature=-2)</parameter>
+			<parameter name="parallax">semos_surrounds</parameter>
 		</attributes>
 
 		<configurator
