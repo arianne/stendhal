@@ -14,6 +14,8 @@ package games.stendhal.server.maps.quests;
 
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.startsWith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
@@ -25,8 +27,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -98,23 +102,31 @@ public class FindRatChildrenTest {
 		npc = SingletonRepository.getNPCList().get("Agnus");
 		en = npc.getEngine();
 
+		final int completions = MathHelper.parseIntDefault(player.getQuest(QUEST_SLOT, 2), 0);
 		en.step(player, "hi");
-		assertEquals("Hello there.", getReply(npc));
-		en.step(player, "help");
-		assertEquals("I have no help to offer you.", getReply(npc));
-		en.step(player, "job");
-		assertEquals("Leave it to my children to not check in once in a while.", getReply(npc));
-		en.step(player, "task");
-		assertEquals("I feel so worried. If I only knew my #children were safe I would feel better.", getReply(npc));
-		en.step(player, "children");
-		assertEquals("My children have gone to play in the sewers. They have been gone for a long time. Will you find them and see if they are ok?", getReply(npc));
-		en.step(player, "no");
-		assertEquals("Oh. Never mind. I'm sure someone else would be glad to help me.", getReply(npc));
-		en.step(player, "bye");
+		if (completions == 0) {
+			assertEquals("Hello there.", getReply(npc));
+			en.step(player, "help");
+			assertEquals("I have no help to offer you.", getReply(npc));
+			en.step(player, "job");
+			assertEquals("Leave it to my children to not check in once in a while.", getReply(npc));
+			en.step(player, "task");
+			assertEquals("I feel so worried. If I only knew my #children were safe I would feel better.", getReply(npc));
+			en.step(player, "children");
+			assertEquals("My children have gone to play in the sewers. They have been gone for a long time. Will you find them and see if they are ok?", getReply(npc));
+			en.step(player, "no");
+			assertEquals("Oh. Never mind. I'm sure someone else would be glad to help me.", getReply(npc));
+			en.step(player, "bye");
+		} else {
+			assertThat(getReply(npc), is("Do you think you could find my children again?"));
+			en.step(player, "no");
+			assertThat(getReply(npc), is("Oh. Never mind. I'm sure someone else would be glad to help me."));
+			en.step(player, "bye");
+		}
 		assertEquals("Bye", getReply(npc));
 
 		// check quest slot
-		assertEquals(player.getQuest(QUEST_SLOT),"rejected");
+		assertThat(player.getQuest(QUEST_SLOT, 0), is("rejected"));
 
 		en.step(player, "hi");
 		assertEquals("Hello there.", getReply(npc));
@@ -130,7 +142,7 @@ public class FindRatChildrenTest {
 		assertEquals("Bye", getReply(npc));
 
 		// check quest slot
-		assertThat(player.getQuest(QUEST_SLOT), is("found=;said="));
+		assertThat(player.getQuest(QUEST_SLOT), startsWith("found=;said="));
 	}
 
 	@Test
@@ -364,5 +376,48 @@ public class FindRatChildrenTest {
 			FindRatChildren.checkPlayerUpdate(player);
 			assertThat(player.getQuest(QUEST_SLOT), is(foundResult + ";" + saidResult));
 		}
+	}
+
+	private void finishQuestAfterStart() {
+		final NPCList npcs = NPCList.get();
+		SpeakerNPC npc;
+		Engine en;
+		final String[] names = new String[] {"Avalon", "Cody", "Mariel", "Opal"};
+		for (final String name: names) {
+			npc = npcs.get(name);
+			assertThat(npc, notNullValue());
+			en = npc.getEngine();
+			en.step(player, "hi");
+		}
+		npc = npcs.get("Agnus");
+		assertThat(npc, notNullValue());
+		en = npc.getEngine();
+		en.step(player, "hi");
+		for (final String name: names) {
+			en.step(player, name);
+		}
+		en.step(player, "bye");
+		assertThat(player.getQuest(QUEST_SLOT, 0), is("done"));
+	}
+
+	@Test
+	public void testCompletions() {
+		for (int count = 0; count < 5; count++) {
+			assertThat(MathHelper.parseIntDefault(player.getQuest(QUEST_SLOT, 2), 0), is(count));
+			testStartQuest();
+			finishQuestAfterStart();
+			// reset so can be repeated
+			player.setQuest(QUEST_SLOT, 1, "0");
+		}
+		assertEquals("5", player.getQuest(QUEST_SLOT, 2));
+
+		// check that completions count is retained after quest is rejected & started
+		en.step(player, "hi");
+		en.step(player, "no");
+		assertThat(player.getQuest(QUEST_SLOT), is("rejected;0;5"));
+		en.step(player, "task");
+		en.step(player, "yes");
+		assertThat(player.getQuest(QUEST_SLOT), is("found=;said=;5"));
+		en.step(player, "bye");
 	}
 }
