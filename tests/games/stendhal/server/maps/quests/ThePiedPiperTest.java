@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,13 +12,20 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 import org.apache.log4j.Logger;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.common.MathHelper;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.piedpiper.ITPPQuestConstants;
+import games.stendhal.server.maps.quests.thepiedpiper.InvasionPhaseTest;
 import games.stendhal.server.maps.quests.thepiedpiper.TPPTestHelper;
 
 public class ThePiedPiperTest implements ITPPQuestConstants {
@@ -48,4 +55,28 @@ public class ThePiedPiperTest implements ITPPQuestConstants {
 		assertEquals(TPP_Phase.TPP_INACTIVE, ThePiedPiper.getPhase());
 	}
 
+	private void doQuest(final InvasionPhaseTest phase) {
+		phase.startInvasion();
+		phase.killRats(15);
+		phase.endInvasion();
+		phase.collectReward();
+		phase.resetReward();
+	}
+
+	@Test
+	public void testCompletions() {
+		final String questSlot = quest.getSlotName();
+		final Player player = TPPTestHelper.getPlayer();
+		assertThat(player, notNullValue());
+		final SpeakerNPC npc = TPPTestHelper.getNPC();
+		assertThat(npc, notNullValue());
+
+		final InvasionPhaseTest phaseTest = new InvasionPhaseTest();
+		for (int count = 0; count < 5; count++) {
+			assertThat(MathHelper.parseIntDefault(player.getQuest(questSlot, 1), 0), is(count));
+			// run quest
+			doQuest(phaseTest);
+		}
+		assertThat(player.getQuest(questSlot), is("done;5"));
+	}
 }

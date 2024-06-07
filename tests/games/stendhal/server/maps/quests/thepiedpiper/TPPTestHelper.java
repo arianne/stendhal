@@ -1,3 +1,14 @@
+/***************************************************************************
+ *                 Copyright © 2003-2024 - Faiumoni e. V.                  *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.maps.quests.thepiedpiper;
 
 import org.apache.log4j.Logger;
@@ -112,7 +123,7 @@ public class TPPTestHelper implements ITPPQuestConstants {
 	 * function for killing creatures.
 	 * @param numb - number of creatures to kill.
 	 */
-	protected void killRats(int numb) {
+	public void killRats(int numb) {
 		int count=0;
 		logger.info("number of rats to kill: "+numb);
 		for (int i=0; i<numb;i++) {
@@ -146,4 +157,11 @@ public class TPPTestHelper implements ITPPQuestConstants {
 		return(sb.toString());
 	}
 
+	public static Player getPlayer() {
+		return player;
+	}
+
+	public static SpeakerNPC getNPC() {
+		return npc;
+	}
 }
