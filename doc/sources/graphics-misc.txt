@@ -304,6 +304,7 @@ arrow_switch.*  Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal
 
 data/sprites/weather/
 
+clouds          janay; CC BY-SA 3.0; Stendhal
 fog.png         Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 fog_ani         Jordan Irwin (AntumDeluge); CC0; Stendhal, https://gmic.eu/
 fog_heavy.png   Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal

@@ -39,6 +39,8 @@ export class WeatherRenderer {
 	private audio?: SoundObject;
 	private soundLayer = stendhal.sound.layers.indexOf("ambient");
 
+	private weatherName?: string;
+
 	/** Special handling for fog animation. */
 	private fog: boolean;
 	private heavyFog: boolean;
@@ -87,6 +89,9 @@ export class WeatherRenderer {
 		if (this.fog) {
 			weather = "fog_ani";
 		}
+
+		this.weatherName = weather;
+
 		this.frameIdx = 0;
 		this.lastUpdate = Date.now();
 		// reset warning messages
@@ -170,7 +175,12 @@ export class WeatherRenderer {
 				}
 				return;
 			}
-			if (this.fog) {
+			if (this.weatherName === "clouds") {
+				ctx.save();
+				ctx.globalAlpha = 0.80;
+				this.drawClouds(ctx, stendhal.ui.gamewindow.offsetX, stendhal.ui.gamewindow.offsetY);
+				ctx.restore();
+			} else if (this.fog) {
 				this.drawFog(ctx, stendhal.ui.gamewindow.offsetX, stendhal.ui.gamewindow.offsetY);
 			} else {
 				this.drawOther(ctx, stendhal.ui.gamewindow.offsetX, stendhal.ui.gamewindow.offsetY);
@@ -179,13 +189,13 @@ export class WeatherRenderer {
 	}
 
 	/**
-	 * Draws fog animation.
+	 * Draws clouds animation.
 	 *
 	 * @param {CanvasRenderingContext2D) ctx
 	 * @param {number} offsetX
 	 * @param {number} offsetY
 	 */
-	private drawFog(ctx: CanvasRenderingContext2D, offsetX: number, offsetY: number) {
+	private drawClouds(ctx: CanvasRenderingContext2D, offsetX: number, offsetY: number) {
 		const drawStart = Date.now();
 		const timeDiff = drawStart - this.lastUpdate;
 		const dim = {width: this.sprite!.width, height: this.sprite!.height};
@@ -204,11 +214,6 @@ export class WeatherRenderer {
 		const clipLeft = offsetX - (offsetX % dim.width) + driftX + wind;
 		const clipTop = offsetY - (offsetY % dim.height) + driftY;
 
-		ctx.save();
-		if (!this.heavyFog) {
-			// reduce opacity for light fog
-			ctx.globalAlpha = 0.5;
-		}
 		for (let dy = -clipTop; dy < offsetY + ctx.canvas.height; dy += dim.height) {
 			for (let dx = -clipLeft; dx < offsetX + ctx.canvas.width; dx += dim.width) {
 				ctx.drawImage(this.sprite!,
@@ -216,6 +221,22 @@ export class WeatherRenderer {
 						dx, dy, dim.width, dim.height);
 			}
 		}
+	}
+
+	/**
+	 * Draws fog animation.
+	 *
+	 * @param {CanvasRenderingContext2D) ctx
+	 * @param {number} offsetX
+	 * @param {number} offsetY
+	 */
+	private drawFog(ctx: CanvasRenderingContext2D, offsetX: number, offsetY: number) {
+		ctx.save();
+		if (!this.heavyFog) {
+			// reduce opacity for light fog
+			ctx.globalAlpha = 0.5;
+		}
+		this.drawClouds(ctx, offsetX, offsetY);
 		ctx.restore();
 	}
 
