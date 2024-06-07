@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -315,6 +316,8 @@ public class ImperialPrincess extends AbstractQuest {
 				"Gaining Citizenship of Kalavan",
 				"To gain official citizenship for Kalavan City, one must first ask for the permission of the King. His daughter, Princess Ylflia, can help gain his ear.",
 				true);
+		setBaseHOFScore(HOFScore.MEDIUM);
+
 		step_1();
 		step_2();
 		step_3();

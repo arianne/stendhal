@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -28,6 +28,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.item.token.Token;
@@ -530,6 +531,7 @@ public class ReverseArrow extends AbstractQuest implements
 				"Reverse Arrow",
 				"Gamblos has a fun puzzle to solve.",
 				false);
+		setBaseHOFScore(HOFScore.EASY);
 
 		SingletonRepository.getLoginNotifier().addListener(this);
 

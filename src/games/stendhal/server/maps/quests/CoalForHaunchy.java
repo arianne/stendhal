@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.action.EquipRandomAmountOfItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
@@ -96,6 +97,8 @@ public class CoalForHaunchy implements QuestManuscript {
 			.rewardWith(new IncreaseKarmaAction(20))
 			.rewardWith(new EquipRandomAmountOfItemAction("grilled steak", 1, 4, 1,
 					"Thank you! Take [this_these] [number_item] from my grill!"));
+
+		quest.setBaseHOFScore(HOFScore.EASY);
 
 		return quest;
 	}

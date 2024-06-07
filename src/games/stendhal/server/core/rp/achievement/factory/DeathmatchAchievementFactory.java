@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2023 - Arianne                      *
+ *                    Copyright © 2003-2024 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,6 +16,7 @@ import java.util.LinkedList;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.entity.Entity;
@@ -58,45 +59,45 @@ public class DeathmatchAchievementFactory extends AbstractAchievementFactory {
 		achievements.add(createAchievement(
 			"quest.special.dm.025", "Gladiator",
 			"Fight 25 Deathmatches",
-			Achievement.HARD_BASE_SCORE, true,
+			HOFScore.HARD, true,
 			new QuestStateGreaterThanCondition("deathmatch", 1, 24)));
 		*/
 
 		achievements.add(createAchievement(
 			"quest.deathmatch", "Deathmatch Hero",
 			"Earn 100,000 points in deathmatch",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new QuestStateGreaterThanCondition(
 				"deathmatch_score", 0, 100000)));
 
 		achievements.add(createAchievement(
 			ID_HELPER_25, "Deathmatch Helper",
 			"Aid other players in 25 rounds of deathmatch",
-			Achievement.EASY_BASE_SCORE, true,
+			HOFScore.EASY, true,
 			new HasHelpedNumberOfTimes(25)));
 
 		achievements.add(createAchievement(
 			ID_HELPER_50, "Deathmatch Companion",
 			"Aid other players in 50 rounds of deathmatch",
-			Achievement.EASY_BASE_SCORE, true,
+			HOFScore.EASY, true,
 			new HasHelpedNumberOfTimes(50)));
 
 		achievements.add(createAchievement(
 			ID_HELPER_100, "Deathmatch Convoy",
 			"Aid other players in 100 rounds of deathmatch",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new HasHelpedNumberOfTimes(100)));
 
 		achievements.add(createAchievement(
 			ID_SOLO_5, "Challenge Accepted",
 			"Complete 5 rounds of deathmatch without help",
-			Achievement.EASY_BASE_SCORE, true,
+			HOFScore.EASY, true,
 			new HasSoloedNumberOfTimes(5)));
 
 		achievements.add(createAchievement(
 			ID_HELM_MAX, "Determination",
 			"Increase trophy helmet to max defense",
-			Achievement.HARD_BASE_SCORE, true,
+			HOFScore.HARD, true,
 			new ChatCondition() {
 				@Override
 				public boolean fire(final Player player, final Sentence sentence, final Entity npc) {

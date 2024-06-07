@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.entity.Entity;
@@ -56,31 +57,31 @@ public class KillBlordroughsAchievementFactory extends AbstractAchievementFactor
 		achievements.add(createAchievement(
 			ID_LACKEY, "Imperialist Lackey",
 			"Finish Kill Blordroughs quest 5 times",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new CompletedCountCondition(COUNT_LACKEY)));
 
 		achievements.add(createAchievement(
 			ID_SOLDIER, "Imperialist Soldier",
 			"Finish Kill Blordroughs quest 25 times",
-			Achievement.HARD_BASE_SCORE, true,
+			HOFScore.HARD, true,
 			new CompletedCountCondition(COUNT_SOLDIER)));
 
 		achievements.add(createAchievement(
 			ID_DOMINATOR, "Imperialist Dominator",
 			"Finish Kill Blordroughs quest 50 times",
-			Achievement.HARD_BASE_SCORE, true,
+			HOFScore.HARD, true,
 			new CompletedCountCondition(COUNT_DOMINATOR)));
 
 		achievements.add(createAchievement(
 			ID_DICTATOR, "Imperialist Dictator",
 			"Finish Kill Blordroughs quest 100 times",
-			Achievement.HARD_BASE_SCORE, true,
+			HOFScore.HARD, true,
 			new CompletedCountCondition(COUNT_DICTATOR)));
 
 		achievements.add(createAchievement(
 			ID_CRUSHER, "Nation Crusher",
 			"Finish Kill Blordroughs quest 200 times",
-			Achievement.EXTREME_BASE_SCORE, true,
+			HOFScore.EXTREME, true,
 			new CompletedCountCondition(COUNT_CRUSHER)));
 
 		return achievements;

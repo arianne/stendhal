@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -102,6 +103,8 @@ public class FruitsForCoralia extends AbstractQuest {
 		fillQuestInfo("Fruits for Coralia",
 				"The Ados Tavern barmaid, Coralia, searches for fresh fruits for her exotic hat.",
 				true);
+		setBaseHOFScore(HOFScore.EASY);
+
 		prepareQuestStep();
 		prepareBringingStep();
 	}

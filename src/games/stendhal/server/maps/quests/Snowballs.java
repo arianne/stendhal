@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -19,6 +19,7 @@ import java.util.List;
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -273,6 +274,8 @@ public class Snowballs extends AbstractQuest {
 				"Snowballs for Mr. Yeti",
 				"The inhabitant of the icy region in Faiumoni needs your help to collect some snowballs for him.",
 				false);
+		setBaseHOFScore(HOFScore.MEDIUM);
+
 		prepareRequestingStep();
 		prepareBringingStep();
 	}

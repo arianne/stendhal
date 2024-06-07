@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -285,6 +286,8 @@ public class ZooFood extends AbstractQuest {
 				"Zoo Food",
 				"The animals at the zoo are hungry and need some food!",
 				true);
+		setBaseHOFScore(HOFScore.EASY);
+
 		step_1();
 		step_2();
 		step_3();
