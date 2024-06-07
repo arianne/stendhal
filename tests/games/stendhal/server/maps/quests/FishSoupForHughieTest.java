@@ -24,6 +24,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -64,6 +65,7 @@ public class FishSoupForHughieTest {
 		questSlot = quest.getSlotName();
 
 		player = PlayerTestHelper.createPlayer("bob");
+		assertNull(player.getQuest(questSlot));
 	}
 
 	@After
@@ -107,25 +109,37 @@ public class FishSoupForHughieTest {
 		npc = SingletonRepository.getNPCList().get("Anastasia");
 		en = npc.getEngine();
 
-		assertNull(player.getQuest(questSlot));
+		final int completions = MathHelper.parseIntDefault(player.getQuest(questSlot, 1), 0);
+		String[] responses = new String[] {
+				"Hi, I really could do with a #favor, please.",
+				"My poor boy is sick and the potions I give him aren't working! Please could you fetch him some fish soup?"
+		};
+		if (completions > 0) {
+			responses = new String[] {
+					"Hello again.",
+					"My Hughie is getting sick again! Please could you bring another bowl of fish soup? It helped last time."
+			};
+		}
 
 		en.step(player, "hi");
-		assertEquals("Hi, I really could do with a #favor, please.", getReply(npc));
+		assertEquals(responses[0], getReply(npc));
 		en.step(player, "favor");
-		assertEquals("My poor boy is sick and the potions I give him aren't working! Please could you fetch him some fish soup?", getReply(npc));
+		assertEquals(responses[1], getReply(npc));
 		en.step(player, "no");
 		assertEquals("Oh no, please, he's so sick.", getReply(npc));
 
-		assertEquals(player.getQuest(questSlot), "rejected");
+		assertEquals(player.getQuest(questSlot, 0), "rejected");
 
 		en.step(player, "task");
+		// when rejected she uses response as if quest was never completed
+		//assertEquals(responses[1], getReply(npc));
 		assertEquals("My poor boy is sick and the potions I give him aren't working! Please could you fetch him some fish soup?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("Thank you! You can ask Florence Bouillabaisse to make you fish soup. I think she's in Ados market somewhere.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Goodbye.", getReply(npc));
 
-		assertEquals(player.getQuest(questSlot), "start");
+		assertEquals("start", player.getQuest(questSlot, 0));
 
 		en.step(player, "hi");
 		assertEquals("You're back already? Hughie is getting sicker! Don't forget the fish soup for him, please. I promise to reward you.", getReply(npc));
@@ -155,7 +169,7 @@ public class FishSoupForHughieTest {
 		en.step(player, "bye");
 		assertEquals("Goodbye.", getReply(npc));
 
-        // test reward
+		// test reward
 		assertEquals(xp + 200, player.getXP());
 		assertThat(player.getKarma(), greaterThan(karma));
 		assertTrue(player.isEquipped("potion", 10));
@@ -183,7 +197,7 @@ public class FishSoupForHughieTest {
 		npc = SingletonRepository.getNPCList().get("Anastasia");
 		en = npc.getEngine();
 
-		player.setQuest(questSlot, "-1");
+		player.setQuest(questSlot, 0, "-1");
 
 		// [17:37] Admin kymara changed your state of the quest 'fishsoup_for_hughie' from '1294594642173' to '-1'
 		// [17:37] Changed the state of quest 'fishsoup_for_hughie' from '1294594642173' to '-1'
@@ -205,5 +219,28 @@ public class FishSoupForHughieTest {
 		assertEquals("Thank you! You can ask Florence Bouillabaisse to make you fish soup. I think she's in Ados market somewhere.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Goodbye.", getReply(npc));
+	}
+
+	@Test
+	public void testCompletions() {
+		for (int count = 0; count < 5; count++) {
+			assertEquals(count, MathHelper.parseIntDefault(player.getQuest(questSlot, 1), 0));
+			testQuest();
+			// reset so can be repeated
+			player.setQuest(questSlot, 0, "0");
+		}
+		assertEquals("5", player.getQuest(questSlot, 1));
+
+		// check that completions count is retained after quest is rejected & started
+		en.step(player, "hi");
+		en.step(player, "task");
+		en.step(player, "no");
+		assertEquals("rejected", player.getQuest(questSlot, 0));
+		assertEquals("5", player.getQuest(questSlot, 1));
+		en.step(player, "task");
+		en.step(player, "yes");
+		assertEquals("start", player.getQuest(questSlot, 0));
+		assertEquals("5", player.getQuest(questSlot, 1));
+		en.step(player, "bye");
 	}
 }

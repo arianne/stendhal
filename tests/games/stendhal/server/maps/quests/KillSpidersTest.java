@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -186,7 +186,7 @@ public class KillSpidersTest extends SpidersCreatures {
 		en.step(player, "no");
 		assertThat(player.getKarma(), lessThan(newKarma));
 		assertEquals("Ok, I have to find someone else to do this 'little' job!", getReply(npc));
-		assertThat(player.getQuest(questSlot), is("rejected"));
+		assertThat(player.getQuest(questSlot, 0), is("rejected"));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 

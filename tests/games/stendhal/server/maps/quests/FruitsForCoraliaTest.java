@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -13,6 +13,7 @@
 package games.stendhal.server.maps.quests;
 
 import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -22,6 +23,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -86,15 +88,17 @@ public class FruitsForCoraliaTest extends ZonePlayerAndNPCTestImpl {
 
 		// -----------------------------------------------
 
-		assertEquals("It's a shame for you to see it all withered like this, it really needs some fresh #fruits...", getReply(npc));
+		final int completions = MathHelper.parseIntDefault(player.getQuest(questSlot, 2), 0);
 
-		// -----------------------------------------------
-
-		en.step(player, "fruit");
-
-		// -----------------------------------------------
-
-		assertEquals("Would you be kind enough to find me some fresh fruits for my hat? I'd be ever so grateful!", getReply(npc));
+		if (completions == 0) {
+			assertEquals("It's a shame for you to see it all withered like this, it really needs some fresh #fruits...", getReply(npc));
+			en.step(player, "fruit");
+			assertEquals("Would you be kind enough to find me some fresh fruits for my hat? I'd be ever so grateful!", getReply(npc));
+		} else {
+			assertEquals(
+					"I'm sorry to say that the fruits you brought for my hat aren't very fresh anymore."
+							+ " Would you be kind enough to find me some more?", getReply(npc));
+		}
 
 		// -----------------------------------------------
 
@@ -134,6 +138,9 @@ public class FruitsForCoraliaTest extends ZonePlayerAndNPCTestImpl {
 		// -----------------------------------------------
 
 		en.step(player, "yes");
+
+		// check that completions count still matches
+		assertThat(MathHelper.parseIntDefault(player.getQuest(questSlot, 0), 0), is(completions));
 
 		// -----------------------------------------------
 
@@ -316,7 +323,7 @@ public class FruitsForCoraliaTest extends ZonePlayerAndNPCTestImpl {
 
 		// -----------------------------------------------
 
-		player.setQuest(questSlot, "done;0");
+		//player.setQuest(questSlot, "done;0");
 		//player.setQuest(questSlot, 1, "0");	This doesn't seem to work either.
 
 
@@ -332,5 +339,33 @@ public class FruitsForCoraliaTest extends ZonePlayerAndNPCTestImpl {
 
 		assertEquals("Bye.", getReply(npc));
 		*/
+
+		en.step(player, "bye");
+		assertThat(player.getQuest(questSlot, 0), is("done"));
+
+		// check that completions updated
+		assertThat(MathHelper.parseIntDefault(player.getQuest(questSlot, 2), 0), is(completions+1));
+	}
+
+	@Test
+	public void testCompletions() {
+		for (int count = 0; count < 5; count++) {
+			assertEquals(count, MathHelper.parseIntDefault(player.getQuest(questSlot, 2), 0));
+			testQuest();
+			// reset so can be repeated
+			player.setQuest(questSlot, 1, "0");
+		}
+		assertEquals("5", player.getQuest(questSlot, 2));
+
+		// check that completions count is retained after quest is rejected & started
+		en.step(player, "hi");
+		en.step(player, "task");
+		en.step(player, "no");
+		assertEquals("rejected", player.getQuest(questSlot, 0));
+		assertEquals("5", player.getQuest(questSlot, 2));
+		en.step(player, "task");
+		en.step(player, "yes");
+		assertEquals("5", player.getQuest(questSlot, 0));
+		en.step(player, "bye");
 	}
 }

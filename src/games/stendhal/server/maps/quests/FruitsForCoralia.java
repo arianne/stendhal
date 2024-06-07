@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -74,7 +74,7 @@ import games.stendhal.server.util.ItemCollection;
  *
  * @author pinchanzee
  */
-public class FruitsForCoralia extends AbstractQuest {
+public class FruitsForCoralia extends CompletionsTrackingQuest {
 
 
 
@@ -101,7 +101,7 @@ public class FruitsForCoralia extends AbstractQuest {
 	public void addToWorld() {
 		fillQuestInfo("Fruits for Coralia",
 				"The Ados Tavern barmaid, Coralia, searches for fresh fruits for her exotic hat.",
-				true);
+				true, 0, 2);
 		prepareQuestStep();
 		prepareBringingStep();
 	}
@@ -140,7 +140,7 @@ public class FruitsForCoralia extends AbstractQuest {
 			return res;
 		}
 		res.add("Coralia asked me for some fresh fruits for her hat.");
-		final String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT, 0);
 
 		if ("rejected".equals(questState)) {
 			// quest rejected
@@ -148,7 +148,7 @@ public class FruitsForCoralia extends AbstractQuest {
 		} else if (!player.isQuestCompleted(QUEST_SLOT)) {
 			// not yet finished
 			final ItemCollection missingItems = new ItemCollection();
-			missingItems.addFromQuestStateString(questState);
+			missingItems.addFromQuestStateString(questState, 1);
 			res.add("I still need to bring Coralia " + Grammar.enumerateCollection(missingItems.toStringList()) + ".");
 		} else if (isRepeatable(player)) {
 			// may be repeated now
@@ -170,7 +170,7 @@ public class FruitsForCoralia extends AbstractQuest {
 			ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, "fruit"),
 			new AndCondition(
 				new QuestNotStartedCondition(QUEST_SLOT),
-				new QuestNotInStateCondition(QUEST_SLOT, "rejected")),
+				new QuestNotInStateCondition(QUEST_SLOT, 0, "rejected")),
 			ConversationStates.QUEST_OFFERED,
 			"Would you be kind enough to find me some fresh fruits for my hat? I'd be ever so grateful!",
 			null);
@@ -178,7 +178,7 @@ public class FruitsForCoralia extends AbstractQuest {
 		// ask for quest again after rejected
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, "hat"),
-			new QuestInStateCondition(QUEST_SLOT, "rejected"),
+			new QuestInStateCondition(QUEST_SLOT, 0, "rejected"),
 			ConversationStates.QUEST_OFFERED,
 			"Are you willing to find me some fresh fruits for my hat yet?",
 			null);
@@ -212,7 +212,7 @@ public class FruitsForCoralia extends AbstractQuest {
 			"hat",
 			new AndCondition(
 				new QuestNotStartedCondition(QUEST_SLOT),
-				new QuestNotInStateCondition(QUEST_SLOT, "rejected")),
+				new QuestNotInStateCondition(QUEST_SLOT, 0, "rejected")),
 			ConversationStates.ATTENDING,
 			"It's a shame for you to see it all withered like this, it really needs some fresh #fruits...",
 			null);
@@ -224,7 +224,8 @@ public class FruitsForCoralia extends AbstractQuest {
 			ConversationStates.QUESTION_1,
 			null,
 			new MultipleActions(
-				new SetQuestAction(QUEST_SLOT, NEEDED_ITEMS),
+				swapCompletionsBeforeStartAction(),
+				new SetQuestAction(QUEST_SLOT, 1, NEEDED_ITEMS),
 				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "That's wonderful! I'd like these fresh fruits: [items].")));
 
 		// reject quest response
@@ -233,7 +234,7 @@ public class FruitsForCoralia extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"These exotic hats don't keep themselves you know...",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, 0, "rejected", -5.0));
 
 		// meet again during quest
 		npc.add(ConversationStates.IDLE,
@@ -328,7 +329,9 @@ public class FruitsForCoralia extends AbstractQuest {
 
 		// set up next step
 		ChatAction completeAction = new  MultipleActions(
-			new SetQuestAction(QUEST_SLOT, "done"),
+			swapCompletionsBeforeCompleteAction(),
+			incrementCompletionsAction(),
+			new SetQuestAction(QUEST_SLOT, 0, "done"),
 			new SayTextAction("My hat has never looked so delightful! Thank you ever so much! Here, take this as a reward."),
 			new IncreaseXPAction(300),
 			new IncreaseKarmaAction(5),
@@ -348,6 +351,7 @@ public class FruitsForCoralia extends AbstractQuest {
 				null,
 				new CollectRequestedItemsAction(item.getKey(),
 					QUEST_SLOT,
+					1,
 					"Wonderful! Did you bring anything else with you?", "I already have enough of those.",
 					completeAction,
 					ConversationStates.ATTENDING));
