@@ -1,3 +1,14 @@
+/***************************************************************************
+ *                 Copyright © 2003-2024 - Faiumoni e. V.                  *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.maps.quests.piedpiper;
 
 
@@ -31,6 +42,11 @@ public class TPPQuestHelperFunctions implements ITPPQuestConstants {
 	 * 			gold amount for hunting rats.
 	 */
 	public static int calculateReward(Player player) {
+		if (player.isQuestInState(QUEST_SLOT, 0, "done")) {
+			// information for previous raid is no longer available
+			return 0;
+		}
+
 		int moneys = 0;
 		int kills = 0;
 		for(int i=0; i<RAT_TYPES.size(); i++) {

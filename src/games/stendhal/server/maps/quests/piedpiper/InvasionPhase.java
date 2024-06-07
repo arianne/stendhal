@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   Copyright (C) 2003-2023 - Arianne                     *
+ *                   Copyright (C) 2003-2024 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,6 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
@@ -296,6 +297,22 @@ public class InvasionPhase extends TPPQuest {
 	}
 
 	/**
+	 * Initializes quest state string after player kills first rat.
+	 *
+	 * @param player
+	 *   Player doing quest.
+	 */
+	private void initQuestState(final Player player) {
+		int index = 7;
+		if ("done".equals(player.getQuest(QUEST_SLOT, 0))) {
+			index = 1;
+		}
+		// preserve completions count
+		final int completions = MathHelper.parseIntDefault(player.getQuest(QUEST_SLOT, index), 0);
+		player.setQuest(QUEST_SLOT, "rats;0;0;0;0;0;0;" + completions);
+	}
+
+	/**
 	 *  method for making records about killing rats
 	 *  in player's quest slot.
 	 *
@@ -316,17 +333,17 @@ public class InvasionPhase extends TPPQuest {
 		}
 
 		if((player.getQuest(QUEST_SLOT)==null)||
-			(player.getQuest(QUEST_SLOT).equals("done")||
+			(player.getQuest(QUEST_SLOT, 0).equals("done")||
 			(player.getQuest(QUEST_SLOT).equals("")))){
 			// player just killed his first creature.
-			player.setQuest(QUEST_SLOT, "rats;0;0;0;0;0;0");
+			initQuestState(player);
 		}
 
 		// we using here and after "i+1" because player's quest index 0
 		// is occupied by quest stage description.
 		if ("".equals(player.getQuest(QUEST_SLOT,i+1))){
 			// something really wrong, will correct this...
-			player.setQuest(QUEST_SLOT,"rats;0;0;0;0;0;0");
+			initQuestState(player);
 		}
 		int kills;
 		try {
