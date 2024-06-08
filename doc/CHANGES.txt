@@ -10,6 +10,7 @@ Changelog
 *web client*
 - added visuals tab to settings dialog
 - animated fog
+- animated clouds in Kika Clouds
 - added support for parallax scrolling backgrounds
 
 
