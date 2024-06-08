@@ -66,6 +66,7 @@ export class Map {
 
 	private parallax: ParallaxBackground;
 	private parallaxImage?: string;
+	private ignoredTiles: string[];
 
 	/** Singleton instance. */
 	private static instance: Map;
@@ -91,6 +92,7 @@ export class Map {
 			this.strategy = new CombinedTilesetRenderingStrategy();
 		}
 		this.parallax = ParallaxBackground.get();
+		this.ignoredTiles = [];
 	}
 
 	/**
@@ -149,12 +151,17 @@ export class Map {
 			// This is not input validation. It just rewrites a path used by the
 			// Java client to a path matching the webserver directory layout.
 			var filename = "/" + source.replace(/\.\.\/\.\.\//g, "");
+			const basename = filename.replace(/\.png$/, "").replace(/^\/tileset\//, "");
+			const targetname = Paths.tileset + "/" + basename;
 
-			let baseFilename = filename.replace(/\.png$/, "").replace("/tileset", Paths.tileset);
-			if (!stendhal.config.getBoolean("effect.blood") && this.hasSafeTileset(baseFilename)) {
-				this.tilesetFilenames.push(baseFilename + "-safe.png");
+			if (this.ignoredTiles.indexOf(basename) > -1) {
+				// server has specified that certain tiles should not be drawn on this map
+				continue;
+			}
+			if (!stendhal.config.getBoolean("effect.blood") && this.hasSafeTileset(targetname)) {
+				this.tilesetFilenames.push(targetname + "-safe.png");
 			} else {
-				this.tilesetFilenames.push(baseFilename + ".png");
+				this.tilesetFilenames.push(targetname + ".png");
 			}
 
 			this.firstgids.push(firstgid);
@@ -243,6 +250,25 @@ export class Map {
 		this.parallaxImage = name;
 		if (typeof(name) === "undefined") {
 			this.parallax.reset();
+		}
+	}
+
+	/**
+	 * Adds tilesets to be ignored when drawing.
+	 *
+	 * @param {string=} tilesets
+	 *   Comma-delimited string. If empty or `undefined`, ignored tilesets list will be reset.
+	 */
+	setIgnoredTiles(tilesets?: string) {
+		if (!tilesets) {
+			this.ignoredTiles = [];
+			return;
+		}
+		for (let t of tilesets.split(",")) {
+			t = t.trim();
+			if (t !== "") {
+				this.ignoredTiles.push(t);
+			}
 		}
 	}
 }
