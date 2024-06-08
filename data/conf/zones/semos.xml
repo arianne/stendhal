@@ -1146,6 +1146,11 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
 	</zone>
 	<!-- Interiors of the wizards tower -->
 	<zone name="int_semos_wizards_tower_8" file="interiors/semos/wizards_tower_spire_1.tmx">
+		<attributes>
+			<parameter name="parallax">view_wizards_tower</parameter>
+			<parameter name="parallax_ignore_tiles">sky/view_wizards_tower</parameter>
+		</attributes>
+
 		<configurator
 			class-name="games.stendhal.server.maps.semos.wizardstower.RedFireWizardNPC"/>
 		<configurator
@@ -1220,6 +1225,11 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
 
 	<!-- Interiors of the wizards tower -->
 	<zone name="int_semos_wizards_tower_9" file="interiors/semos/wizards_tower_spire_2.tmx">
+		<attributes>
+			<parameter name="parallax">view_wizards_tower</parameter>
+			<parameter name="parallax_ignore_tiles">sky/view_wizards_tower</parameter>
+		</attributes>
+
 		<configurator
 			class-name="games.stendhal.server.maps.semos.wizardstower.BlackDeathWizardNPC"/>
 		<configurator
