@@ -15,7 +15,7 @@
 			<parameter name="weather">clouds</parameter>
 			<parameter name="parallax">semos_surrounds</parameter>
 			<!-- prevent drawing specific tiles in web client while while keeping compatibility with Java client -->
-			<parameter name="webclient_ignore_tiles">sky/cloud/clouds</parameter>
+			<parameter name="parallax_ignore_tiles">sky/cloud/clouds</parameter>
 		</attributes>
 
 		<!--Don't allow teleporting in as we don't want marked scrolls made or

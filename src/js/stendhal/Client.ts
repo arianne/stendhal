@@ -478,7 +478,7 @@ export class Client {
 
 		// parallax background
 		stendhal.data.map.setParallax(zoneinfo["parallax"]);
-		stendhal.data.map.setIgnoredTiles(zoneinfo["webclient_ignore_tiles"]);
+		stendhal.data.map.setIgnoredTiles(zoneinfo["parallax_ignore_tiles"]);
 
 		// coloring information
 		if (zoneinfo["color"] && stendhal.config.getBoolean("effect.lighting")) {
