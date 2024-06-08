@@ -12,6 +12,7 @@ Changelog
 - animated fog
 - animated clouds in Kika Clouds
 - added support for parallax scrolling backgrounds
+- added parallax backgrounds to Kika Islands & Kika Clouds maps
 
 
 1.47
