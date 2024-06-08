@@ -181,7 +181,14 @@ export class Map {
 	}
 
 	decodeMapLayer(content: any, name: string): number[]|undefined {
-		var layerData = content[name];
+		var layerData: any;
+		if (name === "0_floor") {
+			// check for parallax-supporive floor layer
+			layerData = content["0_floor_parallax"];
+		}
+		if (!layerData) {
+			layerData = content[name];
+		}
 		if (!layerData) {
 			return;
 		}

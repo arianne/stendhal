@@ -4,7 +4,7 @@
  * $Id$
  */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -226,6 +226,8 @@ public final class ZonesXMLLoader {
 		// Effect layers are optional too
 		loadOptionalLayer(zone, zonedata, "blend_ground");
 		loadOptionalLayer(zone, zonedata, "blend_roof");
+		// alternative floor layer for clients that support parallax backgrounds
+		loadOptionalLayer(zone, zonedata, "0_floor_parallax");
 
 		zone.addCollisionLayer(name + ".collision",
 				zonedata.getLayer("collision"));
