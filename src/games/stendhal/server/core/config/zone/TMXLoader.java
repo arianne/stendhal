@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -194,6 +194,42 @@ public class TMXLoader {
 		return layer;
 	}
 
+	/**
+	 * Checks value of layer's "visible" attribute.
+	 *
+	 * Default is {@code true} if attribute is not set.
+	 *
+	 * @param attributes
+	 *   Layer's attributes.
+	 * @return
+	 *   {@code true} if "visible" attribute is NOT set or its value is not "0".
+	 */
+	private boolean layerVisible(final NamedNodeMap attributes) {
+		final Node attrVisible = attributes.getNamedItem("visible");
+		if (attrVisible != null) {
+			return !"0".equals(attrVisible.getNodeValue());
+		}
+		return true;
+	}
+
+	/**
+	 * Checks value of layer's "locked" attribute.
+	 *
+	 * Default is {@code false} if attribute not set.
+	 *
+	 * @param attributes
+	 *   Layer's attributes.
+	 * @return
+	 *   {@code true} if "locked" attribute IS set and its value is not "0".
+	 */
+	private boolean layerLocked(final NamedNodeMap attributes) {
+		final Node attrLocked = attributes.getNamedItem("locked");
+		if (attrLocked != null) {
+			return !"0".equals(attrLocked.getNodeValue());
+		}
+		return false;
+	}
+
 	private void buildMap(final Document doc) throws Exception {
 		Node mapNode = doc.getDocumentElement();
 
@@ -218,7 +254,13 @@ public class TMXLoader {
 			if ("tileset".equals(sibs.getNodeName())) {
 				stendhalMap.addTileset(unmarshalTileset(sibs));
 			} else if ("layer".equals(sibs.getNodeName())) {
-				stendhalMap.addLayer(readLayer(sibs));
+				final NamedNodeMap attributes = sibs.getAttributes();
+				if (!layerVisible(attributes) && layerLocked(attributes)) {
+					// ignore invisible locked layers (marked for non-use)
+					logger.info("Ignoring layer \"" + attributes.getNamedItem("name").getNodeValue() + "\"");
+				} else {
+					stendhalMap.addLayer(readLayer(sibs));
+				}
 			}
 		}
 	}
