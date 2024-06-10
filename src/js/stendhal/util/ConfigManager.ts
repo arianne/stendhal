@@ -45,6 +45,7 @@ export class ConfigManager {
 		"effect.lighting": "true",
 		"effect.weather": "true",
 		"effect.no-nude": "true",
+		"effect.parallax": "true",
 		"effect.shadows": "true",
 		"emojis.native": "false",
 		"font.body": "Carlito",

@@ -77,5 +77,16 @@ export class VisualsTab extends AbstractSettingsTab {
 		chkActivityInd.addTo(col1);
 		chkAnimate.addTo(col1);
 		chkAnimate.componentElement.classList.add("indented");
+
+		const chkParallax = new SettingsComponent("chk_parallax", "Parallax scrolling backgrounds");
+		chkParallax.setValue(config.getBoolean("effect.parallax"));
+		chkParallax.onchange = (evt: Event) => {
+			const enabled = chkParallax.getValue() as boolean;
+			config.set("effect.parallax", enabled);
+			chkParallax.componentElement.title = "Parallax scrolling " + (enabled ? "enabled" : "disabled");
+			StandardMessages.changeNeedsRefresh();
+			parent.refresh();
+		}
+		chkParallax.addTo(col1);
 	}
 }

@@ -182,7 +182,7 @@ export class Map {
 
 	decodeMapLayer(content: any, name: string): number[]|undefined {
 		var layerData: any;
-		if (name === "0_floor") {
+		if (name === "0_floor" && stendhal.config.getBoolean("effect.parallax")) {
 			// check for parallax-supporive floor layer
 			layerData = content["0_floor_parallax"];
 		}
