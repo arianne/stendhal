@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,6 +17,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.npc.MerchantNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
@@ -204,6 +205,11 @@ public final class ShopsList {
 			new SellerAdder().addSeller(npc, new SellerBehaviour(inventory, priceFactor), offer);
 		} else {
 			new BuyerAdder().addBuyer(npc, new BuyerBehaviour(inventory, priceFactor), offer);
+		}
+
+		if (npc instanceof MerchantNPC) {
+			// register with merchant NPC for retrieving shop inventory for interactive dialogs
+			((MerchantNPC) npc).addShop(stype, shopname);
 		}
 	}
 
