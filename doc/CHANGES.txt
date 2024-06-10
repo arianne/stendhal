@@ -13,7 +13,7 @@ Changelog
 - animated clouds in Kika Clouds
 - added support for parallax scrolling backgrounds
 - added parallax backgrounds to Kika Islands & Kika Clouds maps
-- added parallax backgrounds to Wizards Tower 8 & 9
+- added parallax backgrounds to Wizards Tower
 
 
 1.47

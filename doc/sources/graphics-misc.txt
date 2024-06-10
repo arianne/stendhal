@@ -63,6 +63,10 @@ rotate*    rg1024; CC0; https://openclipart.org/detail/20247
 settings*  ben; CC0; https://openclipart.org/detail/192629
 sound*     mightyman; CC0; https://openclipart.org/detail/165992
 
+data/maps/parallax/
+
+stars  Jordan Irwin (AntumDeluge); CC0; Stendhal
+
 data/sprites/
 
 baby_dragon.png           Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal

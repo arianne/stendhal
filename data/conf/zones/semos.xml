@@ -648,6 +648,11 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
 
 	<!-- Interiors of the wizards tower -->
 	<zone name="int_semos_wizards_tower_basement" file="interiors/semos/wizards_tower_basement.tmx">
+		<attributes>
+			<parameter name="parallax">stars</parameter>
+			<parameter name="parallax_ignore_tiles">sky/stars</parameter>
+		</attributes>
+
 		<configurator
 			class-name="games.stendhal.server.maps.semos.wizardstower.WizardsGuardStatueNPC"/>
 
@@ -669,8 +674,14 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
 				class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
 		</portal>
 	</zone>
+
 	<!-- Interiors of the wizards tower -->
 	<zone name="int_semos_wizards_tower_1" file="interiors/semos/wizards_tower_1.tmx">
+		<attributes>
+			<parameter name="parallax">stars</parameter>
+			<parameter name="parallax_ignore_tiles">sky/stars</parameter>
+		</attributes>
+
 		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
 		<configurator
 			class-name="games.stendhal.server.maps.semos.wizardstower.FirstFloorCreatures"/>
@@ -755,8 +766,14 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
 			<attribute name="hidden"/>
 		</portal>
 	</zone>
+
 	<!-- Interiors of the wizards tower -->
 	<zone name="int_semos_wizards_tower_2" file="interiors/semos/wizards_tower_2.tmx">
+		<attributes>
+			<parameter name="parallax">stars</parameter>
+			<parameter name="parallax_ignore_tiles">sky/stars</parameter>
+		</attributes>
+
 		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
 		<configurator
 			class-name="games.stendhal.server.maps.semos.wizardstower.SecondFloorCreatures"/>
@@ -828,8 +845,14 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
 			<attribute name="hidden"/>
 		</portal>
 	</zone>
+
 	<!-- Interiors of the wizards tower -->
 	<zone name="int_semos_wizards_tower_3" file="interiors/semos/wizards_tower_3.tmx">
+		<attributes>
+			<parameter name="parallax">stars</parameter>
+			<parameter name="parallax_ignore_tiles">sky/stars</parameter>
+		</attributes>
+
 		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
 		<configurator
 			class-name="games.stendhal.server.maps.semos.wizardstower.ThirdFloorCreatures"/>
@@ -901,8 +924,14 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
 			<attribute name="hidden"/>
 		</portal>
 	</zone>
+
 	<!-- Interiors of the wizards tower -->
 	<zone name="int_semos_wizards_tower_4" file="interiors/semos/wizards_tower_4.tmx">
+		<attributes>
+			<parameter name="parallax">stars</parameter>
+			<parameter name="parallax_ignore_tiles">sky/stars</parameter>
+		</attributes>
+
 		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
 		<configurator
 			class-name="games.stendhal.server.maps.semos.wizardstower.FourthFloorCreatures"/>
@@ -974,8 +1003,14 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
 			<attribute name="hidden"/>
 		</portal>
 	</zone>
+
 	<!-- Interiors of the wizards tower -->
 	<zone name="int_semos_wizards_tower_5" file="interiors/semos/wizards_tower_5.tmx">
+		<attributes>
+			<parameter name="parallax">stars</parameter>
+			<parameter name="parallax_ignore_tiles">sky/stars</parameter>
+		</attributes>
+
 		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
 		<configurator
 			class-name="games.stendhal.server.maps.semos.wizardstower.FifthFloorCreatures"/>
@@ -1047,8 +1082,14 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
 			<attribute name="hidden"/>
 		</portal>
 	</zone>
+
 	<!-- Interiors of the wizards tower -->
 	<zone name="int_semos_wizards_tower_6" file="interiors/semos/wizards_tower_6.tmx">
+		<attributes>
+			<parameter name="parallax">stars</parameter>
+			<parameter name="parallax_ignore_tiles">sky/stars</parameter>
+		</attributes>
+
 		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
 		<configurator
 			class-name="games.stendhal.server.maps.semos.wizardstower.SixthFloorCreatures"/>
@@ -1120,8 +1161,14 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
 			<attribute name="hidden"/>
 		</portal>
 	</zone>
+
 	<!-- Interiors of the wizards tower -->
 	<zone name="int_semos_wizards_tower_7" file="interiors/semos/wizards_tower_7.tmx">
+		<attributes>
+			<parameter name="parallax">stars</parameter>
+			<parameter name="parallax_ignore_tiles">sky/stars</parameter>
+		</attributes>
+
 		<configurator
 			class-name="games.stendhal.server.maps.semos.wizardstower.WizardsGuardStatueSpireNPC"/>
 
