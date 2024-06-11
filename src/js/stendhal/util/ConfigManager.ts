@@ -65,7 +65,7 @@ export class ConfigManager {
 		"pathfinding": "true",
 		"pathfinding.minimap": "true",
 		"sound": "false",
-		"sound.master.volume": "100",
+		"sound.master.volume": "50",
 		"sound.ambient.volume": "100",
 		"sound.creature.volume": "100",
 		"sound.gui.volume": "100",
