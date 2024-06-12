@@ -14,6 +14,15 @@ declare var stendhal: any;
 import { DialogContentComponent } from "../toolkit/DialogContentComponent";
 import { singletons } from "../../SingletonRepo";
 
+import { ScreenCapture } from "../../util/ScreenCapture";
+
+
+interface MenuAction {
+	title: string,
+	action: string,
+	alt?: string,
+	condition?: Function
+}
 
 export class ApplicationMenuDialog extends DialogContentComponent {
 
@@ -37,7 +46,7 @@ export class ApplicationMenuDialog extends DialogContentComponent {
 						title: "Logout",
 						action: "logout"
 					}
-				]
+				] as MenuAction[]
 			},
 			{
 				title: "Tools",
@@ -47,10 +56,16 @@ export class ApplicationMenuDialog extends DialogContentComponent {
 						action: "screenshot",
 					},
 					{
+						title: "Capture Video",
+						alt: "Stop Capture",
+						condition: ScreenCapture.isActive,
+						action: "screencap"
+					},
+					{
 						title: "Settings",
 						action: "settings",
 					}
-				]
+				] as MenuAction[]
 			},
 			{
 				title: "Commands",
@@ -71,7 +86,7 @@ export class ApplicationMenuDialog extends DialogContentComponent {
 						title: "Travel Log",
 						action: "progressstatus",
 					}
-				]
+				] as MenuAction[]
 			},
 			{
 				title: "Help",
@@ -100,7 +115,7 @@ export class ApplicationMenuDialog extends DialogContentComponent {
 						title: "About",
 						action: "about",
 					}
-				]
+				] as MenuAction[]
 			},
 		]
 
@@ -111,7 +126,12 @@ export class ApplicationMenuDialog extends DialogContentComponent {
 		for (var i = 0; i < this.actions.length; i++) {
 			content += "<div class=\"inlineblock buttonColumn\"><h4 class=\"menugroup\">" + stendhal.ui.html.esc(this.actions[i].title) + "</h4>"
 			for (var j = 0; j < this.actions[i].children.length; j++) {
-				content += "<button id=\"menubutton." + this.actions[i].children[j].action + "\" class=\"menubutton\">" + stendhal.ui.html.esc(this.actions[i].children[j].title) + "</button><br>";
+				const action = this.actions[i].children[j];
+				let title = action.title;
+				if (action.alt && action.condition && action.condition()) {
+					title = action.alt;
+				}
+				content += "<button id=\"menubutton." + action.action + "\" class=\"menubutton\">" + stendhal.ui.html.esc(title) + "</button><br>";
 			}
 			content += "</div>";
 		}
