@@ -19,6 +19,7 @@ import { DebugAction } from "./action/DebugAction";
 import { OpenWebsiteAction } from "./action/OpenWebsiteAction";
 import { ProgressStatusAction } from "./action/ProgressStatusAction";
 import { ReTellAction } from "./action/ReTellAction";
+import { ScreenCaptureAction } from "./action/ScreenCaptureAction";
 import { SettingsAction } from "./action/SettingsAction";
 import { SlashActionImpl } from "./action/SlashAction";
 import { TellAction } from "./action/TellAction";
@@ -132,6 +133,7 @@ export class SlashActionRepo {
 			"TOOLS": [
 				"progressstatus",
 				"screenshot",
+				"screencap",
 				"atlas",
 				"beginnersguide"
 			],
@@ -1121,6 +1123,8 @@ export class SlashActionRepo {
 			return ["", "Capture a screenshot of the viewport area."];
 		}
 	};
+
+	"screencap" = new ScreenCaptureAction();
 
 	"sentence": SlashActionImpl = {
 		execute: (type: string, params: string[], remainder: string): boolean => {
