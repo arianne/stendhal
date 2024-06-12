@@ -11,6 +11,7 @@
  ***************************************************************************/
 
 import { Chat } from "./Chat";
+import { Debug } from "./Debug";
 import { DownloadUtil } from "./DownloadUtil";
 
 
@@ -61,6 +62,11 @@ export class ScreenCapture {
 	 *   Sound manager from which to record audio.
 	 */
 	start(canvas: HTMLCanvasElement, audio?: AudioContext) {
+		if (!Debug.isActive("screencap")) {
+			Chat.log("client", "Screen capture debugging is disabled");
+			return;
+		}
+
 		if (!this.def) {
 			Chat.log("error", "No suitable video codec available");
 			return;
