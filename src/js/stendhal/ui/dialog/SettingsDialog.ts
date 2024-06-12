@@ -20,10 +20,10 @@ import { TabDialogContentComponent } from "../toolkit/TabDialogContentComponent"
 
 import { Layout } from "../../data/enum/Layout";
 
+import { Debug } from "../../util/Debug";
+
 
 export class SettingsDialog extends TabDialogContentComponent {
-
-	public static debugging = false;
 
 	public readonly storedStates: {[index: string]: string};
 	private readonly initialStates: {[index: string]: string};
@@ -108,7 +108,7 @@ export class SettingsDialog extends TabDialogContentComponent {
 			label.innerHTML = "";
 			label.appendChild(checkbox);
 			label.appendChild(text);
-			if (!SettingsDialog.debugging) {
+			if (!Debug.isActive("settings")) {
 				// hide if settings debugging is not enabled
 				checkbox.disabled = true;
 				checkbox.style.setProperty("display", "none");

@@ -36,9 +36,6 @@ export class TouchHandler {
 	/** Number of pixels touch can move before being vetoed as a long touch or double tap. */
 	private readonly moveThreshold = 16;
 
-	/** Property for debugging. */
-	private debugging = false;
-
 	/** Singleton instance. */
 	private static instance: TouchHandler;
 
@@ -147,19 +144,5 @@ export class TouchHandler {
 	 */
 	holding(): boolean {
 		return this.held;
-	}
-
-	/**
-	 * Sets debugging property for touch events.
-	 */
-	setDebuggingEnabled(enable: boolean) {
-		this.debugging = enable;
-	}
-
-	/**
-	 * Checks if debugging is enabled for touch events.
-	 */
-	isDebuggingEnabled(): boolean {
-		return this.debugging;
 	}
 }

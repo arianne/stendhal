@@ -13,13 +13,14 @@ import { singletons } from "../SingletonRepo";
 
 import { ui } from "../ui/UI";
 import { UIComponentEnum } from "../ui/UIComponentEnum";
-import { SettingsDialog } from "../ui/dialog/SettingsDialog";
 import { FloatingWindow } from "../ui/toolkit/FloatingWindow";
 
 import { SlashAction } from "./SlashAction";
-import { Chat } from "../util/Chat";
 import { ShowFloatingWindowComponent } from "../ui/component/ShowFloatingWindowComponent";
 import { Panel } from "ui/toolkit/Panel";
+
+import { Chat } from "../util/Chat";
+import { Debug } from "../util/Debug";
 
 declare var marauroa: any;
 declare var stendhal: any;
@@ -46,11 +47,10 @@ export class DebugAction extends SlashAction {
 		} else if (params[0] === "log") {
 			Chat.debugLogEnabled = true;
 		} else if (params[0] === "settings") {
-			SettingsDialog.debugging = !SettingsDialog.debugging;
-			Chat.log("client", "experimental settings " + (SettingsDialog.debugging ? "enabled" : "disabled"));
+			Chat.log("client", "Experimental settings " + (Debug.toggle("settings") ? "enabled"
+					: "disabled"));
 		} else if (params[0] === "touch") {
-			stendhal.ui.touch.setDebuggingEnabled(!stendhal.ui.touch.isDebuggingEnabled());
-			Chat.log("client", "touch debugging " + (stendhal.ui.touch.isDebuggingEnabled() ? "enabled" : "disabled"));
+			Chat.log("client", "Touch debugging " + (Debug.toggle("touch") ? "enabled" : "disabled"));
 		}
 		return true;
 	}
