@@ -14,6 +14,7 @@ declare var stendhal: any;
 import { DialogContentComponent } from "../toolkit/DialogContentComponent";
 import { singletons } from "../../SingletonRepo";
 
+import { Debug } from "../../util/Debug";
 import { ScreenCapture } from "../../util/ScreenCapture";
 
 
@@ -55,12 +56,14 @@ export class ApplicationMenuDialog extends DialogContentComponent {
 						title: "Take Screenshot",
 						action: "screenshot",
 					},
+					/*
 					{
 						title: "Capture Video",
 						alt: "Stop Capture",
 						condition: ScreenCapture.isActive,
 						action: "screencap"
 					},
+					*/
 					{
 						title: "Settings",
 						action: "settings",
@@ -121,6 +124,15 @@ export class ApplicationMenuDialog extends DialogContentComponent {
 
 	constructor() {
 		super("applicationmenudialog-template");
+
+		if (Debug.isActive("screencap")) {
+			this.actions[1].children.push({
+				title: "Capture Video",
+				alt: "Stop Capture",
+				condition: ScreenCapture.isActive,
+				action: "screencap"
+			});
+		}
 
 		var content = "";
 		for (var i = 0; i < this.actions.length; i++) {

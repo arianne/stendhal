@@ -30,6 +30,7 @@ import { UIComponentEnum } from "./ui/UIComponentEnum";
 import { ChatLogComponent } from "./ui/component/ChatLogComponent";
 
 import { Chat } from "./util/Chat";
+import { Debug } from "./util/Debug";
 
 
 /**
@@ -133,7 +134,7 @@ export class SlashActionRepo {
 			"TOOLS": [
 				"progressstatus",
 				"screenshot",
-				"screencap",
+				//"screencap",
 				"atlas",
 				"beginnersguide"
 			],
@@ -222,6 +223,11 @@ export class SlashActionRepo {
 				{type: "group", sparams: "status"}
 			]
 		};
+
+		if (Debug.isActive("screencap")) {
+			grouping["TOOLS"].push("screencap");
+		}
+
 		return {
 			info: [
 				"For a detailed reference, visit #https://stendhalgame.org/wiki/Stendhal_Manual",
