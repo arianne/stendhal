@@ -169,6 +169,10 @@ public class ChatOptionsEvent extends RPEvent {
 
 	private void processTransition(SpeakerNPC npc, Player player, TreeSet<ChatOption> res, Sentence sentence,
 			final Transition transition) {
+		// FIXME:
+		// - Triggers that are parsed in a chat option's `fire` method are not included in the NPC's
+		//   transitions, an example of this is Gordon with "rent". Until a fix is made these triggers
+		//   must be added using `SpeakerNPC.addKnownChatOptions`.
 		for(Expression expr : transition.getTriggers()) {
 			if (transition.getCondition() != null) {
 				if (!transition.getCondition().fire(player, sentence, npc)) {
