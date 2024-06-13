@@ -154,6 +154,16 @@ public class ChatOptionsEvent extends RPEvent {
 				processTransition(npc, player, res, sentence, transition);
 			}
 		}
+
+		if (npc.getAttending() instanceof Player) {
+			for (final String trigger: npc.getKnownChatOptions()) {
+				final ChatOption copt = new ChatOption(trigger);
+				if (!res.contains(copt)) {
+					res.add(copt);
+				}
+			}
+		}
+
 		return res;
 	}
 
@@ -169,7 +179,6 @@ public class ChatOptionsEvent extends RPEvent {
 			String trigger = expr.getNormalized().toLowerCase(Locale.ENGLISH);
 			ChatOption option = new ChatOption(trigger);
 			if (ConversationPhrases.KNOWN.contains(trigger)
-					|| npc.getKnownChatOptions().contains(trigger)
 					|| npc.hasLearnedWordInCurrentConversation(trigger)
 					|| npc.hasLearnedWordInCurrentConversation(Grammar.plural(trigger))) {
 				res.add(option);
