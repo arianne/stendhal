@@ -13,10 +13,12 @@ package games.stendhal.server.events;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeSet;
 
 import com.google.common.base.Function;
@@ -156,7 +158,10 @@ public class ChatOptionsEvent extends RPEvent {
 		}
 
 		if (npc.getAttending() instanceof Player) {
-			for (final String trigger: npc.getKnownChatOptions()) {
+			final Set<String> temp = new HashSet<>();
+			temp.addAll(npc.getForcedWordsInCurrentConversation());
+			temp.addAll(npc.getKnownChatOptions());
+			for (final String trigger: temp) {
 				final ChatOption copt = new ChatOption(trigger);
 				if (!res.contains(copt)) {
 					res.add(copt);

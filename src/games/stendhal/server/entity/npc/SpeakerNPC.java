@@ -171,6 +171,8 @@ public class SpeakerNPC extends PassiveNPC {
 	 * a set of blue words used since the start of the conversation
 	 */
 	private Set<String> learnedWordsInCurrentConversation = new HashSet<>();
+	/** Chat options triggers to be shown even if not registered with transition. */
+	private Set<String> forcedWordsInCurrentConversation = new HashSet<>();
 
 	/**
 	 * alternative image for website
@@ -349,6 +351,7 @@ public class SpeakerNPC extends PassiveNPC {
 			}
 			setIdea(null);
 			learnedWordsInCurrentConversation = new HashSet<>();
+			forcedWordsInCurrentConversation = new HashSet<>();
 			// send chat option event when NPC becomes "idle"
 			if (wasAttending instanceof Player) {
 				engine.addChatOptionsEvent((Player) wasAttending);
@@ -515,6 +518,44 @@ public class SpeakerNPC extends PassiveNPC {
 		learnWordsInCurrentConversation(text);
 	}
 
+	/**
+	 * Adds a trigger that should be shown as chat option even if not registered in a transition.
+	 *
+	 * @param triggers
+	 *   Trigger word(s).
+	 */
+	public void forceWordsInCurrentConversation(String... triggers) {
+		for (String trigger: triggers) {
+			trigger = trigger.toLowerCase(Locale.ENGLISH);
+			if (!forcedWordsInCurrentConversation.contains(trigger)) {
+				forcedWordsInCurrentConversation.add(trigger);
+			}
+		}
+	}
+
+	/**
+	 * Retrieves triggers that should be shown as chat options even if not registered in a transition.
+	 *
+	 * @return
+	 *   Trigger words.
+	 */
+	public Set<String> getForcedWordsInCurrentConversation() {
+		return forcedWordsInCurrentConversation;
+	}
+
+	/**
+	 * Adds a word to list of learned words.
+	 *
+	 * @param trigger
+	 *   Word to be added.
+	 */
+	private void addLearnedWordInCurrentConversation(String trigger) {
+		trigger = trigger.toLowerCase(Locale.ENGLISH);
+		if (!hasLearnedWordInCurrentConversation(trigger)) {
+			learnedWordsInCurrentConversation.add(trigger);
+		}
+	}
+
 	public boolean hasLearnedWordInCurrentConversation(String trigger) {
 		return learnedWordsInCurrentConversation.contains(trigger);
 	}
@@ -535,7 +576,7 @@ public class SpeakerNPC extends PassiveNPC {
 				continue;
 			} else if (next == '\'') {
 				int end = text.indexOf('\'', pos + 2);
-				learnedWordsInCurrentConversation.add(text.substring(pos + 2, end).toLowerCase(Locale.ENGLISH));
+				addLearnedWordInCurrentConversation(text.substring(pos + 2, end));
 				pos = text.indexOf('#', end);
 				continue;
 			} else {
@@ -543,12 +584,12 @@ public class SpeakerNPC extends PassiveNPC {
 				for (i = pos + 1; i < text.length(); i++) {
 					char endChar = text.charAt(i);
 					if (!Character.isJavaIdentifierPart(endChar)) {
-						learnedWordsInCurrentConversation.add(text.substring(pos + 1, i).toLowerCase(Locale.ENGLISH));
+						addLearnedWordInCurrentConversation(text.substring(pos + 1, i));
 						pos = text.indexOf('#', i);
 						continue loop;
 					}
 				}
-				learnedWordsInCurrentConversation.add(text.substring(pos + 1).toLowerCase(Locale.ENGLISH));
+				addLearnedWordInCurrentConversation(text.substring(pos + 1));
 				break;
 			}
 		}
