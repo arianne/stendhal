@@ -504,6 +504,14 @@ public class SpeakerNPC extends PassiveNPC {
 	public void say(final String text) {
 		// turn towards player if necessary, then say it.
 		say(text, true);
+	}
+
+	protected void say(final String text, final boolean turnToPlayer) {
+		// be polite and face the player we are talking to
+		if (turnToPlayer && (attending != null)) {
+			faceToward(attending);
+		}
+		super.say(text);
 		learnWordsInCurrentConversation(text);
 	}
 
@@ -544,15 +552,6 @@ public class SpeakerNPC extends PassiveNPC {
 				break;
 			}
 		}
-	}
-
-	protected void say(final String text, final boolean turnToPlayer) {
-		// be polite and face the player we are talking to
-		if (turnToPlayer && (attending != null)) {
-			faceToward(attending);
-		}
-
-		super.say(text);
 	}
 
 	/** Message when NPC is attending another player.
