@@ -85,6 +85,8 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 				"Cloaks Collector",
 				"Josephine wants cloaks in many colors.",
 				false);
+
+		npcs.get("Josephine").addKnownChatOptions("cloaks");
 	}
 
 	private void step_1() {
