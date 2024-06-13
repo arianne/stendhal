@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -139,6 +139,13 @@ import games.stendhal.server.maps.Region;
 		// the extra parts in the quest state are for wrvil and mrotho not to give them cloaks and armor twice
 		actions.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "clothes;none;none", 2.0));
 		actions.add(new InflictStatusOnNPCAction("sandwich"));
+		actions.add(new ChatAction() {
+			@Override
+			public void fire(Player player, Sentence sentence, EventRaiser raiser) {
+				// workaround because "clothes" is not parsed from NPC dialogue
+				npc.forceWordsInCurrentConversation("clothes");
+			}
+		});
 
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION, ConversationPhrases.YES_MESSAGES,
 				new AndCondition(
@@ -436,7 +443,13 @@ import games.stendhal.server.maps.Region;
 				new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),
 				ConversationStates.ATTENDING,
 				"I am waiting for you to bring me new #clothes from Wrvil and Mrotho.",
-				null);
+				new ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, EventRaiser raiser) {
+						// workaround because "clothes" is not parsed from NPC dialogue
+						npc.forceWordsInCurrentConversation("clothes");
+					}
+				});
 	}
 
 	@Override
