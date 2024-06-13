@@ -1,6 +1,6 @@
 --[[
  ***************************************************************************
- *                    Copyright © 2022-2023 - Stendhal                     *
+ *                    Copyright © 2022-2024 - Stendhal                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -589,7 +589,20 @@ local prepareMetalDetectorLender = function()
 	end
 
 	-- hint to players that they can borrow metal detector
-	lender:addOffer("I also have some items that I don't mind #loaning out.")
+	--~ lender:addOffer("I also have some items that I don't mind #loaning out.")
+	-- must remove original response to "offer" else function to force "loan" chat option trigger
+	-- doesn't work
+	lender:removeTransition(ConversationStates.ATTENDING, ConversationPhrases.OFFER_MESSAGES, nil)
+	lender:add(
+		ConversationStates.ATTENDING,
+		ConversationPhrases.OFFER_MESSAGES,
+		nil,
+		ConversationStates.ATTENDING,
+		"Please check the blackboard for a list of items that I buy. I also have some items that I"
+			.. " don't mind #loaning out.",
+		function(player, sentence, raiser)
+			lender:forceWordsInCurrentConversation({"loan"})
+		end)
 
 	lender:add(
 		ConversationStates.ATTENDING,
@@ -599,7 +612,9 @@ local prepareMetalDetectorLender = function()
 		"So, you want to borrow my metal detector? Well, I don't lend things out"
 			.. " without some form of collateral. What would you like to leave"
 			.. " behind?",
-		nil)
+		function(player, sentence, raiser)
+			lender:forceWordsInCurrentConversation({"nothing"})
+		end)
 
 	lender:add(
 		ConversationStates.ATTENDING,
