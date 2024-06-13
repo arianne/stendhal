@@ -48,6 +48,7 @@ import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasStorableEntityCondition;
 import games.stendhal.server.entity.npc.condition.TextHasParameterCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.ChatOptionsEvent;
 import games.stendhal.server.util.StringUtils;
 
 /**
@@ -186,6 +187,10 @@ public class SignLessorNPC implements ZoneConfigurator {
 			}
 
 		};
+
+		npc.addKnownChatOptions("rent");
+		ChatOptionsEvent.addMerchantActivity("rent");
+
 		npc.setPosition(20, 50);
 		npc.setCollisionAction(CollisionAction.STOP);
 		npc.setEntityClass("signguynpc");
