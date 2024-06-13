@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -1171,7 +1171,8 @@ public class SpeakerNPC extends PassiveNPC {
 	 *   Keyword(s) to be added.
 	 */
 	public void addKnownChatOptions(final String... keywords) {
-		for (final String keyword: keywords) {
+		for (String keyword: keywords) {
+			keyword = keyword.toLowerCase(Locale.ENGLISH);
 			if (!knownChatOptions.contains(keyword)) {
 				knownChatOptions.add(keyword);
 			}
