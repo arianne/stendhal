@@ -812,7 +812,56 @@ public class SpeakerNPC extends PassiveNPC {
 		return(engine.remove(label));
 	}
 
+	/**
+	 * Removes matching transitions.
+	 *
+	 * @param state
+	 * @param trigger
+	 * @param condition
+	 * @return
+	 *   {@code true} if at least one transition was removed.
+	 */
+	public boolean del(final ConversationStates state, final Expression trigger,
+			final ChatCondition condition) {
+		return engine.remove(state, trigger, condition);
+	}
 
+	/**
+	 * Wrapper method.
+	 *
+	 * Lua struggles with overloaded methods, so create a wrapper with a different name.
+	 *
+	 * @param state
+	 * @param trigger
+	 * @param condition
+	 * @return
+	 *   {@code true} if at least one transition was removed.
+	 */
+	public boolean removeTransition(final ConversationStates state, final Object trigger,
+			final ChatCondition condition) {
+		Expression expr;
+		if (trigger instanceof Expression) {
+			expr = (Expression) trigger;
+		} else if (trigger instanceof String) {
+			expr = new Expression(String.valueOf(trigger), ExpressionType.UNKNOWN);
+		} else if (trigger instanceof List) {
+			final List<?> l = (List<?>) trigger;
+			boolean res = false;
+			for (final Object obj: l) {
+				if (obj instanceof String) {
+					if (del(state, new Expression(String.valueOf(obj), ExpressionType.UNKNOWN), condition)) {
+						res = true;
+					}
+				}
+			}
+			return res;
+		} else {
+			logger.warn("Unknown trigger:" + trigger);
+			return false;
+		}
+
+		return del(state, expr, condition);
+	}
 
 	public void listenTo(final Player player, final String text) {
 		tell(player, text);

@@ -1,6 +1,6 @@
 // $Id$
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -339,6 +339,25 @@ public class Engine {
 			}
 		}
 		return res;
+	}
+
+	/**
+	 * Removes matching transitions.
+	 *
+	 * @param state
+	 * @param trigger
+	 * @param condition
+	 * @return
+	 *   {@code true} if at least one transition was removed.
+	 */
+	public boolean remove(final ConversationStates state, final Expression trigger,
+			final ChatCondition condition) {
+		Transition transition = get(state, trigger, condition);
+		while (transition != null) {
+			stateTransitionTable.remove(transition);
+			transition = get(state, trigger, condition);
+		}
+		return stateTransitionTable.indexOf(transition) < 0;
 	}
 
 	/**
