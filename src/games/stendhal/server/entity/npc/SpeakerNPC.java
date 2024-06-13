@@ -512,6 +512,11 @@ public class SpeakerNPC extends PassiveNPC {
 	}
 
 	private void learnWordsInCurrentConversation(String text) {
+		if (!(getAttending() instanceof Player)) {
+			// don't remember words when not interacting with a player
+			return;
+		}
+
 		int pos = 0;
 		pos = text.indexOf('#', pos);
 		loop:
