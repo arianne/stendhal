@@ -25,7 +25,7 @@ export abstract class WidgetComponent extends ComponentBase {
 	/** Setting type. */
 	protected readonly type: WidgetType;
 	/** Called when the settings state or value changes. */
-	public onchange?: Function;
+	private changeListeners: Function[];
 
 	private initialized = false;
 
@@ -39,6 +39,7 @@ export abstract class WidgetComponent extends ComponentBase {
 	constructor(type: WidgetType) {
 		super();
 		this.type = type;
+		this.changeListeners = [];
 	}
 
 	/**
@@ -56,11 +57,55 @@ export abstract class WidgetComponent extends ComponentBase {
 
 		// listen for changes to component element
 		this.componentElement.addEventListener("change", (evt: Event) => {
-			if (this.onchange) {
-				this.onchange(evt);
+			for (const listener of this.changeListeners) {
+				listener(evt);
 			}
 			this.refresh();
 		});
+	}
+
+	/**
+	 * Adds listener for change event.
+	 *
+	 * @param {Function} listener
+	 *   Function to call when change event occurs.
+	 * @return {Function}
+	 */
+	addListener(listener: Function): Function {
+		this.changeListeners.push(listener);
+		return listener;
+	}
+
+	/**
+	 * Adds listener for change event.
+	 *
+	 * @param {number} idx
+	 *   Insertion index in list of listeners.
+	 * @param {Function} listener
+	 *   Function to call when change event occurs.
+	 * @return {Function}
+	 */
+	insertListener(idx: number, listener: Function): Function {
+		this.changeListeners.splice(idx, 0, listener);
+		return listener;
+	}
+
+	/**
+	 * Removes change event listener.
+	 *
+	 * @param {number|Function} listener
+	 *   Listener function or index.
+	 */
+	removeListener(listener: number|Function) {
+		let idx: number;
+		if (typeof(listener) === "number") {
+			idx = listener as number;
+		} else {
+			idx = this.changeListeners.indexOf(listener as Function);
+		}
+		if (idx > -1 && idx < this.changeListeners.length) {
+			this.changeListeners.splice(idx, 1);
+		}
 	}
 
 	/**

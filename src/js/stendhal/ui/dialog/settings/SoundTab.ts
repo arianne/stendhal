@@ -39,12 +39,12 @@ export class SoundTab extends AbstractSettingsTab {
 		// TODO: add DOM element creation to `SettingsDialog.createCheckBox`
 		const chkSound = new SettingsComponent("chk_sound", "Enable sound");
 		chkSound.setValue(soundEnabled);
-		chkSound.onchange = (evt: Event) => {
+		chkSound.addListener((evt: Event) => {
 			soundEnabled = chkSound.getValue() as boolean;
 			config.set("sound", soundEnabled);
 			sound.onStateChanged();
 			this.setSlidersEnabled(soundEnabled);
-		};
+		});
 		chkSound.addTo(col1);
 
 		const layers = [
@@ -61,9 +61,9 @@ export class SoundTab extends AbstractSettingsTab {
 			const label = group[1];
 			const slider = new SliderComponent("setting-vol-" + layer, label, 0, 100);
 			slider.setValue(sound.getVolume(layer) * 100);
-			slider.onchange = function(evt: Event) {
+			slider.addListener(function(evt: Event) {
 				sound.setVolume(layer, slider.getValue() / 100);
-			}
+			});
 			slider.addTo(col1);
 			this.sliders.push(slider);
 		}
