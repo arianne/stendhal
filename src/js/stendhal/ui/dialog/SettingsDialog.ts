@@ -244,16 +244,16 @@ export class SettingsDialog extends TabDialogContentComponent {
 	/**
 	 * Creates a select element.
 	 *
-	 * @param id
+	 * @param {string} id
 	 *   Identifier of element to retrieve.
-	 * @param cid
+	 * @param {string} ckey
 	 *   Configuration key associated with element.
-	 * @param tooltip
+	 * @param {string=} tooltip
 	 *   Optional popup tooltip text.
-	 * @param action
+	 * @param {Function=} action
 	 *   Action to execute when state changed.
-	 * @return
-	 *   `HTMLSelectElement`.
+	 * @returns {HTMLSelectElement}
+	 *   Select element.
 	 */
 	createSelectFromConfig(id: string, ckey: string, tooltip?: string, action?: Function): HTMLSelectElement {
 		const cvalue = stendhal.config.get(ckey);
