@@ -76,10 +76,6 @@ export abstract class Component extends ComponentBase {
 		// do nothing
 	};
 
-	public refresh() {
-		// inheriting classes can override
-	};
-
 	/**
 	 * Sets value for configuration to identify this component.
 	 *

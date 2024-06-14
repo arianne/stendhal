@@ -162,6 +162,7 @@ export class SettingsComponent extends WidgetComponent {
 				// assume default to be text or numeric
 				(this.componentElement as HTMLInputElement).value = value as string;
 		}
+		this.refresh();
 	}
 
 	/**

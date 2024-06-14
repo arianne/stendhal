@@ -59,6 +59,7 @@ export abstract class WidgetComponent extends ComponentBase {
 			if (this.onchange) {
 				this.onchange(evt);
 			}
+			this.refresh();
 		});
 	}
 

@@ -23,6 +23,13 @@ export abstract class ComponentBase {
 
 
 	/**
+	 * Instructions when component should be refreshed.
+	 */
+	public refresh() {
+		// does nothing in the implementation
+	};
+
+	/**
 	 * Adds as child to DOM element.
 	 *
 	 * @param parent {ui.toolkit.ComponentBase.ComponentBase|HTMLElement}
