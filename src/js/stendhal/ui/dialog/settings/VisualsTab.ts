@@ -64,12 +64,12 @@ export class VisualsTab extends AbstractSettingsTab {
 		}
 
 		const chkActivityInd = new SettingsComponent("chk_activityindicator", "Object activity indicator");
+		chkActivityInd.setTooltip("Display an indictor over certain interactive objects and corpses"
+				+ " that aren't empty");
 		chkActivityInd.setValue(indicateActivity);
-		chkActivityInd.componentElement.title = indicateActivity ? "Indicator will be drawn" : "Indicator will not be drawn";
 		chkActivityInd.onchange = (evt: Event) => {
 			indicateActivity = chkActivityInd.getValue() as boolean;
 			config.set("activity-indicator", indicateActivity);
-			chkActivityInd.componentElement.title = indicateActivity ? "Indicator will be drawn" : "Indicator will not be drawn";
 			chkAnimate.setEnabled(indicateActivity);
 			StandardMessages.changeNeedsRefresh();
 			parent.refresh();
@@ -79,11 +79,11 @@ export class VisualsTab extends AbstractSettingsTab {
 		chkAnimate.componentElement.classList.add("indented");
 
 		const chkParallax = new SettingsComponent("chk_parallax", "Parallax scrolling backgrounds");
+		chkParallax.setTooltip("Parallax scrolling enabled", "Parallax scrolling disabled");
 		chkParallax.setValue(config.getBoolean("effect.parallax"));
 		chkParallax.onchange = (evt: Event) => {
 			const enabled = chkParallax.getValue() as boolean;
 			config.set("effect.parallax", enabled);
-			chkParallax.componentElement.title = "Parallax scrolling " + (enabled ? "enabled" : "disabled");
 			StandardMessages.changeNeedsRefresh();
 			parent.refresh();
 		}

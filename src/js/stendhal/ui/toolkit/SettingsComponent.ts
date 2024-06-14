@@ -10,6 +10,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Tooltip } from "./Tooltip";
 import { WidgetComponent } from "./WidgetComponent";
 
 import { OptionsEnum } from "../../data/enum/OptionsEnum";
@@ -120,6 +121,12 @@ export class SettingsComponent extends WidgetComponent {
 		return componentElement;
 	}
 
+	override refresh() {
+		if (WidgetType.CHECK === this._type && this.tooltip) {
+			this.tooltip.setState(this.getValue() as boolean);
+		}
+	}
+
 	/**
 	 * Sets selected index.
 	 *
@@ -214,5 +221,17 @@ export class SettingsComponent extends WidgetComponent {
 		opt.value = value;
 		opt.textContent = label;
 		selectElement.appendChild(opt);
+	}
+
+	override setTooltip(tooltip: string|Tooltip, second?: string, primary=true) {
+		if (typeof(tooltip) === "string") {
+			let element = this.componentElement;
+			if (WidgetType.SELECT !== this._type) {
+				element = this.labelElement;
+			}
+			this.tooltip = new Tooltip(element, tooltip as string, second, primary);
+		} else {
+			this.tooltip = tooltip as Tooltip;
+		}
 	}
 }

@@ -10,6 +10,8 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Tooltip } from "./Tooltip";
+
 
 /**
  * Base component class.
@@ -20,6 +22,8 @@ export abstract class ComponentBase {
 	abstract componentElement: HTMLElement;
 	/** The parent `Component` of this one. Usually a floating window. */
 	parentComponent?: ComponentBase;
+	/** Help text. */
+	protected tooltip?: Tooltip;
 
 
 	/**
@@ -73,5 +77,24 @@ export abstract class ComponentBase {
 	 */
 	setEnabled(enabled: boolean) {
 		(this.componentElement as any).disabled = !enabled;
+	}
+
+	/**
+	 * Sets tooltip text for element.
+	 *
+	 * @param {string|Tooltip} tooltip
+	 *   Primary text or `Tooltip` object.
+	 * @param {string=} second
+	 *   Secondary text. Ignored if `tooltip` is `Tooltip` a object.
+	 * @param {boolean} [primary=true]
+	 *   Initial state. `true` for primary, `false` for secondary. Ignored if `tooltip` is a `Tooltip`
+	 *   object.
+	 */
+	setTooltip(tooltip: string|Tooltip, second?: string, primary=true) {
+		if (typeof(tooltip) === "string") {
+			this.tooltip = new Tooltip(this.componentElement, tooltip as string, second, primary);
+		} else {
+			this.tooltip = tooltip as Tooltip;
+		}
 	}
 }
