@@ -47,7 +47,7 @@ export class SliderComponent extends WidgetComponent {
 		this.labelElement.htmlFor = id;
 		this.labelElement.innerText = label;
 		const componentElement = document.createElement("input") as HTMLInputElement;
-		componentElement.type = this._type;
+		componentElement.type = this.type;
 		componentElement.id = id;
 		componentElement.min = ""+min;
 		componentElement.max = ""+max;

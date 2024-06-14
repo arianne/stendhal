@@ -39,20 +39,20 @@ export class SettingsComponent extends WidgetComponent {
 	 *   DOM element ID.
 	 * @param {string} label
 	 *   Text label to display.
-	 * @param {WidgetType} [_type=WidgetType.CHECK]
+	 * @param {WidgetType} [type=WidgetType.CHECK]
 	 *   The type of this component. E.g. check box, text input, etc.
 	 * @param {OptionsEnum} [options={}]
 	 *   Options for multi-select enumeration.
 	 * @param {boolean} [experimental=false]
 	 *   Marks this element to be hidden unless settings debugging is enabled.
 	 */
-	constructor(id: string, label: string, _type=WidgetType.CHECK, options: OptionsEnum={},
+	constructor(id: string, label: string, type=WidgetType.CHECK, options: OptionsEnum={},
 			experimental=false) {
-		super(_type);
+		super(type);
 		// create label first
 		this.labelElement = document.createElement("label") as HTMLLabelElement;
 
-		if (WidgetType.SELECT === _type) {
+		if (WidgetType.SELECT === type) {
 			this.componentElement = this.initSelect(id, label, options);
 		} else {
 			this.componentElement = this.initInput(id, label);
@@ -77,10 +77,10 @@ export class SettingsComponent extends WidgetComponent {
 	 */
 	private initInput(id: string, label: string): HTMLElement {
 		let componentElement: HTMLElement;
-		switch(this._type) {
+		switch(this.type) {
 			case WidgetType.CHECK:
 				this.labelElement.classList.add("checksetting");
-				const inputHTML = "<input type=\"" + this._type + "\" id=\"" + id + "\">";
+				const inputHTML = "<input type=\"" + this.type + "\" id=\"" + id + "\">";
 				this.labelElement.innerHTML = inputHTML + label;
 				componentElement = this.labelElement.querySelector("#" + id)!;
 				break;
@@ -89,7 +89,7 @@ export class SettingsComponent extends WidgetComponent {
 				this.labelElement.innerText = label;
 				componentElement = document.createElement("input");
 				const inputElement = (componentElement as HTMLInputElement);
-				inputElement.type = this._type;
+				inputElement.type = this.type;
 				inputElement.id = id;
 		}
 		return componentElement;
@@ -122,7 +122,7 @@ export class SettingsComponent extends WidgetComponent {
 	}
 
 	override refresh() {
-		if (WidgetType.CHECK === this._type && this.tooltip) {
+		if (WidgetType.CHECK === this.type && this.tooltip) {
 			this.tooltip.setState(this.getValue() as boolean);
 		}
 	}
@@ -134,8 +134,8 @@ export class SettingsComponent extends WidgetComponent {
 	 *   Index to set as selected.
 	 */
 	setSelected(idx: number) {
-		if (WidgetType.SELECT !== this._type) {
-			throw new Error("Settings component of type \"" + this._type
+		if (WidgetType.SELECT !== this.type) {
+			throw new Error("Settings component of type \"" + this.type
 					+ "\" does not support index selection");
 		}
 		const selectElement = this.componentElement as HTMLSelectElement;
@@ -155,7 +155,7 @@ export class SettingsComponent extends WidgetComponent {
 	 *   New value to be used.
 	 */
 	setValue(value: string|number|boolean) {
-		switch(this._type) {
+		switch(this.type) {
 			case WidgetType.SELECT:
 				const options = Array.from((this.componentElement as HTMLSelectElement).options)
 						.map(o => o.value);
@@ -184,7 +184,7 @@ export class SettingsComponent extends WidgetComponent {
 	 *   Component value.
 	 */
 	getValue(): string|number|boolean {
-		switch(this._type) {
+		switch(this.type) {
 			case WidgetType.SELECT:
 				// selected number index
 				return (this.componentElement as HTMLSelectElement).selectedIndex;
@@ -208,8 +208,8 @@ export class SettingsComponent extends WidgetComponent {
 	 *   Value the option represents.
 	 */
 	addOption(label: string, value="") {
-		if (WidgetType.SELECT !== this._type) {
-			throw new Error("Settings component of type \"" + this._type
+		if (WidgetType.SELECT !== this.type) {
+			throw new Error("Settings component of type \"" + this.type
 					+ "\" does not support adding selection options");
 		}
 		if (!value) {
@@ -223,11 +223,23 @@ export class SettingsComponent extends WidgetComponent {
 		selectElement.appendChild(opt);
 	}
 
-	override setTooltip(tooltip: string|Tooltip, second?: string, primary=true) {
+	/**
+	 * Applies tooltip text to HTML element.
+	 *
+	 * @param {string|Tooltip} tooltip
+	 *   Tooltip object or primary text.
+	 * @param {string=} second
+	 *   Optional secondary text.
+	 */
+	override setTooltip(tooltip: string|Tooltip, second?: string) {
 		if (typeof(tooltip) === "string") {
 			let element = this.componentElement;
-			if (WidgetType.SELECT !== this._type) {
+			if (WidgetType.SELECT !== this.type) {
 				element = this.labelElement;
+			}
+			let primary = true;
+			if (WidgetType.CHECK === this.type) {
+				primary = this.getValue() as boolean;
 			}
 			this.tooltip = new Tooltip(element, tooltip as string, second, primary);
 		} else {

@@ -27,10 +27,10 @@ export abstract class Component extends ComponentBase {
 	/**
 	 * Creates a new component.
 	 *
-	 * @param el
+	 * @param {string|HTMLElement} el
 	 *   DOM element or ID of HTML element or template.
-	 * @param themable
-	 *   Inherits theming visuals (default: `false`).
+	 * @param {boolean} [themable=false]
+	 *   Inherits theming visuals.
 	 */
 	constructor(el: string|HTMLElement, themable=false) {
 		super();

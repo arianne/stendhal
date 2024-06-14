@@ -29,7 +29,7 @@ export abstract class ComponentBase {
 	/**
 	 * Instructions when component should be refreshed.
 	 */
-	public refresh() {
+	refresh() {
 		// does nothing in the implementation
 	};
 

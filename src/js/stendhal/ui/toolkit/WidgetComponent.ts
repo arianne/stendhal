@@ -23,7 +23,7 @@ export abstract class WidgetComponent extends ComponentBase {
 	/** Text description. */
 	abstract labelElement: HTMLLabelElement;
 	/** Setting type. */
-	protected readonly _type: WidgetType;
+	protected readonly type: WidgetType;
 	/** Called when the settings state or value changes. */
 	public onchange?: Function;
 
@@ -33,12 +33,12 @@ export abstract class WidgetComponent extends ComponentBase {
 	/**
 	 * Creates a widget component.
 	 *
-	 * @param {WidgetType} _type
+	 * @param {WidgetType} type
 	 *   Widget type.
 	 */
-	constructor(_type: WidgetType) {
+	constructor(type: WidgetType) {
 		super();
-		this._type = _type;
+		this.type = type;
 	}
 
 	/**
@@ -75,7 +75,7 @@ export abstract class WidgetComponent extends ComponentBase {
 		const parentElement = isComponent ? this.parentComponent!.componentElement
 				: parent as HTMLElement;
 		parentElement.appendChild(this.labelElement);
-		if (WidgetType.CHECK !== this._type) {
+		if (WidgetType.CHECK !== this.type) {
 			// check box component element is already child of label
 			parentElement.appendChild(this.componentElement);
 		}
