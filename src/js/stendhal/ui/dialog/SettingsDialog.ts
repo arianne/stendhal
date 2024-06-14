@@ -17,6 +17,7 @@ import { SoundTab } from "./settings/SoundTab";
 import { VisualsTab } from "./settings/VisualsTab";
 
 import { TabDialogContentComponent } from "../toolkit/TabDialogContentComponent";
+import { Tooltip } from "../toolkit/Tooltip";
 
 import { Layout } from "../../data/enum/Layout";
 
@@ -146,9 +147,13 @@ export class SettingsDialog extends TabDialogContentComponent {
 
 		const chk = this.createCheckBoxSkel(id)!;
 		chk.checked = stendhal.config.getBoolean(setid);
-		const tt = new CheckTooltip(ttpos, ttneg);
-		if (chk.parentElement) {
-			chk.parentElement.title = tt.getValue(chk.checked);
+		let tt: Tooltip;
+		if (ttpos !== "") {
+			let element: any = chk;
+			if (chk.parentElement) {
+				element = chk.parentElement;
+			}
+			tt = new Tooltip(element, ttpos, ttneg !== "" ? ttneg : undefined, chk.checked);
 		}
 		if (!chk.disabled) {
 			chk.addEventListener("change", (e) => {
@@ -159,7 +164,9 @@ export class SettingsDialog extends TabDialogContentComponent {
 				} else {
 					stendhal.config.set(setid, chk.checked);
 				}
-				chk.parentElement!.title = tt.getValue(chk.checked);
+				if (tt) {
+					tt.setState(chk.checked);
+				}
 				if (action) {
 					action();
 				}
@@ -348,21 +355,5 @@ export class SettingsDialog extends TabDialogContentComponent {
 		});
 
 		return input;
-	}
-}
-
-
-class CheckTooltip {
-	private valueEnabled: string;
-	private valueDisabled: string;
-	constructor(e: string, d: string) {
-		this.valueEnabled = e;
-		this.valueDisabled = d;
-	}
-	public getValue(enabled: boolean): string {
-		if (enabled) {
-			return this.valueEnabled;
-		}
-		return this.valueDisabled;
 	}
 }
