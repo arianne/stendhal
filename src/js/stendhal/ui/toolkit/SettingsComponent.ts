@@ -16,6 +16,8 @@ import { WidgetComponent } from "./WidgetComponent";
 import { OptionsEnum } from "../../data/enum/OptionsEnum";
 import { WidgetType } from "../../data/enum/WidgetType";
 
+import { ConfigManager } from "../../util/ConfigManager";
+
 
 /**
  * Unthemed component representing a configuration setting.
@@ -154,7 +156,7 @@ export class SettingsComponent extends WidgetComponent {
 	 * @param {string|number|boolean} value
 	 *   New value to be used.
 	 */
-	setValue(value: string|number|boolean) {
+	override setValue(value: string|number|boolean) {
 		switch(this.type) {
 			case WidgetType.SELECT:
 				const options = Array.from((this.componentElement as HTMLSelectElement).options)
@@ -183,7 +185,7 @@ export class SettingsComponent extends WidgetComponent {
 	 * @returns {string|number|boolean}
 	 *   Component value.
 	 */
-	getValue(): string|number|boolean {
+	override getValue(): string|number|boolean {
 		switch(this.type) {
 			case WidgetType.SELECT:
 				// selected number index
@@ -197,6 +199,20 @@ export class SettingsComponent extends WidgetComponent {
 				// text value
 				return (this.componentElement as HTMLInputElement).value;
 		}
+	}
+
+	override setConfigId(cid: string) {
+		switch (this.type) {
+			case WidgetType.SELECT:
+				this.setValue(ConfigManager.get().getInt(cid));
+				break;
+			case WidgetType.CHECK:
+				this.setValue(ConfigManager.get().getBoolean(cid));
+				break;
+			default:
+				this.setValue(ConfigManager.get().get(cid) as string);
+		}
+		this.setConfigListener(cid);
 	}
 
 	/**

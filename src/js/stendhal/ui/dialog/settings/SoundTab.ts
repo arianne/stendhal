@@ -38,12 +38,10 @@ export class SoundTab extends AbstractSettingsTab {
 
 		// TODO: add DOM element creation to `SettingsDialog.createCheckBox`
 		const chkSound = new SettingsComponent("chk_sound", "Enable sound");
-		chkSound.setValue(soundEnabled);
+		chkSound.setConfigId("sound");
 		chkSound.addListener((evt: Event) => {
-			soundEnabled = chkSound.getValue() as boolean;
-			config.set("sound", soundEnabled);
 			sound.onStateChanged();
-			this.setSlidersEnabled(soundEnabled);
+			this.setSlidersEnabled(config.getBoolean("sound"));
 		});
 		chkSound.addTo(col1);
 

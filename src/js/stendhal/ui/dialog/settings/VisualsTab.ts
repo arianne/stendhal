@@ -51,26 +51,20 @@ export class VisualsTab extends AbstractSettingsTab {
 		parent.createCheckBox("chk_clickindicator", "click-indicator",
 				"Displaying clicks", "Not displaying clicks");
 
-		let indicateActivity = config.getBoolean("activity-indicator");
-		let animate = config.getBoolean("activity-indicator.animate");
 		const chkAnimate = new SettingsComponent("chk_animate", "Animate");
-		chkAnimate.setValue(animate);
-		chkAnimate.setEnabled(indicateActivity);
+		chkAnimate.setConfigId("activity-indicator.animate");
+		chkAnimate.setEnabled(config.getBoolean("activity-indicator"));
 		chkAnimate.addListener((evt: Event) => {
-			animate = chkAnimate.getValue() as boolean;
-			config.set("activity-indicator.animate", animate);
 			StandardMessages.changeNeedsRefresh();
 			parent.refresh();
 		});
 
 		const chkActivityInd = new SettingsComponent("chk_activityindicator", "Object activity indicator");
+		chkActivityInd.setConfigId("activity-indicator");
 		chkActivityInd.setTooltip("Display an indictor over certain interactive objects and corpses"
 				+ " that aren't empty");
-		chkActivityInd.setValue(indicateActivity);
 		chkActivityInd.addListener((evt: Event) => {
-			indicateActivity = chkActivityInd.getValue() as boolean;
-			config.set("activity-indicator", indicateActivity);
-			chkAnimate.setEnabled(indicateActivity);
+			chkAnimate.setEnabled(chkActivityInd.getValue() as boolean);
 			StandardMessages.changeNeedsRefresh();
 			parent.refresh();
 		});
@@ -80,10 +74,8 @@ export class VisualsTab extends AbstractSettingsTab {
 
 		const chkParallax = new SettingsComponent("chk_parallax", "Parallax scrolling backgrounds");
 		chkParallax.setTooltip("Parallax scrolling enabled", "Parallax scrolling disabled");
-		chkParallax.setValue(config.getBoolean("effect.parallax"));
+		chkParallax.setConfigId("effect.parallax");
 		chkParallax.addListener((evt: Event) => {
-			const enabled = chkParallax.getValue() as boolean;
-			config.set("effect.parallax", enabled);
 			StandardMessages.changeNeedsRefresh();
 			parent.refresh();
 		});

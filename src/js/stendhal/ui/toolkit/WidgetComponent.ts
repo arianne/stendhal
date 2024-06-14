@@ -14,6 +14,8 @@ import { ComponentBase } from "./ComponentBase";
 
 import { WidgetType } from "../../data/enum/WidgetType";
 
+import { ConfigManager } from "../../util/ConfigManager";
+
 
 /**
  * Represents a component for configuring values.
@@ -124,5 +126,45 @@ export abstract class WidgetComponent extends ComponentBase {
 			// check box component element is already child of label
 			parentElement.appendChild(this.componentElement);
 		}
+	}
+
+	/**
+	 * Sets value of component element.
+	 *
+	 * @param {string|number|boolean} value
+	 *   New value to be used.
+	 */
+	abstract setValue(value: string|number|boolean): void;
+
+	/**
+	 * Retrieves current value of component.
+	 *
+	 * @returns {string|number|boolean}
+	 *   Component value.
+	 */
+	abstract getValue(): string|number|boolean;
+
+	/**
+	 * Updates value from configuration ID & adds listener to update configuration when value changes.
+	 *
+	 * @param {string} cid
+	 *   Configuration ID.
+	 */
+	setConfigId(cid: string) {
+		this.setValue(ConfigManager.get().get(cid) as string);
+		this.setConfigListener(cid);
+	}
+
+	/**
+	 * Adds listener to update configuration when value changes.
+	 *
+	 * @param {string} cid
+	 *   Configuration ID.
+	 */
+	protected setConfigListener(cid: string) {
+		// needs to be first listener called
+		this.insertListener(0, (evt: Event) => {
+			ConfigManager.get().set(cid, this.getValue());
+		});
 	}
 }

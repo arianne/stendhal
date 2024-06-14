@@ -14,6 +14,8 @@ import { WidgetComponent } from "./WidgetComponent";
 
 import { WidgetType } from "../../data/enum/WidgetType";
 
+import { ConfigManager } from "../../util/ConfigManager";
+
 
 /**
  * Unthemed component representing a slider widget and its label.
@@ -66,7 +68,7 @@ export class SliderComponent extends WidgetComponent {
 	 * @param {number} value
 	 *   Current value.
 	 */
-	public setValue(value: number) {
+	override setValue(value: number) {
 		(this.componentElement as HTMLInputElement).value = ""+value;
 	}
 
@@ -76,7 +78,12 @@ export class SliderComponent extends WidgetComponent {
 	 * @returns {number}
 	 *   Current value.
 	 */
-	public getValue(): number {
+	override getValue(): number {
 		return parseInt((this.componentElement as HTMLInputElement).value, 10);
+	}
+
+	override setConfigId(cid: string) {
+		this.setValue(ConfigManager.get().getInt(cid));
+		this.setConfigListener(cid);
 	}
 }
