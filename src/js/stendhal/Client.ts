@@ -39,6 +39,7 @@ import { SingletonFloatingWindow } from "./ui/toolkit/SingletonFloatingWindow";
 
 import { Chat } from "./util/Chat";
 import { DialogHandler } from "./util/DialogHandler";
+import { Globals } from "./util/Globals";
 
 
 /**
@@ -145,6 +146,8 @@ export class Client {
 		stendhal.ui.viewport = singletons.getViewPort();
 		// alias for backward-compat until changed in all source
 		stendhal.ui.gamewindow = stendhal.ui.viewport;
+
+		stendhal.ui.getMenuStyle = Globals.getMenuStyle;
 	}
 
 	/**

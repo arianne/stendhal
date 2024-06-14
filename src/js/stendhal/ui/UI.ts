@@ -166,7 +166,7 @@ class UI {
 	 * Instructions to execute when menu style changes.
 	 */
 	public onMenuUpdate() {
-		switch (stendhal.config.get("menu.style")) {
+		switch (stendhal.ui.getMenuStyle()) {
 			case "traditional":
 				document.getElementById("menupanel")!.style["display"] = "";
 				QuickMenu.setVisible(false);

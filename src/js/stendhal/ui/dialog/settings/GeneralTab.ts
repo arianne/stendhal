@@ -28,6 +28,8 @@ import { PlayerStatsComponent } from "../../component/PlayerStatsComponent";
 
 import { singletons } from "../../../SingletonRepo";
 
+import { Globals } from "../../../util/Globals";
+
 
 export class GeneralTab extends AbstractSettingsTab {
 
@@ -175,6 +177,8 @@ export class GeneralTab extends AbstractSettingsTab {
 				function(e: Event) {
 					ui.onMenuUpdate();
 				});
+		const menuStyleElement = this.child("#selmenustyle")! as HTMLSelectElement;
+		menuStyleElement.selectedIndex = Globals.getMenuStyle() === "traditional" ? 0 : 1;
 
 		// common chat keyword options
 		const txt_chatopts = parent.createTextInput("txtchatopts", config.get("chat-opts.custom")!,
