@@ -982,7 +982,7 @@
 
 	<creature name="polar bear">
 		<type class="animal" subclass="polar_bear" tileid="animal.png:3"/>
-		<description></description>
+		<description>You see a polar bear which lives in the icy desert. Beware! It can take you down with its powerful claws!</description>
 		<attributes>
 			<atk value="225"/>
 			<def value="51"/>
