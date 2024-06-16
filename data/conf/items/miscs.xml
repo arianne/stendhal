@@ -328,7 +328,7 @@
 
 	<item name="pelt">
 		<type class="misc" subclass="pelt" tileid="-1"/>
-		<description/>
+		<description>You see a pelt of animal skin. It's used to make clothes and leather armor.</description>
 		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
 		<attributes>
 			<quantity value="1"/>
