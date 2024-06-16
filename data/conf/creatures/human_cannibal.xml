@@ -70,7 +70,7 @@
 
 	<creature name="elder cannibal">
 		<type class="human" subclass="elder_cannibal" tileid="human_cannibal.png:2"/>
-		<description/>
+		<description>You see an elder cannibal. For years it has eaten humans. It will not stop until its hunger is satisfied.</description>
 		<attributes>
 			<atk value="315"/>
 			<def value="111"/>
