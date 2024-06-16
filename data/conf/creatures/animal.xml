@@ -205,7 +205,7 @@
 
 	<creature name="giant killer bat">
 		<type class="animal" subclass="bat_giant_red" tileid="animal.png:6"/>
-		<description></description>
+		<description>You see a giant killer bat. As if small wasn't pesky enough, these giant ones are capable of taking down anyone who dares come before them.</description>
 		<attributes>
 			<atk value="752"/>
 			<def value="161"/>
