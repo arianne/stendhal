@@ -6,6 +6,7 @@ Changelog
 
 *world*
 - House Buying displays under open quests when taxes owed
+- added music to Athor Island
 
 *web client*
 - added visuals tab to settings dialog

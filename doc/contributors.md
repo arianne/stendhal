@@ -996,6 +996,8 @@ The following people released their work to the public with a suitable license f
 * [Hawkeye_Sprout](https://freesound.org/people/Hawkeye_Sprout/)
 * [YuriNikolai](https://opengameart.org/users/yurinikolai)
 * [Inchadney](http://inchadney.com/sounds.html)
+* [Bart Kelsey](https://opengameart.org/users/bart)
+* [David Kvistorf (fluffclipse)](https://soundcloud.com/david-kvistorf)
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
