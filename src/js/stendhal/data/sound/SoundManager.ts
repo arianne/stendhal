@@ -633,9 +633,18 @@ export class SoundManager {
 	 *   Volume level adjusted with "master" & associated layer.
 	 */
 	private getAdjustedVolume(layerName: string, volBase: number): number {
-		let volActual = volBase * stendhal.config.getFloat("sound.master.volume");
-		const lvol = stendhal.config.getFloat("sound." + layerName + ".volume");
-		if (typeof(lvol) !== "number") {
+		let volActual = stendhal.config.getInt("sound.master.volume");
+		if (typeof(volActual) === "number") {
+			// convert to float in range between 0-1
+			volActual /= 100;
+		} else {
+			volActual = 1;
+		}
+		let lvol = stendhal.config.getInt("sound." + layerName + ".volume");
+		if (typeof(lvol) === "number") {
+			// convert to float in range between 0-1
+			lvol /= 100;
+		} else {
 			console.warn("cannot adjust volume for layer \"" + layerName + "\"");
 			return volActual;
 		}
@@ -667,12 +676,15 @@ export class SoundManager {
 	 *   `true` if volume level was set.
 	 */
 	setVolume(layerName: string, vol: number): boolean {
-		const volOld = stendhal.config.getFloat("sound." + layerName + ".volume");
-		if (typeof(volOld) === "undefined" || volOld === "") {
+		let volOld = stendhal.config.getInt("sound." + layerName + ".volume");
+		if (typeof(volOld) === "number") {
+			// convert to float in range between 0-1
+			volOld /= 100;
+		} else {
 			return false;
 		}
 
-		stendhal.config.set("sound." + layerName + ".volume", this.normVolume(vol));
+		stendhal.config.set("sound." + layerName + ".volume", Math.floor(this.normVolume(vol) * 100));
 
 		const layerSet = layerName === "master" ? this.layers : [layerName];
 		for (const l of layerSet) {
@@ -707,12 +719,13 @@ export class SoundManager {
 	 *   Current volume level of layer (returns 1 on error).
 	 */
 	getVolume(layerName="master"): number {
-		let vol = stendhal.config.getFloat("sound." + layerName + ".volume");
+		// NOTE: config value is integer in range between 0-100
+		let vol = stendhal.config.getInt("sound." + layerName + ".volume");
 		if (typeof(vol) === "undefined" || isNaN(vol) || !isFinite(vol)) {
 			console.warn("could not get volume for channel \"" + layerName + "\"");
 			return 1;
 		}
-		return this.normVolume(vol);
+		return this.normVolume(vol / 100);
 	}
 
 	/**
@@ -757,8 +770,11 @@ export class SoundManager {
 	 */
 	onConfigUpdate() {
 		for (const layerName of ["master", ...this.layers]) {
-			let vol = stendhal.config.getFloat("sound." + layerName + ".volume");
-			if (typeof(vol) !== "number") {
+			let vol = stendhal.config.getInt("sound." + layerName + ".volume");
+			if (typeof(vol) === "number") {
+				// convert to float in range between 0-1
+				vol /= 100;
+			} else {
 				console.warn("Unrecognized volume value for layer \"" + layerName + "\":", vol);
 				// default to 100%
 				vol = 1.0;

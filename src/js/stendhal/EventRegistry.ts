@@ -370,6 +370,7 @@ export class EventRegistry {
 				var volume = 1;
 				// Adjust by the server specified volume, if any
 				if (this.hasOwnProperty("volume")) {
+					// NOTE: server uses int in range 1-100 while HTMLAudioElement uses float in range 0-1
 					volume *= parseInt(this["volume"], 10) / 100;
 				}
 				var radius = parseInt(this["radius"], 10);
