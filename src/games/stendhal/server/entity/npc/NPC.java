@@ -366,6 +366,14 @@ public abstract class NPC extends DressedEntity {
 		pauseTurnsRemaining = pauseTurns;
 	}
 
+	@Override
+	protected void onMoved(final int oldX, final int oldY, final int newX, final int newY) {
+		super.onMoved(oldX, oldY, newX, newY);
+		if (idler != null) {
+			idler.onMoved(this);
+		}
+	}
+
 	/**
 	 * Pause the entity when path is completed.
 	 * Call setDirection() first to specify which
