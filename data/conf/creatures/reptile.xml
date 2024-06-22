@@ -236,7 +236,7 @@
 		</equips>
 		<ai>
 			<profile name="animal"/>
-			<profile name="patrolling"/>
+			<profile name="wander"/>
 		</ai>
 	</creature>
 
