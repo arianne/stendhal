@@ -68,7 +68,7 @@ export class FacingHandler {
 		// default is down
 		let dir = FacingHandler.DOWN;
 		if (marauroa.me) {
-			dir = parseInt(marauroa.me.dir, 10);
+			dir = marauroa.me.getFaceDirection().val;
 			dir = dir >= FacingHandler.LOWEST && dir <= FacingHandler.HIGHEST ? dir : FacingHandler.DOWN;
 		}
 		return Direction.VALUES[dir];
