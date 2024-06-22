@@ -14,7 +14,32 @@ package games.stendhal.server.entity.creature.impl.idle;
 
 import games.stendhal.server.entity.creature.Creature;
 
+
 public interface IdleBehaviour {
 
 	void perform(Creature creature);
+
+	/**
+	 * Can be called to execute tile collision behavior.
+	 *
+	 * @param creature
+	 *   Entity being acted on.
+	 * @param nx
+	 *   Horizontal position where entity collides.
+	 * @param ny
+	 *   Vertical position where entity collides.
+	 * @return
+	 *   {@code true} if collision handling should not propagate.
+	 */
+	boolean handleSimpleCollision(Creature creature, int nx, int ny);
+
+	/**
+	 * Can be called to execute entity collision behavior.
+	 *
+	 * @param creature
+	 *   Entity being acted on.
+	 * @return
+	 *   {@code true} if collision handling should not propagate.
+	 */
+	boolean handleObjectCollision(Creature creature);
 }

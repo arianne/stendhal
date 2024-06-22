@@ -18,4 +18,14 @@ public abstract class AbstractIdleBehaviour implements IdleBehaviour {
 
 	@Override
 	public abstract void perform(Creature creature);
+
+	@Override
+	public boolean handleSimpleCollision(Creature creature, int nx, int ny) {
+		return false;
+	}
+
+	@Override
+	public boolean handleObjectCollision(Creature creature) {
+		return false;
+	}
 }
