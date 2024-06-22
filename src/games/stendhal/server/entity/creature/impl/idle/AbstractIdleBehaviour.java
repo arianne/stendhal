@@ -25,6 +25,11 @@ public abstract class AbstractIdleBehaviour implements IdleBehaviour {
 	}
 
 	@Override
+	public void reset() {
+		// does nothing in this implementation
+	}
+
+	@Override
 	public boolean handleSimpleCollision(Creature creature, int nx, int ny) {
 		return false;
 	}

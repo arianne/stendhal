@@ -28,6 +28,11 @@ public interface IdleBehaviour {
 	void onMoved(Creature creature);
 
 	/**
+	 * There may be need to reset certain attributes.
+	 */
+	void reset();
+
+	/**
 	 * Can be called to execute tile collision behavior.
 	 *
 	 * @param creature
