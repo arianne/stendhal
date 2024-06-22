@@ -23,6 +23,8 @@ public class IdleBehaviourFactory {
 			return new Patroller();
 		} else if (aiProfiles.containsKey("camouflage")) {
 			return new CamouflagedIdleBehaviour();
+		} else if (aiProfiles.containsKey("wander")) {
+			return new WanderIdleBehaviour();
 		}
 		return nothing;
 	}
