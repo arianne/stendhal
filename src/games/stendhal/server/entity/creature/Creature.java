@@ -137,7 +137,7 @@ public class Creature extends NPC {
 
 	private final int attackTurn = Rand.rand(5);
 
-	private boolean isIdle;
+	private boolean isIdle = true;
 
 	/** The type of the damage this creature does */
 	private Nature damageType = Nature.CUT;
@@ -915,6 +915,10 @@ public class Creature extends NPC {
 		healer.heal(this);
 		if (!this.getZone().getPlayerAndFriends().isEmpty()) {
 			if (strategy.hasValidTarget(this)) {
+				if (idler != null) {
+					// disable stop/direction queues so creature doesn't stop chasing
+					idler.reset();
+				}
 				strategy.getBetterAttackPosition(this);
 				this.applyMovement();
 				if (strategy.canAttackNow(this)) {
