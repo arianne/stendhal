@@ -178,6 +178,11 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 
 	private AchievementBoxFactory achievementBoxFactory;
 
+	/**
+	 * Callback for instructions to execute when scene drawing is complete for a cycle.
+	 */
+	public SceneCompleteRunnable onSceneComplete;
+
 	/** the singleton instance. */
 	private static GameScreen screen;
 
@@ -590,6 +595,10 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 		// Don't scale text to keep it readable
 		drawText(g2d);
 		drawEmojis(g2d);
+
+		if (onSceneComplete != null) {
+			onSceneComplete.run(g2d, 0, 0);
+		}
 
 		paintOffLineIfNeeded(g2d);
 
@@ -1048,5 +1057,13 @@ public final class GameScreen extends JComponent implements IGameScreen, DropTar
 	@Override
 	public boolean canAccept(IEntity entity) {
 		return (entity instanceof Item) || (entity instanceof Corpse);
+	}
+
+
+	/**
+	 * Class for executing instructions after scene is complete in a draw cycle.
+	 */
+	public static abstract class SceneCompleteRunnable {
+		public abstract void run(Graphics2D ctx, int offsetX, int offsetY);
 	}
 }

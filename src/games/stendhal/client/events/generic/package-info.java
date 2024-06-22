@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2024 - Stendhal                    *
+ *                    Copyright © 2024 - Faiumoni e. V.                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -9,22 +9,4 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.common;
-
-/**
- * General constants.
- */
-public final class Constants {
-	/**
-	 * All the slots considered to be "with" the entity. Listed in priority
-	 * order (i.e. bag first).
-	 */
-	// TODO: let the slots decide that themselves
-	public static final String[] CARRYING_SLOTS = {
-			"pouch", "bag", "keyring", "portfolio", "back", "belt", "head", "rhand", "lhand", "armor", "finger", "cloak",
-			"legs", "feet"
-	};
-
-	/** Distance at which entity sounds can be heard. */
-	public static final int DEFAULT_SOUND_RADIUS = 23;
-}
+package games.stendhal.client.events.generic;

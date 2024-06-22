@@ -30,6 +30,9 @@ import { ui } from "../../ui/UI";
  */
 export class SoundManager {
 
+	/** Distance at which entity sounds can be heard. */
+	public static readonly DEFAULT_RADIUS = 23;
+
 	/** Layer names & ordering. */
 	readonly layers: string[];
 	/** Session cache. */

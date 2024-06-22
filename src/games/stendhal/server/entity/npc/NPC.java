@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Marauroa                    *
+ *                   (C) Copyright 2003-2024 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,8 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
+
+import static games.stendhal.common.Constants.DEFAULT_SOUND_RADIUS;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,10 +44,6 @@ public abstract class NPC extends DressedEntity {
 	 * specified sounds.
 	 */
 	private static final int SOUND_PROBABILITY = 20;
-	/**
-	 * Creature sound radius.
-	 */
-	protected static final int SOUND_RADIUS = 23;
 	/**
 	 * Minimum delay in milliseconds between playing creature sounds.
 	 */
@@ -384,7 +382,8 @@ public abstract class NPC extends DressedEntity {
 			long time = System.currentTimeMillis();
 			if (lastSoundTime + SOUND_DEAD_TIME < time) {
 				lastSoundTime = time;
-				this.addEvent(new SoundEvent(Rand.rand(sounds), SOUND_RADIUS, 100, SoundLayer.CREATURE_NOISE));
+				this.addEvent(new SoundEvent(Rand.rand(sounds), DEFAULT_SOUND_RADIUS, 100,
+						SoundLayer.CREATURE_NOISE));
 				this.notifyWorldAboutChanges();
 			}
 		}
