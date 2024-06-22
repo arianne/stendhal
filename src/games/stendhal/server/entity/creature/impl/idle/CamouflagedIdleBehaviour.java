@@ -11,6 +11,8 @@
 package games.stendhal.server.entity.creature.impl.idle;
 
 import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.entity.npc.behaviour.impl.idle.AbstractIdleBehaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.idle.IdleBehaviour;
 
 
 /**

@@ -9,7 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.creature.impl.idle;
+package games.stendhal.server.entity.npc.behaviour.impl.idle;
 
 import games.stendhal.server.entity.npc.NPC;
 

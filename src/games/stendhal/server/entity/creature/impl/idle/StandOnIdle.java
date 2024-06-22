@@ -16,6 +16,7 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.entity.npc.behaviour.impl.idle.AbstractIdleBehaviour;
 
 
 public class StandOnIdle extends AbstractIdleBehaviour {
