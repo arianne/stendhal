@@ -3248,6 +3248,21 @@ public class Player extends DressedEntity implements UseListener {
 	}
 
 	/**
+	 * Retrieves amount to apply to player ATK to adjust hit chance.
+	 *
+	 * @return
+	 *   Value of player ATK multiplied by percentage defined in item "accuracy_bonus" attribute.
+	 */
+	private int getAccuracyBonus() {
+		double accBonus = 0;
+		for (final Item equip: getAllEquipment()) {
+			accBonus += equip.has("accuracy_bonus") ? (equip.getDouble("accuracy_bonus") / 100) : 0;
+		}
+		// base on raw uncapped value
+		return (int) Math.round(this.atk * accBonus);
+	}
+
+	/**
 	 * This handicap increases chance that a player can hit an enemy to
 	 * make the game feel more fair. Hit chance is based on raw atk stat,
 	 * which is much higher for creatues. In order to avoid drastic
@@ -3259,7 +3274,8 @@ public class Player extends DressedEntity implements UseListener {
 	protected int calculateRiskForCanHit(final int roll, final int defenderDEF,
 			final int attackerATK) {
 		// use 30 as multiple for players instead of 20
-		return ((int) Math.round(HIT_CHANCE_MULTIPLIER * 1.5)) * attackerATK - roll * defenderDEF;
+		return ((int) Math.round(HIT_CHANCE_MULTIPLIER * 1.5)) * (attackerATK + this.getAccuracyBonus())
+				- roll * defenderDEF;
 	}
 
 	/**
