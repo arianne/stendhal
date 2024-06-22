@@ -619,6 +619,10 @@ export class SoundManager {
 	 *   Normalized volume level between 0.0 and 1.0.
 	 */
 	private normVolume(vol: number): number {
+		if (isNaN(vol) || !isFinite(vol)) {
+			console.warn("Tried to set invalid volume level: " + vol, new Error());
+			vol = 1;
+		}
 		return vol < 0 ? 0 : vol > 1 ? 1 : vol;
 	}
 
