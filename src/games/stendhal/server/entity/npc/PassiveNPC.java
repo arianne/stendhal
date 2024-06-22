@@ -130,6 +130,9 @@ public abstract class PassiveNPC extends NPC {
 
 	@Override
 	protected void handleObjectCollision() {
+		if (isIdle && idler != null && idler.handleObjectCollision(this)) {
+			return;
+		}
 		if (pathIsBlocked()) {
 			stop();
 			return;
@@ -150,6 +153,9 @@ public abstract class PassiveNPC extends NPC {
 
 	@Override
 	protected void handleSimpleCollision(final int nx, final int ny) {
+		if (isIdle && idler != null && idler.handleSimpleCollision(this, nx, ny)) {
+			return;
+		}
 		CollisionAction action = getCollisionAction();
 		if (!ignoresCollision()) {
 			if (usesRandomPath()) {

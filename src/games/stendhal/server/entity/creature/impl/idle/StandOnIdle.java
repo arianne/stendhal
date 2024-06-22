@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,11 +15,12 @@ package games.stendhal.server.entity.creature.impl.idle;
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.npc.NPC;
+
 
 public class StandOnIdle extends AbstractIdleBehaviour {
 	@Override
-	public void perform(final Creature creature) {
+	public void perform(final NPC creature) {
 		retreatUnderFire(creature);
 	}
 
@@ -29,7 +30,7 @@ public class StandOnIdle extends AbstractIdleBehaviour {
 	 * @param creature The creature that should try to retreat.
 	 * @return <code>true</code> if trying to escape, <code>false</code> if retreatin is not needed
 	 */
-	protected boolean retreatUnderFire(final Creature creature) {
+	protected boolean retreatUnderFire(final NPC creature) {
 		for (RPEntity attacker : creature.getAttackingRPEntities()) {
 			if (attacker.canDoRangeAttack(creature, attacker.getMaxRangeForArcher())) {
 				retreat(creature, attacker);
@@ -49,7 +50,7 @@ public class StandOnIdle extends AbstractIdleBehaviour {
 	 * @param creature The creature that tries to retreat.
 	 * @param enemy The enemy to run away from.
 	 */
-	private void retreat(final Creature creature, final Entity enemy) {
+	private void retreat(final NPC creature, final Entity enemy) {
 		creature.clearPath();
 		creature.faceToward(enemy);
 		creature.setDirection(creature.getDirection().oppositeDirection());

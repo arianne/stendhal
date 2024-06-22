@@ -29,6 +29,7 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.DressedEntity;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.creature.impl.idle.IdleBehaviour;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.events.SoundEvent;
 import marauroa.common.game.Definition;
@@ -80,6 +81,11 @@ public abstract class NPC extends DressedEntity {
 	private List<String> sounds;
 	/** The time stamp of previous sound event. */
 	private long lastSoundTime;
+
+	protected IdleBehaviour idler;
+	// considered idle by default
+	protected boolean isIdle = true;
+
 
 	public static void generateRPClass() {
 		try {
@@ -408,5 +414,21 @@ public abstract class NPC extends DressedEntity {
 			logger.warn("Failed to change entity's direction");
 		}
 		setDirection(newDir);
+	}
+
+	@Override
+	protected void handleSimpleCollision(final int nx, final int ny) {
+		if (isIdle && idler != null && idler.handleSimpleCollision(this, nx, ny)) {
+			return;
+		}
+		super.handleSimpleCollision(nx, ny);
+	}
+
+	@Override
+	protected void handleObjectCollision() {
+		if (isIdle && idler != null && idler.handleObjectCollision(this)) {
+			return;
+		}
+		super.handleObjectCollision();
 	}
 }

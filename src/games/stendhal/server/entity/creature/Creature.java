@@ -45,7 +45,6 @@ import games.stendhal.server.entity.creature.impl.attack.AttackStrategy;
 import games.stendhal.server.entity.creature.impl.attack.AttackStrategyFactory;
 import games.stendhal.server.entity.creature.impl.heal.HealerBehavior;
 import games.stendhal.server.entity.creature.impl.heal.HealerBehaviourFactory;
-import games.stendhal.server.entity.creature.impl.idle.IdleBehaviour;
 import games.stendhal.server.entity.creature.impl.idle.IdleBehaviourFactory;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
@@ -129,15 +128,12 @@ public class Creature extends NPC {
 	private int respawnTime;
 
 	private Map<String, String> aiProfiles;
-	private IdleBehaviour idler;
 
 	private int targetX;
 
 	private int targetY;
 
 	private final int attackTurn = Rand.rand(5);
-
-	private boolean isIdle = true;
 
 	/** The type of the damage this creature does */
 	private Nature damageType = Nature.CUT;
@@ -1192,21 +1188,5 @@ public class Creature extends NPC {
 			return false;
 		}
 		return getZone() == player.getZone();
-	}
-
-	@Override
-	protected void handleSimpleCollision(final int nx, final int ny) {
-		if (isIdle && idler != null && idler.handleSimpleCollision(this, nx, ny)) {
-			return;
-		}
-		super.handleSimpleCollision(nx, ny);
-	}
-
-	@Override
-	protected void handleObjectCollision() {
-		if (isIdle && idler != null && idler.handleObjectCollision(this)) {
-			return;
-		}
-		super.handleObjectCollision();
 	}
 }

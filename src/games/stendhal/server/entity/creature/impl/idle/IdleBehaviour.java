@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,20 +12,20 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature.impl.idle;
 
-import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.npc.NPC;
 
 
 public interface IdleBehaviour {
 
-	void perform(Creature creature);
+	void perform(NPC npc);
 
 	/**
 	 * Called when entity's position has changed.
 	 *
-	 * @param creature
+	 * @param npc
 	 *   Moving entity.
 	 */
-	void onMoved(Creature creature);
+	void onMoved(NPC npc);
 
 	/**
 	 * There may be need to reset certain attributes.
@@ -35,7 +35,7 @@ public interface IdleBehaviour {
 	/**
 	 * Can be called to execute tile collision behavior.
 	 *
-	 * @param creature
+	 * @param npc
 	 *   Entity being acted on.
 	 * @param nx
 	 *   Horizontal position where entity collides.
@@ -44,15 +44,15 @@ public interface IdleBehaviour {
 	 * @return
 	 *   {@code true} if collision handling should not propagate.
 	 */
-	boolean handleSimpleCollision(Creature creature, int nx, int ny);
+	boolean handleSimpleCollision(NPC npc, int nx, int ny);
 
 	/**
 	 * Can be called to execute entity collision behavior.
 	 *
-	 * @param creature
+	 * @param npc
 	 *   Entity being acted on.
 	 * @return
 	 *   {@code true} if collision handling should not propagate.
 	 */
-	boolean handleObjectCollision(Creature creature);
+	boolean handleObjectCollision(NPC npc);
 }

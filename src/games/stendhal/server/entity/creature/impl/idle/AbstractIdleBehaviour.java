@@ -11,16 +11,16 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature.impl.idle;
 
-import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.npc.NPC;
 
 
 public abstract class AbstractIdleBehaviour implements IdleBehaviour {
 
 	@Override
-	public abstract void perform(Creature creature);
+	public abstract void perform(NPC npc);
 
 	@Override
-	public void onMoved(Creature creature) {
+	public void onMoved(NPC npc) {
 		// does nothing in this implementation
 	}
 
@@ -30,12 +30,12 @@ public abstract class AbstractIdleBehaviour implements IdleBehaviour {
 	}
 
 	@Override
-	public boolean handleSimpleCollision(Creature creature, int nx, int ny) {
+	public boolean handleSimpleCollision(NPC npc, int nx, int ny) {
 		return false;
 	}
 
 	@Override
-	public boolean handleObjectCollision(Creature creature) {
+	public boolean handleObjectCollision(NPC npc) {
 		return false;
 	}
 }

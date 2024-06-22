@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2012 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -13,7 +13,7 @@
 package games.stendhal.server.entity.creature.impl.idle;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.npc.NPC;
 
 class Patroller extends StandOnIdle {
 	private int minX;
@@ -26,7 +26,7 @@ class Patroller extends StandOnIdle {
 	 *
 	 * @param creature
 	 */
-	private void initArea(final Creature creature) {
+	private void initArea(final NPC creature) {
 		minX = creature.getX() - 3;
 		maxX = creature.getX() + 2 + (int) (creature.getWidth());
 		minY = creature.getY() - 3;
@@ -34,7 +34,7 @@ class Patroller extends StandOnIdle {
 	}
 
 	@Override
-	public void perform(final Creature creature) {
+	public void perform(final NPC creature) {
 		if (!creature.getZone().getPlayerAndFriends().isEmpty()) {
 			if (creature.hasPath()) {
 				creature.followPath();
@@ -86,7 +86,7 @@ class Patroller extends StandOnIdle {
 	 * @return <code>true</code> if the creature would leave the area,
 	 * 	<code>false</code> otherwise
 	 */
-	private boolean weWouldLeaveArea(final Creature creature, final Direction d) {
+	private boolean weWouldLeaveArea(final NPC creature, final Direction d) {
 		return (creature.getY() + d.getdy() < minY)
 				|| (creature.getY() + d.getdy() > maxY)
 				|| (creature.getX() + d.getdx() < minX)

@@ -13,7 +13,6 @@ package games.stendhal.server.entity.creature.impl.idle;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
-import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.NPC;
 
 
@@ -62,7 +61,7 @@ public class WanderIdleBehaviour extends StandOnIdle {
 	}
 
 	@Override
-	public void perform(final Creature npc) {
+	public void perform(final NPC npc) {
 		// FIXME: this check should be done in entity logic
 		if (!npc.getZone().getPlayerAndFriends().isEmpty()) {
 			if (npc.hasPath()) {
@@ -186,7 +185,7 @@ public class WanderIdleBehaviour extends StandOnIdle {
 	}
 
 	@Override
-	public void onMoved(Creature npc) {
+	public void onMoved(NPC npc) {
 		if (stopQueued) {
 			npc.stop();
 			npc.applyMovement();
@@ -199,12 +198,12 @@ public class WanderIdleBehaviour extends StandOnIdle {
 	}
 
 	@Override
-	public boolean handleSimpleCollision(final Creature npc, final int nx, final int ny) {
+	public boolean handleSimpleCollision(final NPC npc, final int nx, final int ny) {
 		return handleObjectCollision(npc);
 	}
 
 	@Override
-	public boolean handleObjectCollision(final Creature npc) {
+	public boolean handleObjectCollision(final NPC npc) {
 		changeDirection(npc);
 		return true;
 	}
