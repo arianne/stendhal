@@ -553,13 +553,14 @@ export class RPEntity extends ActiveEntity {
 		if (image.height) { // image.complete is true on missing image files
 			var nFrames = 3;
 			var nDirections = 4;
-			var yRow = this["dir"] - 1;
+			const facing = this.getFaceDirection().val;
+			var yRow = facing - 1;
 			var frame = 1; // draw center column when idle
 			// Ents are a hack in Java client too
 			if (this["class"] == "ent") {
 				nFrames = 1;
 				nDirections = 2;
-				yRow = Math.floor((this["dir"] - 1) / 2);
+				yRow = Math.floor((facing - 1) / 2);
 				frame = 0;
 			}
 			this["drawHeight"] = image.height as number / nDirections;
