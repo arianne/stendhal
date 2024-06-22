@@ -20,6 +20,14 @@ public interface IdleBehaviour {
 	void perform(Creature creature);
 
 	/**
+	 * Called when entity's position has changed.
+	 *
+	 * @param creature
+	 *   Moving entity.
+	 */
+	void onMoved(Creature creature);
+
+	/**
 	 * Can be called to execute tile collision behavior.
 	 *
 	 * @param creature
