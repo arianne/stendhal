@@ -1189,4 +1189,20 @@ public class Creature extends NPC {
 		}
 		return getZone() == player.getZone();
 	}
+
+	@Override
+	protected void handleSimpleCollision(final int nx, final int ny) {
+		if (isIdle && idler != null && idler.handleSimpleCollision(this, nx, ny)) {
+			return;
+		}
+		super.handleSimpleCollision(nx, ny);
+	}
+
+	@Override
+	protected void handleObjectCollision() {
+		if (isIdle && idler != null && idler.handleObjectCollision(this)) {
+			return;
+		}
+		super.handleObjectCollision();
+	}
 }
