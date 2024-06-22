@@ -13,6 +13,7 @@
 import { RPEvent } from "./RPEvent";
 
 import { SoundID } from "../data/sound/SoundID";
+import { SoundManager } from "../data/sound/SoundManager";
 
 declare var stendhal: any;
 
@@ -22,11 +23,15 @@ export class SoundEvent extends RPEvent {
 	sound?: string;
 	sound_id?: string;
 	volume!: number;
-	radius!: number;
+	radius?: number;
 	layer!: string;
 
 
 	execute(entity: any) {
+		let radius = SoundManager.DEFAULT_RADIUS;
+		if (typeof(this["radius"]) === "number") {
+			radius = this["radius"];
+		}
 		let volume = 1;
 		// Adjust by the server specified volume, if any
 		if (this.hasOwnProperty("volume")) {
@@ -40,7 +45,7 @@ export class SoundEvent extends RPEvent {
 			sound = SoundID[this["sound_id"]];
 		}
 
-		stendhal.sound.playLocalizedEffect(entity["_x"], entity["_y"], this["radius"], this["layer"],
-				sound, volume);
+		stendhal.sound.playLocalizedEffect(entity["_x"], entity["_y"], radius, this["layer"], sound,
+				volume);
 	}
 }
