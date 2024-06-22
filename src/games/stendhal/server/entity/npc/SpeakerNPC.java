@@ -424,6 +424,7 @@ public class SpeakerNPC extends PassiveNPC {
 		// respond to player in the chat log before the player says something.
 	}
 
+	@Override
 	public void preLogic() {
 
 		if (this.getZone().getPlayerAndFriends().isEmpty() && !isTalking() && !actingAlone) {

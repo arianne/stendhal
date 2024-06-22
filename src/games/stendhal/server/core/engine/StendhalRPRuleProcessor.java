@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    (C) Copyright 2003-2023 - Marauroa                   *
+ *                    (C) Copyright 2003-2024 - Marauroa                   *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -314,6 +314,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		}
 
 		try {
+			executeZonePreLogic();
+		} catch (final Exception e) {
+			logger.error("error in beginTurn", e);
+		}
+
+		try {
 			handlePlayersRmTexts();
 		} catch (final Exception e) {
 			logger.error("error in beginTurn", e);
@@ -366,6 +372,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				}
 			}
 		});
+	}
+
+	protected void executeZonePreLogic() {
+		for (final IRPZone zoneI : SingletonRepository.getRPWorld()) {
+			final StendhalRPZone zone = (StendhalRPZone) zoneI;
+			zone.preLogic();
+		}
 	}
 
 	protected void handleKilledEntities() {

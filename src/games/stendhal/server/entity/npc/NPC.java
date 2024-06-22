@@ -313,6 +313,9 @@ public abstract class NPC extends DressedEntity {
 		}
 	}
 
+	public void preLogic() {
+	}
+
 	@Override
 	public void logic() {
 		if (atMovementRadius()) {

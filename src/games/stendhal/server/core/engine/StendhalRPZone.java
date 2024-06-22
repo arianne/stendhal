@@ -1523,6 +1523,19 @@ public class StendhalRPZone extends MarauroaRPZone {
 		}
 	}
 
+	public void preLogic() {
+		for (final NPC npc : npcs) {
+			try {
+				// SpeakerNPC logic should have already been executed in rule processor
+				if (!(npc instanceof SpeakerNPC)) {
+					npc.preLogic();
+				}
+			} catch (final Exception e) {
+				logger.error("Error in npc pre-logic for zone " + getID().getID(), e);
+			}
+		}
+	}
+
 	public void logic() {
 		for (final NPC npc : npcs) {
 			try {

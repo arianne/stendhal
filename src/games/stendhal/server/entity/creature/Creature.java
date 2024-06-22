@@ -907,6 +907,11 @@ public class Creature extends NPC {
 	}
 
 	@Override
+	public void preLogic() {
+		// do nothing
+	}
+
+	@Override
 	public void logic() {
 		healer.heal(this);
 		if (!this.getZone().getPlayerAndFriends().isEmpty()) {
