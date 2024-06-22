@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    (C) Copyright 2019-2023 - Arianne                    *
+ *                    (C) Copyright 2019-2024 - Arianne                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -126,11 +126,6 @@ public abstract class PassiveNPC extends NPC {
 		} else {
 			super.reroute();
 		}
-	}
-
-	@Override
-	protected void onMoved(final int oldX, final int oldY, final int newX, final int newY) {
-		super.onMoved(oldX, oldY, newX, newY);
 	}
 
 	@Override
