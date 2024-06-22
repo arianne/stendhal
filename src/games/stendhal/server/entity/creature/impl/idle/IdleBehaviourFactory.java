@@ -17,6 +17,7 @@ import java.util.Map;
 
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.npc.behaviour.impl.idle.IdleBehaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.idle.WanderIdleBehaviour;
 
 public class IdleBehaviourFactory {
 	private static final IdleBehaviour nothing = new StandOnIdle();
