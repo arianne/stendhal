@@ -15,10 +15,16 @@ package games.stendhal.server.entity.creature.impl.idle;
 
 import java.util.Map;
 
+import games.stendhal.common.Rand;
+
 public class IdleBehaviourFactory {
 	private static final IdleBehaviour nothing = new StandOnIdle();
 
 	public static IdleBehaviour get(final Map<String, String> aiProfiles) {
+		// randomly select between "patrolling" & "wander" for individual entity instance
+		if (aiProfiles.containsKey("patrolling") && aiProfiles.containsKey("wander")) {
+			return Rand.rand(2) == 0 ? new Patroller() : new WanderIdleBehaviour();
+		}
 		if (aiProfiles.containsKey("patrolling")) {
 			return new Patroller();
 		} else if (aiProfiles.containsKey("camouflage")) {
