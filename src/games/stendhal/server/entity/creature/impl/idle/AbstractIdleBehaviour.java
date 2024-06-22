@@ -1,5 +1,6 @@
 /***************************************************************************
- *                    Copyright © 2013-2024 - Stendhal                     *
+ *                    Copyright © 2024 - Faiumoni e. V.                    *
+ ***************************************************************************
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -12,19 +13,9 @@ package games.stendhal.server.entity.creature.impl.idle;
 
 import games.stendhal.server.entity.creature.Creature;
 
-/**
- * An idle behaviour, where the idling creature stays invisible
- *
- * @author madmetzger
- */
-class CamouflagedIdleBehaviour extends AbstractIdleBehaviour {
 
-	private final IdleBehaviour base = new Patroller();
+public abstract class AbstractIdleBehaviour implements IdleBehaviour {
 
 	@Override
-	public void perform(Creature creature) {
-		creature.setVisibility(50);
-		this.base.perform(creature);
-	}
-
+	public abstract void perform(Creature creature);
 }
