@@ -85,8 +85,8 @@
 				<include name="*.html"/>
 			</fileset>
 		</copy>
-		<copy todir="${buildroot}/stendhal-${version}-src/doc">
-			<fileset dir="doc"/>
+		<copy todir="${buildroot}/stendhal-${version}-src/${docs}">
+			<fileset dir="${docs}"/>
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
 
@@ -140,7 +140,7 @@
 			<fileset dir="data/font"/>
 		</copy>
 		<copy todir="${build_client_data}/data/gui">
-			<fileset dir="${data}">
+			<fileset dir="${gui}">
 				<exclude name="paneldrock009.jpg"/>
 				<exclude name="panelmetal003.gif"/>
 				<exclude name="panelrock016.jpg"/>
@@ -366,8 +366,8 @@
 		<copy todir="${buildroot}/stendhal-server-${version}/libs">
 			<fileset dir="libs"/>
 		</copy>
-		<copy todir="${buildroot}/stendhal-server-${version}/doc">
-			<fileset dir="doc"/>
+		<copy todir="${buildroot}/stendhal-server-${version}/${docs}">
+			<fileset dir="${docs}"/>
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
 
@@ -581,8 +581,8 @@
 				<include name="*.html"/>
 			</fileset>
 		</copy>
-		<copy todir="${buildroot}/stendhal-${version}/doc">
-			<fileset dir="doc"/>
+		<copy todir="${buildroot}/stendhal-${version}/${docs}">
+			<fileset dir="${docs}"/>
 			<fileset file="LICENSE.txt"/>
 		</copy>
 		<touch file="${buildroot}/stendhal-${version}/log/stendhal.txt"/>
@@ -607,10 +607,8 @@
 				<include name="*.html"/>
 			</fileset>
 		</copy>
-		<copy todir="${buildroot}/stendhal-${version}/doc">
-			<fileset dir="doc">
-				<exclude name="mkdocs/"/>
-			</fileset>
+		<copy todir="${buildroot}/stendhal-${version}/${docs}">
+			<fileset dir="${docs}"/>
 			<fileset file="LICENSE.txt"/>
 		</copy>
 		<copy todir="${buildroot}/stendhal-${version}" file="README.md"/>
@@ -706,7 +704,7 @@
 			<arg value="showdown"/>
 			<arg value="makehtml"/>
 			<arg value="--input"/>
-			<arg value="doc/contributors.md"/>
+			<arg value="${docs}/contributors.md"/>
 			<arg value="--output"/>
 			<arg value="${srcjs}/contributors.html"/>
 		</exec>
@@ -837,7 +835,7 @@
 			<zipfileset dir="${build_client_music_data}"/>
 			<zipfileset dir="${build_client_sound_data}"/>
 			<zipfileset dir="${build_webclient}" prefix="js"/>
-			<zipfileset dir="doc" prefix="doc">
+			<zipfileset dir="${docs}" prefix="doc">
 				<include name="contributors.md"/>
 				<include name="Licenses/**"/>
 				<include name="sources/**"/>
