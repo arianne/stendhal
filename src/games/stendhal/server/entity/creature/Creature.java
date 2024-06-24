@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -26,6 +26,7 @@ import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.common.constants.SoundLayer;
+import games.stendhal.common.constants.Testing;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -48,7 +49,7 @@ import games.stendhal.server.entity.creature.impl.idle.IdleBehaviourFactory;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
+import games.stendhal.server.entity.mapstuff.spawner.CreatureSpawner;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
@@ -121,7 +122,7 @@ public class Creature extends NPC {
 	private int corpseWidth = 1;
 	private int corpseHeight = 1;
 
-	private CreatureRespawnPoint point;
+	private CreatureSpawner spawner;
 
 	/** Respawn time in turns */
 	private int respawnTime;
@@ -371,6 +372,24 @@ public class Creature extends NPC {
 	}
 
 	/**
+	 * Creates a new creature with randomized stats using this instance as a template.
+	 *
+	 * @return
+	 *   New creature instance.
+	 */
+	public Creature getNewInstanceRandomizeStats() {
+		final Creature newInstance = getNewInstance();
+		// A bit of randomization to make Joan and Snaketails a bit happier.
+		// :)
+		newInstance.setAtk(Rand.randGaussian(newInstance.getAtk(), newInstance.getAtk() / 10));
+		newInstance.setDef(Rand.randGaussian(newInstance.getDef(), newInstance.getDef() / 10));
+		if (Testing.COMBAT) {
+			newInstance.setRatk(Rand.randGaussian(newInstance.getRatk(), newInstance.getRatk() / 10));
+		}
+		return newInstance;
+	}
+
+	/**
 	 * Sets the sound played at creature's death
 	 *
 	 * @param sound Name of sound
@@ -530,9 +549,30 @@ public class Creature extends NPC {
 		return aiProfiles;
 	}
 
-	public void setRespawnPoint(final CreatureRespawnPoint point) {
-		this.point = point;
+	/**
+	 * Registers this creature with a spawner.
+	 *
+	 * @param spawner
+	 *   Spawner instance.
+	 */
+	public void setSpawner(final CreatureSpawner spawner) {
+		this.spawner = spawner;
 		setRespawned(true);
+	}
+
+	@Deprecated
+	public void setRespawnPoint(final CreatureSpawner spawner) {
+		setSpawner(spawner);
+	}
+
+	/**
+	 * Gets the spawner of this creature.
+	 *
+	 * @return
+	 *   Spawner instance.
+	 */
+	public CreatureSpawner getRespawner() {
+		return spawner;
 	}
 
 	/**
@@ -540,8 +580,9 @@ public class Creature extends NPC {
 	 *
 	 * @return CreatureRespawnPoint
 	 */
-	public CreatureRespawnPoint getRespawnPoint() {
-		return point;
+	@Deprecated
+	public CreatureSpawner getRespawnPoint() {
+		return getRespawner();
 	}
 
 	/**
@@ -666,8 +707,8 @@ public class Creature extends NPC {
 
 		notifyRegisteredObjects();
 
-		if (this.point != null) {
-			this.point.notifyDead(this);
+		if (this.spawner != null) {
+			this.spawner.onRemoved(this);
 		}
 
 		super.onDead(killer, remove);
