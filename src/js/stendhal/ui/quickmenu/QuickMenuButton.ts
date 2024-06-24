@@ -52,7 +52,9 @@ export abstract class QuickMenuButton extends Component {
 
 		// listen for click events
 		// FIXME: do we need to store this value for potential cleanup?
-		new ElementClickListener(this.componentElement).onClick = this.onClick;
+		new ElementClickListener(this.componentElement).onClick = (evt: Event) => {
+			this.onClick(evt);
+		};
 		this.update();
 	}
 
