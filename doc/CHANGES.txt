@@ -15,6 +15,7 @@ Changelog
 - added support for parallax scrolling backgrounds
 - added parallax backgrounds to Kika Islands & Kika Clouds maps
 - added parallax backgrounds to Wizards Tower
+- added quick menu button to toggle pathfinding via ground
 
 
 1.47

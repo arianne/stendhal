@@ -14,6 +14,11 @@ import { AbstractSettingsTab } from "./AbstractSettingsTab";
 
 import { SettingsDialog } from "../SettingsDialog";
 
+import { ui } from "../../UI";
+import { UIComponentEnum } from "../../UIComponentEnum";
+
+import { QuickMenuButton } from "../../quickmenu/QuickMenuButton";
+
 import { singletons } from "../../../SingletonRepo";
 
 
@@ -26,7 +31,11 @@ export class InputTab extends AbstractSettingsTab {
 		/* *** pathfinding *** */
 
 		parent.createCheckBox("chk_pathfinding", "pathfinding",
-				"Click/Tap ground to walk", "Ground pathfinding disabled");
+				"Click/Tap ground to walk", "Ground pathfinding disabled",
+				function(e: Event) {
+					// update quick menu button image
+					(ui.get(UIComponentEnum.QMPathFinding) as QuickMenuButton).update();
+				});
 
 		parent.createCheckBox("chk_pathfindingmm", "pathfinding.minimap",
 				"Click/Tap minimap to walk", "Minimap pathfinding disabled");

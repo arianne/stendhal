@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   height="48"
+   version="1.1"
+   width="48"
+   id="svg131"
+   sodipodi:docname="pathfinding-disabled.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <title
+     id="title1">Path Finding Enabled</title>
+  <sodipodi:namedview
+     id="namedview131"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.6982143"
+     inkscape:cx="123.95373"
+     inkscape:cy="86.85594"
+     inkscape:window-width="1920"
+     inkscape:window-height="1025"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg131" />
+  <defs
+     id="defs1" />
+  <g
+     id="g1">
+    <circle
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.71045;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.999544"
+       id="path1"
+       cx="24"
+       cy="24"
+       r="16"
+       inkscape:label="background" />
+    <g
+       id="g134"
+       transform="matrix(0.03571429,0,0,0.03571429,13.999999,15.42857)"
+       inkscape:label="icon">
+      <path
+         id="path135"
+         style="display:inline;fill:#000000"
+         d="m 240,0 c 0,60 0,120 0,180 -20,20 -40,40 -60,60 -40,0 -80,0 -120,0 -20,20 -40,40 -60,60 0,60 0,120 0,180 106.66667,0 213.33333,0 320,0 0,-13.33333 0,-26.66667 0,-40 13.33333,0 26.66667,0 40,0 0,13.33333 0,26.66667 0,40 66.66667,0 133.33333,0 200,0 0,-160 0,-320 0,-480 C 453.33333,0 346.66667,0 240,0 Z"
+         inkscape:label="boot_background" />
+      <path
+         id="rect103"
+         style="fill:#bbbeba"
+         inkscape:label="boot_shadow"
+         d="m 280,40 v 160 l -80,80 h 60 l 60,-60 V 40 Z m 200,0 V 360 H 40 v 40 H 520 V 40 Z"
+         sodipodi:nodetypes="cccccccccccccc" />
+      <path
+         id="path134"
+         d="m 240,0 v 180 l -60,60 H 60 C 46.666667,253.33333 13.333333,286.66667 0,300 v 180 h 320 v -40 h 40 v 40 H 560 V 0 Z m 40,40 H 520 V 400 H 40 v -80 c 13.333333,-13.33333 26.666667,-26.66667 40,-40 h 120 l 80,-80 z"
+         sodipodi:nodetypes="cccccccccccccccccccccc"
+         inkscape:label="boot_outline"
+         style="display:inline;fill:#ffffff" />
+    </g>
+    <path
+       id="path859"
+       style="fill:#ffffff;fill-opacity:0.99858;stroke:#000000;stroke-width:1.92;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:label="disabled"
+       d="M 36,8.96 8.96,36 v 3.04 H 12 L 39.04,12 V 8.96 Z"
+       sodipodi:nodetypes="ccccccc" />
+  </g>
+  <metadata
+     id="metadata135">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:date>2024-06-23</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Jordan Irwin (AntumDeluge)</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:title>Path Finding Enabled</dc:title>
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>Stendhal Game</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>icon</rdf:li>
+            <rdf:li>menu</rdf:li>
+            <rdf:li>button</rdf:li>
+            <rdf:li>cursor</rdf:li>
+            <rdf:li>boot</rdf:li>
+            <rdf:li>shoe</rdf:li>
+            <rdf:li>foot</rdf:li>
+            <rdf:li>walk</rdf:li>
+            <rdf:li>walking</rdf:li>
+            <rdf:li>move</rdf:li>
+            <rdf:li>moving</rdf:li>
+            <rdf:li>path</rdf:li>
+            <rdf:li>pathfinding</rdf:li>
+            <rdf:li>path finding</rdf:li>
+            <rdf:li>disable</rdf:li>
+            <rdf:li>disabled</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>
