@@ -1,0 +1,18 @@
+
+Stendhal 1.48: Aesthetically Pleasing
+-------------------------------------
+
+The world of Faiumoni has just gotten a little fancier. You may notice that the clouds have cleared
+in Kikareukin, revealing a beautiful view of Semos below.
+
+
+Technical Notes
+---------------
+
+Users that adjusted volume levels in the Android/web client in the previous release will initially
+experience low volume. Simply re-adjust to desired levels. The issue was related to how volume
+levels are configured and stored. The Stendhal server uses an integer value in the range 0-100 to
+defne volume, while HTMLAudioElement used in the web client uses a floating point value in the range
+0.0-1.0. It was intented for the web client to match the server and convert to/from float values
+when adjusting volume. However, an oversight led to float values being stored in the configration
+instead of integer.

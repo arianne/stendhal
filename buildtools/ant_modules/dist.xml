@@ -837,6 +837,7 @@
 			<zipfileset dir="${build_webclient}" prefix="js"/>
 			<zipfileset dir="${docs}" prefix="doc">
 				<include name="contributors.md"/>
+				<include name="ReleaseNotes.txt"/>
 				<include name="Licenses/**"/>
 				<include name="sources/**"/>
 			</zipfileset>
