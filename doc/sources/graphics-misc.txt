@@ -152,10 +152,10 @@ sword_light.png              Kimmo Rundelin (kiheru); CC BY-SA 3.0; Stendhal
 data/sprites/cursor/
 
 activity.png            zoli111, Hendrik Brummermann; GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
-attack.png              Jordan Irwin (AntumDeluge); CC0; Stendhal
+attack.png              zoli111, Jordan Irwin (AntumDeluge); GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
 bag.*                   zoli111, Jordan Irwin (AntumDeluge); GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
 emptybag.png            zoli111, Jordan Irwin (AntumDeluge); GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
-harvest.png             Jordan Irwin (AntumDeluge); CC0; Stendhal
+harvest.png             zoli111, Jordan Irwin (AntumDeluge); GPL 3.0; Stendhal, https://gitlab.com/zoli111/simp1e/
 highlight.*             zoli111; GPL 3.0; https://gitlab.com/zoli111/simp1e/
 itemequip.*             zoli111; GPL 3.0; https://gitlab.com/zoli111/simp1e/
 itempickupfromslot.png  zoli111; GPL 3.0; https://gitlab.com/zoli111/simp1e/ (copy of itemequip.png)
