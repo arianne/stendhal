@@ -26,7 +26,7 @@ export class DownloadUtil {
 	 * @return {string}
 	 *   Timestamp formatted string (yyyy-mm-dd_HH.MM.SS).
 	 */
-	private static timestamp(): string {
+	static timestamp(): string {
 		const d = new Date();
 		const ts = {
 			yyyy: "" + d.getFullYear(),

@@ -51,6 +51,10 @@ export class DebugAction extends SlashAction {
 					: "disabled"));
 		} else if (params[0] === "touch") {
 			Chat.log("client", "Touch debugging " + (Debug.toggle("touch") ? "enabled" : "disabled"));
+		} else if (params[0] === "screencap") {
+			Debug.setActive("screencap", !Debug.isActive("screencap"));
+			Chat.log("client", "Screen capture debugging " + (Debug.isActive("screencap") ? "enabled"
+					: "disabled"));
 		}
 		return true;
 	}
