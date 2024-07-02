@@ -1038,6 +1038,16 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	}
 
 	/**
+	 * Determines if an item can be submitted as quest item.
+	 *
+	 * @return
+	 *   {@code false} if the item should not be submitted in quests.
+	 */
+	public boolean isSubmittable() {
+		return true;
+	}
+
+	/**
 	 * A convenience method for getting a method for matching item names.
 	 *
 	 * @param name
@@ -1047,5 +1057,17 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	 */
 	public static Predicate<Item> nameMatches(String name) {
 		return item -> name.equalsIgnoreCase(item.getName());
+	}
+
+	/**
+	 * A convenience method for getting a method for matching item names and submittable status.
+	 *
+	 * @param name
+	 *   Item name to match.
+	 * @return
+	 *   A predicate for matching the name.
+	 */
+	public static Predicate<Item> nameMatchesSubmittable(String name) {
+		return item -> name.equalsIgnoreCase(item.getName()) && item.isSubmittable();
 	}
 }
