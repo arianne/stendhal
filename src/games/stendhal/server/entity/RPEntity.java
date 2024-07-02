@@ -2138,7 +2138,7 @@ public abstract class RPEntity extends CombatEntity {
 	 * @return true iff dropping the desired amount was successful.
 	 */
 	public boolean drop(final String name, final int amount) {
-		return drop(nameMatches(name), amount);
+		return drop(Item.nameMatches(name), amount);
 	}
 
 	private boolean isEquipped(Predicate<Item> condition, int amount) {
@@ -2277,7 +2277,7 @@ public abstract class RPEntity extends CombatEntity {
 	 *         number.
 	 */
 	public boolean isEquipped(final String name, final int amount) {
-		return isEquipped(nameMatches(name), amount);
+		return isEquipped(Item.nameMatches(name), amount);
 	}
 
 	/**
@@ -2331,7 +2331,7 @@ public abstract class RPEntity extends CombatEntity {
 	 * @return The number of carried items
 	 */
 	public int getNumberOfEquipped(final String name) {
-		return equippedStream().filter(nameMatches(name))
+		return equippedStream().filter(Item.nameMatches(name))
 				.mapToInt(Item::getQuantity).sum();
 	}
 
@@ -2345,7 +2345,7 @@ public abstract class RPEntity extends CombatEntity {
 	 */
 	public int getTotalNumberOf(final String name) {
 		Stream<Item> allItems = slots().stream().flatMap(this::slotStream);
-		return allItems.filter(nameMatches(name)).mapToInt(Item::getQuantity).sum();
+		return allItems.filter(Item.nameMatches(name)).mapToInt(Item::getQuantity).sum();
 	}
 
 	/**
@@ -2358,7 +2358,7 @@ public abstract class RPEntity extends CombatEntity {
 	 *         found
 	 */
 	public Item getFirstEquipped(final String name) {
-		return equippedStream().filter(nameMatches(name)).findFirst().orElse(null);
+		return equippedStream().filter(Item.nameMatches(name)).findFirst().orElse(null);
 	}
 
 	/**
@@ -2371,7 +2371,7 @@ public abstract class RPEntity extends CombatEntity {
 	 *         found
 	 */
 	public List<Item> getAllEquipped(final String name) {
-		return getAllEquipped(nameMatches(name));
+		return getAllEquipped(Item.nameMatches(name));
 	}
 
 	private List<Item> getAllEquipped(Predicate<Item> condition) {
@@ -3457,16 +3457,6 @@ public abstract class RPEntity extends CombatEntity {
 		Stream<String> slotNames = Slots.CARRYING.getNames().stream();
 		Stream<RPSlot> slots = slotNames.map(this::getSlot).filter(Objects::nonNull);
 		return slots.flatMap(this::slotStream);
-	}
-
-	/**
-	 * A convenience method for getting a method for matching item names.
-	 *
-	 * @param name name to match
-	 * @return a predicate for matching the name
-	 */
-	private Predicate<Item> nameMatches(String name) {
-		return it -> name.equalsIgnoreCase(it.getName());
 	}
 
 	/**

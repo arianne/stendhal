@@ -17,6 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.function.Predicate;
 
 import org.apache.log4j.Logger;
 
@@ -1036,5 +1037,15 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 		return false;
 	}
 
-
+	/**
+	 * A convenience method for getting a method for matching item names.
+	 *
+	 * @param name
+	 *   Item name to match.
+	 * @return
+	 *   A predicate for matching the name.
+	 */
+	public static Predicate<Item> nameMatches(String name) {
+		return item -> name.equalsIgnoreCase(item.getName());
+	}
 }
