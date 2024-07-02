@@ -90,7 +90,9 @@ public class TrapsForKlaas implements QuestManuscript {
 			.whenQuestWasRejected("I do not care about dealing with rodents.")
 			.whenQuestWasAccepted("I promised to gather 20 rodent traps and bring them to Klaas.")
 			.whenTaskWasCompleted("I got enough traps.")
-			.whenQuestWasCompleted("I gave the rodent traps to Klaas. I got some experience and antidotes.")
+			.whenQuestWasCompleted("I gave the rodent traps to Klaas. I got some experience and antidotes."
+					+ " He also mentioned an apothecary and said I should speak to the soldiers guarding Ados"
+					+ " City.")
 			.whenQuestCanBeRepeated("I should check if Klaas needs my help again.");
 
 		quest.offer()
