@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -60,7 +60,7 @@ public class PlayerHasItemWithHimCondition implements ChatCondition {
 
 	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-		return player.isEquipped(itemName, amount);
+		return player.isSubmittableEquipped(itemName, amount);
 	}
 
 	@Override

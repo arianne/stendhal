@@ -3272,4 +3272,61 @@ public class Player extends DressedEntity implements UseListener {
 		// compensate for player hit chance handicap
 		return (int) Math.round(super.damageDone(defender, attackingWeaponsValue, damageType) / 1.35);
 	}
+
+	/**
+	 * Gets an item that is carried by the RPEntity. If the item is stackable, gets all that are on
+	 * the first stack that is found.
+	 *
+	 * @param itemName
+	 *   The item's name
+	 * @return
+	 *   The item, or a stack of stackable items, or an empty list if nothing was found.
+	 */
+	public List<Item> getAllSubmittableEquipped(String itemName) {
+		return getAllEquipped(Item.nameMatchesSubmittable(itemName));
+	}
+
+	/**
+	 * Gets the number of quest submittable items of the given name that are carried by the player.
+	 * The item can be stackable or non-stackable.
+	 *
+	 * @param itemName
+	 *   The item's name
+	 * @return
+	 *   Number of carried submittable items.
+	 */
+	public int getNumberOfSubmittableEquipped(String itemName) {
+		return equippedStream().filter(Item.nameMatchesSubmittable(itemName))
+				.mapToInt(Item::getQuantity).sum();
+	}
+
+	/**
+	 * Determines if this player is equipped with a minimum quantity of a submittable item.
+	 *
+	 * @param itemName
+	 *   The item's name.
+	 * @param amount
+	 *   The minimum amount.
+	 * @return
+	 *   {@code true} if the item is equipped with the minimum number and is submittable.
+	 */
+	public boolean isSubmittableEquipped(String itemName, int amount) {
+		return isEquipped(Item.nameMatchesSubmittable(itemName), amount);
+	}
+
+	/**
+	 * Removes a specific amount of an item from the RPEntity if it is quest submittable. The item can
+	 * either be stackable or non-stackable. The units can be distributed over different slots. If the
+	 * player doesn't have enough units of the item, it doesn't remove anything.
+	 *
+	 * @param itemName
+	 *   Name of the item.
+	 * @param amount
+	 *   Number of units that should be dropped.
+	 * @return
+	 *   {@code true} if dropping the desired amount was successful.
+	 */
+	public boolean dropSubmittable(String itemName, int amount) {
+		return drop(Item.nameMatchesSubmittable(itemName), amount);
+	}
 }

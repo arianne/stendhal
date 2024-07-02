@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -61,7 +61,7 @@ public class DropItemAction implements ChatAction {
 
 	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-		final boolean res = player.drop(itemName, amount);
+		final boolean res = player.dropSubmittable(itemName, amount);
 		if (!res) {
 			logger.error("Cannot drop " + amount + " " + itemName,
 					new Throwable());

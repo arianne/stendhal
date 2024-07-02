@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -81,7 +81,7 @@ public class DropRecordedItemAction implements ChatAction {
 		if(elements.length > 1) {
 			amount=MathHelper.parseIntDefault(elements[1], 1);
 		}
-		final boolean res = player.drop(itemname, amount);
+		final boolean res = player.dropSubmittable(itemname, amount);
 		if (!res) {
 			logger.error("Cannot drop " + amount + " " + itemname, new Throwable());
 		}

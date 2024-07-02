@@ -2141,7 +2141,7 @@ public abstract class RPEntity extends CombatEntity {
 		return drop(Item.nameMatches(name), amount);
 	}
 
-	private boolean isEquipped(Predicate<Item> condition, int amount) {
+	protected boolean isEquipped(Predicate<Item> condition, int amount) {
 		Iterable<Item> matching = getAllEquipped(condition)::iterator;
 		int count = 0;
 		for (Item item : matching) {
@@ -2153,7 +2153,7 @@ public abstract class RPEntity extends CombatEntity {
 		return false;
 	}
 
-	private boolean drop(Predicate<Item> condition, int amount) {
+	protected boolean drop(Predicate<Item> condition, int amount) {
 		if (!isEquipped(condition, amount)) {
 			return false;
 		}
@@ -2374,7 +2374,7 @@ public abstract class RPEntity extends CombatEntity {
 		return getAllEquipped(Item.nameMatches(name));
 	}
 
-	private List<Item> getAllEquipped(Predicate<Item> condition) {
+	protected List<Item> getAllEquipped(Predicate<Item> condition) {
 		return equippedStream().filter(condition).collect(Collectors.toList());
 	}
 
@@ -3453,7 +3453,7 @@ public abstract class RPEntity extends CombatEntity {
 	 *
 	 * @return equipped items
 	 */
-	private Stream<Item> equippedStream() {
+	protected Stream<Item> equippedStream() {
 		Stream<String> slotNames = Slots.CARRYING.getNames().stream();
 		Stream<RPSlot> slots = slotNames.map(this::getSlot).filter(Objects::nonNull);
 		return slots.flatMap(this::slotStream);

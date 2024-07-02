@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -62,7 +62,7 @@ public class PlayerHasRecordedItemWithHimCondition implements ChatCondition {
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		String itemName=player.getRequiredItemName(questName,index);
 		int amount = player.getRequiredItemQuantity(questName,index);
-		return player.isEquipped(itemName, amount);
+		return player.isSubmittableEquipped(itemName, amount);
 	}
 
 	@Override
