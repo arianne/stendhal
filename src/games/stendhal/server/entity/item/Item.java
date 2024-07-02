@@ -1040,10 +1040,16 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	/**
 	 * Determines if an item can be submitted as quest item.
 	 *
+	 * Currently only makes special case for experimental sandwich rewarded from Meal for Groongo
+	 * quest.
+	 *
 	 * @return
 	 *   {@code false} if the item should not be submitted in quests.
 	 */
 	public boolean isSubmittable() {
+		if ("sandwich".equals(getName()) && getDescription().contains("experimental")) {
+			return false;
+		}
 		return true;
 	}
 

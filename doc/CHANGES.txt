@@ -7,6 +7,7 @@ Changelog
 *world*
 - House Buying displays under open quests when taxes owed
 - added music to Athor Island
+- Mayor Chalmers won't accept experimental sandwiches for Daily Item Quest
 
 *web client*
 - added visuals tab to settings dialog

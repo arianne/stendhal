@@ -19,9 +19,11 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropRecordedItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
@@ -407,9 +409,20 @@ public class DailyItemQuest extends AbstractQuest {
 						new NotCondition(new PlayerHasRecordedItemWithHimCondition(QUEST_SLOT,0))),
 				ConversationStates.ATTENDING,
 				null,
-				new SayRequiredItemAction(QUEST_SLOT,0,"You didn't fetch [item]"
-						+ " yet. Go and get it and say #complete only once you're done."));
-
+				new ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, EventRaiser raiser) {
+						if ("sandwich".equals(player.getRequiredItemName(QUEST_SLOT, 0))
+								&& player.getNumberOfEquipped("sandwich") >= player.getRequiredItemQuantity(QUEST_SLOT, 0)) {
+							// experimental sandwich was detected in condition
+							npc.say("There is something strange about those sandwiches. Come back when you have"
+									+ " some that are unmodified.");
+						} else {
+							new SayRequiredItemAction(QUEST_SLOT,0,"You didn't fetch [item]"
+									+ " yet. Go and get it and say #complete only once you're done.").fire(player, sentence, raiser);
+						}
+					}
+				});
 	}
 
 	private void abortQuest() {
@@ -463,7 +476,7 @@ public class DailyItemQuest extends AbstractQuest {
 		if (player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT)) {
 			String questItem = player.getRequiredItemName(QUEST_SLOT,0);
 			int amount = player.getRequiredItemQuantity(QUEST_SLOT,0);
-			if (!player.isEquipped(questItem, amount)) {
+			if (!player.isSubmittableEquipped(questItem, amount)) {
 				res.add("I have been asked to fetch " + Grammar.quantityplnoun(amount, questItem, "a")
 						+ " to help Ados. I haven't got " + Grammar.itthem(amount) + " yet.");
 			} else {
