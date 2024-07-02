@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    (C) Copyright 2019-2023 - Arianne                    *
+ *                    (C) Copyright 2019-2024 - Arianne                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -145,7 +145,7 @@ public class TrapsForKlaasTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "yes");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(
-				"Thanks, I need you to bring me bring me 20 #rodent #traps. Please hurry! We can't afford to lose anymore food.",
+				"Thanks, I need you to bring me 20 #rodent #traps. Please hurry! We can't afford to lose anymore food.",
 				getReply(klaas));
 		assertEquals("start", player.getQuest(questName));
 		en.step(player, "rodent traps");

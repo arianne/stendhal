@@ -97,7 +97,7 @@ public class TrapsForKlaas implements QuestManuscript {
 			.respondToRequest("The rats down here have been getting into the food storage. Would you help me rid us of the varmints?")
 			.respondToUnrepeatableRequest("Thanks for the traps. Now the food will be safe. But I may need your help again soon.")
 			.respondToRepeatedRequest("The rats down here have been getting into the food storage. Would you help me rid us of the varmints?")
-			.respondToAccept("Thanks, I need you to bring me bring me 20 #rodent #traps. Please hurry! We can't afford to lose anymore food.")
+			.respondToAccept("Thanks, I need you to bring me 20 #rodent #traps. Please hurry! We can't afford to lose anymore food.")
 			.respondToReject("Don't waste my time. I've got to protect the cargo.")
 			.rejectionKarmaPenalty(5.0)
 			.remind("I believe, I already asked you to get me 20 rodent traps.");
