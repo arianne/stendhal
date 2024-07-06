@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.sound.manager;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -270,8 +269,8 @@ public class SoundManagerNG {
 					numSamplesPerChunk, enableStreaming);
 			sound = new Sound();
 			sound.file.set(file);
-		} catch (IOException exception) {
-			logger.warn(exception);
+		} catch (Error | Exception e) {
+			logger.warn("Cannot open sound: " + AudioResource.getName(), e);
 			return null;
 		}
 
