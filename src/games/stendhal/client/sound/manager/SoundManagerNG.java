@@ -259,18 +259,17 @@ public class SoundManagerNG {
 		mSoundSystem.start();
 	}
 
-	public synchronized Sound openSound(AudioResource AudioResource,
-			SoundFileType fileType, int numSamplesPerChunk,
-			boolean enableStreaming) {
+	public synchronized Sound openSound(AudioResource ar, SoundFileType fileType,
+			int numSamplesPerChunk, boolean enableStreaming) {
 		Sound sound = null;
 
 		try {
-			SoundFile file = new SoundFile(AudioResource, fileType,
+			SoundFile file = new SoundFile(ar, fileType,
 					numSamplesPerChunk, enableStreaming);
 			sound = new Sound();
 			sound.file.set(file);
 		} catch (Error | Exception e) {
-			logger.warn("Cannot open sound: " + AudioResource.getName(), e);
+			logger.warn("Cannot open sound: " + ar.getName(), e);
 			return null;
 		}
 
