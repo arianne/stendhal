@@ -18,9 +18,6 @@ Changelog
 - added parallax backgrounds to Wizards Tower
 - added quick menu button to toggle pathfinding via ground
 
-*Java client*
-- fixed catching memory errors when sound file is too large
-
 
 1.47
 
