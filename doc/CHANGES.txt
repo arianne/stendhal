@@ -19,6 +19,7 @@ Changelog
 - added parallax backgrounds to Wizards Tower
 - added quick menu button to toggle pathfinding via ground
 - added support for animated entity overlay effects
+- added transformation effect to vampires
 
 
 1.47

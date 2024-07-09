@@ -102,6 +102,8 @@ export class RPEntity extends ActiveEntity {
 			this.onLevelChanged(key, value, oldValue);
 		} else if (["title", "name", "class", "type"].indexOf(key) >-1) {
 			this.createTitleTextSprite();
+		} else if (key === "subclass" && typeof(oldValue) !== "undefined" && value !== oldValue) {
+			this.onTransformed();
 		}
 	}
 
@@ -847,5 +849,14 @@ export class RPEntity extends ActiveEntity {
 		if (this._target) {
 			this._target.onAttackStopped(this);
 		}
+	}
+
+	/**
+	 * Called when entity's subclass is changed.
+	 *
+	 * Does nothing in this implementation.
+	 */
+	protected onTransformed() {
+		// do nothing
 	}
 }

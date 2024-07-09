@@ -773,6 +773,7 @@ flame*          DkuCook, Jordan Irwin (AntumDeluge); CC0; https://opengameart.or
 ice_sparkles*   Jordan Irwin (AntumDeluge); OGA BY 3.0 or newer; Stendhal
 magic_sparkles  Rawdanitsu, olonu; CC0; https://opengameart.org/node/18068
 necro_flames    Wolf W. (Ouren), Jordan Irwin (AntumDeluge); CC BY 3.0; https://opengameart.org/node/45981
+transform       Aidan Walker; CC0; https://opengameart.org/node/160840
 
 
 data/sprites/entity/ratfolk/
