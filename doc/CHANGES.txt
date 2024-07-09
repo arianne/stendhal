@@ -8,6 +8,7 @@ Changelog
 - House Buying displays under open quests when taxes owed
 - added music to Athor Island
 - Mayor Chalmers won't accept experimental sandwiches for Daily Item Quest
+- touched up and added equipment to many entity sprites
 
 *web client*
 - added visuals tab to settings dialog
@@ -17,6 +18,7 @@ Changelog
 - added parallax backgrounds to Kika Islands & Kika Clouds maps
 - added parallax backgrounds to Wizards Tower
 - added quick menu button to toggle pathfinding via ground
+- added support for animated entity overlay effects
 
 
 1.47
