@@ -526,7 +526,8 @@ public class Grammar {
 			// first of all handle words which do not change
 		} else if (enoun.endsWith("money") || enoun.endsWith("dice")
 				|| enoun.endsWith("sheep") || enoun.equals("deer")
-				|| enoun.equals("moose") || enoun.equals("magic")){
+				|| enoun.equals("moose") || enoun.equals("magic")
+				|| enoun.equals("chaos")) {
 			return enoun + postfix;
 
 			// ok and now all the special cases
@@ -650,7 +651,8 @@ public class Grammar {
 				|| enoun.endsWith("sheep")
 				|| enoun.endsWith("legs") || enoun.endsWith("boots")
 				|| enoun.endsWith("pegasus") || enoun.endsWith("djinn")
-				|| enoun.equals("deer") || enoun.equals("moose") || enoun.equals("magic")) {
+				|| enoun.equals("deer") || enoun.equals("moose") || enoun.equals("magic")
+				|| enoun.equals("chaos")) {
 			return enoun + postfix;
 
 			// now all the special cases
