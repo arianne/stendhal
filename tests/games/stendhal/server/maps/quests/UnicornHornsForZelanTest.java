@@ -97,7 +97,7 @@ public class UnicornHornsForZelanTest extends QuestHelper {
 		en.step(player, "yes");
 		assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 		assertEquals(
-			"Great! Be careful, out there are lots of large monsters, and those"
+			"Great! I need 10 unicorn horns. Be careful, out there are lots of large monsters, and those"
 				+ " centaurs are really nasty.",
 			getReply(zelan));
 		assertEquals("start", player.getQuest(slot, 0));
