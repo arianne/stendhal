@@ -20,6 +20,7 @@ Changelog
 - added quick menu button to toggle pathfinding via ground
 - added support for animated entity overlay effects
 - added transformation effect to vampires
+- cleaned up bestiary window layout
 
 
 1.47
