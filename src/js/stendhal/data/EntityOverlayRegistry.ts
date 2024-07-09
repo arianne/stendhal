@@ -32,19 +32,19 @@ export namespace EntityOverlayRegistry {
 	/** Table containing animation definitions. */
 	const AnimationTable: Record<string, AnimationEntry> = {
 		"NPC": {
-			"Aenihata": "electricity_blue",
+			"Aenihata": ["electricity_blue", 50],
 			"Tywysoga": "magic_sparkles"
 		},
 
 		"creature": {
 			"albino elf magician": "beams",
 			"archrat": "flame",
-			"dark elf master": "electricity_violet",
-			"dark elf viceroy": "electricity_blue",
+			"dark elf master": ["electricity_violet", 50],
+			"dark elf viceroy": ["electricity_blue", 50],
 			"emperor dalmung": "flame_blue",
 			"ice giant": "ice_sparkles_2x",
 			"ice golem": "ice_sparkles",
-			"imperial demon lord": "electricity_red",
+			"imperial demon lord": ["electricity_red", 50],
 			"necrosophia": "necro_flames"
 		}
 	}
