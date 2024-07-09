@@ -76,7 +76,7 @@ public class UnicornHornsForZelan implements QuestManuscript {
 					+ " surrounding Atlantis. If you are a brave sort I could"
 					+ " really use some help gathering unicorn horns."
 					+ " Will you help me?")
-			.respondToAccept("Great! Be careful out there lots of large"
+			.respondToAccept("Great! Be careful, out there are lots of large"
 					+ " monsters, and those centaurs are really nasty.")
 			.respondToReject("Thats ok, I will find someone else to help me.")
 			.rejectionKarmaPenalty(10.0)
