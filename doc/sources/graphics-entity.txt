@@ -352,9 +352,9 @@ dark_elf_knight.*        Svetlana Kushnariova (Cabbit), Stephen Challener (Redsh
 dark_elf_master.*        Svetlana Kushnariova (Cabbit), olonu, Andrew Kelley (superjoe), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/116, https://opengameart.org/node/72969, https://opengameart.org/node/17839
 dark_elf_matronmother.*  Svetlana Kushnariova (Cabbit), olonu, 59naga, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/119, https://opengameart.org/node/72969, https://opengameart.org/node/15101
 dark_elf_ranger.*        Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/95, https://opengameart.org/node/72969
-dark_elf_sacerdotist.*   Svetlana Kushnariova (Cabbit), olonu, jaschon, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/105, https://opengameart.org/node/72969, https://openclipart.org/detail/92953
+dark_elf_sacerdotist.*   Svetlana Kushnariova (Cabbit), olonu, Jason Rebuck (jaschon), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/105, https://opengameart.org/node/72969, https://openclipart.org/detail/92953
 dark_elf_viceroy.*       Svetlana Kushnariova (Cabbit), olonu, LordNeo, Andrew Kelley (superjoe), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/112, https://opengameart.org/node/72969, https://opengameart.org/node/17839
-dark_elf_wizard.*        Svetlana Kushnariova (Cabbit), olonu, jaschon, Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/107, https://opengameart.org/node/72969, https://openclipart.org/detail/92953
+dark_elf_wizard.*        Svetlana Kushnariova (Cabbit), olonu, Jason Rebuck (jaschon), Jordan Irwin (AntumDeluge); OGA BY 3.0; Stendhal, https://github.com/arianne/stendhal/issues/107, https://opengameart.org/node/72969, https://openclipart.org/detail/92953
 
 
 data/sprites/entity/demon/
@@ -548,7 +548,7 @@ cannibalwoman.*            Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDel
 darkmonk.png               Svetlana Kushnariova (Cabbit), olonu, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/124
 deniran_stormtrooper.*     Svetlana Kushnariova (Cabbit), Eldiran, bleutailfly; OGA BY 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/50932
 elder_cannibal.*           Svetlana Kushnariova (Cabbit), Jordan Irwin (AntumDeluge); OGA BY 3.0; https://opengameart.org/node/107646
-emperor_dalmung.*          Svetlana Kushnariova (Cabbit), wulax, DkuCook, olonu, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/11165, https://opengameart.org/node/82451
+emperor_dalmung.*          Svetlana Kushnariova (Cabbit), wulax, DkuCook, Jason Rebuck (jaschon), olonu, Jordan Irwin (AntumDeluge); CC BY-SA 3.0; https://opengameart.org/node/72969, https://opengameart.org/node/11165, https://opengameart.org/node/82451, https://openclipart.org/detail/92953
 hunter.*                   Svetlana Kushnariova (Cabbit), Michael Williams (BizmasterStudios), olonu; Jordan Irwin (AntumDeluge); https://opengameart.org/node/72969, https://opengameart.org/node/66349
 imperial_archer.*          Svetlana Kushnariova (Cabbit), olonu, SoCay, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/151
 imperial_archer_leader.*   Svetlana Kushnariova (Cabbit), olonu, SoCay, Jordan Irwin (AntumDeluge); OGA BY 3.0; https://github.com/arianne/stendhal/issues/160
