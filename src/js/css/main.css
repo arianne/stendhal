@@ -41,6 +41,10 @@ input {
 	display: none;
 }
 
+.center-text {
+	text-align: center;
+}
+
 input:invalid {
 	border: 2px dashed red;
 }
@@ -598,6 +602,12 @@ div.logcolR {
 	min-width: 35em;
 	height: 23em;
 	overflow-y: scroll;
+}
+
+.bestiary-cell {
+	min-width: 3em;
+	min-height: 1em;
+	padding: 4px;
 }
 
 .progressbar {
