@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2003-2023 - Arianne                     *
+ *                     Copyright © 2003-2024 - Arianne                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,7 +21,7 @@ export class OutfitStore {
 	// player pickable layers
 	private count: {[key: string]: number} = {
 		"hat": 19,
-		"hair": 57,
+		"hair": 58,
 		"mask": 9,
 		"eyes": 28,
 		"mouth": 5,

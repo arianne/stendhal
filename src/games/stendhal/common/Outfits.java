@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -34,7 +34,7 @@ public class Outfits {
 	public static final int CLOTHES_OUTFITS = 65;
 
 	/** number of player selectable hair styles */
-	public static final int HAIR_OUTFITS = 57;
+	public static final int HAIR_OUTFITS = 58;
 
 	/** number of player selectable body shapes */
 	public static final int BODY_OUTFITS = 3;
