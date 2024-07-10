@@ -383,7 +383,7 @@ public class TannerNPC implements ZoneConfigurator {
 
 			@Override
 			public String getRegion() {
-				return Region.DENIRAN;
+				return Region.DENIRAN_CITY;
 			}
 
 			@Override

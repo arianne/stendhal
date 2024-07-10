@@ -58,7 +58,7 @@ public class EggsForMarianne implements QuestManuscript {
 			.internalName("eggs_for_marianne")
 			.repeatableAfterMinutes(60)
 			.minLevel(0)
-			.region(Region.DENIRAN)
+			.region(Region.DENIRAN_CITY)
 			.questGiverNpc("Marianne");
 
 		quest.history()

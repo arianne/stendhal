@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2022 - Arianne                      *
+ *                    Copyright © 2003-2024 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -94,7 +94,7 @@ public class AGrandfathersWish extends AbstractQuest {
 
 	@Override
 	public String getRegion() {
-		return Region.DENIRAN;
+		return Region.DENIRAN_CITY;
 	}
 
 	@Override

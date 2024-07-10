@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2019 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -22,6 +22,7 @@ public final class Region {
 	public static final String ATHOR_ISLAND = "Athor Island";
 	public static final String ATLANTIS = "Atlantis";
 	public static final String DENIRAN = "Deniran";
+	public static final String DENIRAN_CITY = "Deniran City";
 	public static final String SEMOS_CITY = "Semos City";
 	public static final String SEMOS_SURROUNDS = "Semos Surrounds";
 	public static final String SEMOS_MINES = "Semos Mines";
