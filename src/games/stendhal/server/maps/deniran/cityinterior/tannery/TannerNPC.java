@@ -66,7 +66,7 @@ public class TannerNPC implements ZoneConfigurator {
 	private final static String QUEST_SLOT = "money_" + FEATURE_SLOT;
 	private final static String QUEST_NAME = "Money Pouch";
 
-	// players must have looted at least 1,000,000 money to get the money pouch
+	// players must have looted at least 100,000 money to get the money pouch
 	private static final int requiredMoneyLoot = 100000;
 	private static final int serviceFee = 50000;
 	private static final int TAN_TIME = TimeUtil.MINUTES_IN_DAY;
