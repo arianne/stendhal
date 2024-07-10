@@ -10,6 +10,7 @@ Changelog
 - Mayor Chalmers won't accept experimental sandwiches for Daily Item Quest
 - touched up and added equipment to many entity sprites
 - new player selectable hair
+- new NPC Tinny
 
 *chat*
 - new offers with Harold are announced in chat
