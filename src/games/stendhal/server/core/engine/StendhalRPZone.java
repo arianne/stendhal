@@ -39,6 +39,7 @@ import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
 import games.stendhal.common.Line;
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.Rand;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.tiled.LayerDefinition;
@@ -73,6 +74,7 @@ import games.stendhal.server.entity.npc.TrainingDummy;
 import games.stendhal.server.entity.npc.TrainingDummyFactory;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.StringUtils;
+import marauroa.common.Pair;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -1983,5 +1985,39 @@ public class StendhalRPZone extends MarauroaRPZone {
 			logger.warn("Found multiple weather entities in zone " + getName() + ".");
 		}
 		return (WeatherEntity) entities.get(0);
+	}
+
+	/**
+	 * Attempts to find a position where an entity can be spawned.
+	 *
+	 * @param entity
+	 *   Entity attempting to spawn.
+	 * @param checkObjects
+	 *   If {@code false}, only the collision map will be used.
+	 * @return
+	 *   Appropriate position or `null` if none found.
+	 */
+	public Pair<Integer, Integer> getRandomSpawnPosition(final Entity entity, boolean checkObjects) {
+		final short retries = 50;
+		for (short t = 0; t < retries; t++) {
+			final int x = Rand.rand(getWidth());
+			final int y = Rand.rand(getHeight());
+			if (!collides(entity, x, y, checkObjects)) {
+				return new Pair<>(x, y);
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Attempts to find a position where an entity can be spawned.
+	 *
+	 * @param entity
+	 *   Entity attempting to spawn.
+	 * @return
+	 *   Appropriate position or `null` if none found.
+	 */
+	public Pair<Integer, Integer> getRandomSpawnPosition(final Entity entity) {
+		return getRandomSpawnPosition(entity, true);
 	}
 }
