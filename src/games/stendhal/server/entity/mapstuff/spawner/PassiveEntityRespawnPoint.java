@@ -49,7 +49,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 	/**
 	 * Is there still a fruit that has not yet been picked up?
 	 */
-	private boolean hasPickableFruit;
+	protected boolean hasPickableFruit;
 
 	/**
 	 * The name of the fruit (Item) that is grown by the PlantGrower.
