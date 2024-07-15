@@ -116,6 +116,13 @@ public class ObtainAchievementsFactory extends AbstractAchievementFactory {
 					}
 				}));
 
+		// find the lucky four-leaf clover
+		achievements.add(createAchievement(
+			"obtain.clover", "Luck O' the Irish",
+			"Find the lucky four-leaf clover",
+			Achievement.MEDIUM_BASE_SCORE, true,
+			new PlayerHasHarvestedNumberOfItemsCondition(1, "four-leaf clover")));
+
 		return achievements;
 	}
 }
