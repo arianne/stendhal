@@ -137,6 +137,27 @@ export class User extends Player {
 	}
 
 	/**
+	 * Checks if player is within range to hear a sound event.
+	 *
+	 * @param {number} radius
+	 *   Distance at which sound can be heard.
+	 * @param {Entity} entity
+	 *   Entity emitting sound event.
+	 * @returns {boolean}
+	 *   `true` if sound should be loaded (when event radius is more than -1 & user position is within
+	 *   radial distance from event origin).
+	 */
+	isInSoundRange(radius: number, entity: Entity): boolean {
+		if (entity === this) {
+			return true;
+		}
+		if (radius < 0) {
+			return false;
+		}
+		return Math.abs(this["x"] - entity["x"]) + Math.abs(this["y"] - entity["y"]) <= radius;
+	}
+
+	/**
 	 * Actions when player leaves a zone.
 	 */
 	override onExitZone() {

@@ -15,6 +15,7 @@ import { RPEvent } from "./RPEvent";
 import { SoundID } from "../data/sound/SoundID";
 import { SoundManager } from "../data/sound/SoundManager";
 
+declare var marauroa: any;
 declare var stendhal: any;
 
 
@@ -28,10 +29,18 @@ export class SoundEvent extends RPEvent {
 
 
 	execute(entity: any) {
+		if (!marauroa.me) {
+			return;
+		}
 		let radius = SoundManager.DEFAULT_RADIUS;
 		if (typeof(this["radius"]) === "number") {
 			radius = this["radius"];
 		}
+		if (!marauroa.me.isInSoundRange(radius, entity)) {
+			// too far away to hear so don't load
+			return;
+		}
+
 		let volume = 1;
 		// Adjust by the server specified volume, if any
 		if (this.hasOwnProperty("volume")) {
