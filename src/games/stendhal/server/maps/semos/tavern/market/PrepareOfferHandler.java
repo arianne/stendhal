@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,6 +20,7 @@ import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.dbcommand.LogTradeEventCommand;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.OwnedItem;
@@ -221,11 +222,18 @@ public class PrepareOfferHandler {
 			if (TradingUtility.canPlayerAffordTradingFee(player, price)) {
 				if (createOffer(player, item, price, quantity)) {
 					TradingUtility.substractTradingFee(player, price);
-					new AsynchronousProgramExecutor("trade", buildTweetMessage(item, quantity, price)).start();
+					String msg = buildTweetMessage(item, quantity, price);
+					new AsynchronousProgramExecutor("trade", msg).start();
 					DBCommandQueue.get().enqueue(new LogTradeEventCommand(player, item, quantity, price));
 					npc.addEvent(new SoundEvent(SoundID.COMMERCE2, SoundLayer.CREATURE_NOISE));
 					npc.say("I added your offer to the trading center and took the fee of "+ fee +".");
 					npc.setCurrentState(ConversationStates.ATTENDING);
+
+					// announce to chat/IRC
+					Player postman = SingletonRepository.getRuleProcessor().getPlayer("postman");
+					if (postman != null) {
+						postman.sendPrivateText(npc.getName() + ": " + msg);
+					}
 				} else {
 					npc.say("You don't have " + Grammar.quantityplnoun(quantity, item.getName(), "a") + ".");
 				}

@@ -10,6 +10,9 @@ Changelog
 - Mayor Chalmers won't accept experimental sandwiches for Daily Item Quest
 - touched up and added equipment to many entity sprites
 
+*chat*
+- new offers with Harold are announced in chat
+
 *web client*
 - added visuals tab to settings dialog
 - animated fog
