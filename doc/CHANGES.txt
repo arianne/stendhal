@@ -9,6 +9,9 @@ Changelog
 - added music to Athor Island
 - Mayor Chalmers won't accept experimental sandwiches for Daily Item Quest
 - touched up and added equipment to many entity sprites
+- Amber wanders randomly instead of using set path
+- changed turtle behavior to wander
+- added wander behavior to crab in addition to patrol
 
 *chat*
 - new offers with Harold are announced in chat
