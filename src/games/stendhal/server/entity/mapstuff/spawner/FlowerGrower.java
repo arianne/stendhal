@@ -144,13 +144,14 @@ public class FlowerGrower extends VegetableGrower {
 	}
 
 	@Override
-	protected void growNewFruit() {
+	protected Item growNewFruit() {
 		if (isOnFreeFertileGround()) {
-			super.growNewFruit();
+			return super.growNewFruit();
 		} else {
 			if (getZone() != null) {
 				getZone().remove(this);
 			}
 		}
+		return null;
 	}
 }

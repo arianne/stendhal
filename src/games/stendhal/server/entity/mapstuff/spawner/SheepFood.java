@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2020 - Marauroa                    *
+ *                   (C) Copyright 2003-2024 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -80,9 +80,10 @@ public class SheepFood extends PassiveEntityRespawnPoint {
 	}
 
 	@Override
-	protected void growNewFruit() {
+	protected Item growNewFruit() {
 		setAmount(amount + 1);
 		notifyWorldAboutChanges();
+		return null;
 	}
 
 	@Override
