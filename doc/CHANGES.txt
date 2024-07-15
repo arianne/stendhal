@@ -14,6 +14,7 @@ Changelog
 - added wander behavior to crab in addition to patrol
 - new item: four-leaf clover
 - new achievement: Luck O' the Irish: Find the lucky four-leaf clover
+- new NPC: Maple, a clover hunter
 
 *chat*
 - new offers with Harold are announced in chat

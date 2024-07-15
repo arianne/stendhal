@@ -277,14 +277,13 @@
 	</zone>
 
 
-	<zone name="0_deniran_city_se" level="0" x="499360" y="500128"
-		file="Level 0/deniran/city_se.tmx">
-
+	<zone name="0_deniran_city_se" level="0" x="499360" y="500128" file="Level 0/deniran/city_se.tmx">
 		<attributes>
 			<parameter name="color_method">time</parameter>
 			<parameter name="weather">varying</parameter>
 		</attributes>
 
+		<configurator class-name="games.stendhal.server.maps.deniran.cityoutside.CloverHunterNPC"/>
 	</zone>
 
 
