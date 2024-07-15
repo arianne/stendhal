@@ -9,7 +9,7 @@
 	<!-- Ground level -->
 
 	<zone name="0_sikhw_desert_n_w2" level="0" x="499104" y="500384"
-			file="Level 0/sikhw/desert_n_w2.tmx">
+			file="Level 0/sikhw/desert_n_w2.tmx" accessible="false">
 
 			<attributes>
 			<parameter name="color_method">time</parameter>
@@ -20,7 +20,7 @@
 
 
 	<zone name="0_sikhw_desert_w2" level="0" x="499104" y="500512"
-		file="Level 0/sikhw/desert_w2.tmx">
+		file="Level 0/sikhw/desert_w2.tmx" accessible="false">
 
 		<attributes>
 			<parameter name="color_method">time</parameter>
@@ -31,7 +31,7 @@
 
 
 	<zone name="0_sikhw_desert_s_w2" level="0" x="499104" y="500640"
-		file="Level 0/sikhw/desert_s_w2.tmx">
+		file="Level 0/sikhw/desert_s_w2.tmx" accessible="false">
 
 		<attributes>
 			<parameter name="color_method">time</parameter>
@@ -42,7 +42,7 @@
 
 
 	<zone name="0_sikhw_desert_s2_w2" level="0" x="499104" y="500768"
-		file="Level 0/sikhw/desert_s2_w2.tmx">
+		file="Level 0/sikhw/desert_s2_w2.tmx" accessible="false">
 
 		<attributes>
 			<parameter name="color_method">time</parameter>
@@ -55,7 +55,7 @@
 	<!--   -->
 
 	<zone name="0_sikhw_desert_nw" level="0" x="499232" y="500384"
-		file="Level 0/sikhw/desert_nw.tmx">
+		file="Level 0/sikhw/desert_nw.tmx" accessible="false">
 
 		<attributes>
 			<parameter name="color_method">time</parameter>
@@ -66,7 +66,7 @@
 
 
 	<zone name="0_sikhw_desert_w" level="0" x="499232" y="500512"
-			file="Level 0/sikhw/desert_w.tmx">
+			file="Level 0/sikhw/desert_w.tmx" accessible="false">
 
 			<attributes>
 			<parameter name="color_method">time</parameter>
@@ -77,7 +77,7 @@
 
 
 	<zone name="0_sikhw_desert_sw" level="0" x="499232" y="500640"
-		file="Level 0/sikhw/desert_sw.tmx">
+		file="Level 0/sikhw/desert_sw.tmx" accessible="false">
 
 		<attributes>
 			<parameter name="color_method">time</parameter>
@@ -88,7 +88,7 @@
 
 
 	<zone name="0_sikhw_desert_s2_w" level="0" x="499232" y="500768"
-		file="Level 0/sikhw/desert_s2_w.tmx">
+		file="Level 0/sikhw/desert_s2_w.tmx" accessible="false">
 
 		<attributes>
 			<parameter name="color_method">time</parameter>
@@ -101,7 +101,7 @@
 	<!--   -->
 
 	<zone name="0_sikhw_desert_n" level="0" x="499360" y="500384"
-		file="Level 0/sikhw/desert_n.tmx">
+		file="Level 0/sikhw/desert_n.tmx" accessible="false">
 
 		<attributes>
 			<parameter name="color_method">time</parameter>
@@ -113,7 +113,7 @@
 
 
 	<zone name="0_sikhw_city" level="0" x="499360" y="500512"
-		file="Level 0/sikhw/city.tmx">
+		file="Level 0/sikhw/city.tmx" accessible="false">
 
 		<attributes>
 			<parameter name="color_method">time</parameter>
@@ -124,7 +124,7 @@
 
 
 	<zone name="0_sikhw_desert_s" level="0" x="499360" y="500640"
-		file="Level 0/sikhw/desert_s.tmx">
+		file="Level 0/sikhw/desert_s.tmx" accessible="false">
 
 		<attributes>
 			<parameter name="color_method">time</parameter>
@@ -135,7 +135,7 @@
 
 
 	<zone name="0_sikhw_desert_s2" level="0" x="499360" y="500768"
-		file="Level 0/sikhw/desert_s2.tmx">
+		file="Level 0/sikhw/desert_s2.tmx" accessible="false">
 
 		<attributes>
 			<parameter name="color_method">time</parameter>
@@ -148,7 +148,7 @@
 	<!--   -->
 
 	<zone name="0_sikhw_desert_ne" level="0" x="499488" y="500384"
-		file="Level 0/sikhw/desert_ne.tmx">
+		file="Level 0/sikhw/desert_ne.tmx" accessible="false">
 
 		<attributes>
 			<parameter name="color_method">time</parameter>
@@ -159,7 +159,7 @@
 
 
 	<zone name="0_sikhw_desert_e" level="0" x="499488" y="500512"
-		file="Level 0/sikhw/desert_e.tmx">
+		file="Level 0/sikhw/desert_e.tmx" accessible="false">
 
 		<attributes>
 			<parameter name="color_method">time</parameter>
@@ -170,7 +170,7 @@
 
 
 	<zone name="0_sikhw_desert_se" level="0" x="499488" y="500640"
-		file="Level 0/sikhw/desert_se.tmx">
+		file="Level 0/sikhw/desert_se.tmx" accessible="false">
 
 		<attributes>
 			<parameter name="color_method">time</parameter>
@@ -180,7 +180,7 @@
 	</zone>
 
 	<zone name="0_sikhw_desert_s2_e" level="0" x="499488" y="500768"
-		file="Level 0/sikhw/desert_s2_e.tmx">
+		file="Level 0/sikhw/desert_s2_e.tmx" accessible="false">
 
 		<attributes>
 			<parameter name="color_method">time</parameter>
