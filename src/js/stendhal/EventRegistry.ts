@@ -12,8 +12,6 @@
 declare var marauroa: any;
 declare var stendhal: any;
 
-import { SoundID } from "./data/sound/SoundID";
-
 import { RPEntity } from "./entity/RPEntity";
 import { RPObject } from "./entity/RPObject";
 
@@ -26,6 +24,7 @@ import { PlayerLoggedOnEvent } from "./event/PlayerLoggedOnEvent";
 import { PlayerLoggedOutEvent } from "./event/PlayerLoggedOutEvent";
 import { ProgressStatusEvent } from "./event/ProgressStatusEvent";
 import { RPEvent } from "./event/RPEvent";
+import { SoundEvent } from "./event/SoundEvent";
 import { TradeEvent } from "./event/TradeEvent";
 import { ViewChangeEvent } from "./event/ViewChangeEvent";
 
@@ -271,25 +270,7 @@ export class EventRegistry {
 			}
 		}); // show_outfit_list
 
-		this.register("sound_event", {
-			execute: function(rpobject: RPObject) {
-				var volume = 1;
-				// Adjust by the server specified volume, if any
-				if (this.hasOwnProperty("volume")) {
-					// NOTE: server uses int in range 1-100 while HTMLAudioElement uses float in range 0-1
-					volume *= parseInt(this["volume"], 10) / 100;
-				}
-				var radius = parseInt(this["radius"], 10);
-
-				let sound = this["sound"];
-				const sound_id = this["sound_id"];
-				if (sound_id) {
-					sound = SoundID[sound_id];
-				}
-
-				stendhal.sound.playLocalizedEffect(rpobject["_x"], rpobject["_y"], radius, this["layer"], sound, volume);
-			}
-		}); // sound_event
+		this.register("sound_event", new SoundEvent());
 
 		this.register("text", {
 			execute: function(entity: RPEntity) {
