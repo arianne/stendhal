@@ -147,4 +147,25 @@
 		</equipable>
 	</item>
 
+	<item name="four-leaf clover">
+		<type class="special" subclass="clover" tileid="-1"/>
+		<description>You see a lucky four-leaf clover. What are the chances of finding one!?</description>
+		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+		<attributes>
+			<quantity value="1"/>
+			<max_quantity value="2147483647"/>
+		</attributes>
+		<weight value="0.01"/>
+		<value value="250000"/>
+		<equipable>
+			<slot name="ground"/>
+			<slot name="content"/>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="keyring"/>
+			<slot name="bag"/>
+			<slot name="trade"/>
+		</equipable>
+	</item>
+
 </items>
