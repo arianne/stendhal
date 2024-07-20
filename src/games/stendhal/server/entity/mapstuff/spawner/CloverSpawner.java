@@ -29,7 +29,8 @@ import marauroa.common.Pair;
 /**
  * Manages four-leaf clover spawning.
  *
- * TODO: initialize with quest or achievement instead of zone configurator (maybe)
+ * TODO:
+ *   - create script to get location of & manage spawned clover
  */
 public class CloverSpawner extends PassiveEntityRespawnPoint {
 
