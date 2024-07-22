@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -54,18 +54,19 @@ import marauroa.common.game.RPAction;
  *
  * @author intensifly
  */
-public class ScriptRunner extends StendhalServerExtension implements
-		ActionListener {
+public class ScriptRunner extends StendhalServerExtension implements ActionListener {
+
+	private static final Logger logger = Logger.getLogger(ScriptRunner.class);
 
 	private static final int REQUIRED_ADMINLEVEL = 1000;
 
 	private final Map<String, ScriptingSandbox> scripts;
 
-	private final String scriptDir = "data/script/";
+	/** Directory where data scripts are located. */
+	private static final String scriptDir = "data/script/";
 
-	private static final Logger logger = Logger.getLogger(ScriptRunner.class);
-
-	private final String[] supported_ext = {"groovy", "lua"};
+	/** Supported scripting language filename extensions. */
+	private static final String[] supportedExt = {"groovy", "lua"};
 
 	/**
 	 * Constructor for ScriptRunner.
@@ -89,7 +90,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 					// trim absolute path prefix
 					filepath = filepath.substring(dir.toString().length() + 1);
 
-					for (String ext: supported_ext) {
+					for (String ext: supportedExt) {
 						ext = "." + ext;
 
 						if (filepath.endsWith(ext)) {
