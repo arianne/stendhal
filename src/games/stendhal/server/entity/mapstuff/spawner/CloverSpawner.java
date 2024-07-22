@@ -163,4 +163,14 @@ public class CloverSpawner extends PassiveEntityRespawnPoint {
 	public void setToFullGrowth() {
 		growNewFruit();
 	}
+
+	/**
+	 * Checks if a clover is available to be picked.
+	 *
+	 * @return
+	 *   {@code true} if clover was spawned and not yet picked.
+	 */
+	public boolean hasPickableClover() {
+		return grownClover != null;
+	}
 }
