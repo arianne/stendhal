@@ -329,6 +329,9 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 			ClassLoader classLoader = ScriptRunner.class.getClassLoader();
 			ImmutableSet<ClassInfo> infos = ClassPath.from(classLoader).getTopLevelClasses(packageName);
 			for (ClassInfo info : infos) {
+				if ("package-info".equals(info.getSimpleName())) {
+					continue;
+				}
 				classes.add(info.load());
 			}
 			return classes;
@@ -365,8 +368,7 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 		}
 		stringBuilder.append(":");
 
-		final List<String> scriptExcludes = Arrays.asList(
-			"package-info.class", "AbstractOfflineAction.class");
+		final List<String> scriptExcludes = Arrays.asList("AbstractOfflineAction.class");
 
 		for (int i = 0; i < allScripts.size(); i++) {
 			final String scriptName = allScripts.get(i);
