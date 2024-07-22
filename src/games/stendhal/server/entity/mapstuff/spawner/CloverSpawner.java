@@ -30,7 +30,7 @@ import marauroa.common.Pair;
  * Manages four-leaf clover spawning.
  *
  * TODO:
- *   - only spawn on grass tiles
+ *   - only spawn on grass and dirt tiles
  */
 public class CloverSpawner extends PassiveEntityRespawnPoint {
 
