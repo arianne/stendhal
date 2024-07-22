@@ -15,6 +15,7 @@ package games.stendhal.server.entity.creature.impl.idle;
 
 import java.util.Map;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.npc.behaviour.impl.idle.IdleBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.idle.WanderIdleBehaviour;
@@ -23,17 +24,24 @@ public class IdleBehaviourFactory {
 	private static final IdleBehaviour nothing = new StandOnIdle();
 
 	public static IdleBehaviour get(final Map<String, String> aiProfiles) {
-		// randomly select between "patrolling" & "wander" for individual entity instance
-		if (aiProfiles.containsKey("patrolling") && aiProfiles.containsKey("wander")) {
-			return Rand.rand(2) == 0 ? new Patroller() : new WanderIdleBehaviour();
-		}
-		if (aiProfiles.containsKey("patrolling")) {
-			return new Patroller();
+		IdleBehaviour behaviour = nothing;
+		if (aiProfiles.containsKey("wander")) {
+			final int wanderRadius = MathHelper.parseIntDefault(aiProfiles.get("wander"), 0);
+			if (wanderRadius > 0) {
+				behaviour = new WanderIdleBehaviour(wanderRadius);
+			} else {
+				behaviour = new WanderIdleBehaviour();
+			}
+		} else if (aiProfiles.containsKey("patrolling") && aiProfiles.containsKey("wander")) {
+			// randomly select between "patrolling" & "wander" for individual entity instance
+			behaviour = Rand.flipCoin() ? new Patroller() : behaviour;
+		} else if (aiProfiles.containsKey("patrolling")) {
+			behaviour = new Patroller();
 		} else if (aiProfiles.containsKey("camouflage")) {
-			return new CamouflagedIdleBehaviour();
+			behaviour = new CamouflagedIdleBehaviour();
 		} else if (aiProfiles.containsKey("wander")) {
-			return new WanderIdleBehaviour();
+			behaviour = new WanderIdleBehaviour();
 		}
-		return nothing;
+		return behaviour;
 	}
 }
