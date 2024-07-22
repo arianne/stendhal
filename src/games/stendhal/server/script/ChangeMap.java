@@ -1,5 +1,5 @@
 /***************************************************************************
- *                 (C) Copyright 2003-2015 - Faiumoni e.V.                 *
+ *                 (C) Copyright 2003-2024 - Faiumoni e.V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,7 +20,7 @@ import games.stendhal.server.core.config.zone.TMXLoader;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.core.scripting.impl.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.IRPZone;
 

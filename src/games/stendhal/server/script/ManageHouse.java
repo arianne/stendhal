@@ -20,7 +20,7 @@ import java.util.Locale;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.constants.StandardMessages;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.scripting.AbstractAdminScript;
+import games.stendhal.server.core.scripting.impl.AbstractAdminScript;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.HouseBuying;

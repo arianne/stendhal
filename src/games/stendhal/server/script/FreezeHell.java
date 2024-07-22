@@ -32,7 +32,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.ZoneAttributes;
-import games.stendhal.server.core.scripting.AbstractAdminScript;
+import games.stendhal.server.core.scripting.impl.AbstractAdminScript;
 import marauroa.common.game.IRPZone;
 
 /**

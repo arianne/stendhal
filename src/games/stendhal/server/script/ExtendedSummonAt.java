@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    (C) Copyright 2003-2022 - Stendhal                   *
+ *                    (C) Copyright 2003-2024 - Stendhal                   *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -24,7 +24,7 @@ import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
-import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.core.scripting.impl.ScriptImpl;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.SlotActivatedItem;
 import games.stendhal.server.entity.item.StackableItem;
