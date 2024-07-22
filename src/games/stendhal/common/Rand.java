@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2024 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -205,5 +205,15 @@ public class Rand {
 	 */
 	public static boolean flipCoin(final double propability) {
 		return rand.nextDouble() <= propability;
+	}
+
+	/**
+	 * Flip a coin to decide between true and false based on even probability.
+	 *
+	 * @return
+	 *   {@code true} or {@code false} randomly.
+	 */
+	public static boolean flipCoin() {
+		return flipCoin(0.5);
 	}
 }
