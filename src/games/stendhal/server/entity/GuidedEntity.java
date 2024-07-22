@@ -13,7 +13,6 @@ package games.stendhal.server.entity;
 
 import static games.stendhal.common.constants.General.PATHSET;
 
-import java.awt.Point;
 import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
@@ -531,11 +530,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 */
 	@Deprecated
 	public final boolean atMovementRadius() {
-		Point difference = getDistanceFromOrigin();
-
-		// Set the maximum movement distance at exact radius
-		int max = movementRadius - 1;
-		return (movementRadius > 0 && (difference.getX() > max || difference.getY() > max));
+		return Math.sqrt(getDistanceFromOrigin()) >= movementRadius;
 	}
 
 	protected final Direction getDirectionFromOrigin() {
@@ -544,21 +539,15 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 		return dir;
 	}
+
 	/**
-	 * Get the distance that the entity has moved away from its starting point
+	 * Get the distance that the entity has moved away from its starting point.
 	 *
-	 * @return The distance from entity's starting point
+	 * @return
+	 *   Squared distance from starting point.
 	 */
-	protected final Point getDistanceFromOrigin() {
-		int originX = getOrigin().x;
-		int originY = getOrigin().y;
-		int currentX = getX();
-		int currentY = getY();
-
-		int Xdiff = Math.abs(currentX - originX);
-		int Ydiff = Math.abs(currentY - originY);
-
-		return new Point(Xdiff, Ydiff);
+	protected double getDistanceFromOrigin() {
+		return squaredDistance(origin.x, origin.y);
 	}
 
 	/**

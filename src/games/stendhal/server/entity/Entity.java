@@ -54,7 +54,7 @@ public abstract class Entity extends RPObject implements Killer {
 	private int y;
 
 	// Initial coordinates
-	private Point origin;
+	protected Point origin;
 
 	/**
 	 * Amount of resistance this has with other entities (0-100).
