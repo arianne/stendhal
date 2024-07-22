@@ -86,7 +86,18 @@ public class CloverSpawner extends PassiveEntityRespawnPoint {
 		// remove clover & grower from current zone
 		StendhalRPZone currentZone = getZone();
 		if (currentZone != null) {
-			currentZone.remove(grownClover);
+			if (grownClover != null) {
+				StendhalRPZone cloverZone = grownClover.getZone();
+				if (cloverZone == null) {
+					logger.warn("Clover's zone not available");
+				} else if (!currentZone.equals(cloverZone)) {
+					logger.warn("Clover (" + cloverZone.getName() + ") not located in same zone as spawner ("
+							+ currentZone.getName() + ")");
+					cloverZone.remove(grownClover);
+				} else {
+					currentZone.remove(grownClover);
+				}
+			}
 			currentZone.remove(this);
 		}
 		grownClover = null;
@@ -122,7 +133,7 @@ public class CloverSpawner extends PassiveEntityRespawnPoint {
 	public void onTurnReached(int currentTurn) {
 		// spawn a new clover
 		if (spawn()) {
-			// set next respawn for 24 hours
+			// set re-spawn for next day at midnight
 			TurnNotifier.get().notifyInSeconds(TimeUtil.secondsToMidnight(), this);
 		} else {
 			// failed, retry in 15 minutes
