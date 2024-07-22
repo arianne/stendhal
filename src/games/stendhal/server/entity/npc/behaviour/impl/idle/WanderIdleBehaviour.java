@@ -11,8 +11,16 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.impl.idle;
 
+import java.awt.Point;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.creature.impl.idle.StandOnIdle;
 import games.stendhal.server.entity.npc.NPC;
 
@@ -25,6 +33,8 @@ import games.stendhal.server.entity.npc.NPC;
  * FIXME: need to handle reaching zone borders
  */
 public class WanderIdleBehaviour extends StandOnIdle {
+
+	private static Logger logger = Logger.getLogger(WanderIdleBehaviour.class);
 
 	/** Minimum amount of time in milliseconds entity must remain stopped. */
 	private static final int STOP_DELAY_MIN = 5000;
@@ -42,6 +52,12 @@ public class WanderIdleBehaviour extends StandOnIdle {
 	/** Current speed entity should be moving. */
 	private double speed;
 
+	/** Max distance from origin point entity can wander. Should not be used for creatures. */
+	private int radiusLimit;
+	private int sqRadiusLimit;
+	/** Denotes entity is on path to return to original position. */
+	private boolean returningToOrigin;
+
 
 	public WanderIdleBehaviour() {
 		super();
@@ -52,6 +68,15 @@ public class WanderIdleBehaviour extends StandOnIdle {
 		directionChangeQueued = false;
 		stopQueued = false;
 		speed = 0;
+		radiusLimit = 0;
+		sqRadiusLimit = 0;
+		returningToOrigin = false;
+	}
+
+	public WanderIdleBehaviour(int radiusLimit) {
+		this();
+		this.radiusLimit = radiusLimit;
+		sqRadiusLimit = radiusLimit * radiusLimit;
 	}
 
 	@Override
@@ -59,21 +84,39 @@ public class WanderIdleBehaviour extends StandOnIdle {
 		// remove queues
 		directionChangeQueued = false;
 		stopQueued = false;
+		// FIXME: non-creatures may not want to reset this (currently only used by Creature class)
+		returningToOrigin = false;
 	}
 
 	@Override
 	public void perform(final NPC npc) {
 		// FIXME: this check should be done in entity logic
 		if (!npc.getZone().getPlayerAndFriends().isEmpty()) {
-			if (npc.hasPath()) {
-				npc.followPath();
-			} else if (!retreatUnderFire(npc)) {
-				if (!stopped()) {
-					// speed must be updated every iteration
+			final boolean hasPath = npc.hasPath();
+			final boolean stopped = stopped();
+
+			if (hasPath) {
+				if (returningToOrigin && stopped) {
+					logger.warn("Entity " + npc.getName() + " returning to origin impeded");
+					speed = npc.getBaseSpeed();
 					npc.setSpeed(speed);
-					npc.applyMovement();
 				}
-				performStopMove(npc);
+				npc.followPath();
+				npc.applyMovement();
+			} else {
+				returningToOrigin = isOutsideRadiusLimit(npc);
+				if (!retreatUnderFire(npc)) {
+					if (returningToOrigin) {
+						returnToOrigin(npc);
+					} else {
+						if (!stopped) {
+							// speed must be updated every iteration because of call to `retreatUnderFire`
+							npc.setSpeed(speed);
+							npc.applyMovement();
+						}
+						performStopMove(npc);
+					}
+				}
 			}
 		}
 	}
@@ -188,14 +231,25 @@ public class WanderIdleBehaviour extends StandOnIdle {
 	@Override
 	public void onMoved(NPC npc) {
 		if (stopQueued) {
-			npc.stop();
-			npc.applyMovement();
-			speed = 0;
-			stopQueued = false;
+			hardStop(npc);
 		}
 		if (directionChangeQueued) {
 			changeDirection(npc);
 		}
+	}
+
+	/**
+	 * Forces entity to stop movement.
+	 *
+	 * @param npc
+	 *   Entity to stop.
+	 */
+	private void hardStop(NPC npc) {
+		npc.stop();
+		npc.applyMovement();
+		npc.setPath(null);
+		speed = 0;
+		stopQueued = false;
 	}
 
 	@Override
@@ -205,7 +259,47 @@ public class WanderIdleBehaviour extends StandOnIdle {
 
 	@Override
 	public boolean handleObjectCollision(final NPC npc) {
-		changeDirection(npc);
+		if (returningToOrigin) {
+			returningToOrigin = false;
+			hardStop(npc);
+			// flip coin to determine change direction immediately or wait for next call to `perform`
+			if (Rand.flipCoin()) {
+				changeDirection(npc);
+				startMove(npc, System.currentTimeMillis());
+			}
+		} else {
+			changeDirection(npc);
+		}
 		return true;
+	}
+
+	/**
+	 * Checks if the entity has moved beyond a set distance limit from its origin.
+	 *
+	 * @param npc
+	 *   Entity to be checked.
+	 * @return
+	 *   {@code true} if limit has been set and entity's distance from origin is greater than limit.
+	 */
+	private boolean isOutsideRadiusLimit(NPC npc) {
+		if (radiusLimit < 1) {
+			return false;
+		}
+		return npc.getDistanceFromOrigin() > sqRadiusLimit;
+	}
+
+	/**
+	 * Returns entity to point of origin when reaching movement radius boundary.
+	 *
+	 * @param npc
+	 *   Entity to be returned to origin.
+	 */
+	private void returnToOrigin(NPC npc) {
+		reset();
+		// was set to "false" in `reset`
+		returningToOrigin = true;
+		final Point origin = npc.getOrigin();
+		final List<Node> path = Path.searchPath(npc, origin.x, origin.y);
+		npc.setPath(new FixedPath(path, false));
 	}
 }
