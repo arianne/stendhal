@@ -346,80 +346,16 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 	 * @return true
 	 */
 	private boolean listScripts(final Player player, List<String> filterTerm) {
-
-		StringBuilder stringBuilder = new StringBuilder("Available scripts");
 		List<String> allScripts = new LinkedList<String>();
-
-		// *.groovy scripts in data/script/
-		final File dirGroovy = new File(scriptDir);
-		List<String> scriptsGroovy;
-		final String[] lg = dirGroovy.list(new FilenameFilter() {
-				@Override
-				public boolean accept(final File dir, final String name) {
-					return (name.endsWith(".groovy") && (name.indexOf('$') == -1));
-				}
-			});
-		if(lg != null) {
-			scriptsGroovy = Arrays.asList(lg);
-		} else {
-			scriptsGroovy = new LinkedList<String>();
-		}
-
-		// *.lua scripts in data/script/
-		List<String> scriptsLua;
-		final String[] ll = dirGroovy.list(new FilenameFilter() {
+		allScripts.addAll(registered);
+		Collections.sort(allScripts, new Comparator<String>() {
 			@Override
-			public boolean accept(final File dir, final String name) {
-				return (name.endsWith(".lua") && (name.indexOf('$') == -1));
+			public int compare(String s1, String s2) {
+				return s1.compareTo(s2);
 			}
 		});
-		if (ll != null) {
-			scriptsLua = Arrays.asList(ll);
-		} else {
-			scriptsLua = new LinkedList<String>();
-		}
 
-		// *.class scripts could be in data/script/games/stendhal/server/script/
-		final File dirClasses = new File(scriptDir + "games/stendhal/server/script/");
-		List<String> scriptsJava;
-		final String[] lj = dirClasses.list(new FilenameFilter(){
-				@Override
-				public boolean accept(final File dir, final String name) {
-					// remove filenames with '$' inside because they are inner classes
-					return (name.endsWith(".class") && (name.indexOf('$') == -1));
-				}
-			});
-		if(lj != null) {
-			scriptsJava = Arrays.asList(lj);
-		} else {
-			scriptsJava = new LinkedList<String>();
-		}
-
-
-		// precompiled java scripts
-		try {
-			ArrayList<Class<?>> dir = getClasses("games.stendhal.server.script");
-			Collections.sort(dir, new Comparator<Class<?>>() {
-				@Override
-				public int compare(Class<?> o1, Class<?> o2) {
-					return o1.getSimpleName().compareTo(o2.getSimpleName());
-				}
-			});
-
-			for (final Class<?> clazz : dir) {
-					scriptsJava.add(clazz.getSimpleName() + ".class");
-			}
-
-		} catch (final ClassNotFoundException e) {
-			logger.error(e, e);
-		} catch (final SecurityException e) {
-			logger.error(e, e);
-		}
-
-		allScripts.addAll(scriptsGroovy);
-		allScripts.addAll(scriptsLua);
-		allScripts.addAll(scriptsJava);
-
+		StringBuilder stringBuilder = new StringBuilder("Available scripts");
 		if (!filterTerm.isEmpty()) {
 			stringBuilder.append(" (results for ");
 			for (int i = 0; i < filterTerm.size(); i++) {
