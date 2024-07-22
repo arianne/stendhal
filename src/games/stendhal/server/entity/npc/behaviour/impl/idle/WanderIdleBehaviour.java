@@ -31,6 +31,9 @@ import games.stendhal.server.entity.npc.NPC;
  * Note: there is still some sprite jumping when entity stops, but that may be a client-side issue
  *
  * FIXME: need to handle reaching zone borders
+ *
+ * TODO:
+ *   - add option to disable stopping (for butterflies)
  */
 public class WanderIdleBehaviour extends StandOnIdle {
 
