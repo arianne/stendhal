@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,6 +20,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SilentNPC;
+import games.stendhal.server.entity.npc.behaviour.impl.idle.WanderIdleBehaviour;
 
 /**
  * A playful puppy
@@ -44,8 +45,7 @@ public class PuppyNPC implements ZoneConfigurator {
 		dog.setDescription("You see a playful puppy.");
 		dog.setEntityClass("animal/puppy");
 		dog.setBaseSpeed(0.5);
-		dog.moveRandomly();
-		dog.setRandomMovementRadius(25, true);
+		dog.setIdleBehaviour(new WanderIdleBehaviour(25));
 		dog.setSounds(Arrays.asList("dog-small-bark-1", "dog-small-bark-2"));
 		zone.add(dog);
 	}
