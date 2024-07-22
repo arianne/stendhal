@@ -368,14 +368,8 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 		}
 		stringBuilder.append(":");
 
-		final List<String> scriptExcludes = Arrays.asList("AbstractOfflineAction.class");
-
 		for (int i = 0; i < allScripts.size(); i++) {
 			final String scriptName = allScripts.get(i);
-			if (scriptExcludes.contains(scriptName)) {
-				continue;
-			}
-
 			// if arguments given, will look for matches.
 			if (!filterTerm.isEmpty()) {
 				int j = 0;

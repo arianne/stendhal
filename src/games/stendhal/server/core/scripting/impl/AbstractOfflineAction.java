@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.script;
+package games.stendhal.server.core.scripting.impl;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -20,7 +20,6 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.scripting.impl.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
