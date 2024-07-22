@@ -546,7 +546,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 * @return
 	 *   Squared distance from starting point.
 	 */
-	protected double getDistanceFromOrigin() {
+	public double getDistanceFromOrigin() {
 		return squaredDistance(origin.x, origin.y);
 	}
 
