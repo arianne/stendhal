@@ -28,9 +28,6 @@ import marauroa.common.Pair;
 
 /**
  * Manages four-leaf clover spawning.
- *
- * TODO:
- *   - create script to get location of & manage spawned clover
  */
 public class CloverSpawner extends PassiveEntityRespawnPoint {
 
