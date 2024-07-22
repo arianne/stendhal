@@ -27,12 +27,14 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.log4j.Logger;
 
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Sets;
 import com.google.common.reflect.ClassPath;
 import com.google.common.reflect.ClassPath.ClassInfo;
 
@@ -67,6 +69,10 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 
 	/** Supported scripting language filename extensions. */
 	private static final String[] supportedExt = {"groovy", "lua"};
+
+	/** Names of detected scripts at time of initialization or directly registered. */
+	private static final Set<String> registered = Sets.newHashSet();
+
 
 	/**
 	 * Constructor for ScriptRunner.
@@ -114,6 +120,101 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 			}
 		}
 
+		registerResourceScripts();
+		registerDataScripts();
+	}
+
+	/**
+	 * Caches a script name for listing with {@code /script -list} command.
+	 *
+	 * @param obj
+	 *   Script class, instance, or file base name.
+	 */
+	public static void registerName(Object obj) {
+		String name;
+		if (obj instanceof String) {
+			name = (String) obj;
+		} else if (obj instanceof Class) {
+			name = ((Class<?>) obj).getSimpleName() + ".class";
+		} else {
+			name = obj.getClass().getSimpleName() + ".class";
+		}
+		final boolean newScript = !registered.contains(name);
+		registered.add(name);
+
+		if (newScript) {
+			logger.info("Registered script: " + name);
+		} else {
+			logger.warn("Duplicate script: " + name);
+		}
+	}
+
+	/**
+	 * Registers names of detected compiled server scripts.
+	 */
+	private static void registerResourceScripts() {
+		logger.info("Registering resource scripts ...");
+
+		try {
+			ArrayList<Class<?>> dir = getClasses("games.stendhal.server.script");
+			for (final Class<?> clazz: dir) {
+				registerName(clazz);
+			}
+		} catch (final ClassNotFoundException e) {
+			logger.error(e, e);
+		} catch (final SecurityException e) {
+			logger.error(e, e);
+		}
+	}
+
+	/**
+	 * Registers names of detected data scripts.
+	 */
+	private static void registerDataScripts() {
+		logger.info("Registering data scripts ...");
+
+		final File dirData = new File(scriptDir);
+
+		// *.groovy scripts in data/script/
+		final String[] lg = dirData.list(new FilenameFilter() {
+				@Override
+				public boolean accept(final File dir, final String name) {
+					return (name.endsWith(".groovy") && (name.indexOf('$') == -1));
+				}
+			});
+		if (lg != null) {
+			for (final String name: lg) {
+				registerName(name);
+			}
+		}
+
+		// *.lua scripts in data/script/
+		final String[] ll = dirData.list(new FilenameFilter() {
+			@Override
+			public boolean accept(final File dir, final String name) {
+				return (name.endsWith(".lua") && (name.indexOf('$') == -1));
+			}
+		});
+		if (ll != null) {
+			for (final String name: ll) {
+				registerName(name);
+			}
+		}
+
+		// *.class scripts in data/script/games/stendhal/server/script/
+		final File dirClasses = new File(scriptDir + "games/stendhal/server/script/");
+		final String[] lj = dirClasses.list(new FilenameFilter(){
+				@Override
+				public boolean accept(final File dir, final String name) {
+					// remove filenames with '$' inside because they are inner classes
+					return (name.endsWith(".class") && (name.indexOf('$') == -1));
+				}
+			});
+		if (lj != null) {
+			for (final String name: lj) {
+				registerName(name);
+			}
+		}
 	}
 
 	@Override
