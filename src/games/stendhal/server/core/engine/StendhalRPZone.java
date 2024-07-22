@@ -450,12 +450,28 @@ public class StendhalRPZone extends MarauroaRPZone {
 		attributes = attr;
 	}
 
+	/**
+	 * Sets collision information for this zone.
+	 *
+	 * @param name
+	 *   Layer name.
+	 * @param collisionLayer
+	 *   Layer definition.
+	 */
 	public void addCollisionLayer(final String name, final LayerDefinition collisionLayer)
 			throws IOException {
 		addToContent(name, collisionLayer.encode());
 		collisionMap.setCollisionData(collisionLayer);
 	}
 
+	/**
+	 * Sets protection information for this zone.
+	 *
+	 * @param name
+	 *   Layer name.
+	 * @param protectionLayer
+	 *   Layer definition.
+	 */
 	public void addProtectionLayer(final String name, final LayerDefinition protectionLayer)
 			throws IOException {
 		addToContent(name, protectionLayer.encode());
@@ -1104,9 +1120,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * Checks an area for collision.
 	 *
 	 * @param shape
-	 * 		Rectangle area.
+	 *   Rectangle area.
 	 * @return
-	 * 		<code>true</code> if any collision tiles are found in the area.
+	 *   {@code true} if any collision tiles are found in the area.
 	 */
 	public boolean collides(final Rectangle2D shape) {
 		return collisionMap.collides(shape);
