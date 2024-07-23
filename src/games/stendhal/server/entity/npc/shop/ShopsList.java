@@ -136,20 +136,6 @@ public final class ShopsList {
 	}
 
 	/**
-	 * Add an item to a buyer shop.
-	 *
-	 * @param name
-	 *     Shop name.
-	 * @param item
-	 *     Name of item to add.
-	 * @param price
-	 *     Value of the item.
-	 */
-	public void addBuyer(final String name, final String item, final int price) {
-		add(name, ShopType.ITEM_BUY, item, price);
-	}
-
-	/**
 	 * Configures an NPC for a shop.
 	 *
 	 * @param npc

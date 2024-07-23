@@ -63,7 +63,7 @@ public class CommerceAchievementFactoryTest extends AchievementTestHelper {
 		npc.addGreeting();
 		npc.addGoodbye();
 		final ShopsList shops = ShopsList.get();
-		shops.addBuyer("buygrain", "grain", 1);
+		shops.add("buygrain", ShopType.ITEM_BUY, "grain", 1);
 		shops.configureNPC(npc, "buygrain", ShopType.ITEM_BUY, false);
 		final Engine en = npc.getEngine();
 		en.step(player, "hi");
