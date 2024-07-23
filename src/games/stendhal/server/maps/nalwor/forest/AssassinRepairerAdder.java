@@ -140,7 +140,9 @@ public class AssassinRepairerAdder {
 		// player dropped item before accepting
 		repairer.add(ConversationStates.QUESTION_2,
 				ConversationPhrases.YES_MESSAGES,
-				new NotCondition(needsRepairCondition()),
+				new AndCondition(
+						needsRepairCondition(),
+						itemsDroppedCondition()),
 				ConversationStates.ATTENDING,
 				getReply(ResponseId.DROPPED),
 				null);
@@ -296,14 +298,16 @@ public class AssassinRepairerAdder {
 	}
 
 	/**
-	 * Sets subject number of items to repair of current conversation.
+	 * Retrieves number of items player is carrying that need repair.
 	 *
 	 * @param player
 	 *   Player requesting repair.
+	 * @return
+	 *   Number of "worn" items player is carrying.
 	 */
-	private void setRepairCount(final Player player) {
+	private int getWornItemsCount(final Player player) {
 		if (!canRepair(currentRepairItem)) {
-			return;
+			return 0;
 		}
 		int count = 0;
 		for (final Item item: player.getAllEquipped(currentRepairItem)) {
@@ -311,7 +315,17 @@ public class AssassinRepairerAdder {
 				count++;
 			}
 		}
-		currentRepairCount = count;
+		return count;
+	}
+
+	/**
+	 * Sets subject number of items to repair of current conversation.
+	 *
+	 * @param player
+	 *   Player requesting repair.
+	 */
+	private void setRepairCount(final Player player) {
+		currentRepairCount = getWornItemsCount(player);
 	}
 
 	/**
@@ -517,6 +531,21 @@ public class AssassinRepairerAdder {
 			@Override
 			public boolean fire(final Player player, final Sentence sentence, Entity repairer) {
 				return currentRepairCount != null && currentRepairCount > 0;
+			}
+		};
+	}
+
+	/**
+	 * Creates condition to check if player dropped item after requesting repair.
+	 *
+	 * @return
+	 *   Condition.
+	 */
+	private ChatCondition itemsDroppedCondition() {
+		return new ChatCondition() {
+			@Override
+			public boolean fire(Player player, Sentence sentence, Entity npc) {
+				return getWornItemsCount(player) < currentRepairCount;
 			}
 		};
 	}
