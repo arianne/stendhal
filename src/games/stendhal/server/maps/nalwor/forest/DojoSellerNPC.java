@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                     Copyright © 2020-2024 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,7 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.nalwor.forest;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.Direction;
@@ -25,6 +27,7 @@ import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.shop.ItemShopInventory;
 import games.stendhal.server.entity.npc.shop.ShopType;
 import games.stendhal.server.entity.npc.shop.ShopsList;
 import games.stendhal.server.maps.nalwor.forest.AssassinRepairerAdder.AssassinRepairer;
@@ -35,66 +38,68 @@ import games.stendhal.server.maps.nalwor.forest.AssassinRepairerAdder.AssassinRe
  */
 public class DojoSellerNPC implements ZoneConfigurator {
 
-	private static StendhalRPZone dojoZone;
+	private static StendhalRPZone dojo;
+	private static AssassinRepairer seller;
+	private static ItemShopInventory inventory;
 
-	private final String sellerName = "Akutagawa";
-	private AssassinRepairer seller;
-
-	private AssassinRepairerAdder repairerAdder;
-
-	private static final Map<String, Integer> repairableSellPrices = new LinkedHashMap<String, Integer>() {{
-		put("training sword", 2100);
+	private static List<String> repairables = new ArrayList<String>() {{
+		add("training sword");
 	}};
+
 
 	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		dojoZone = zone;
+		dojo = zone;
+		inventory = ShopsList.get().get("dojo", ShopType.ITEM_SELL);
 
 		initNPC();
-		initShop();
-		initRepairShop();
-		initDialogue();
 	}
 
+	/**
+	 * Sets up NPC.
+	 */
 	private void initNPC() {
-		repairerAdder = new AssassinRepairerAdder();
+		initRepairShop();
+		initSellShop();
+		initDialogue();
 
-		seller = repairerAdder.new AssassinRepairer(sellerName, repairableSellPrices);
 		seller.setEntityClass("samurai2npc");
 		seller.setIdleDirection(Direction.LEFT);
 		seller.setPosition(37, 80);
-
-		dojoZone.add(seller);
+		dojo.add(seller);
 	}
 
-	private void initDialogue() {
-		seller.addGreeting("If you're looking for training equipment, you have come to the right place.");
-		seller.addGoodbye();
-		seller.addOffer("See my blackboard for what I sell. I can also #repair any used #'training swords' that you have.");
-		seller.addJob("I run the assassins' dojo shop where we sell equipment and do #repairs on #'training swords'.");
-		seller.addQuest("I don't have any task for you to do. I only #fix and sell equipment.");
-		seller.addHelp("If you want to train in the dojo, I recommend that you buy a #'training sword'.");
-		seller.addReply("training sword", "My training swords are light and easy to swing. And just because"
-				+ " they are made out of wood, doesn't mean that it won't hurt if you get whacked with one.");
+	/**
+	 * Sets up seller/repairer NPC and repair items prices.
+	 *
+	 * If players bring their worn training swords they can get them repaired for half the
+	 * price of buying a new one.
+	 */
+	private void initRepairShop() {
+		Map<String, Integer> repairableSellPrices = new LinkedHashMap<>();
+		final Map<String, Integer> repairPrices = new LinkedHashMap<>();
+		for (String itemName: repairables) {
+			if (inventory.containsKey(itemName)) {
+				int price = inventory.getPrice(itemName);
+				repairableSellPrices.put(itemName, price);
+				// repairing is half the cost of buying new
+				repairPrices.put(itemName, price / 2);
+			}
+		}
+		// initialize NPC repairer
+		AssassinRepairerAdder repairerAdder = new AssassinRepairerAdder();
+		seller = repairerAdder.new AssassinRepairer("Akutagawa", repairableSellPrices);
+		repairerAdder.add(seller, repairPrices);
 	}
 
-	private void initShop() {
-		final Map<String, Integer> pricesSell = new LinkedHashMap<>();
-		for (final String itemName: repairableSellPrices.keySet()) {
-			pricesSell.put(itemName, repairableSellPrices.get(itemName));
-		}
-		pricesSell.put("shuriken", 80);
-		pricesSell.put("fire shuriken", 105);
-
-		final ShopsList shops = ShopsList.get();
-		for (final String itemName: pricesSell.keySet()) {
-			shops.add("dojosell", ShopType.ITEM_SELL, itemName, pricesSell.get(itemName));
-		}
-
+	/**
+	 * Sets up item shop and shop sign.
+	 */
+	private void initSellShop() {
 		final String rejectedMessage = "Only members of the assassin guild can trade here.";
 
 		// can only purchase if carrying assassins id
-		final SellerBehaviour sellerBehaviour = new SellerBehaviour(pricesSell) {
+		final SellerBehaviour sellerBehaviour = new SellerBehaviour(inventory) {
 			@Override
 			public ChatCondition getTransactionCondition() {
 				return new PlayerHasItemWithHimCondition("assassins id");
@@ -107,7 +112,8 @@ public class DojoSellerNPC implements ZoneConfigurator {
 		};
 		new SellerAdder().addSeller(seller, sellerBehaviour, false);
 
-		final ShopSign shopSign = new ShopSign("dojosell", "Assassins' Dojo Shop", sellerName + " sells the following items", true) {
+		final ShopSign shopSign = new ShopSign("dojo", "Assassins' Dojo Shop", seller.getName()
+				+ " sells the following items", true) {
 			/**
 			 * Can only view sign if carrying assassins id.
 			 */
@@ -124,20 +130,20 @@ public class DojoSellerNPC implements ZoneConfigurator {
 		};
 		shopSign.setEntityClass("blackboard");
 		shopSign.setPosition(36, 81);
-
-		dojoZone.add(shopSign);
+		dojo.add(shopSign);
 	}
 
 	/**
-	 * If players bring their worn training swords they can get them repaired for half the
-	 * price of buying a new one.
+	 * Sets up NPC's dialogue.
 	 */
-	private void initRepairShop() {
-		final Map<String, Integer> repairPrices = new LinkedHashMap<>();
-		for (final String itemName: repairableSellPrices.keySet()) {
-			repairPrices.put(itemName, repairableSellPrices.get(itemName) / 2);
-		}
-
-		repairerAdder.add(seller, repairPrices);
+	private void initDialogue() {
+		seller.addGreeting("If you're looking for training equipment, you have come to the right place.");
+		seller.addGoodbye();
+		seller.addOffer("See my blackboard for what I sell. I can also #repair any used #'training swords' that you have.");
+		seller.addJob("I run the assassins' dojo shop where we sell equipment and do #repairs on #'training swords'.");
+		seller.addQuest("I don't have any task for you to do. I only #fix and sell equipment.");
+		seller.addHelp("If you want to train in the dojo, I recommend that you buy a #'training sword'.");
+		seller.addReply("training sword", "My training swords are light and easy to swing. And just because"
+				+ " they are made out of wood, doesn't mean that it won't hurt if you get whacked with one.");
 	}
 }
