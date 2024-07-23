@@ -106,6 +106,7 @@ public class EntityViewFactoryTest {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private Class<?> getImplementation(final String type_name, final String class_name, final String name, final Class<?> def) {
 		Class<?> implementation = def;
 		final Triple<String, String, String> item_info = new Triple<>(type_name, class_name, name);
