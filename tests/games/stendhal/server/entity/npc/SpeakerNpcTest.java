@@ -24,7 +24,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import games.stendhal.server.core.config.ShopsXMLLoader;
 import games.stendhal.server.core.config.zone.ConfiguratorDescriptor;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
@@ -68,7 +67,6 @@ public class SpeakerNpcTest {
 
 	@Parameterized.Parameters
 	public static Collection<SpeakerNPC[]> npcs() {
-		ShopsXMLLoader.get().init(); // default shops are now configured in XML
 		setUpZone();
 
 		Collection<SpeakerNPC[]> npcArrays = new LinkedList<SpeakerNPC[]>();

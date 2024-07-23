@@ -15,7 +15,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -43,8 +42,6 @@ public class ShopsXMLLoader extends DefaultHandler {
 
 	private final static Logger logger = Logger.getLogger(ShopsXMLLoader.class);
 
-	private static boolean initialized = false;
-
 	private Map<ShopType, Map<String, ShopInventory<?, ?>>> inventories;
 	private List<MerchantConfigurator> configurators;
 
@@ -53,48 +50,7 @@ public class ShopsXMLLoader extends DefaultHandler {
 	private ShopInventory<?, ?> currentInventory;
 	private String currentItem;
 
-	/** The singleton instance. */
-	private static ShopsXMLLoader instance;
 
-
-	/**
-	 * Singleton access method.
-	 *
-	 * @return
-	 *     The static instance.
-	 */
-	@Deprecated
-	public static ShopsXMLLoader get() {
-		if (instance == null) {
-			instance = new ShopsXMLLoader();
-		}
-
-		return instance;
-	}
-
-	@Deprecated
-	public void init() {
-		if (initialized) {
-			logger.warn("Tried to re-initialize shops loader");
-			return;
-		}
-
-		final String xml = "/data/conf/shops.xml";
-		final InputStream in = getClass().getResourceAsStream(xml);
-
-		if (in == null) {
-			logger.info("Shops config (" + xml + ") not found, not loading");
-			return;
-		}
-
-		try {
-			load(new URI(xml));
-			in.close();
-			initialized = true;
-		} catch (final SAXException | URISyntaxException | IOException e) {
-			logger.error(e);
-		}
-	}
 
 	public void load(final URI uri) throws SAXException {
 		try {
