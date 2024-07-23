@@ -89,7 +89,7 @@ public class AssassinRepairerAdder {
 				new NotCondition(new PlayerHasItemWithHimCondition("assassins id")),
 				ConversationStates.ATTENDING,
 				//"Only members of the assassins guild can have their #'auto crossbows' repaired.",
-				getReply("denied"),
+				getReply(ID_DENIED),
 				null);
 
 		repairer.add(ConversationStates.ATTENDING,
