@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2018-2023 - Stendhal                     *
+ *                    Copyright © 2018-2024 - Stendhal                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -56,6 +56,12 @@ public class BreakableWeapon extends Weapon {
 		super(name, clazz, subclass, attributes);
 	}
 
+	/**
+	 * Copy constructor.
+	 *
+	 * @param item
+	 *   Item to be copied.
+	 */
 	public BreakableWeapon(final BreakableWeapon item) {
 		super(item);
 	}
