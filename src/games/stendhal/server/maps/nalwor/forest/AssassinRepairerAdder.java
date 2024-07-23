@@ -67,7 +67,7 @@ public class AssassinRepairerAdder {
 
 	final Map<String, Object> replies = new HashMap<String, Object>() {{
 		put(ID_DENIED, "Only members of the assassins guild can have items repaired.");
-		put(ID_UNDECLARED, "Please tell me what you would repaired.");
+		put(ID_UNDECLARED, "Please tell me what you would like repaired.");
 		put(ID_NO_REPAIR, null);
 		put(ID_NO_CARRY, null);
 		put(ID_NO_AFFORD, "You don't have enough money.");
