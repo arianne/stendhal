@@ -1620,23 +1620,60 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return false;
 	}
 
-
+	/**
+	 * Get entities on map filtered by criteria.
+	 *
+	 * @param criteria
+	 *   Filter criteria.
+	 * @return
+	 *   List of entities that meet {@code criteria}.
+	 */
 	public List<Entity> getFilteredEntities(final FilterCriteria<Entity> criteria) {
 		final List <Entity> result = new LinkedList<Entity>();
-
 		for (final RPObject obj : objects.values()) {
 				if (obj instanceof Entity) {
 					final Entity entity = (Entity) obj;
 					if (criteria.passes(entity)) {
 						result.add(entity);
 					}
-
 				}
 			}
-
 		return result;
+	}
 
+	/**
+	 * Get entities on map of a specific class type.
+	 *
+	 * @param clazz
+	 *   Entity class type.
+	 * @param subclasses
+	 *   If {@code true}, include subclass instances.
+	 * @return
+	 *   List of entities of type {@code clazz}.
+	 */
+	public List<? extends Entity> getEntitiesOfClass(Class<? extends Entity> clazz,
+			boolean subclasses) {
+		return getFilteredEntities(new FilterCriteria<Entity>() {
+			@Override
+			public boolean passes(Entity o) {
+				if (subclasses) {
+					return clazz.isInstance(o);
+				}
+				return o.getClass() == clazz;
+			}
+		});
+	}
 
+	/**
+	 * Get entities on map of a specific class type including subclass instances.
+	 *
+	 * @param clazz
+	 *   Entity class type.
+	 * @return
+	 *   List of entities of type {@code clazz}.
+	 */
+	public List<? extends Entity> getEntitiesOfClass(Class<? extends Entity> clazz) {
+		return getEntitiesOfClass(clazz, true);
 	}
 
 	/**
