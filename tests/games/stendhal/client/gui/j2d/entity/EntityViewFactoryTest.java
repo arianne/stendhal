@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -38,11 +38,11 @@ public class EntityViewFactoryTest {
 		private final String classname;
 		private final String subclass;
 		private final String name;
-		private final Class implementation;
+		private final Class<?> implementation;
 
 
 		private EntityRep(final String classname, final String subclass, final String name,
-				final Class implementation) {
+				final Class<?> implementation) {
 			this.classname = classname;
 			this.subclass = subclass;
 			this.name = name;
@@ -106,8 +106,8 @@ public class EntityViewFactoryTest {
 		}
 	}
 
-	private Class getImplementation(final String type_name, final String class_name, final String name, final Class def) {
-		Class implementation = def;
+	private Class<?> getImplementation(final String type_name, final String class_name, final String name, final Class<?> def) {
+		Class<?> implementation = def;
 		final Triple<String, String, String> item_info = new Triple<>(type_name, class_name, name);
 		// attempt to retrieve from factory
 		if (entityViews.containsKey(item_info)) {
@@ -212,7 +212,7 @@ public class EntityViewFactoryTest {
 	}
 
 	private void checkImplementation(final String type_name, final String class_name, final String name,
-			final Class implementation) {
+			final Class<?> implementation) {
 		final EntityRep erep = new EntityRep(type_name, class_name, name, implementation);
 		if (!entities.contains(erep)) {
 			fail("duplicate or not a registered entity representation: " + erep.toString());
