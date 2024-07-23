@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.spawner;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,6 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.util.TimeUtil;
-import marauroa.common.Pair;
 
 
 /**
@@ -114,14 +114,14 @@ public class CloverSpawner extends PassiveEntityRespawnPoint {
 		}
 
 		StendhalRPZone newZone = Rand.rand(zones);
-		Pair<Integer, Integer> pos = newZone.getRandomSpawnPosition(this, false);
+		Point pos = newZone.getRandomSpawnPosition(this, false);
 		if (pos == null) {
 			logger.warn("Unable to find suitable spawn position in zone " + newZone.getName()
 					+ ", retrying in 15 minutes");
 			hasPickableFruit = false;
 			return false;
 		}
-		setPosition(pos.first(), pos.second());
+		setPosition(pos.x, pos.y);
 		newZone.add(this);
 		// set state to allow player to pick up
 		growNewFruit();

@@ -74,7 +74,6 @@ import games.stendhal.server.entity.npc.TrainingDummy;
 import games.stendhal.server.entity.npc.TrainingDummyFactory;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.StringUtils;
-import marauroa.common.Pair;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -2013,13 +2012,13 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @return
 	 *   Appropriate position or `null` if none found.
 	 */
-	public Pair<Integer, Integer> getRandomSpawnPosition(final Entity entity, boolean checkObjects) {
+	public Point getRandomSpawnPosition(final Entity entity, boolean checkObjects) {
 		final short retries = 50;
 		for (short t = 0; t < retries; t++) {
 			final int x = Rand.rand(getWidth());
 			final int y = Rand.rand(getHeight());
 			if (!collides(entity, x, y, checkObjects)) {
-				return new Pair<>(x, y);
+				return new Point(x, y);
 			}
 		}
 		return null;
@@ -2033,7 +2032,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @return
 	 *   Appropriate position or `null` if none found.
 	 */
-	public Pair<Integer, Integer> getRandomSpawnPosition(final Entity entity) {
+	public Point getRandomSpawnPosition(final Entity entity) {
 		return getRandomSpawnPosition(entity, true);
 	}
 }
