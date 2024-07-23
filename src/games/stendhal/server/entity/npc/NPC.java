@@ -347,9 +347,8 @@ public abstract class NPC extends DressedEntity {
 	/**
 	 * Give NPC a random path
 	 *
-	 * @deprecated Use {@code NPC.setIdleBehaviour(new WanderIdleBehaviour())} for random movement.
+	 * NOTE: can this be replaced with {@code NPC.setIdleBehaviour(new WanderIdleBehaviour())}?
 	 */
-	@Deprecated
 	public void moveRandomly() {
 			setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
 	}
