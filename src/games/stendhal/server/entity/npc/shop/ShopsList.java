@@ -95,14 +95,14 @@ public final class ShopsList {
 	}
 
 	/**
-	 * Add an items to a shop.
+	 * Add items to a shop.
 	 *
 	 * @param name
-	 *     Shop name.
+	 *   Shop name.
 	 * @param stype
-	 *     Seller, buyer, or trader shop.
+	 *   Seller, buyer, or trader shop.
 	 * @param inventory
-	 *     Item list with prices.
+	 *   Item list with prices.
 	 */
 	public void add(final String name, final ShopType stype, final ItemShopInventory inventory) {
 		final Map<String, ItemShopInventory> selectedContents = getContents(stype);
@@ -121,16 +121,14 @@ public final class ShopsList {
 	 * Add an item to a shop.
 	 *
 	 * @param name
-	 *     Shop name.
+	 *   Shop name.
 	 * @param stype
-	 *     Seller, buyer, or trader shop.
+	 *   Seller, buyer, or trader shop.
 	 * @param item
-	 *     Name of item to add.
+	 *   Item name.
 	 * @param price
-	 *     Value of the item.
-	 * @deprecated Shops should be defined on data/conf/shops/*.xml
+	 *   Item price.
 	 */
-	@Deprecated
 	public void add(final String name, final ShopType stype, final String item, final int price) {
 		final ItemShopInventory inventory = new ItemShopInventory(stype, name);
 		inventory.put(item, price);
