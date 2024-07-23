@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -32,6 +32,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+import games.stendhal.server.entity.npc.shop.ShopType;
 import games.stendhal.server.entity.npc.shop.ShopsList;
 import games.stendhal.server.entity.player.Player;
 
@@ -74,7 +75,8 @@ public class VeterinarianNPC implements ZoneConfigurator {
 
 				addJob("I'm the veterinarian.");
 
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("healing")) {
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("healing",
+						ShopType.ITEM_SELL)) {
 
 					@Override
 					public int getUnitPrice(final String item) {

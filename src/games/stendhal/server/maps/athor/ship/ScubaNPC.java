@@ -1,6 +1,6 @@
 /* $Id: CaptainNPC.java,v 1.23 2013/06/10 22:13:14 bluelads99 Exp $ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -26,6 +26,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.QuestCompletedSellerBehaviour;
+import games.stendhal.server.entity.npc.shop.ShopType;
 import games.stendhal.server.entity.npc.shop.ShopsList;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
@@ -51,7 +52,9 @@ public class ScubaNPC implements ZoneConfigurator  {
 				addGoodbye("So long...");
 				addHelp("Hm, maybe you'd like to go on an adventure?");
 				addOffer("To licensed divers I can sell #scuba #gear.");
-				new SellerAdder().addSeller(this, new QuestCompletedSellerBehaviour("get_diving_license", "I can't sell #scuba #gear to just anyone!", shops.get("sellScubaStuff")), false);
+				new SellerAdder().addSeller(this, new QuestCompletedSellerBehaviour("get_diving_license",
+						"I can't sell #scuba #gear to just anyone!",
+						shops.get("sellScubaStuff", ShopType.ITEM_SELL)), false);
 				addJob("I'm an assistant on this ship.");
 
 				//scuba gear phrases

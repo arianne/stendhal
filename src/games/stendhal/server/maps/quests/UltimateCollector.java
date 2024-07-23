@@ -49,6 +49,7 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
+import games.stendhal.server.entity.npc.shop.ShopType;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.maps.Region;
@@ -402,7 +403,8 @@ public class UltimateCollector extends AbstractQuest {
 
 	private void replaceLRSwords() {
 		final SpeakerNPC npc = npcs.get("Balduin");
-		final Map<String, Integer> prices = SingletonRepository.getShopsList().get("twohandswords");
+		final Map<String, Integer> prices = SingletonRepository.getShopsList().get("twohandswords",
+				ShopType.ITEM_SELL);
 		final EntityManager em = SingletonRepository.getEntityManager();
 
 		class ReplaceSwordAction implements ChatAction {

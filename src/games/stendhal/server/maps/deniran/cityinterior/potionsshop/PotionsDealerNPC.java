@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2023 - Arianne                      *
+ *                    Copyright © 2003-2024 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -34,6 +34,7 @@ import games.stendhal.server.entity.npc.action.NPCEmoteAction;
 import games.stendhal.server.entity.npc.action.PlaySoundAction;
 import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.condition.PlayerNextToCondition;
+import games.stendhal.server.entity.npc.shop.ShopType;
 import games.stendhal.server.entity.npc.shop.ShopsList;
 import games.stendhal.server.entity.player.Player;
 
@@ -53,8 +54,8 @@ public class PotionsDealerNPC implements ZoneConfigurator {
 		);
 
 		final ShopsList shops = SingletonRepository.getShopsList();
-		final Map<String, Integer> pricesBuy = shops.get("deniranpotionsbuy");
-		final Map<String, Integer> pricesSell = shops.get("deniranpotionssell");
+		final Map<String, Integer> pricesBuy = shops.get("deniranpotionsbuy", ShopType.ITEM_BUY);
+		final Map<String, Integer> pricesSell = shops.get("deniranpotionssell", ShopType.ITEM_SELL);
 
 		npc.addGreeting("Welcome to Deniran's potion shop.");
 		npc.addJob("I manage this potion shop. Ask me about my #prices.");

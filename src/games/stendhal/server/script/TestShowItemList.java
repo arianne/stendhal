@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,6 +14,7 @@ package games.stendhal.server.script;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import games.stendhal.common.NotificationType;
@@ -21,6 +22,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.ItemInformation;
+import games.stendhal.server.entity.npc.shop.ShopType;
 import games.stendhal.server.entity.npc.shop.ShopsList;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.ShowItemListEvent;
@@ -43,14 +45,32 @@ public class TestShowItemList extends ScriptImpl {
 
 		List<Item> itemList = new LinkedList<Item>();
 
+		int argc = args.size();
 		if (args.isEmpty()) {
 			itemList.add(prepareItem("club", 100));
 			itemList.add(prepareItem("leather armor", -100));
 			itemList.add(prepareItem("ice sword", -10000));
 		} else {
-			final String shopName = args.get(0);
+			final String shopName;
+			ShopType shopType = null;
+			if (argc > 1) {
+				shopType = ShopType.fromString(args.get(0).toLowerCase(Locale.ENGLISH));
+				shopName = args.get(1);
+			} else {
+				shopName = args.get(0);
+			}
 			ShopsList shops = SingletonRepository.getShopsList();
-			Map<String, Integer> items = shops.get(shopName);
+			Map<String, Integer> items = null;
+			if (shopType != null) {
+				items = shops.get(shopName, shopType);
+			} else {
+				for (ShopType st: ShopType.values()) {
+					items = shops.get(shopName, st);
+					if (items != null) {
+						break;
+					}
+				}
+			}
 
 			if (items == null) {
 				admin.sendPrivateText(NotificationType.ERROR, "Shop \"" + shopName + "\" not found");

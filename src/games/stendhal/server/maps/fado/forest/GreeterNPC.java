@@ -25,6 +25,7 @@ import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+import games.stendhal.server.entity.npc.shop.ShopType;
 import games.stendhal.server.entity.npc.shop.ShopsList;
 
 /**
@@ -72,7 +73,8 @@ public class GreeterNPC implements ZoneConfigurator {
 				addReply("nomadic", "We don't have a permanent home, we travel instead between forests and glens. When we find a clearing we like, we settle. We liked this one because of the ancient #stones near by.");
 				addReply("stones", "They have some mystical quality. We like to be by them for the changing of the seasons.");
 				addHelp("I would sell you enchanted scrolls to return to Fado City. I have a source of cheap ones.");
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("fadoscrolls")) {
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("fadoscrolls",
+						ShopType.ITEM_SELL)) {
 
 					@Override
 					public int getUnitPrice(final String item) {

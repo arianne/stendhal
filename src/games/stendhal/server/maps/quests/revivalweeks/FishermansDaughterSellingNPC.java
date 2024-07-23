@@ -22,6 +22,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+import games.stendhal.server.entity.npc.shop.ShopType;
 import games.stendhal.server.entity.npc.shop.ShopsList;
 import games.stendhal.server.maps.ados.market.FishermansDaughterNPC;
 
@@ -50,7 +51,8 @@ public class FishermansDaughterSellingNPC implements LoadableContent {
 				addOffer("I sell some snacks and drinks during the Mine Town Weeks. Please take a look at the list close to the stand.");
 				addQuest("I heard that #Susi would love to make friends, she is inside of the house. Or you can ask Fidorea next to me about a little run.");
 				addGoodbye("Bye, hope you'll enjoy the days here!");
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellrevivalweeks")), false);
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellrevivalweeks",
+						ShopType.ITEM_SELL)), false);
 			}
 
 			@Override

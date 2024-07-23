@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -92,22 +92,6 @@ public final class ShopsList {
 	 */
 	public ItemShopInventory get(final String name, final ShopType stype) {
 		return getContents(stype).get(name);
-	}
-
-	/**
-	 * Gets the items offered by a shop with their prices.
-	 *
-	 * @param name
-	 *     Shop name.
-	 * @return
-	 *     Item names and prices.
-	 */
-	@Deprecated
-	public Map<String, Integer> get(final String name) {
-		if (sellerContents.containsKey(name)) {
-			return sellerContents.get(name);
-		}
-		return buyerContents.get(name);
 	}
 
 	/**

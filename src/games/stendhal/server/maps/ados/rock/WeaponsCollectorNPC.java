@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -21,6 +21,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.QuestCompletedBuyerBehaviour;
+import games.stendhal.server.entity.npc.shop.ShopType;
 import games.stendhal.server.entity.npc.shop.ShopsList;
 
 public class WeaponsCollectorNPC implements ZoneConfigurator {
@@ -53,7 +54,9 @@ public class WeaponsCollectorNPC implements ZoneConfigurator {
 				addJob("I'm much too old for hard work. I'm just living here as a hermit.");
 				addGoodbye("It was nice to meet you.");
 				// will buy black items once the Ultimate Collector quest is completed
-				new BuyerAdder().addBuyer(this, new QuestCompletedBuyerBehaviour("ultimate_collector", "I'll buy black items from you when you have completed each #challenge I set you.", shops.get("buyblack")), false);
+				new BuyerAdder().addBuyer(this, new QuestCompletedBuyerBehaviour("ultimate_collector",
+						"I'll buy black items from you when you have completed each #challenge I set you.",
+						shops.get("buyblack", ShopType.ITEM_BUY)), false);
 			}
 			/* remaining behaviour is defined in:
 			 * maps.quests.WeaponsCollector,
