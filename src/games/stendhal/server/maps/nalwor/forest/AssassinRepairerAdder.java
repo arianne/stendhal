@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2020-2023 - Stendhal                     *
+ *                    Copyright © 2020-2024 - Stendhal                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -293,7 +293,7 @@ public class AssassinRepairerAdder {
 				}
 
 				if (sayCountReply == null) {
-					final StringBuilder sb = new StringBuilder("You have " + Integer.toString(currentRepairCount) + " used " + currentRepairItem); //Grammar.plnoun(usedBows, bowType)); // formats name all lowercase
+					final StringBuilder sb = new StringBuilder("You have " + Integer.toString(currentRepairCount) + " used " + currentRepairItem); //Grammar.plnoun(usedBows, bowType)); // FIXME: formats name all lowercase
 					if (multiple) {
 						sb.append("s");
 					}
@@ -426,6 +426,8 @@ public class AssassinRepairerAdder {
 
 		/**
 		 * Retrieves the first item name from repair list.
+		 *
+		 * FIXME: appears to be incomplete as only first item name in repair list can be retrieved
 		 *
 		 * @return
 		 * 		First item.

@@ -19,6 +19,9 @@ import games.stendhal.server.entity.RPEntity;
 
 /**
  * An item that wears & breaks.
+ *
+ * TODO:
+ *   - create unit test
  */
 public class BreakableWeapon extends Weapon {
 
