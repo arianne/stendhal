@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Marauroa                    *
+ *                   (C) Copyright 2003-2024 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -88,6 +88,9 @@ public class PlayerRPClass {
 		player.addRPSlot("bank_magic", 30, Definition.HIDDEN);
 		player.addRPSlot("bank_nalwor", 30, Definition.HIDDEN);
 		player.addRPSlot("zaras_chest_ados", 30, Definition.HIDDEN);
+
+		// mail system
+		player.addRPSlot("mailbox", 1, Definition.HIDDEN);
 
 		// Kills recorder - needed for quest
 		player.addRPSlot("!kills", 1, Definition.HIDDEN);

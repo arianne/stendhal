@@ -566,6 +566,16 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	}
 
 	/**
+	 * Checks if an item is marked as "owned" by a specific player.
+	 *
+	 * @return
+	 *   Always {@code false} in this implementation.
+	 */
+	public boolean hasOwner() {
+		return false;
+	}
+
+	/**
 	 * Get the item's itemData. The itemData contains context specific
 	 * information that is used by the implementation.
 	 *
