@@ -35,7 +35,7 @@ Changelog
 - cleaned up bestiary window layout
 - performance optimization: sound events too far away to be heard are not loaded
 
-*alpha features*
+*experimental features*
 - built-in support added for capturing video of web client viewport
 
 
