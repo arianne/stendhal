@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -89,6 +89,8 @@ public class AdventureIsland extends StendhalRPZone {
 				creature = new Creature(creatureSpawner.calculateNextCreature(level));
 			}
 
+			// randomize stats
+			creature = creature.getNewInstanceRandomizeStats();
 			if (StendhalRPAction.placeat(this, creature, Rand.randUniform(MIN_X, MAX_X),
 					Rand.randUniform(MIN_Y, MAX_Y))) {
 				numCreatures++;
