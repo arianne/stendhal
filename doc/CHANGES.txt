@@ -46,6 +46,7 @@ Changelog
 - new achievements:
   - 30 Minutes or Less: Deliver 25 hot pizzas
 - Balduin allows requesting different item for Ultimate Collector quest
+- support added for dynamic creature spawning
 
 *web client*
 - fixed text extending past edge of notification bubbles
