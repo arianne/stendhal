@@ -87,7 +87,7 @@ import games.stendhal.server.util.TimeUtil;
  * for a task again</li>
  * </ul>
  */
-public class ElfPrincess extends AbstractQuest {
+public class ElfPrincess extends CompletionsTrackingQuest {
 
 	/* delay in minutes */
 	private static final int DELAY = 5;
@@ -314,7 +314,7 @@ public class ElfPrincess extends AbstractQuest {
 		if (isRepeatable(player)) {
 			res.add("I took the flower to the Princess and she gave me gold bars. If I want to make her happy again, I can ask her for another task.");
 		}
-		final int repetitions = player.getNumberOfRepetitions(getSlotName(), 2);
+		final int repetitions = getCompletions(player);
 		if (repetitions > 0) {
 			res.add("I've already taken Princess Tywysoga " + Grammar.quantityplnoun(repetitions, "precious flower", "one") + ".");
 		}

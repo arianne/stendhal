@@ -79,7 +79,7 @@ import games.stendhal.server.util.TimeUtil;
  * REPETITIONS:
  * <ul><li> once a week</ul>
  */
-public class WeeklyItemQuest extends AbstractQuest {
+public class WeeklyItemQuest extends CompletionsTrackingQuest {
 
 	/** the logger instance */
 	private static final Logger logger = Logger.getLogger(WeeklyItemQuest.class);
@@ -539,7 +539,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 			res.add("I took the valuable item to Hazel within the last 7 days.");
 		}
 		// add to history how often player helped Hazel so far
-		final int repetitions = player.getNumberOfRepetitions(getSlotName(), 2);
+		final int repetitions = getCompletions(player);
 		if (repetitions > 0) {
 			res.add("I've brought exhibits for the museum on "
 					+ Grammar.quantityplnoun(repetitions, "occasion") + " so far.");
