@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -126,7 +126,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 
 	public Item getAskedItem(final String askedItem, final Player player) {
 		final Item item = SingletonRepository.getEntityManager().getItem(askedItem);
-		if (item != null && item.has("autobind")) {
+		if (item != null && item.has("autobind") && player != null) {
 			// respect autobind attrubute
 			item.setBoundTo(player.getName());
 		}
