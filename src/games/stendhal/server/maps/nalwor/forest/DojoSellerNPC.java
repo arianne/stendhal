@@ -79,20 +79,16 @@ public class DojoSellerNPC implements ZoneConfigurator {
 	 * price of buying a new one.
 	 */
 	private void initRepairShop() {
-		Map<String, Integer> repairableSellPrices = new LinkedHashMap<>();
 		final Map<String, Integer> repairPrices = new LinkedHashMap<>();
 		for (String itemName: repairables) {
 			if (inventory.containsKey(itemName)) {
-				int price = inventory.getPrice(itemName);
-				repairableSellPrices.put(itemName, price);
 				// repairing is half the cost of buying new
-				repairPrices.put(itemName, price / 2);
+				repairPrices.put(itemName, inventory.getPrice(itemName) / 2);
 			}
 		}
 		// initialize NPC repairer
-		AssassinRepairerAdder repairerAdder = new AssassinRepairerAdder();
-		seller = new AssassinRepairerAdder.AssassinRepairer("Akutagawa", repairableSellPrices);
-		repairerAdder.add(seller);
+		seller = new AssassinRepairerAdder.AssassinRepairer("Akutagawa", repairPrices);
+		new AssassinRepairerAdder().add(seller);
 	}
 
 	/**
