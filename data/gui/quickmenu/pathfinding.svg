@@ -24,9 +24,9 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="true"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="4.8032754"
-     inkscape:cx="21.755987"
-     inkscape:cy="52.360104"
+     inkscape:zoom="3.3964286"
+     inkscape:cx="56.235541"
+     inkscape:cy="24.290221"
      inkscape:window-width="1920"
      inkscape:window-height="1025"
      inkscape:window-x="-8"
@@ -38,7 +38,7 @@
   <g
      id="g1">
     <circle
-       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.71045;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.999544"
+       style="display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.71045;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.999544"
        id="path1"
        cx="24"
        cy="24"
@@ -46,16 +46,16 @@
        inkscape:label="background" />
     <g
        id="g134"
-       transform="matrix(0.03571429,0,0,0.03571429,13.999999,15.42857)"
+       transform="matrix(-0.03571429,0,0,0.03571429,34.000001,15.42857)"
        inkscape:label="icon">
       <path
          id="path135"
-         style="display:inline;fill:#000000"
+         style="display:inline;fill:#ffffff"
          d="m 240,0 c 0,60 0,120 0,180 -20,20 -40,40 -60,60 -40,0 -80,0 -120,0 -20,20 -40,40 -60,60 0,60 0,120 0,180 106.66667,0 213.33333,0 320,0 0,-13.33333 0,-26.66667 0,-40 13.33333,0 26.66667,0 40,0 0,13.33333 0,26.66667 0,40 66.66667,0 133.33333,0 200,0 0,-160 0,-320 0,-480 C 453.33333,0 346.66667,0 240,0 Z"
          inkscape:label="boot_background" />
       <path
          id="rect103"
-         style="fill:#bbbeba"
+         style="fill:#000000"
          inkscape:label="boot_shadow"
          d="m 280,40 v 160 l -80,80 h 60 l 60,-60 V 40 Z m 200,0 V 360 H 40 v 40 H 520 V 40 Z"
          sodipodi:nodetypes="cccccccccccccc" />
