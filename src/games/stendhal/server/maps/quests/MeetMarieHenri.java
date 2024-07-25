@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,6 +20,7 @@ import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.JokerExprMatcher;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -74,6 +75,8 @@ public class MeetMarieHenri extends AbstractQuest {
 		fillQuestInfo("Meet Marie-Henri",
 				"A famous French writer tests general knowledge in Ados Library.",
 				false);
+		setBaseHOFScore(HOFScore.EASY);
+
 		createSteps();
 	}
 

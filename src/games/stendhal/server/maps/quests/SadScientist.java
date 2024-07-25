@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -22,6 +22,7 @@ import org.apache.log4j.Logger;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -178,6 +179,8 @@ public class SadScientist extends AbstractQuest {
 				"A Sad Scientist",
 				"Vasi Elos, a lonely scientist, wants to deliver a present to his honey.",
 				false);
+		setBaseHOFScore(HOFScore.MEDIUM);
+
 		prepareQuestSteps();
 	}
 

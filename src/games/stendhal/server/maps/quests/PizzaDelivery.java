@@ -13,6 +13,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.NPCList;
@@ -294,6 +295,8 @@ public class PizzaDelivery implements QuestManuscript {
 			.respondToItemForOtherNPC("No, thanks. I like [flavor] better.")
 			.respondToMissingItem("A pizza? Where?")
 			.npcStatusEffect("pizza");
+
+		quest.setBaseHOFScore(HOFScore.EASY);
 
 		return quest;
 	}

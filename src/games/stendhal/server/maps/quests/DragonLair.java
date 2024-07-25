@@ -15,6 +15,7 @@ package games.stendhal.server.maps.quests;
 import java.util.ArrayList;
 import java.util.List;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -113,12 +114,13 @@ public class DragonLair extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		step_1();
 		fillQuestInfo(
 				"Dragon Lair",
 				"Wishman, storm trooper extraordinaire from Blordrough's dark legion, guards the remaining dragons... and lets visitors into their lair.",
 				true);
+		setBaseHOFScore(HOFScore.MEDIUM);
 
+		step_1();
 	}
 
 	@Override

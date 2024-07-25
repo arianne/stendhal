@@ -21,6 +21,7 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.core.rp.achievement.condition.BoughtNumberOfCondition;
@@ -106,19 +107,19 @@ public class CommerceAchievementFactory extends AbstractAchievementFactory {
 		achievements.add(createAchievement(
 			ID_HAPPY_HOUR, "It's Happy Hour Somewhere",
 			"Purchase 100 bottles of beer & 100 glasses of wine",
-			Achievement.EASY_BASE_SCORE, true,
+			HOFScore.EASY, true,
 			new BoughtNumberOfCondition(100, Arrays.asList("beer", "wine"))));
 
 		achievements.add(createAchievement(
 			ID_SELL_20K, "Traveling Peddler",
 			"Make 20000 money in sales to NPCs",
-			Achievement.EASY_BASE_SCORE, true,
+			HOFScore.EASY, true,
 			new HasEarnedTotalMoneyCondition(20000)));
 
 		achievements.add(createAchievement(
 			ID_BUY_ALL, "Community Supporter",
 			"Spend money around the world",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new HasSpentMoneyCondition(TRADE_ALL_AMOUNTS)));
 
 

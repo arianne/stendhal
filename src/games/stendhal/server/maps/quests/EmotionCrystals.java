@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2013 - Stendhal                    *
+ *                 Copyright © 2003-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,6 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -424,6 +425,8 @@ public class EmotionCrystals extends AbstractQuest {
 				"Emotion Crystals",
 				"Julius needs to get some crystals for his wife which are spread across Faiumoni.",
 				false);
+		setBaseHOFScore(HOFScore.MEDIUM);
+
 		prepareRequestingStep();
 		prepareRiddlesStep();
 		prepareBringingStep();

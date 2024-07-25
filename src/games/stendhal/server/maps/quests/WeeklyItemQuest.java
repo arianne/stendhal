@@ -24,6 +24,7 @@ import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -36,6 +37,7 @@ import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPDependentOnLevelAction;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.RecordPlayerLevelAction;
 import games.stendhal.server.entity.npc.action.SayRequiredItemAction;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -53,6 +55,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.player.PlayerTier;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.util.TimeUtil;
 
@@ -94,6 +97,9 @@ public class WeeklyItemQuest extends AbstractQuest {
 	/** How often the quest may be repeated */
 	private static final int delay = TimeUtil.MINUTES_IN_WEEK;
 
+	/** Slot index where player's level is stored upon completion. */
+	private static final int SLOT_INDEX_LEVEL = 3;
+
 	/**
 	 * All items which are hard enough to find but not tooo hard and not in Daily quest. If you want to do
 	 * it better, go ahead. *
@@ -101,9 +107,6 @@ public class WeeklyItemQuest extends AbstractQuest {
 	private static final Map<String, Integer> items_easy = new HashMap<String, Integer>();
 	private static final Map<String, Integer> items_med = new HashMap<String, Integer>();
 	private static final Map<String, Integer> items_hard = new HashMap<String, Integer>();
-
-	private static final int LEVEL_MED = 51;
-	private static final int LEVEL_HARD = 151;
 
 
 	/**
@@ -322,7 +325,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Hazel");
 
 		final ChatCondition startEasyCondition = new AndCondition(
-				new LevelLessThanCondition(LEVEL_MED),
+				new LevelLessThanCondition(PlayerTier.NOVICE.minLevel),
 				new OrCondition(
 						new QuestNotStartedCondition(QUEST_SLOT),
 						new AndCondition(
@@ -330,8 +333,8 @@ public class WeeklyItemQuest extends AbstractQuest {
 								new TimePassedCondition(QUEST_SLOT,1,delay))));
 
 		final ChatCondition startMedCondition = new AndCondition(
-				new LevelGreaterThanCondition(LEVEL_MED - 1),
-				new LevelLessThanCondition(LEVEL_HARD),
+				new LevelGreaterThanCondition(PlayerTier.BEGINNER.maxLevel),
+				new LevelLessThanCondition(PlayerTier.VETERAN.minLevel),
 				new OrCondition(
 						new QuestNotStartedCondition(QUEST_SLOT),
 						new AndCondition(
@@ -339,7 +342,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 								new TimePassedCondition(QUEST_SLOT,1,delay))));
 
 		final ChatCondition startHardCondition = new AndCondition(
-				new LevelGreaterThanCondition(LEVEL_HARD - 1),
+				new LevelGreaterThanCondition(PlayerTier.NOVICE.maxLevel),
 				new OrCondition(
 						new QuestNotStartedCondition(QUEST_SLOT),
 						new AndCondition(
@@ -411,9 +414,11 @@ public class WeeklyItemQuest extends AbstractQuest {
 
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new DropRecordedItemAction(QUEST_SLOT,0));
-		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
-		actions.add(new IncrementQuestAction(QUEST_SLOT,2,1));
 		actions.add(new SetQuestAction(QUEST_SLOT, 0, "done"));
+		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
+		actions.add(new IncrementQuestAction(QUEST_SLOT, questInfo.getCompletionsIndexes().second(), 1));
+		// NOTE: store player level before XP is added
+		actions.add(new RecordPlayerLevelAction(QUEST_SLOT, WeeklyItemQuest.SLOT_INDEX_LEVEL));
 		actions.add(new IncreaseXPDependentOnLevelAction(5.0/3.0, 290.0));
 		actions.add(new IncreaseKarmaAction(10.0));
 		actions.add(new ChatAction() {
@@ -452,18 +457,18 @@ public class WeeklyItemQuest extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Hazel");
 
 		final ChatCondition startEasyCondition = new AndCondition(
-				new LevelLessThanCondition(LEVEL_MED),
+				new LevelLessThanCondition(PlayerTier.NOVICE.minLevel),
 				new QuestActiveCondition(QUEST_SLOT),
 				new TimePassedCondition(QUEST_SLOT,1,expireDelay));
 
 		final ChatCondition startMedCondition = new AndCondition(
-				new LevelGreaterThanCondition(LEVEL_MED - 1),
-				new LevelLessThanCondition(LEVEL_HARD),
+				new LevelGreaterThanCondition(PlayerTier.BEGINNER.maxLevel),
+				new LevelLessThanCondition(PlayerTier.VETERAN.minLevel),
 				new QuestActiveCondition(QUEST_SLOT),
 				new TimePassedCondition(QUEST_SLOT,1,expireDelay));
 
 		final ChatCondition startHardCondition = new AndCondition(
-				new LevelGreaterThanCondition(LEVEL_HARD - 1),
+				new LevelGreaterThanCondition(PlayerTier.NOVICE.maxLevel),
 				new QuestActiveCondition(QUEST_SLOT),
 				new TimePassedCondition(QUEST_SLOT,1,expireDelay));
 
@@ -554,6 +559,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 				"Kirdneh Museum Needs Help!",
 				"Hazel, the curator of the Kirdneh Museum, wants as many rare exhibits as she can afford.",
 				true, 2);
+		setBaseHOFScore(HOFScore.MEDIUM);
 		buildItemsMap();
 
 		getQuest();
@@ -586,5 +592,22 @@ public class WeeklyItemQuest extends AbstractQuest {
 	@Override
 	public String getNPCName() {
 		return "Hazel";
+	}
+
+	/**
+	 * Calculates Hall of Fame score based on player tier.
+	 *
+	 * Score is affected by player level because items that are more difficult to obtain may be
+	 * requested at higher levels.
+	 *
+	 * @param player
+	 *   Player instance used to adjust scoring.
+	 * @return
+	 *   Hall of Fame score value.
+	 */
+	@Override
+	public HOFScore getHOFScore(final Player player) {
+		final int lastCompletionLevel = getLevelAtLastCompletion(WeeklyItemQuest.SLOT_INDEX_LEVEL, player);
+		return new HOFScore((int) Math.floor(PlayerTier.getTier(lastCompletionLevel).multiplier * getBaseHOFScore().value));
 	}
 }

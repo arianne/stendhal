@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,6 +17,7 @@ import java.util.List;
 
 import games.stendhal.common.Level;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Sheep;
@@ -84,6 +85,8 @@ public class SheepGrowing extends AbstractQuest {
 					"Because he is very busy he needs somebody to take care of " +
 					"one of his sheep and hand it over to Sato.",
 				true);
+		setBaseHOFScore(HOFScore.EASY);
+
 		generalInformationDialogs();
 		preparePlayerGetsSheepStep();
 		preparePlayerHandsOverSheepStep();

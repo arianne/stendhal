@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -253,6 +254,8 @@ public class MixtureForOrtiv extends AbstractQuest {
 				"Mixture for Ortiv",
 				"Ortiv needs some ingredients for a mixture which will help him to keep the assassins and bandits in the cellar.",
 				true);
+		setBaseHOFScore(HOFScore.MEDIUM);
+
 		prepareRequestingStep();
 		prepareBringingStep();
 	}

@@ -17,6 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import games.stendhal.common.Direction;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -342,6 +343,7 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 				"Zekiels Practical Test",
 				"Zekiel, the guardian of the magic tower, knows all about the wizards domain and history.",
 				true);
+		setBaseHOFScore(HOFScore.MEDIUM);
 
 		prepareQuestOfferingStep();
 		bringItemsStep();

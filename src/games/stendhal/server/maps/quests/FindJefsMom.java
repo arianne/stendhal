@@ -20,6 +20,7 @@ import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -265,6 +266,8 @@ public class FindJefsMom extends AbstractQuest {
 				"Find Jefs Mother",
 				"Jef, a young boy in Kirdneh city, waits for his mum, Amber, who didn't return yet from the market.",
 				false, 2);
+		setBaseHOFScore(HOFScore.EASY);
+
 		offerQuestStep();
 		findMomStep();
 		bringFlowerToJefStep();

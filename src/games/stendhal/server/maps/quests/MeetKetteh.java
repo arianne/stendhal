@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -187,14 +188,14 @@ public class MeetKetteh extends AbstractQuest {
 				null);
 	}
 
-
-
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
 				"Meet Ketteh Wehoh",
 				"An elegant lady waits in the town hall in Semos and takes care that new inhabitants of Faiumoni will walk around without freezing. She is the town Decency and Manners Warden.",
 				false);
+		setBaseHOFScore(HOFScore.EASY);
+
 		step1();
 	}
 
