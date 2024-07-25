@@ -566,12 +566,11 @@ public class AssassinRepairerAdder {
 		/**
 		 * Retrieves the first item name from repair list.
 		 *
-		 * FIXME: appears to be incomplete as only first item name in repair list can be retrieved
+		 * Used when player asks for repair without declaring item name.
 		 *
 		 * @return
 		 *   Name of first item in list of items that can be repaired.
 		 */
-		@SuppressWarnings("unchecked")
 		public String getFirstRepairable() {
 			return repairList.keySet().toArray(new String[] {})[0];
 		}
