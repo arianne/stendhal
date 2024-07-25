@@ -488,17 +488,18 @@ public class AssassinRepairerAdder {
 		}
 
 		/**
-		 * Checks if item is included in list of items that NPC can repair.
+		 * Checks if current item subject is included in list of items that NPC can repair.
 		 *
-		 * @param itemName
-		 *   Name of item.
 		 * @return
 		 *   {@code true} if repairing item is supported.
 		 */
-		public boolean canRepair(String itemName) {
-			itemName = itemName.toLowerCase(Locale.ENGLISH);
+		public boolean canRepair() {
+			if (currentRepairItem == null) {
+				return false;
+			}
+			String itemNameL = currentRepairItem.toLowerCase(Locale.ENGLISH);
 			for (String repairable: repairList.keySet()) {
-				if (repairable.toLowerCase(Locale.ENGLISH).equals(itemName)) {
+				if (repairable.toLowerCase(Locale.ENGLISH).equals(itemNameL)) {
 					return true;
 				}
 			}
@@ -524,7 +525,7 @@ public class AssassinRepairerAdder {
 		 *   Number of "worn" items player is carrying.
 		 */
 		private int getWornItemsCount(final Player player) {
-			if (!canRepair(currentRepairItem)) {
+			if (!canRepair()) {
 				return 0;
 			}
 			int count = 0;
