@@ -11,8 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.maps.nalwor.forest;
 
-import static games.stendhal.server.maps.nalwor.forest.AssassinRepairerAdder.ID_NO_AFFORD;
-
 import java.awt.Point;
 import java.awt.geom.Rectangle2D;
 import java.lang.ref.WeakReference;
@@ -63,6 +61,7 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.ShowItemListEvent;
 import games.stendhal.server.maps.nalwor.forest.AssassinRepairerAdder.AssassinRepairer;
+import games.stendhal.server.maps.nalwor.forest.AssassinRepairerAdder.ResponseId;
 import games.stendhal.server.util.TimeUtil;
 
 
@@ -321,7 +320,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 		}
 
 		repairerAdder.add(ranger, repairPrices);
-		repairerAdder.setReply(ID_NO_AFFORD, "You don't have enough money. Get outta here!");
+		repairerAdder.setReply(ResponseId.NO_AFFORD, "You don't have enough money. Get outta here!");
 	}
 
 	/**

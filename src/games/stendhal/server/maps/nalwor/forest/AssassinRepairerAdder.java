@@ -65,31 +65,37 @@ public class AssassinRepairerAdder {
 	/** Subject fee of current conversation. */
 	private Integer currentRepairFee = null;
 
-	// reply IDs
-	// TODO: convert to enum
-	public final static String ID_DENIED = "denied";
-	public final static String ID_UNDECLARED = "undeclared";
-	public final static String ID_NO_REPAIR = "cannot_repair";
-	public final static String ID_NO_CARRY = "not_carrying";
-	public final static String ID_NO_AFFORD = "cannot_afford";
-	public final static String ID_SAY_COUNT = "say_count";
-	public final static String ID_REJECT_REPAIR = "reject_repair";
-	public final static String ID_DROPPED = "dropped";
-	public final static String ID_REPAIR_DONE = "repair_done";
-	public final static String ID_ERROR = "error";
+	/**
+	 * IDs for responses to repair requests.
+	 *
+	 * TODO:
+	 *   - move to behavior
+	 */
+	public static enum ResponseId {
+		DENIED, // player does not satisfy preconditions
+		UNDECLARED, // player did not specify which item to repair
+		NO_REPAIR, // NPC does not repair requested item
+		NO_CARRY, // player is not carrying requested item
+		NO_AFFORD, // player doesn't have enough money to pay for repair
+		SAY_COUNT, // NPC should say how many items player is carrying that need repair
+		REJECT_REPAIR, // player does not confirm repair after request
+		DROPPED, // player dropped item after request
+		REPAIR_DONE, // repair was completed
+		ERROR; // an unknown error occurred
+	}
 
 	/** Responses for repair requests conditions. */
-	final Map<String, Object> replies = new HashMap<String, Object>() {{
-		put(ID_DENIED, "Only members of the assassins guild can have items repaired.");
-		put(ID_UNDECLARED, "Please tell me what you would like repaired.");
-		put(ID_NO_REPAIR, null);
-		put(ID_NO_CARRY, null);
-		put(ID_NO_AFFORD, "You don't have enough money.");
-		put(ID_SAY_COUNT, null);
-		put(ID_REJECT_REPAIR, "Good luck then. Remember, once they break, they can't be repaired.");
-		put(ID_DROPPED, "Did you drop the item?");
-		put(ID_REPAIR_DONE, null);
-		put(ID_ERROR, "It appears I am unable to process the transaction. I'm sorry.");
+	final Map<ResponseId, Object> replies = new HashMap<ResponseId, Object>() {{
+		put(ResponseId.DENIED, "Only members of the assassins guild can have items repaired.");
+		put(ResponseId.UNDECLARED, "Please tell me what you would like repaired.");
+		put(ResponseId.NO_REPAIR, null);
+		put(ResponseId.NO_CARRY, null);
+		put(ResponseId.NO_AFFORD, "You don't have enough money.");
+		put(ResponseId.SAY_COUNT, null);
+		put(ResponseId.REJECT_REPAIR, "Good luck then. Remember, once they break, they can't be repaired.");
+		put(ResponseId.DROPPED, "Did you drop the item?");
+		put(ResponseId.REPAIR_DONE, null);
+		put(ResponseId.ERROR, "It appears I am unable to process the transaction. I'm sorry.");
 	}};
 
 
@@ -112,7 +118,7 @@ public class AssassinRepairerAdder {
 				new NotCondition(new PlayerHasItemWithHimCondition("assassins id")),
 				ConversationStates.ATTENDING,
 				//"Only members of the assassins guild can have their #'auto crossbows' repaired.",
-				getReply(ID_DENIED),
+				getReply(ResponseId.DENIED),
 				null);
 
 		// meets requirements and does meet preconditions
@@ -128,7 +134,7 @@ public class AssassinRepairerAdder {
 				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				getReply(ID_REJECT_REPAIR),
+				getReply(ResponseId.REJECT_REPAIR),
 				null);
 
 		// player dropped item before accepting
@@ -136,7 +142,7 @@ public class AssassinRepairerAdder {
 				ConversationPhrases.YES_MESSAGES,
 				new NotCondition(needsRepairCondition()),
 				ConversationStates.ATTENDING,
-				getReply(ID_DROPPED),
+				getReply(ResponseId.DROPPED),
 				null);
 
 		// this should not happen
@@ -144,7 +150,7 @@ public class AssassinRepairerAdder {
 				ConversationPhrases.YES_MESSAGES,
 				feeNotSetCondition(),
 				ConversationStates.ATTENDING,
-				getReply(ID_ERROR),
+				getReply(ResponseId.ERROR),
 				null);
 
 		// wants repair but doesn't have enough money
@@ -154,7 +160,7 @@ public class AssassinRepairerAdder {
 						needsRepairCondition(),
 						new NotCondition(canAffordCondition())),
 				ConversationStates.ATTENDING,
-				getReply(ID_NO_AFFORD),
+				getReply(ResponseId.NO_AFFORD),
 				null);
 
 		// wants repair and does have enough money
@@ -188,7 +194,7 @@ public class AssassinRepairerAdder {
 	 * @param phrases
 	 *   Replies for condition.
 	 */
-	public void setReply(final String id, final String... phrases) {
+	public void setReply(final ResponseId id, final String... phrases) {
 		/*
 		if (phrases.length > 2) {
 			logger.warn("Maximum of 2 phrases allowed: singular & plural forms");
@@ -226,7 +232,7 @@ public class AssassinRepairerAdder {
 	 *   NPC response to condition.
 	 */
 	@SuppressWarnings("unchecked")
-	private String getReply(final String id, final boolean plural) {
+	private String getReply(final ResponseId id, final boolean plural) {
 		final Object reply = replies.get(id);
 		if (reply instanceof Pair) {
 			if (plural) {
@@ -250,7 +256,7 @@ public class AssassinRepairerAdder {
 	 * @return
 	 *   NPC response to condition.
 	 */
-	private String getReply(final String id) {
+	private String getReply(final ResponseId id) {
 		return getReply(id, false);
 	}
 
@@ -337,7 +343,7 @@ public class AssassinRepairerAdder {
 				String request = sentence.getTrimmedText();
 				if (ConversationPhrases.REPAIR_MESSAGES.contains(request.toLowerCase(Locale.ENGLISH))) {
 					if (repairables > 1) {
-						repairer.say(getReply(ID_UNDECLARED));
+						repairer.say(getReply(ResponseId.UNDECLARED));
 						repairer.setCurrentState(ConversationStates.ATTENDING);
 						return;
 					}
@@ -357,7 +363,7 @@ public class AssassinRepairerAdder {
 				setRepairCount(player);
 
 				if (currentRepairCount == null) {
-					String cannotRepairReply = getReply(ID_NO_REPAIR);
+					String cannotRepairReply = getReply(ResponseId.NO_REPAIR);
 					if (cannotRepairReply == null) {
 						cannotRepairReply = "I do not repair " + Grammar.plural(currentRepairItem) + ".";
 					}
@@ -366,7 +372,7 @@ public class AssassinRepairerAdder {
 					repairer.setCurrentState(ConversationStates.ATTENDING);
 					return;
 				} else if (currentRepairCount < 1) {
-					String notCarryingReply = getReply(ID_NO_CARRY);
+					String notCarryingReply = getReply(ResponseId.NO_CARRY);
 					if (notCarryingReply == null) {
 						notCarryingReply = "You don't have any #'" + Grammar.plural(currentRepairItem) + "' that need repaired.";
 					}
@@ -381,9 +387,9 @@ public class AssassinRepairerAdder {
 
 				String sayCountReply;
 				if (multiple) {
-					sayCountReply = getReply(ID_SAY_COUNT, true);
+					sayCountReply = getReply(ResponseId.SAY_COUNT, true);
 				} else {
-					sayCountReply = getReply(ID_SAY_COUNT);
+					sayCountReply = getReply(ResponseId.SAY_COUNT);
 				}
 
 				if (sayCountReply == null) {
@@ -431,9 +437,9 @@ public class AssassinRepairerAdder {
 
 				String doneReply;
 				if (multiple) {
-					doneReply = getReply(ID_REPAIR_DONE, true);
+					doneReply = getReply(ResponseId.REPAIR_DONE, true);
 				} else {
-					doneReply = getReply(ID_REPAIR_DONE);
+					doneReply = getReply(ResponseId.REPAIR_DONE);
 				}
 
 				if (doneReply == null) {
