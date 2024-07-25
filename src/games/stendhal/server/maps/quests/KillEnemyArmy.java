@@ -76,7 +76,7 @@ import marauroa.common.Pair;
  * REPETITIONS: <ul><li> once a week.</ul>
  */
 
-public class KillEnemyArmy extends AbstractQuest {
+public class KillEnemyArmy extends CompletionsTrackingQuest {
 
 	private static final String QUEST_NPC = "Despot Halb Errvl";
 	private static final String QUEST_SLOT = "kill_enemy_army";
@@ -579,7 +579,7 @@ public class KillEnemyArmy extends AbstractQuest {
 		if (isRepeatable(player)) {
 			history.add("Despot Halb Errvl is getting paranoid again about his safety, I can offer my services now.");
 		}
-		int repetitions = player.getNumberOfRepetitions(getSlotName(), 3);
+		int repetitions = getCompletions(player);
 		if (repetitions > 0) {
 			history.add("I've bloodthirstily slain "
 					+ Grammar.quantityplnoun(repetitions, "whole army") + " for Despot Halb Errvl.");

@@ -23,8 +23,6 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.MultipleActions;
-import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
@@ -34,6 +32,7 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.util.TimeUtil;
+import marauroa.common.Pair;
 
 /**
  * QUEST: Kill Spiders
@@ -62,7 +61,7 @@ import games.stendhal.server.util.TimeUtil;
  * </ul>
  */
 
-public class KillSpiders extends AbstractQuest {
+public class KillSpiders extends CompletionsTrackingQuest {
 
 	private static final String QUEST_SLOT = "kill_all_spiders";
 
@@ -82,12 +81,12 @@ public class KillSpiders extends AbstractQuest {
 				new ChatAction() {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
+						if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT, 0).equals("rejected")) {
 							raiser.say("Have you ever been to the basement of the school? The room is full of spiders and some could be dangerous, since the students do experiments! Would you like to help me with this 'little' problem?");
 							raiser.setCurrentState(ConversationStates.QUEST_OFFERED);
 						}  else if (player.getQuest(QUEST_SLOT, 0).equals("started")) {
 							raiser.say("I already asked you to kill all creatures in the basement!");
-						}  else if (player.getQuest(QUEST_SLOT).startsWith("killed;")) {
+						}  else if (player.getQuest(QUEST_SLOT, 0).equals("killed")) {
 							final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 							final long delay = TimeUtil.MILLISECONDS_IN_WEEK;
 							final long timeRemaining = Long.parseLong(tokens[1]) + delay - System.currentTimeMillis();
@@ -103,24 +102,27 @@ public class KillSpiders extends AbstractQuest {
 					}
 				});
 
-		final List<ChatAction> actions = new LinkedList<ChatAction>();
-		actions.add(new SetQuestAction(QUEST_SLOT, "started"));
-		//actions.add(new StartRecordingKillsAction(QUEST_SLOT,1,"spider", "poisonous spider", "giant spider"));
-
-
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Fine. Go down to the basement and kill all the creatures there!",
-				new MultipleActions(actions));
+				new ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, EventRaiser npc) {
+						final Pair<Integer, Integer> indexes = questInfo.getCompletionsIndexes();
+						final String completions = player.getQuest(QUEST_SLOT, indexes.second());
+						player.setQuest(QUEST_SLOT, "started");
+						player.setQuest(QUEST_SLOT, indexes.first(), completions);
+					}
+				});
 
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Ok, I have to find someone else to do this 'little' job!",
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, 0, "rejected", -5.0));
 	}
 
 	private void step_2() {
@@ -132,7 +134,7 @@ public class KillSpiders extends AbstractQuest {
 		// support for old-style quests
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(QUEST_SLOT, "start")),
+						new QuestInStateCondition(QUEST_SLOT, 0, "start")),
 				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
@@ -148,7 +150,9 @@ public class KillSpiders extends AbstractQuest {
 							player.equipOrPutOnGround(mythegg);
 							player.addKarma(5.0);
 							player.addXP(5000);
-							player.setQuest(QUEST_SLOT, "killed;" + System.currentTimeMillis());
+							final String completions = player.getQuest(QUEST_SLOT, questInfo.getCompletionsIndexes().first());
+							player.setQuest(QUEST_SLOT, "killed;" + System.currentTimeMillis() + ";" + completions);
+							incrementCompletionsAction().fire(player, null, null);
 						} else {
 							raiser.say("Go down and kill the creatures, no time left.");
 						}
@@ -175,7 +179,9 @@ public class KillSpiders extends AbstractQuest {
 							player.equipOrPutOnGround(mythegg);
 							player.addKarma(5.0);
 							player.addXP(5000);
-							player.setQuest(QUEST_SLOT, "killed;" + System.currentTimeMillis());
+							final String completions = player.getQuest(QUEST_SLOT, questInfo.getCompletionsIndexes().first());
+							player.setQuest(QUEST_SLOT, "killed;" + System.currentTimeMillis() + ";" + completions);
+							incrementCompletionsAction().fire(player, null, null);
 						} else {
 							raiser.say("Go down and kill the creatures, no time left.");
 						}
@@ -188,7 +194,8 @@ public class KillSpiders extends AbstractQuest {
 		fillQuestInfo(
 				"Kill Spiders",
 				"Morgrin, groundskeeper of the magic school, is concerned about spiders in the school basement.",
-				true);
+				true, 4, 2);
+
 		step_1();
 		step_2();
 		step_3();

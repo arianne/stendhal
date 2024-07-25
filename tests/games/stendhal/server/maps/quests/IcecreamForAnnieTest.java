@@ -25,6 +25,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -78,8 +79,13 @@ public class IcecreamForAnnieTest {
 		npc = SingletonRepository.getNPCList().get("Annie Jones");
 		en = npc.getEngine();
 
+		final int completions = MathHelper.parseIntDefault(player.getQuest(questSlot, 2), 0);
 		en.step(player, "hi");
-		assertEquals("Hello, my name is Annie. I am five years old.", getReply(npc));
+		if (completions == 0) {
+			assertEquals("Hello, my name is Annie. I am five years old.", getReply(npc));
+		} else {
+			assertThat(getReply(npc), is("Hello."));
+		}
 		en.step(player, "help");
 		assertEquals("Ask my mummy.", getReply(npc));
 		en.step(player, "job");
@@ -90,7 +96,7 @@ public class IcecreamForAnnieTest {
 		assertEquals("I'm hungry! I'd like an ice cream, please. Vanilla, with a chocolate flake. Will you get me one?", getReply(npc));
 		en.step(player, "ok");
 		assertEquals("Thank you!", getReply(npc));
-		assertThat(player.getQuest(questSlot), is("start"));
+		assertThat(player.getQuest(questSlot, 0), is("start"));
 		en.step(player, "bye");
 		assertEquals("Ta ta.", getReply(npc));
 
@@ -139,7 +145,7 @@ public class IcecreamForAnnieTest {
 
 		en.step(player, "hi");
 		assertEquals("Hello, I see you've met my daughter Annie. I hope she wasn't too demanding. You seem like a nice person.", getReply(npc));
-		assertThat(player.getQuest(questSlot), is("mummy"));
+		assertThat(player.getQuest(questSlot, 0), is("mummy"));
 		en.step(player, "task");
 		assertEquals("Nothing, thank you.", getReply(npc));
 		en.step(player, "bye");
@@ -158,7 +164,7 @@ public class IcecreamForAnnieTest {
 		assertTrue(player.isEquipped("present"));
 		assertThat(player.getXP(), greaterThan(xp));
 		assertThat(player.getKarma(), greaterThan(karma));
-		assertTrue(player.getQuest(questSlot).startsWith("eating"));
+		assertTrue(player.getQuest(questSlot).startsWith("eating;"));
 		assertEquals("Thank you EVER so much! You are very kind. Here, take this present.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Ta ta.", getReply(npc));
@@ -176,13 +182,13 @@ public class IcecreamForAnnieTest {
 		// -----------------------------------------------
 		final double newKarma = player.getKarma();
 		// [15:07] Changed the state of quest 'icecream_for_annie' from 'eating;1219676807283' to 'eating;0'
-		player.setQuest(questSlot, "eating;0");
+		player.setQuest(questSlot, 1, "0");
 		en.step(player, "hi");
 		assertEquals("Hello.", getReply(npc));
 		en.step(player, "task");
 		assertEquals("I hope another ice cream wouldn't be greedy. Can you get me one?", getReply(npc));
 		en.step(player, "no");
-		assertThat(player.getQuest(questSlot), is("rejected"));
+		assertThat(player.getQuest(questSlot, 0), is("rejected"));
 		assertThat(player.getKarma(), lessThan(newKarma));
 		assertEquals("Ok, I'll ask my mummy instead.", getReply(npc));
 
@@ -192,5 +198,27 @@ public class IcecreamForAnnieTest {
 		assertEquals("Hello.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Ta ta.", getReply(npc));
+	}
+
+	@Test
+	public void testCompletions() {
+		for (int count = 0; count < 5; count++) {
+			assertThat(MathHelper.parseIntDefault(player.getQuest(questSlot, 2), 0), is(count));
+			testQuest();
+			// reset so can be repeated
+			player.setQuest(questSlot, 1, "0");
+		}
+		assertThat(player.getQuest(questSlot, 2), is("5"));
+
+		// check that completions count is retained after quest is rejected & started
+		en.step(player, "hi");
+		en.step(player, "task");
+		en.step(player, "no");
+		assertThat(player.getQuest(questSlot), is("rejected;0;5"));
+		en.step(player, "hi");
+		en.step(player, "task");
+		en.step(player, "yes");
+		assertThat(player.getQuest(questSlot), is("start;0;5"));
+		en.step(player, "bye");
 	}
 }
