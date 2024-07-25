@@ -161,13 +161,15 @@ public class AssassinRepairerAdder {
 						repairer.setCurrentState(ConversationStates.ATTENDING);
 						return;
 					}
-
 					// player does not need to specify item name if repairer only repairs one item
 					request = request + " " + repairer.getFirstRepairable();
 				}
 
+				// compare with lower-case to make request line case-insensitive
+				String requestL = request.toLowerCase(Locale.ENGLISH);
 				for (final String rWord: ConversationPhrases.REPAIR_MESSAGES) {
-					if (request.startsWith(rWord)) {
+					if (requestL.startsWith(rWord.toLowerCase(Locale.ENGLISH))) {
+						// trim trigger word
 						request = request.substring(rWord.length() + 1);
 						break;
 					}
@@ -209,7 +211,7 @@ public class AssassinRepairerAdder {
 
 				if (sayCountReply == null) {
 					final StringBuilder sb = new StringBuilder("You have " + repairer.currentRepairCount
-							+ " used " + repairer.currentRepairItem); //Grammar.plnoun(usedBows, bowType)); // FIXME: formats name all lowercase
+							+ " used " + repairer.currentRepairItem); //Grammar.plnoun(repairer.currentRepairCount, repairer.currentRepairItem)); // FIXME: formats name all lowercase
 					if (multiple) {
 						sb.append("s");
 					}
@@ -220,7 +222,6 @@ public class AssassinRepairerAdder {
 						sb.append("it");
 					}
 					sb.append(" for " + repairer.currentRepairFee + " money. Would you like me to do so?");
-
 					sayCountReply = sb.toString();
 				}
 
@@ -452,7 +453,6 @@ public class AssassinRepairerAdder {
 					return (String) p.first();
 				}
 			}
-
 			return (String) reply;
 		}
 
@@ -474,9 +474,12 @@ public class AssassinRepairerAdder {
 		 * @param itemName
 		 *   Name of item.
 		 */
-		private void setRepairItem(final String itemName) {
+		private void setRepairItem(String itemName) {
+			itemName = Grammar.singular(itemName);
 			for (final String repairable: repairList.keySet()) {
 				if (itemName.toLowerCase(Locale.ENGLISH).equals(repairable.toLowerCase(Locale.ENGLISH))) {
+					// use name from repair list in case request does not match character case (e.g.
+					// repairable item is "foo" but player requested "Foo")
 					currentRepairItem = repairable;
 					return;
 				}
@@ -544,14 +547,37 @@ public class AssassinRepairerAdder {
 		}
 
 		/**
+		 * Retrieves price of single item repair.
+		 *
+		 * @return
+		 *   Unit price.
+		 */
+		private Integer getUnitPrice() {
+			if (currentRepairItem == null) {
+				logger.warn("Repair item name not set, cannot get unit price.");
+				return null;
+			}
+			String itemNameL = currentRepairItem.toLowerCase(Locale.ENGLISH);
+			for (String repairable: repairList.keySet()) {
+				if (repairable.toLowerCase(Locale.ENGLISH).equals(itemNameL)) {
+					return repairList.get(repairable);
+				}
+			}
+			logger.warn("Item " + currentRepairItem + " not found in repair list, cannot get unit price");
+			return null;
+		}
+
+		/**
 		 * Sets subject fee of current conversation.
 		 */
 		private void calculateRepairFee() {
-			for (final String item: repairList.keySet()) {
-				if (currentRepairItem.toLowerCase(Locale.ENGLISH).equals(item.toLowerCase(Locale.ENGLISH))) {
-					currentRepairFee = currentRepairCount * (repairList.get(currentRepairItem));
-					return;
-				}
+			if (currentRepairCount == null) {
+				logger.warn("Repair count not set, cannot calculate repair fee");
+				return;
+			}
+			Integer unitPrice = getUnitPrice();
+			if (unitPrice != null) {
+				currentRepairFee = currentRepairCount * unitPrice;
 			}
 		}
 
