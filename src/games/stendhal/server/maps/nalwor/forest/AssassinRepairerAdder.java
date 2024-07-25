@@ -89,7 +89,7 @@ public class AssassinRepairerAdder {
 		repairer.add(ConversationStates.ATTENDING,
 				ConversationPhrases.REPAIR_MESSAGES,
 				new PlayerHasItemWithHimCondition("assassins id"),
-				ConversationStates.QUESTION_2,
+				null,
 				null,
 				requestRepairAction(repairer));
 
@@ -226,6 +226,7 @@ public class AssassinRepairerAdder {
 				}
 
 				repairer.say(sayCountReply);
+				repairer.setCurrentState(ConversationStates.QUESTION_2);
 			}
 		};
 	}
