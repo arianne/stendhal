@@ -82,8 +82,13 @@ public class AssassinRepairerAdder {
 				ConversationPhrases.REPAIR_MESSAGES,
 				new NotCondition(new PlayerHasItemWithHimCondition("assassins id")),
 				ConversationStates.ATTENDING,
-				repairer.getReply(ResponseId.DENIED),
-				null);
+				null,
+				new ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, EventRaiser npc) {
+						repairer.say(repairer.getReply(ResponseId.DENIED));
+					}
+				});
 
 		// meets requirements and does meet preconditions
 		repairer.add(ConversationStates.ATTENDING,
@@ -98,8 +103,13 @@ public class AssassinRepairerAdder {
 				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				repairer.getReply(ResponseId.REJECT_REPAIR),
-				null);
+				null,
+				new ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, EventRaiser npc) {
+						repairer.say(repairer.getReply(ResponseId.REJECT_REPAIR));
+					}
+				});
 
 		// player dropped item before accepting
 		repairer.add(ConversationStates.QUESTION_2,
@@ -108,16 +118,26 @@ public class AssassinRepairerAdder {
 						needsRepairCondition(repairer),
 						itemsDroppedCondition(repairer)),
 				ConversationStates.ATTENDING,
-				repairer.getReply(ResponseId.DROPPED),
-				null);
+				null,
+				new ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, EventRaiser npc) {
+						repairer.say(repairer.getReply(ResponseId.DROPPED));
+					}
+				});
 
 		// this should not happen
 		repairer.add(ConversationStates.QUESTION_2,
 				ConversationPhrases.YES_MESSAGES,
 				feeNotSetCondition(repairer),
 				ConversationStates.ATTENDING,
-				repairer.getReply(ResponseId.ERROR),
-				null);
+				null,
+				new ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, EventRaiser npc) {
+						repairer.say(repairer.getReply(ResponseId.ERROR));
+					}
+				});
 
 		// wants repair but doesn't have enough money
 		repairer.add(ConversationStates.QUESTION_2,
@@ -126,8 +146,13 @@ public class AssassinRepairerAdder {
 						needsRepairCondition(repairer),
 						new NotCondition(canAffordCondition(repairer))),
 				ConversationStates.ATTENDING,
-				repairer.getReply(ResponseId.NO_AFFORD),
-				null);
+				null,
+				new ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, EventRaiser npc) {
+						repairer.say(repairer.getReply(ResponseId.NO_AFFORD));
+					}
+				});
 
 		// wants repair and does have enough money
 		repairer.add(ConversationStates.QUESTION_2,
