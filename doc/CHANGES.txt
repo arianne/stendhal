@@ -35,6 +35,9 @@ Changelog
 - cleaned up bestiary window layout
 - performance optimization: sound events too far away to be heard are not loaded
 
+*bug fixes*
+- fixed multiple issues with Akutagawa's repair shop
+
 *experimental features*
 - built-in support added for capturing video of web client viewport
 
