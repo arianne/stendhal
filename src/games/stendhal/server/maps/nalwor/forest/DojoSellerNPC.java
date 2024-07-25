@@ -38,10 +38,14 @@ import games.stendhal.server.maps.nalwor.forest.AssassinRepairerAdder.AssassinRe
  */
 public class DojoSellerNPC implements ZoneConfigurator {
 
+	/** Zone where NPC is to be located. */
 	private static StendhalRPZone dojo;
+	/** NPC being configured. */
 	private static AssassinRepairer seller;
+	/** List of items NPC sells. */
 	private static ItemShopInventory inventory;
 
+	/** List of items NPC repairs. */
 	private static List<String> repairables = new ArrayList<String>() {{
 		add("training sword");
 	}};
@@ -51,12 +55,11 @@ public class DojoSellerNPC implements ZoneConfigurator {
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		dojo = zone;
 		inventory = ShopsList.get().get("dojo", ShopType.ITEM_SELL);
-
 		initNPC();
 	}
 
 	/**
-	 * Sets up NPC.
+	 * Entry point for setting up NPC.
 	 */
 	private void initNPC() {
 		initRepairShop();
@@ -134,7 +137,7 @@ public class DojoSellerNPC implements ZoneConfigurator {
 	}
 
 	/**
-	 * Sets up NPC's dialogue.
+	 * Sets up NPC's general dialogue.
 	 */
 	private void initDialogue() {
 		seller.addGreeting("If you're looking for training equipment, you have come to the right place.");

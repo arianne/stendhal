@@ -40,17 +40,24 @@ import games.stendhal.server.events.SoundEvent;
 import marauroa.common.Pair;
 
 
+/**
+ * Functions for repairing items that are "worn" or "broken".
+ */
 public class AssassinRepairerAdder {
 
 	private static final Logger logger = Logger.getLogger(AssassinRepairerAdder.class);
 
-	//private SpeakerNPC repairer;
+	/** Prices for repairing items. */
 	private Map<String, Integer> priceList;
 
+	/** Subject item name of current conversation. */
 	private String currentRepairItem = null;
+	/** Subject number of items to repair of current conversation. */
 	private Integer currentRepairCount = null;
+	/** Subject fee of current conversation. */
 	private Integer currentRepairFee = null;
 
+	/** Trigger words for requesting repair. */
 	private static final List<String> repairPhrases = Arrays.asList("repair", "fix");
 
 	// reply IDs
@@ -65,6 +72,7 @@ public class AssassinRepairerAdder {
 	public final static String ID_REPAIR_DONE = "repair_done";
 	public final static String ID_ERROR = "error";
 
+	/** Responses for repair requests conditions. */
 	final Map<String, Object> replies = new HashMap<String, Object>() {{
 		put(ID_DENIED, "Only members of the assassins guild can have items repaired.");
 		put(ID_UNDECLARED, "Please tell me what you would like repaired.");
@@ -79,11 +87,20 @@ public class AssassinRepairerAdder {
 	}};
 
 
+	/**
+	 * Adds repairer behavior to an NPC.
+	 *
+	 * @param repairer
+	 *   NPC repairer.
+	 * @param priceList
+	 *   Prces for reparation.
+	 */
 	public void add(final AssassinRepairer repairer, final Map<String, Integer> priceList) {
 		//this.repairer = repairer;
 		this.priceList = priceList;
 
 
+		// requests repair but does not meet preconditions
 		repairer.add(ConversationStates.ATTENDING,
 				repairPhrases,
 				new NotCondition(new PlayerHasItemWithHimCondition("assassins id")),
@@ -92,6 +109,7 @@ public class AssassinRepairerAdder {
 				getReply(ID_DENIED),
 				null);
 
+		// meets requirements and does meet preconditions
 		repairer.add(ConversationStates.ATTENDING,
 				repairPhrases,
 				new PlayerHasItemWithHimCondition("assassins id"),
@@ -99,6 +117,7 @@ public class AssassinRepairerAdder {
 				null,
 				requestRepairAction(repairer));
 
+		// changes mind / does not want repair
 		repairer.add(ConversationStates.QUESTION_2,
 				ConversationPhrases.NO_MESSAGES,
 				null,
@@ -122,6 +141,7 @@ public class AssassinRepairerAdder {
 				getReply(ID_ERROR),
 				null);
 
+		// wants repair but doesn't have enough money
 		repairer.add(ConversationStates.QUESTION_2,
 				ConversationPhrases.YES_MESSAGES,
 				new AndCondition(
@@ -131,6 +151,7 @@ public class AssassinRepairerAdder {
 				getReply(ID_NO_AFFORD),
 				null);
 
+		// wants repair and does have enough money
 		repairer.add(ConversationStates.QUESTION_2,
 				ConversationPhrases.YES_MESSAGES,
 				new AndCondition(
@@ -141,12 +162,23 @@ public class AssassinRepairerAdder {
 				repairAction());
 	}
 
+	/**
+	 * Resets subjects of current conversation.
+	 */
 	private void reset() {
 		currentRepairItem = null;
 		currentRepairCount = null;
 		currentRepairFee = null;
 	}
 
+	/**
+	 * Adds/Changes a reply for a certain condition.
+	 *
+	 * @param id
+	 *   Condition ID.
+	 * @param phrases
+	 *   Replies for condition.
+	 */
 	public void setReply(final String id, final String... phrases) {
 		/*
 		if (phrases.length > 2) {
@@ -171,6 +203,16 @@ public class AssassinRepairerAdder {
 		logger.warn("Tried to add unused reply: " + id);
 	}
 
+	/**
+	 * Retrieves reply for certain condition.
+	 *
+	 * @param id
+	 *   Condition ID.
+	 * @param plural
+	 *   {@code true} if multiple items are to be repaired.
+	 * @return
+	 *   NPC response to condition.
+	 */
 	@SuppressWarnings("unchecked")
 	private String getReply(final String id, final boolean plural) {
 		final Object reply = replies.get(id);
@@ -185,10 +227,24 @@ public class AssassinRepairerAdder {
 		return (String) reply;
 	}
 
+	/**
+	 * Retrieves reply for certain condition.
+	 *
+	 * @param id
+	 *   Condition ID.
+	 * @return
+	 *   NPC response to condition.
+	 */
 	private String getReply(final String id) {
 		return getReply(id, false);
 	}
 
+	/**
+	 * Sets subject item name of current conversation.
+	 *
+	 * @param itemName
+	 *   Name of item.
+	 */
 	private void setRepairItem(final String itemName) {
 		for (final String repairable: priceList.keySet()) {
 			if (itemName.toLowerCase().equals(repairable.toLowerCase())) {
@@ -200,6 +256,14 @@ public class AssassinRepairerAdder {
 		currentRepairItem = itemName;
 	}
 
+	/**
+	 * Checks if item is included in NPC's list of repairable items.
+	 *
+	 * @param item
+	 *   Name of item.
+	 * @return
+	 *   {@code true} if repairing item is supported.
+	 */
 	private boolean canRepair(final String item) {
 		for (String bow: priceList.keySet()) {
 			if (item.toLowerCase().equals(bow.toLowerCase())) {
@@ -210,21 +274,28 @@ public class AssassinRepairerAdder {
 		return false;
 	}
 
+	/**
+	 * Sets subject number of items to repair of current conversation.
+	 *
+	 * @param player
+	 *   Player requesting repair.
+	 */
 	private void setRepairCount(final Player player) {
 		if (!canRepair(currentRepairItem)) {
 			return;
 		}
-
 		int count = 0;
 		for (final Item item: player.getAllEquipped(currentRepairItem)) {
 			if (((BreakableWeapon) item).isUsed()) {
 				count++;
 			}
 		}
-
 		currentRepairCount = count;
 	}
 
+	/**
+	 * Sets subject fee of current conversation.
+	 */
 	private void calculateRepairFee() {
 		for (final String item: priceList.keySet()) {
 			if (currentRepairItem.toLowerCase().equals(item.toLowerCase())) {
@@ -234,6 +305,14 @@ public class AssassinRepairerAdder {
 		}
 	}
 
+	/**
+	 * Creates action for requesting item(s) repair.
+	 *
+	 * @param repairer
+	 *   NPC repairer.
+	 * @return
+	 *   Action for requesting repair.
+	 */
 	private ChatAction requestRepairAction(final AssassinRepairer repairer) {
 		return new ChatAction() {
 			@Override
@@ -313,6 +392,12 @@ public class AssassinRepairerAdder {
 		};
 	}
 
+	/**
+	 * Creates action for executing item(s) repair.
+	 *
+	 * @return
+	 *   Action for executing repair.
+	 */
 	private ChatAction repairAction() {
 		return new ChatAction() {
 			@Override
@@ -365,6 +450,12 @@ public class AssassinRepairerAdder {
 		};
 	}
 
+	/**
+	 * Creates condition to check if fee has been determined.
+	 *
+	 * @return
+	 *   Condition.
+	 */
 	private ChatCondition feeNotSetCondition() {
 		return new ChatCondition() {
 			@Override
@@ -379,6 +470,12 @@ public class AssassinRepairerAdder {
 		};
 	}
 
+	/**
+	 * Creates condition to check if player can afford fee.
+	 *
+	 * @return
+	 *   Condition.
+	 */
 	private ChatCondition canAffordCondition() {
 		return new ChatCondition() {
 			@Override
@@ -388,6 +485,12 @@ public class AssassinRepairerAdder {
 		};
 	}
 
+	/**
+	 * Creates condition to check if player is carrying any "worn" items.
+	 *
+	 * @return
+	 *   Condition.
+	 */
 	private ChatCondition needsRepairCondition() {
 		return new ChatCondition() {
 			@Override
@@ -398,6 +501,9 @@ public class AssassinRepairerAdder {
 	}
 
 
+	/**
+	 * NPC entity that supports repairing items.
+	 */
 	public class AssassinRepairer extends SpeakerNPC {
 
 		private final Map<String, Integer> repairList;
@@ -418,7 +524,7 @@ public class AssassinRepairerAdder {
 		 * Retrieves number of item types that can be repaired by this NPC.
 		 *
 		 * @return
-		 * 		Number of repairable item types.
+		 *   Number of supported item types.
 		 */
 		public int getNumberOfRepairables() {
 			return repairList.size();
@@ -430,7 +536,7 @@ public class AssassinRepairerAdder {
 		 * FIXME: appears to be incomplete as only first item name in repair list can be retrieved
 		 *
 		 * @return
-		 * 		First item.
+		 *   Name of first item in list of items that can be repaired.
 		 */
 		@SuppressWarnings("unchecked")
 		public String getFirstRepairable() {
