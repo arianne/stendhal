@@ -66,7 +66,8 @@ public class ChatOptionsEvent extends RPEvent {
 		}
 
 		// common triggers for merchants & producers
-		private static final List<String> merchantActivities = new LinkedList<>(Arrays.asList("buy", "sell"));
+		private static final List<String> merchantActivities = new LinkedList<>(Arrays.asList("buy",
+				"sell", "repair"));
 
 		private String trigger;
 		private String label;
