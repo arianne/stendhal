@@ -205,7 +205,7 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 	private void initNPC() {
 		repairerAdder = new AssassinRepairerAdder();
 
-		ranger = repairerAdder.new AssassinRepairer(npcName, repairableSellPrices) {
+		ranger = new AssassinRepairerAdder.AssassinRepairer(npcName, repairableSellPrices) {
 			@Override
 			public void say(final String text) {
 				// don't turn toward player
@@ -319,8 +319,8 @@ public class ArcheryRange implements ZoneConfigurator,LoginListener,LogoutListen
 			repairPrices.put(itemName, repairableSellPrices.get(itemName) / 2);
 		}
 
-		repairerAdder.add(ranger, repairPrices);
-		repairerAdder.setReply(ResponseId.NO_AFFORD, "You don't have enough money. Get outta here!");
+		repairerAdder.add(ranger);
+		ranger.setReply(ResponseId.NO_AFFORD, "You don't have enough money. Get outta here!");
 	}
 
 	/**

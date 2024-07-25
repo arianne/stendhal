@@ -91,8 +91,8 @@ public class DojoSellerNPC implements ZoneConfigurator {
 		}
 		// initialize NPC repairer
 		AssassinRepairerAdder repairerAdder = new AssassinRepairerAdder();
-		seller = repairerAdder.new AssassinRepairer("Akutagawa", repairableSellPrices);
-		repairerAdder.add(seller, repairPrices);
+		seller = new AssassinRepairerAdder.AssassinRepairer("Akutagawa", repairableSellPrices);
+		repairerAdder.add(seller);
 	}
 
 	/**
@@ -117,17 +117,14 @@ public class DojoSellerNPC implements ZoneConfigurator {
 
 		final ShopSign shopSign = new ShopSign("dojo", "Assassins' Dojo Shop", seller.getName()
 				+ " sells the following items", true) {
-			/**
-			 * Can only view sign if carrying assassins id.
-			 */
 			@Override
 			public boolean onUsed(final RPEntity user) {
 				if (user.isEquipped("assassins id")) {
 					return super.onUsed(user);
 				} else {
+					// can only view sign if carrying assassins id
 					seller.say(rejectedMessage);
 				}
-
 				return true;
 			}
 		};
