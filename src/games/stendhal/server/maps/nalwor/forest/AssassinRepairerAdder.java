@@ -111,21 +111,6 @@ public class AssassinRepairerAdder {
 					}
 				});
 
-		// player dropped item before accepting
-		repairer.add(ConversationStates.QUESTION_2,
-				ConversationPhrases.YES_MESSAGES,
-				new AndCondition(
-						needsRepairCondition(repairer),
-						itemsDroppedCondition(repairer)),
-				ConversationStates.ATTENDING,
-				null,
-				new ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence, EventRaiser npc) {
-						repairer.say(repairer.getReply(ResponseId.DROPPED));
-					}
-				});
-
 		// this should not happen
 		repairer.add(ConversationStates.QUESTION_2,
 				ConversationPhrases.YES_MESSAGES,
@@ -139,11 +124,27 @@ public class AssassinRepairerAdder {
 					}
 				});
 
+		// player dropped item before accepting
+		repairer.add(ConversationStates.QUESTION_2,
+				ConversationPhrases.YES_MESSAGES,
+				new AndCondition(
+						new NotCondition(feeNotSetCondition(repairer)),
+						itemsChangedCondition(repairer)),
+				ConversationStates.ATTENDING,
+				null,
+				new ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, EventRaiser npc) {
+						repairer.say(repairer.getReply(ResponseId.DROPPED));
+					}
+				});
+
 		// wants repair but doesn't have enough money
 		repairer.add(ConversationStates.QUESTION_2,
 				ConversationPhrases.YES_MESSAGES,
 				new AndCondition(
-						needsRepairCondition(repairer),
+						new NotCondition(feeNotSetCondition(repairer)),
+						new NotCondition(itemsChangedCondition(repairer)),
 						new NotCondition(canAffordCondition(repairer))),
 				ConversationStates.ATTENDING,
 				null,
@@ -158,7 +159,8 @@ public class AssassinRepairerAdder {
 		repairer.add(ConversationStates.QUESTION_2,
 				ConversationPhrases.YES_MESSAGES,
 				new AndCondition(
-						needsRepairCondition(repairer),
+						new NotCondition(feeNotSetCondition(repairer)),
+						new NotCondition(itemsChangedCondition(repairer)),
 						canAffordCondition(repairer)),
 				ConversationStates.ATTENDING,
 				null,
@@ -345,35 +347,19 @@ public class AssassinRepairerAdder {
 	}
 
 	/**
-	 * Creates condition to check if player is carrying any "worn" items.
+	 * Creates condition to check if number of items in need of repair changed after initial request
+	 * (e.g. player either dropped item and/or picked up from ground to try to get discount).
 	 *
 	 * @param repairer
 	 *   Item repairing NPC.
 	 * @return
 	 *   Condition.
 	 */
-	private ChatCondition needsRepairCondition(AssassinRepairer repairer) {
-		return new ChatCondition() {
-			@Override
-			public boolean fire(final Player player, final Sentence sentence, Entity entity) {
-				return repairer.currentRepairCount != null && repairer.currentRepairCount > 0;
-			}
-		};
-	}
-
-	/**
-	 * Creates condition to check if player dropped item after requesting repair.
-	 *
-	 * @param repairer
-	 *   Item repairing NPC.
-	 * @return
-	 *   Condition.
-	 */
-	private ChatCondition itemsDroppedCondition(AssassinRepairer repairer) {
+	private ChatCondition itemsChangedCondition(AssassinRepairer repairer) {
 		return new ChatCondition() {
 			@Override
 			public boolean fire(Player player, Sentence sentence, Entity entity) {
-				return repairer.getWornItemsCount(player) < repairer.currentRepairCount;
+				return repairer.getWornItemsCount(player) != repairer.currentRepairCount;
 			}
 		};
 	}
