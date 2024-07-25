@@ -11,9 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.nalwor.forest;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -66,14 +64,6 @@ public class AssassinRepairerAdder {
 	/** Subject fee of current conversation. */
 	private Integer currentRepairFee = null;
 
-	/**
-	 * Trigger words for requesting repair.
-	 *
-	 * TODO:
-	 *   - move to ConversationPhrases
-	 */
-	private static final List<String> repairPhrases = Arrays.asList("repair", "fix");
-
 	// reply IDs
 	// TODO: convert to enum
 	public final static String ID_DENIED = "denied";
@@ -117,7 +107,7 @@ public class AssassinRepairerAdder {
 
 		// requests repair but does not meet preconditions
 		repairer.add(ConversationStates.ATTENDING,
-				repairPhrases,
+				ConversationPhrases.REPAIR_MESSAGES,
 				new NotCondition(new PlayerHasItemWithHimCondition("assassins id")),
 				ConversationStates.ATTENDING,
 				//"Only members of the assassins guild can have their #'auto crossbows' repaired.",
@@ -126,7 +116,7 @@ public class AssassinRepairerAdder {
 
 		// meets requirements and does meet preconditions
 		repairer.add(ConversationStates.ATTENDING,
-				repairPhrases,
+				ConversationPhrases.REPAIR_MESSAGES,
 				new PlayerHasItemWithHimCondition("assassins id"),
 				ConversationStates.QUESTION_2,
 				null,
@@ -344,7 +334,7 @@ public class AssassinRepairerAdder {
 				final int repairables = repairer.getNumberOfRepairables();
 
 				String request = sentence.getTrimmedText();
-				if (repairPhrases.contains(request.toLowerCase())) {
+				if (ConversationPhrases.REPAIR_MESSAGES.contains(request.toLowerCase())) {
 					if (repairables > 1) {
 						repairer.say(getReply(ID_UNDECLARED));
 						repairer.setCurrentState(ConversationStates.ATTENDING);
@@ -355,7 +345,7 @@ public class AssassinRepairerAdder {
 					request = request + " " + repairer.getFirstRepairable();
 				}
 
-				for (final String rWord: repairPhrases) {
+				for (final String rWord: ConversationPhrases.REPAIR_MESSAGES) {
 					if (request.startsWith(rWord)) {
 						request = request.substring(rWord.length() + 1);
 						break;
