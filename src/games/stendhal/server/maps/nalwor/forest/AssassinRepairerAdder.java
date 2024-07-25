@@ -273,9 +273,7 @@ public class AssassinRepairerAdder {
 				repairer.addEvent(new SoundEvent(SoundID.COMMERCE, SoundLayer.CREATURE_NOISE));
 
 				// reset item name, count, & fee back to null
-				/*
 				repairer.reset();
-				*/
 			}
 		};
 	}
@@ -504,12 +502,6 @@ public class AssassinRepairerAdder {
 			return false;
 		}
 
-		@Override
-		public void onGoodbye(final RPEntity attending) {
-			// reset item name, count, & fee to null
-			reset();
-		}
-
 		/**
 		 * Retrieves number of item types that can be repaired by this NPC.
 		 *
@@ -573,6 +565,25 @@ public class AssassinRepairerAdder {
 		 */
 		public String getFirstRepairable() {
 			return repairList.keySet().toArray(new String[] {})[0];
+		}
+
+		/**
+		 * Overridden to reset subjects at end of conversation.
+		 */
+		@Override
+		public void onGoodbye(final RPEntity attending) {
+			reset();
+		}
+
+		/**
+		 * Overridden to reset subjects at end of conversation.
+		 */
+		@Override
+		public void setCurrentState(ConversationStates state) {
+			super.setCurrentState(state);
+			if (ConversationStates.IDLE.equals(state)) {
+				reset();
+			}
 		}
 	}
 }
