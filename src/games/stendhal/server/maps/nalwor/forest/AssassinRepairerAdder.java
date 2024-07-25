@@ -42,12 +42,21 @@ import marauroa.common.Pair;
 
 /**
  * Functions for repairing items that are "worn" or "broken".
+ *
+ * TODO:
+ *   - merge functionality with games.stendhal.server.entity.npc.behaviour.adder.RepairerAdder
+ *   - add behavior for repairing "broken" items (more expensive than just "worn")
  */
 public class AssassinRepairerAdder {
 
 	private static final Logger logger = Logger.getLogger(AssassinRepairerAdder.class);
 
-	/** Prices for repairing items. */
+	/**
+	 * Prices for repairing items.
+	 *
+	 * TODO:
+	 *   - move to behavior
+	 */
 	private Map<String, Integer> priceList;
 
 	/** Subject item name of current conversation. */
@@ -57,10 +66,16 @@ public class AssassinRepairerAdder {
 	/** Subject fee of current conversation. */
 	private Integer currentRepairFee = null;
 
-	/** Trigger words for requesting repair. */
+	/**
+	 * Trigger words for requesting repair.
+	 *
+	 * TODO:
+	 *   - move to ConversationPhrases
+	 */
 	private static final List<String> repairPhrases = Arrays.asList("repair", "fix");
 
 	// reply IDs
+	// TODO: convert to enum
 	public final static String ID_DENIED = "denied";
 	public final static String ID_UNDECLARED = "undeclared";
 	public final static String ID_NO_REPAIR = "cannot_repair";
@@ -174,6 +189,9 @@ public class AssassinRepairerAdder {
 	/**
 	 * Adds/Changes a reply for a certain condition.
 	 *
+	 * TODO:
+	 *   - move to behavior (maybe)
+	 *
 	 * @param id
 	 *   Condition ID.
 	 * @param phrases
@@ -206,6 +224,9 @@ public class AssassinRepairerAdder {
 	/**
 	 * Retrieves reply for certain condition.
 	 *
+	 * TODO:
+	 *   - move to behavior (maybe)
+	 *
 	 * @param id
 	 *   Condition ID.
 	 * @param plural
@@ -229,6 +250,9 @@ public class AssassinRepairerAdder {
 
 	/**
 	 * Retrieves reply for certain condition.
+	 *
+	 * TODO:
+	 *   - move to behavior (maybe)
 	 *
 	 * @param id
 	 *   Condition ID.
@@ -503,6 +527,9 @@ public class AssassinRepairerAdder {
 
 	/**
 	 * NPC entity that supports repairing items.
+	 *
+	 * TODO:
+	 *   - move to separate class file in package {@code games.stendhal.server.entity.npc}.
 	 */
 	public class AssassinRepairer extends SpeakerNPC {
 

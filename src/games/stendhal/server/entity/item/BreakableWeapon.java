@@ -23,6 +23,7 @@ import games.stendhal.server.entity.RPEntity;
  *
  * TODO:
  *   - create unit test
+ *   - convert to "broken" item when "breaks"
  */
 public class BreakableWeapon extends Weapon {
 
