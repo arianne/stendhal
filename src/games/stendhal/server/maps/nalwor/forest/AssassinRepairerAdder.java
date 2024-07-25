@@ -12,6 +12,7 @@
 package games.stendhal.server.maps.nalwor.forest;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -261,7 +262,7 @@ public class AssassinRepairerAdder {
 	 */
 	private void setRepairItem(final String itemName) {
 		for (final String repairable: priceList.keySet()) {
-			if (itemName.toLowerCase().equals(repairable.toLowerCase())) {
+			if (itemName.toLowerCase(Locale.ENGLISH).equals(repairable.toLowerCase(Locale.ENGLISH))) {
 				currentRepairItem = repairable;
 				return;
 			}
@@ -280,7 +281,7 @@ public class AssassinRepairerAdder {
 	 */
 	private boolean canRepair(final String item) {
 		for (String bow: priceList.keySet()) {
-			if (item.toLowerCase().equals(bow.toLowerCase())) {
+			if (item.toLowerCase(Locale.ENGLISH).equals(bow.toLowerCase(Locale.ENGLISH))) {
 				return true;
 			}
 		}
@@ -312,7 +313,7 @@ public class AssassinRepairerAdder {
 	 */
 	private void calculateRepairFee() {
 		for (final String item: priceList.keySet()) {
-			if (currentRepairItem.toLowerCase().equals(item.toLowerCase())) {
+			if (currentRepairItem.toLowerCase(Locale.ENGLISH).equals(item.toLowerCase(Locale.ENGLISH))) {
 				currentRepairFee = currentRepairCount * (priceList.get(currentRepairItem));
 				return;
 			}
@@ -334,7 +335,7 @@ public class AssassinRepairerAdder {
 				final int repairables = repairer.getNumberOfRepairables();
 
 				String request = sentence.getTrimmedText();
-				if (ConversationPhrases.REPAIR_MESSAGES.contains(request.toLowerCase())) {
+				if (ConversationPhrases.REPAIR_MESSAGES.contains(request.toLowerCase(Locale.ENGLISH))) {
 					if (repairables > 1) {
 						repairer.say(getReply(ID_UNDECLARED));
 						repairer.setCurrentState(ConversationStates.ATTENDING);
