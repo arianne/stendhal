@@ -28,6 +28,8 @@ public abstract class CompletionsTrackingQuest extends AbstractQuest {
 	/**
 	 * Retrieves number of times player has completed quest.
 	 *
+	 * FIXME: perhaps definition should be moved to super class (AbstractQuest)
+	 *
 	 * @param player
 	 *   Player for whom quest is being checked.
 	 * @return
