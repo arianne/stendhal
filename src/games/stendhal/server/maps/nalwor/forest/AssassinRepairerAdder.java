@@ -203,10 +203,11 @@ public class AssassinRepairerAdder {
 				repairer.setRepairItem(request);
 				repairer.setRepairCount(player);
 
-				if (repairer.currentRepairCount == null) {
+				if (!repairer.canRepair()) {
 					String cannotRepairReply = repairer.getReply(ResponseId.NO_REPAIR);
 					if (cannotRepairReply == null) {
-						cannotRepairReply = "I do not repair " + Grammar.plural(repairer.currentRepairItem) + ".";
+						cannotRepairReply = "I do not repair " + Grammar.plural(repairer.currentRepairItem)
+								+ ".";
 					}
 
 					repairer.say(cannotRepairReply);
