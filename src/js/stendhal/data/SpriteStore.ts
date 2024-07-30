@@ -190,6 +190,19 @@ export class SpriteStore {
 	}
 
 	/**
+	 * Adds an image to cache.
+	 *
+	 * @param {string} id
+	 *   Cache identifier.
+	 * @param {SpriteImage}
+	 *   Image to be cached.
+	 */
+	cache(id: string, image: SpriteImage) {
+		image.counter = 0;
+		this.images[id] = image;
+	}
+
+	/**
 	 * Used when we only want an image if it was previously cached.
 	 *
 	 * @param filename
