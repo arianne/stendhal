@@ -17,6 +17,27 @@
 export namespace StringUtil {
 
 	/**
+	 * Adds character to left side of string if needed.
+	 *
+	 * @param {string} st
+	 *   String value being modified.
+	 * @param {string} c
+	 *   Character or set of characters to use for padding.
+	 * @param {number} len
+	 *   Length of resulting string (if padded).
+	 */
+	export function padLeft(st: string, c: string, len: number): string {
+		if (st.length >= len) {
+			// no padding needed
+			return st;
+		}
+		while (st.length < len) {
+			st = c + st;
+		}
+		return st.slice(-len);
+	};
+
+	/**
 	 * Converts a plain text string to data URL.
 	 *
 	 * @param text {string}
