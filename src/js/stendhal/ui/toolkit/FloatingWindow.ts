@@ -215,4 +215,16 @@ export class FloatingWindow extends Component {
 	public setId(id: string|undefined) {
 		this.windowId = id;
 	}
+
+	/**
+	 * Sets visibility of close button.
+	 *
+	 * Default is shown.
+	 *
+	 * @param {boolean} enable
+	 *   Set to `false` to hide.
+	 */
+	enableCloseButton(enable: boolean) {
+		this.child(".windowtitleclose")!.style.display = enable ? "" : "none";
+	}
 }
