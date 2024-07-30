@@ -280,7 +280,7 @@ export class Client {
 			ui.createSingletonFloatingWindow(
 				"Login",
 				new LoginDialog(),
-				100, 50);
+				100, 50).enableCloseButton(false);
 		};
 
 		marauroa.clientFramework.onCreateAccountAck = function(username: string) {
@@ -321,7 +321,7 @@ export class Client {
 			ui.createSingletonFloatingWindow(
 				"Choose Character",
 				new ChooseCharacterDialog(characters),
-				100, 50);
+				100, 50).enableCloseButton(false);
 		};
 
 		marauroa.clientFramework.onTransferREQ = function(items: any) {
