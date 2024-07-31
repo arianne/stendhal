@@ -149,6 +149,10 @@ ul.uniform {
 	padding: 0;
 }
 
+#outfit-preview {
+	margin-left: 0.5em;
+}
+
 div.itemSlot {
 	width: 32px;
 	height: 32px;

@@ -17,6 +17,8 @@ import { OutfitPartSelector } from "./OutfitPartSelector";
 import { OutfitColorSelector } from "./OutfitColorSelector";
 import { OutfitPaletteColorSelector } from "./OutfitPaletteColorSelector";
 
+import { OutfitPreviewComponent } from "../../component/OutfitPreviewComponent";
+
 declare var marauroa: any;
 declare var stendhal: any;
 
@@ -38,10 +40,18 @@ export class OutfitDialog extends DialogContentComponent {
 	private dressColorSelector!: OutfitColorSelector;
 	private skinColorSelector!: OutfitPaletteColorSelector;
 
+	/** Composite preview. */
+	private outfitPreview: OutfitPreviewComponent;
+
 
 	constructor() {
 		super("outfitdialog-template");
 		ui.registerComponent(UIComponentEnum.OutfitDialog, this);
+
+		this.outfitPreview = new OutfitPreviewComponent();
+		this.outfitPreview.componentElement.id = "setoutfitcompositecanvas";
+		this.outfitPreview.setBGColor("white");
+		this.child("#outfit-preview-composite")!.appendChild(this.outfitPreview.componentElement);
 
 		queueMicrotask( () => {
 			this.createDialog();
@@ -94,21 +104,55 @@ export class OutfitDialog extends DialogContentComponent {
 		event.preventDefault();
 	}
 
-	private onApply(event: Event) {
-		const outfitString =
-				"body=" + this.bodySelector.index.toString() + "," +
-				"dress=" + this.dressSelector.index.toString() + "," +
-				"head=" + this.headSelector.index.toString() + "," +
-				"mouth=" + this.mouthSelector.index.toString() + "," +
-				"eyes=" + this.eyesSelector.index.toString() + "," +
-				"mask=" + this.maskSelector.index.toString() + "," +
-				"hair=" + this.hairSelector.index.toString() + "," +
-				"hat=" + this.hatSelector.index.toString();
+	/**
+	 * Creates an outfit string from individual parts selectors.
+	 *
+	 * @returns {string}
+	 *   Outfit formatted string ("body=0,head=2,eyes=1,...).
+	 */
+	private buildOutfitString(): string {
+		return "body=" + this.bodySelector.index.toString() + ","
+				+ "dress=" + this.dressSelector.index.toString() + ","
+				+ "head=" + this.headSelector.index.toString() + ","
+				+ "mouth=" + this.mouthSelector.index.toString() + ","
+				+ "eyes=" + this.eyesSelector.index.toString() + ","
+				+ "mask=" + this.maskSelector.index.toString() + ","
+				+ "hair=" + this.hairSelector.index.toString() + ","
+				+ "hat=" + this.hatSelector.index.toString();
+	}
 
+	/**
+	 * Creates an outfit coloring string from individual parts selectors.
+	 *
+	 * @returns {string}
+	 *   Outfit coloring formatted string ("skin=14179110,hair=16446211,...").
+	 */
+	private buildColoringString(): string {
+		const colors: string[] = [];
+		let color = this.hairColorSelector.color;
+		if (color != null) {
+			colors.push("hair=" + color.toString());
+		}
+		color = this.eyesColorSelector.color;
+		if (color != null) {
+			colors.push("eyes=" + color.toString());
+		}
+		color = this.dressColorSelector.color;
+		if (color != null) {
+			colors.push("dress=" + color.toString());
+		}
+		color = this.skinColorSelector.color;
+		if (color != null) {
+			colors.push("skin=" + color.toString());
+		}
+		return colors.join(",");
+	}
+
+	private onApply(event: Event) {
 		const action: any = {
 				"type": "outfit_ext",
 				"zone": marauroa.currentZoneName,
-				"value": outfitString
+				"value": this.buildOutfitString()
 		};
 
 		let color = this.hairColorSelector.color;
@@ -154,26 +198,7 @@ export class OutfitDialog extends DialogContentComponent {
 	}
 
 	drawComposite() {
-		function draw(ctx: CanvasRenderingContext2D, selector: OutfitPartSelector) {
-			const image = selector.image;
-			image?.then((img: CanvasImageSource) => ctx.drawImage(img, -48, -128));
-		}
-		const canvas = document.getElementById('setoutfitcompositecanvas') as HTMLCanvasElement;
-		const ctx = canvas.getContext("2d")!;
-		ctx.fillStyle = "white";
-		ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-		draw(ctx, this.bodySelector);
-		draw(ctx, this.dressSelector);
-		draw(ctx, this.headSelector);
-		draw(ctx, this.mouthSelector);
-		draw(ctx, this.eyesSelector);
-		draw(ctx, this.maskSelector);
-		// hair is not drawn under certain hats/helmets
-		if (stendhal.data.outfit.drawHair(parseInt(this.hatSelector.index, 10))) {
-			draw(ctx, this.hairSelector);
-		}
-		draw(ctx, this.hatSelector);
+		this.outfitPreview.setOutfit(this.buildOutfitString(), this.buildColoringString());
 	}
 
 
