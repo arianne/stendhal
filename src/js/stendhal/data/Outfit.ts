@@ -191,6 +191,9 @@ export class Outfit {
 	/**
 	 * Creates a sprite sheet from layer information.
 	 *
+	 * TODO:
+	 *   - use dress layer based on body type
+	 *
 	 * @param {Function} callback
 	 *   Function to pass image to when ready.
 	 */
