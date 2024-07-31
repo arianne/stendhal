@@ -17,6 +17,18 @@
 export namespace StringUtil {
 
 	/**
+	 * Checks if a string is empty or contains only whitespace characters.
+	 *
+	 * @param {string} st
+	 *   String to be checked.
+	 * @returns {boolean}
+	 *   `true` if string length excluding whitespace characters is 0.
+	 */
+	export function isEmpty(st: string): boolean {
+		return st.trim().length === 0;
+	};
+
+	/**
 	 * Adds character to left side of string if needed.
 	 *
 	 * @param {string} st
