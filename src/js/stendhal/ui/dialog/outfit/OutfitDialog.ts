@@ -53,6 +53,13 @@ export class OutfitDialog extends DialogContentComponent {
 		this.outfitPreview.setBGColor("white");
 		this.child("#outfit-preview-composite")!.appendChild(this.outfitPreview.componentElement);
 
+		this.child("#rotate-c")!.addEventListener("click", (e: Event) => {
+			this.outfitPreview.nextDirection();
+		});
+		this.child("#rotate-cc")!.addEventListener("click", (e: Event) => {
+			this.outfitPreview.prevDirection();
+		});
+
 		queueMicrotask( () => {
 			this.createDialog();
 		});

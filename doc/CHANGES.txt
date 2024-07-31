@@ -34,6 +34,7 @@ Changelog
 - added transformation effect to vampires
 - cleaned up bestiary window layout
 - performance optimization: sound events too far away to be heard are not loaded
+- outfit dialog preview can be rotated
 
 *bug fixes*
 - fixed multiple issues with Akutagawa's repair shop
