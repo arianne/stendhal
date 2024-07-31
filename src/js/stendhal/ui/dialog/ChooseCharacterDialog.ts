@@ -9,8 +9,11 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Client } from "../../Client";
 import { DialogContentComponent } from "../toolkit/DialogContentComponent";
+
+import { Client } from "../../Client";
+import { SlashActionRepo } from "../../SlashActionRepo";
+
 
 /**
  * a dialog to select your character from
@@ -20,6 +23,7 @@ export class ChooseCharacterDialog extends DialogContentComponent {
 	constructor(characters: any) {
 		super("choose-character-template");
 
+		const characterList = this.child("#characters")!;
 		for (var i in characters) {
 			if (characters.hasOwnProperty(i)) {
 				let name = characters[i]["a"]["name"];
@@ -30,9 +34,20 @@ export class ChooseCharacterDialog extends DialogContentComponent {
 					this.componentElement.dispatchEvent(new Event("close"));
 					Client.get().chooseCharacter(name);
 				});
-				this.componentElement.append(button);
+				characterList.append(button);
 			}
 		}
+
+		this.child("#logout")!.addEventListener("click", (e: Event) => {
+			this.componentElement.dispatchEvent(new Event("close"));
+			this.onLogout();
+		});
 	}
 
+	onLogout() {
+		queueMicrotask(() => {
+			// TODO: detect if not logged in via website & simply re-display login dialog
+			SlashActionRepo.get().execute("/logout");
+		});
+	}
 }
