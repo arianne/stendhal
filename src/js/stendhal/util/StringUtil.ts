@@ -11,7 +11,10 @@
  ***************************************************************************/
 
 
-export class StringUtil {
+/**
+ * String helper functions.
+ */
+export namespace StringUtil {
 
 	/**
 	 * Converts a plain text string to data URL.
@@ -25,7 +28,7 @@ export class StringUtil {
 	 * @return {string}
 	 *   Data URL encoded string.
 	 */
-	static toDataURL(text: string, mime: string="text/plain", charset: string="utf-8"): string {
+	export function toDataURL(text: string, mime: string="text/plain", charset: string="utf-8"): string {
 		return "data:" + mime + ";charset=" + charset + "," + window.encodeURIComponent(text);
-	}
+	};
 }
