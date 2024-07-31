@@ -24,6 +24,14 @@ export class LoginDialog extends DialogContentComponent {
 	constructor() {
 		super("logindialog-template");
 
+		// prevent KeyHandler's overrides of keypress events
+		this.componentElement.addEventListener("keydown", (e: Event) => {
+			e.stopPropagation();
+		});
+		this.componentElement.addEventListener("keyup", (e: Event) => {
+			e.stopPropagation();
+		});
+
 		this.child("button")!.addEventListener("click", (event: Event) => {
 			event.preventDefault();
 			let username = (this.child("#username") as HTMLInputElement).value;
