@@ -238,6 +238,7 @@ export class Outfit {
 			let layerPath = stendhal.paths.sprites + "/outfit/" + layerName + "/"
 					+ StringUtil.padLeft(""+layerIndex, "0", 3) + suffix;
 			if (layerName === "body" && stendhal.config.getBoolean("effect.no-nude")) {
+				// FIXME: some non-player pickable bodies don't have "no-nude" variant
 				layerPath += "-nonude";
 			}
 			layerPath += ".png";
