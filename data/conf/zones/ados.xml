@@ -89,6 +89,70 @@
 			<attribute name="hidden"/>
 		</portal>
 
+		<portal x="13" y="56" ref="ent11n">
+			<destination zone="0_ados_mountain_n2_w" ref="ent11s"/>
+			<attribute name="move.continuous"/>
+			<attribute name="hidden"/>
+		</portal>
+
+		<portal x="13" y="57" ref="ent11s">
+			<destination zone="0_ados_mountain_n2_w" ref="ent11n"/>
+			<implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+				<parameter name="minimum-level">100</parameter>
+				<parameter name="rejected">The entwives are NOT babysitters. Come back when you have some age on you.</parameter>
+			</implementation>
+			<attribute name="move.continuous"/>
+			<attribute name="hidden"/>
+		</portal>
+
+		<portal x="14" y="56" ref="ent12n">
+			<destination zone="0_ados_mountain_n2_w" ref="ent12s"/>
+			<attribute name="move.continuous"/>
+			<attribute name="hidden"/>
+		</portal>
+
+		<portal x="14" y="57" ref="ent12s">
+			<destination zone="0_ados_mountain_n2_w" ref="ent12n"/>
+			<implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+				<parameter name="minimum-level">100</parameter>
+				<parameter name="rejected">The entwives are NOT babysitters. Come back when you have some age on you.</parameter>
+			</implementation>
+			<attribute name="move.continuous"/>
+			<attribute name="hidden"/>
+		</portal>
+
+		<portal x="15" y="56" ref="ent13n">
+			<destination zone="0_ados_mountain_n2_w" ref="ent13s"/>
+			<attribute name="move.continuous"/>
+			<attribute name="hidden"/>
+		</portal>
+
+		<portal x="15" y="57" ref="ent13s">
+			<destination zone="0_ados_mountain_n2_w" ref="ent13n"/>
+			<implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+				<parameter name="minimum-level">100</parameter>
+				<parameter name="rejected">The entwives are NOT babysitters. Come back when you have some age on you.</parameter>
+			</implementation>
+			<attribute name="move.continuous"/>
+			<attribute name="hidden"/>
+		</portal>
+
+		<portal x="16" y="56" ref="ent14n">
+			<destination zone="0_ados_mountain_n2_w" ref="ent14s"/>
+			<attribute name="move.continuous"/>
+			<attribute name="hidden"/>
+		</portal>
+
+		<portal x="16" y="57" ref="ent14s">
+			<destination zone="0_ados_mountain_n2_w" ref="ent14n"/>
+			<implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+				<parameter name="minimum-level">100</parameter>
+				<parameter name="rejected">The entwives are NOT babysitters. Come back when you have some age on you.</parameter>
+			</implementation>
+			<attribute name="move.continuous"/>
+			<attribute name="hidden"/>
+		</portal>
+
 		<!-- wishing well-->
 		<entity x="86" y="21">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.useable.WellSource"/>
