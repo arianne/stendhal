@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,8 +14,13 @@ package games.stendhal.server.entity.item.scroll;
 
 import java.util.Map;
 
+import games.stendhal.common.NotificationType;
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.server.core.events.DelayedPlayerTextSender;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.SoundEvent;
+import games.stendhal.server.maps.kikareukin.islands.Gatekeeper;
+import games.stendhal.server.maps.kikareukin.islands.Gatekeeper.RequestState;
 import games.stendhal.server.util.TimeUtil;
 
 /**
@@ -73,15 +78,26 @@ public class BalloonScroll extends TimedTeleportScroll {
 			}
 			return false;
 		}
+
 		long lastuse = -1;
 		if (player.hasQuest("balloon")) {
 			lastuse = Long.parseLong(player.getQuest("balloon"));
 		}
+		final boolean inCooldown = (lastuse + DELAY) - System.currentTimeMillis() > 0;
 
+		final RequestState requestState = Gatekeeper.requestEntrance(player, inCooldown);
+		if (RequestState.DENIED.equals(requestState)) {
+			onPopped(player);
+			return false;
+		} else if (RequestState.RESPONSE_QUEUED.equals(requestState)) {
+			// player tried to use balloon again immediately after being denied
+			return false;
+		}
+
+		// player is allowed entrance so update time that balloon was used
 		player.setQuest("balloon", Long.toString(System.currentTimeMillis()));
 
-		final long timeRemaining = (lastuse + DELAY) - System.currentTimeMillis();
-		if (timeRemaining > 0) {
+		if (inCooldown) {
 			// player used the balloon within the last DELAY hours
 			// so this use of balloon is going to be shortened
 			// (the clouds can't take so much weight on them)
@@ -92,5 +108,18 @@ public class BalloonScroll extends TimedTeleportScroll {
 		}
 
 		return super.useTeleportScroll(player);
+	}
+
+	/**
+	 * Events when a balloon "pops".
+	 *
+	 * @param player
+	 *   Player using balloon.
+	 */
+	private void onPopped(final Player player) {
+		player.addEvent(new SoundEvent("balloon/pop", SoundLayer.FIGHTING_NOISE));
+		// balloon is used
+		removeOne();
+		player.sendPrivateText(NotificationType.NEGATIVE, "Your balloon popped.");
 	}
 }
