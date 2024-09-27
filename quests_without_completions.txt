@@ -1,0 +1,23 @@
+
+The following quests do not support tracking number of completions:
+- adventure_island (Adventure Island)
+- dragon_lair (Dragon Lair)
+- easter_gifts_[year] (Easter Gifts for Children)
+- find_rat_kids (Find Rat Children)
+- fishsoup_for_hughie (Fish Soup for Hughie)
+- fishsoup_maker (Fish Soup)
+- fix_emerald_ring (The Ring Maker)
+- fruits_coralia (Fruits for Coralia)
+- goodies_rudolph (Goodies for Rudolph)
+- guess_kills (The Guessing Game)
+- kill_all_spiders (Kill Spiders)
+- kill_dhohr_nuggetcutter (Kill Dhohr Nuggetcutter)
+- koboldish_torcibud (Koboldish Torcibud)
+- meet_bunny_[year] (Meet Easter Bunny)
+- meet_santa_[seasonyear] (Meet Santa)
+- paper_chase_20[year] (Paper Chase) ???
+- reverse_arrow (Reverse Arrow)
+- snowballs (Snowballs for Mr. Yeti)
+- soup_maker (Soup)
+- the_pied_piper (The Pied Piper)
+- zoo_food (Zoo Food)

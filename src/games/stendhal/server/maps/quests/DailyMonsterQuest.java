@@ -73,7 +73,7 @@ import games.stendhal.server.util.TimeUtil;
  * REPETITIONS: - once a day
  */
 
-public class DailyMonsterQuest extends AbstractQuest {
+public class DailyMonsterQuest extends CompletionsTrackingQuest {
 
 	private static DailyMonsterQuest instance;
 
@@ -313,7 +313,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 			}
 		}
 		// add to history how often player helped Semos so far
-		final int repetitions = player.getNumberOfRepetitions(getSlotName(), 2);
+		final int repetitions = getCompletions(player);
 		if (repetitions > 0) {
 			res.add("I helped and saved Semos "
 					+ Grammar.quantityplnounCreature(repetitions, "time") + " so far.");
@@ -506,7 +506,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 		fillQuestInfo(
 				"Daily Monster Quest",
 				"Mayor Sakhs needs warriors to keep Semos City safe.",
-				true);
+				true, 2);
 		step_1();
 		step_2();
 		step_3();

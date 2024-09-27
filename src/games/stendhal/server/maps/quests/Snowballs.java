@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -62,7 +62,7 @@ import games.stendhal.server.maps.Region;
  * required between repetitions
  */
 
-public class Snowballs extends AbstractQuest {
+public class Snowballs extends CompletionsTrackingQuest {
 
 	private static final int REQUIRED_SNOWBALLS = 25;
 
@@ -78,13 +78,13 @@ public class Snowballs extends AbstractQuest {
 	@Override
 	public boolean isCompleted(final Player player) {
 		return player.hasQuest(QUEST_SLOT)
-				&& !player.getQuest(QUEST_SLOT).equals("start")
-				&& !player.getQuest(QUEST_SLOT).equals("rejected");
+				&& !player.getQuest(QUEST_SLOT, 0).equals("start")
+				&& !player.getQuest(QUEST_SLOT, 0).equals("rejected");
 	}
 
 	@Override
 	public boolean isRepeatable(final Player player) {
-		return new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, "start"), new QuestStartedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES)).fire(player, null, null);
+		return new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, 0, "start"), new QuestStartedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT, 0, REQUIRED_MINUTES)).fire(player, null, null);
 	}
 
 	@Override
@@ -94,7 +94,7 @@ public class Snowballs extends AbstractQuest {
 			return res;
 		}
 		res.add("I went down into the icy caves and met Mr. Yeti.");
-		final String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT, 0);
 		if (questState.equals("rejected")) {
 			res.add("I didn't want to help Mr. Yeti out this time and he harshly send me away...");
 			return res;
@@ -128,7 +128,7 @@ public class Snowballs extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(QUEST_SLOT, "start"),
+						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 						new PlayerHasItemWithHimCondition("snowball", REQUIRED_SNOWBALLS)),
 				ConversationStates.QUEST_ITEM_BROUGHT,
 				"Greetings stranger! I see you have the snow I asked for. Are these snowballs for me?",
@@ -138,7 +138,7 @@ public class Snowballs extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(QUEST_SLOT, "start"),
+						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 						new NotCondition(new PlayerHasItemWithHimCondition("snowball", REQUIRED_SNOWBALLS))),
 				ConversationStates.ATTENDING,
 				"You're back already? Don't forget that you promised to collect a bunch of snowballs for me!",
@@ -149,8 +149,8 @@ public class Snowballs extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestStartedCondition(QUEST_SLOT),
-						new QuestNotInStateCondition(QUEST_SLOT, "start"),
-						new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES)),
+						new QuestNotInStateCondition(QUEST_SLOT, 0, "start"),
+						new TimePassedCondition(QUEST_SLOT, 0, REQUIRED_MINUTES)),
 				ConversationStates.ATTENDING,
 				"Greetings again! Have you seen my latest snow sculptures? I need a #favor again ...",
 				null);
@@ -160,11 +160,11 @@ public class Snowballs extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestStartedCondition(QUEST_SLOT),
-						new QuestNotInStateCondition(QUEST_SLOT, "start"),
-						new NotCondition(new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES))),
+						new QuestNotInStateCondition(QUEST_SLOT, 0, "start"),
+						new NotCondition(new TimePassedCondition(QUEST_SLOT, 0, REQUIRED_MINUTES))),
 				ConversationStates.ATTENDING,
 				null,
-				new SayTimeRemainingAction(QUEST_SLOT, REQUIRED_MINUTES, "I have enough snow for my new sculpture. Thank you for helping! "
+				new SayTimeRemainingAction(QUEST_SLOT, 0, REQUIRED_MINUTES, "I have enough snow for my new sculpture. Thank you for helping! "
 						+ "I might start a new one in" ));
 
 		// asks about quest - has never started it
@@ -178,7 +178,7 @@ public class Snowballs extends AbstractQuest {
 		// asks about quest but already on it
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT, "start"),
+				new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 				ConversationStates.ATTENDING,
 				"You already promised me to bring some snowballs! Twenty five pieces, remember ...",
 				null);
@@ -186,7 +186,7 @@ public class Snowballs extends AbstractQuest {
 		// asks about quest - has done it but it's repeatable now
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new AndCondition(new QuestStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "start"), new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES)),
+				new AndCondition(new QuestStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, 0, "start"), new TimePassedCondition(QUEST_SLOT, 0, REQUIRED_MINUTES)),
 				ConversationStates.QUEST_OFFERED,
 				"I like to make snow sculptures, but the snow in this cavern is not good enough. Would you help me and get some snowballs? I need twenty five of them.",
 				null);
@@ -194,7 +194,7 @@ public class Snowballs extends AbstractQuest {
 		// asks about quest - has done it and it's too soon to do again
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new AndCondition(new QuestStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, "start"), new NotCondition(new TimePassedCondition(QUEST_SLOT, REQUIRED_MINUTES))),
+				new AndCondition(new QuestStartedCondition(QUEST_SLOT), new QuestNotInStateCondition(QUEST_SLOT, 0, "start"), new NotCondition(new TimePassedCondition(QUEST_SLOT, 0, REQUIRED_MINUTES))),
 				ConversationStates.ATTENDING,
 				"I have enough snow to finish my sculpture, but thanks for asking.",
 				null);
@@ -205,7 +205,7 @@ public class Snowballs extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING,
 				"Fine. You can loot the snowballs from the ice golem in this cavern, but be careful there is something huge nearby! Come back when you get twenty five snowballs.",
-				new SetQuestAction(QUEST_SLOT, "start"));
+				new SetQuestAction(QUEST_SLOT, 0, "start"));
 
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -213,7 +213,7 @@ public class Snowballs extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING,
 				"So what are you doing here? Go away!",
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, 0, "rejected", -5.0));
 	}
 
 	private void prepareBringingStep() {
@@ -223,7 +223,8 @@ public class Snowballs extends AbstractQuest {
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("snowball", REQUIRED_SNOWBALLS));
 		reward.add(new IncreaseXPAction(50));
-		reward.add(new SetQuestToTimeStampAction(QUEST_SLOT));
+		reward.add(incrementCompletionsAction());
+		reward.add(new SetQuestToTimeStampAction(QUEST_SLOT, 0));
 		// player gets either cod or perch, which we don't have a standard action for
 		// and the npc says the name of the reward, too
 		reward.add(new ChatAction() {
@@ -272,7 +273,7 @@ public class Snowballs extends AbstractQuest {
 		fillQuestInfo(
 				"Snowballs for Mr. Yeti",
 				"The inhabitant of the icy region in Faiumoni needs your help to collect some snowballs for him.",
-				false);
+				false, 1);
 		prepareRequestingStep();
 		prepareBringingStep();
 	}

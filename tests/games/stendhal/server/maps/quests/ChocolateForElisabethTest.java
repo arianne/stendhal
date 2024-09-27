@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,9 +11,12 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import static org.hamcrest.Matchers.closeTo;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
@@ -23,6 +26,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -106,7 +110,7 @@ public class ChocolateForElisabethTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "no");
 		assertEquals(LIZ_TALK_QUEST_REJECT, getReply(npc));
 
-		assertEquals("rejected", player.getQuest(questSlot));
+		assertEquals("rejected", player.getQuest(questSlot, 0));
 		assertFalse(npc.isTalking());
 		assertLoseKarma(5);
 		assertHistory(HISTORY_DEFAULT, HISTORY_REJECTED);
@@ -123,13 +127,13 @@ public class ChocolateForElisabethTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "yes");
 		assertEquals(LIZ_TALK_QUEST_ACCEPT, getReply(npc));
 
-		assertEquals("start", player.getQuest(questSlot));
+		assertEquals("start", player.getQuest(questSlot, 0));
 		assertHistory(HISTORY_DEFAULT, HISTORY_START);
 	}
 
 	@Test
 	public void testAskForQuestAlreadyAccepted() {
-		player.setQuest(questSlot, "start");
+		player.setQuest(questSlot, 0, "start");
 
 		String responseToGreeting = startTalkingToNpc(ELISABETH);
 		assertEquals(LIZ_TALK_GREETING_WITHOUT_CHOCOLATE, responseToGreeting);
@@ -137,23 +141,23 @@ public class ChocolateForElisabethTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "quest");
 		assertEquals(LIZ_TALK_QUEST_ALREADY_OFFERED, getReply(npc));
 
-		assertEquals("start", player.getQuest(questSlot));
+		assertEquals("start", player.getQuest(questSlot, 0));
 		assertHistory(HISTORY_DEFAULT, HISTORY_START);
 	}
 
 	@Test
 	public void testFoundChocolate() {
-		player.setQuest(questSlot, "start");
+		player.setQuest(questSlot, 0, "start");
 
 		equipWithItem(player, CHOCOLATE);
 
-		assertEquals("start", player.getQuest(questSlot));
+		assertEquals("start", player.getQuest(questSlot, 0));
 		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_GOT_CHOCOLATE);
 	}
 
 	@Test
 	public void testBringChocolateBeforeTalkingToMum() {
-		player.setQuest(questSlot, "start");
+		player.setQuest(questSlot, 0, "start");
 
 		equipWithItem(player, CHOCOLATE);
 
@@ -161,18 +165,18 @@ public class ChocolateForElisabethTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(LIZ_TALK_GREETING_WITH_CHOCOLATE_NOT_ALLOWED, responseToGreeting);
 
 		assertTrue(player.isEquipped(CHOCOLATE));
-		assertEquals("start", player.getQuest(questSlot));
+		assertEquals("start", player.getQuest(questSlot, 0));
 		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_GOT_CHOCOLATE);
 	}
 
 	@Test
 	public void testTalkToMumAfterQuestStart() {
-		player.setQuest(questSlot, "start");
+		player.setQuest(questSlot, 0, "start");
 
 		String responseToGreeting = startTalkingToNpc(CAREY);
 		assertEquals(MUM_TALK_GREET_AND_APPROVE, responseToGreeting);
 
-		assertEquals("mummy", player.getQuest(questSlot));
+		assertEquals("mummy", player.getQuest(questSlot, 0));
 		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_MUM_APPROVES);
 	}
 
@@ -189,7 +193,8 @@ public class ChocolateForElisabethTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testBringChocolateAfterTalkingToMum() {
-		player.setQuest(questSlot, "mummy");
+		player.setQuest(questSlot, 0, "mummy");
+		final double startKarma = player.getKarma();
 
 		equipWithItem(player, CHOCOLATE);
 
@@ -201,14 +206,14 @@ public class ChocolateForElisabethTest extends ZonePlayerAndNPCTestImpl {
 
 		assertFalse(player.isEquipped(CHOCOLATE));
 		assertTrue(isEquippedWithFlower());
-		assertGainKarma(10);
+		assertThat(player.getKarma(), is(closeTo(startKarma + 10, 0.01)));
 		assertTrue(player.getQuest(questSlot).startsWith("eating;"));
 		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_GOT_CHOCOLATE, HISTORY_MUM_APPROVES, HISTORY_DONE);
 	}
 
 	@Test
 	public void testRefuseToGiveChocolate() {
-		player.setQuest(questSlot, "mummy");
+		player.setQuest(questSlot, 0, "mummy");
 
 		equipWithItem(player, CHOCOLATE);
 
@@ -221,13 +226,13 @@ public class ChocolateForElisabethTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(player.isEquipped(CHOCOLATE));
 		assertFalse(isEquippedWithFlower());
 		assertLoseKarma(5);
-		assertEquals("mummy", player.getQuest(questSlot));
+		assertEquals("mummy", player.getQuest(questSlot, 0));
 		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_GOT_CHOCOLATE, HISTORY_MUM_APPROVES);
 	}
 
 	@Test
 	public void testAskQuestAgain() {
-		player.setQuest(questSlot, "eating");
+		player.setQuest(questSlot, 0, "eating");
 		PlayerTestHelper.setPastTime(player, questSlot, 1, TimeUnit.HOURS.toSeconds(1));
 
 		String responseToGreeting = startTalkingToNpc(ELISABETH);
@@ -236,13 +241,13 @@ public class ChocolateForElisabethTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "quest");
 		assertEquals(LIZ_TALK_QUEST_OFFER_AGAIN, getReply(npc));
 
-		assertTrue(player.getQuest(questSlot).startsWith("eating"));
+		assertTrue(player.getQuest(questSlot).startsWith("eating;"));
 		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_GOT_CHOCOLATE, HISTORY_MUM_APPROVES, HISTORY_REPEATABLE);
 	}
 
 	@Test
 	public void testAskQuestAgaintTooSoon() {
-		player.setQuest(questSlot, "eating");
+		player.setQuest(questSlot, 0, "eating");
 		PlayerTestHelper.setPastTime(player, questSlot, 1, TimeUnit.MINUTES.toSeconds(30));
 
 		String responseToGreeting = startTalkingToNpc(ELISABETH);
@@ -251,13 +256,13 @@ public class ChocolateForElisabethTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "quest");
 		assertEquals(LIZ_TALK_QUEST_NOT_NOW, getReply(npc));
 
-		assertTrue(player.getQuest(questSlot).startsWith("eating"));
+		assertTrue(player.getQuest(questSlot).startsWith("eating;"));
 		assertHistory(HISTORY_DEFAULT, HISTORY_START, HISTORY_GOT_CHOCOLATE, HISTORY_MUM_APPROVES, HISTORY_DONE);
 	}
 
 	@Test
 	public void testAskQuestAgainAndAccept() {
-		player.setQuest(questSlot, "eating");
+		player.setQuest(questSlot, 0, "eating");
 		PlayerTestHelper.setPastTime(player, questSlot, 1, TimeUnit.HOURS.toSeconds(1));
 
 		String responseToGreeting = startTalkingToNpc(ELISABETH);
@@ -268,7 +273,7 @@ public class ChocolateForElisabethTest extends ZonePlayerAndNPCTestImpl {
 
 		en.step(player, "yes");
 
-		assertEquals("start", player.getQuest(questSlot));
+		assertEquals("start", player.getQuest(questSlot, 0));
 		assertHistory(HISTORY_DEFAULT, HISTORY_START);
 	}
 
@@ -287,5 +292,38 @@ public class ChocolateForElisabethTest extends ZonePlayerAndNPCTestImpl {
 			}
 		}
 		return false;
+	}
+
+	private void doQuest(final int completions) {
+		if (completions == 0) {
+			testAcceptQuest();
+		} else {
+			testAskQuestAgainAndAccept();
+		}
+		en.step(player, "bye");
+		testBringChocolateAfterTalkingToMum();
+		en.step(player, "bye");
+	}
+
+	@Test
+	public void testCompletions() {
+		for (int count = 0; count < 5; count++) {
+			assertThat(MathHelper.parseIntDefault(player.getQuest(questSlot, 2), 0), is(count));
+			doQuest(count);
+			// reset so can be repeated
+			player.setQuest(questSlot, 1, "0");
+		}
+		assertThat(player.getQuest(questSlot, 2), is("5"));
+
+		// check that completions count is retained after quest is rejected & started
+		en.step(player, "hi");
+		en.step(player, "task");
+		en.step(player, "no");
+		assertThat(player.getQuest(questSlot), is("rejected;0;5"));
+		en.step(player, "hi");
+		en.step(player, "task");
+		en.step(player, "yes");
+		assertThat(player.getQuest(questSlot), is("start;0;5"));
+		en.step(player, "bye");
 	}
 }
