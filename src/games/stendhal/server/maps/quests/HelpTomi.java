@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -181,6 +182,8 @@ public class HelpTomi extends AbstractQuest {
 				"Help Tomi",
 				"Tomi, a boy being tortured in the hot depths of hell, sweats all over his body. The only thing which can help him is... ICE!",
 				true, null, 1);
+		setBaseHOFScore(HOFScore.MEDIUM);
+
 		questTrigger = ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, extraTrigger);
 		step1();
 	}

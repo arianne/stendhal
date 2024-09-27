@@ -14,6 +14,7 @@ package games.stendhal.server.maps.quests;
 
 import java.util.List;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -163,4 +164,29 @@ public interface IQuest {
 	 */
 	String getNPCName();
 
+	/**
+	 * Sets the completed quest score value for Hall of Fame.
+	 *
+	 * @param score
+	 *   Hall of Fame score value.
+	 */
+	void setBaseHOFScore(final HOFScore score);
+
+	/**
+	 * Retrieves the completed quest score value for Hall of Fame.
+	 *
+	 * @return
+	 *   Hall of Fame score value.
+	 */
+	HOFScore getBaseHOFScore();
+
+	/**
+	 * Retrieves the completed quest score value for Hall of Fame.
+	 *
+	 * @param player
+	 *   Player instance that can be used to adjust scoring.
+	 * @return
+	 *   Hall of Fame score value.
+	 */
+	HOFScore getHOFScore(final Player player);
 }

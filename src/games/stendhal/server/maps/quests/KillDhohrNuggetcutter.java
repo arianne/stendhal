@@ -18,6 +18,7 @@ import java.util.List;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -180,6 +181,8 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 				"Kill Dhohr Nuggetcutter",
 				"Zogfang, the orc who guards the entrance of the Abandoned Keep, isn't feeling safe while some dwarves still remain in the Keep.",
 				false);
+		setBaseHOFScore(HOFScore.MEDIUM);
+
 		step_1();
 		step_2();
 		step_3();

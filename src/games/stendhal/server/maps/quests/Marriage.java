@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,6 +14,7 @@ package games.stendhal.server.maps.quests;
 
 import java.util.List;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.quests.marriage.MarriageQuestChain;
@@ -71,6 +72,8 @@ public class Marriage extends AbstractQuest {
 				"Marriage",
 				"Lucky ones who find a partner they want to share their life with can get married in Fado Church.",
 				false);
+		setBaseHOFScore(HOFScore.EASY);
+
 		marriage = new MarriageQuestChain();
 		marriage.addToWorld();
 	}

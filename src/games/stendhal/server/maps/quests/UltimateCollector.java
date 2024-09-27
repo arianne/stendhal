@@ -23,6 +23,7 @@ import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -536,6 +537,7 @@ public class UltimateCollector extends AbstractQuest {
 				"Ultimate Weapon Collector",
 				"Balduin, the hermit who is living on Ados rock, has a last and ultimate challenge for collectors.",
 				true);
+		setBaseHOFScore(HOFScore.HARD);
 
 		checkCollectingQuests();
 		requestItem();

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -23,6 +23,7 @@ import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
@@ -462,6 +463,8 @@ public class KanmararnSoldiers extends AbstractQuest {
 				"Kanmararn Soldiers",
 				"Some time ago, Sergeant James started with his crew of four brave soldiers on their adventure of finding a treasure in Kanmararn, the city of dwarves. They didn't return yet.",
 				true);
+		setBaseHOFScore(HOFScore.MEDIUM);
+
 		prepareCowardSoldier();
 		prepareCorpses();
 		prepareSergeant();

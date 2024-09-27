@@ -17,6 +17,7 @@ import java.util.List;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -370,6 +371,8 @@ public class RestockFlowerShop extends AbstractQuest {
 				getTitle(),
 				getNPCName() + " needs to restock the flower shop in Nalwor City.",
 				true, 2);
+		setBaseHOFScore(HOFScore.EASY);
+
 		setupBasicResponses();
 		setupActiveQuestResponses();
 		prepareRequestingStep();

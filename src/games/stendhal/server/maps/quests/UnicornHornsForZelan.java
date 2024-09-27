@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
@@ -98,6 +99,8 @@ public class UnicornHornsForZelan implements QuestManuscript {
 			.rewardWith(new IncreaseKarmaAction(30.0))
 			.rewardWith(new EquipItemAction("soup", 3))
 			.rewardWith(new EquipItemAction("money", 20000));
+
+		quest.setBaseHOFScore(HOFScore.MEDIUM);
 
 		return quest;
 	}

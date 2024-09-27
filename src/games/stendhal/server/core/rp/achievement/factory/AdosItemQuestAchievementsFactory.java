@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,6 +14,7 @@ package games.stendhal.server.core.rp.achievement.factory;
 import java.util.Collection;
 import java.util.LinkedList;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.entity.npc.condition.QuestStateGreaterThanCondition;
@@ -46,37 +47,37 @@ public class AdosItemQuestAchievementsFactory extends AbstractAchievementFactory
 		achievements.add(createAchievement(
 			ID_SUPPORTER, "Ados's Supporter",
 			"Finish daily item quest 10 times",
-			Achievement.EASY_BASE_SCORE, true,
+			HOFScore.EASY, true,
 			new QuestStateGreaterThanCondition("daily_item", 2, 9)));
 
 		achievements.add(createAchievement(
 			ID_PROVIDER, "Ados's Provider",
 			"Finish daily item quest 50 times",
-			Achievement.EASY_BASE_SCORE, true,
+			HOFScore.EASY, true,
 			new QuestStateGreaterThanCondition("daily_item", 2, 49)));
 
 		achievements.add(createAchievement(
 			ID_SUPPLIER, "Ados's Supplier",
 			"Finish daily item quest 100 times",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new QuestStateGreaterThanCondition("daily_item", 2, 99)));
 
 		achievements.add(createAchievement(
 			ID_STOCKPILER, "Ados's Stockpiler",
 			"Finish daily item quest 250 times",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new QuestStateGreaterThanCondition("daily_item", 2, 249)));
 
 		achievements.add(createAchievement(
 			ID_HOARDER, "Ados's Hoarder",
 			"Finish daily item quest 500 times",
-			Achievement.HARD_BASE_SCORE, true,
+			HOFScore.HARD, true,
 			new QuestStateGreaterThanCondition("daily_item", 2, 499)));
 
 		achievements.add(createAchievement(
 			ID_LIFEBLOOD, "Ados's Lifeblood",
 			"Finish daily item quest 1,000 times",
-			Achievement.EXTREME_BASE_SCORE, true,
+			HOFScore.EXTREME, true,
 			new QuestStateGreaterThanCondition("daily_item", 2, 999)));
 
 		return achievements;

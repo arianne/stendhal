@@ -24,6 +24,7 @@ import games.stendhal.common.parser.JokerExprMatcher;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.common.parser.SimilarExprMatcher;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -206,6 +207,8 @@ public class LookUpQuote extends AbstractQuest {
 				"Look Up Quote",
 				"Pequod has forgotten a quote by a famous fisherman.",
 				false);
+		setBaseHOFScore(HOFScore.EASY);
+
 		createFishingRod();
 	}
 	@Override
