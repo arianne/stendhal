@@ -23,7 +23,6 @@ deep_forest.ogg                 Storyteller; GPL
 dungeon_entrance.ogg            Storyteller; GPL
 eerie_curious.ogg               Leerie; CC BY 3.0; https://opengameart.org/node/43367
 ice_cave.*                      Tad Miller; CC BY 4.0; https://opengameart.org/node/109496
-island_mountain                 David Kvistorf (fluffclipse); CC0; https://opengameart.org/node/78672, https://soundcloud.com/david-kvistorf
 jump_and_run_tropics            Bart Kelsey; CC BY-SA 3.0; https://opengameart.org/node/3801
 kings_feast.ogg                 RandomMind; CC0; https://opengameart.org/node/88287
 lost_in_the_fog.ogg             Storyteller; GPL
