@@ -25,7 +25,10 @@ export namespace StringUtil {
 	 *   `true` if string length excluding whitespace characters is 0.
 	 */
 	export function isEmpty(st: string): boolean {
-		return st.trim().length === 0;
+		if (!st) {
+			return true;
+		}
+		return st.trim() === "";
 	};
 
 	/**
