@@ -1,6 +1,6 @@
 @echo off
 
-set STENDHAL_VERSION=1.47.5
+set STENDHAL_VERSION=1.48
 set SERVER_JAR=stendhal-server-%STENDHAL_VERSION%.jar
 
 :: change to server directory
