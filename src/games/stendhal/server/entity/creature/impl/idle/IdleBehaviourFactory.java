@@ -32,9 +32,10 @@ public class IdleBehaviourFactory {
 			} else {
 				behaviour = new WanderIdleBehaviour();
 			}
-		} else if (aiProfiles.containsKey("patrolling") && aiProfiles.containsKey("wander")) {
-			// randomly select between "patrolling" & "wander" for individual entity instance
-			behaviour = Rand.flipCoin() ? new Patroller() : behaviour;
+			if (aiProfiles.containsKey("patrolling")) {
+				// randomly select between "patrolling" & "wander" for individual entity instance
+				behaviour = Rand.flipCoin() ? new Patroller() : behaviour;
+			}
 		} else if (aiProfiles.containsKey("patrolling")) {
 			behaviour = new Patroller();
 		} else if (aiProfiles.containsKey("camouflage")) {
