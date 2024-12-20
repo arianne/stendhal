@@ -1,9 +1,7 @@
-Pizza is a popular meal of choice. With growing demand, Leander is looking to hire reliable workers to transport his hot and delicious cuisine to patrons. Couriers with reputations of on-time deliveries are being recognized for their work ethic.
+The world has just gotten a little fancier. You may notice that the clouds have cleared in Kikareukin, revealing a beautiful view of Semos below.
 
-Some adventurers may be distressed and feel that their quest for the title of "Ultimate Collector" is in vain. Well fret no more, as Balduin is offering a ray of hope. Requests to bring him a different item are now accepted afer some time has passed.
+If luck has it, you may find a rare four-leaf clover. Keep your eyes peeled, they pop up in random locations that receive sunshine. Clover hunters will reward generously for such valuable trinkets.
 
-Speaking of weapons, some creatures have once again taken up arms. For example the angel and dark angel have new swords.
+Jef is still eager to hear from his mother, Amber. But don't expect to find her on her usual route as she has taken to wandering off the beaten path. Speaking of wandering, some creatures have become more unpredictable in their behavior. Be careful, as you may encounter them in unexpected places.
 
-Last but not least: We released an official Android App, which is available in the download section of our website or on F-Droid.
-
-Please see the complete change log for further details: http://localhost/game/stendhal.html#changes
+Please see the complete change log for further details: https://arianne-project.org/game/stendhal.html#changes
