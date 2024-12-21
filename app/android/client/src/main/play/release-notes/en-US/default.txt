@@ -1,9 +1,3 @@
-Pizza is a popular meal of choice. With growing demand, Leander is looking to hire reliable workers to transport his hot and delicious cuisine to patrons. Couriers with reputations of on-time deliveries are being recognized for their work ethic.
+PUT RELEASE ANNOUNCEMENT LINES HERE
 
-Some adventurers may be distressed and feel that their quest for the title of "Ultimate Collector" is in vain. Well fret no more, as Balduin is offering a ray of hope. Requests to bring him a different item are now accepted afer some time has passed.
-
-Speaking of weapons, some creatures have once again taken up arms. For example the angel and dark angel have new swords.
-
-Last but not least: We released an official Android App, which is available in the download section of our website or on F-Droid.
-
-Please see the complete change log for further details: http://localhost/game/stendhal.html#changes
+Please see the complete change log for further details: https://arianne-project.org/game/stendhal.html#changes
