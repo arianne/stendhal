@@ -17,6 +17,14 @@ android {
 		minSdkVersion 21
 	}
 
+	// F-Droid doesn't allow encrypted DependencyInfoBlock in APK
+	dependenciesInfo {
+		// disables dependency metadata when building APKs
+		includeInApk = false
+		// disables dependency metadata when building Android App Bundles
+		includeInBundle = false
+	}
+
 	// build output
 	project.setProperty("archivesBaseName", "${namespace}-${defaultConfig.versionCode}")
 	project.setProperty("buildDir", "${projectDir}/../../../build/build_android_client")
