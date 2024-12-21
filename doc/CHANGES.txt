@@ -2,6 +2,12 @@ Changelog
 ---------
 ---------
 
+1.49
+
+*bug fixes*
+- fixed invalid head outfit index of Mr Ross
+
+
 1.48
 
 *world*

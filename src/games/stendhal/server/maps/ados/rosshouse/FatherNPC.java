@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -75,7 +75,7 @@ public class FatherNPC implements ZoneConfigurator {
 
 		};
 
-		npc.setOutfit(1, 34, 7, null, 0, null, 27, null, 0);
+		npc.setOutfit(1, 34, 0, null, 0, null, 27, null, 0);
 		npc.setPosition(12, 7);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
