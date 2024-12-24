@@ -19,7 +19,7 @@ import java.util.Map;
 
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.core.scripting.impl.ScriptImpl;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.ItemInformation;
 import games.stendhal.server.entity.npc.shop.ShopType;
