@@ -76,6 +76,6 @@ even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE
 [LICENSE.txt](LICENSE.txt) and [src/js/LICENSE.html](src/js/LICENSE.html) file for more details.
 
 Stendhal(c) is copyright of Miguel Angel Blanch Lardin, 2005-2008, arianne_rpg at users dot sourceforge dot net and others<br>
-Stendhal(c) is copyright of the Arianne Project, 2006-2024, arianne-general at lists dot sourceforge dot net
+Stendhal(c) is copyright of the Arianne Project, 2006-2025, arianne-general at lists dot sourceforge dot net
 
 Please have a look at the list of [contributors](doc/contributors.md#contributors).
