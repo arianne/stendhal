@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2024 - Arianne                      *
+ *                    Copyright © 2003-2025 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -530,7 +530,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 */
 	@Deprecated
 	public final boolean atMovementRadius() {
-		return Math.sqrt(getDistanceFromOrigin()) >= movementRadius;
+		return movementRadius > 0 && Math.sqrt(getDistanceFromOrigin()) >= movementRadius;
 	}
 
 	protected final Direction getDirectionFromOrigin() {
