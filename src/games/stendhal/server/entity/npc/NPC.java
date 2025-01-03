@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2024 - Marauroa                    *
+ *                   (C) Copyright 2003-2025 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -326,10 +326,10 @@ public abstract class NPC extends DressedEntity {
 			// handled in pre-logic
 			return;
 		} else {
-			if (atMovementRadius()) {
-				onOutsideMovementRadius();
-			}
 			if (!hasPath()) {
+				if (atMovementRadius()) {
+					onOutsideMovementRadius();
+				}
 				if (logger.isDebugEnabled()) {
 					String title = getTitle();
 					String zone = getZone().getName();
