@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    (C) Copyright 2003-2024 - Marauroa                   *
+ *                    (C) Copyright 2003-2025 - Marauroa                   *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -376,8 +376,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	protected void executeZonePreLogic() {
 		for (final IRPZone zoneI : SingletonRepository.getRPWorld()) {
-			final StendhalRPZone zone = (StendhalRPZone) zoneI;
-			zone.preLogic();
+			((StendhalRPZone) zoneI).preLogic();
 		}
 	}
 
