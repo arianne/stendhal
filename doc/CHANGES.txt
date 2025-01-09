@@ -4,6 +4,9 @@ Changelog
 
 1.49
 
+*web client*
+- improved lighting effects
+
 *bug fixes*
 - fixed invalid head outfit index of Mr Ross
 

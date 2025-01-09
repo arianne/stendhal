@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2024 - Stendhal                    *
+ *                   (C) Copyright 2003-2025 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -200,7 +200,7 @@ export class ViewPort {
 		this.ctx.save();
 		// FIXME: is this the appropriate alpha level to use? "color_method" value from server doesn't
 		//        appear to include alpha information
-		this.ctx.globalAlpha = 0.5;
+		this.ctx.globalAlpha = 0.75;
 		this.ctx.globalCompositeOperation = (this.colorMethod || this.ctx.globalCompositeOperation) as GlobalCompositeOperation;
 		this.ctx.fillStyle = this.HSLFilter;
 		this.ctx.fillRect(this.offsetX, this.offsetY, this.ctx.canvas.width, this.ctx.canvas.height);
