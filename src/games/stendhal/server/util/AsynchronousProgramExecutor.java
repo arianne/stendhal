@@ -64,7 +64,7 @@ public class AsynchronousProgramExecutor extends Thread {
 	}
 
 	/**
-	 * sends the message to the twitter account
+	 * sends the message to the social media account
 	 *
 	 * @param cmd command
 	 */

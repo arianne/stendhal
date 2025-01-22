@@ -2568,7 +2568,7 @@ read https://stendhalgame.org/wiki/Automatic_Software_Updater
 - Tab completion for online nick names works now without /who called before
 - orc spearman creature
 - /atlas /faq and /manual commands to open useful pages in browser
-- Harold tweets trades, the official stendhal server uses https://twitter.com/stendhaltrade
+- Harold tweets trades, the official stendhal server uses https://mastodon.social/@stendhaltrade
 - magical damage types of weapons (fire, ice ...)
 - resistance/vulnerability of creatures to magical weapons (fire, ice, ...)
 - attack sweeps look different depending on the attack type
