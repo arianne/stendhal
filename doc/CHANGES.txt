@@ -697,7 +697,7 @@ Changelog
 
 *other*
 - started to work on a list of all contributors, please help to add to it:
-  https://github.com/arianne/stendhal/blob/master/doc/contributors.md
+  https://codeberg.org/arianne/stendhal/src/commit/master/doc/contributors.md
 
 
 1.34
@@ -1405,7 +1405,7 @@ the huge task of creating & replacing sprite & tileset images.
 - Support Postgres databases in addition to H2 (recommended) and MySQL
 - Setup Travis for continuous integration tests and fixed some order dependent tests
 - Migrated test coverage analysis from Cobertura to Jacoco
-- Git repository is mirrored instantaneously between Github and Sourceforge in both directions
+- Git repository is mirrored instantaneously between Codeberg, Github and Sourceforge in both directions
 - Yearly special event quests now pick up the current year as part of their quest slot automatically
 - Backend for puzzles
 

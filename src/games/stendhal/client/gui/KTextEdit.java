@@ -569,7 +569,7 @@ class KTextEdit extends JComponent {
 	 */
 	class LinkListener {
 		/** Allowed patterns for links to be opened in a browser. */
-		String p = "^(http|https)://(|www\\.)(faiumoni.de|stendhalgame.org|arianne.sf.net|arianne-project.org|arianne.sourceforge.net|sourceforge.net|sf.net|download.oracle.com|libregamewiki.org|freesound.org|opengameart.org|openclipart.org|github.io|github.com|arianne.github.io|postsai.github.io)(/.*)?";
+		String p = "^(http|https)://(|www\\.)(faiumoni.de|stendhalgame.org|arianne.sf.net|arianne-project.org|codeberg.org|arianne.sourceforge.net|sourceforge.net|sf.net|download.oracle.com|libregamewiki.org|freesound.org|opengameart.org|openclipart.org|github.io|github.com|arianne.github.io|postsai.github.io)(/.*)?";
 
 		final Pattern whitelist = Pattern.compile(p);
 
