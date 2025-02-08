@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Marauroa                    *
+ *                   (C) Copyright 2003-2024 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,7 +17,6 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import games.stendhal.client.Triple;
 import games.stendhal.client.entity.Block;
 import games.stendhal.client.entity.Blood;
 import games.stendhal.client.entity.BossCreature;
@@ -53,6 +52,7 @@ import games.stendhal.client.entity.UseableItem;
 import games.stendhal.client.entity.UseableRing;
 import games.stendhal.client.entity.WalkBlocker;
 import games.stendhal.client.entity.Wall;
+import games.stendhal.common.Triple;
 
 /**
  * Registers the relationship between Type, eclass and java class of entity
