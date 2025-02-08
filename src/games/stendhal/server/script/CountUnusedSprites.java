@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                    Copyright © 2003-2022 - Arianne                      *
+ *                    Copyright © 2003-2024 - Arianne                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -31,7 +31,7 @@ import marauroa.common.game.RPObject;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
-import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.core.scripting.impl.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
 
