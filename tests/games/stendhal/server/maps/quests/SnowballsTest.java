@@ -1,3 +1,14 @@
+/***************************************************************************
+ *                 Copyright © 2010-2024 - Faiumoni e. V.                  *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
 import static org.hamcrest.Matchers.greaterThan;
@@ -14,6 +25,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -59,8 +71,18 @@ public class SnowballsTest {
 
 		// -----------------------------------------------
 
+		final int completions = MathHelper.parseIntDefault(player.getQuest(questSlot, 1), 0);
+		String[] responses = new String[] {
+				"Greetings stranger! Have you seen my snow sculptures? I need a #favor from someone friendly like you."
+		};
+		if (completions > 0) {
+			responses = new String[] {
+					"Greetings again! Have you seen my latest snow sculptures? I need a #favor again ..."
+			};
+		}
+
 		en.step(player, "hi");
-		assertEquals("Greetings stranger! Have you seen my snow sculptures? I need a #favor from someone friendly like you.", getReply(npc));
+		assertEquals(responses[0], getReply(npc));
 		en.step(player, "favor");
 		assertEquals("I like to make snow sculptures, but the snow in this cavern is not good enough. Would you help me and get some snowballs? I need twenty five of them.", getReply(npc));
 		en.step(player, "no");
@@ -68,7 +90,7 @@ public class SnowballsTest {
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 
-		assertEquals(player.getQuest(questSlot), "rejected");
+		assertEquals(player.getQuest(questSlot, 0), "rejected");
 
 		en.step(player, "hi");
 		assertEquals("Greetings stranger! Have you seen my snow sculptures? I need a #favor from someone friendly like you.", getReply(npc));
@@ -79,7 +101,7 @@ public class SnowballsTest {
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 
-		assertEquals(player.getQuest(questSlot), "start");
+		assertEquals(player.getQuest(questSlot, 0), "start");
 
 		en.step(player, "hi");
 		assertEquals("You're back already? Don't forget that you promised to collect a bunch of snowballs for me!", getReply(npc));
@@ -128,7 +150,7 @@ public class SnowballsTest {
 		assertTrue(player.isEquipped("perch", 20) || player.isEquipped("cod", 20) );
 
 		assertNotNull(player.getQuest(questSlot));
-		assertFalse(player.getQuest(questSlot).equals("start"));
+		assertFalse(player.getQuest(questSlot, 0).equals("start"));
 
 		en.step(player, "hi");
 		assertEquals("I have enough snow for my new sculpture. Thank you for helping! I might start a new one in 2 hours.", getReply(npc));
@@ -140,7 +162,7 @@ public class SnowballsTest {
 		// [09:49] Admin kymara changed your state of the quest 'snowballs' from '1288518569387' to '0'
 		// [09:49] Changed the state of quest 'snowballs' from '1288518569387' to '0'
 
-		player.setQuest(questSlot, "0");
+		player.setQuest(questSlot, 0, "0");
 
 		en.step(player, "hi");
 		assertEquals("Greetings again! Have you seen my latest snow sculptures? I need a #favor again ...", getReply(npc));
@@ -150,5 +172,28 @@ public class SnowballsTest {
 		assertEquals("Fine. You can loot the snowballs from the ice golem in this cavern, but be careful there is something huge nearby! Come back when you get twenty five snowballs.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
+	}
+
+	@Test
+	public void testCompletions() {
+		for (int count = 0; count < 5; count++) {
+			assertEquals(count, MathHelper.parseIntDefault(player.getQuest(questSlot, 1), 0));
+			testQuest();
+			// reset so can be repeated
+			player.setQuest(questSlot, 0, "0");
+		}
+		assertEquals("5", player.getQuest(questSlot, 1));
+
+		// check that completions count is retained after quest is rejected & started
+		en.step(player, "hi");
+		en.step(player, "task");
+		en.step(player, "no");
+		assertEquals("rejected", player.getQuest(questSlot, 0));
+		assertEquals("5", player.getQuest(questSlot, 1));
+		en.step(player, "task");
+		en.step(player, "yes");
+		assertEquals("start", player.getQuest(questSlot, 0));
+		assertEquals("5", player.getQuest(questSlot, 1));
+		en.step(player, "bye");
 	}
 }

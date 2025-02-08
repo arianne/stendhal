@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -63,7 +63,7 @@ import games.stendhal.server.maps.quests.piedpiper.TPPQuestHelperFunctions;
  *
  * REPETITIONS: <ul><li> once between a week and two weeks.</ul>
  */
-public class ThePiedPiper extends AbstractQuest implements ITPPQuestConstants {
+public class ThePiedPiper extends CompletionsTrackingQuest implements ITPPQuestConstants {
 
 	protected static final Logger logger = Logger.getLogger(ThePiedPiper.class);
 
@@ -256,7 +256,7 @@ public class ThePiedPiper extends AbstractQuest implements ITPPQuestConstants {
 		fillQuestInfo(
 				"The Pied Piper",
 				"Ados City has a rat problem from time to time.",
-				true);
+				true, 7, 1);
 
 		startQuest();
 	}

@@ -68,7 +68,7 @@ import games.stendhal.server.util.TimeUtil;
  * REPETITIONS:
  * <li> once a day
  */
-public class DailyItemQuest extends AbstractQuest {
+public class DailyItemQuest extends CompletionsTrackingQuest {
 
 	private static DailyItemQuest instance;
 
@@ -484,7 +484,7 @@ public class DailyItemQuest extends AbstractQuest {
 						+ " to help Ados and should deliver " + Grammar.itthem(amount) + " to Mayor Chalmers.");
 			}
 		}
-		int repetitions = player.getNumberOfRepetitions(getSlotName(), 2);
+		int repetitions = getCompletions(player);
 		if (repetitions > 0) {
 			res.add("I helped Ados with supplies "
 					+ Grammar.quantityplnoun(repetitions, "time") + " so far.");
