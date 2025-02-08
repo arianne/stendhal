@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,6 +17,7 @@ import java.util.List;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.mapstuff.block.Block;
 import games.stendhal.server.entity.mapstuff.block.BlockTarget;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -119,10 +120,12 @@ public class HelpWithTheHarvest extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
+		fillQuestInfo(getName(), "Eheneumniranin needs help with the harvest.", false);
+		setBaseHOFScore(HOFScore.EASY);
+
 		placeCartsAndTargets();
 		configureNPC();
-		fillQuestInfo(getName(), "Eheneumniranin needs help with the harvest.", false);
-	}
+}
 
 	private void configureNPC() {
 		SpeakerNPC npc = npcs.get("Eheneumniranin");

@@ -22,6 +22,7 @@ import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -76,6 +77,7 @@ public class CloakCollector2 extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
+
 	/**
 	 * Returns a list of the names of all cloaks that the given player still has
 	 * to bring to fulfill the quest.
@@ -371,13 +373,15 @@ public class CloakCollector2 extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		step_1();
-		step_2();
-		step_3();
 		fillQuestInfo(
 				"Cloaks Collector part 2",
 				"Josephine wants even more cloaks!",
 				false);
+		setBaseHOFScore(HOFScore.HARD);
+
+		step_1();
+		step_2();
+		step_3();
 	}
 
 	private static void rewardPlayer(final Player player) {

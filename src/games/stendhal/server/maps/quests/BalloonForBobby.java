@@ -17,6 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -82,6 +83,8 @@ public class BalloonForBobby extends AbstractQuest {
 		fillQuestInfo("Balloon for Bobby",
 				"Young boy Bobby in Fado stares into the sky, searching for balloons. He loves them and wants to have one really bad.",
 				true, null, 1);
+		setBaseHOFScore(HOFScore.EASY);
+
 		prepareRequestQuestStep();
 		prepareGreetWithBalloonStep();
 		prepareAttendingWithBalloonStep();

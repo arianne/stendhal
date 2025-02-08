@@ -15,6 +15,7 @@ package games.stendhal.server.maps.quests;
 import java.util.ArrayList;
 import java.util.List;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -100,6 +101,8 @@ public class JailedDwarf extends AbstractQuest {
 				"Jailed Dwarf",
 				"Down in Kanmararn is an afraid dwarf locked in a cell waiting for visitors. He is supposed to be the guard, but duergars have raided the prison. He might need some armor to survive once out of it.",
 				false);
+		setBaseHOFScore(HOFScore.MEDIUM);
+
 		step_1();
 	}
 

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -19,6 +19,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -239,6 +240,8 @@ public class MeetHayunn extends AbstractQuest {
 				"Meet Hayunn Naratha",
 				"Hayunn Naratha can teach young heroes important basics of the Stendhal world.",
 				false);
+		setBaseHOFScore(HOFScore.EASY);
+
 		prepareHayunn();
 	}
 

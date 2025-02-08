@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.action.EquipRandomItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
@@ -96,6 +97,8 @@ public class EggsForMarianne implements QuestManuscript {
 			.rewardWith(new IncreaseXPAction(50))
 			.rewardWith(new IncreaseKarmaAction(50))
 			.rewardWith(new EquipRandomItemAction("pansy=12;daisies=12", false, "Thank you! Here, take [this_these] [number_item]!"));
+
+		quest.setBaseHOFScore(HOFScore.EASY);
 
 		return quest;
 	}

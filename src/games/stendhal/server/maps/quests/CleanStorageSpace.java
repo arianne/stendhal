@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
@@ -79,6 +80,8 @@ public class CleanStorageSpace implements QuestManuscript {
 			.greet("A hero at last! Thank you!")
 			.rewardWith(new IncreaseKarmaAction(5.0))
 			.rewardWith(new IncreaseXPAction(100));
+
+		quest.setBaseHOFScore(HOFScore.EASY);
 
 		return quest;
 	}
