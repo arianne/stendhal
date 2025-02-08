@@ -29,6 +29,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.player.Player;
@@ -177,7 +178,9 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						if (player.isQuestCompleted(FishermansLicenseCollector.QUEST_SLOT)) {
-							npc.say("You have already got your fisherman's license.");
+							npc.say("You have already got your fisherman's license.");		
+						} else if(player.hasQuest(FishermansLicenseCollector.QUEST_SLOT)) {
+							npc.say("I hope you were not lazy and that you brought me some other fish #species.");							
 						} else if (player.isQuestCompleted(QUEST_SLOT)) {
 							npc.say("Are you ready for the second part of your exam?");
 							npc.setCurrentState(ConversationStates.QUEST_2_OFFERED);
@@ -198,7 +201,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 		fisherman.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING, "Come back when you're ready.",
-				null);
+				new SetQuestAction(QUEST_SLOT, "rejected"));
 
 		fisherman.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
