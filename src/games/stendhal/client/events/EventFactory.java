@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -123,6 +123,8 @@ class EventFactory {
 			event = new EntityMessageEvent();
 		}  else if (name.equals(Events.GLOBAL_VISUAL)) {
 			event = new GlobalVisualEffectEvent();
+		} else if (name.equals(Events.GENERIC)) {
+			event = new GenericEvent();
 		}
 
 		if (event != null) {
