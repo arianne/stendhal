@@ -95,6 +95,7 @@ public class LostEngagementRingTest extends LuaTestHelper {
 		assertNotNull(fado);
 		assertNotNull(athor);
 		assertNotNull(pawnShop);
+		assertFalse(true);
 	}
 
 	private void initEntities() {
