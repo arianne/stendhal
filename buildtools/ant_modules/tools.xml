@@ -36,7 +36,7 @@
 			</classpath>
 			<arg value="src/"/>
 			<arg value="tests/"/>
-			<arg value="android/app/src/"/>
+			<arg value="app/android/client/src"/>
 			<arg value="java,xml,lua"/>
 		</java>
 
