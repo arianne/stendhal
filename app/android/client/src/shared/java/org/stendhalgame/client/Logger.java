@@ -19,7 +19,7 @@ import android.content.DialogInterface;
 
 /**
  * Semi-functional logger for release builds.
- * 
+ *
  * Displays notification dialogs but does not write to logs directory.
  */
 public class Logger {
