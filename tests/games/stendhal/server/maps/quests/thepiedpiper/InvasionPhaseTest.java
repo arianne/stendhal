@@ -1,6 +1,19 @@
+/***************************************************************************
+ *                 Copyright © 2003-2024 - Faiumoni e. V.                  *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.maps.quests.thepiedpiper;
 
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
@@ -20,11 +33,31 @@ public class InvasionPhaseTest extends TPPTestHelper {
 		TPPTestHelper.setUpBeforeClass();
 	}
 
-	@Test
-	public void testInvasionPhase() {
+	public void startInvasion() {
 		// [17:50] Mayor Chalmers shouts: Ados city is under rats invasion! Anyone who will help to clean up city, will be rewarded!
 		ThePiedPiper.setPhase(TPP_Phase.TPP_INACTIVE);
 		ThePiedPiper.switchToNextPhase();
+	}
+
+	public void endInvasion() {
+		ThePiedPiper.setPhase(TPP_Phase.TPP_INACTIVE);
+	}
+
+	public void collectReward() {
+		en.step(player, "hi");
+		en.step(player, "reward");
+		assertThat(getReply(npc), is("Please take "+ rewardMoneys +" money, thank you very much for your help."));
+		en.step(player, "bye");
+		assertThat(getReply(npc), is("Good day to you."));
+	}
+
+	public void resetReward() {
+		rewardMoneys = 0;
+	}
+
+	@Test
+	public void testInvasionPhase() {
+		startInvasion();
 		//quest.phaseInactiveToInvasion();
 		en.step(player, "bye"); // in case if previous test was failed
 		en.step(player, "hi");
@@ -53,13 +86,10 @@ public class InvasionPhaseTest extends TPPTestHelper {
 				"so I will give you "+rewardMoneys+
 				" money as a #reward for that job.", getReply(npc));
 		assertEquals(questHistory, quest.getHistory(player));
-		en.step(player, "reward");
-		assertEquals("Please take "+ rewardMoneys +" money, thank you very much for your help.", getReply(npc));
+		collectReward();
 		questHistory.clear();
 		questHistory.add("I have killed some rats in Ados city and got a reward from Mayor Chalmers!");
 		assertEquals(questHistory, quest.getHistory(player));
-		en.step(player, "bye");
-		assertEquals("Good day to you.", getReply(npc));
 	}
 
 	@Test
@@ -121,13 +151,10 @@ public class InvasionPhaseTest extends TPPTestHelper {
 				" money as a #reward for that job.", getReply(npc));
 		assertTrue("", (rewardMoneys > tempReward));
 		assertEquals(questHistory, quest.getHistory(player));
-		en.step(player, "reward");
-		assertEquals("Please take "+ rewardMoneys +" money, thank you very much for your help.", getReply(npc));
+		collectReward();
 		questHistory.clear();
 		questHistory.add("I have killed some rats in Ados city and got a reward from Mayor Chalmers!");
 		assertEquals(questHistory, quest.getHistory(player));
-		en.step(player, "bye");
-		assertEquals("Good day to you.", getReply(npc));
 	}
 
 }
