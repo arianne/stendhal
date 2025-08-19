@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,6 +18,7 @@ import java.util.List;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.entity.Entity;
@@ -61,7 +62,7 @@ public class ProductionAchievementFactory extends AbstractAchievementFactory {
 		achievements.add(createAchievement(
 			"production.class.food", "Gourmet",
 			"Order all food types available from Faiumoni's cooks",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new AndCondition(
 				new PlayerProducedNumberOfItemsCondition(1, foods),
 				new QuestStateStartsWithCondition("coal_for_haunchy","waiting;"))));
@@ -76,7 +77,7 @@ public class ProductionAchievementFactory extends AbstractAchievementFactory {
 		achievements.add(createAchievement(
 			"production.class.drink", "Thirsty Worker",
 			"Order all drink types available from Faiumoni's cooks",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new AndCondition(
 				new PlayerProducedNumberOfItemsCondition(1, drinks),
 				new QuestCompletedCondition("soup_maker"),
@@ -91,19 +92,19 @@ public class ProductionAchievementFactory extends AbstractAchievementFactory {
 		achievements.add(createAchievement(
 			"production.class.resource", "Alchemist",
 			"Produce 5 of each kind of precious metal and resource",
-			Achievement.HARD_BASE_SCORE, true,
+			HOFScore.HARD, true,
 			new PlayerProducedNumberOfItemsCondition(5, resources)));
 
 		achievements.add(createAchievement(
 			"production.flour.1000", "Jenny's Assistant",
 			"Produce 1000 flour",
-			Achievement.EASY_BASE_SCORE, true,
+			HOFScore.EASY, true,
 			new PlayerProducedNumberOfItemsCondition(1000, "flour")));
 
 		achievements.add(createAchievement(
 			"production.sow.flowers.all", "Mother Nature's Helper",
 			"Sow 1000 of each type of sowable flower seed and bulb",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new ChatCondition() {
 				@Override
 				public boolean fire(final Player player, final Sentence sentence, final Entity npc) {

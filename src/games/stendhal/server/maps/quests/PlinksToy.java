@@ -15,6 +15,7 @@ import java.util.Arrays;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -86,6 +87,8 @@ public class PlinksToy implements QuestManuscript {
 			.respondToAccept("*hugs teddy* Thank you, thank you! *smile*")
 			.rewardWith(new IncreaseXPAction(20))
 			.rewardWith(new IncreaseKarmaAction(10));
+
+		quest.setBaseHOFScore(HOFScore.EASY);
 
 		return quest;
 	}

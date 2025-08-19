@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.quest.KillCreaturesQuestBuilder;
@@ -91,6 +92,8 @@ public class KillGnomes implements QuestManuscript {
 					+ "Please take these potions as a reward.")
 			.rewardWith(new IncreaseXPAction(100))
 			.rewardWith(new EquipItemAction("potion", 3));
+
+		quest.setBaseHOFScore(HOFScore.EASY);
 
 		return quest;
 	}

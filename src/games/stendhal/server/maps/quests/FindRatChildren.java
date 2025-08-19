@@ -21,6 +21,7 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -288,6 +289,8 @@ public class FindRatChildren extends AbstractQuest {
 				"Find Rat Children",
 				"Agnus, who lives in Rat City, asks young heroes to find her children and look after them. They went down into the dark tunnels and haven't returned ...",
 				true);
+		setBaseHOFScore(HOFScore.MEDIUM);
+
 		askingStep();
 		findingStep();
 		retrievingStep();

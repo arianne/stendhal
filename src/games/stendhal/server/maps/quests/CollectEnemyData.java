@@ -29,6 +29,7 @@ import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
@@ -833,14 +834,16 @@ public class CollectEnemyData extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		initNPC();
-		initQuest();
-		initShop();
-
 		fillQuestInfo(
 				QUEST_NAME,
 				npc.getName() + " wants help collecting data on creatures found around Faimouni.",
 				false);
+		setBaseHOFScore(HOFScore.MEDIUM);
+
+		initQuest();
+		initShop();
 	}
+
 	@Override
 	public boolean removeFromWorld() {
 		final StendhalRPZone currentZone = npc.getZone();

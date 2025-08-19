@@ -39,6 +39,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -46,6 +47,8 @@ import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
+
+
 /**
  * QUEST: The Vampire Sword
  * <p>
@@ -297,6 +300,8 @@ public class VampireSword extends AbstractQuest {
 				"Vampire Sword",
 				"Hogart tells a thrilling story of vampires and betrayal. This inspires the idea of a life stealing sword he can forge.",
 				false);
+		setBaseHOFScore(HOFScore.MEDIUM);
+
 		prepareQuestOfferingStep();
 		prepareGobletFillingStep();
 		prepareForgingStep();

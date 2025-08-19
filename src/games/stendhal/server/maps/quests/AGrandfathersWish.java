@@ -18,6 +18,7 @@ import java.util.List;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -200,10 +201,10 @@ public class AGrandfathersWish extends AbstractQuest {
 	public void addToWorld() {
 		fillQuestInfo(
 			"A Grandfather's Wish",
-			elias.getName() + " is grieved over the disappearance of his"
-				+ " grandson.",
-			false
-		);
+			elias.getName() + " is grieved over the disappearance of his grandson.",
+			false);
+		setBaseHOFScore(HOFScore.EASY);
+
 		prepareRequestStep();
 		prepareMarianneStep();
 		prepareFindPriestStep();

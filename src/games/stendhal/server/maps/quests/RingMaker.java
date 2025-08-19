@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.RingOfLife;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -216,6 +217,8 @@ public class RingMaker extends AbstractQuest {
 				"The Ring Maker",
 				"Ognir, the expert on rings, is able to fix broken rings of life.",
 				false);
+		setBaseHOFScore(HOFScore.EASY);
+
 		fixRingStep(npcs.get("Ognir"));
 	}
 

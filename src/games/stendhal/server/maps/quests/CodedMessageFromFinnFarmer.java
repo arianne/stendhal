@@ -16,6 +16,7 @@ import java.util.List;
 
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -305,14 +306,16 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		step1();
-		step2();
-		step3();
 		fillQuestInfo(
 			"Coded Message from Finn Farmer",
 			"Finn Farmer has important, secret information for George.",
 			false, QUEST_INDEX_REPEATED);
-	}
+		setBaseHOFScore(HOFScore.EASY);
+
+		step1();
+		step2();
+		step3();
+}
 
 	@Override
 	public String getSlotName() {

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,6 +15,7 @@ package games.stendhal.server.maps.quests;
 import java.util.ArrayList;
 import java.util.List;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
@@ -153,6 +154,8 @@ public class MeetZynn extends AbstractQuest {
 				"Meet Zynn Iwuhos",
 				"Zynn Iwuhos, in the Semos library, is a great source of useful information.",
 				false);
+		setBaseHOFScore(HOFScore.EASY);
+
 		step_1();
 	}
 
