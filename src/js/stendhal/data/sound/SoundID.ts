@@ -21,5 +21,7 @@ export const SoundID = {
 	"achievement": "player/yay",
 	"commerce": "coins-01",
 	"commerce2": "cha-ching",
-	"heal": "heal-01"
+	"heal": "heal-01",
+
+	"thunderclap": "event/thunderclap"
 } as {[index: string]: string|undefined;};
