@@ -11,9 +11,9 @@
   "enableExtensions": true,
   "extensions": [
     {
-        "id": "nativehelper",
-        "commandLinux": "${NL_PATH}/extensions/binary/nativehelper",
-        "commandWindows": "${NL_PATH}/extensions/binary/nativehelper.exe"
+      "id": "nativehelper",
+      "commandLinux": "${NL_PATH}/extensions/binary/nativehelper",
+      "commandWindows": "${NL_PATH}/extensions/binary/nativehelper.exe"
     }
   ],
   "tokenSecurity": "one-time",
