@@ -9,6 +9,8 @@ Changelog
 
 *bug fixes*
 - fixed invalid head outfit index of Mr Ross
+- fixed silent NPC fixed paths
+- fixed desktop client window freezing on Windows when closed
 
 
 1.48
