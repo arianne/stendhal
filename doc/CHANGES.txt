@@ -10,7 +10,8 @@ Changelog
 *bug fixes*
 - fixed invalid head outfit index of Mr Ross
 - fixed silent NPC fixed paths
-- fixed desktop client window freezing on Windows when closed
+- fixed desktop webview client window freezing on Windows when closed
+- fixed nativehelper extension process not exiting cleanly on Windows
 
 
 1.48
