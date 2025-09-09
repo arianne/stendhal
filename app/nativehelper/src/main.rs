@@ -1,6 +1,7 @@
 use serde_json::Value;
 use std::io;
 use std::io::Read;
+use std::process;
 use std::sync::Arc;
 use std::sync::atomic::AtomicBool;
 use std::sync::atomic::Ordering;
@@ -119,6 +120,9 @@ fn connect() -> (Sender<OwnedMessage>, JoinHandle<()>) {
 fn handle_message(nl_token: &String, tx: Sender<OwnedMessage>, message: String) {
 	if message.contains("event\":\"request_authentication\"") {
 		authenticate(tx, nl_token.clone());
+	} else if message.contains("event\":\"clientDisconnect\"") {
+		println!("Authentication complete, exiting extension ...");
+		process::exit(0);
 	}
 }
 
