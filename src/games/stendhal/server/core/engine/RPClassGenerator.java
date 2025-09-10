@@ -73,6 +73,7 @@ import games.stendhal.server.events.BuddyLoginEvent;
 import games.stendhal.server.events.BuddyLogoutEvent;
 import games.stendhal.server.events.ChatOptionsEvent;
 import games.stendhal.server.events.ExamineEvent;
+import games.stendhal.server.events.GenericEvent;
 import games.stendhal.server.events.GlobalVisualEffectEvent;
 import games.stendhal.server.events.GroupChangeEvent;
 import games.stendhal.server.events.GroupInviteEvent;
@@ -351,6 +352,9 @@ public class RPClassGenerator {
 
 		if (!RPClass.hasRPClass(Events.OUTFIT_LIST)) {
 			ShowOutfitListEvent.generateRPClass();
+		}
+		if (!RPClass.hasRPClass(Events.GENERIC)) {
+			GenericEvent.generateRPClass();
 		}
 
 		if (!RPClass.hasRPClass("action")) {

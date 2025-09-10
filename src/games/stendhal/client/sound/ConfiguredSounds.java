@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                     Copyright © 2020-2024 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -26,6 +26,7 @@ public class ConfiguredSounds {
 		put(SoundID.COMMERCE, "coins-01");
 		put(SoundID.COMMERCE2, "cha-ching");
 		put(SoundID.HEAL, "heal-01");
+		put(SoundID.THUNDERCLAP, "event/thunderclap");
 	}};
 
 

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,18 +12,25 @@
  ***************************************************************************/
 package games.stendhal.client.sound.sound;
 
+import static games.stendhal.common.Constants.DEFAULT_SOUND_RADIUS;
+
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.client.sound.facade.AudibleArea;
+import games.stendhal.client.sound.facade.AudibleCircleArea;
+import games.stendhal.client.sound.facade.InfiniteAudibleArea;
+import games.stendhal.client.sound.facade.SoundFileType;
 import games.stendhal.client.sound.facade.SoundGroup;
 import games.stendhal.client.sound.facade.SoundHandle;
 import games.stendhal.client.sound.facade.SoundSystemFacade;
 import games.stendhal.client.sound.facade.Time;
 import games.stendhal.client.sound.manager.DeviceEvaluator.Device;
 import games.stendhal.client.sound.manager.SoundManagerNG.Sound;
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.math.Algebra;
 
 /**
@@ -68,6 +75,33 @@ public class SoundSystemFacadeImpl implements SoundSystemFacade {
 		} catch (RuntimeException e) {
 			logger.error(e, e);
 		}
+	}
+
+	@Override
+	public SoundHandle playLocalizedEffect(String name, int x, int y, int radius, SoundLayer layer,
+			float volume, boolean loop) {
+		final AudibleArea area = new AudibleCircleArea(Algebra.vecf(x, y), radius / 4.0f, radius);
+		final SoundGroup group = getGroup(layer.groupName);
+		group.loadSound(name, name + ".ogg", SoundFileType.OGG, false);
+		return group.play(name, volume, 0, area, null, loop, true);
+	}
+
+	@Override
+	public SoundHandle playLocalizedEffect(String name, int x, int y, SoundLayer layer) {
+		return playLocalizedEffect(name, x, y, DEFAULT_SOUND_RADIUS, layer, 1.0f, false);
+	}
+
+	@Override
+	public SoundHandle playGlobalizedEffect(String name, SoundLayer layer, float volume, boolean loop) {
+		final AudibleArea area = new InfiniteAudibleArea();
+		final SoundGroup group = getGroup(layer.groupName);
+		group.loadSound(name, name + ".ogg", SoundFileType.OGG, false);
+		return group.play(name, volume, 0, area, null, loop, true);
+	}
+
+	@Override
+	public SoundHandle playGlobalizedEffect(String name, SoundLayer layer) {
+		return playGlobalizedEffect(name, layer, 1.0f, false);
 	}
 
 	@Override
