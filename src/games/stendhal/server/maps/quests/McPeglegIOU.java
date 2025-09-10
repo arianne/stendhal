@@ -20,6 +20,7 @@ import games.stendhal.common.constants.SoundID;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -111,6 +112,7 @@ public class McPeglegIOU extends AbstractQuest {
 				"McPegleg IOU",
 				"McPegleg doesn't always have cash on hand, and sometimes passes out IOUs instead.",
 				false);
+		setBaseHOFScore(HOFScore.EASY);
 
 		step_1();
 		step_2();

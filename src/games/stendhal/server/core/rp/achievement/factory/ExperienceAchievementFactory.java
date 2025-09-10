@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,6 +15,7 @@ package games.stendhal.server.core.rp.achievement.factory;
 import java.util.Collection;
 import java.util.LinkedList;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
@@ -49,49 +50,49 @@ public class ExperienceAchievementFactory extends AbstractAchievementFactory {
 		achievements.add(createAchievement(
 			ID_GREENHORN, "Greenhorn",
 			"Reach level 10",
-			Achievement.EASY_BASE_SCORE, true,
+			HOFScore.EASY, true,
 			new LevelGreaterThanCondition(9)));
 
 		achievements.add(createAchievement(
 			ID_NOVICE, "Novice",
 			"Reach level 50",
-			Achievement.EASY_BASE_SCORE, true,
+			HOFScore.EASY, true,
 			new LevelGreaterThanCondition(49)));
 
 		achievements.add(createAchievement(
 			ID_APPRENTICE, "Apprentice",
 			"Reach level 100",
-			Achievement.EASY_BASE_SCORE, true,
+			HOFScore.EASY, true,
 			new LevelGreaterThanCondition(99)));
 
 		achievements.add(createAchievement(
 			ID_ADVENTURER, "Adventurer",
 			"Reach level 200",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new LevelGreaterThanCondition(199)));
 
 		achievements.add(createAchievement(
 			ID_EXPERIENCED_ADV, "Experienced Adventurer",
 			"Reach level 300",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new LevelGreaterThanCondition(299)));
 
 		achievements.add(createAchievement(
 			ID_MASTER_ADV, "Master Adventurer",
 			"Reach level 400",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new LevelGreaterThanCondition(399)));
 
 		achievements.add(createAchievement(
 			ID_MASTER, "Stendhal Master",
 			"Reach level 500",
-			Achievement.HARD_BASE_SCORE, true,
+			HOFScore.HARD, true,
 			new LevelGreaterThanCondition(499)));
 
 		achievements.add(createAchievement(
 			ID_HIGH_MASTER, "Stendhal High Master",
 			"Reach level 597",
-			Achievement.HARD_BASE_SCORE, true,
+			HOFScore.HARD, true,
 			new LevelGreaterThanCondition(596)));
 
 		return achievements;

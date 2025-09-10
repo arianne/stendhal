@@ -24,6 +24,7 @@ import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -276,6 +277,8 @@ public class MealForGroongo extends AbstractQuest {
 			"Meal for Groongo Rahnnt",
 			"Groongo is hungry and wants to have a decent meal at Fado hotel's restaurant.",
 			true, 7);
+		setBaseHOFScore(HOFScore.EASY);
+
 		stageBeginQuest();
 		stageCollectIngredientsForMainDish();
 		stageCheckForDessert();

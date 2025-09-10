@@ -16,6 +16,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -50,7 +51,7 @@ public abstract class AbstractAchievementFactory {
 	 * @param condition
 	 * @return the new Achievement
 	 */
-	protected Achievement createAchievement(String identifier, String title, String description, int score, boolean active, ChatCondition condition) {
+	protected Achievement createAchievement(String identifier, String title, String description, HOFScore score, boolean active, ChatCondition condition) {
 		return new Achievement(identifier, title, getCategory(),  description, score, active, condition);
 	}
 

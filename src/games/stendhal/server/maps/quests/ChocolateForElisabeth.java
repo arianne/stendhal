@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,6 +20,7 @@ import java.util.List;
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -306,6 +307,8 @@ public class ChocolateForElisabeth extends AbstractQuest {
 				"Chocolate for Elisabeth",
 				"Sweet, sweet chocolate! No one can live without it! And Elisabeth loooves to have some...",
 				true);
+		setBaseHOFScore(HOFScore.EASY);
+
 		chocolateStep();
 		meetMummyStep();
 	}

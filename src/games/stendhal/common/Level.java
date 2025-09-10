@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2024 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -24,6 +24,8 @@ public class Level {
 	// Max Level is LEVELS - 1.
 	// xp formula overflows for level = 599.
 	public static final int LEVELS = 598;
+	/** Maximum level which players can attain (597). */
+	public static final int MAX = Level.LEVELS-1;
 
 	private static int[] xp;
 

@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -286,6 +287,8 @@ public class HerbsForCarmen extends AbstractQuest {
 				"Herbs for Carmen",
 				"The Semos healer, Carmen, searches for ingredients to make potions and other useful medicines with.",
 				true);
+		setBaseHOFScore(HOFScore.EASY);
+
 		prepareRequestingStep();
 		prepareBringingStep();
 	}

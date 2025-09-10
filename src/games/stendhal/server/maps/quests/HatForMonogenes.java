@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,6 +12,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.quest.BringItemQuestBuilder;
@@ -84,7 +85,9 @@ public class HatForMonogenes implements QuestManuscript {
 			.rewardWith(new IncreaseXPAction(50))
 			.rewardWith(new IncreaseKarmaAction(10));
 
-			return quest;
+		quest.setBaseHOFScore(HOFScore.EASY);
+
+		return quest;
 	}
 
 	public boolean removeFromWorld() {

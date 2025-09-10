@@ -15,6 +15,7 @@ import java.util.Arrays;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -156,6 +157,8 @@ public class TrapsForKlaas implements QuestManuscript {
 				ConversationStates.ATTENDING,
 				"You lost the note? Well, I could write another one. But it doesn't look like you have room to carry it.",
 				null);
+
+		quest.setBaseHOFScore(HOFScore.EASY);
 
 		return quest;
 	}

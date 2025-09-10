@@ -21,6 +21,7 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -458,6 +459,8 @@ import games.stendhal.server.maps.Region;
 				"Supplies for Phalk",
 				"Phalk, the dwarvish guard in Semos Mine, is in need of supplies.",
 				false);
+		setBaseHOFScore(HOFScore.EASY);
+
 		askForFood();
 		receiveFood();
 		getCloak();

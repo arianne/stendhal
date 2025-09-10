@@ -20,6 +20,7 @@ import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -85,6 +86,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 				"Cloaks Collector",
 				"Josephine wants cloaks in many colors.",
 				false);
+		setBaseHOFScore(HOFScore.MEDIUM);
 
 		npcs.get("Josephine").addKnownChatOptions("cloaks");
 	}

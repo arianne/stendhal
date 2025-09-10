@@ -22,6 +22,7 @@ import org.apache.log4j.Logger;
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -522,6 +523,8 @@ public class ObsidianKnife extends AbstractQuest {
 				"Obsidian Knife",
 				"A skilled dwarf blacksmith in Wo'fol is getting hungry, and bored...",
 				false);
+		setBaseHOFScore(HOFScore.MEDIUM);
+
 		prepareQuestOfferingStep();
 		bringFoodStep();
 		requestBookStep();

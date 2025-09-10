@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.action.EquipRandomAmountOfItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
@@ -91,6 +92,8 @@ public class AmazonPrincess implements QuestManuscript {
 					"Thank you! Take [this_these] [number_item] from my cook, and this kiss from me."))
 			.rewardWith(new PlaySoundAction("kiss-female-01"))
 			.rewardWith(new InflictStatusOnNPCAction("pina colada"));
+
+		quest.setBaseHOFScore(HOFScore.MEDIUM);
 
 		return quest;
 	}

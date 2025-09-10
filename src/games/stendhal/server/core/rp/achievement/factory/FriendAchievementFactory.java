@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.core.rp.achievement.condition.QuestWithPrefixCompletedCondition;
@@ -56,7 +57,7 @@ public class FriendAchievementFactory extends AbstractAchievementFactory {
 		achievements.add(createAchievement(
 			ID_CHILD_FRIEND, "Childrens' Friend",
 			"Complete quests for all children",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new AndCondition(
 				// Susi Quest is never set to done, therefore we check just if the quest has been started (condition "anyFriends" from FoundGirl.java)
 				new QuestStartedCondition("susi"),
@@ -88,7 +89,7 @@ public class FriendAchievementFactory extends AbstractAchievementFactory {
 		achievements.add(createAchievement(
 			ID_PRIVATE_DETECTIVE, "Private Detective",
 			"Find all lost and hidden people",
-			Achievement.HARD_BASE_SCORE, true,
+			HOFScore.HARD, true,
 			new AndCondition(
 				// Rat Children (Agnus)
 				new QuestCompletedCondition("find_rat_kids"),
@@ -117,7 +118,7 @@ public class FriendAchievementFactory extends AbstractAchievementFactory {
 		achievements.add(createAchievement(
 			ID_GOOD_SAMARITAN, "Good Samaritan",
 			"Earn a very good karma",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new ChatCondition() {
 				@Override
 				public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
@@ -129,7 +130,7 @@ public class FriendAchievementFactory extends AbstractAchievementFactory {
 		achievements.add(createAchievement(
 			ID_STILL_BELIEVING, "Still Believing",
 			"Meet Santa Claus and Easter Bunny",
-			Achievement.EASY_BASE_SCORE, true,
+			HOFScore.EASY, true,
 			new AndCondition(
 				new QuestWithPrefixCompletedCondition("meet_santa_"),
 				new QuestWithPrefixCompletedCondition("meet_bunny_"))));

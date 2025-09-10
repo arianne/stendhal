@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -13,6 +13,7 @@ package games.stendhal.server.maps.quests;
 
 import java.util.Arrays;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
@@ -93,6 +94,8 @@ public class ArmorForDagobert implements QuestManuscript {
 			.rewardWith(new EquipItemAction("money", 80))
 			.rewardWith(new IncreaseXPAction(50))
 			.rewardWith(new IncreaseKarmaAction(10));
+
+		quest.setBaseHOFScore(HOFScore.EASY);
 
 		return quest;
 	}

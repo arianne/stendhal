@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -85,6 +86,8 @@ public class ElvishArmor extends AbstractQuest implements
 				"Elvish Armor",
 				"Lupos, an albino elf, wants to get the knowledge of how he can make elvish armor parts himself. Therefore, he asks young travellers to bring him some examples.",
 				true);
+		setBaseHOFScore(HOFScore.MEDIUM);
+
 		offerSteps();
 		setupAbstractQuest();
 	}

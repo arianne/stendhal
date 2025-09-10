@@ -18,6 +18,7 @@ import java.util.List;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -121,6 +122,7 @@ public class MeetBunny extends AbstractQuest {
 				"Meet Easter Bunny",
 				"At Easter one may see the Easter Bunny hopping around the world of Faiumoni. He is really fast even though he carries some heavy surprises with him...",
 				false);
+		setBaseHOFScore(HOFScore.EASY);
 
 		if (System.getProperty("stendhal.easterbunny") != null) {
 			createbunny();

@@ -18,6 +18,7 @@ import java.util.List;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -250,6 +251,8 @@ public class StuffForBaldemar extends AbstractQuest {
 				"Stuff for Baldemar",
 				"Baldemar, a friendly mithrilbourgh elite wizard, will forge a special shield.",
 				false);
+		setBaseHOFScore(HOFScore.HARD);
+
 		step_1();
 		step_2();
 		step_3();

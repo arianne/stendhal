@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -215,6 +216,8 @@ public class SuntanCreamForZara extends AbstractQuest {
 				"Suntan Cream for Zara",
 				"Zara is burning under the hot Athor sun.",
 				false);
+		setBaseHOFScore(HOFScore.MEDIUM);
+
 		createRequestingStep();
 		createBringingStep();
 	}

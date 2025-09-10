@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,6 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -277,15 +278,17 @@ and ask for horse hair.
 
 	@Override
 	public void addToWorld() {
-		prepareQuestStep();
-		bringWoodStep();
-		getHairStep();
-		bringHairStep();
 		fillQuestInfo(
 				"Bows for Ouchit",
 				"Ouchit is running out of bows and arrows to sell!",
 				false);
-	}
+		setBaseHOFScore(HOFScore.EASY);
+
+		prepareQuestStep();
+		bringWoodStep();
+		getHairStep();
+		bringHairStep();
+}
 
 	@Override
 	public boolean removeFromWorld() {

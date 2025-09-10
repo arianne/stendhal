@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
@@ -98,6 +99,8 @@ public class CleanAthorsUnderground implements QuestManuscript {
 			.rewardWith(new IncreaseXPAction(5000))
 			.rewardWith(new IncreaseKarmaAction(10.0))
 			.rewardWith(new EquipItemAction("greater potion", 10));
+
+		quest.setBaseHOFScore(HOFScore.MEDIUM);
 
 		return quest;
 	}

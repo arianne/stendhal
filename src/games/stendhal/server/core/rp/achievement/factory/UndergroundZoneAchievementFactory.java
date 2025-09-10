@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2022 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,6 +14,7 @@ package games.stendhal.server.core.rp.achievement.factory;
 import java.util.Collection;
 import java.util.LinkedList;
 
+import games.stendhal.server.core.rp.HOFScore;
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
 import games.stendhal.server.entity.npc.condition.PlayerVisitedZonesInRegionCondition;
@@ -39,37 +40,37 @@ public class UndergroundZoneAchievementFactory extends AbstractAchievementFactor
 		achievements.add(createAchievement(
 			"zone.underground.semos", "Canary",
 			"Visit all underground zones in the Semos region",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new PlayerVisitedZonesInRegionCondition("semos", Boolean.TRUE, Boolean.FALSE)));
 
 		achievements.add(createAchievement(
 			"zone.underground.nalwor", "Fear not Drows nor Hell",
 			"Visit all underground zones in the Nalwor region",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new PlayerVisitedZonesInRegionCondition("nalwor", Boolean.TRUE, Boolean.FALSE)));
 
 		achievements.add(createAchievement(
 			"zone.underground.athor", "Labyrinth Solver",
 			"Visit all underground zones in the Athor region",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new PlayerVisitedZonesInRegionCondition("athor", Boolean.TRUE, Boolean.FALSE)));
 
 		achievements.add(createAchievement(
 			"zone.underground.amazon", "Human Mole",
 			"Visit all underground zones in the Amazon region",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new PlayerVisitedZonesInRegionCondition("amazon", Boolean.TRUE, Boolean.FALSE)));
 
 		achievements.add(createAchievement(
 			"zone.underground.ados", "Deep Dweller",
 			"Visit all underground zones in the Ados region",
-			Achievement.MEDIUM_BASE_SCORE, true,
+			HOFScore.MEDIUM, true,
 			new PlayerVisitedZonesInRegionCondition("ados", Boolean.TRUE, Boolean.FALSE)));
 
 		achievements.add(createAchievement(
 			"zone.underground.deniran", "Spelunker",
 			"Visit all underground zones in the Deniran region",
-			Achievement.HARD_BASE_SCORE, true,
+			HOFScore.HARD, true,
 			new PlayerVisitedZonesInRegionCondition("deniran", true, false)));
 
 		return achievements;
