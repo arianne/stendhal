@@ -18,7 +18,7 @@ import java.util.List;
 
 import games.stendhal.server.constants.StandardMessages;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.scripting.AbstractAdminScript;
+import games.stendhal.server.core.scripting.impl.AbstractAdminScript;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 
 
