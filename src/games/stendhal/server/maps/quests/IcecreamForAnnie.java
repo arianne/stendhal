@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -80,7 +80,7 @@ import games.stendhal.server.maps.Region;
  * <li>Every 60 minutes</li>
  * </ul>
  */
-public class IcecreamForAnnie extends AbstractQuest {
+public class IcecreamForAnnie extends CompletionsTrackingQuest {
 
 	// constants
 	private static final String QUEST_SLOT = "icecream_for_annie";
@@ -100,7 +100,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestNotStartedCondition(QUEST_SLOT),
-						new QuestNotInStateCondition(QUEST_SLOT, "rejected")),
+						new QuestNotInStateCondition(QUEST_SLOT, 0, "rejected")),
 				ConversationStates.ATTENDING,
 				"Hello, my name is Annie. I am five years old.",
 				null);
@@ -109,7 +109,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(QUEST_SLOT, "start"),
+						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 						new PlayerHasItemWithHimCondition("icecream")),
 				ConversationStates.IDLE,
 				"Mummy says I mustn't talk to you any more. You're a stranger.",
@@ -119,7 +119,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(QUEST_SLOT, "start"),
+						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 						new NotCondition(new PlayerHasItemWithHimCondition("icecream"))),
 				ConversationStates.ATTENDING,
 				"Hello. I'm hungry.",
@@ -129,7 +129,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(QUEST_SLOT, "mummy"),
+						new QuestInStateCondition(QUEST_SLOT, 0, "mummy"),
 						new PlayerHasItemWithHimCondition("icecream")),
 				ConversationStates.QUESTION_1,
 				"Yummy! Is that ice cream for me?",
@@ -139,7 +139,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(QUEST_SLOT, "mummy"),
+						new QuestInStateCondition(QUEST_SLOT, 0, "mummy"),
 						new NotCondition(new PlayerHasItemWithHimCondition("icecream"))),
 				ConversationStates.ATTENDING,
 				"Hello. I'm hungry.",
@@ -150,8 +150,8 @@ public class IcecreamForAnnie extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestStartedCondition(QUEST_SLOT),
-						new QuestNotInStateCondition(QUEST_SLOT, "start"),
-						new QuestNotInStateCondition(QUEST_SLOT, "mummy")),
+						new QuestNotInStateCondition(QUEST_SLOT, 0, "start"),
+						new QuestNotInStateCondition(QUEST_SLOT, 0, "mummy")),
 				ConversationStates.ATTENDING,
 				"Hello.",
 				null);
@@ -160,7 +160,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestInStateCondition(QUEST_SLOT, "rejected")),
+						new QuestInStateCondition(QUEST_SLOT, 0, "rejected")),
 				ConversationStates.ATTENDING,
 				"Hello.",
 				null);
@@ -211,7 +211,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING,
 				"Thank you!",
-				new SetQuestAction(QUEST_SLOT, "start"));
+				new SetQuestAction(QUEST_SLOT, 0, "start"));
 
 		// Player says no, they've lost karma
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -219,15 +219,16 @@ public class IcecreamForAnnie extends AbstractQuest {
 				null,
 				ConversationStates.IDLE,
 				"Ok, I'll ask my mummy instead.",
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, 0, "rejected", -5.0));
 
 		// Player has got ice cream and spoken to mummy
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("icecream"));
 		reward.add(new EquipItemAction("present"));
 		reward.add(new IncreaseXPAction(500));
-		reward.add(new SetQuestAction(QUEST_SLOT, "eating;"));
-		reward.add(new SetQuestToTimeStampAction(QUEST_SLOT,1));
+		reward.add(new SetQuestAction(QUEST_SLOT, 0, "eating"));
+		reward.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
+		reward.add(incrementCompletionsAction());
 		reward.add(new IncreaseKarmaAction(10.0));
 		reward.add(new InflictStatusOnNPCAction("icecream"));
 
@@ -270,10 +271,10 @@ public class IcecreamForAnnie extends AbstractQuest {
 		mummyNPC.add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
 					new AndCondition(new GreetingMatchesNameCondition(mummyNPC.getName()),
-							new QuestInStateCondition(QUEST_SLOT, "start")),
+							new QuestInStateCondition(QUEST_SLOT, 0, "start")),
 					ConversationStates.ATTENDING,
 					"Hello, I see you've met my daughter Annie. I hope she wasn't too demanding. You seem like a nice person.",
-					new SetQuestAction(QUEST_SLOT, "mummy"));
+					new SetQuestAction(QUEST_SLOT, 0, "mummy"));
 
 		// any other state
 		mummyNPC.add(ConversationStates.IDLE,
@@ -287,7 +288,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 		fillQuestInfo(
 				"Ice Cream for Annie",
 				"The best surprise for a litte girl like Annie is a cool ice cream on summer days while playing on the playground.",
-				true);
+				true, 2);
 		icecreamStep();
 		meetMummyStep();
 	}
@@ -300,14 +301,14 @@ public class IcecreamForAnnie extends AbstractQuest {
 			return res;
 		}
 		res.add("Annie Jones is a sweet little girl playing in Kalavan city gardens.");
-		final String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT, 0);
 		if ("rejected".equals(questState)) {
 			res.add("I don't like sweet little girls.");
 		}
-		if (player.isQuestInState(QUEST_SLOT, "start","mummy") || isCompleted(player)) {
+		if (player.isQuestInState(QUEST_SLOT, 0, "start","mummy") || isCompleted(player)) {
 			res.add("Little Annie wants an ice cream.");
 		}
-		if (player.isQuestInState(QUEST_SLOT, "start","mummy") && player.isEquipped("icecream") || isCompleted(player)) {
+		if (player.isQuestInState(QUEST_SLOT, 0, "start","mummy") && player.isEquipped("icecream") || isCompleted(player)) {
 			res.add("I found a tasty ice cream for Annie.");
 		}
 		if ("mummy".equals(questState) || isCompleted(player)) {

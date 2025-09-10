@@ -16,8 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-
-import org.apache.log4j.Logger;
+import java.util.Locale;
 
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
@@ -26,6 +25,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -69,9 +69,7 @@ import games.stendhal.server.maps.Region;
  * <li> Once every 24 hours.</li>
  * </ul>
  */
-public class FindRatChildren extends AbstractQuest {
-
-	private static Logger logger = Logger.getLogger(FindRatChildren.class);
+public class FindRatChildren extends CompletionsTrackingQuest {
 
 	private static final String QUEST_SLOT = "find_rat_kids";
 
@@ -88,28 +86,164 @@ public class FindRatChildren extends AbstractQuest {
 		return QUEST_SLOT;
 	}
 
-	private List<String> missingNames(final Player player) {
+	/**
+	 * Retrieves names of children player still needs to find and report.
+	 *
+	 * @param player
+	 *   Player doing quest.
+	 * @return
+	 *   Missing children's names.
+	 */
+	private static List<String> missingNames(final Player player) {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return NEEDED_KIDS;
 		}
 		/*
 		 * the format of the list quest slot is
-		 * "looking;name;name;...:said;name;name;..."
+		 * "found=name,name,...;said=name,name,..."
 		 */
 		// put the children name to lower case so we can match it, however the player wrote the name
-		final String npcDoneText = player.getQuest(QUEST_SLOT).toLowerCase();
-		final String[] doneAndFound = npcDoneText.split(":");
+		final String[] tmp = player.getQuest(QUEST_SLOT, 1).toLowerCase(Locale.ENGLISH).split("=");
+		if (tmp.length < 2) {
+			return NEEDED_KIDS;
+		}
+		final List<String> said = Arrays.asList(tmp[1].split(","));
 		final List<String> result = new LinkedList<String>();
-		if (doneAndFound.length > 1) {
-			final String[] done = doneAndFound[1].split(";");
-			final List<String> doneList = Arrays.asList(done);
-			for (final String name : NEEDED_KIDS) {
-				if (!doneList.contains(name)) {
-					result.add(name);
-				}
+		for (final String name: NEEDED_KIDS) {
+			if (!said.contains(name)) {
+				result.add(name);
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * Checks if quest state is active.
+	 *
+	 * @param player
+	 *   Player doing quest.
+	 * @return
+	 *   {@code true} if player has quest and is in active state.
+	 */
+	private static boolean lookingForKids(final Player player) {
+		return new QuestActiveCondition(QUEST_SLOT).fire(player, null, null);
+	}
+
+	/**
+	 * Adds a name to player's quest state when NPC is found.
+	 *
+	 * @param player
+	 *   Player doing quest.
+	 * @param name
+	 *   Name of found child.
+	 */
+	public static void addFoundName(final Player player, final String name) {
+		if (!lookingForKids(player)) {
+			return;
+		}
+		String found = player.getQuest(QUEST_SLOT, 0);
+		if (found.length() > "found=".length()) {
+			found += ",";
+		}
+		found += name;
+		player.setQuest(QUEST_SLOT, 0, found);
+	}
+
+	/**
+	 * Adds a name to player's quest state when reported to Agnus.
+	 *
+	 * @param player
+	 *   Player doing quest.
+	 * @param name
+	 *   Name of found child.
+	 */
+	private static void addSaidName(final Player player, final String name) {
+		if (!lookingForKids(player)) {
+			return;
+		}
+		String said = player.getQuest(QUEST_SLOT, 1);
+		if (said.length() > "said=".length()) {
+			said += ",";
+		}
+		said += name;
+		player.setQuest(QUEST_SLOT, 1, said);
+	}
+
+	/**
+	 * Retrieves names of rat children player has talked to.
+	 *
+	 * @param player
+	 *   Player doing quest.
+	 * @return
+	 *   List of names of children player has talked to.
+	 */
+	public static List<String> getFoundNames(final Player player) {
+		final List<String> names = new ArrayList<>();
+		if (!lookingForKids(player)) {
+			return names;
+		}
+		final String[] tmp = player.getQuest(QUEST_SLOT, 0).toLowerCase(Locale.ENGLISH).split("=");
+		if (tmp.length < 2) {
+			return names;
+		}
+		names.addAll(Arrays.asList(tmp[1].split(",")));
+		return names;
+	}
+
+	/**
+	 * Retrieves names of rat children player has reported to Agnus.
+	 *
+	 * @param player
+	 *   Player doing quest.
+	 * @return
+	 *   List of names of children player has reported.
+	 */
+	public static List<String> getSaidNames(final Player player) {
+		final List<String> names = new ArrayList<>();
+		if (!lookingForKids(player)) {
+			return names;
+		}
+		final String[] tmp = player.getQuest(QUEST_SLOT, 1).toLowerCase(Locale.ENGLISH).split("=");
+		if (tmp.length < 2) {
+			return names;
+		}
+		names.addAll(Arrays.asList(tmp[1].split(",")));
+		return names;
+	}
+
+	/**
+	 * Updates formatting of player's quest state string.
+	 *
+	 * @param player
+	 *   Player being updated.
+	 */
+	public static void checkPlayerUpdate(final Player player) {
+		final String state = player.getQuest(QUEST_SLOT);
+		// 1.48: support completions tracking in Find Rat Children
+		if (!player.hasQuest(QUEST_SLOT) || !state.startsWith("looking")) {
+			return;
+		}
+		final List<String> found = new ArrayList<>();
+		final List<String> said = new ArrayList<>();
+		final String[] tmp = state.split(":");
+		if (tmp.length > 0) {
+			for (final String name: tmp[0].split(";")) {
+				if ("looking".equals(name)) {
+					continue;
+				}
+				found.add(name);
+			}
+		}
+		if (tmp.length > 1) {
+			for (final String name: tmp[1].split(";")) {
+				if ("said".equals(name)) {
+					continue;
+				}
+				said.add(name);
+			}
+		}
+		player.setQuest(QUEST_SLOT, "found=" + String.join(",", found) + ";said="
+					+ String.join(",", said));
 	}
 
 	private void askingStep() {
@@ -117,7 +251,7 @@ public class FindRatChildren extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new OrCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestInStateCondition(QUEST_SLOT, "rejected")),
+				new OrCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestInStateCondition(QUEST_SLOT, 0, "rejected")),
 				ConversationStates.QUEST_OFFERED,
 				"I feel so worried. If I only knew my #children were safe I would feel better.",
 				null);
@@ -151,7 +285,9 @@ public class FindRatChildren extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING,
 				"That's so nice of you. Good luck searching for them.",
-				new SetQuestAction(QUEST_SLOT, "looking:said"));
+				new MultipleActions(
+						new SetQuestAction(QUEST_SLOT, 0, "found="),
+						new SetQuestAction(QUEST_SLOT, 1, "said=")));
 
 		npc.add(
 				ConversationStates.QUEST_OFFERED,
@@ -159,7 +295,7 @@ public class FindRatChildren extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING,
 				"Oh. Never mind. I'm sure someone else would be glad to help me.",
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -15.0));
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, 0, "rejected", -15.0));
 
 		npc.add(
 				ConversationStates.QUEST_OFFERED,
@@ -197,35 +333,17 @@ public class FindRatChildren extends AbstractQuest {
 					new ChatAction() {
 						@Override
 						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-							final String npcQuestText = player.getQuest(QUEST_SLOT).toLowerCase();
-							final String[] npcDoneText = npcQuestText.split(":");
-							final String lookingStr;
-							final String saidStr;
-							if (npcDoneText.length > 1) {
-								lookingStr = npcDoneText[0];
-								saidStr = npcDoneText[1];
-							} else {
-								// compatibility with broken quests - should never happen
-								logger.warn("Player " + player.getTitle() + " found with find_rat_kids quest slot in state " + player.getQuest(QUEST_SLOT) + " - now setting this to done.");
-								player.setQuest(QUEST_SLOT, "done");
-								npc.say("Sorry, it looks like you have already found them after all. I got confused.");
-								player.notifyWorldAboutChanges();
-								npc.setCurrentState(ConversationStates.ATTENDING);
-								return;
-							}
-
-							final List<String> looking = Arrays.asList(lookingStr.split(";"));
-							final List<String> said = Arrays.asList(saidStr.split(";"));
+							final List<String> found = getFoundNames(player);
+							final List<String> said = getSaidNames(player);
 							String reply = "";
 							List<String> missing = missingNames(player);
 							final boolean isMissing = missing.contains(name);
 
-							if (isMissing && looking.contains(name) && !said.contains(name)) {
+							if (isMissing && found.contains(name) && !said.contains(name)) {
 								// we haven't said the name yet so we add it to the list
-								player.setQuest(QUEST_SLOT, lookingStr
-										+ ":" + saidStr + ";" + name);
+								addSaidName(player, name);
 								reply = "Thank you.";
-							} else if (!looking.contains(name)) {
+							} else if (!found.contains(name)) {
 								// we have said it was a valid name but haven't seen them
 								reply = "I don't think you actually checked if they were ok.";
 							} else if (!isMissing && said.contains(name)) {
@@ -246,7 +364,9 @@ public class FindRatChildren extends AbstractQuest {
 								player.addKarma(15);
 								reply += " Now that I know my kids are safe, I can set my mind at rest.";
 								npc.say(reply);
-								player.setQuest(QUEST_SLOT, "done;" + System.currentTimeMillis());
+								player.setQuest(QUEST_SLOT, 0, "done");
+								player.setQuest(QUEST_SLOT, 1, String.valueOf(System.currentTimeMillis()));
+								incrementCompletions(player);
 								player.notifyWorldAboutChanges();
 								npc.setCurrentState(ConversationStates.ATTENDING);
 							}
@@ -287,7 +407,7 @@ public class FindRatChildren extends AbstractQuest {
 		fillQuestInfo(
 				"Find Rat Children",
 				"Agnus, who lives in Rat City, asks young heroes to find her children and look after them. They went down into the dark tunnels and haven't returned ...",
-				true);
+				true, 2);
 		askingStep();
 		findingStep();
 		retrievingStep();

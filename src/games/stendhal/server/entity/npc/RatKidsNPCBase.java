@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,12 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.quests.FindRatChildren;
 
 // import org.apache.log4j.Logger;
 
@@ -58,30 +59,20 @@ public abstract class RatKidsNPCBase extends SpeakerNPC {
 	private static class RatKidGreetingAction implements ChatAction {
 		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-			if (!player.hasQuest(QUEST_SLOT) || player.isQuestInState(QUEST_SLOT, "rejected")) {
+			if (!player.hasQuest(QUEST_SLOT) || player.isQuestInState(QUEST_SLOT, 0, "rejected")) {
 				npc.say("Mother says I mustn't talk to strangers.");
 			} else {
-				final String npcQuestText = player.getQuest(QUEST_SLOT);
-				final String[] npcDoneText = npcQuestText.split(":");
-
-				final String lookStr;
-				final String saidStr;
-				if (npcDoneText.length > 1) {
-					lookStr = npcDoneText[0].toLowerCase();
-					saidStr = npcDoneText[1].toLowerCase();
-
-					final List<String> list = Arrays.asList(lookStr.split(";"));
-					String npcName = npc.getName().toLowerCase();
-					if (list.contains(npcName) || player.isQuestCompleted(QUEST_SLOT)) {
-						npc.say("Oh hello again.");
-					} else if ( npcDoneText.length > 1) {
-						player.setQuest(QUEST_SLOT, lookStr + ";" + npcName
-								+ ":" + saidStr);//
-						npc.say("Hello my name is " + npc.getName() + ". Please tell mother that I am ok.");
-						player.addXP(500);
-					} else {
-						npc.say("Mother says I mustn't talk to strangers.");
-					}
+				final List<String> found = FindRatChildren.getFoundNames(player);
+				String npcName = npc.getName().toLowerCase(Locale.ENGLISH);
+				final boolean questCompleted = player.isQuestCompleted(QUEST_SLOT);
+				if (questCompleted || found.contains(npcName)) {
+					npc.say("Oh hello again.");
+				} else if (!questCompleted) {
+					FindRatChildren.addFoundName(player, npcName);
+					npc.say("Hello my name is " + npc.getName() + ". Please tell mother that I am ok.");
+					player.addXP(500);
+				} else {
+					npc.say("Mother says I mustn't talk to strangers.");
 				}
 			}
 		}

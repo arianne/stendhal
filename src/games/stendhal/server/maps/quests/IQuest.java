@@ -67,6 +67,16 @@ public interface IQuest {
 	boolean isCompleted(Player player);
 
 	/**
+	 * Has the quest been completed at least one time regardless of current completed state.
+	 *
+	 * @param player
+	 *   Player in question.
+	 * @return
+	 *   {@code true} if player has completed quest at least once.
+	 */
+	boolean hasCompleted(Player player);
+
+	/**
 	 * Retrieves number of times player has completed quest.
 	 *
 	 * @param player
@@ -74,6 +84,17 @@ public interface IQuest {
 	 * @return
 	 *   Number of completions.
 	 */
+	int getCompletions(Player player);
+
+	/**
+	 * Retrieves number of times player has completed quest.
+	 *
+	 * @param player
+	 *   Player for whom quest is being checked.
+	 * @return
+	 *   Number of completions.
+	 */
+	@Deprecated
 	int getCompletedCount(Player player);
 
 	/**

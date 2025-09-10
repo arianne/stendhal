@@ -15,7 +15,6 @@ package games.stendhal.server.maps.quests;
 import java.util.ArrayList;
 import java.util.List;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.player.Player;
@@ -147,24 +146,36 @@ public abstract class AbstractQuest implements IQuest {
 	}
 
 	@Override
+	public boolean hasCompleted(final Player player) {
+		return getCompletions(player) > 0;
+	}
+
+	/**
+	 * Retrieves number of times player has completed quest.
+	 *
+	 * @param player
+	 *   Player for whom quest is being checked.
+	 * @return
+	 *   Number of completions.
+	 */
+	@Override
+	public int getCompletions(final Player player) {
+		return isCompleted(player) ? 1 : 0;
+	}
+
+	/**
+	 * Retrieves number of times player has completed quest.
+	 *
+	 * @param player
+	 *   Player for whom quest is being checked.
+	 * @return
+	 *   Number of completions.
+	 * @deprecated
+	 */
+	@Deprecated
+	@Override
 	public int getCompletedCount(final Player player) {
-		final String questSlot = getSlotName();
-		final boolean completed = isCompleted(player);
-		if (player.hasQuest(questSlot)) {
-			final String[] state = player.getQuest(questSlot).split(";");
-			final Pair<Integer, Integer> completionsIndexes = questInfo.getCompletionsIndexes();
-			Integer stateIndex = null;
-			if (completed) {
-				stateIndex = completionsIndexes.second();
-			} else {
-				stateIndex = completionsIndexes.first();
-			}
-			if (stateIndex != null && state.length > stateIndex && !"".equals(state[stateIndex])) {
-				return MathHelper.parseIntDefault(state[stateIndex], completed ? 1 : 0);
-			}
-		}
-		// default is to return 1 if quest is in complete state and 0 otherwise
-		return completed ? 1 : 0;
+		return getCompletions(player);
 	}
 
 	@Override

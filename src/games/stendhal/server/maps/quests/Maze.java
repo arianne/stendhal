@@ -38,7 +38,7 @@ import games.stendhal.server.maps.quests.maze.MazeSign;
 import games.stendhal.server.util.ResetSpeakerNPC;
 import games.stendhal.server.util.TimeUtil;
 
-public class Maze extends AbstractQuest {
+public class Maze extends CompletionsTrackingQuest {
 	/** Minimum time between repeats. */
 	private static final int COOLING_TIME = TimeUtil.MINUTES_IN_HOUR * 24;
 	private MazeSign sign;
@@ -81,7 +81,7 @@ public class Maze extends AbstractQuest {
 					res.add("Haizen won't make me a new maze yet.");
 				}
 			}
-			final int repetitions = player.getNumberOfRepetitions(getSlotName(), 2);
+			final int repetitions = getCompletions(player);
 			if (repetitions > 1) {
 				res.add("So far I've solved the maze " + repetitions + " times already!");
 			}

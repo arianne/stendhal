@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,6 +20,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -67,13 +68,24 @@ public class KillDhohrNuggetcutterTest extends ZonePlayerAndNPCTestImpl {
 		npc = SingletonRepository.getNPCList().get("Zogfang");
 		en = npc.getEngine();
 
+		final int completions = MathHelper.parseIntDefault(player.getQuest(questSlot, 2), 0);
+		String[] responses = new String[] {
+				"We are unable to rid our area of dwarves. Especially one mighty one named Dhohr"
+						+ " Nuggetcutter. Would you please kill them?"
+		};
+		if (completions > 0) {
+			responses = new String[] {
+					"Would you like to help again clearing this Keep of our enemies, those dwarves?"
+			};
+		}
+
 		en.step(player, "hi");
 		assertEquals("Hello my fine fellow. Welcome to Ados Abandoned Keep, our humble dwelling!", getReply(npc));
 		en.step(player, "task");
-		assertEquals("We are unable to rid our area of dwarves. Especially one mighty one named Dhohr Nuggetcutter. Would you please kill them?", getReply(npc));
+		assertEquals(responses[0], getReply(npc));
 		en.step(player, "no");
 		assertEquals("Ok, I will await someone having the guts to have the job done.", getReply(npc));
-		assertEquals("rejected", player.getQuest(questSlot));
+		assertEquals("rejected", player.getQuest(questSlot, 0));
 		en.step(player, "bye");
 		assertEquals("I wish you well on your journeys.", getReply(npc));
 
@@ -82,6 +94,8 @@ public class KillDhohrNuggetcutterTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		assertEquals("Hello my fine fellow. Welcome to Ados Abandoned Keep, our humble dwelling!", getReply(npc));
 		en.step(player, "task");
+		// when rejected he uses response as if quest was never completed
+		//assertEquals(responses[0], getReply(npc));
 		assertEquals("We are unable to rid our area of dwarves. Especially one mighty one named Dhohr Nuggetcutter. Would you please kill them?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("Great! Please find all wandering #dwarves somewhere in this level of the keep and make them pay for their tresspassing!", getReply(npc));
@@ -142,14 +156,39 @@ public class KillDhohrNuggetcutterTest extends ZonePlayerAndNPCTestImpl {
 		player.setSoloKill("mountain dwarf");
 		player.setSoloKill("mountain dwarf");
 
+		final int xpBefore = player.getXP();
+
 		en.step(player, "hi");
 		assertEquals("Thank you so much. You are a warrior, indeed! Here, have one of these. We have found them scattered about. We have no idea what they are.", getReply(npc));
-		assertEquals(4000, player.getXP());
+		assertEquals(xpBefore+4000, player.getXP());
 		assertEquals("killed", player.getQuest(questSlot, 0));
 
 		en.step(player, "task");
 		assertEquals("Thank you for helping us. Maybe you could come back later. The dwarves might return. Try coming back in 2 weeks.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("I wish you well on your journeys.", getReply(npc));
+	}
+
+	@Test
+	public void testCompletions() {
+		for (int count = 0; count < 5; count++) {
+			assertEquals(count, MathHelper.parseIntDefault(player.getQuest(questSlot, 2), 0));
+			testQuest();
+			// reset so can be repeated
+			player.setQuest(questSlot, 1, "0");
+		}
+		assertEquals("5", player.getQuest(questSlot, 2));
+
+		// check that completions count is retained after quest is rejected & started
+		en.step(player, "hi");
+		en.step(player, "task");
+		en.step(player, "no");
+		assertEquals("rejected", player.getQuest(questSlot, 0));
+		assertEquals("5", player.getQuest(questSlot, 2));
+		en.step(player, "task");
+		en.step(player, "yes");
+		assertEquals("start", player.getQuest(questSlot, 0));
+		assertEquals("5", player.getQuest(questSlot, 2));
+		en.step(player, "bye");
 	}
 }

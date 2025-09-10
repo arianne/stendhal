@@ -74,7 +74,7 @@ import marauroa.common.Pair;
  *
  * @author Vanessa Julius, idea by anoyyou
  */
-public class KillMonks extends AbstractQuest {
+public class KillMonks extends CompletionsTrackingQuest {
 
 	private static final String QUEST_SLOT = "kill_monks";
 	protected HashMap<String, Pair<Integer, Integer>> creaturestokill = new HashMap<String, Pair<Integer,Integer>>();
@@ -248,7 +248,7 @@ public class KillMonks extends AbstractQuest {
 					res.add("I've killed some monks and Andy finally can sleep a bit better!");
 				}
 			}
-			int repetitions = player.getNumberOfRepetitions(getSlotName(), 2);
+			int repetitions = getCompletions(player);
 			if (repetitions > 0) {
 				res.add("I have taken revenge for Andy "
 						+ Grammar.quantityplnoun(repetitions, "time") + " now.");

@@ -62,7 +62,7 @@ import games.stendhal.server.maps.Region;
  * <li>bigger reward each time - with a square law on the XP</li>
  * </ul>
  */
-public class HelpTomi extends AbstractQuest {
+public class HelpTomi extends CompletionsTrackingQuest {
 	/**
 	 * Number of repetitions after which the XP growth becomes linear, instead
 	 * of quadratic.
@@ -78,6 +78,7 @@ public class HelpTomi extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
@@ -88,13 +89,10 @@ public class HelpTomi extends AbstractQuest {
 		final String questState = player.getQuest(QUEST_SLOT);
 		if (questState.startsWith("done")) {
 			res.add("Tomi asked for \"ice\" and took the ice sword I was carrying!");
-			// provided quest isn't in 'old version' we should be able to check how many times it was done
-			if (!"done".equals(questState)) {
-				final int repetitions = player.getNumberOfRepetitions(getSlotName(), 1);
-				if (repetitions>1) {
-					res.add("I've given " + repetitions + " ice swords to Tomi so far.");
-				}
-			}
+		}
+		int completions = getCompletions(player);
+		if (completions > 0) {
+			res.add("I've given " + completions + " ice swords to Tomi so far.");
 		}
 		return res;
 	}
