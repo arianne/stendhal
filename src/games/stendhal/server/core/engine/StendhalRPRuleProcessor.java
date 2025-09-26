@@ -16,7 +16,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -543,9 +544,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			if (config.has("server_welcome")) {
 				msg = config.get("server_welcome");
 				if (msg.startsWith("http://") || msg.startsWith("https://")) {
-					final URL url = new URL(msg);
+					final URI uri = new URI(msg);
 					HttpURLConnection.setFollowRedirects(false);
-					final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+					final HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
 					try {
 						final BufferedReader br = new BufferedReader(
 							new InputStreamReader(connection.getInputStream(), "UTF-8"));
@@ -559,7 +560,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 					}
 				}
 			}
-		} catch (final IOException e) {
+		} catch (final IOException | URISyntaxException e) {
 			if (firstWelcomeException) {
 				logger.warn("Can't read server_welcome from marauroa.ini", e);
 				firstWelcomeException = false;

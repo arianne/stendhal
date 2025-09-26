@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2025 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -22,6 +22,8 @@ import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
@@ -353,7 +355,7 @@ public class SpriteStore {
 			URL url;
 			if (ref.startsWith("http://") || ref.startsWith("https://")) {
 				logger.info("Loading sprite from a URL...");
-				url = new URL(ref);
+				url = new URI(ref).toURL();
 			} else {
 				url = DataLoader.getResource(ref);
 			}
@@ -372,7 +374,7 @@ public class SpriteStore {
 
 			// use ImageIO to read the image in
 			sourceImage = ImageIO.read(url);
-		} catch (final IOException e) {
+		} catch (final IOException | URISyntaxException e) {
 			logger.error("Failed to read: " + ref, e);
 
 			if (ref.equals(FAILSAFE_ICON_REF)) {

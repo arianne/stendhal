@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2025 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,7 +18,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.Reader;
-import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -135,7 +136,7 @@ public class SourceForgeContributorsGenerator {
 	@SuppressWarnings("unchecked")
 	private void fetchProfiles(Map<String, Map<String, Object>> contributors) throws IOException {
 		for (Map.Entry<String, Map<String, Object>> entry : contributors.entrySet()) {
-			try (Reader reader = new InputStreamReader(new URL("https://sourceforge.net/rest/u/" + entry.getKey() +"/profile").openStream(), "UTF-8")) {
+			try (Reader reader = new InputStreamReader(new URI("https://sourceforge.net/rest/u/" + entry.getKey() +"/profile").toURL().openStream(), "UTF-8")) {
 				Map<String, Object> contributor = entry.getValue();
 				Map<String, Object> profile = (Map<String, Object>) JSONValue.parse(reader);
 				String fullname = (String) profile.get("name");
@@ -149,7 +150,7 @@ public class SourceForgeContributorsGenerator {
 				if (country != null && !country.trim().equals("")) {
 					contributor.put("country", country);
 				}
-			} catch (FileNotFoundException e) {
+			} catch (FileNotFoundException | URISyntaxException e) {
 				System.err.println("Profile " + entry.getKey() + " does not exist.");
 			}
 		}

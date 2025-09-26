@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2024 - Stendhal                    *
+ *                   (C) Copyright 2003-2025 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,7 +16,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.URI;
 import java.util.List;
 import java.util.Properties;
 import java.util.zip.GZIPInputStream;
@@ -302,8 +302,8 @@ public class TMXLoader {
 			final String xmlFile = makeUrl(filename);
 			// xmlPath = makeUrl(xmlPath);
 
-			final URL url = new URL(xmlFile);
-			is = url.openStream();
+			final URI uri = new URI(xmlFile);
+			is = uri.toURL().openStream();
 		}
 
 		// Wrap with GZIP decoder for .tmx.gz files

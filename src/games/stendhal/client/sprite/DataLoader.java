@@ -1,5 +1,5 @@
 /***************************************************************************
- *                 (C) Copyright 2012-2022 Faiumoni e. V.                  *
+ *                 (C) Copyright 2012-2025 Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,6 +15,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.Enumeration;
@@ -60,8 +62,8 @@ public class DataLoader {
 		File file = contentFilenameMapping.get(slashlessName);
 		if (file != null) {
 			try {
-				return new URL("jar:" + file.toURI().toASCIIString() + "!/" + slashlessName);
-			} catch (MalformedURLException e) {
+				return new URI("jar:" + file.toURI().toASCIIString() + "!/" + slashlessName).toURL();
+			} catch (MalformedURLException | URISyntaxException e) {
 				logger.error(e, e);
 			}
 		}

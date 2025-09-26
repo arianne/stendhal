@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2025 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui.imageviewer;
 
+import java.net.URI;
 import java.net.URL;
 
 import org.apache.log4j.Logger;
@@ -53,7 +54,7 @@ public final class RPEventImageViewer {
 		try {
 			URL url = null;
 			if (path.startsWith("http://") || path.startsWith("https://")) {
-				url = new URL(path);
+				url = new URI(path).toURL();
 			} else {
 				url = DataLoader.getResource(path);
 			}
