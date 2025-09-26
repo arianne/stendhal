@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2016 - Stendhal                    *
+ *                   (C) Copyright 2003-2025 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -116,6 +116,8 @@ public class HttpClient {
 				retryCount++;
 				try {
 					connection = (HttpURLConnection) url.openConnection();
+					// Wikipedia API now requires User-Agent string
+					connection.setRequestProperty("User-Agent", "StendhalClient/1.48.5 (https://arianne-project.org/contact.html)");
 					connection.setConnectTimeout(myTimeout);
 					connection.setInstanceFollowRedirects(true);
 					connection.setUseCaches(false);

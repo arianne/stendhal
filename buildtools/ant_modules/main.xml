@@ -42,6 +42,10 @@
 			match="&quot;version&quot;: &quot;.*&quot;"
 			replace="&quot;version&quot;: &quot;${version}&quot;"
 			byline="true"/>
+		<replaceregexp file="${src}/games/stendhal/client/update/HttpClient.java"
+			match="StendhalClient/.* \("
+			replace="StendhalClient/${version} \("
+			byline="true"/>
 
 		<!-- update location of resources -->
 		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"

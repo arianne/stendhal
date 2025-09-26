@@ -12,6 +12,7 @@ Changelog
 - fixed silent NPC fixed paths
 - fixed desktop webview client window freezing on Windows when closed
 - fixed nativehelper extension process not exiting cleanly on Windows
+- set User-Agent string for Wikipedia API requests
 
 
 1.48
