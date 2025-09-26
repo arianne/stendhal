@@ -1,5 +1,5 @@
 /***************************************************************************
- *                 Copyright © 2020-2024 - Faiumoni e. V.                  *
+ *                 Copyright © 2020-2025 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -376,7 +376,7 @@ public class CollectEnemyData extends AbstractQuest {
 						new ChatAction() {
 							@Override
 							public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-								npc.say("Thanks so much for you help. Now I have all the information I need to complete my #bestiary."
+								npc.say("Thanks so much for your help. Now I have all the information I need to complete my #bestiary."
 										+ " If you would like one of your own, I can sell you one.");
 								player.addKarma(200.0);
 							}}));

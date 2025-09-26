@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                 Copyright © 2020-2025 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -291,7 +291,7 @@ public class CollectEnemyDataTest extends ZoneAndPlayerTestImpl {
 		} else {
 			assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 			assertEquals(
-					"Thanks so much for you help. Now I have all the information I need to complete my #bestiary."
+					"Thanks so much for your help. Now I have all the information I need to complete my #bestiary."
 					+ " If you would like one of your own, I can sell you one.", getReply(rengard));
 		}
 	}
