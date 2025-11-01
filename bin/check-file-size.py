@@ -81,7 +81,7 @@ def main():
 		if code != 0:
 			res = code
 	if res == 0:
-		print("No large audio files detected")
+		print("No large audio data files detected")
 	return res
 
 if __name__ == "__main__":
