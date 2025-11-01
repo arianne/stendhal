@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2025 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -26,7 +26,6 @@ import games.stendhal.server.entity.npc.behaviour.journal.ProducerRegister;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.PlayerProducedNumberOfItemsCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
-import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.player.Player;
 
 
@@ -64,7 +63,7 @@ public class ProductionAchievementFactory extends AbstractAchievementFactory {
 			Achievement.MEDIUM_BASE_SCORE, true,
 			new AndCondition(
 				new PlayerProducedNumberOfItemsCondition(1, foods),
-				new QuestStateStartsWithCondition("coal_for_haunchy","waiting;"))));
+				new QuestCompletedCondition("coal_for_haunchy"))));
 
 
 		final List<String> drinklist = producerRegister.getProducedItemNames("drink");
