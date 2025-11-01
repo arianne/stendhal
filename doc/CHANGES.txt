@@ -4,6 +4,9 @@ Changelog
 
 1.49
 
+*world*
+- outfit prices in Gwen's shop reduced
+
 *web client*
 - improved lighting effects
 
