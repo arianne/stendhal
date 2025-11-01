@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2023-2024 - Stendhal                    *
+ *                 Copyright © 2023-2025 - Faiumoni e. V.                  *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -85,7 +85,7 @@ public class DealerNPCTest extends SpeakerNPCTestHelper {
 		en.step(player, "hi");
 		en.step(player, "buy white balloon");
 		assertEquals(
-			"To buy a white balloon will cost 50000. Do you want to buy it?",
+			"To buy a white balloon will cost 25000. Do you want to buy it?",
 			getReply(gwen));
 		en.step(player, "yes");
 		assertEquals(
