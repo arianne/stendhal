@@ -13,6 +13,7 @@ Changelog
 - fixed desktop webview client window freezing on Windows when closed
 - fixed nativehelper extension process not exiting cleanly on Windows
 - set User-Agent string for Wikipedia API requests
+- trimmed large music files to decrease size to 2MB or less
 
 
 1.48
