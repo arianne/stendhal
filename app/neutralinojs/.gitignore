@@ -11,6 +11,7 @@ neutralino.js
 # Neutralinojs related files
 .storage
 *.log
+extensions/binary/steam_appid.txt
 extensions/binary/*.so
 extensions/binary/*.dll
 extensions/binary/nativehelper*
