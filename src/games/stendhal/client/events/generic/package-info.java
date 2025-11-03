@@ -1,5 +1,5 @@
 /***************************************************************************
- *                 Copyright © 2020-2024 - Faiumoni e. V.                  *
+ *                    Copyright © 2024 - Faiumoni e. V.                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -9,40 +9,4 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.common.constants;
-
-
-/**
- * IDs for sound events configured in the client.
- */
-public enum SoundID {
-	LEVEL_UP("level_up"),
-	LEVEL_DOWN("level_down"),
-	STAT_UP("stat_up"),
-	STAT_DOWN("stat_down"),
-	ACHIEVEMENT("achievement"),
-	COMMERCE("commerce"),
-	COMMERCE2("commerce2"),
-	HEAL("heal"),
-
-	THUNDERCLAP("thunderclap");
-
-	String label;
-
-	private SoundID(final String label) {
-		this.label = label;
-	}
-
-	@Override
-	public String toString() {
-		return label;
-	}
-
-	public static SoundID getById(final String id) {
-		for (SoundID e: values()) {
-			if (e.label.equals(id)) return e;
-		}
-
-		return null;
-	}
-}
+package games.stendhal.client.events.generic;

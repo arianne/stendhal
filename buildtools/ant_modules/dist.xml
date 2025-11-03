@@ -132,6 +132,9 @@
 				<exclude name="logic/layer/"/>
 			</fileset>
 		</copy>
+		<copy todir="${build_client_data}/${maps}/effect">
+			<fileset dir="${maps}/effect"/>
+		</copy>
 		<mkdir dir="${maps}/parallax"/> <!-- in case no parallax images available -->
 		<copy todir="${build_client_data}/data/maps/parallax">
 			<fileset dir="${maps}/parallax" includes="**/*.png"/>

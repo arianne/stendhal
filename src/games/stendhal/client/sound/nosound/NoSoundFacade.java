@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,6 +20,7 @@ import games.stendhal.client.sound.facade.SoundGroup;
 import games.stendhal.client.sound.facade.SoundHandle;
 import games.stendhal.client.sound.facade.SoundSystemFacade;
 import games.stendhal.client.sound.facade.Time;
+import games.stendhal.common.constants.SoundLayer;
 
 public class NoSoundFacade implements SoundSystemFacade {
 
@@ -54,6 +55,31 @@ public class NoSoundFacade implements SoundSystemFacade {
 	@Override
 	public void mute(boolean turnOffSound, boolean useFading, Time delay) {
 		// do nothing
+	}
+
+	@Override
+	public SoundHandle playLocalizedEffect(String name, int x, int y, int radius, SoundLayer layer, float volume,
+			boolean loop) {
+		// do nothing
+		return new NoSoundHandle();
+	}
+
+	@Override
+	public SoundHandle playLocalizedEffect(String name, int x, int y, SoundLayer layer) {
+		// do nothing
+		return new NoSoundHandle();
+	}
+
+	@Override
+	public SoundHandle playGlobalizedEffect(String name, SoundLayer layer, float volume, boolean loop) {
+		// do nothing
+		return new NoSoundHandle();
+	}
+
+	@Override
+	public SoundHandle playGlobalizedEffect(String name, SoundLayer layer) {
+		// do nothing
+		return new NoSoundHandle();
 	}
 
 	@Override

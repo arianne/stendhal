@@ -47,6 +47,7 @@ public class PlayerRPClass {
 		player.addRPEvent(Events.TRADE_STATE_CHANGE, Definition.PRIVATE);
 		player.addRPEvent(Events.REACHED_ACHIEVEMENT, Definition.PRIVATE);
 		player.addRPEvent(Events.BESTIARY, Definition.PRIVATE);
+		player.addRPEvent(Events.GENERIC, Definition.PRIVATE);
 
 		player.addAttribute("dead", Type.FLAG, Definition.PRIVATE);
 
