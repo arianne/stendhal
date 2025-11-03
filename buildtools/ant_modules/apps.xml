@@ -38,10 +38,6 @@
 			<arg value="x86_64-pc-windows-gnu" />
 		</exec>
 		<mkdir dir="app/neutralinojs/extensions/binary" />
-		<exec executable="cargo" failonerror="true">
-			<arg value="install" />
-			<arg value="cargo-license@0.7.0" />
-		</exec>
 		<exec executable="cargo" dir="app/nativehelper" failonerror="true" output="app/neutralinojs/extensions/binary/LICENSE.txt">
 			<arg value="license" />
 			<arg value="-ad" />
