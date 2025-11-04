@@ -1,5 +1,6 @@
 /***************************************************************************
- *                      (C) Copyright 2023 - Stendhal                      *
+ *                 Copyright © 2023-2024 - Faiumoni e. V.                  *
+ ***************************************************************************
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -43,5 +44,17 @@ public class ItemShopInventory extends ShopInventory<String, Integer> {
 			// needed for database dump
 			put(name, 0);
 		}
+	}
+
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder();
+		for (final String name: keySet()) {
+			if (sb.length() > 0) {
+				sb.append(",");
+			}
+			sb.append(name + ":" + get(name));
+		}
+		return getShopType().toString() + "(" + sb.toString() + ")";
 	}
 }
