@@ -50,3 +50,4 @@ build_server_xmlconf
 /node_modules/
 /log/
 /build-archive/
+/bin/
