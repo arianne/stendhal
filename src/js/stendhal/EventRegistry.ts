@@ -24,14 +24,11 @@ import { PlayerLoggedOnEvent } from "./event/PlayerLoggedOnEvent";
 import { PlayerLoggedOutEvent } from "./event/PlayerLoggedOutEvent";
 import { ProgressStatusEvent } from "./event/ProgressStatusEvent";
 import { RPEvent } from "./event/RPEvent";
+import { ShowItemListEvent } from "./event/ShowItemListEvent";
+import { ShowOutfitListEvent } from "./event/ShowOutfitListEvent";
 import { SoundEvent } from "./event/SoundEvent";
 import { TradeEvent } from "./event/TradeEvent";
 import { ViewChangeEvent } from "./event/ViewChangeEvent";
-
-import { ui } from "./ui/UI";
-
-import { DialogContentComponent } from "./ui/toolkit/DialogContentComponent";
-
 import { Chat } from "./util/Chat";
 
 
@@ -155,120 +152,8 @@ export class EventRegistry {
 			}
 		}); // reached_achievement
 
-		this.register("show_item_list", {
-			execute: function(rpobject: RPObject) {
-				let title = "Items";
-				let caption = "";
-				let items = [];
-
-				if (this.hasOwnProperty("title")) {
-					title = this["title"];
-				}
-				if (this.hasOwnProperty("caption")) {
-					caption = this["caption"];
-				}
-				if (this.hasOwnProperty("content")) {
-					for (var obj in this["content"]) {
-						if (this["content"].hasOwnProperty(obj)) {
-							var slotObj = this["content"][obj];
-							var data = this["content"][obj]["a"];
-							const i = {
-								clazz: data["class"],
-								subclass: data["subclass"],
-								img: data["class"] + "/" + data["subclass"] + ".png",
-								price: data["price"],
-								desc: data["description_info"]
-							}
-
-							// seller shops prefix prices with "-"
-							if (i.price.startsWith("-")) {
-								i.price = i.price.substr(1);
-							}
-							items.push(i);
-						}
-					}
-				}
-
-				const content = new class extends DialogContentComponent {} ("empty-div-template");
-				content.componentElement.classList.add("shopsign");
-				const captionElement = document.createElement("div");
-				captionElement.className = "horizontalgroup shopcaption";
-				captionElement.textContent = caption + "\nItem\t-\tPrice\t-\tDescription";
-				content.componentElement.appendChild(captionElement);
-				const itemList = document.createElement("div");
-				itemList.className = "shoplist";
-				content.componentElement.appendChild(itemList);
-
-				// TODO: organize in columns & show item sprites
-				for (const i of items) {
-					const row = document.createElement("div");
-					row.className = "horizontalgroup shoprow";
-					const img = document.createElement("div");
-					img.className = "shopcol";
-					img.appendChild(stendhal.data.sprites.get(stendhal.paths.sprites + "/items/" + i.img));
-					row.appendChild(img);
-					const price = document.createElement("div");
-					price.className = "shopcol";
-					price.textContent = i.price;
-					row.appendChild(price);
-					const desc = document.createElement("div");
-					desc.className = "shopcol shopcolr";
-					desc.textContent = i.desc;
-					row.appendChild(desc);
-					itemList.appendChild(row);
-				}
-
-				stendhal.ui.globalInternalWindow.set(
-						ui.createSingletonFloatingWindow(title, content, 20, 20));
-			}
-		}); // show_item_list
-
-		this.register("show_outfit_list", {
-			execute: function(rpobject: RPObject) {
-				let title = "Outfits";
-				let caption = "";
-				let outfits = [];
-
-				if (this.hasOwnProperty("title")) {
-					title = this["title"];
-				}
-				if (this.hasOwnProperty("caption")) {
-					caption = this["caption"];
-				}
-				if (this.hasOwnProperty("outfits")) {
-					for (let o of this["outfits"].split(":")) {
-						o = o.split(";");
-						if (o.length > 2) {
-							outfits.push([o[0], o[1], o[2]]);
-						}
-					}
-				}
-				if (this.hasOwnProperty("show_base")) {
-					//Chat.log("normal", this["show_base"]);
-				}
-
-				const content = new class extends DialogContentComponent {} ("empty-div-template");
-				content.componentElement.classList.add("shopsign");
-				const captionElement = document.createElement("div");
-				captionElement.className = "horizontalgroup shopcaption";
-				captionElement.textContent = caption;
-				content.componentElement.appendChild(captionElement);
-				const itemList = document.createElement("div");
-				itemList.className = "shoplist";
-				content.componentElement.appendChild(itemList);
-
-				// TODO: organize in columns & show outfit sprites
-				for (const o of outfits) {
-					const row = document.createElement("div");
-					row.className = "horizontalgroup shoprow";
-					row.textContent = o[0] + ": " + o[2];
-					itemList.appendChild(row);
-				}
-
-				stendhal.ui.globalInternalWindow.set(
-						ui.createSingletonFloatingWindow(title, content, 20, 20));
-			}
-		}); // show_outfit_list
+		this.register("show_item_list", new ShowItemListEvent());
+		this.register("show_outfit_list", new ShowOutfitListEvent());
 
 		this.register("sound_event", new SoundEvent());
 
