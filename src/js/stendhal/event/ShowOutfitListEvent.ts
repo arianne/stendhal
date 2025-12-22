@@ -39,7 +39,11 @@ export class ShowOutfitListEvent extends RPEvent {
 			for (let o of this["outfits"].split(":")) {
 				let parts = o.split(";");
 				if (parts.length > 2) {
-					outfits.push([parts[0], parts[1], parts[2]]);
+					outfits.push({
+						name: parts[0],
+						outfit: parts[1],
+						price: parts[2]
+					});
 				}
 			}
 		}
@@ -49,23 +53,94 @@ export class ShowOutfitListEvent extends RPEvent {
 
 		const content = new class extends DialogContentComponent { }("empty-div-template");
 		content.componentElement.classList.add("shopsign");
-		const captionElement = document.createElement("div");
-		captionElement.className = "horizontalgroup shopcaption";
-		captionElement.textContent = caption;
-		content.componentElement.appendChild(captionElement);
-		const itemList = document.createElement("div");
-		itemList.className = "shoplist";
-		content.componentElement.appendChild(itemList);
+		
+		const table = document.createElement("table");
+		table.className = "shoptable";
+		content.componentElement.appendChild(table);
 
-		// TODO: organize in columns & show outfit sprites
-		for (const o of outfits) {
-			const row = document.createElement("div");
-			row.className = "horizontalgroup shoprow";
-			row.textContent = o[0] + ": " + o[2];
-			itemList.appendChild(row);
+		// Caption
+		const tableCaption = document.createElement("caption");
+		tableCaption.className = "shopcaption";
+		tableCaption.textContent = caption;
+		table.appendChild(tableCaption);
+
+		// Header
+		const thead = document.createElement("thead");
+		const headerRow = document.createElement("tr");
+
+		const headers = ["Name", "Outfit", "Price"];
+		for (const text of headers) {
+			const th = document.createElement("th");
+			th.textContent = text;
+			headerRow.appendChild(th);
 		}
+
+		thead.appendChild(headerRow);
+		table.appendChild(thead);
+
+		// Body
+		const tbody = document.createElement("tbody");
+
+		for (const outfit of outfits) {
+			const row = document.createElement("tr");
+
+			// Name
+			const nameCell = document.createElement("td");
+			nameCell.textContent = outfit.name;
+			row.appendChild(nameCell);
+
+			// Image
+			const imageCell = document.createElement("td");
+			let url = ShowOutfitListEvent.outfitToUrl(outfit.outfit);
+			const img1 = document.createElement("img");
+			const img2 = document.createElement("img");
+			img1.src = url;
+			img2.src = url + "&offset=0";
+			imageCell.append(img1);
+			imageCell.append(img2);
+			row.appendChild(imageCell);
+
+			// Price
+			const priceCell = document.createElement("td");
+			priceCell.className = "number";
+			priceCell.textContent = outfit.price;
+			row.appendChild(priceCell);
+
+			tbody.appendChild(row);
+		}
+
+		table.appendChild(tbody);
 
 		stendhal.ui.globalInternalWindow.set(
 			ui.createSingletonFloatingWindow(title, content, 20, 20));
+	}
+
+	private static outfitToUrl(outfit?: string): string {
+		if (!outfit) {
+			return "";
+		}
+
+		// Required order
+		const order = ["body", "dress", "head", "mouth", "eyes", "mask", "hair", "hat", "detail"];
+
+		// Parse input into a map
+		let values: Record<string, number> = {};
+
+		for (let part of outfit.split(",")) {
+			let [key, value] = part.split("=");
+			values[key] = Number(value);
+		}
+
+		// Build path
+		let parts = order.map(key => {
+			let value = values[key] ?? 0;
+			return `${key}-${value}-0`;
+		});
+
+		let url =
+			"https://stendhalgame.org/createoutfit.php?rewritten=true&dialog=shop&outfit=" +
+			parts.join("_");
+
+		return url;
 	}
 }
