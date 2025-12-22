@@ -28,7 +28,6 @@ export class ShowItemListEvent extends RPEvent {
 		let title = "Items";
 		let caption = "";
 		let items = [];
-		console.log("Items", this);
 
 		if (this.hasOwnProperty("title")) {
 			title = this["title"];
@@ -37,11 +36,10 @@ export class ShowItemListEvent extends RPEvent {
 			caption = this["caption"];
 		}
 		if (this.hasOwnProperty("content")) {
-			for (var obj in this["content"]) {
+			for (let obj in this["content"]) {
 				if (this["content"].hasOwnProperty(obj)) {
-					var slotObj = this["content"][obj];
-					var data = this["content"][obj]["a"];
-					const i = {
+					let data = this["content"][obj]["a"];
+					let item = {
 						clazz: data["class"],
 						subclass: data["subclass"],
 						img: data["class"] + "/" + data["subclass"] + ".png",
@@ -50,10 +48,10 @@ export class ShowItemListEvent extends RPEvent {
 					}
 
 					// seller shops prefix prices with "-"
-					if (i.price.startsWith("-")) {
-						i.price = i.price.substr(1);
+					if (item.price.startsWith("-")) {
+						item.price = item.price.substr(1);
 					}
-					items.push(i);
+					items.push(item);
 				}
 			}
 		}
