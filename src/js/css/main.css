@@ -708,3 +708,16 @@ img#click-indicator {
 .pad-contents {
 	padding: 0.5em;
 }
+
+table.shoptable {
+	border-collapse: collapse;
+}
+
+table.shoptable th, table.shoptable td {
+	border: 1px solid var(--text-color);
+	padding: 2px;
+}
+
+td.number {
+	text-align: right;
+}

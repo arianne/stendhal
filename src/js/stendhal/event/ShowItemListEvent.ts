@@ -60,32 +60,61 @@ export class ShowItemListEvent extends RPEvent {
 
 		const content = new class extends DialogContentComponent { }("empty-div-template");
 		content.componentElement.classList.add("shopsign");
-		const captionElement = document.createElement("div");
-		captionElement.className = "horizontalgroup shopcaption";
-		captionElement.textContent = caption + "\nItem\t-\tPrice\t-\tDescription";
-		content.componentElement.appendChild(captionElement);
-		const itemList = document.createElement("div");
-		itemList.className = "shoplist";
-		content.componentElement.appendChild(itemList);
+		// Create table
+		const table = document.createElement("table");
+		table.className = "shoptable";
+		content.componentElement.appendChild(table);
 
-		// TODO: organize in columns & show item sprites
-		for (const i of items) {
-			const row = document.createElement("div");
-			row.className = "horizontalgroup shoprow";
-			const img = document.createElement("div");
-			img.className = "shopcol";
-			img.appendChild(stendhal.data.sprites.get(stendhal.paths.sprites + "/items/" + i.img));
-			row.appendChild(img);
-			const price = document.createElement("div");
-			price.className = "shopcol";
-			price.textContent = i.price;
-			row.appendChild(price);
-			const desc = document.createElement("div");
-			desc.className = "shopcol shopcolr";
-			desc.textContent = i.desc;
-			row.appendChild(desc);
-			itemList.appendChild(row);
+		// Caption
+		const tableCaption = document.createElement("caption");
+		tableCaption.className = "shopcaption";
+		tableCaption.textContent = caption;
+		table.appendChild(tableCaption);
+
+		// Header
+		const thead = document.createElement("thead");
+		const headerRow = document.createElement("tr");
+
+		const headers = ["Item", "Price", "Description"];
+		for (const text of headers) {
+			const th = document.createElement("th");
+			th.textContent = text;
+			headerRow.appendChild(th);
 		}
+
+		thead.appendChild(headerRow);
+		table.appendChild(thead);
+
+		// Body
+		const tbody = document.createElement("tbody");
+
+		for (const i of items) {
+			const row = document.createElement("tr");
+
+			// Item (image)
+			const itemCell = document.createElement("td");
+			itemCell.appendChild(
+				stendhal.data.sprites.get(
+					stendhal.paths.sprites + "/items/" + i.img
+				)
+			);
+			row.appendChild(itemCell);
+
+			// Price
+			const priceCell = document.createElement("td");
+			priceCell.className = "number";
+			priceCell.textContent = i.price;
+			row.appendChild(priceCell);
+
+			// Description
+			const descCell = document.createElement("td");
+			descCell.textContent = i.desc;
+			row.appendChild(descCell);
+
+			tbody.appendChild(row);
+		}
+
+		table.appendChild(tbody);
 
 		stendhal.ui.globalInternalWindow.set(
 			ui.createSingletonFloatingWindow(title, content, 20, 20));
