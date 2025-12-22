@@ -14,6 +14,7 @@ import { RPEvent } from "./RPEvent";
 
 import { ui } from "../ui/UI";
 import { DialogContentComponent } from "../ui/toolkit/DialogContentComponent";
+import { Chat } from "../util/Chat";
 
 declare var stendhal: any;
 
@@ -106,7 +107,7 @@ export class ShowItemListEvent extends RPEvent {
 
 			// Description
 			const descCell = document.createElement("td");
-			descCell.textContent = i.desc;
+			descCell.innerHTML = Chat.formatLogEntry(i.desc);
 			row.appendChild(descCell);
 
 			tbody.appendChild(row);
