@@ -1,3 +1,5 @@
-PUT RELEASE ANNOUNCEMENT LINES HERE
+The outfit merchants display images of their products now. In order not to fall behind, item sellers have polished their shop signs, to highlight item names.
+
+This in turn prompted Gwen at Deniarn Accessories to cut her prices in half. All in all, it is a good time for some late Christmas shopping.
 
 Please see the complete change log for further details: https://arianne-project.org/game/stendhal.html#changes
