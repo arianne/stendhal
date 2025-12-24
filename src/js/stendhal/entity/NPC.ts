@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2024 - Stendhal                    *
+ *                   (C) Copyright 2003-2025 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -40,6 +40,14 @@ export class NPC extends RPEntity {
 				this.titleDrawYOffset = -32;
 			}
 		}
+	}
+
+	override say(text: string, rangeSquared?: number) {
+		if (this["name"] == "Io Flotto" && text.startsWith("You can travel to the astral plane at any time")) {
+			// workaround for Meet Io quest dialogue
+			text = "You can travel to the astral plane at any time, thereby saving and closing your game. Just open the main menu and select the \"Select character\" button, or even simply close the window. Okay! Hmm, I think you want to learn how to float in the air like I do.";
+		}
+		super.say(text, rangeSquared);
 	}
 
 	override drawTop(ctx: CanvasRenderingContext2D) {
