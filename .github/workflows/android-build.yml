@@ -39,6 +39,14 @@ jobs:
         uses: sarisia/actions-status-discord@v1
         if: failure()
         env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_DEVELOPMENT }}
+        with:
+          title: 'Android Build Failed'
+          description: '${{ steps.job_info.outputs.html_url }}'
+          nodetail: true
+      - uses: sarisia/actions-status-discord@v1
+        if: failure()
+        env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_DEVLOG }}
         with:
           title: 'Android Build Failed'
