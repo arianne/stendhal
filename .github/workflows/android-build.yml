@@ -14,6 +14,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - id: job_info
+        uses: daleyjem/gh-job-id@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          job_name: 'build'
+
       - name: Checkout Repository
         uses: actions/checkout@v3
 
