@@ -34,3 +34,12 @@ jobs:
         with:
           version: '1.10'
         run: ant -noinput -buildfile build.xml android -Dgradle.params="assembleDebug assembleRelease"
+
+      - name: Failure Report
+        uses: sarisia/actions-status-discord@v1
+        if: failure()
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_DEVLOG }}
+        with:
+          title: 'Android Build Failed'
+          description: '${{ steps.job_info.outputs.html_url }}'
