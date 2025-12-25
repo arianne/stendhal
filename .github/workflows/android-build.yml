@@ -33,7 +33,7 @@ jobs:
         uses: cedx/setup-ant@v6
         with:
           version: '1.10'
-          run: ant -noinput -buildfile build.xml android -Dgradle.params="assembleDebug assembleRelease"
+      - run: ant -noinput -buildfile build.xml android -Dgradle.params="assembleDebug assembleRelease"
 
       - name: Failure Report
         uses: sarisia/actions-status-discord@v1
