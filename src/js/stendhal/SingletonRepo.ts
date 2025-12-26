@@ -27,7 +27,7 @@ import { CStatus } from "./data/CStatus";
 import { CacheManager } from "./data/CacheManager";
 import { EmojiStore } from "./data/EmojiStore";
 import { GroupManager } from "./data/GroupManager";
-import { Map } from "./data/Map";
+import { TileMap } from "./data/TileMap";
 import { OutfitStore } from "./data/OutfitStore";
 import { Paths } from "./data/Paths";
 import { SpriteStore, store } from "./data/SpriteStore";
@@ -119,8 +119,8 @@ export class SingletonRepo {
 		return LoopedSoundSourceManager.get();
 	}
 
-	static getMap(): Map {
-		return Map.get();
+	static getTileMap(): TileMap {
+		return TileMap.get();
 	}
 
 	static getOutfitStore(): OutfitStore {

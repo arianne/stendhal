@@ -9,12 +9,13 @@
  *                                                                         *
  ***************************************************************************/
 
+import { TileMap } from "../data/TileMap";
 import { CombinedTileset } from "./CombinedTileset";
 import { CombinedTilesetImageLoader } from "./CombinedTilesetImageLoader";
 
 export class CombinedTilesetFactory {
 
-	constructor(private map: any) {}
+	constructor(private map: TileMap) {}
 
 	combine(): CombinedTileset {
 		let combinedTilesToIndex: Map<string, number> = new Map();

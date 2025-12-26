@@ -14,6 +14,7 @@ declare var stendhal: any;
 import { LandscapeRenderingStrategy } from "./LandscapeRenderingStrategy";
 import { ImagePreloader } from "../data/ImagePreloader";
 import { Chat } from "../util/Chat";
+import { TileMap } from "../data/TileMap";
 
 
 export class IndividualTilesetRenderingStrategy extends LandscapeRenderingStrategy {
@@ -28,7 +29,7 @@ export class IndividualTilesetRenderingStrategy extends LandscapeRenderingStrate
 		}, 1000);
 	}
 
-	public onMapLoaded(_map: any): void {
+	public onMapLoaded(_map: TileMap): void {
 		// do nothing
 		console.log("Using IndividualTilesetRenderingStrategy.")
 	}

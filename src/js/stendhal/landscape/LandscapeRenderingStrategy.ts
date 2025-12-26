@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { TileMap } from "../data/TileMap";
 import { CombinedTilesetFactory } from "./CombinedTilesetFactory";
 import { LandscapeRenderer } from "./LandscapeRenderer";
 
@@ -17,7 +18,7 @@ declare var stendhal: any;
 
 export abstract class LandscapeRenderingStrategy {
 
-	public abstract onMapLoaded(map: any): void;
+	public abstract onMapLoaded(map: TileMap): void;
 
 	public abstract onTilesetLoaded(): void;
 
@@ -29,7 +30,7 @@ export abstract class LandscapeRenderingStrategy {
 
 export class CombinedTilesetRenderingStrategy extends LandscapeRenderingStrategy {
 
-	public onMapLoaded(map: any): void {
+	public onMapLoaded(map: TileMap): void {
 		let combinedTilesetFactory = new CombinedTilesetFactory(map);
 		stendhal.data.map.combinedTileset = combinedTilesetFactory.combine();
 	}

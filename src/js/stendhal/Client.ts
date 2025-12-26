@@ -119,7 +119,7 @@ export class Client {
 		stendhal.data.group = singletons.getGroupManager();
 		stendhal.data.outfit = singletons.getOutfitStore();
 		stendhal.data.sprites = singletons.getSpriteStore();
-		stendhal.data.map = singletons.getMap();
+		stendhal.data.map = singletons.getTileMap();
 		// online players
 		stendhal.players = [];
 	}
