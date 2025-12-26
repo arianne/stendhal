@@ -97,7 +97,10 @@ export class CombinedTilesetImageLoader {
 		const pixelY = y * this.map.tileHeight;
 
 		this.combinedTileset.ctx.clearRect(pixelX, pixelY, this.map.tileWidth, this.map.tileHeight);
-		for (let tile of tiles) {
+		for (let [i, tile] of tiles.entries()) {
+			if (i === 0) {
+				continue; // skip blend layer
+			}
 			let flip = tile & 0xE0000000;
 			let gid = tile & 0x1FFFFFFF;
 			let tileset = this.map.getTilesetForGid(gid);

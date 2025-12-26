@@ -33,7 +33,15 @@ export class CombinedTilesetFactory {
 				for (let group = 0; group < this.map.layerGroupIndexes.length; group++) {
 
 					let layers = this.map.layerGroupIndexes[group];
+					let blendLayer = this.map.layerNames.indexOf(this.map.blendLayers[group]);
 					let combinedTile = []
+
+					if (blendLayer && this.map.layers[blendLayer]) {
+						combinedTile.push(this.map.layers[blendLayer][y * this.map.zoneSizeX + x]);
+					} else {
+						combinedTile.push(0);
+					}
+
 					for (let layer of layers) {
 						let gid = this.map.layers[layer][y * this.map.zoneSizeX + x];
 						if (gid > 0) {
@@ -43,7 +51,8 @@ export class CombinedTilesetFactory {
 
 					// most of the tiles on the roof layer are empty, so we add a special case here
 					// to skip drawing completely transparent tiles later.
-					if (combinedTile.length === 0) {
+					// In this case, we ignore the entry on the blend layer
+					if (combinedTile.length <= 1) {
 						combinedLayers[group][y * this.map.zoneSizeX + x] = -1
 						continue;
 					}

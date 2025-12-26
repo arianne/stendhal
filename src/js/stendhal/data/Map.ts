@@ -45,11 +45,12 @@ export class Map {
 	private targetTileWidth = 0;
 	private targetTileHeight = 0;
 
-	private readonly layerGroups: any = [
+	public readonly layerGroups = [
 		["0_floor", "1_terrain", "2_object"],
 		["3_roof", "4_roof_add"]
 	];
-	private layerGroupIndexes: any;
+	public readonly blendLayers = ["blend_ground", "blend_roof"]
+	public layerGroupIndexes: any;
 
 	private strategy: LandscapeRenderingStrategy;
 	private protection: any;
@@ -124,6 +125,8 @@ export class Map {
 		this.decodeMapLayer(content, "2_object");
 		this.decodeMapLayer(content, "3_roof");
 		this.decodeMapLayer(content, "4_roof_add");
+		this.decodeMapLayer(content, "blend_ground");
+		this.decodeMapLayer(content, "blend_roof");
 		this.protection = this.decodeMapLayer(content, "protection");
 		this.collisionData = this.decodeMapLayer(content, "collision");
 		this.layerGroupIndexes = this.mapLayerGroup();
