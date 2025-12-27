@@ -60,7 +60,7 @@ export class ItemContainerImplementation {
 			});
 			e.addEventListener("touchmove", (event: TouchEvent) => {
 				this.onTouchMove(event);
-			});
+			}, {passive: true});
 			e.addEventListener("drop", (event: DragEvent) => {
 				this.onDrop(event)
 			});
@@ -72,7 +72,7 @@ export class ItemContainerImplementation {
 			});
 			e.addEventListener("touchstart", (event: TouchEvent) => {
 				this.onTouchStart(event)
-			});
+			}, {passive: true});
 			e.addEventListener("touchend", (event: TouchEvent) => {
 				this.onTouchEnd(event)
 			});

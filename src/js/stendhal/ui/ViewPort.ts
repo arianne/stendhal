@@ -516,9 +516,9 @@ export class ViewPort {
 			stendhal.ui.timestampMouseDown = +new Date();
 
 			if (e.type !== "dblclick" && e.target) {
-				e.target.addEventListener("mousemove", mHandle.onDrag);
+				e.target.addEventListener("mousemove", mHandle.onDrag, {passive: true});
 				e.target.addEventListener("mouseup", mHandle.onMouseUp);
-				e.target.addEventListener("touchmove", mHandle.onDrag);
+				e.target.addEventListener("touchmove", mHandle.onDrag, {passive: true});
 				e.target.addEventListener("touchend", mHandle.onMouseUp);
 			} else if (entity == stendhal.zone.ground) {
 				entity.onclick(pos.canvasRelativeX, pos.canvasRelativeY, true);

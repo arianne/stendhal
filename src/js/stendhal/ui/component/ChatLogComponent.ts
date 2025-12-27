@@ -41,7 +41,7 @@ export class ChatLogComponent extends Component {
 		this.componentElement.addEventListener("touchstart", (evt: TouchEvent) => {
 			const pos = stendhal.ui.html.extractPosition(evt);
 			stendhal.ui.touch.onTouchStart(pos.pageX, pos.pageY);
-		});
+		}, {passive: true});
 		this.componentElement.addEventListener("touchend", (evt: TouchEvent) => {
 			stendhal.ui.touch.onTouchEnd();
 			this.onContextMenu(evt)
