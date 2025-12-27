@@ -198,9 +198,6 @@ export class ViewPort {
 			return;
 		}
 		this.ctx.save();
-		// FIXME: is this the appropriate alpha level to use? "color_method" value from server doesn't
-		//        appear to include alpha information
-		this.ctx.globalAlpha = 0.75;
 		this.ctx.globalCompositeOperation = (this.colorMethod || this.ctx.globalCompositeOperation) as GlobalCompositeOperation;
 		this.ctx.fillStyle = this.HSLFilter;
 		this.ctx.fillRect(this.offsetX, this.offsetY, this.ctx.canvas.width, this.ctx.canvas.height);
