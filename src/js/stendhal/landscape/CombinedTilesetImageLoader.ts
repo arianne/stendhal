@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2022-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2022-2025 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -58,6 +58,9 @@ export class CombinedTilesetImageLoader {
 		}
 
 		const tsname = this.map.tilesetFilenames[tileset];
+		if (!tsname) {
+			return;
+		}
 		img.src = tsname + "?v=" + stendhal.data.build.version;
 
 		if (this.landscapeAnimationMap) {
@@ -113,8 +116,35 @@ export class CombinedTilesetImageLoader {
 			let base = this.map.firstgids[tileset];
 			let tileIndexInTileset = gid - base;
 			this.drawTile(pixelX, pixelY, image, tileIndexInTileset, flip);
-
 		}
+
+		/*
+		if (stendhal.ui.gamewindow.HSLFilter) {
+			this.combinedTileset.ctx.globalCompositeOperation = "multiply";
+			this.combinedTileset.ctx.fillStyle = stendhal.ui.gamewindow.HSLFilter;
+			this.combinedTileset.ctx.fillRect(pixelX, pixelY, this.map.tileWidth, this.map.tileHeight);
+
+			let tile = tiles[0];
+			this.combinedTileset.ctx.globalCompositeOperation = "soft-light";
+			if (tile > 0) {
+				let flip = tile & 0xE0000000;
+				let gid = tile & 0x1FFFFFFF;
+				let tileset = this.map.getTilesetForGid(gid);
+				let image = this.tilesetImages[tileset];
+				if (image && image.height) {
+					let base = this.map.firstgids[tileset];
+					let tileIndexInTileset = gid - base;
+					this.drawTile(pixelX, pixelY, image, tileIndexInTileset, flip);
+				}
+			} else {
+				this.combinedTileset.ctx.fillStyle = "black";
+				this.combinedTileset.ctx.fillRect(pixelX, pixelY, this.map.tileWidth, this.map.tileHeight);
+			}
+
+			this.combinedTileset.ctx.globalCompositeOperation = "source-over";
+			// document.getElementsByTagName("body")[0].append(this.tempCanvas);
+		}
+		*/
 	}
 
 	private drawTile(pixelX: number, pixelY: number, tilesetImage: HTMLImageElement, tileIndexInTileset: number, flip: number) {
