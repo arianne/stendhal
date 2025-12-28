@@ -29,10 +29,10 @@
   "homepage": "https://arianne-project.org",
   "private": true,
   "dependencies": {
-    "typescript": "^5.2.0"
   },
   "devDependencies": {
     "showdown": "^2.1.0",
-    "typedoc": "^0.25.12"
+    "typedoc": "^0.28.15",
+    "typescript": "^5.9.3"
   }
 }
