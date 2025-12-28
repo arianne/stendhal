@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { RenderingContext2D } from "util/Types";
 import { TileMap } from "../data/TileMap";
 import { TileStore } from "../data/TileStore";
 import { MapOfSets } from "../util/MapOfSets";
@@ -24,11 +25,11 @@ export class CombinedTilesetImageLoader {
 	private landscapeAnimationMap: any;
 
 	constructor(
-		private map: TileMap,
-		private indexToCombinedTiles: Map<number, number[]>,
-		private combinedTileset: CombinedTileset) {
-			this.landscapeAnimationMap = TileStore.get().getLandscapeMap();
-		}
+			private map: TileMap,
+			private indexToCombinedTiles: Map<number, number[]>,
+			private combinedTileset: CombinedTileset) {
+		this.landscapeAnimationMap = TileStore.get().getLandscapeMap();
+	}
 
 
 	private calculateTileUsedAtIndex(): void {
@@ -100,25 +101,26 @@ export class CombinedTilesetImageLoader {
 		const pixelX = x * this.map.tileWidth;
 		const pixelY = y * this.map.tileHeight;
 
+		// Disabled because alpha is broken
+		if (false && stendhal.ui.gamewindow.HSLFilter) {
+			this.drawCombinedTileWithBlend(tiles, pixelX, pixelY);
+		} else {
+			this.drawCombinedTileWithoutBlend(this.combinedTileset.ctx, tiles, pixelX, pixelY);
+		}
+	}
+
+	private drawCombinedTileWithoutBlend(ctx: RenderingContext2D, tiles: number[], pixelX: number, pixelY: number) {
 		this.combinedTileset.ctx.clearRect(pixelX, pixelY, this.map.tileWidth, this.map.tileHeight);
 		for (let [i, tile] of tiles.entries()) {
 			if (i === 0) {
 				continue; // skip blend layer
 			}
-			let flip = tile & 0xE0000000;
-			let gid = tile & 0x1FFFFFFF;
-			let tileset = this.map.getTilesetForGid(gid);
-			let image = this.tilesetImages[tileset];
-			if (!image || !image.height) {
-				continue;
-			}
-
-			let base = this.map.firstgids[tileset];
-			let tileIndexInTileset = gid - base;
-			this.drawTile(pixelX, pixelY, image, tileIndexInTileset, flip);
+			this.drawTile(ctx, tile, pixelX, pixelY);
 		}
+	}
 
-		/*
+	private drawCombinedTileWithBlend(tiles: number[], pixelX: number, pixelY: number) {
+		this.drawCombinedTileWithoutBlend(this.combinedTileset.ctx, tiles, pixelX, pixelY);
 		if (stendhal.ui.gamewindow.HSLFilter) {
 			this.combinedTileset.ctx.globalCompositeOperation = "multiply";
 			this.combinedTileset.ctx.fillStyle = stendhal.ui.gamewindow.HSLFilter;
@@ -127,31 +129,33 @@ export class CombinedTilesetImageLoader {
 			let tile = tiles[0];
 			this.combinedTileset.ctx.globalCompositeOperation = "soft-light";
 			if (tile > 0) {
-				let flip = tile & 0xE0000000;
-				let gid = tile & 0x1FFFFFFF;
-				let tileset = this.map.getTilesetForGid(gid);
-				let image = this.tilesetImages[tileset];
-				if (image && image.height) {
-					let base = this.map.firstgids[tileset];
-					let tileIndexInTileset = gid - base;
-					this.drawTile(pixelX, pixelY, image, tileIndexInTileset, flip);
-				}
+				this.drawTile(this.combinedTileset.ctx, tile, pixelX, pixelY);
 			} else {
 				this.combinedTileset.ctx.fillStyle = "black";
 				this.combinedTileset.ctx.fillRect(pixelX, pixelY, this.map.tileWidth, this.map.tileHeight);
 			}
 
 			this.combinedTileset.ctx.globalCompositeOperation = "source-over";
-			// document.getElementsByTagName("body")[0].append(this.tempCanvas);
 		}
-		*/
 	}
 
-	private drawTile(pixelX: number, pixelY: number, tilesetImage: HTMLImageElement, tileIndexInTileset: number, flip: number) {
+	private drawTile(ctx: RenderingContext2D, tile: number, pixelX: number, pixelY: number) {
+		let flip = tile & 0xE0000000;
+		let gid = tile & 0x1FFFFFFF;
+		let tileset = this.map.getTilesetForGid(gid);
+		let image = this.tilesetImages[tileset];
+		if (!image || !image.height) {
+			return;
+		}
+
+		let base = this.map.firstgids[tileset];
+		let tileIndexInTileset = gid - base;
+		this.drawImageTile(ctx, pixelX, pixelY, image, tileIndexInTileset, flip);
+	}
+
+	private drawImageTile(ctx: RenderingContext2D, pixelX: number, pixelY: number, tilesetImage: HTMLImageElement, tileIndexInTileset: number, flip: number) {
 		const tilesetWidth = tilesetImage.width;
 		const tilesPerRow = Math.floor(tilesetWidth / this.map.tileWidth);
-
-		const ctx = this.combinedTileset.ctx;
 
 		if (flip === 0) {
 			ctx.drawImage(tilesetImage,
@@ -188,7 +192,12 @@ export class CombinedTilesetImageLoader {
 				restore.push([0, 1, 1, 0, 0, 0]);
 			}
 
-			this.drawTile(0, 0, tilesetImage, tileIndexInTileset, 0);
+			ctx.drawImage(tilesetImage,
+				(tileIndexInTileset % tilesPerRow) * this.map.tileWidth,
+				Math.floor(tileIndexInTileset / tilesPerRow) * this.map.tileHeight,
+				this.map.tileWidth, this.map.tileHeight,
+				0, 0,
+				this.map.tileWidth, this.map.tileHeight);
 
 			restore.reverse();
 			for (const args of restore) {
