@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { RenderingContext2D } from "util/Types";
+import { Canvas, RenderingContext2D } from "util/Types";
 import { TileMap } from "../data/TileMap";
 import { TileStore } from "../data/TileStore";
 import { MapOfSets } from "../util/MapOfSets";
@@ -23,12 +23,21 @@ export class CombinedTilesetImageLoader {
 	private tilesetImages: HTMLImageElement[] = [];
 	private animations: any = {};
 	private landscapeAnimationMap: any;
+	private drawCanvas: Canvas;
+	private drawCtx: RenderingContext2D;
+	private blendCanvas: Canvas;
+	private blendCtx: RenderingContext2D;
 
 	constructor(
 			private map: TileMap,
 			private indexToCombinedTiles: Map<number, number[]>,
 			private combinedTileset: CombinedTileset) {
 		this.landscapeAnimationMap = TileStore.get().getLandscapeMap();
+
+		this.drawCanvas = new OffscreenCanvas(this.map.tileWidth, this.map.tileHeight);
+		this.blendCanvas = new OffscreenCanvas(this.map.tileWidth, this.map.tileHeight);
+		this.drawCtx = this.drawCanvas.getContext("2d")!;
+		this.blendCtx = this.blendCanvas.getContext("2d")!;
 	}
 
 
@@ -101,16 +110,16 @@ export class CombinedTilesetImageLoader {
 		const pixelX = x * this.map.tileWidth;
 		const pixelY = y * this.map.tileHeight;
 
-		// Disabled because alpha is broken
 		if (false && stendhal.ui.gamewindow.HSLFilter) {
 			this.drawCombinedTileWithBlend(tiles, pixelX, pixelY);
 		} else {
 			this.drawCombinedTileWithoutBlend(this.combinedTileset.ctx, tiles, pixelX, pixelY);
 		}
+		document.getElementsByTagName("body")[0].append(this.combinedTileset.canvas as HTMLCanvasElement);
 	}
 
 	private drawCombinedTileWithoutBlend(ctx: RenderingContext2D, tiles: number[], pixelX: number, pixelY: number) {
-		this.combinedTileset.ctx.clearRect(pixelX, pixelY, this.map.tileWidth, this.map.tileHeight);
+		ctx.clearRect(pixelX, pixelY, this.map.tileWidth, this.map.tileHeight);
 		for (let [i, tile] of tiles.entries()) {
 			if (i === 0) {
 				continue; // skip blend layer
@@ -120,23 +129,32 @@ export class CombinedTilesetImageLoader {
 	}
 
 	private drawCombinedTileWithBlend(tiles: number[], pixelX: number, pixelY: number) {
-		this.drawCombinedTileWithoutBlend(this.combinedTileset.ctx, tiles, pixelX, pixelY);
-		if (stendhal.ui.gamewindow.HSLFilter) {
-			this.combinedTileset.ctx.globalCompositeOperation = "multiply";
-			this.combinedTileset.ctx.fillStyle = stendhal.ui.gamewindow.HSLFilter;
-			this.combinedTileset.ctx.fillRect(pixelX, pixelY, this.map.tileWidth, this.map.tileHeight);
 
-			let tile = tiles[0];
-			this.combinedTileset.ctx.globalCompositeOperation = "soft-light";
-			if (tile > 0) {
-				this.drawTile(this.combinedTileset.ctx, tile, pixelX, pixelY);
-			} else {
-				this.combinedTileset.ctx.fillStyle = "black";
-				this.combinedTileset.ctx.fillRect(pixelX, pixelY, this.map.tileWidth, this.map.tileHeight);
-			}
+		this.drawCombinedTileWithoutBlend(this.drawCtx, tiles, 0, 0);
 
-			this.combinedTileset.ctx.globalCompositeOperation = "source-over";
+		this.blendCtx.globalCompositeOperation = "source-over";
+		this.blendCtx.clearRect(0, 0, this.map.tileWidth, this.map.tileHeight);
+		this.blendCtx.drawImage(this.drawCanvas, 0, 0);
+
+		this.blendCtx.globalCompositeOperation = "multiply";
+		this.blendCtx.fillStyle = stendhal.ui.gamewindow.HSLFilter;
+		this.blendCtx.fillRect(0, 0, this.map.tileWidth, this.map.tileHeight);
+
+		let tile = tiles[0];
+		this.blendCtx.globalCompositeOperation = "soft-light";
+		if (tile > 0) {
+			this.drawTile(this.blendCtx, tile, 0, 0);
+		} else {
+			this.blendCtx.fillStyle = "black";
+			this.blendCtx.fillRect(0, 0, this.map.tileWidth, this.map.tileHeight);
 		}
+
+		// restore transparency which was lost during multiply and soft-light composition
+		this.blendCtx.globalCompositeOperation = "destination-in";
+		this.blendCtx.drawImage(this.drawCanvas, 0, 0);
+
+		this.combinedTileset.ctx.clearRect(pixelX, pixelY, this.map.tileWidth, this.map.tileHeight);
+		this.combinedTileset.ctx.drawImage(this.blendCanvas, pixelX, pixelY);
 	}
 
 	private drawTile(ctx: RenderingContext2D, tile: number, pixelX: number, pixelY: number) {
