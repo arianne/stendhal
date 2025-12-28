@@ -11,6 +11,7 @@
 
 declare var stendhal: any;
 
+import { Canvas } from "util/Types";
 import { Paths } from "./Paths";
 
 
@@ -135,7 +136,7 @@ export class SpriteStore {
 	 *   Angle of rotation.
 	 */
 	private rotate(img: HTMLImageElement, angle: number) {
-		const canvas = <HTMLCanvasElement> document.getElementById("drawing-stage")!;
+		const canvas = document.getElementById("drawing-stage")! as HTMLCanvasElement;
 		const ctx = canvas.getContext("2d")!;
 		// make sure working with blank canvas
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -291,6 +292,7 @@ export class SpriteStore {
 			ctx.drawImage(image, offsetX, offsetY, width, height, 0, 0, width, height);
 			// Firefox would be able to use the canvas directly as a drag image, but
 			// Chrome does not. This should work in any standards compliant browser.
+			// TODO: Check if that is still true
 			var newImage = new Image();
 			newImage.src = canvas.toDataURL("image/png");
 			return newImage;

@@ -10,6 +10,8 @@
  *                                                                         *
  ***************************************************************************/
 
+import { RenderingContext2D } from "util/Types";
+
  /**
   * A sprite to be displayed on the screen. Note that a sprite contains no state
   * information, i.e. its just the image and not the location. This allows us to
@@ -47,7 +49,7 @@ export abstract class Sprite {
      * @param y
      *            The y location at which to draw the sprite
      */
-    abstract draw(g: CanvasRenderingContext2D, x: number, y: number): void;
+    abstract draw(g: RenderingContext2D, x: number, y: number): void;
 
     /**
      * Draws the image.
@@ -67,7 +69,7 @@ export abstract class Sprite {
      * @param h
      *            the height
      */
-    abstract draw(g: CanvasRenderingContext2D, destx: number, desty: number, x: number, y: number, w: number, h: number): void;
+    abstract draw(g: RenderingContext2D, destx: number, desty: number, x: number, y: number, w: number, h: number): void;
 
     /**
      * Get the height of the drawn sprite.

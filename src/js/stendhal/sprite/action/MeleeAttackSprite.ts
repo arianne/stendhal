@@ -15,6 +15,7 @@ declare var stendhal: any;
 import { AttackSprite } from "./AttackSprite";
 import { RPEntity } from "../../entity/RPEntity";
 import { Direction } from "../../util/Direction";
+import { RenderingContext2D } from "util/Types";
 
 
 export class MeleeAttackSprite extends AttackSprite {
@@ -108,7 +109,7 @@ export class MeleeAttackSprite extends AttackSprite {
 		}
 	}
 
-	override draw(ctx: CanvasRenderingContext2D, x: number, y: number, entityWidth: number,
+	override draw(ctx: RenderingContext2D, x: number, y: number, entityWidth: number,
 			entityHeight: number): boolean {
 		const dtime = Date.now() - this.initTime;
 		const frameIndex = Math.floor(Math.min(dtime / 60, 2));

@@ -9,12 +9,14 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Canvas, RenderingContext2D } from "util/Types";
+
 declare var stendhal: any;
 
 export class OutfitColorSelector {
-	protected ctx: CanvasRenderingContext2D;
-	private gradCtx: CanvasRenderingContext2D;
-	protected baseImage: HTMLCanvasElement;
+	protected ctx: RenderingContext2D;
+	private gradCtx: RenderingContext2D;
+	protected baseImage: Canvas;
 	private onColorChanged: Function;
 	private _enabled: boolean;
 	protected _x: number;

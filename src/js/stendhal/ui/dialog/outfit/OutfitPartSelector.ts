@@ -9,6 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
+import { RenderingContext2D } from "util/Types";
+
 declare var stendhal: any;
 
 export class OutfitPartSelector {
@@ -16,7 +18,7 @@ export class OutfitPartSelector {
 		private _onPartChanged: Function;
 		private _index: number;
 		private _maxindex: number;
-		private _ctx: CanvasRenderingContext2D;
+		private _ctx: RenderingContext2D;
 		private _width: number;
 		private _height: number;
 		private _color?: any;

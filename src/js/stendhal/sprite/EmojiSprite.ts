@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { RenderingContext2D } from "util/Types";
 import { RPEntity } from "../entity/RPEntity";
 
 
@@ -24,7 +25,7 @@ export class EmojiSprite {
 		this.sprite = sprite;
 	}
 
-	draw(ctx: CanvasRenderingContext2D): boolean {
+	draw(ctx: RenderingContext2D): boolean {
 		let x = this.owner["_x"] * 32 - 16;
 		let y = this.owner["_y"] * 32 - 32;
 		if (x < 0) {

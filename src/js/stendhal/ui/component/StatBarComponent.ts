@@ -11,6 +11,7 @@
 
 import { Component } from "../toolkit/Component";
 import { Color } from "../../data/color/Color";
+import { RenderingContext2D } from "util/Types";
 
 /**
  * TODO: move this to `ui.toolkit`.
@@ -18,7 +19,7 @@ import { Color } from "../../data/color/Color";
 export class StatBarComponent extends Component {
 
 	readonly canvas: HTMLCanvasElement;
-	protected readonly ctx: CanvasRenderingContext2D;
+	protected readonly ctx: RenderingContext2D;
 
 
 	constructor(id?: string) {
@@ -26,7 +27,7 @@ export class StatBarComponent extends Component {
 			id = "statbar-template";
 		}
 		super(id);
-		this.canvas = <HTMLCanvasElement> this.componentElement;
+		this.canvas = this.componentElement as HTMLCanvasElement;
 		this.ctx = this.canvas.getContext("2d")!;
 	}
 

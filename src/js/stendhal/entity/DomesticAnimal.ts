@@ -13,6 +13,7 @@ import { RPEntity } from "./RPEntity";
 import { MenuItem} from "../action/MenuItem";
 
 import { Color } from "../data/color/Color";
+import { RenderingContext2D } from "util/Types";
 
 declare var marauroa: any;
 declare var stendhal: any;
@@ -21,7 +22,7 @@ export class DomesticAnimal extends RPEntity {
 
 	override minimapStyle = Color.DOMESTICANIMAL;
 
-	override drawMain(ctx: CanvasRenderingContext2D) {
+	override drawMain(ctx: RenderingContext2D) {
 		if (!this.imagePath && this["_rpclass"]) {
 			this["largeWeight"] = this["largeWeight"] | 20;
 			if (this["_rpclass"] == "sheep") {

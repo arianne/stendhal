@@ -56,7 +56,7 @@ export class ScreenCapture {
 	/**
 	 * Begins recording.
 	 *
-	 * @param {HTMLCanvasElement} canvas
+	 * @param {Canvas} canvas
 	 *   Canvas element to record.
 	 * @param {AudioContext=} audio
 	 *   Sound manager from which to record audio.

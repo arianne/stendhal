@@ -64,7 +64,7 @@ export class DownloadUtil {
 	 *
 	 * @param filename {string}
 	 *   Default filename.
-	 * @param canvas {HTMLCanvasElement}
+	 * @param canvas {Canvas}
 	 *   Canvas containing data to convert to image.
 	 * @return {util.DownloadObject.DownloadObject}
 	 *   Object to be handled by browser for image download.
@@ -90,7 +90,7 @@ export class DownloadUtil {
 	/**
 	 * Creates an image download from a canvas element.
 	 *
-	 * @param canvas {HTMLCanvasElement}
+	 * @param canvas {Canvas}
 	 *   Canvas containing data to convert to image.
 	 * @return {util.DownloadObject.DownloadObject}
 	 *   Object to be handled by browser for image download.

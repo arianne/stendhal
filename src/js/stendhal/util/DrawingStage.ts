@@ -10,6 +10,8 @@
  *                                                                         *
  ***************************************************************************/
 
+import { RenderingContext2D } from "./Types";
+
 
 /**
  * Hidden canvas for manipulating images before they are displayed.
@@ -19,7 +21,7 @@ export class DrawingStage {
 	/** Hidden canvas element. */
 	private canvas: HTMLCanvasElement;
 	/** Canvas's drawing context. */
-	private ctx: CanvasRenderingContext2D;
+	private ctx: RenderingContext2D;
 
 	/** Singleton instance. */
 	private static instance: DrawingStage;
@@ -86,6 +88,7 @@ export class DrawingStage {
 	 * @returns {string}
 	 *   PNG data encoded string.
 	 */
+	// TODO: Do we really need this? We could use an offscreen canvas otherwise
 	toDataURL(): string {
 		return this.canvas.toDataURL("image/png");
 	}

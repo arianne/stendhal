@@ -22,6 +22,7 @@ import { UIComponentEnum } from "../ui/UIComponentEnum";
 import { GroupPanelComponent } from "../ui/component/GroupPanelComponent";
 
 import { Color } from "../data/color/Color";
+import { RenderingContext2D } from "util/Types";
 
 
 export class Player extends RPEntity {
@@ -169,7 +170,7 @@ export class Player extends RPEntity {
 		}
 	}
 
-	override draw(ctx: CanvasRenderingContext2D) {
+	override draw(ctx: RenderingContext2D) {
 		if (this.isIgnored()) {
 			return;
 		}

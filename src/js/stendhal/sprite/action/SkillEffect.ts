@@ -13,6 +13,7 @@
 import { OverlaySpriteImpl } from "../OverlaySpriteImpl";
 
 import { singletons } from "../../SingletonRepo";
+import { RenderingContext2D } from "util/Types";
 
 
 /**
@@ -56,7 +57,7 @@ export class SkillEffect implements OverlaySpriteImpl {
 	/**
 	 * Draws sprite to canvas.
 	 *
-	 * @param {CanvasRenderingContext2D} ctx
+	 * @param {RenderingContext2D} ctx
 	 *   Canvas drawing context.
 	 * @param {number} colIdx
 	 *   Horizontal frame index.
@@ -69,13 +70,13 @@ export class SkillEffect implements OverlaySpriteImpl {
 	 * @param {number} drawHeight
 	 *   Height of each frame to draw.
 	 */
-	protected drawInternal(ctx: CanvasRenderingContext2D, colIdx: number, x: number, y: number,
+	protected drawInternal(ctx: RenderingContext2D, colIdx: number, x: number, y: number,
 			drawWidth: number, drawHeight: number) {
 		ctx.drawImage(this.image, colIdx*drawWidth, 0, drawWidth, drawHeight, x, y, drawWidth,
 				drawHeight);
 	}
 
-	draw(ctx: CanvasRenderingContext2D, x=0, y=0, drawWidth=48, drawHeight=64): boolean {
+	draw(ctx: RenderingContext2D, x=0, y=0, drawWidth=48, drawHeight=64): boolean {
 		this.drawTime = Date.now();
 		if (!this.image.height) {
 			return this.expired();

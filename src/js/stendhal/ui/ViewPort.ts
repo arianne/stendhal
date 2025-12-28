@@ -31,6 +31,7 @@ import { SpeechBubble } from "../sprite/SpeechBubble";
 import { TextBubble } from "../sprite/TextBubble";
 
 import { Point } from "../util/Point";
+import { Canvas, RenderingContext2D } from "util/Types";
 
 
 /**
@@ -53,7 +54,7 @@ export class ViewPort {
 	private readonly height: number;
 
 	/** Drawing context. */
-	private ctx: CanvasRenderingContext2D;
+	private ctx: RenderingContext2D;
 	/** Map tile pixel width. */
 	private readonly targetTileWidth = 32;
 	/** Map tile pixel height. */
@@ -332,10 +333,10 @@ export class ViewPort {
 	/**
 	 * Updates viewport drawing position of map based on player position.
 	 *
-	 * @param canvas {HTMLCanvasElement}
+	 * @param canvas {Canvas}
 	 *   Viewport canvas element.
 	 */
-	adjustView(canvas: HTMLCanvasElement) {
+	adjustView(canvas: Canvas) {
 		// IE does not support ctx.resetTransform(), so use the following workaround:
 		this.ctx.setTransform(1, 0, 0, 1, 0, 0);
 

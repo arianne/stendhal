@@ -18,6 +18,7 @@ import { Color } from "../data/color/Color";
 
 import { NotificationType } from "../util/NotificationType";
 import { Speech } from "../util/Speech";
+import { RenderingContext2D } from "util/Types";
 
 
 export class NotificationBubble extends TextBubble {
@@ -70,7 +71,7 @@ export class NotificationBubble extends TextBubble {
 		}
 	}
 
-	override draw(ctx: CanvasRenderingContext2D): boolean {
+	override draw(ctx: RenderingContext2D): boolean {
 		const screenTop = stendhal.ui.gamewindow.offsetY;
 		const screenBottom = screenTop + ctx.canvas.height;
 		const screenLeft = stendhal.ui.gamewindow.offsetX;

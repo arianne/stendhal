@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { RenderingContext2D } from "util/Types";
 import { Entity } from "./Entity";
 
 declare var stendhal: any;
@@ -40,7 +41,7 @@ export class Blood extends Entity {
 		return "url(" + stendhal.paths.sprites + "/cursor/walk.png) 1 3, auto";
 	}
 
-	override drawSpriteAt(ctx: CanvasRenderingContext2D, x: number, y: number) {
+	override drawSpriteAt(ctx: RenderingContext2D, x: number, y: number) {
 		if (!stendhal.config.getBoolean("effect.blood")) {
 			return;
 		}

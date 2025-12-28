@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Canvas } from "util/Types";
 import { TileMap } from "../data/TileMap";
 import { CombinedTilesetFactory } from "./CombinedTilesetFactory";
 import { LandscapeRenderer } from "./LandscapeRenderer";
@@ -23,7 +24,7 @@ export abstract class LandscapeRenderingStrategy {
 	public abstract onTilesetLoaded(): void;
 
 	public abstract render(
-		canvas: HTMLCanvasElement, gamewindow: any,
+		canvas: Canvas, gamewindow: any,
 		tileOffsetX: number, tileOffsetY: number, targetTileWidth: number, targetTileHeight: number): void;
 
 }
@@ -41,7 +42,7 @@ export class CombinedTilesetRenderingStrategy extends LandscapeRenderingStrategy
 	}
 
 	public render(
-		canvas: HTMLCanvasElement, gamewindow: any,
+		canvas: Canvas, gamewindow: any,
 		tileOffsetX: number, tileOffsetY: number, targetTileWidth: number, targetTileHeight: number): void {
 
 		let landscapeRenderder = new LandscapeRenderer();

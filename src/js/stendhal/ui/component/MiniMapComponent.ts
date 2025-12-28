@@ -17,6 +17,7 @@ import { Component } from "../toolkit/Component";
 import { Player } from "../../entity/Player";
 
 import { Color } from "../../data/color/Color";
+import { Canvas, RenderingContext2D } from "util/Types";
 
 
 /**
@@ -32,7 +33,7 @@ export class MiniMapComponent extends Component {
 	private mapWidth = 1;
 	private mapHeight = 1;
 	private scale = 1;
-	private bgImage!: HTMLCanvasElement;
+	private bgImage!: Canvas;
 	private lastZone?: number[];
 
 	// ground/collision colors
@@ -119,7 +120,7 @@ export class MiniMapComponent extends Component {
 		}
 	}
 
-	drawBackground(ctx: CanvasRenderingContext2D) {
+	drawBackground(ctx: RenderingContext2D) {
 		ctx.save();
 		ctx.imageSmoothingEnabled = false;
 
@@ -168,7 +169,7 @@ export class MiniMapComponent extends Component {
 		}
 	}
 
-	drawEntities(ctx: CanvasRenderingContext2D) {
+	drawEntities(ctx: RenderingContext2D) {
 		ctx.fillStyle = Color.RED;
 		ctx.strokeStyle = Color.BLACK;
 		let isAdmin = marauroa.me["adminlevel"] && marauroa.me["adminlevel"] >= 600;

@@ -11,6 +11,7 @@
 
 import { TextBubble } from "./TextBubble";
 import { BackgroundPainter } from "../util/BackgroundPainter";
+import { RenderingContext2D } from "util/Types";
 
 declare const stendhal: any;
 
@@ -42,8 +43,7 @@ export class AchievementBanner extends TextBubble {
 		 */
 		this.duration = TextBubble.STANDARD_DUR * 4;
 
-		const gamewindow =
-				<HTMLCanvasElement> document.getElementById("viewport")!;
+		const gamewindow = document.getElementById("viewport")! as HTMLCanvasElement;
 
 		const td = this.getTextDimensions(gamewindow.getContext("2d")!);
 		this.innerWidth = td.width + this.padding; // add padding between icon & text
@@ -55,7 +55,7 @@ export class AchievementBanner extends TextBubble {
 		this.y = gamewindow.height - this.height;
 	}
 
-	override draw(ctx: CanvasRenderingContext2D): boolean {
+	override draw(ctx: RenderingContext2D): boolean {
 		const targetX = stendhal.ui.gamewindow.offsetX + this.x;
 		const targetY = stendhal.ui.gamewindow.offsetY + this.y;
 
@@ -81,7 +81,7 @@ export class AchievementBanner extends TextBubble {
 		return this.expired();
 	}
 
-	private getTextDimensions(ctx: CanvasRenderingContext2D): any {
+	private getTextDimensions(ctx: RenderingContext2D): any {
 		const ret = {} as any;
 		ctx.font = this.font;
 		let m = ctx.measureText(this.text);

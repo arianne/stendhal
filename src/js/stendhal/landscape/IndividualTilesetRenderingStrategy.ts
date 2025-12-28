@@ -15,6 +15,7 @@ import { LandscapeRenderingStrategy } from "./LandscapeRenderingStrategy";
 import { ImagePreloader } from "../data/ImagePreloader";
 import { Chat } from "../util/Chat";
 import { TileMap } from "../data/TileMap";
+import { Canvas, RenderingContext2D } from "util/Types";
 
 
 export class IndividualTilesetRenderingStrategy extends LandscapeRenderingStrategy {
@@ -42,7 +43,7 @@ export class IndividualTilesetRenderingStrategy extends LandscapeRenderingStrate
 	}
 
 	public render(
-		canvas: HTMLCanvasElement, gamewindow: any,
+		canvas: Canvas, gamewindow: any,
 		tileOffsetX: number, tileOffsetY: number, targetTileWidth: number, targetTileHeight: number): void {
 
 		this.targetTileWidth = targetTileWidth;
@@ -60,12 +61,12 @@ export class IndividualTilesetRenderingStrategy extends LandscapeRenderingStrate
 		}
 	}
 
-	private paintLayer(canvas: HTMLCanvasElement, drawingLayer: number,
+	private paintLayer(canvas: Canvas, drawingLayer: number,
 		tileOffsetX: number, tileOffsetY: number) {
 		const layer = stendhal.data.map.layers[drawingLayer];
 		const yMax = Math.min(tileOffsetY + canvas.height / this.targetTileHeight + 1, stendhal.data.map.zoneSizeY);
 		const xMax = Math.min(tileOffsetX + canvas.width / this.targetTileWidth + 1, stendhal.data.map.zoneSizeX);
-		let ctx = canvas.getContext("2d")!;
+		let ctx = canvas.getContext("2d")! as RenderingContext2D;
 
 		for (let y = tileOffsetY; y < yMax; y++) {
 			for (let x = tileOffsetX; x < xMax; x++) {
@@ -90,7 +91,7 @@ export class IndividualTilesetRenderingStrategy extends LandscapeRenderingStrate
 		}
 	}
 
-	private drawTile(ctx: CanvasRenderingContext2D, tileset: HTMLImageElement, idx: number, x: number, y: number, flip = 0) {
+	private drawTile(ctx: RenderingContext2D, tileset: HTMLImageElement, idx: number, x: number, y: number, flip = 0) {
 		const tilesetWidth = tileset.width;
 		const tilesPerRow = Math.floor(tilesetWidth / stendhal.data.map.tileWidth);
 		const pixelX = x * this.targetTileWidth;

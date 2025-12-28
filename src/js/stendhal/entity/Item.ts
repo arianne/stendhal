@@ -13,6 +13,7 @@ import { ItemMap } from "./ItemMap";
 import { MenuItem } from "../action/MenuItem";
 import { Entity } from "./Entity";
 import { TextSprite } from "../sprite/TextSprite";
+import { RenderingContext2D } from "util/Types";
 
 declare var marauroa: any;
 declare var stendhal: any;
@@ -80,17 +81,20 @@ export class Item extends Entity {
 		}
 	}
 
-	override draw(ctx: CanvasRenderingContext2D) {
+	override draw(ctx: RenderingContext2D) {
 		this.sprite.offsetY = (this["state"] || 0) * 32
 		this.stepAnimation();
 
 		this.drawAt(ctx, this["x"] * 32, this["y"] * 32);
 	}
 
-	drawAt(ctx: CanvasRenderingContext2D, x: number, y: number) {
+	drawAt(ctx: RenderingContext2D, x: number, y: number) {
 		if (this.sprite) {
 			this.drawSpriteAt(ctx, x, y);
 			let textMetrics = this.quantityTextSprite.getTextMetrics(ctx);
+			if (!textMetrics) {
+				throw new Error("textMetrics is undefined");
+			}
 			this.quantityTextSprite.draw(ctx, x + (32 - textMetrics.width), y + 6);
 		}
 	}

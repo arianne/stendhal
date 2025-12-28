@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { RenderingContext2D } from "util/Types";
 import { MenuItem } from "../action/MenuItem";
 import { Chat } from "../util/Chat";
 import { RPObject } from "./RPObject";
@@ -204,7 +205,7 @@ export class Entity extends RPObject {
 		this["_x"] = this["x"];
 	}
 
-	draw(ctx: CanvasRenderingContext2D) {
+	draw(ctx: RenderingContext2D) {
 		if (this.sprite) {
 			this.drawSprite(ctx);
 		}
@@ -213,11 +214,11 @@ export class Entity extends RPObject {
 	/**
 	 * draws a standard sprite
 	 */
-	drawSprite(ctx: CanvasRenderingContext2D) {
+	drawSprite(ctx: RenderingContext2D) {
 		this.drawSpriteAt(ctx, this["x"] * 32, this["y"] * 32);
 	}
 
-	drawSpriteAt(ctx: CanvasRenderingContext2D, x: number, y: number) {
+	drawSpriteAt(ctx: RenderingContext2D, x: number, y: number) {
 		var image = stendhal.data.sprites.get(this.sprite.filename);
 		if (image.height) {
 			var offsetX = this.sprite.offsetX || 0;

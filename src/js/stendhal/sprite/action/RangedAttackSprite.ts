@@ -12,6 +12,7 @@
 
 import { AttackSprite } from "./AttackSprite";
 import { RPEntity } from "../../entity/RPEntity";
+import { RenderingContext2D } from "util/Types";
 
 declare var stendhal: any;
 
@@ -35,7 +36,7 @@ export class RangedAttackSprite extends AttackSprite {
 		this.weapon = weapon;
 	}
 
-	override draw(ctx: CanvasRenderingContext2D, x: number, y: number, entityWidth: number,
+	override draw(ctx: RenderingContext2D, x: number, y: number, entityWidth: number,
 			entityHeight: number): boolean {
 		// FIXME: alignment with entity is not correct
 

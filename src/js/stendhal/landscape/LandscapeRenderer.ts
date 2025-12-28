@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Canvas, RenderingContext2D } from "util/Types";
 import { CombinedTileset } from "./CombinedTileset";
 
 declare var stendhal: any;
@@ -16,13 +17,13 @@ declare var stendhal: any;
 export class LandscapeRenderer {
 
 	drawLayer(
-			canvas: HTMLCanvasElement,
+			canvas: Canvas,
 			combinedTileset: CombinedTileset, layerNo: number,
 			tileOffsetX: number, tileOffsetY: number, targetTileWidth: number, targetTileHeight: number): void {
 		if (!combinedTileset) {
 			return;
 		}
-		let ctx = canvas.getContext("2d")!;
+		let ctx = canvas.getContext("2d")! as RenderingContext2D;
 
 		const layer = combinedTileset.combinedLayers[layerNo];
 		const yMax = Math.min(tileOffsetY + canvas.height / targetTileHeight + 1, stendhal.data.map.zoneSizeY);

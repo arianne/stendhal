@@ -13,6 +13,7 @@
 import { ImageWithDimensions } from "data/ImageWithDimensions";
 import { EmptySprite } from "./EmptySprite";
 import { Sprite } from "./Sprite";
+import { Canvas, RenderingContext2D } from "util/Types";
 
 /**
  * A sprite to be displayed on the screen. Note that a sprite contains no state
@@ -49,7 +50,7 @@ export class ImageSprite implements Sprite {
         this.reference = reference;
     }
 
-    private static createCompatibleImage(sprite: Sprite): HTMLCanvasElement {
+    private static createCompatibleImage(sprite: Sprite): Canvas {
         const canvas = document.createElement('canvas');
         const g = canvas.getContext('2d');
         canvas.width = sprite.getWidth();
@@ -110,7 +111,7 @@ export class ImageSprite implements Sprite {
      * @param y
      *            The y location at which to draw the sprite
      */
-    public draw(g: CanvasRenderingContext2D, destx: number, desty: number): void;
+    public draw(g: RenderingContext2D, destx: number, desty: number): void;
 
     /**
      * Draws the image.
@@ -130,8 +131,8 @@ export class ImageSprite implements Sprite {
      * @param h
      *            the height
      */
-    public draw(g: CanvasRenderingContext2D, destx: number, desty: number, x: number, y: number, w: number, h: number): void;
-    public draw(g: CanvasRenderingContext2D, destx: number, desty: number, x?: number, y?: number, w?: number, h?: number): void {
+    public draw(g: RenderingContext2D, destx: number, desty: number, x: number, y: number, w: number, h: number): void;
+    public draw(g: RenderingContext2D, destx: number, desty: number, x?: number, y?: number, w?: number, h?: number): void {
             if (arguments.length === 7) {
             g.drawImage(this.image, destx, desty, destx + w!, desty + h!, x!, y!, x! + w!, y! + h!);
         } else {

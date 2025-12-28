@@ -10,6 +10,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { RenderingContext2D } from "util/Types";
 import { OverlaySpriteImpl } from "../OverlaySpriteImpl";
 
 
@@ -25,7 +26,7 @@ export abstract class AttackSprite implements OverlaySpriteImpl {
 		this.initTime = Date.now();
 	}
 
-	abstract draw(ctx: CanvasRenderingContext2D, x: number, y: number, entityWidth: number,
+	abstract draw(ctx: RenderingContext2D, x: number, y: number, entityWidth: number,
 			entityHeight: number): boolean;
 
 	expired(): boolean {

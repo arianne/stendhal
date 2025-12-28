@@ -11,6 +11,7 @@
 
 import { Entity } from "./Entity";
 import { ActivityIndicatorSprite } from "../sprite/ActivityIndicatorSprite";
+import { RenderingContext2D } from "util/Types";
 
 declare var stendhal: any;
 
@@ -32,7 +33,7 @@ export class Sign extends Entity {
 		}
 	}
 
-	override draw(ctx: CanvasRenderingContext2D) {
+	override draw(ctx: RenderingContext2D) {
 		if (!this.imagePath) {
 			this.imagePath = stendhal.paths.sprites + "/signs/" + this["class"] + ".png";
 		}

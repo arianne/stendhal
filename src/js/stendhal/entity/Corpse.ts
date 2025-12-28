@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { RenderingContext2D } from "util/Types";
 import { ActivityIndicatorSprite } from "../sprite/ActivityIndicatorSprite";
 
 import { ItemInventoryComponent } from "../ui/component/ItemInventoryComponent";
@@ -50,7 +51,7 @@ export class Corpse extends PopupInventory {
 		}
 	}
 
-	override draw(ctx: CanvasRenderingContext2D) {
+	override draw(ctx: RenderingContext2D) {
 		if (!this.sprite) {
 			return;
 		}

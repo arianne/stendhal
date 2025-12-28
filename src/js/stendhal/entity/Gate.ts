@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { RenderingContext2D } from "util/Types";
 import { MenuItem } from "../action/MenuItem";
 import { Entity } from "./Entity";
 
@@ -44,7 +45,7 @@ export class Gate extends Entity {
 		});
 	}
 
-	override draw(ctx: CanvasRenderingContext2D) {
+	override draw(ctx: RenderingContext2D) {
 		if (this._image == undefined) {
 			var filename = stendhal.paths.sprites + "/doors/" + this["image"] + "_" + this["orientation"] + ".png";
 			this._image = stendhal.data.sprites.get(filename);

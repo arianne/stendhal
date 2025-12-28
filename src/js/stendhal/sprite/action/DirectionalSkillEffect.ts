@@ -15,6 +15,7 @@ import { SkillEffect } from "./SkillEffect";
 import { Entity } from "../../entity/Entity";
 
 import { Direction } from "../../util/Direction";
+import { RenderingContext2D } from "util/Types";
 
 
 /**
@@ -44,7 +45,7 @@ export class DirectionalSkillEffect extends SkillEffect {
 		this.entity = entity;
 	}
 
-	protected override drawInternal(ctx: CanvasRenderingContext2D, colIdx: number, x: number,
+	protected override drawInternal(ctx: RenderingContext2D, colIdx: number, x: number,
 			y: number, drawWidth: number, drawHeight: number) {
 		const dir = Direction.VALUES[parseInt(this.entity["dir"], 10)];
 		let rowIdx = dir.val - 1;

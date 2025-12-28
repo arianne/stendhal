@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { RenderingContext2D } from "util/Types";
 import { MenuItem } from "../action/MenuItem";
 import { Entity } from "./Entity";
 
@@ -51,7 +52,7 @@ export class GrowingEntitySpawner extends Entity {
 	/**
 	 * draw RPEntities
 	 */
-	override draw(ctx: CanvasRenderingContext2D) {
+	override draw(ctx: RenderingContext2D) {
 		var localX = this["x"] * 32;
 		var localY = this["y"] * 32;
 

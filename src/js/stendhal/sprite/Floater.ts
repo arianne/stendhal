@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { RenderingContext2D } from "util/Types";
 import { TextSprite } from "./TextSprite";
 
 /**
@@ -23,7 +24,7 @@ export class Floater {
 		this.textSprite = new TextSprite(this.message, this.color, "12px sans-serif")
 	}
 
-	draw(ctx: CanvasRenderingContext2D, x: number, y: number): boolean {
+	draw(ctx: RenderingContext2D, x: number, y: number): boolean {
 		let textOffset = this.textSprite.getTextMetrics(ctx).width / 2;
 		var timeDiff = Date.now() - this.initTime;
 		this.textSprite.draw(ctx, x - textOffset, y - timeDiff / 50);

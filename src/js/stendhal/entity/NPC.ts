@@ -14,6 +14,7 @@ import { RPEntity } from "./RPEntity";
 import { EntityOverlayRegistry } from "../data/EntityOverlayRegistry";
 
 import { Color } from "../data/color/Color";
+import { RenderingContext2D } from "util/Types";
 
 declare var stendhal: any;
 
@@ -42,7 +43,7 @@ export class NPC extends RPEntity {
 		}
 	}
 
-	override drawTop(ctx: CanvasRenderingContext2D) {
+	override drawTop(ctx: RenderingContext2D) {
 		var localX = this["_x"] * 32;
 		var localY = this["_y"] * 32;
 		if (typeof(this["no_hpbar"]) == "undefined") {

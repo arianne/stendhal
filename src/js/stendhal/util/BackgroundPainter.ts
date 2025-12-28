@@ -9,6 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
+import { RenderingContext2D } from "./Types";
+
 
 export class BackgroundPainter {
 
@@ -54,7 +56,7 @@ export class BackgroundPainter {
 	 * @param height
 	 *     Number of vertical tiles to draw.
 	 */
-	paint(ctx: CanvasRenderingContext2D, x: number, y: number,
+	paint(ctx: RenderingContext2D, x: number, y: number,
 			width: number, height: number) {
 		// FIXME: if image parts were not cached, tile width & height may be 0
 		if (!this.tileW || !this.tileH) {

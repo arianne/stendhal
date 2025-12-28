@@ -9,6 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Canvas, RenderingContext2D } from "util/Types";
+
 declare var stendhal: any;
 
 /**
@@ -21,8 +23,8 @@ declare var stendhal: any;
  * We use one large tileset for the combined tiles in order to be compatible with WebGL.
  */
 export class CombinedTileset {
-	public readonly canvas: HTMLCanvasElement;
-	public readonly ctx: CanvasRenderingContext2D;
+	public readonly canvas: Canvas;
+	public readonly ctx: RenderingContext2D;
 	public readonly tilesPerRow: number;
 
 	constructor(numberOfTiles: number, public readonly combinedLayers: number[][]) {

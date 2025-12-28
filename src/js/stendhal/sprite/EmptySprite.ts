@@ -10,6 +10,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { RenderingContext2D } from "util/Types";
 import { Sprite } from "./Sprite";
 
 
@@ -53,7 +54,7 @@ export class EmptySprite {
      * @param y
      *            The y location at which to draw the sprite
      */
-    draw(g: CanvasRenderingContext2D, x: number, y: number): void;
+    draw(g: RenderingContext2D, x: number, y: number): void;
 
     /**
      * Draws the image.
@@ -73,8 +74,8 @@ export class EmptySprite {
      * @param h
      *            the height
      */
-    public draw(g: CanvasRenderingContext2D, destx: number, desty: number, x: number, y: number, w: number, h: number): void;
-    public draw(g: CanvasRenderingContext2D, destx: number, desty: number, x?: number, y?: number, w?: number, h?: number): void {
+    public draw(g: RenderingContext2D, destx: number, desty: number, x: number, y: number, w: number, h: number): void;
+    public draw(g: RenderingContext2D, destx: number, desty: number, x?: number, y?: number, w?: number, h?: number): void {
     }
 
     /**

@@ -19,6 +19,7 @@ import { RPEntity } from "../entity/RPEntity";
 
 import { Pair } from "../util/Pair";
 import { Speech } from "../util/Speech";
+import { RenderingContext2D } from "util/Types";
 
 
 export class SpeechBubble extends TextBubble {
@@ -52,7 +53,7 @@ export class SpeechBubble extends TextBubble {
 				this.text.length * TextBubble.STANDARD_DUR / 50);
 	}
 
-	override draw(ctx: CanvasRenderingContext2D): boolean {
+	override draw(ctx: RenderingContext2D): boolean {
 		ctx.lineWidth = 2;
 		ctx.font = "14px Arial";
 		ctx.fillStyle = Color.WHITE;

@@ -12,6 +12,7 @@
 
 import { AttackSprite } from "./AttackSprite";
 import { RPEntity } from "../../entity/RPEntity";
+import { RenderingContext2D } from "util/Types";
 
 declare var stendhal: any;
 
@@ -28,7 +29,7 @@ export class BarehandAttackSprite extends AttackSprite {
 		this.image = image;
 	}
 
-	override draw(ctx: CanvasRenderingContext2D, x: number, y: number, entityWidth: number,
+	override draw(ctx: RenderingContext2D, x: number, y: number, entityWidth: number,
 			entityHeight: number): boolean {
 		if (!this.image || !this.image.height) {
 			return this.expired();

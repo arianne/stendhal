@@ -9,6 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
+import { RenderingContext2D } from "util/Types";
+
 export class TextSprite {
 	private textMetrics?: TextMetrics;
 
@@ -25,7 +27,7 @@ export class TextSprite {
 	 * @param x x coordinate
 	 * @param y y coordinate
 	 */
-	public draw(ctx: CanvasRenderingContext2D, x: number, y: number) {
+	public draw(ctx: RenderingContext2D, x: number, y: number) {
 		ctx.font = this.font;
 		ctx.lineWidth = 2;
 		ctx.strokeStyle = "black";
@@ -35,7 +37,7 @@ export class TextSprite {
 		ctx.fillText(this.text, x, y);
 	}
 
-	getTextMetrics(ctx: CanvasRenderingContext2D) {
+	getTextMetrics(ctx: RenderingContext2D) {
 		if (!this.textMetrics) {
 			ctx.font = this.font;
 			this.textMetrics = ctx.measureText(this.text);
