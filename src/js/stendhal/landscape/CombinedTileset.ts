@@ -32,11 +32,10 @@ export class CombinedTileset {
 		// The original approach used an a very wide image of 32 pixel height.
 		// But both Firefox and Chrome are limit the dimension of an image to 2^15 pixels.
 		this.tilesPerRow = Math.ceil(Math.sqrt(numberOfTiles));
-		this.canvas = document.createElement("canvas");
-		this.canvas.width = stendhal.data.map.tileWidth * this.tilesPerRow;
-		this.canvas.height = stendhal.data.map.tileHeight * this.tilesPerRow;
+		this.canvas = new OffscreenCanvas(
+			stendhal.data.map.tileWidth * this.tilesPerRow,
+			stendhal.data.map.tileHeight * this.tilesPerRow);
 		this.ctx = this.canvas.getContext("2d")!;
 	}
-
 
 }

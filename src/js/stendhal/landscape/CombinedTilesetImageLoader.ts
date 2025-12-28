@@ -20,13 +20,15 @@ declare var stendhal: any;
 export class CombinedTilesetImageLoader {
 
 	private tileUsedAtIndex!: MapOfSets<number, number>
-	private tilesetImages: HTMLImageElement[] = [];
+	private tilesetImages: ImageBitmap[] = [];
 	private drawCanvas: Canvas;
 	private drawCtx: RenderingContext2D;
 	private blendCanvas: Canvas;
 	private blendCtx: RenderingContext2D;
 	private blendFixCanvas: Canvas;
 	private blendFixCtx: RenderingContext2D;
+	private loadedTilesetCount = 0;
+	private usedTilesetCount = 0;
 
 	constructor(
 			private map: TileMap,
@@ -62,19 +64,30 @@ export class CombinedTilesetImageLoader {
 	}
 
 
-	private loadTileset(tileset: number) {
-		let img = document.createElement("img");
-		img.onload = () => {
-			this.drawTileset(tileset);
-		}
-
+	private async loadTileset(tileset: number) {
 		const tsname = this.map.tilesetFilenames[tileset];
 		if (!tsname) {
 			return;
 		}
-		img.src = tsname + "?v=" + stendhal.data.build.version;
+		let url = tsname + "?v=" + stendhal.data.build.version;
+		let response = await fetch(url);
+		if (!response.ok) {
+			return;
+		}
+        let blob = await response.blob();
+		let bitmap = await createImageBitmap(blob);
+		this.tilesetImages[tileset] = bitmap;
+		this.loadedTilesetCount++;
+        this.drawTileset(tileset);
+		if (this.loadedTilesetCount >= this.usedTilesetCount) {
+			this.finish();
+		}
+	}
 
-		this.tilesetImages[tileset] = img;
+	private finish() {
+		for (let bitmap of this.tilesetImages) {
+			bitmap.close();
+		}
 	}
 
 
@@ -172,7 +185,7 @@ export class CombinedTilesetImageLoader {
 		this.drawImageTile(ctx, pixelX, pixelY, image, tileIndexInTileset, flip);
 	}
 
-	private drawImageTile(ctx: RenderingContext2D, pixelX: number, pixelY: number, tilesetImage: HTMLImageElement, tileIndexInTileset: number, flip: number) {
+	private drawImageTile(ctx: RenderingContext2D, pixelX: number, pixelY: number, tilesetImage: ImageBitmap, tileIndexInTileset: number, flip: number) {
 		const tilesetWidth = tilesetImage.width;
 		const tilesPerRow = Math.floor(tilesetWidth / this.map.tileWidth);
 
@@ -230,9 +243,9 @@ export class CombinedTilesetImageLoader {
 		console.log("CombinedTilesetImageLoader.load()");
 		this.calculateTileUsedAtIndex();
 		let usedTilesets = this.calculateUsedTilesets(this.tileUsedAtIndex.keys());
+		this.usedTilesetCount = usedTilesets.size;
 		for (let tileset of usedTilesets) {
 			this.loadTileset(tileset);
 		}
-
 	}
 }
