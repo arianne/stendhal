@@ -32,6 +32,7 @@ import { TextBubble } from "../sprite/TextBubble";
 
 import { Point } from "../util/Point";
 import { Canvas, RenderingContext2D } from "util/Types";
+import { Debug } from "../util/Debug";
 
 
 /**
@@ -150,7 +151,9 @@ export class ViewPort {
 
 				this.weatherRenderer.draw(this.ctx);
 				//this.removeFilter();
-				this.applyHSLFilter();
+				if (!Debug.isActive("light")) {
+					this.applyHSLFilter();
+				}
 				this.drawEntitiesTop();
 				this.drawEmojiSprites();
 				this.drawTextSprites();

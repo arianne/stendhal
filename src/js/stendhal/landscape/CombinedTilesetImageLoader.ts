@@ -14,6 +14,7 @@ import { TileMap } from "../data/TileMap";
 import { TileStore } from "../data/TileStore";
 import { MapOfSets } from "../util/MapOfSets";
 import { CombinedTileset } from "./CombinedTileset";
+import { Debug } from "../util/Debug";
 
 declare var stendhal: any;
 
@@ -27,6 +28,8 @@ export class CombinedTilesetImageLoader {
 	private drawCtx: RenderingContext2D;
 	private blendCanvas: Canvas;
 	private blendCtx: RenderingContext2D;
+	private blendFixCanvas: Canvas;
+	private blendFixCtx: RenderingContext2D;
 
 	constructor(
 			private map: TileMap,
@@ -36,8 +39,10 @@ export class CombinedTilesetImageLoader {
 
 		this.drawCanvas = new OffscreenCanvas(this.map.tileWidth, this.map.tileHeight);
 		this.blendCanvas = new OffscreenCanvas(this.map.tileWidth, this.map.tileHeight);
+		this.blendFixCanvas = new OffscreenCanvas(this.map.tileWidth, this.map.tileHeight);
 		this.drawCtx = this.drawCanvas.getContext("2d")!;
 		this.blendCtx = this.blendCanvas.getContext("2d")!;
+		this.blendFixCtx = this.blendFixCanvas.getContext("2d")!;
 	}
 
 
@@ -110,7 +115,7 @@ export class CombinedTilesetImageLoader {
 		const pixelX = x * this.map.tileWidth;
 		const pixelY = y * this.map.tileHeight;
 
-		if (false && stendhal.ui.gamewindow.HSLFilter) {
+		if (Debug.isActive("light") && stendhal.ui.gamewindow.HSLFilter) {
 			this.drawCombinedTileWithBlend(tiles, pixelX, pixelY);
 		} else {
 			this.drawCombinedTileWithoutBlend(this.combinedTileset.ctx, tiles, pixelX, pixelY);
@@ -132,6 +137,7 @@ export class CombinedTilesetImageLoader {
 
 		this.drawCombinedTileWithoutBlend(this.drawCtx, tiles, 0, 0);
 
+		// copy the image to the blend canvas
 		this.blendCtx.globalCompositeOperation = "source-over";
 		this.blendCtx.clearRect(0, 0, this.map.tileWidth, this.map.tileHeight);
 		this.blendCtx.drawImage(this.drawCanvas, 0, 0);
@@ -143,7 +149,13 @@ export class CombinedTilesetImageLoader {
 		let tile = tiles[0];
 		this.blendCtx.globalCompositeOperation = "soft-light";
 		if (tile > 0) {
-			this.drawTile(this.blendCtx, tile, 0, 0);
+			// turn transparency into black for the blend layer
+			this.blendFixCtx.fillStyle = "black";
+			this.blendFixCtx.fillRect(0, 0, this.map.tileWidth, this.map.tileHeight);
+			this.drawTile(this.blendFixCtx, tile, 0, 0);
+
+			// draw the blend layer onto the blend canvas
+			this.blendCtx.drawImage(this.blendFixCanvas, 0, 0);
 		} else {
 			this.blendCtx.fillStyle = "black";
 			this.blendCtx.fillRect(0, 0, this.map.tileWidth, this.map.tileHeight);
@@ -153,6 +165,7 @@ export class CombinedTilesetImageLoader {
 		this.blendCtx.globalCompositeOperation = "destination-in";
 		this.blendCtx.drawImage(this.drawCanvas, 0, 0);
 
+		// draw the blend canvas at the correct position onto the combined tileset
 		this.combinedTileset.ctx.clearRect(pixelX, pixelY, this.map.tileWidth, this.map.tileHeight);
 		this.combinedTileset.ctx.drawImage(this.blendCanvas, pixelX, pixelY);
 	}
