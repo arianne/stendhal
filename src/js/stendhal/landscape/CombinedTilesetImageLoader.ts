@@ -11,7 +11,6 @@
 
 import { Canvas, RenderingContext2D } from "util/Types";
 import { TileMap } from "../data/TileMap";
-import { TileStore } from "../data/TileStore";
 import { MapOfSets } from "../util/MapOfSets";
 import { CombinedTileset } from "./CombinedTileset";
 import { Debug } from "../util/Debug";
@@ -22,8 +21,6 @@ export class CombinedTilesetImageLoader {
 
 	private tileUsedAtIndex!: MapOfSets<number, number>
 	private tilesetImages: HTMLImageElement[] = [];
-	private animations: any = {};
-	private landscapeAnimationMap: any;
 	private drawCanvas: Canvas;
 	private drawCtx: RenderingContext2D;
 	private blendCanvas: Canvas;
@@ -35,7 +32,6 @@ export class CombinedTilesetImageLoader {
 			private map: TileMap,
 			private indexToCombinedTiles: Map<number, number[]>,
 			private combinedTileset: CombinedTileset) {
-		this.landscapeAnimationMap = TileStore.get().getLandscapeMap();
 
 		this.drawCanvas = new OffscreenCanvas(this.map.tileWidth, this.map.tileHeight);
 		this.blendCanvas = new OffscreenCanvas(this.map.tileWidth, this.map.tileHeight);
@@ -78,13 +74,6 @@ export class CombinedTilesetImageLoader {
 		}
 		img.src = tsname + "?v=" + stendhal.data.build.version;
 
-		if (this.landscapeAnimationMap) {
-			const animation = this.landscapeAnimationMap[tsname];
-			if (animation) {
-				this.animations[tileset] = animation;
-			}
-		}
-
 		this.tilesetImages[tileset] = img;
 	}
 
@@ -120,7 +109,6 @@ export class CombinedTilesetImageLoader {
 		} else {
 			this.drawCombinedTileWithoutBlend(this.combinedTileset.ctx, tiles, pixelX, pixelY);
 		}
-		document.getElementsByTagName("body")[0].append(this.combinedTileset.canvas as HTMLCanvasElement);
 	}
 
 	private drawCombinedTileWithoutBlend(ctx: RenderingContext2D, tiles: number[], pixelX: number, pixelY: number) {
