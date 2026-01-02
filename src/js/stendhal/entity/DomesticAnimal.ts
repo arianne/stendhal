@@ -14,6 +14,7 @@ import { MenuItem} from "../action/MenuItem";
 
 import { Color } from "../data/color/Color";
 import { RenderingContext2D } from "util/Types";
+import { Paths } from "../data/Paths";
 
 declare var marauroa: any;
 declare var stendhal: any;
@@ -28,7 +29,7 @@ export class DomesticAnimal extends RPEntity {
 			if (this["_rpclass"] == "sheep") {
 				this["largeWeight"] = 60;
 			}
-			this.imagePath = stendhal.paths.sprites + "/" + this["_rpclass"] + ".png";
+			this.imagePath = Paths.sprites + "/" + this["_rpclass"] + ".png";
 		}
 
 		var localX = this["_x"] * 32;
@@ -56,7 +57,7 @@ export class DomesticAnimal extends RPEntity {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(" + stendhal.paths.sprites + "/cursor/look.png) 1 3, auto";
+		return "url(" + Paths.sprites + "/cursor/look.png) 1 3, auto";
 	}
 
 	override buildActions(list: MenuItem[]) {

@@ -21,6 +21,7 @@ import { Panel } from "ui/toolkit/Panel";
 
 import { Chat } from "../util/Chat";
 import { Debug } from "../util/Debug";
+import { Paths } from "../data/Paths";
 
 declare var marauroa: any;
 declare var stendhal: any;
@@ -138,7 +139,7 @@ export class DebugAction extends SlashAction {
 
 		if (weather) {
 			weather = weather.replace(/ /g, "_");
-			const wfilename = stendhal.paths.weather + "/" + weather + ".png";
+			const wfilename = Paths.weather + "/" + weather + ".png";
 			if (!stendhal.data.sprites.getCached(wfilename)) {
 				Chat.logH("error", "unknown weather: " + wfilename);
 				return;

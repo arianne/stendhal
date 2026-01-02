@@ -12,6 +12,7 @@
 import { RenderingContext2D } from "util/Types";
 import { MenuItem } from "../action/MenuItem";
 import { Entity } from "./Entity";
+import { Paths } from "../data/Paths";
 
 declare var marauroa: any;
 declare var stendhal: any;
@@ -65,7 +66,7 @@ export class GrowingEntitySpawner extends Entity {
 			class_name = class_name.replace(" ", "_");
 		}
 
-		var image = stendhal.data.sprites.get(stendhal.paths.sprites + "/" + class_name + ".png");
+		var image = stendhal.data.sprites.get(Paths.sprites + "/" + class_name + ".png");
 		if (image.height) { // image.complete is true on missing image files
 			var count = parseInt(this["max_ripeness"], 10) + 1;
 			var drawHeight = image.height / count;
@@ -76,7 +77,7 @@ export class GrowingEntitySpawner extends Entity {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(" + stendhal.paths.sprites + "/cursor/harvest.png) 1 3, auto";
+		return "url(" + Paths.sprites + "/cursor/harvest.png) 1 3, auto";
 	}
 
 }

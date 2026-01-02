@@ -13,6 +13,7 @@ declare var stendhal: any;
 
 import { Entity } from "./Entity";
 import { MenuItem } from "../action/MenuItem";
+import { Paths } from "../data/Paths";
 
 
 export class UseableEntity extends Entity {
@@ -30,7 +31,7 @@ export class UseableEntity extends Entity {
 	override set(key: string, value: any) {
 		super.set(key, value);
 		if (key === "class" || key === "name") {
-			this.sprite.filename = stendhal.paths.sprites + "/"
+			this.sprite.filename = Paths.sprites + "/"
 				+ this["class"] + "/" + this["_name"] + ".png";
 		}
 		if (key === "state") {

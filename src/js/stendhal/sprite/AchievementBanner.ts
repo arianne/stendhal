@@ -12,6 +12,7 @@
 import { TextBubble } from "./TextBubble";
 import { BackgroundPainter } from "../util/BackgroundPainter";
 import { RenderingContext2D } from "util/Types";
+import { Paths } from "../data/Paths";
 
 declare const stendhal: any;
 
@@ -33,9 +34,9 @@ export class AchievementBanner extends TextBubble {
 	constructor(cat: string, title: string, desc: string) {
 		super(desc);
 		this.title = title;
-		const bg = stendhal.data.sprites.get(stendhal.paths.gui + "/banner_background.png");
+		const bg = stendhal.data.sprites.get(Paths.gui + "/banner_background.png");
 		this.banner = new BackgroundPainter(bg);
-		this.icon = stendhal.data.sprites.get(stendhal.paths.achievements
+		this.icon = stendhal.data.sprites.get(Paths.achievements
 				+ "/" + cat.toLowerCase() + ".png");
 
 		/* keep achievements on the screen a bit longer since they

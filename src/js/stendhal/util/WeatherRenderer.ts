@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Paths } from "../data/Paths";
 import { TileStore } from "../data/TileStore";
 
 import { SoundObject } from "../data/sound/SoundFactory";
@@ -108,7 +109,7 @@ export class WeatherRenderer {
 		if (!weather) {
 			this.sprite = undefined;
 		} else {
-			const img = stendhal.paths.weather + "/" + weather + ".png";
+			const img = Paths.weather + "/" + weather + ".png";
 			this.sprite = <WeatherSprite> stendhal.data.sprites.get(img);
 			/* FIXME:
 			 *   "TypeError: $stendhal$$.data.$tileset$.$weatherAnimationMap$

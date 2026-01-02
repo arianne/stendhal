@@ -11,6 +11,7 @@
 
 import { RenderingContext2D } from "util/Types";
 import { Entity } from "./Entity";
+import { Paths } from "../data/Paths";
 
 declare var stendhal: any;
 
@@ -24,7 +25,7 @@ export class Blood extends Entity {
 		this.sprite = {
 			height: 32,
 			width: 32,
-			filename: stendhal.paths.sprites + "/combat/blood_red.png"
+			filename: Paths.sprites + "/combat/blood_red.png"
 		};
 	}
 
@@ -33,12 +34,12 @@ export class Blood extends Entity {
 		if (key === "amount") {
 			this.sprite.offsetY = parseInt(value, 10) * 32;
 		} else if (key === "class") {
-			this.sprite.filename = stendhal.paths.sprites + "/combat/blood_" + value + ".png";
+			this.sprite.filename = Paths.sprites + "/combat/blood_" + value + ".png";
 		}
 	}
 
 	override getCursor(x: number, y: number) {
-		return "url(" + stendhal.paths.sprites + "/cursor/walk.png) 1 3, auto";
+		return "url(" + Paths.sprites + "/cursor/walk.png) 1 3, auto";
 	}
 
 	override drawSpriteAt(ctx: RenderingContext2D, x: number, y: number) {

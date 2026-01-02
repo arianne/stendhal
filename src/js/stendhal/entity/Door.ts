@@ -12,6 +12,7 @@
 import { RenderingContext2D } from "util/Types";
 import { MenuItem } from "../action/MenuItem";
 import { Portal } from "./Portal";
+import { Paths } from "../data/Paths";
 
 declare var stendhal: any;
 
@@ -20,7 +21,7 @@ export class Door extends Portal {
 	override zIndex = 5000;
 
 	override draw(ctx: RenderingContext2D) {
-		let imagePath = stendhal.paths.sprites + "/doors/" + this["class"] + ".png";
+		let imagePath = Paths.sprites + "/doors/" + this["class"] + ".png";
 		let image = stendhal.data.sprites.get(imagePath);
 		if (image.height) {
 			let height = image.height / 2;
@@ -51,7 +52,7 @@ export class Door extends Portal {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(" + stendhal.paths.sprites + "/cursor/portal.png) 1 3, auto";
+		return "url(" + Paths.sprites + "/cursor/portal.png) 1 3, auto";
 	}
 
 }

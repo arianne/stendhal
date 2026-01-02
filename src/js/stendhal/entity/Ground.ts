@@ -9,6 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Paths } from "../data/Paths";
+
 declare var marauroa: any;
 declare var stendhal: any;
 
@@ -48,14 +50,14 @@ export class Ground {
 
 	getCursor(x: number, y: number): string {
 		if ((x < 15) || (y < 15) || (x > stendhal.data.map.zoneSizeX * 32 - 15) || (y > stendhal.data.map.zoneSizeY * 32 - 15)) {
-			return "url(" + stendhal.paths.sprites + "/cursor/walkborder.png) 1 3, auto"
+			return "url(" + Paths.sprites + "/cursor/walkborder.png) 1 3, auto"
 		}
 		var worldX = Math.floor(x / 32);
 		var worldY = Math.floor(y / 32);
 		if (stendhal.data.map.collision(worldX, worldY)) {
-			return "url(" + stendhal.paths.sprites + "/cursor/stop.png) 1 3, auto";
+			return "url(" + Paths.sprites + "/cursor/stop.png) 1 3, auto";
 		}
-		return "url(" + stendhal.paths.sprites + "/cursor/walk.png) 1 3, auto";
+		return "url(" + Paths.sprites + "/cursor/walk.png) 1 3, auto";
 	}
 
 	onclick(x: number, y: number, dblclick: boolean) {

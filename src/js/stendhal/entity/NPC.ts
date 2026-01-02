@@ -15,6 +15,7 @@ import { EntityOverlayRegistry } from "../data/EntityOverlayRegistry";
 
 import { Color } from "../data/color/Color";
 import { RenderingContext2D } from "util/Types";
+import { Paths } from "../data/Paths";
 
 declare var stendhal: any;
 
@@ -55,7 +56,7 @@ export class NPC extends RPEntity {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(" + stendhal.paths.sprites + "/cursor/look.png) 1 3, auto";
+		return "url(" + Paths.sprites + "/cursor/look.png) 1 3, auto";
 	}
 
 }

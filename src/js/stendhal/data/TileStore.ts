@@ -12,9 +12,6 @@
 import { Paths } from "./Paths";
 import { JSONLoader } from "../util/JSONLoader";
 
-declare var stendhal: any;
-
-
 type AnimationMap = {
 	[key: string]: any;
 }
@@ -70,7 +67,7 @@ export class TileStore {
 			this.landscapeMap = this.loadAnimations(
 					loader.data["landscape"], Paths.tileset + "/");
 			this.weatherMap = this.loadAnimations(
-					loader.data["weather"], stendhal.paths.weather + "/");
+					loader.data["weather"], Paths.weather + "/");
 		};
 		loader.load(Paths.tileset + "/animation.json");
 	}

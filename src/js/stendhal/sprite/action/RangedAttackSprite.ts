@@ -13,6 +13,7 @@
 import { AttackSprite } from "./AttackSprite";
 import { RPEntity } from "../../entity/RPEntity";
 import { RenderingContext2D } from "util/Types";
+import { Paths } from "../../data/Paths";
 
 declare var stendhal: any;
 
@@ -23,7 +24,7 @@ export class RangedAttackSprite extends AttackSprite {
 	private readonly targetX: number;
 	private readonly targetY: number;
 	private readonly color: string;
-	private readonly image = stendhal.data.sprites.get(stendhal.paths.sprites + "/combat/ranged.png");
+	private readonly image = stendhal.data.sprites.get(Paths.sprites + "/combat/ranged.png");
 	private readonly weapon?: string;
 
 

@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Paths } from "../data/Paths";
 import { NPC } from "./NPC";
 
 declare var marauroa: any;
@@ -29,6 +30,6 @@ export class TrainingDummy extends NPC {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(" + stendhal.paths.sprites + "/cursor/attack.png) 1 3, auto";
+		return "url(" + Paths.sprites + "/cursor/attack.png) 1 3, auto";
 	}
 }

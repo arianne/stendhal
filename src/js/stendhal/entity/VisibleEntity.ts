@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Paths } from "../data/Paths";
 import { Entity } from "./Entity";
 
 declare var stendhal: any;
@@ -28,7 +29,7 @@ export class VisibleEntity extends Entity {
 	override set(key: string, value: any) {
 		super.set(key, value);
 		if (key === "class" || key === "subclass" || key === "_name") {
-			this.sprite.filename = stendhal.paths.sprites + "/"
+			this.sprite.filename = Paths.sprites + "/"
 				+ (this["class"] || "") + "/"
 				+ (this["subclass"] || "") + "/"
 				+ (this["_name"] || "") + ".png";
@@ -42,7 +43,7 @@ export class VisibleEntity extends Entity {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(" + stendhal.paths.sprites + "/cursor/look.png) 1 3, auto";
+		return "url(" + Paths.sprites + "/cursor/look.png) 1 3, auto";
 	}
 
 }

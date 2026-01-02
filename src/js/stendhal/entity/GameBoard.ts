@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Paths } from "../data/Paths";
 import { Entity } from "./Entity";
 
 declare var stendhal: any;
@@ -29,7 +30,7 @@ export class GameBoard extends Entity {
 	override set(key: string, value: any) {
 		super.set(key, value);
 		if (key === "class") {
-			this.sprite.filename = stendhal.paths.sprites + "/gameboard/"
+			this.sprite.filename = Paths.sprites + "/gameboard/"
 				+ this["class"] + ".png";
 		}
 	}
@@ -39,7 +40,7 @@ export class GameBoard extends Entity {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(" + stendhal.paths.sprites + "/cursor/walk.png) 1 3, auto";
+		return "url(" + Paths.sprites + "/cursor/walk.png) 1 3, auto";
 	}
 
 }

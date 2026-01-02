@@ -19,6 +19,7 @@ import { Color } from "../data/color/Color";
 import { NotificationType } from "../util/NotificationType";
 import { Speech } from "../util/Speech";
 import { RenderingContext2D } from "util/Types";
+import { Paths } from "../data/Paths";
 
 
 export class NotificationBubble extends TextBubble {
@@ -133,7 +134,7 @@ export class NotificationBubble extends TextBubble {
 	 * Loads a profile image to be drawn with text.
 	 */
 	private loadProfileSprite() {
-		const img = stendhal.data.sprites.get(stendhal.paths.sprites
+		const img = stendhal.data.sprites.get(Paths.sprites
 				+ "/npc/" + this.profileName + ".png");
 		if (img.complete && img.height) {
 			this.profile = stendhal.data.sprites.getAreaOf(img, 48, 48, 48, 128);

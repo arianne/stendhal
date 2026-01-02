@@ -17,6 +17,7 @@ import { ui } from "../ui/UI";
 import { UIComponentEnum } from "../ui/UIComponentEnum";
 
 import { BuddyListComponent } from "../ui/component/BuddyListComponent";
+import { Paths } from "../data/Paths";
 
 
 /**
@@ -525,7 +526,7 @@ export class ConfigManager {
 	applyTheme(element: HTMLElement, children=false, recurse=false, updateBG=false) {
 		const current = this.getTheme();
 		element.style.setProperty("background",
-				"url(" + stendhal.paths.gui + "/" + this.themes.map[current] + ")");
+				"url(" + Paths.gui + "/" + this.themes.map[current] + ")");
 
 		// make texts readable with dark & light themes
 		let color = "#000000";
@@ -564,7 +565,7 @@ export class ConfigManager {
 
 		let rootStyle = document.documentElement.style;
 		rootStyle.setProperty("--background-url",
-			"url(" + stendhal.paths.gui + "/" + this.themes.map[current] + ")");
+			"url(" + Paths.gui + "/" + this.themes.map[current] + ")");
 		if (this.usingDarkTheme()) {
 			rootStyle.setProperty("--text-color", "#fff");
 			rootStyle.setProperty("--text-color-inactive", "#aaa");

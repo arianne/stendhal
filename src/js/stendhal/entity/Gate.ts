@@ -12,6 +12,7 @@
 import { RenderingContext2D } from "util/Types";
 import { MenuItem } from "../action/MenuItem";
 import { Entity } from "./Entity";
+import { Paths } from "../data/Paths";
 
 declare var marauroa: any;
 declare var stendhal: any;
@@ -47,7 +48,7 @@ export class Gate extends Entity {
 
 	override draw(ctx: RenderingContext2D) {
 		if (this._image == undefined) {
-			var filename = stendhal.paths.sprites + "/doors/" + this["image"] + "_" + this["orientation"] + ".png";
+			var filename = Paths.sprites + "/doors/" + this["image"] + "_" + this["orientation"] + ".png";
 			this._image = stendhal.data.sprites.get(filename);
 		}
 		if (this._image.height) {
@@ -75,7 +76,7 @@ export class Gate extends Entity {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(" + stendhal.paths.sprites + "/cursor/activity.png) 1 3, auto";
+		return "url(" + Paths.sprites + "/cursor/activity.png) 1 3, auto";
 	}
 
 }

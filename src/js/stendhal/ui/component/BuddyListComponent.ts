@@ -16,6 +16,7 @@ import { Component } from "../toolkit/Component";
 
 import { ActionContextMenu } from "../dialog/ActionContextMenu";
 import { ChatInputComponent } from "./ChatInputComponent";
+import { Paths } from "../../data/Paths";
 
 
 declare let marauroa: any;
@@ -66,9 +67,9 @@ export class BuddyListComponent extends Component {
 		for (let i = 0; i < buddies.length; i++) {
 			html += "<li class=" + buddies[i].status + "><img src=\"";
 			if (buddies[i].status == "online") {
-				html += stendhal.paths.gui + "/buddy_online.png";
+				html += Paths.gui + "/buddy_online.png";
 			} else {
-				html += stendhal.paths.gui + "/buddy_offline.png";
+				html += Paths.gui + "/buddy_offline.png";
 			}
 			html += "\"> " + stendhal.ui.html.esc(buddies[i].name) + "</li>";
 		}

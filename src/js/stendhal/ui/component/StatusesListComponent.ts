@@ -12,6 +12,7 @@
 import { Component } from "../toolkit/Component";
 
 import { User } from "../../entity/User";
+import { Paths } from "../../data/Paths";
 
 declare var stendhal: any;
 
@@ -65,9 +66,9 @@ export class StatusesListComponent extends Component {
 			}
 			let iconPath: string;
 			if (Object.keys(StatusesListComponent.iconPaths).indexOf(id) !== -1) {
-				iconPath = stendhal.paths.sprites + StatusesListComponent.iconPaths[id];
+				iconPath = Paths.sprites + StatusesListComponent.iconPaths[id];
 			} else {
-				iconPath = stendhal.paths.sprites + "/status/panel/" + id + ".png";
+				iconPath = Paths.sprites + "/status/panel/" + id + ".png";
 			}
 			const icon = stendhal.data.sprites.get(iconPath);
 			icon.className = "status-icon";

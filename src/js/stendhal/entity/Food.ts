@@ -11,6 +11,7 @@
 
 import { RenderingContext2D } from "util/Types";
 import { Entity } from "./Entity";
+import { Paths } from "../data/Paths";
 
 declare var marauroa: any;
 declare var stendhal: any;
@@ -29,7 +30,7 @@ export class Food extends Entity {
 	}
 
 	override draw(ctx: RenderingContext2D) {
-		var image = stendhal.data.sprites.get(stendhal.paths.sprites + "/food.png");
+		var image = stendhal.data.sprites.get(Paths.sprites + "/food.png");
 		if (image.height) {
 			var localX = this["x"] * 32;
 			var localY = this["y"] * 32;
@@ -51,7 +52,7 @@ export class Food extends Entity {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(" + stendhal.paths.sprites + "/cursor/look.png) 1 3, auto";
+		return "url(" + Paths.sprites + "/cursor/look.png) 1 3, auto";
 	}
 
 }

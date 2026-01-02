@@ -15,6 +15,7 @@ import { RPEvent } from "./RPEvent";
 import { ui } from "../ui/UI";
 import { DialogContentComponent } from "../ui/toolkit/DialogContentComponent";
 import { Chat } from "../util/Chat";
+import { Paths } from "../data/Paths";
 
 declare var stendhal: any;
 
@@ -94,7 +95,7 @@ export class ShowItemListEvent extends RPEvent {
 			const itemCell = document.createElement("td");
 			itemCell.appendChild(
 				stendhal.data.sprites.get(
-					stendhal.paths.sprites + "/items/" + i.img
+					Paths.sprites + "/items/" + i.img
 				)
 			);
 			row.appendChild(itemCell);

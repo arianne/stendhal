@@ -12,6 +12,7 @@
 import { Entity } from "./Entity";
 import { ActivityIndicatorSprite } from "../sprite/ActivityIndicatorSprite";
 import { RenderingContext2D } from "util/Types";
+import { Paths } from "../data/Paths";
 
 declare var stendhal: any;
 
@@ -35,7 +36,7 @@ export class Sign extends Entity {
 
 	override draw(ctx: RenderingContext2D) {
 		if (!this.imagePath) {
-			this.imagePath = stendhal.paths.sprites + "/signs/" + this["class"] + ".png";
+			this.imagePath = Paths.sprites + "/signs/" + this["class"] + ".png";
 		}
 		var image = stendhal.data.sprites.get(this.imagePath);
 		if (image.height) {
@@ -53,7 +54,7 @@ export class Sign extends Entity {
 	}
 
 	override getCursor(_x: number, _y: number) {
-		return "url(" + stendhal.paths.sprites + "/cursor/look.png) 1 3, auto";
+		return "url(" + Paths.sprites + "/cursor/look.png) 1 3, auto";
 	}
 
 }
