@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2024 - Stendhal                    *
+ *                   (C) Copyright 2003-2026 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,7 +9,21 @@
  *                                                                         *
  ***************************************************************************/
 
+
 import { Client } from "./Client";
+
+/*
+declare var require: any;
+require("marauroa/marauroa");
+require("marauroa/client-framework");
+require("marauroa/message-factory");
+require("marauroa/perception");
+require("marauroa/rpfactory");
+require("marauroa/inflate");
+require("marauroa/deserializer");
+require("marauroa/build"); // TODO
+require("./data/sha3");
+*/
 
 declare var stendhal: any;
 
@@ -30,6 +44,6 @@ function initGlobals() {
 
 	stendhal.main.init();
 
-	document.addEventListener('DOMContentLoaded', stendhal.main.startup);
-	window.addEventListener('error', stendhal.main.onerror);
+	document.addEventListener('DOMContentLoaded', () => stendhal.main.startup());
+	window.addEventListener('error', (error: ErrorEvent) => stendhal.main.onError(error));
 })();

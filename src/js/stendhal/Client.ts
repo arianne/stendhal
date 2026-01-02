@@ -19,6 +19,7 @@ import { Paths } from "./data/Paths";
 
 import { Color } from "./data/color/Color";
 
+import { EntityRegistry } from "./entity/EntityRegistry";
 import { Ground } from "./entity/Ground";
 import { RPObject } from "./entity/RPObject";
 
@@ -95,10 +96,10 @@ export class Client {
 		document.documentElement.setAttribute("data-build-version", stendhal.data.build.version);
 		document.documentElement.setAttribute("data-build-build", stendhal.data.build.build);
 
-		stendhal.paths = singletons.getPaths();
 		stendhal.config = singletons.getConfigManager();
 		stendhal.session = singletons.getSessionManager();
 		stendhal.actions = singletons.getSlashActionRepo();
+		new EntityRegistry().init();
 
 		this.initData();
 		this.initSound();
@@ -263,7 +264,7 @@ export class Client {
 			if (!Client.instance.unloading) {
 				Chat.logH("error", "Disconnected from server.");
 			}
-		};
+		}.bind(this);
 
 		marauroa.clientFramework.onLoginRequired = function(config: Record<string, string>) {
 			if (config["client_login_url"]) {
@@ -281,25 +282,25 @@ export class Client {
 				"Login",
 				new LoginDialog(),
 				100, 50).enableCloseButton(false);
-		};
+		}.bind(this);
 
 		marauroa.clientFramework.onCreateAccountAck = function(username: string) {
 			// TODO: We should login automatically
 			alert("Account succesfully created, please login.");
 			window.location.reload();
-		};
+		}.bind(this);
 
 		marauroa.clientFramework.onCreateCharacterAck = function(charname: string, _template: any) {
 			// Client.get().chooseCharacter(charname);
-		};
+		}.bind(this);
 
 		marauroa.clientFramework.onLoginFailed = function(_reason: string, _text: string) {
 			alert("Login failed. " + _text);
 			// TODO: Server closes the connection, so we need to open a new one
 			window.location.reload();
-		};
+		}.bind(this);
 
-		marauroa.clientFramework.onAvailableCharacterDetails = function(characters: {[key: string]: RPObject}) {
+		marauroa.clientFramework.onAvailableCharacterDetails = (characters: {[key: string]: RPObject}) => {
 			SingletonFloatingWindow.closeAll();
 			if (!Object.keys(characters).length && this.username) {
 				marauroa.clientFramework.createCharacter(this.username, {});
@@ -331,7 +332,7 @@ export class Client {
 				}
 				items[i]["ack"] = true;
 			}
-		};
+		}.bind(this);
 
 		marauroa.clientFramework.onTransfer = function(items: any) {
 			var data = {} as any;
@@ -459,7 +460,7 @@ export class Client {
 			document.addEventListener("click", Client.handleClickIndicator);
 			document.addEventListener("touchend", Client.handleClickIndicator);
 		};
-		click_indicator.src = stendhal.paths.gui + "/click_indicator.png";
+		click_indicator.src = Paths.gui + "/click_indicator.png";
 	}
 
 	/**
@@ -518,7 +519,7 @@ export class Client {
 	 */
 	onMouseEnter(e: MouseEvent) {
 		// use Stendhal's built-in cursor for entire page
-		(e.target as HTMLElement).style.cursor = "url(" + stendhal.paths.sprites + "/cursor/normal.png) 1 3, auto";
+		(e.target as HTMLElement).style.cursor = "url(" + Paths.sprites + "/cursor/normal.png) 1 3, auto";
 	}
 
 	/**
