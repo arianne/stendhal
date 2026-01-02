@@ -26,7 +26,7 @@ android {
 	}
 
 	// build output
-	project.setProperty("archivesBaseName", "${namespace}-${defaultConfig.versionCode}")
+	project.setProperty("archivesBaseName", "${namespace}-${defaultConfig.versionName}")
 	project.setProperty("buildDir", "${projectDir}/../../../build/build_android_client")
 
 	/* A keystore.properties file can be placed in the root Android project directory and must
