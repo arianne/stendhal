@@ -84,7 +84,7 @@ export class EmojiMapDialog extends DialogContentComponent {
 			const button = document.createElement("button");
 			button.classList.add("shortcut-button", "emoji-text");
 			if (!this.sysEmojis) {
-				button.appendChild(stendhal.data.sprites.get(Paths.sprites + "/emoji/" + emoji + ".png").cloneNode());
+				button.appendChild(singletons.getSpriteStore().get(Paths.sprites + "/emoji/" + emoji + ".png").cloneNode());
 			} else {
 				button.innerText = emoji;
 			}

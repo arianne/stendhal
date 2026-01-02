@@ -13,8 +13,7 @@ import { RenderingContext2D } from "util/Types";
 import { MenuItem } from "../action/MenuItem";
 import { Portal } from "./Portal";
 import { Paths } from "../data/Paths";
-
-declare var stendhal: any;
+import { singletons } from "../SingletonRepo";
 
 export class Door extends Portal {
 
@@ -22,7 +21,7 @@ export class Door extends Portal {
 
 	override draw(ctx: RenderingContext2D) {
 		let imagePath = Paths.sprites + "/doors/" + this["class"] + ".png";
-		let image = stendhal.data.sprites.get(imagePath);
+		let image = singletons.getSpriteStore().get(imagePath);
 		if (image.height) {
 			let height = image.height / 2;
 			let x = (this["x"] * 32) - ((image.width - 32) / 2);

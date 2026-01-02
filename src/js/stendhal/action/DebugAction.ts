@@ -140,7 +140,7 @@ export class DebugAction extends SlashAction {
 		if (weather) {
 			weather = weather.replace(/ /g, "_");
 			const wfilename = Paths.weather + "/" + weather + ".png";
-			if (!stendhal.data.sprites.getCached(wfilename)) {
+			if (!singletons.getSpriteStore().getCached(wfilename)) {
 				Chat.logH("error", "unknown weather: " + wfilename);
 				return;
 			}

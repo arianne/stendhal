@@ -13,9 +13,9 @@ import { RenderingContext2D } from "util/Types";
 import { MenuItem } from "../action/MenuItem";
 import { Entity } from "./Entity";
 import { Paths } from "../data/Paths";
+import { singletons } from "../SingletonRepo";
 
 declare var marauroa: any;
-declare var stendhal: any;
 
 
 export class GrowingEntitySpawner extends Entity {
@@ -66,7 +66,7 @@ export class GrowingEntitySpawner extends Entity {
 			class_name = class_name.replace(" ", "_");
 		}
 
-		var image = stendhal.data.sprites.get(Paths.sprites + "/" + class_name + ".png");
+		var image = singletons.getSpriteStore().get(Paths.sprites + "/" + class_name + ".png");
 		if (image.height) { // image.complete is true on missing image files
 			var count = parseInt(this["max_ripeness"], 10) + 1;
 			var drawHeight = image.height / count;

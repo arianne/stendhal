@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { singletons } from "../SingletonRepo";
 import { Paths } from "../data/Paths";
 import { TileStore } from "../data/TileStore";
 
@@ -110,7 +111,7 @@ export class WeatherRenderer {
 			this.sprite = undefined;
 		} else {
 			const img = Paths.weather + "/" + weather + ".png";
-			this.sprite = <WeatherSprite> stendhal.data.sprites.get(img);
+			this.sprite = <WeatherSprite> singletons.getSpriteStore().get(img);
 			/* FIXME:
 			 *   "TypeError: $stendhal$$.data.$tileset$.$weatherAnimationMap$
 			 *   is undefined". TileStore.weatherMap is not always loaded

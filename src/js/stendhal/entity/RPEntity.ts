@@ -246,7 +246,7 @@ export class RPEntity extends ActiveEntity {
 		if (stendhal.config.getBoolean("effect.shadows") && this.castsShadow()) {
 			// dressed entities should use 48x64 sprites
 			// FIXME: this will not display correctly for horse outfit
-			const shadow = stendhal.data.sprites.getShadow("48x64");
+			const shadow = singletons.getSpriteStore().getShadow("48x64");
 
 			if (shadow && shadow.complete && shadow.height) {
 				// draw shadow below other layers
@@ -322,9 +322,9 @@ export class RPEntity extends ActiveEntity {
 			colorname = part;
 		}
 		if (typeof(colors) !== "undefined" && (typeof(colors[colorname]) !== "undefined")) {
-			return stendhal.data.sprites.getFiltered(filename, "trueColor", colors[colorname]);
+			return singletons.getSpriteStore().getFiltered(filename, "trueColor", colors[colorname]);
 		} else {
-			return stendhal.data.sprites.get(filename);
+			return singletons.getSpriteStore().get(filename);
 		}
 	}
 
@@ -369,13 +369,13 @@ export class RPEntity extends ActiveEntity {
 			}
 
 			// check for safe image
-			if (!stendhal.config.getBoolean("effect.blood") && stendhal.data.sprites.hasSafeImage(filename)) {
+			if (!stendhal.config.getBoolean("effect.blood") && singletons.getSpriteStore().hasSafeImage(filename)) {
 				filename = filename + "-safe.png";
 			} else {
 				filename = filename + ".png";
 			}
 
-			let image = stendhal.data.sprites.get(filename);
+			let image = singletons.getSpriteStore().get(filename);
 
 			if (stendhal.config.getBoolean("effect.shadows") && this.castsShadow()) {
 				// check for configured shadow style
@@ -385,7 +385,7 @@ export class RPEntity extends ActiveEntity {
 					shadow_style = (image.width / 3) + "x" + (image.height / 4);
 				}
 
-				const shadow = stendhal.data.sprites.getShadow(shadow_style);
+				const shadow = singletons.getSpriteStore().getShadow(shadow_style);
 
 				// draw shadow first
 				if (typeof(shadow) !== "undefined") {
@@ -405,14 +405,14 @@ export class RPEntity extends ActiveEntity {
 			ctx.drawImage(icon, frame * xdim, 0, xdim, ydim, x, y, xdim, ydim);
 		}
 		function drawAnimatedIcon(iconPath: string, delay: number, x: number, y: number, fWidth?: number) {
-			var icon = stendhal.data.sprites.get(iconPath);
+			var icon = singletons.getSpriteStore().get(iconPath);
 			var dimH = icon.height;
 			var dimW = typeof(fWidth) !== "undefined" ? fWidth : dimH;
 			var nFrames = icon.width / dimW;
 			_drawAnimatedIcon(icon, delay, nFrames, dimW, dimH, x, y);
 		}
 		function drawAnimatedIconWithFrames(iconPath: string, nFrames: number, delay: number, x: number, y: number) {
-			var icon = stendhal.data.sprites.get(iconPath);
+			var icon = singletons.getSpriteStore().get(iconPath);
 			var ydim = icon.height;
 			var xdim = icon.width / nFrames;
 			_drawAnimatedIcon(icon, delay, nFrames, xdim, ydim, x, y);
@@ -421,19 +421,19 @@ export class RPEntity extends ActiveEntity {
 		var x = this["_x"] * 32 - 10;
 		var y = (this["_y"] + 1) * 32;
 		if (this.hasOwnProperty("choking")) {
-			ctx.drawImage(stendhal.data.sprites.get(Paths.sprites + "/ideas/choking.png"), x, y - 10);
+			ctx.drawImage(singletons.getSpriteStore().get(Paths.sprites + "/ideas/choking.png"), x, y - 10);
 		} else if (this.hasOwnProperty("eating")) {
-			ctx.drawImage(stendhal.data.sprites.get(Paths.sprites + "/ideas/eat.png"), x, y - 10);
+			ctx.drawImage(singletons.getSpriteStore().get(Paths.sprites + "/ideas/eat.png"), x, y - 10);
 		}
 		// NPC and pet idea icons
 		if (this.hasOwnProperty("idea")) {
 			const idea = Paths.sprites + "/ideas/" + this["idea"] + ".png";
-			const ani = stendhal.data.sprites.animations.idea[this["idea"]];
+			const ani = singletons.getSpriteStore().animations.idea[this["idea"]];
 			if (ani) {
 				drawAnimatedIcon(idea, ani.delay, x + ani.offsetX * this["width"],
 						y - this["drawHeight"] + ani.offsetY);
 			} else {
-				ctx.drawImage(stendhal.data.sprites.get(idea), x + 32 * this["width"],
+				ctx.drawImage(singletons.getSpriteStore().get(idea), x + 32 * this["width"],
 						y - this["drawHeight"]);
 			}
 		}
@@ -459,15 +459,15 @@ export class RPEntity extends ActiveEntity {
 		// NPC job icons
 		let nextX = x;
 		if (this.hasOwnProperty("job_healer")) {
-			ctx.drawImage(stendhal.data.sprites.get(Paths.sprites + "/status/healer.png"), nextX, y - 10);
+			ctx.drawImage(singletons.getSpriteStore().get(Paths.sprites + "/status/healer.png"), nextX, y - 10);
 			nextX += 12;
 		}
 		if (this.hasOwnProperty("job_merchant")) {
-			ctx.drawImage(stendhal.data.sprites.get(Paths.sprites + "/status/merchant.png"), nextX, y - 10);
+			ctx.drawImage(singletons.getSpriteStore().get(Paths.sprites + "/status/merchant.png"), nextX, y - 10);
 			nextX += 12;
 		}
 		if (this.hasOwnProperty("job_producer")) {
-			ctx.drawImage(stendhal.data.sprites.get(Paths.sprites + "/status/producer.png"), nextX, y - 16);
+			ctx.drawImage(singletons.getSpriteStore().get(Paths.sprites + "/status/producer.png"), nextX, y - 16);
 			nextX += 16;
 		}
 	}
@@ -784,7 +784,7 @@ export class RPEntity extends ActiveEntity {
 	createResultIcon(imagePath: string) {
 		return {
 			initTime: Date.now(),
-			image: stendhal.data.sprites.get(imagePath),
+			image: singletons.getSpriteStore().get(imagePath),
 			draw: function(ctx: RenderingContext2D, x: number, y: number) {
 				ctx.drawImage(this.image, x, y);
 				return (Date.now() - this.initTime > 1200);
@@ -815,12 +815,12 @@ export class RPEntity extends ActiveEntity {
 			const imagePath = Nature.VALUES[nature].getWeaponPath(weapon);
 			/*
 			if (weapon.startsWith("blade_strike")) {
-				this.attackSprite = new BarehandAttackSprite(this, stendhal.data.sprites.get(imagePath));
+				this.attackSprite = new BarehandAttackSprite(this, singletons.getSpriteStore().get(imagePath));
 			} else {
 				this.attackSprite = new MeleeAttackSprite(this, imagePath);
 			}
 			*/
-			this.attackSprite = new BarehandAttackSprite(this, stendhal.data.sprites.get(imagePath));
+			this.attackSprite = new BarehandAttackSprite(this, singletons.getSpriteStore().get(imagePath));
 		}
 	}
 

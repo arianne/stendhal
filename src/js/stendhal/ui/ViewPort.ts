@@ -654,14 +654,14 @@ export class ViewPort {
 		var img = undefined;
 		let heldObject: HeldObject;
 		if (draggedEntity && draggedEntity.type === "item") {
-			img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(draggedEntity.sprite.filename), 32, 32);
+			img = singletons.getSpriteStore().getAreaOf(singletons.getSpriteStore().get(draggedEntity.sprite.filename), 32, 32);
 			heldObject = {
 				path: draggedEntity.getIdPath(),
 				zone: marauroa.currentZoneName,
 				quantity: draggedEntity.hasOwnProperty("quantity") ? draggedEntity["quantity"] : 1
 			}
 		} else if (draggedEntity && draggedEntity.type === "corpse") {
-			img = stendhal.data.sprites.get(draggedEntity.sprite.filename);
+			img = singletons.getSpriteStore().get(draggedEntity.sprite.filename);
 			heldObject = {
 				path: draggedEntity.getIdPath(),
 				zone: marauroa.currentZoneName,

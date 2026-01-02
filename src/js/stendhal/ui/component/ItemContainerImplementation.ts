@@ -132,7 +132,7 @@ export class ItemContainerImplementation {
 				}
 
 				e.style.backgroundImage = "url("
-						+ stendhal.data.sprites.checkPath(Paths.sprites
+						+ singletons.getSpriteStore().checkPath(Paths.sprites
 								+ "/items/" + o["class"] + "/" + o["subclass"] + ".png")
 						+ ")";
 				e.style.backgroundPosition = (xOffset+1) + "px " + (yOffset+1) + "px";
@@ -191,7 +191,7 @@ export class ItemContainerImplementation {
 				quantity: item.hasOwnProperty("quantity") ? item["quantity"] : 1
 			};
 
-			const img = stendhal.data.sprites.getAreaOf(stendhal.data.sprites.get(item.sprite.filename), 32, 32);
+			const img = singletons.getSpriteStore().getAreaOf(singletons.getSpriteStore().get(item.sprite.filename), 32, 32);
 			if (event instanceof DragEvent && event.dataTransfer) {
 				stendhal.ui.heldObject = heldObject;
 				event.dataTransfer.setDragImage(img, 0, 0);

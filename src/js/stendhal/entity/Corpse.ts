@@ -19,6 +19,7 @@ import { Chat } from "../util/Chat";
 
 import { PopupInventory } from "./PopupInventory";
 import { Paths } from "../data/Paths";
+import { singletons } from "../SingletonRepo";
 
 declare var marauroa: any;
 declare var stendhal: any;
@@ -62,7 +63,7 @@ export class Corpse extends PopupInventory {
 			const tileW = stendhal.ui.gamewindow.targetTileWidth;
 			const tileH = stendhal.ui.gamewindow.targetTileHeight;
 			if (this.sprite.width == undefined || this.sprite.height == undefined) {
-				const image = stendhal.data.sprites.get(this.sprite.filename);
+				const image = singletons.getSpriteStore().get(this.sprite.filename);
 				if (image.complete) {
 					this.sprite.width = image.width < tileW ? tileW : image.width;
 					this.sprite.height = image.height < tileH ? tileH : image.height;

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2026 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -35,41 +35,47 @@ import { User } from "./User";
 import { VisibleEntity } from "./VisibleEntity";
 import { WalkBlocker } from "./WalkBlocker";
 
-marauroa.rpobjectFactory["area"] = InvisibleEntity;
-marauroa.rpobjectFactory["baby_dragon"] = DomesticAnimal;
-marauroa.rpobjectFactory["blackboard"] = Sign;
-marauroa.rpobjectFactory["blocktarget"] = InvisibleEntity;
-marauroa.rpobjectFactory["block"] = VisibleEntity;
-marauroa.rpobjectFactory["blood"] = Blood;
-marauroa.rpobjectFactory["cat"] = DomesticAnimal;
-marauroa.rpobjectFactory["chest"] = Chest;
-marauroa.rpobjectFactory["corpse"] = Corpse;
-marauroa.rpobjectFactory["creature"] = Creature;
-marauroa.rpobjectFactory["_default"] = UnknownEntity;
-marauroa.rpobjectFactory["domesticanimal"] = DomesticAnimal;
-marauroa.rpobjectFactory["door"] = Door;
-marauroa.rpobjectFactory["flyover"] = InvisibleEntity;
-marauroa.rpobjectFactory["food"] = Food;
-marauroa.rpobjectFactory["game_board"] = GameBoard;
-marauroa.rpobjectFactory["gate"] = Gate
-marauroa.rpobjectFactory["growing_entity_spawner"] = GrowingEntitySpawner;
-marauroa.rpobjectFactory["house_portal"] = Portal;
-marauroa.rpobjectFactory["invisible_entity"] = InvisibleEntity;
-marauroa.rpobjectFactory["item"] = Item;
-marauroa.rpobjectFactory["looped_sound_source"] = LoopedSoundSource;
-marauroa.rpobjectFactory["npc"] = NPC;
-marauroa.rpobjectFactory["plant_grower"] = VisibleEntity;
-marauroa.rpobjectFactory["player"] = Player;
-marauroa.rpobjectFactory["portal"] = Portal;
-marauroa.rpobjectFactory["rented_sign"] = Sign;
-marauroa.rpobjectFactory["sheep"] = DomesticAnimal;
-marauroa.rpobjectFactory["sign"] = Sign;
-marauroa.rpobjectFactory["tiled_entity"] = InvisibleEntity;
-marauroa.rpobjectFactory["training_dummy"] = TrainingDummy;
-marauroa.rpobjectFactory["unknown"] = UnknownEntity;
-marauroa.rpobjectFactory["useable_entity"] = UseableEntity;
-marauroa.rpobjectFactory["user"] = User;
-marauroa.rpobjectFactory["visible_entity"] = VisibleEntity;
-marauroa.rpobjectFactory["walkblocker"] = WalkBlocker;
-marauroa.rpobjectFactory["wall"] = InvisibleEntity;
-marauroa.rpobjectFactory["weather_entity"] = InvisibleEntity;
+export class EntityRegistry {
+
+	public init() {
+		marauroa.rpobjectFactory["area"] = InvisibleEntity;
+		marauroa.rpobjectFactory["baby_dragon"] = DomesticAnimal;
+		marauroa.rpobjectFactory["blackboard"] = Sign;
+		marauroa.rpobjectFactory["blocktarget"] = InvisibleEntity;
+		marauroa.rpobjectFactory["block"] = VisibleEntity;
+		marauroa.rpobjectFactory["blood"] = Blood;
+		marauroa.rpobjectFactory["cat"] = DomesticAnimal;
+		marauroa.rpobjectFactory["chest"] = Chest;
+		marauroa.rpobjectFactory["corpse"] = Corpse;
+		marauroa.rpobjectFactory["creature"] = Creature;
+		marauroa.rpobjectFactory["_default"] = UnknownEntity;
+		marauroa.rpobjectFactory["domesticanimal"] = DomesticAnimal;
+		marauroa.rpobjectFactory["door"] = Door;
+		marauroa.rpobjectFactory["flyover"] = InvisibleEntity;
+		marauroa.rpobjectFactory["food"] = Food;
+		marauroa.rpobjectFactory["game_board"] = GameBoard;
+		marauroa.rpobjectFactory["gate"] = Gate
+		marauroa.rpobjectFactory["growing_entity_spawner"] = GrowingEntitySpawner;
+		marauroa.rpobjectFactory["house_portal"] = Portal;
+		marauroa.rpobjectFactory["invisible_entity"] = InvisibleEntity;
+		marauroa.rpobjectFactory["item"] = Item;
+		marauroa.rpobjectFactory["looped_sound_source"] = LoopedSoundSource;
+		marauroa.rpobjectFactory["npc"] = NPC;
+		marauroa.rpobjectFactory["plant_grower"] = VisibleEntity;
+		marauroa.rpobjectFactory["player"] = Player;
+		marauroa.rpobjectFactory["portal"] = Portal;
+		marauroa.rpobjectFactory["rented_sign"] = Sign;
+		marauroa.rpobjectFactory["sheep"] = DomesticAnimal;
+		marauroa.rpobjectFactory["sign"] = Sign;
+		marauroa.rpobjectFactory["tiled_entity"] = InvisibleEntity;
+		marauroa.rpobjectFactory["training_dummy"] = TrainingDummy;
+		marauroa.rpobjectFactory["unknown"] = UnknownEntity;
+		marauroa.rpobjectFactory["useable_entity"] = UseableEntity;
+		marauroa.rpobjectFactory["user"] = User;
+		marauroa.rpobjectFactory["visible_entity"] = VisibleEntity;
+		marauroa.rpobjectFactory["walkblocker"] = WalkBlocker;
+		marauroa.rpobjectFactory["wall"] = InvisibleEntity;
+		marauroa.rpobjectFactory["weather_entity"] = InvisibleEntity;
+	}
+}
+

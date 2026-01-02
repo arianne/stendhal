@@ -15,9 +15,9 @@ import { MenuItem} from "../action/MenuItem";
 import { Color } from "../data/color/Color";
 import { RenderingContext2D } from "util/Types";
 import { Paths } from "../data/Paths";
+import { singletons } from "../SingletonRepo";
 
 declare var marauroa: any;
-declare var stendhal: any;
 
 export class DomesticAnimal extends RPEntity {
 
@@ -34,7 +34,7 @@ export class DomesticAnimal extends RPEntity {
 
 		var localX = this["_x"] * 32;
 		var localY = this["_y"] * 32;
-		var image = stendhal.data.sprites.get(this.imagePath);
+		var image = singletons.getSpriteStore().get(this.imagePath);
 		if (image.height) {
 			var nFrames = 3;
 			var nDirections = 4;

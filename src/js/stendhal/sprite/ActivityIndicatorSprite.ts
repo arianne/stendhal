@@ -11,6 +11,7 @@
 
 import { RenderingContext2D } from "util/Types";
 import { Paths } from "../data/Paths";
+import { singletons } from "../SingletonRepo";
 
 declare var stendhal: any;
 
@@ -20,7 +21,7 @@ declare var stendhal: any;
  */
 export class ActivityIndicatorSprite {
 
-	private static readonly img = stendhal.data.sprites.get(Paths.sprites + "/ideas/activity.png");
+	private static readonly img = singletons.getSpriteStore().get(Paths.sprites + "/ideas/activity.png");
 	private frameIdx = 0;
 	private lastFrameUpdate = 0;
 

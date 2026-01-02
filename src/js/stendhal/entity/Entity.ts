@@ -14,6 +14,7 @@ import { MenuItem } from "../action/MenuItem";
 import { Chat } from "../util/Chat";
 import { RPObject } from "./RPObject";
 import { Paths } from "../data/Paths";
+import { singletons } from "../SingletonRepo";
 
 declare var marauroa: any;
 declare var stendhal: any;
@@ -220,7 +221,7 @@ export class Entity extends RPObject {
 	}
 
 	drawSpriteAt(ctx: RenderingContext2D, x: number, y: number) {
-		var image = stendhal.data.sprites.get(this.sprite.filename);
+		var image = singletons.getSpriteStore().get(this.sprite.filename);
 		if (image.height) {
 			var offsetX = this.sprite.offsetX || 0;
 			var offsetY = this.sprite.offsetY || 0;

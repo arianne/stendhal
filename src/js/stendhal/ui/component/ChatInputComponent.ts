@@ -87,7 +87,7 @@ export class ChatInputComponent extends Component {
 			btn_emoji.innerText = "☺";
 		} else {
 			// set image for emoji button
-			btn_emoji.appendChild(stendhal.data.sprites.get(Paths.sprites + "/emoji/smile.png").cloneNode());
+			btn_emoji.appendChild(singletons.getSpriteStore().get(Paths.sprites + "/emoji/smile.png").cloneNode());
 		}
 	}
 

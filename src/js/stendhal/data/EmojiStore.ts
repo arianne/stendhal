@@ -11,8 +11,7 @@
 
 import { Paths } from "./Paths";
 import { JSONLoader } from "../util/JSONLoader";
-
-declare var stendhal: any;
+import { singletons } from "../SingletonRepo";
 
 
 export class EmojiStore {
@@ -71,7 +70,7 @@ export class EmojiStore {
 		if (!filename) {
 			return;
 		}
-		return stendhal.data.sprites.get(filename);
+		return singletons.getSpriteStore().get(filename);
 	}
 
 	/**

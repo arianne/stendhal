@@ -13,6 +13,7 @@ import { Entity } from "./Entity";
 import { ActivityIndicatorSprite } from "../sprite/ActivityIndicatorSprite";
 import { RenderingContext2D } from "util/Types";
 import { Paths } from "../data/Paths";
+import { singletons } from "../SingletonRepo";
 
 declare var stendhal: any;
 
@@ -38,7 +39,7 @@ export class Sign extends Entity {
 		if (!this.imagePath) {
 			this.imagePath = Paths.sprites + "/signs/" + this["class"] + ".png";
 		}
-		var image = stendhal.data.sprites.get(this.imagePath);
+		var image = singletons.getSpriteStore().get(this.imagePath);
 		if (image.height) {
 			var localX = this["x"] * 32;
 			var localY = this["y"] * 32;

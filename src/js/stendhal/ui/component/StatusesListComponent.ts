@@ -13,8 +13,7 @@ import { Component } from "../toolkit/Component";
 
 import { User } from "../../entity/User";
 import { Paths } from "../../data/Paths";
-
-declare var stendhal: any;
+import { singletons } from "../../SingletonRepo";
 
 
 export class StatusesListComponent extends Component {
@@ -70,7 +69,7 @@ export class StatusesListComponent extends Component {
 			} else {
 				iconPath = Paths.sprites + "/status/panel/" + id + ".png";
 			}
-			const icon = stendhal.data.sprites.get(iconPath);
+			const icon = singletons.getSpriteStore().get(iconPath);
 			icon.className = "status-icon";
 			this.componentElement.appendChild(icon);
 		}

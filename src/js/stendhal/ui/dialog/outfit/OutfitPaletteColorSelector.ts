@@ -9,9 +9,9 @@
  *                                                                         *
  ***************************************************************************/
 
+import { singletons } from "../../../SingletonRepo";
 import { OutfitColorSelector } from "./OutfitColorSelector";
 
-declare var stendhal: any;
 
 export class OutfitPaletteColorSelector extends OutfitColorSelector {
 	private _blockWidth: number;
@@ -32,8 +32,8 @@ export class OutfitPaletteColorSelector extends OutfitColorSelector {
 		if (this.enabled) {
 			const hs = this._hsMap[Math.floor(this._x / this._blockWidth)][Math.floor(this._y / this._blockHeight)];
 			const hsl = [hs[0], hs[1], this.hX / this.baseImage.width];
-			const rgbArray = stendhal.data.sprites.filter.hsl2rgb(hsl);
-			return stendhal.data.sprites.filter.mergergb(rgbArray);
+			const rgbArray = singletons.getSpriteStore().filter.hsl2rgb(hsl);
+			return singletons.getSpriteStore().filter.mergergb(rgbArray);
 		}
 		return null;
 	}
@@ -41,7 +41,7 @@ export class OutfitPaletteColorSelector extends OutfitColorSelector {
 	override set color(rgb) {
 		if (rgb != null) {
 			this.enabled = true;
-			const hsl = stendhal.data.sprites.filter.rgb2hsl(stendhal.data.sprites.filter.splitrgb(rgb));
+			const hsl = singletons.getSpriteStore().filter.rgb2hsl(singletons.getSpriteStore().filter.splitrgb(rgb));
 			this.hX = hsl[2] * this.baseImage.width;
 			let bestDelta = Number.MAX_VALUE;
 			for (let i = 0; i < 4; i++) {
@@ -72,7 +72,7 @@ export class OutfitPaletteColorSelector extends OutfitColorSelector {
 				const hue = hues[j];
 				const sat = saturations[i];
 				hsMap[i].push([hue, sat]);
-				const color = stendhal.data.sprites.filter.hsl2rgb([hue, sat, 0.5]);
+				const color = singletons.getSpriteStore().filter.hsl2rgb([hue, sat, 0.5]);
 				colors[i].push(color);
 			}
 		}
@@ -105,9 +105,9 @@ export class OutfitPaletteColorSelector extends OutfitColorSelector {
 		const hslLeft = [hs[0], hs[1], 0.08];
 		const hslMiddle = [hs[0], hs[1], 0.5];
 		const hslRight = [hs[0], hs[1], 0.92];
-		const rgbLeft = stendhal.data.sprites.filter.hsl2rgb(hslLeft);
-		const rgbMiddle = stendhal.data.sprites.filter.hsl2rgb(hslMiddle);
-		const rgbRight = stendhal.data.sprites.filter.hsl2rgb(hslRight);
+		const rgbLeft = singletons.getSpriteStore().filter.hsl2rgb(hslLeft);
+		const rgbMiddle = singletons.getSpriteStore().filter.hsl2rgb(hslMiddle);
+		const rgbRight = singletons.getSpriteStore().filter.hsl2rgb(hslRight);
 
 		return [rgbLeft, rgbMiddle, rgbRight];
 	}

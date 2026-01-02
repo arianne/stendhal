@@ -12,9 +12,9 @@
 import { RenderingContext2D } from "util/Types";
 import { Entity } from "./Entity";
 import { Paths } from "../data/Paths";
+import { singletons } from "../SingletonRepo";
 
 declare var marauroa: any;
-declare var stendhal: any;
 
 
 export class Food extends Entity {
@@ -30,7 +30,7 @@ export class Food extends Entity {
 	}
 
 	override draw(ctx: RenderingContext2D) {
-		var image = stendhal.data.sprites.get(Paths.sprites + "/food.png");
+		var image = singletons.getSpriteStore().get(Paths.sprites + "/food.png");
 		if (image.height) {
 			var localX = this["x"] * 32;
 			var localY = this["y"] * 32;

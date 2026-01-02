@@ -10,12 +10,11 @@
  *                                                                         *
  ***************************************************************************/
 
-declare var stendhal: any;
-
 import { AttackSprite } from "./AttackSprite";
 import { RPEntity } from "../../entity/RPEntity";
 import { Direction } from "../../util/Direction";
 import { RenderingContext2D } from "util/Types";
+import { singletons } from "../../SingletonRepo";
 
 
 export class MeleeAttackSprite extends AttackSprite {
@@ -46,10 +45,10 @@ export class MeleeAttackSprite extends AttackSprite {
 		const rot = 90 * (this.dir.val - 1);
 		imagePath = imagePath.replace(/\.png$/, "");
 		this.frames = [
-			//~ stendhal.data.sprites.getRotated(imagePath + "_rot45.png", rot-90),
+			//~ singletons.getSpriteStore().getRotated(imagePath + "_rot45.png", rot-90),
 			undefined,
-			stendhal.data.sprites.getRotated(imagePath + ".png", rot),
-			//~ stendhal.data.sprites.getRotated(imagePath + "_rot45.png", rot)
+			singletons.getSpriteStore().getRotated(imagePath + ".png", rot),
+			//~ singletons.getSpriteStore().getRotated(imagePath + "_rot45.png", rot)
 			undefined
 		];
 		if (this.frames[1].complete) {

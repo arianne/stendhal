@@ -13,9 +13,9 @@ import { RenderingContext2D } from "util/Types";
 import { MenuItem } from "../action/MenuItem";
 import { Entity } from "./Entity";
 import { Paths } from "../data/Paths";
+import { singletons } from "../SingletonRepo";
 
 declare var marauroa: any;
-declare var stendhal: any;
 
 export class Gate extends Entity {
 
@@ -49,7 +49,7 @@ export class Gate extends Entity {
 	override draw(ctx: RenderingContext2D) {
 		if (this._image == undefined) {
 			var filename = Paths.sprites + "/doors/" + this["image"] + "_" + this["orientation"] + ".png";
-			this._image = stendhal.data.sprites.get(filename);
+			this._image = singletons.getSpriteStore().get(filename);
 		}
 		if (this._image.height) {
 			var xOffset = -32 * Math.floor(this._image.width / 32 / 2);

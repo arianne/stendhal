@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2024 - Stendhal                    *
+ *                   (C) Copyright 2003-2026 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -11,11 +11,10 @@
 
 declare var stendhal: any;
 
-import { Canvas } from "util/Types";
 import { Paths } from "./Paths";
 
 
-class SpriteImage extends Image {
+export class SpriteImage extends Image {
 	// number of times the image has been accessed after initial creation
 	counter = 0;
 }
@@ -60,7 +59,7 @@ export class SpriteStore {
 	};
 
 	// TODO: move to animation.json
-	private animations: {[key: string]: any} = {
+	animations: {[key: string]: any} = {
 		idea: {
 			"love": {delay: 100, offsetX: 24, offsetY: -8}
 		}
