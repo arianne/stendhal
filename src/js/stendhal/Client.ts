@@ -1,5 +1,5 @@
 /***************************************************************************
- *                 Copyright © 2023-2024 - Faiumoni e. V.                  *
+ *                 Copyright © 2023-2026 - Faiumoni e. V.                  *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -263,6 +263,9 @@ export class Client {
 		marauroa.clientFramework.onDisconnect = function(_reason: string, _error: string) {
 			if (!Client.instance.unloading) {
 				Chat.logH("error", "Disconnected from server.");
+				if (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1" && window.location.hostname !== "::1") {
+					window.location.href = "/account/mycharacters.html";
+				}
 			}
 		}.bind(this);
 
@@ -334,7 +337,7 @@ export class Client {
 			}
 		}.bind(this);
 
-		marauroa.clientFramework.onTransfer = function(items: any) {
+		marauroa.clientFramework.onTransfer = (items: any) => {
 			var data = {} as any;
 			var zoneName = ""
 			for (var i in items) {
