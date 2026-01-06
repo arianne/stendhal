@@ -28,9 +28,8 @@
   },
   "homepage": "https://arianne-project.org",
   "private": true,
-  "dependencies": {
-  },
   "devDependencies": {
+    "esbuild": "0.27.2",
     "showdown": "^2.1.0",
     "typedoc": "^0.28.15",
     "typescript": "^5.9.3"
