@@ -10,7 +10,6 @@
  *                                                                         *
  ***************************************************************************/
 
-declare var stendhal: any;
 
 import { ParamList } from "./ParamList";
 import { SlashAction } from "./SlashAction";
@@ -20,6 +19,7 @@ import { ui } from "../ui/UI";
 import { AboutDialog } from "../ui/dialog/AboutDialog";
 
 import { Pair } from "../util/Pair";
+import { stendhal } from "../stendhal";
 
 
 export class AboutAction extends SlashAction {

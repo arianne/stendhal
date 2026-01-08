@@ -16,7 +16,7 @@ import { Color } from "../data/color/Color";
 import { Paths } from "../data/Paths";
 
 declare var marauroa: any;
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 
 export class Portal extends Entity {
 

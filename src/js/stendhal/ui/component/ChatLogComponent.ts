@@ -16,7 +16,7 @@ import { UIComponentEnum } from "../UIComponentEnum";
 import { singletons } from "../../SingletonRepo";
 import { Chat } from "../../util/Chat";
 
-declare var stendhal: any;
+import { stendhal } from "../../stendhal";
 
 
 /**

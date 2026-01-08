@@ -12,7 +12,7 @@
 import { Canvas, RenderingContext2D } from "util/Types";
 import { CombinedTileset } from "./CombinedTileset";
 
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 
 export class LandscapeRenderer {
 

@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-declare var stendhal: any;
+import { stendhal } from "../../stendhal";
 
 import { ChatPanel } from "../ChatPanel";
 import { UIComponentEnum } from "../UIComponentEnum";

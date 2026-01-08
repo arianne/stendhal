@@ -16,7 +16,7 @@ import { ui } from "../ui/UI";
 
 import { DialogContentComponent } from "../ui/toolkit/DialogContentComponent";
 
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 
 
 export class BestiaryEvent extends RPEvent {

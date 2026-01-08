@@ -15,7 +15,7 @@ import { Chat } from "../../util/Chat";
 import { singletons } from "../../SingletonRepo";
 
 declare var marauroa: any;
-declare var stendhal: any;
+import { stendhal } from "../../stendhal";
 
 
 /**

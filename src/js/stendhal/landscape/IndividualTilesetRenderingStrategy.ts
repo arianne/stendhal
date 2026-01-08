@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 
 import { LandscapeRenderingStrategy } from "./LandscapeRenderingStrategy";
 import { ImagePreloader } from "../data/ImagePreloader";

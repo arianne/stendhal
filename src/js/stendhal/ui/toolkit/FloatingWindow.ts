@@ -9,10 +9,9 @@
  *                                                                         *
  ***************************************************************************/
 
-declare var stendhal: any;
+import { stendhal } from "../../stendhal";
 
 import { Component } from "./Component";
-import { DialogContentComponent } from "./DialogContentComponent";
 
 import { Point } from "../../util/Point";
 

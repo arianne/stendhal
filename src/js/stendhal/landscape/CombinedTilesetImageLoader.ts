@@ -15,7 +15,7 @@ import { MapOfSets } from "../util/MapOfSets";
 import { CombinedTileset } from "./CombinedTileset";
 import { Debug } from "../util/Debug";
 
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 
 export class CombinedTilesetImageLoader {
 

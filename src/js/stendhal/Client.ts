@@ -10,7 +10,7 @@
  ***************************************************************************/
 
 declare var marauroa: any;
-declare var stendhal: any;
+import { stendhal } from "./stendhal";
 
 import { PerceptionListener } from "./PerceptionListener";
 import { singletons } from "./SingletonRepo";
@@ -92,10 +92,6 @@ export class Client {
 		}
 		this.initialized = true;
 
-		// add version & build info to DOM for retrieval by browser
-		document.documentElement.setAttribute("data-build-version", stendhal.data.build.version);
-		document.documentElement.setAttribute("data-build-build", stendhal.data.build.build);
-
 		stendhal.config = singletons.getConfigManager();
 		stendhal.session = singletons.getSessionManager();
 		stendhal.actions = singletons.getSlashActionRepo();
@@ -105,6 +101,10 @@ export class Client {
 		this.initSound();
 		this.initUI();
 		this.initZone();
+
+		// add version & build info to DOM for retrieval by browser
+		document.documentElement.setAttribute("data-build-version", stendhal.data.build?.version);
+		document.documentElement.setAttribute("data-build-build", stendhal.data.build?.build);
 	}
 
 	/**

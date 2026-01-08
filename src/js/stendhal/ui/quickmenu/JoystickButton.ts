@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-declare var stendhal: any;
+import { stendhal } from "../../stendhal";
 
 import { QuickMenuButton } from "./QuickMenuButton";
 import { SoftwareJoystickController } from "../SoftwareJoystickController";

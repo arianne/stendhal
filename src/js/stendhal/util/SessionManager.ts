@@ -11,7 +11,7 @@
 
 import { Paths } from "../data/Paths";
 
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 
 
 /**

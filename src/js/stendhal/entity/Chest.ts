@@ -22,7 +22,7 @@ import { Chat } from "../util/Chat";
 import { Paths } from "../data/Paths";
 
 declare var marauroa: any;
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 
 
 let OPEN_SPRITE = {

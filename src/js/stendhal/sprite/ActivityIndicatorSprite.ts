@@ -13,7 +13,7 @@ import { RenderingContext2D } from "util/Types";
 import { Paths } from "../data/Paths";
 import { singletons } from "../SingletonRepo";
 
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 
 
 /**

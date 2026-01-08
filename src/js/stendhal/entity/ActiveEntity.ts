@@ -13,7 +13,7 @@ import { Entity } from "./Entity";
 import { Direction } from "../util/Direction";
 import { MathUtil } from "../util/MathUtil";
 
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 
 export class ActiveEntity extends Entity {
 

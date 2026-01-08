@@ -16,7 +16,7 @@ import { SoundID } from "../data/sound/SoundID";
 import { SoundManager } from "../data/sound/SoundManager";
 
 declare var marauroa: any;
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 
 
 export class SoundEvent extends RPEvent {

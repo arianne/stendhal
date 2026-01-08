@@ -14,7 +14,7 @@ import { singletons } from "../../SingletonRepo";
 import { Paths } from "../../data/Paths";
 
 declare var marauroa: any;
-declare var stendhal: any;
+import { stendhal } from "../../stendhal";
 
 
 export class EmojiMapDialog extends DialogContentComponent {

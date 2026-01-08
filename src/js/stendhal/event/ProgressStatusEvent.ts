@@ -14,8 +14,7 @@ import { TravelLogDialog } from "../ui/dialog/TravelLogDialog";
 import { ui } from "../ui/UI";
 import { UIComponentEnum } from "../ui/UIComponentEnum";
 import { RPEvent } from "./RPEvent";
-
-declare let stendhal: any;
+import { stendhal } from "stendhal";
 
 
 /**

@@ -17,10 +17,10 @@ import { Component } from "../toolkit/Component";
 import { ActionContextMenu } from "../dialog/ActionContextMenu";
 import { ChatInputComponent } from "./ChatInputComponent";
 import { Paths } from "../../data/Paths";
+import { stendhal } from "stendhal";
 
 
 declare let marauroa: any;
-declare let stendhal: any;
 
 /**
  * displays the player stats

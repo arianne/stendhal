@@ -17,7 +17,7 @@ import { Color } from "../data/color/Color";
 import { RenderingContext2D } from "util/Types";
 import { Paths } from "../data/Paths";
 
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 
 export class NPC extends RPEntity {
 	override minimapStyle = Color.NPC;

@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-declare var stendhal: any;
+import { stendhal } from "../../stendhal";
 
 import { Component } from "../toolkit/Component";
 import { ui } from "../UI";

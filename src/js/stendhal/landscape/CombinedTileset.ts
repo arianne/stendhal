@@ -11,7 +11,7 @@
 
 import { Canvas, RenderingContext2D } from "util/Types";
 
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 
 /**
  * a combined tileset with group layers using one single tileset image.

@@ -13,7 +13,7 @@ import { singletons } from "../../../SingletonRepo";
 import { Paths } from "../../../data/Paths";
 import { RenderingContext2D } from "util/Types";
 
-declare var stendhal: any;
+import { stendhal } from "../../../stendhal";
 
 export class OutfitPartSelector {
 		private _part: string;

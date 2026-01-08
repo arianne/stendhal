@@ -13,7 +13,7 @@ import { Paths } from "../data/Paths";
 import { NPC } from "./NPC";
 
 declare var marauroa: any;
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 
 
 export class TrainingDummy extends NPC {

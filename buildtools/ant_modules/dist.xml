@@ -679,20 +679,22 @@
 	<target name="js-prepare-build">
 		<mkdir dir="node_modules/marauroa"/>
 		<echo file="node_modules/marauroa/build.js">
-			var stendhal = window.stendhal = window.stendhal || {};
-			stendhal.data = stendhal.data || {};
+export function version(stendhal) {
+	stendhal.data = stendhal.data || {};
 
-			stendhal.data.build = {
-				version: "${version}",
-				build: "${datetime}",
-				dist: "webclient"
-			}
+	stendhal.data.build = {
+		version: "${version}",
+		build: "${datetime}",
+		dist: "webclient"
+	}
+
+	//CI
+}
 		</echo>
+
 		<property name="ci.build.info" value=""/>
-		<concat destfile="node_modules/marauroa/build.js" append="yes">
-			<filelist dir=".." files="${ci.build.info}">
-			</filelist>
-		</concat>
+		<loadfile property="cibuildinfo" srcFile="${ci.build.info}"/>
+		<replace file="node_modules/marauroa/build.js" token="//CI" value="${cibuildinfo}" />
 	</target>
 
 

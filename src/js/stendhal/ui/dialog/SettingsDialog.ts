@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-declare var stendhal: any;
+import { stendhal } from "../../stendhal";
 
 import { GeneralTab } from "./settings/GeneralTab";
 import { InputTab } from "./settings/InputTab";

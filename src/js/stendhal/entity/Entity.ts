@@ -17,7 +17,7 @@ import { Paths } from "../data/Paths";
 import { singletons } from "../SingletonRepo";
 
 declare var marauroa: any;
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 
 /**
  * General entity

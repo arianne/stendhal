@@ -10,7 +10,6 @@
  ***************************************************************************/
 
 declare let marauroa: any;
-declare let stendhal: any;
 
 import { Component } from "../toolkit/Component";
 
@@ -18,6 +17,7 @@ import { Player } from "../../entity/Player";
 
 import { Color } from "../../data/color/Color";
 import { Canvas, RenderingContext2D } from "util/Types";
+import { stendhal } from "stendhal";
 
 
 /**

@@ -10,7 +10,6 @@
  ***************************************************************************/
 
 declare let marauroa: any;
-declare let stendhal: any;
 
 import { ChatPanel } from "../ChatPanel";
 import { ui } from "../UI";
@@ -22,6 +21,7 @@ import { singletons } from "../../SingletonRepo";
 import { ChatCompletionHelper } from "../../util/ChatCompletionHelper";
 import { KeyCode } from "../../util/KeyCode";
 import { Paths } from "../../data/Paths";
+import { stendhal } from "stendhal";
 
 
 /**

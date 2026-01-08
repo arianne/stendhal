@@ -23,7 +23,7 @@ import { singletons } from "../../SingletonRepo";
 import { Item } from "../../entity/Item";
 
 declare var marauroa: any;
-declare var stendhal: any;
+import { stendhal } from "../../stendhal";
 
 
 /**

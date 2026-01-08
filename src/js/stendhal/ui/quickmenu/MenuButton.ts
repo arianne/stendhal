@@ -12,7 +12,7 @@
 import { QuickMenuButton } from "./QuickMenuButton";
 import { ui } from "../UI";
 
-declare var stendhal: any;
+import { stendhal } from "../../stendhal";
 
 
 /**

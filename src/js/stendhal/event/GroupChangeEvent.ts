@@ -14,7 +14,7 @@ import { ui } from "../ui/UI";
 import { UIComponentEnum } from "../ui/UIComponentEnum";
 import { GroupPanelComponent } from "../ui/component/GroupPanelComponent";
 
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 declare var marauroa: any;
 
 /**

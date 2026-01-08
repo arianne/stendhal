@@ -10,7 +10,7 @@
  *                                                                         *
  ***************************************************************************/
 
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 
 import { Canvas } from "util/Types";
 import { RPEvent } from "./RPEvent";

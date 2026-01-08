@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 
 import { RenderingContext2D } from "util/Types";
 import { Color } from "../data/color/Color";

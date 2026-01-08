@@ -17,7 +17,7 @@ import { ui } from "../ui/UI";
 
 import { RPEvent } from "./RPEvent";
 
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 declare var marauroa: any;
 
 /**

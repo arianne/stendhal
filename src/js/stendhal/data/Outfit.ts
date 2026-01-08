@@ -17,7 +17,7 @@ import { StringUtil } from "../util/StringUtil";
 import { Paths } from "./Paths";
 import { SpriteImage } from "../data/SpriteStore";
 
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 
 
 /**

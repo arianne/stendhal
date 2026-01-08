@@ -18,7 +18,7 @@ import { Chat } from "../util/Chat";
 import { Paths } from "../data/Paths";
 import { singletons } from "../SingletonRepo";
 
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 
 
 export class ShowItemListEvent extends RPEvent {

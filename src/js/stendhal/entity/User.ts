@@ -10,7 +10,7 @@
  ***************************************************************************/
 
 declare var marauroa: any;
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 
 import { Entity } from "./Entity";
 import { Player } from "./Player";

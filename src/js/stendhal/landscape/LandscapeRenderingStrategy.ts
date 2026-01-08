@@ -15,7 +15,7 @@ import { CombinedTilesetFactory } from "./CombinedTilesetFactory";
 import { LandscapeRenderer } from "./LandscapeRenderer";
 
 
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 
 export abstract class LandscapeRenderingStrategy {
 

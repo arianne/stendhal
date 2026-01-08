@@ -16,7 +16,7 @@ import { TileStore } from "../data/TileStore";
 import { SoundObject } from "../data/sound/SoundFactory";
 import { Canvas, RenderingContext2D } from "./Types";
 
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 
 
 const weatherLoops = {

@@ -24,7 +24,7 @@ import { Debug } from "../util/Debug";
 import { Paths } from "../data/Paths";
 
 declare var marauroa: any;
-declare var stendhal: any;
+import { stendhal } from "../stendhal";
 
 /**
  * performances debugging actions

@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-declare var stendhal: any;
+import { stendhal } from "../../stendhal";
 
 import { DialogContentComponent } from "../toolkit/DialogContentComponent";
 import { singletons } from "../../SingletonRepo";
