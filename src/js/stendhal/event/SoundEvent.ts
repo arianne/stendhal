@@ -15,7 +15,7 @@ import { RPEvent } from "./RPEvent";
 import { SoundID } from "../data/sound/SoundID";
 import { SoundManager } from "../data/sound/SoundManager";
 
-declare var marauroa: any;
+var marauroa = (window as any).marauroa = (window as any).marauroa || {};
 import { stendhal } from "../stendhal";
 
 

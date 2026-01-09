@@ -11,7 +11,7 @@
 
 import { Component } from "../toolkit/Component";
 
-declare let marauroa: any;
+var marauroa = (window as any).marauroa = (window as any).marauroa || {};
 
 /**
  * zone info

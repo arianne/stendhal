@@ -10,7 +10,7 @@
  *                                                                         *
  ***************************************************************************/
 
-declare var marauroa: any;
+var marauroa = (window as any).marauroa = (window as any).marauroa || {};
 import { stendhal } from "../stendhal";
 
 import { SlashActionRepo } from "../SlashActionRepo";

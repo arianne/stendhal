@@ -15,7 +15,7 @@ import { ui } from "../ui/UI";
 import { UIComponentEnum } from "../ui/UIComponentEnum";
 import { GroupPanelComponent } from "../ui/component/GroupPanelComponent";
 
-declare var marauroa: any;
+var marauroa = (window as any).marauroa = (window as any).marauroa || {};
 
 /**
  * handles player trade events

@@ -15,7 +15,7 @@ import { MenuItem } from "../action/MenuItem";
 
 const config = singletons.getConfigManager();
 
-declare var marauroa: any;
+var marauroa = (window as any).marauroa = (window as any).marauroa || {};
 
 const defaultUse = {
 	title: "Use",

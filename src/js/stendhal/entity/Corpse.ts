@@ -21,7 +21,7 @@ import { PopupInventory } from "./PopupInventory";
 import { Paths } from "../data/Paths";
 import { singletons } from "../SingletonRepo";
 
-declare var marauroa: any;
+var marauroa = (window as any).marauroa = (window as any).marauroa || {};
 import { stendhal } from "../stendhal";
 
 export class Corpse extends PopupInventory {

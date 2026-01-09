@@ -18,7 +18,7 @@ import { ui } from "../ui/UI";
 import { RPEvent } from "./RPEvent";
 
 import { stendhal } from "../stendhal";
-declare var marauroa: any;
+var marauroa = (window as any).marauroa = (window as any).marauroa || {};
 
 /**
  * handles player trade events

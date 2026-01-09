@@ -14,7 +14,7 @@ import { ui } from "../ui/UI";
 import { UIComponentEnum } from "../ui/UIComponentEnum";
 import { ChatLogComponent } from "../ui/component/ChatLogComponent";
 
-declare let marauroa: any;
+var marauroa = (window as any).marauroa = (window as any).marauroa || {};
 
 
 /**

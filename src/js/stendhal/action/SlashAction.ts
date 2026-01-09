@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-declare var marauroa: any;
+var marauroa = (window as any).marauroa = (window as any).marauroa || {};
 
 import { ParamList } from "./ParamList";
 import { Pair } from "../util/Pair";

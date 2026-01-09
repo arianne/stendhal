@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-declare let marauroa: any;
+var marauroa = (window as any).marauroa = (window as any).marauroa || {};
 
 import { ChatInputComponent } from "./ChatInputComponent";
 import { GroupMemberComponent } from "./GroupMemberComponent";

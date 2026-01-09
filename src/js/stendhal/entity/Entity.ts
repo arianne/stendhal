@@ -16,7 +16,7 @@ import { RPObject } from "./RPObject";
 import { Paths } from "../data/Paths";
 import { singletons } from "../SingletonRepo";
 
-declare var marauroa: any;
+var marauroa = (window as any).marauroa = (window as any).marauroa || {};
 import { stendhal } from "../stendhal";
 
 /**

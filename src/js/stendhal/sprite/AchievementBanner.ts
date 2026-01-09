@@ -14,9 +14,7 @@ import { BackgroundPainter } from "../util/BackgroundPainter";
 import { RenderingContext2D } from "util/Types";
 import { Paths } from "../data/Paths";
 import { singletons } from "../SingletonRepo";
-
-declare const stendhal: any;
-
+import { stendhal } from "../stendhal";
 
 export class AchievementBanner extends TextBubble {
 

@@ -12,7 +12,7 @@
 import { Component } from "../toolkit/Component";
 import { ItemContainerImplementation } from "./ItemContainerImplementation";
 
-declare var marauroa: any;
+var marauroa = (window as any).marauroa = (window as any).marauroa || {};
 
 /**
  * manage the equipment which is used by the player

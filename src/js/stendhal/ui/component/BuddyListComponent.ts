@@ -20,7 +20,7 @@ import { Paths } from "../../data/Paths";
 import { stendhal } from "stendhal";
 
 
-declare let marauroa: any;
+var marauroa = (window as any).marauroa = (window as any).marauroa || {};
 
 /**
  * displays the player stats

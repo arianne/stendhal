@@ -13,7 +13,7 @@ import { RenderingContext2D } from "util/Types";
 import { Entity } from "./Entity";
 import { RPObject } from "./RPObject";
 
-declare var marauroa: any;
+var marauroa = (window as any).marauroa = (window as any).marauroa || {};
 
 
 export class PopupInventory extends Entity {

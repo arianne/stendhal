@@ -11,8 +11,6 @@
 
 import { RenderingContext2D } from "./Types";
 
-declare var stendhal: any
-
 
 export class Speech {
 	// space to be left at the beginning and end of line in pixels

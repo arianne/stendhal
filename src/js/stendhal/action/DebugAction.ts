@@ -23,7 +23,7 @@ import { Chat } from "../util/Chat";
 import { Debug } from "../util/Debug";
 import { Paths } from "../data/Paths";
 
-declare var marauroa: any;
+var marauroa = (window as any).marauroa = (window as any).marauroa || {};
 import { stendhal } from "../stendhal";
 
 /**

@@ -13,7 +13,7 @@ import { ui } from "../UI";
 import { DialogContentComponent } from "../toolkit/DialogContentComponent";
 import { LoginDialog } from "./LoginDialog";
 
-declare var marauroa: any;
+var marauroa = (window as any).marauroa = (window as any).marauroa || {};
 
 /**
  * a dialog to enter username and password

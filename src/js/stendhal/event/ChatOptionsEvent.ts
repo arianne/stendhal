@@ -13,7 +13,7 @@ import { Chat } from "../util/Chat";
 import { ChatOptionsDialog } from "../ui/dialog/ChatOptionsDialog";
 import { RPEvent } from "./RPEvent";
 
-declare var marauroa: any
+var marauroa = (window as any).marauroa = (window as any).marauroa || {};
 
 /**
  * shows an image for a detail view
