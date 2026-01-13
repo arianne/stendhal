@@ -694,7 +694,7 @@ export function version(stendhal) {
 
 		<property name="ci.build.info" value=""/>
 		<loadfile property="cibuildinfo" srcFile="${ci.build.info}"/>
-		<replace file="node_modules/marauroa/build.js" token="//CI" value="${cibuildinfo}" />
+		<replace file="node_modules/marauroa/build.js" token="//CI" value="${cibuildinfo}" failonerror="false" quiet="true" />
 	</target>
 
 
