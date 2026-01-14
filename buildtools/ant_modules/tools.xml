@@ -57,6 +57,15 @@
 			<arg value="data/"/>
 			<arg value="xml,xsd,lua,py"/>
 		</java>
+
+		<!-- process Ant build configuration files -->
+		<java classname="games.stendhal.tools.CleanWhitespace">
+			<classpath>
+				<pathelement path="${build_stendhaltools}"/>
+			</classpath>
+			<arg value="${ant_modules}" />
+			<arg value="xml" />
+		</java>
 	</target> <!-- clean_whitespace -->
 
 
