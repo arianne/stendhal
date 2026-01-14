@@ -4,7 +4,7 @@
 
 	<import file="dist.xml" />
 
-	<target name="compile_stendhaltools" description="Compile Stendhal build tools.">
+	<target name="compile_tools" description="Compile Stendhal build tools.">
 		<mkdir dir="${build_stendhaltools}"/>
 
 		<javac srcdir="${src}" destdir="${build_stendhaltools}" source="1.8" target="1.8" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}" includeantruntime="true">
@@ -27,6 +27,9 @@
 			</classpath>
 		</javac>
 	</target> <!-- compile_stendhaltools -->
+
+	<!-- Alias of `compile_tools`. -->
+	<target name="compile_stendhaltools" depends="compile_tools" />
 
 	<target name="clean_whitespace" description="Clean whitespace in source and other specified file types." depends="compile_stendhaltools">
 		<!-- process main Java source, config, & scripting files -->
