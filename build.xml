@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 
-<project name="stendhal" default="compile" basedir=".">
+<project name="stendhal" default="help" basedir=".">
 	<description>
 Project:
     Name: .......... ${game_name}
