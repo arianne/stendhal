@@ -7,6 +7,11 @@
 		Properties are immutable: whoever sets a property first freezes it for the rest of the build; they are most definitely not variables.
 	-->
 
+	<!-- store ant version number without extra details -->
+	<antversion property="ant.version.number" />
+	<!-- store ant home directory with system delimiter -->
+	<property name="ant.location" location="${ant.home}" />
+
 	<property name="build_tests" value="${buildroot}/build_tests"/>
 	<property name="build_tests_report" value="${buildroot}/build_test_report"/>
 
