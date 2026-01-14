@@ -30,6 +30,13 @@ import { SoundEvent } from "./event/SoundEvent";
 import { TradeEvent } from "./event/TradeEvent";
 import { ViewChangeEvent } from "./event/ViewChangeEvent";
 import { Chat } from "./util/Chat";
+import { AttackEvent } from "event/AttackEvent";
+import { GlobalVisualEffectEvent } from "event/GlobalVisualEffectEvent";
+import { ImageEvent } from "event/ImageEvent";
+import { ReachedAchievementEvent } from "event/ReachedAchievementEvent";
+import { TextEvent } from "event/TextEvent";
+import { TransitionGraphEvent } from "event/TransitionGraphEvent";
+import { PrivateTextEvent } from "event/PrivateTextEvent";
 
 
 export class EventRegistry {
@@ -74,104 +81,29 @@ export class EventRegistry {
 		this.register("progress_status_event", new ProgressStatusEvent());
 		this.register("trade_state_change_event", new TradeEvent());
 
-		this.register("attack", {
-			execute: function(entity: RPEntity) {
-				var target = entity.getAttackTarget();
-				if (!target) {
-					return;
-				}
-				if (this.hasOwnProperty("hit")) {
-					var damage = parseInt(this["damage"], 10);
-					if (damage !== 0) {
-						target.onDamaged(entity, damage);
-					} else {
-						target.onBlocked(entity);
-					}
-				} else {
-					target.onMissed(entity);
-				}
-				entity.onAttackPerformed(parseInt(this["type"], 10), this.hasOwnProperty("ranged"), this["weapon"]);
-			}
-		}); // attack
+		this.register("attack", new AttackEvent());
 
 		this.register("bestiary", new BestiaryEvent());
 
-		this.register("global_visual_effect", {
-			execute: function(rpobject: RPObject) {
-				// TODO: new GlobalVisualEffectEvent();
-			}
-		}); // global_visual_effect
+		this.register("global_visual_effect", new GlobalVisualEffectEvent());
 
-		this.register("image_event", {
-			execute: function(rpobject: RPObject) {
-				// TODO: new ImageEffectEvent();
-				console.log("image_event", this, rpobject);
-			}
-		}); // image_event
+		this.register("image_event", new ImageEvent());
 
 		this.register("player_logged_on", new PlayerLoggedOnEvent());
 		this.register("player_logged_out", new PlayerLoggedOutEvent());
 
-		this.register("private_text", {
-			soundTextEvents: {
-				"privmsg": true,
-				"support": true,
-				"tutorial": true
-			},
+		this.register("private_text", new PrivateTextEvent());
 
-			execute: function(rpobject: RPObject) {
-				const ttype = this["texttype"].toLowerCase();
-				const msg = this["text"].replace(/\\r\\n/g, "\n").replace(/\\r/g, "\n");
-
-				let profile;
-				if (this.hasOwnProperty("profile")) {
-					profile = this["profile"];
-				} else if (ttype === "tutorial") {
-					profile = "floattingladynpc";
-				}
-
-				if (ttype === "server" && msg.includes("\n")) {
-					Chat.log(ttype, msg.split("\n"), undefined, profile);
-				} else {
-					// scene settings messages should not disturb playing, just create some atmosphere
-					const headed = ttype !== "scene_setting";
-					Chat.log(ttype, msg, undefined, profile, headed);
-				}
-
-				// play notification sound
-				const notif = stendhal.config.get("chat.private.sound");
-				if (notif && this.soundTextEvents[ttype]) {
-					stendhal.sound.playGlobalizedEffect(notif);
-				}
-			}
-		}); // private_text
-
-		this.register("reached_achievement", {
-			execute: function(rpobject: RPObject) {
-				stendhal.ui.gamewindow.addAchievementNotif(this["category"], this["title"], this["description"]);
-			}
-		}); // reached_achievement
+		this.register("reached_achievement", new ReachedAchievementEvent());
 
 		this.register("show_item_list", new ShowItemListEvent());
 		this.register("show_outfit_list", new ShowOutfitListEvent());
 
 		this.register("sound_event", new SoundEvent());
 
-		this.register("text", {
-			execute: function(entity: RPEntity) {
-				if (this.hasOwnProperty("range")) {
-					entity.say(this["text"], this["range"]);
-				} else {
-					entity.say(this["text"]);
-				}
-			}
-		}); // text
+		this.register("text", new TextEvent());
 
-		this.register("transition_graph", {
-			execute: function(rpobject: RPObject) {
-				// TODO: new TransitionGraphEvent();
-			}
-		}); // transition_graph
+		this.register("transition_graph", new TransitionGraphEvent());
 
 		this.register("view_change", new ViewChangeEvent());
 	}

@@ -24,7 +24,7 @@ export class BestiaryEvent extends RPEvent {
 	enemies!: string;
 
 
-	execute(entity: any) {
+	execute(_entity: any) {
 		if (!this.hasOwnProperty("enemies")) {
 			console.error("Event does not have \"enemies\" attribute");
 			return;
