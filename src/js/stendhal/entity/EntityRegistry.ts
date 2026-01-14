@@ -78,4 +78,3 @@ export class EntityRegistry {
 		marauroa.rpobjectFactory["weather_entity"] = InvisibleEntity;
 	}
 }
-

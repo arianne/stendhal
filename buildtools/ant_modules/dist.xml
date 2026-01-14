@@ -672,7 +672,7 @@
 				<include name="js/**"/>
 			</patternset>
 		</unzip>
-		
+
 	</target>
 
 
@@ -725,7 +725,7 @@ export function version(stendhal) {
 
 	<!-- TODO: Do not write stendhal-compiled.js to the source directory tree but directly to the compiled directory tree -->
 	<target name="js-invoke-compiler">
-		
+
 		<exec executable="${executable.npx}" dir="${srcjs}/stendhal" failonerror="true">
 			<arg value="tsc"/>
 		</exec>

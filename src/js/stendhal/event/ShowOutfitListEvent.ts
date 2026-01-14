@@ -53,7 +53,7 @@ export class ShowOutfitListEvent extends RPEvent {
 
 		const content = new class extends DialogContentComponent { }("empty-div-template");
 		content.componentElement.classList.add("shopsign");
-		
+
 		const table = document.createElement("table");
 		table.className = "shoptable";
 		content.componentElement.appendChild(table);
