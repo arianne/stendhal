@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2024 - Stendhal                    *
+ *                   (C) Copyright 2003-2026 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -10,33 +10,27 @@
  ***************************************************************************/
 
 var marauroa = (window as any).marauroa = (window as any).marauroa || {};
-import { stendhal } from "./stendhal";
 
-import { RPEntity } from "./entity/RPEntity";
-import { RPObject } from "./entity/RPObject";
-
+import { AttackEvent } from "event/AttackEvent";
 import { BestiaryEvent } from "./event/BestiaryEvent";
 import { ChatOptionsEvent } from "./event/ChatOptionsEvent";
 import { ExamineEvent } from "./event/ExamineEvent";
+import { GlobalVisualEffectEvent } from "event/GlobalVisualEffectEvent";
 import { GroupChangeEvent } from "./event/GroupChangeEvent";
 import { GroupInviteEvent } from "./event/GroupInviteEvent";
+import { ImageEvent } from "event/ImageEvent";
 import { PlayerLoggedOnEvent } from "./event/PlayerLoggedOnEvent";
 import { PlayerLoggedOutEvent } from "./event/PlayerLoggedOutEvent";
+import { PrivateTextEvent } from "event/PrivateTextEvent";
 import { ProgressStatusEvent } from "./event/ProgressStatusEvent";
-import { RPEvent } from "./event/RPEvent";
+import { ReachedAchievementEvent } from "event/ReachedAchievementEvent";
 import { ShowItemListEvent } from "./event/ShowItemListEvent";
 import { ShowOutfitListEvent } from "./event/ShowOutfitListEvent";
 import { SoundEvent } from "./event/SoundEvent";
-import { TradeEvent } from "./event/TradeEvent";
-import { ViewChangeEvent } from "./event/ViewChangeEvent";
-import { Chat } from "./util/Chat";
-import { AttackEvent } from "event/AttackEvent";
-import { GlobalVisualEffectEvent } from "event/GlobalVisualEffectEvent";
-import { ImageEvent } from "event/ImageEvent";
-import { ReachedAchievementEvent } from "event/ReachedAchievementEvent";
 import { TextEvent } from "event/TextEvent";
+import { TradeEvent } from "./event/TradeEvent";
 import { TransitionGraphEvent } from "event/TransitionGraphEvent";
-import { PrivateTextEvent } from "event/PrivateTextEvent";
+import { ViewChangeEvent } from "./event/ViewChangeEvent";
 
 
 export class EventRegistry {
@@ -74,54 +68,37 @@ export class EventRegistry {
 		}
 		this.initialized = true;
 
-		this.register("chat_options", new ChatOptionsEvent());
-		this.register("examine", new ExamineEvent());
-		this.register("group_change_event", new GroupChangeEvent());
-		this.register("group_invite_event", new GroupInviteEvent());
-		this.register("progress_status_event", new ProgressStatusEvent());
-		this.register("trade_state_change_event", new TradeEvent());
-
-		this.register("attack", new AttackEvent());
-
-		this.register("bestiary", new BestiaryEvent());
-
-		this.register("global_visual_effect", new GlobalVisualEffectEvent());
-
-		this.register("image_event", new ImageEvent());
-
-		this.register("player_logged_on", new PlayerLoggedOnEvent());
-		this.register("player_logged_out", new PlayerLoggedOutEvent());
-
-		this.register("private_text", new PrivateTextEvent());
-
-		this.register("reached_achievement", new ReachedAchievementEvent());
-
-		this.register("show_item_list", new ShowItemListEvent());
-		this.register("show_outfit_list", new ShowOutfitListEvent());
-
-		this.register("sound_event", new SoundEvent());
-
-		this.register("text", new TextEvent());
-
-		this.register("transition_graph", new TransitionGraphEvent());
-
-		this.register("view_change", new ViewChangeEvent());
+		this.register("attack", AttackEvent);
+		this.register("bestiary", BestiaryEvent);
+		this.register("chat_options", ChatOptionsEvent);
+		this.register("examine", ExamineEvent);
+		this.register("global_visual_effect", GlobalVisualEffectEvent);
+		this.register("group_change_event", GroupChangeEvent);
+		this.register("group_invite_event", GroupInviteEvent);
+		this.register("image_event", ImageEvent);
+		this.register("player_logged_on", PlayerLoggedOnEvent);
+		this.register("player_logged_out", PlayerLoggedOutEvent);
+		this.register("private_text", PrivateTextEvent);
+		this.register("progress_status_event", ProgressStatusEvent);
+		this.register("reached_achievement", ReachedAchievementEvent);
+		this.register("show_item_list", ShowItemListEvent);
+		this.register("show_outfit_list", ShowOutfitListEvent);
+		this.register("sound_event", SoundEvent);
+		this.register("text", TextEvent);
+		this.register("trade_state_change_event", TradeEvent);
+		this.register("transition_graph", TransitionGraphEvent);
+		this.register("view_change", ViewChangeEvent);
 	}
 
 	/**
 	 * Registers a new event.
 	 *
-	 * @param _type
+	 * @param type
 	 *     String identifier.
-	 * @param _event
+	 * @param event
 	 *     Event to be registered.
 	 */
-	register(_type: string, _event: any) {
-		if (_event instanceof RPEvent) {
-			marauroa.rpeventFactory[_type] = _event;
-		} else {
-			marauroa.rpeventFactory[_type] =
-					marauroa.util.fromProto(marauroa.rpeventFactory["_default"], _event);
-		}
+	register(type: string, event: any) {
+		marauroa.rpeventFactory[type] = event;
 	}
 }
