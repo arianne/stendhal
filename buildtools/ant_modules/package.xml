@@ -16,7 +16,8 @@
 		<delete file="${build}/package/client/stendhal-starter.exe"/>
 	</target>
 
-	<target name="msiPackage" description="Creates MSI installer package from current build" depends="stagePackage">
+	<!-- Creates MSI installer package from current build. -->
+	<target name="msiPackage" depends="stagePackage">
 		<delete dir="${build}/package/msi-app-image"/>
 		<exec executable="jpackage" dir="." failonerror="true">
 			<arg line="--type app-image"/>
@@ -46,7 +47,8 @@
 		</exec>
 	</target> <!-- msiPackage -->
 
-	<target name="dmgPackage" description="Creates DMG package from current build" depends="stagePackage">
+	<!-- Creates DMG package from current build. -->
+	<target name="dmgPackage" depends="stagePackage">
 		<delete dir="${build}/package/dmg-app-image"/>
 		<exec executable="jpackage" dir="." failonerror="true">
 			<arg line="--type app-image"/>
@@ -74,7 +76,8 @@
 		</exec>
 	</target> <!-- dmgPackage -->
 
-	<target name="rpmPackage" description="Creates RPM package from current build" depends="stagePackage">
+	<!-- Creates RPM package from current build. -->
+	<target name="rpmPackage" depends="stagePackage">
 		<delete dir="${build}/package/rpm-app-image"/>
 		<exec executable="jpackage" dir="." failonerror="true">
 			<arg line="--type app-image"/>
@@ -107,7 +110,8 @@
 		</exec>
 	</target> <!-- rpmPackage -->
 
-	<target name="debPackage" description="Creates DEB package from current build" depends="stagePackage">
+	<!-- Creates DEB package from current build. -->
+	<target name="debPackage" depends="stagePackage">
 		<delete dir="${build}/package/deb-app-image"/>
 		<exec executable="jpackage" dir="." failonerror="true">
 			<arg line="--type app-image"/>
