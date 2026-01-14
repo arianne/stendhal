@@ -55,7 +55,6 @@
 				<pathelement path="${build_stendhaltools}"/>
 			</classpath>
 			<arg value="data/"/>
-			<arg value="tiled/"/>
 			<arg value="xml,xsd,lua,py"/>
 		</java>
 	</target> <!-- clean_whitespace -->
