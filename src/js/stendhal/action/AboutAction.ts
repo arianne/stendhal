@@ -28,7 +28,7 @@ export class AboutAction extends SlashAction {
 
 	execute(_type: string, _params: string[], _remainder: string): boolean {
 		const wstate = stendhal.config.getWindowState("about");
-		const offset = stendhal.ui.getPageOffset();
+		const offset = ui.getPageOffset();
 
 		const content = new AboutDialog();
 		const dialog = ui.createSingletonFloatingWindow(

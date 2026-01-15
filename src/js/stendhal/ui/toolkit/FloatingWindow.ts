@@ -10,9 +10,8 @@
  ***************************************************************************/
 
 import { stendhal } from "../../stendhal";
-
 import { Component } from "./Component";
-
+import { ui } from "../UI";
 import { Point } from "../../util/Point";
 
 
@@ -181,7 +180,7 @@ export class FloatingWindow extends Component {
 			clientAreaHeight = window.visualViewport?.height || 200;
 		}
 
-		const offset = stendhal.ui.getPageOffset();
+		const offset = ui.getPageOffset();
 
 		let newX = dialogArea.x;
 		let newY = dialogArea.y;
