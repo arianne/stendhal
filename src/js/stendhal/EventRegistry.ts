@@ -68,37 +68,26 @@ export class EventRegistry {
 		}
 		this.initialized = true;
 
-		this.register("attack", AttackEvent);
-		this.register("bestiary", BestiaryEvent);
-		this.register("chat_options", ChatOptionsEvent);
-		this.register("examine", ExamineEvent);
-		this.register("global_visual_effect", GlobalVisualEffectEvent);
-		this.register("group_change_event", GroupChangeEvent);
-		this.register("group_invite_event", GroupInviteEvent);
-		this.register("image_event", ImageEvent);
-		this.register("player_logged_on", PlayerLoggedOnEvent);
-		this.register("player_logged_out", PlayerLoggedOutEvent);
-		this.register("private_text", PrivateTextEvent);
-		this.register("progress_status_event", ProgressStatusEvent);
-		this.register("reached_achievement", ReachedAchievementEvent);
-		this.register("show_item_list", ShowItemListEvent);
-		this.register("show_outfit_list", ShowOutfitListEvent);
-		this.register("sound_event", SoundEvent);
-		this.register("text", TextEvent);
-		this.register("trade_state_change_event", TradeEvent);
-		this.register("transition_graph", TransitionGraphEvent);
-		this.register("view_change", ViewChangeEvent);
+		marauroa.rpeventFactory.register("attack", AttackEvent);
+		marauroa.rpeventFactory.register("bestiary", BestiaryEvent);
+		marauroa.rpeventFactory.register("chat_options", ChatOptionsEvent);
+		marauroa.rpeventFactory.register("examine", ExamineEvent);
+		marauroa.rpeventFactory.register("global_visual_effect", GlobalVisualEffectEvent);
+		marauroa.rpeventFactory.register("group_change_event", GroupChangeEvent);
+		marauroa.rpeventFactory.register("group_invite_event", GroupInviteEvent);
+		marauroa.rpeventFactory.register("image_event", ImageEvent);
+		marauroa.rpeventFactory.register("player_logged_on", PlayerLoggedOnEvent);
+		marauroa.rpeventFactory.register("player_logged_out", PlayerLoggedOutEvent);
+		marauroa.rpeventFactory.register("private_text", PrivateTextEvent);
+		marauroa.rpeventFactory.register("progress_status_event", ProgressStatusEvent);
+		marauroa.rpeventFactory.register("reached_achievement", ReachedAchievementEvent);
+		marauroa.rpeventFactory.register("show_item_list", ShowItemListEvent);
+		marauroa.rpeventFactory.register("show_outfit_list", ShowOutfitListEvent);
+		marauroa.rpeventFactory.register("sound_event", SoundEvent);
+		marauroa.rpeventFactory.register("text", TextEvent);
+		marauroa.rpeventFactory.register("trade_state_change_event", TradeEvent);
+		marauroa.rpeventFactory.register("transition_graph", TransitionGraphEvent);
+		marauroa.rpeventFactory.register("view_change", ViewChangeEvent);
 	}
 
-	/**
-	 * Registers a new event.
-	 *
-	 * @param type
-	 *     String identifier.
-	 * @param event
-	 *     Event to be registered.
-	 */
-	register(type: string, event: any) {
-		marauroa.rpeventFactory[type] = event;
-	}
 }
