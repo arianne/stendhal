@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { CorpseSlot } from "./CorpseSlot";
 import { RenderingContext2D } from "util/Types";
 import { ActivityIndicatorSprite } from "../sprite/ActivityIndicatorSprite";
 
@@ -20,6 +21,7 @@ import { Chat } from "../util/Chat";
 import { PopupInventory } from "./PopupInventory";
 import { Paths } from "../data/Paths";
 import { singletons } from "../SingletonRepo";
+import { MarauroaUtils } from "marauroa/MarauroaUtils";
 
 var marauroa = (window as any).marauroa = (window as any).marauroa || {};
 import { stendhal } from "../stendhal";
@@ -38,6 +40,7 @@ export class Corpse extends PopupInventory {
 		if (stendhal.config.getBoolean("activity-indicator")) {
 			this.indicator = new ActivityIndicatorSprite();
 		}
+		console.log('XXXX', MarauroaUtils.isEmpty({}), MarauroaUtils.isEmpty({'a': 'b'}));
 	}
 
 	override set(key: string, value: any) {
@@ -81,23 +84,8 @@ export class Corpse extends PopupInventory {
 	}
 
 	override createSlot(name: string) {
-		var slot = marauroa.util.fromProto(marauroa.rpslotFactory["_default"], {
-			add: function(object: any) {
-				marauroa.rpslotFactory["_default"].add.apply(this, arguments);
-				if (this._objects.length > 0) {
-					this._parent.autoOpenIfDesired();
-				}
-			},
-
-			del: function(key: any) {
-				marauroa.rpslotFactory["_default"].del.apply(this, arguments);
-				if (this._objects.length == 0) {
-					this._parent.closeCorpseInventory();
-				}
-			}
-		});
+		let slot = new CorpseSlot();
 		slot._name = name;
-		slot._objects = [];
 		slot._parent = this;
 		return slot;
 	}
