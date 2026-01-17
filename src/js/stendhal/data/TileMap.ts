@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-var marauroa = (window as any).marauroa = (window as any).marauroa || {};
+import { Deserializer } from "marauroa"
 import { stendhal } from "../stendhal";
 
 import { Paths } from "./Paths";
@@ -141,7 +141,7 @@ export class TileMap {
 
 	decodeTileset(content: any, name: string) {
 		var layerData = content[name];
-		var deserializer = marauroa.Deserializer.fromBase64(layerData);
+		var deserializer = Deserializer.fromBase64(layerData);
 		var amount = deserializer.readInt() as number;
 
 		this.tilesetFilenames = [];
@@ -195,7 +195,7 @@ export class TileMap {
 		if (!layerData) {
 			return;
 		}
-		var deserializer = marauroa.Deserializer.fromDeflatedBase64(layerData);
+		var deserializer = Deserializer.fromDeflatedBase64(layerData);
 		deserializer.readString(); // zone name
 		this.zoneSizeX = deserializer.readInt();
 		this.zoneSizeY = deserializer.readInt();

@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-var marauroa = (window as any).marauroa = (window as any).marauroa || {};
+import { marauroa } from "marauroa"
 
 import { ChatCompletionHelper } from "./ChatCompletionHelper";
 import { Direction } from "./Direction";

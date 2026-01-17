@@ -12,7 +12,7 @@
 import { Paths } from "../data/Paths";
 import { NPC } from "./NPC";
 
-var marauroa = (window as any).marauroa = (window as any).marauroa || {};
+import { marauroa } from "marauroa"
 import { stendhal } from "../stendhal";
 
 

@@ -14,7 +14,7 @@ import { UIComponentEnum } from "../UIComponentEnum";
 import { Component } from "../toolkit/Component";
 import { ChatInputComponent } from "../component/ChatInputComponent";
 
-var marauroa = (window as any).marauroa = (window as any).marauroa || {};
+import { marauroa } from "marauroa"
 import { stendhal } from "../../stendhal";
 
 export class ActionContextMenu extends Component {

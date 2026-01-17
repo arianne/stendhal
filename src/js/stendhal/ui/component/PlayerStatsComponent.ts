@@ -22,7 +22,7 @@ import { singletons } from "../../SingletonRepo";
 
 import { Item } from "../../entity/Item";
 
-var marauroa = (window as any).marauroa = (window as any).marauroa || {};
+import { marauroa } from "marauroa"
 import { stendhal } from "../../stendhal";
 
 

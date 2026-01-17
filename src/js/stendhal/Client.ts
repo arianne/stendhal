@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-var marauroa = (window as any).marauroa = (window as any).marauroa || {};
+import { marauroa, Deserializer } from "marauroa"
 import { stendhal } from "./stendhal";
 
 import { PerceptionListener } from "./PerceptionListener";
@@ -474,7 +474,7 @@ export class Client {
 	 */
 	onDataMap(data: any) {
 		var zoneinfo = {} as {[key: string]: string};
-		var deserializer = marauroa.Deserializer.fromBase64(data);
+		var deserializer = Deserializer.fromBase64(data);
 		deserializer.readAttributes(zoneinfo);
 		(ui.get(UIComponentEnum.ZoneInfo) as ZoneInfoComponent).zoneChange(zoneinfo);
 

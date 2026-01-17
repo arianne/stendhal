@@ -15,7 +15,7 @@ import { Entity } from "./Entity";
 import { Paths } from "../data/Paths";
 import { singletons } from "../SingletonRepo";
 
-var marauroa = (window as any).marauroa = (window as any).marauroa || {};
+import { marauroa } from "marauroa"
 
 
 export class GrowingEntitySpawner extends Entity {

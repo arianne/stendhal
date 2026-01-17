@@ -19,7 +19,7 @@ import { OutfitPaletteColorSelector } from "./OutfitPaletteColorSelector";
 
 import { OutfitPreviewComponent } from "../../component/OutfitPreviewComponent";
 
-var marauroa = (window as any).marauroa = (window as any).marauroa || {};
+import { marauroa } from "marauroa"
 import { stendhal } from "../../../stendhal";
 
 

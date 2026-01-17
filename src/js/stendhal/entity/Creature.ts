@@ -18,7 +18,7 @@ import { Color } from "../data/color/Color";
 import { SkillEffect } from "../sprite/action/SkillEffect";
 import { Paths } from "../data/Paths";
 
-var marauroa = (window as any).marauroa = (window as any).marauroa || {};
+import { marauroa } from "marauroa"
 import { stendhal } from "../stendhal";
 
 export class Creature extends RPEntity {

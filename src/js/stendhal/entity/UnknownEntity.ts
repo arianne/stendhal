@@ -11,7 +11,7 @@
 
 import { Entity } from "./Entity";
 
-var marauroa = (window as any).marauroa = (window as any).marauroa || {};
+import { marauroa } from "marauroa"
 
 export class UnknownEntity extends Entity {
 

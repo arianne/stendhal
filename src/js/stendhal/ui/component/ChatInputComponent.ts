@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-var marauroa = (window as any).marauroa = (window as any).marauroa || {};
+import { marauroa } from "marauroa"
 
 import { ChatPanel } from "../ChatPanel";
 import { ui } from "../UI";

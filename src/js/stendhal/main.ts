@@ -9,9 +9,6 @@
  *                                                                         *
  ***************************************************************************/
 
-(window as any).marauroa = (window as any).marauroa || {};
-
-
 import { stendhal } from "./stendhal";
 import { Client } from "./Client";
 

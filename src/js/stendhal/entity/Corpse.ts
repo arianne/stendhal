@@ -23,7 +23,7 @@ import { Paths } from "../data/Paths";
 import { singletons } from "../SingletonRepo";
 import { MarauroaUtils } from "marauroa/MarauroaUtils";
 
-var marauroa = (window as any).marauroa = (window as any).marauroa || {};
+import { marauroa } from "marauroa"
 import { stendhal } from "../stendhal";
 
 export class Corpse extends PopupInventory {

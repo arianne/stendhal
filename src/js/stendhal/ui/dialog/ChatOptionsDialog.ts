@@ -14,7 +14,7 @@ import { DialogContentComponent } from "../toolkit/DialogContentComponent";
 import { Chat } from "../../util/Chat";
 import { singletons } from "../../SingletonRepo";
 
-var marauroa = (window as any).marauroa = (window as any).marauroa || {};
+import { marauroa } from "marauroa"
 import { stendhal } from "../../stendhal";
 
 

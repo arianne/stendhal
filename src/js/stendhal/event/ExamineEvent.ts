@@ -13,7 +13,7 @@ import { ImageViewerDialog } from "../ui/dialog/ImageViewerDialog";
 import { ui } from "../ui/UI";
 import { RPEvent } from "./RPEvent";
 
-var marauroa = (window as any).marauroa = (window as any).marauroa || {};
+import { marauroa } from "marauroa"
 
 /**
  * shows an image for a detail view

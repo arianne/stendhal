@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-var marauroa = (window as any).marauroa = (window as any).marauroa || {};
+import { marauroa } from "marauroa"
 
 import { AttackEvent } from "event/AttackEvent";
 import { BestiaryEvent } from "./event/BestiaryEvent";

@@ -21,7 +21,7 @@ import { ItemInventoryComponent } from "../ui/component/ItemInventoryComponent";
 import { Chat } from "../util/Chat";
 import { Paths } from "../data/Paths";
 
-var marauroa = (window as any).marauroa = (window as any).marauroa || {};
+import { marauroa } from "marauroa"
 import { stendhal } from "../stendhal";
 
 
