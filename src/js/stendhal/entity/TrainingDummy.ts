@@ -13,7 +13,6 @@ import { Paths } from "../data/Paths";
 import { NPC } from "./NPC";
 
 import { marauroa } from "marauroa"
-import { stendhal } from "../stendhal";
 
 
 export class TrainingDummy extends NPC {

@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { RPEvent } from "./RPEvent";
+import { RPEvent } from "marauroa"
 
 export class ImageEvent extends RPEvent {
 

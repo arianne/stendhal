@@ -12,7 +12,7 @@
 import { RenderingContext2D } from "util/Types";
 import { MenuItem } from "../action/MenuItem";
 import { Chat } from "../util/Chat";
-import { RPObject } from "./RPObject";
+import { RPObject } from "marauroa";
 import { Paths } from "../data/Paths";
 import { singletons } from "../SingletonRepo";
 

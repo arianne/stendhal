@@ -28,7 +28,7 @@ export class NPC extends RPEntity {
 		this["base_hp"] = 100;
 	}
 
-	override set(key: string, value: string) {
+	override set(key: string, value: any) {
 		super.set(key, value);
 
 		if (key === "name") {

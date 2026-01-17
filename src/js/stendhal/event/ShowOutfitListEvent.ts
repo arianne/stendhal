@@ -10,7 +10,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { RPEvent } from "./RPEvent";
+import { RPEvent } from "marauroa"
 
 import { ui } from "../ui/UI";
 import { DialogContentComponent } from "../ui/toolkit/DialogContentComponent";

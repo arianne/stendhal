@@ -12,8 +12,6 @@
 import { Paths } from "../data/Paths";
 import { Entity } from "./Entity";
 
-import { stendhal } from "../stendhal";
-
 export class InvisibleEntity extends Entity {
 
 	override isVisibleToAction(_filter: boolean) {

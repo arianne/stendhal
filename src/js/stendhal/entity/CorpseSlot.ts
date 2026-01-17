@@ -10,7 +10,7 @@
  ***************************************************************************/
 
 import { Corpse } from "./Corpse";
-import { RPSlot } from "./RPSlot";
+import { RPSlot } from "marauroa";
 
 export class CorpseSlot extends RPSlot {
 

@@ -13,7 +13,7 @@
 import { stendhal } from "../stendhal";
 
 import { Canvas } from "util/Types";
-import { RPEvent } from "./RPEvent";
+import { RPEvent } from "marauroa"
 
 
 /**

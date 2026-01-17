@@ -10,7 +10,7 @@
  ***************************************************************************/
 
 import { Chat } from "util/Chat";
-import { RPEvent } from "./RPEvent";
+import { RPEvent } from "marauroa"
 import { stendhal } from "stendhal";
 
 /**

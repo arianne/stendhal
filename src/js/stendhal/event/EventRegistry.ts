@@ -12,25 +12,25 @@
 import { marauroa } from "marauroa"
 
 import { AttackEvent } from "event/AttackEvent";
-import { BestiaryEvent } from "./event/BestiaryEvent";
-import { ChatOptionsEvent } from "./event/ChatOptionsEvent";
-import { ExamineEvent } from "./event/ExamineEvent";
+import { BestiaryEvent } from "./BestiaryEvent";
+import { ChatOptionsEvent } from "./ChatOptionsEvent";
+import { ExamineEvent } from "./ExamineEvent";
 import { GlobalVisualEffectEvent } from "event/GlobalVisualEffectEvent";
-import { GroupChangeEvent } from "./event/GroupChangeEvent";
-import { GroupInviteEvent } from "./event/GroupInviteEvent";
+import { GroupChangeEvent } from "./GroupChangeEvent";
+import { GroupInviteEvent } from "./GroupInviteEvent";
 import { ImageEvent } from "event/ImageEvent";
-import { PlayerLoggedOnEvent } from "./event/PlayerLoggedOnEvent";
-import { PlayerLoggedOutEvent } from "./event/PlayerLoggedOutEvent";
+import { PlayerLoggedOnEvent } from "./PlayerLoggedOnEvent";
+import { PlayerLoggedOutEvent } from "./PlayerLoggedOutEvent";
 import { PrivateTextEvent } from "event/PrivateTextEvent";
-import { ProgressStatusEvent } from "./event/ProgressStatusEvent";
+import { ProgressStatusEvent } from "./ProgressStatusEvent";
 import { ReachedAchievementEvent } from "event/ReachedAchievementEvent";
-import { ShowItemListEvent } from "./event/ShowItemListEvent";
-import { ShowOutfitListEvent } from "./event/ShowOutfitListEvent";
-import { SoundEvent } from "./event/SoundEvent";
+import { ShowItemListEvent } from "./ShowItemListEvent";
+import { ShowOutfitListEvent } from "./ShowOutfitListEvent";
+import { SoundEvent } from "./SoundEvent";
 import { TextEvent } from "event/TextEvent";
-import { TradeEvent } from "./event/TradeEvent";
+import { TradeEvent } from "./TradeEvent";
 import { TransitionGraphEvent } from "event/TransitionGraphEvent";
-import { ViewChangeEvent } from "./event/ViewChangeEvent";
+import { ViewChangeEvent } from "./ViewChangeEvent";
 
 
 export class EventRegistry {

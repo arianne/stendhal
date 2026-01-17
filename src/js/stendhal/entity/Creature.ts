@@ -28,7 +28,7 @@ export class Creature extends RPEntity {
 	override titleStyle = "#ffc8c8";
 
 
-	override set(key: string, value: string) {
+	override set(key: string, value: any) {
 		super.set(key, value);
 
 		if (key === "name") {

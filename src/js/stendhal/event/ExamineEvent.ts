@@ -11,7 +11,7 @@
 
 import { ImageViewerDialog } from "../ui/dialog/ImageViewerDialog";
 import { ui } from "../ui/UI";
-import { RPEvent } from "./RPEvent";
+import { RPEvent } from "marauroa"
 
 import { marauroa } from "marauroa"
 

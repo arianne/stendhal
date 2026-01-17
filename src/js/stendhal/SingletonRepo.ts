@@ -10,7 +10,7 @@
  ***************************************************************************/
 
 import { Client } from "./Client";
-import { EventRegistry } from "./EventRegistry";
+import { EventRegistry } from "./event/EventRegistry";
 import { SlashActionRepo } from "./SlashActionRepo";
 
 import { Zone } from "./entity/Zone";

@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { marauroa, Deserializer } from "marauroa"
+import { marauroa, Deserializer, RPObject } from "marauroa"
 import { stendhal } from "./stendhal";
 
 import { PerceptionListener } from "./PerceptionListener";
@@ -21,7 +21,6 @@ import { Color } from "./data/color/Color";
 
 import { EntityRegistry } from "./entity/EntityRegistry";
 import { Ground } from "./entity/Ground";
-import { RPObject } from "./entity/RPObject";
 
 import { ui } from "./ui/UI";
 import { UIComponentEnum } from "./ui/UIComponentEnum";
@@ -79,7 +78,7 @@ export class Client {
 	 * Hidden singleton constructor.
 	 */
 	private constructor() {
-		// do nothing
+		// empty
 	}
 
 	/**
@@ -260,7 +259,7 @@ export class Client {
 	 * Registers Marauroa event handlers.
 	 */
 	registerMarauroaEventHandlers() {
-		marauroa.clientFramework.onDisconnect = function(_reason: string, _error: string) {
+		marauroa.clientFramework.onDisconnect = function(_reason: string, _code: number, _wasClean: boolean) {
 			if (!Client.instance.unloading) {
 				Chat.logH("error", "Disconnected from server.");
 				if (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1" && window.location.hostname !== "::1") {

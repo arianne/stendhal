@@ -10,7 +10,7 @@
  ***************************************************************************/
 
 import { stendhal } from "stendhal";
-import { RPEvent } from "./RPEvent";
+import { RPEvent } from "marauroa"
 
 /**
  * displays an achievement banner

@@ -16,7 +16,7 @@ import { AbstractEnum } from "../enum/AbstractEnum";
 /**
  * Available layers of sound.
  *
- * NOTE: string names should match `games.stendhal.common.constants.SoundLayer`
+ * string names should match `games.stendhal.common.constants.SoundLayer`
  */
 export class SoundLayer extends AbstractEnum<string> {
 
@@ -28,9 +28,6 @@ export class SoundLayer extends AbstractEnum<string> {
 	static readonly CREATURE = new SoundLayer("creature");
 	static readonly SFX = new SoundLayer("sfx");
 	static readonly GUI = new SoundLayer("gui");
-
-	/** Value is required. */
-	override readonly value!: string;
 
 
 	private constructor(value: string) {
@@ -47,7 +44,7 @@ export class SoundLayer extends AbstractEnum<string> {
 	static names(): string[] {
 		const names: string[] = [];
 		for (const layer of SoundLayer.layers) {
-			names.push(layer.value);
+			names.push(layer.value!);
 		}
 		return names;
 	}

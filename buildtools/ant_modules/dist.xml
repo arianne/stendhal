@@ -679,7 +679,7 @@
 	<target name="js-prepare-build">
 		<mkdir dir="node_modules/marauroa"/>
 		<echo file="node_modules/marauroa/build.js">
-export function version(stendhal) {
+export function version(marauroa, stendhal) {
 	stendhal.data = stendhal.data || {};
 
 	stendhal.data.build = {

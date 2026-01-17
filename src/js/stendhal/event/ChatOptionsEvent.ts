@@ -11,7 +11,7 @@
 
 import { Chat } from "../util/Chat";
 import { ChatOptionsDialog } from "../ui/dialog/ChatOptionsDialog";
-import { RPEvent } from "./RPEvent";
+import { RPEvent } from "marauroa"
 
 import { marauroa } from "marauroa"
 

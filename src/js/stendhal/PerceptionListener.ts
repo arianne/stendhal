@@ -11,7 +11,7 @@
 
 import { stendhal } from "./stendhal";
 
-import { RPObject } from "./entity/RPObject";
+import { RPObject } from "marauroa";
 
 
 /**

@@ -23,6 +23,7 @@ import { Paths } from "../data/Paths";
 
 import { marauroa } from "marauroa"
 import { stendhal } from "../stendhal";
+import { Entity } from "./Entity";
 
 
 let OPEN_SPRITE = {
@@ -53,7 +54,7 @@ export class Chest extends PopupInventory {
 			this.sprite = OPEN_SPRITE;
 			this.open = true;
 		}
-		if (this.isNextTo(marauroa.me)) {
+		if (this.isNextTo(marauroa.me as Entity)) {
 			this.openInventoryWindow();
 		}
 	}
