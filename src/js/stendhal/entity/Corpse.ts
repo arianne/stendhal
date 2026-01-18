@@ -21,7 +21,7 @@ import { Chat } from "../util/Chat";
 import { PopupInventory } from "./PopupInventory";
 import { Paths } from "../data/Paths";
 import { singletons } from "../SingletonRepo";
-import { MarauroaUtils } from "marauroa/MarauroaUtils";
+import { MarauroaUtils } from "marauroa";
 
 import { marauroa } from "marauroa"
 import { stendhal } from "../stendhal";
