@@ -1,14 +1,14 @@
 {
 	"compilerOptions": {
 		"baseUrl": ".",
-		"lib": ["dom", "es2015"],
-		"module": "commonjs",
+		"lib": ["dom", "es2022"],
+		"module": "node20",
 		"noImplicitOverride": true,
 		"outDir": "../../../build/ts",
 		"rootDir": ".",
 		"sourceMap": true,
 		"strict": true,
-		"target": "es6"
+		"target": "es2022"
 	},
 	"typedocOptions": {
 		"entryPoints": ["."],

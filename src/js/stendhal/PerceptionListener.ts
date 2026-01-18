@@ -9,29 +9,23 @@
  *                                                                         *
  ***************************************************************************/
 
+import { ui } from "ui/UI";
 import { stendhal } from "./stendhal";
 
-import { RPObject } from "marauroa";
+import { RPObject, PerceptionListener } from "marauroa";
+import { UIComponentEnum } from "ui/UIComponentEnum";
+import { MiniMapComponent } from "ui/component/MiniMapComponent";
+import { BuddyListComponent } from "ui/component/BuddyListComponent";
+import { PlayerEquipmentComponent } from "ui/component/PlayerEquipmentComponent";
+import { singletons } from "SingletonRepo";
+import { Client } from "Client";
 
 
 /**
  * Class to override `marauroa.perceptionListener` & handle creating
  * User object.
  */
-export class PerceptionListener {
-	[key: string]: any;
-	private readonly _super: any;
-
-
-	constructor(perceptionListener: any) {
-		this._super = perceptionListener;
-		for (const prop of Object.getOwnPropertyNames(perceptionListener)) {
-			if (typeof(this[prop]) === "undefined") {
-				// members & methods that are not overridden by this class
-				this[prop] = perceptionListener[prop];
-			}
-		}
-	}
+export class StendhalPerceptionListener extends PerceptionListener {
 
 	/**
 	 * Action when an object is added to the world.
@@ -42,7 +36,7 @@ export class PerceptionListener {
 	 *   `true` if object was added.
 	 * @see marauroa.perceptionListener.onAdded
 	 */
-	onAdded(obj: RPObject): boolean {
+	override onAdded(obj: RPObject): boolean {
 		if (obj["c"] === "player") {
 			if (obj.hasOwnProperty("a")) {
 				if (obj["a"]["name"] === stendhal.session.getCharName()) {
@@ -51,6 +45,28 @@ export class PerceptionListener {
 				}
 			}
 		}
-		return this._super.onAdded(obj);
+		return super.onAdded(obj);
+	}
+
+	override onPerceptionEnd(_type: Int8Array, _timestamp: number) {
+		stendhal.zone.sortEntities();
+		(ui.get(UIComponentEnum.MiniMap) as MiniMapComponent).draw();
+		(ui.get(UIComponentEnum.BuddyList) as BuddyListComponent).update();
+		stendhal.ui.equip.update();
+		(ui.get(UIComponentEnum.PlayerEquipment) as PlayerEquipmentComponent).update();
+		if (!Client.get().loaded) {
+			Client.get().loaded = true;
+			// delay visibile change of client a little to allow for initialisation in the background for a smoother experience
+			window.setTimeout(function() {
+				let body = document.getElementById("body")!;
+				body.style.cursor = "auto";
+				document.getElementById("client")!.style.display = "block";
+				document.getElementById("loginpopup")!.style.display = "none";
+
+				// initialize observer after UI is ready
+				singletons.getUIUpdateObserver().init();
+				ui.onDisplayReady();
+			}, 300);
+		}
 	}
 }
