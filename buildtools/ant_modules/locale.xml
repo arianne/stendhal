@@ -3,7 +3,7 @@
 <project xmlns:if="ant:if" xmlns:unless="ant:unless">
 
 	<!-- Creates a template for translating. -->
-	<target name="locale_build_template">
+	<target name="locale_template">
 		<echo unless:true="${python.present}" message="Python unavailable, cannot build locale template"/>
 
 		<exec executable="${executable.python}" if:true="${python.present}" failonerror="true">

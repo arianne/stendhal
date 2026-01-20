@@ -73,7 +73,7 @@
 		<echo level="info" message="    docs: ........................ Generate HTML documentation for Java, TypeScript, and Lua APIs." />
 		<echo level="info" />
 		<echo level="info" message="Localization:" />
-		<echo level="info" message="    locale_build_template: ....... Creates a template for translating." />
+		<echo level="info" message="    locale_template: ............. Creates a template for translating." />
 		<echo level="info" message="    locale_update: ............... Update translation files from template." />
 		<echo level="info" />
 		<echo level="info" message="Aliases:" />
