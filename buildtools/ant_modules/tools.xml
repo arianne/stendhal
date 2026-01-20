@@ -74,10 +74,6 @@
 	</target> <!-- clean_whitespace -->
 
 
-	<!-- Alias of `clean_whitespace`. -->
-	<target name="cleanwhitespace" depends="clean_whitespace" />
-
-
 	<!-- Build postman bot. -->
 	<target name="postman">
 		<mkdir dir="${buildroot}/buildbot"/>

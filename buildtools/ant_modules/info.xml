@@ -77,8 +77,6 @@
 		<echo level="info" message="    locale_update: ............... Update translation files from template." />
 		<echo level="info" />
 		<echo level="info" message="Aliases:" />
-		<echo level="info" message="    build_webclient: ............. Alias of `webclient_build`." />
-		<echo level="info" message="    cleanwhitespace: ............. Alias of `clean_whitespace`." />
 		<echo level="info" message="    compile_stendhaltextclient: .. Alias of `compile_textclient`." />
 		<echo level="info" message="    compile_stendhaltools: ....... Alias of `compile_tools`." />
 		<echo level="info" />
