@@ -643,8 +643,8 @@ You see a carrot. It can be an ingredient, or you can eat it.=Ves una zanahoria.
 cauliflower=coliflor
 You see a fresh head of cauliflower.=Ves la cabeza de una fresca coliflor.
 
-zucchini=
-You see a zucchini. It can be an ingredient, or you can eat it.=
+zucchini=calabacín
+You see a zucchini. It can be an ingredient, or you can eat it.=Ves un calabacín. Puede ser un ingrediente, o te lo puedes comer.
 
 collard=col
 You see a collard. It's rare and strangely magical.=Ves una col. Es rara y extrañamente mágica.
@@ -658,7 +658,7 @@ You see a fresh leek.=Ves un puerro fresco.
 onion=cebolla
 You see an onion.=Ves una cebolla.
 
-lettuce=
+lettuce=lechuga
 
 spinach=espinacas
 You see spinach. It is enriched with vitamins.=Ves espinacas. Está enriquecida con vitaminas.
@@ -2881,10 +2881,6 @@ blank scroll=pergamino en blanco
 You see a rolled up blank scroll.=Ves un pergamino enrollado y en blanco
 ice scroll=pergamino de hielo
 You see a scroll, circled by ice crystals. You can feel its cold aura.=Ves un pergamino, rodeado por cristales de hielo. Puedes sentir su fría aura.
-salad=ensalada
-You see a salad.=Ves una ensalada.
-courgette=calabacín
-You see a courgette. It can be an ingredient, or you can eat it.=Ves un calabacín. Puede ser un ingrediente, o te lo puedes comer.
 fado hotel key 001=llave 001 del hotel de fado
 You see a key to room #001 in the Fado Hotel.=Ves una llave de la habitación #001 del hotel de Fado.
 fado hotel key 002=llave 002 del hotel de fado
