@@ -458,7 +458,7 @@ assassins id=identificación de asesino
 You see an assassin's ID. Perhaps this can be put to good use.=Ves una identificación de asesino. Quizá puedas hacer un buen uso de ella.
 
 map=mapa
-You see a hand drawn map, but no matter how you look at it, nothing on it looks familiar.=
+You see a hand drawn map, but no matter how you look at it, nothing on it looks familiar.=Ves un mapa dibujado a mano. Pero por mucho que lo mires, no hay nada en él que parece familiar.
 
 
 ## drinks
