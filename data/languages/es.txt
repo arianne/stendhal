@@ -111,17 +111,17 @@ You see a shining steel arrow. With plenty of these, and a good bow, you'll be a
 golden arrow=flecha de oro
 You see a golden arrow. With a fist full of these and a good bow, you will surely take down your enemies quicker.=Ves una flecha de oro. Con un puñado de éstas y un buen arco, derribarás a tus enemigos más rápido.
 
-fire arrow=
-You see a fire arrow. The tip burns brightly.=
+fire arrow=flecha de fuego
+You see a fire arrow. The tip burns brightly.=Ves una flecha de fuego. La punta arde brillantemente.
 
-ice arrow=
-You see an ice arrow. It can deliver a bitter sting.=
+ice arrow=flecha de hielo
+You see an ice arrow. It can deliver a bitter sting.=Ves una flecha de hielo. Puede infligir una picadura penosa.
 
-light arrow=
-You see a light arrow. It shines with a holy radiance.=
+light arrow=flecha de luz
+You see a light arrow. It shines with a holy radiance.=Ves una flecha de luz. Brilla con un resplandor santo.
 
-dark arrow=
-You see a dark arrow. It's hard to describe.=
+dark arrow=flecha de oscuridad
+You see a dark arrow. It's hard to describe.=Ves una flecha de oscuridad. Es difícil de describir.
 
 power arrow=flecha de potencia
 You see a power arrow. The sting of this arrow will surely defeat your enemies, when equipped with a bow.=Ves una flecha de potencia. La punzada de esta flecha seguramente derrotará a tus enemigos, cuando vaya equipada con un arco.
@@ -186,8 +186,8 @@ You see the black book that Jynath kept out for so long.=Ves el libro negro que 
 blue book=libro azul
 You see a book with the words GEMS AND MINERALS on the front cover.=Ves un libro azul con las palabras GEMAS Y MINERALES en la cubierta frontal.
 
-bestiary=
-You see a bestiary, containing information about enemies found in Faiumoni.=
+bestiary=bestiario
+You see a bestiary, containing information about enemies found in Faiumoni.=Ves un bestiario que contiene información sobre los enemigos encontrados en Faiumoni.
 
 
 ## boots
@@ -320,8 +320,8 @@ You see a red cloak covered in polka dots. It's terribly snazzy.=Ves una capa ro
 red dragon cloak=capa de dragón rojo
 You see a red dragon cloak. He didn't have one for a long time but finally caved in to peer pressure and got one.=Ves una capa de dragón rojo. Él no había tenido ninguna durante mucho tiempo pero finalmente cedió a la presión de sus compañeros y se buscó una.
 
-royal cloak=
-You see a royal cloak. It will protect you against mighty foes.=
+royal cloak=capa real
+You see a royal cloak. It will protect you against mighty foes.=Ves una capa real. Te protegará contra enemigos poderosos.
 
 shadow cloak=capa de sombra
 You see a shadow cloak, in colors of the shadow armor.=Ves una capa de sombra, en los mismos colores que la armadura de sombra.
@@ -416,26 +416,26 @@ You see an empty goblet. You wonder what could it hold.=Ves una copa vacía. Te 
 goblet=copa
 You see a goblet. You look at its contents, and shiver at the blood inside.=Ves una copa. Miras su contenido, y sientes escalofríos al ver sangre dentro.
 
-vial=
-You see a vial used in chemestry.=
+vial=ampolleta
+You see a vial used in chemestry.=Ves una ampolleta utilizada en química.
 
 
 ## crystals
 
-red emotion crystal=
-You see a red emotion crystal. It feels hot to the touch.=
+red emotion crystal=cristal rojo de emoción
+You see a red emotion crystal. It feels hot to the touch.=Ves un cristal rojo de emoción. Se siente caliente al tacto.
 
-purple emotion crystal=
-You see a purple emotion crystal. It feels cold to the touch.=
+purple emotion crystal=cristal morado de emoción
+You see a purple emotion crystal. It feels cold to the touch.=Ves un cristal morado de emoción. Se siente frío al tacto.
 
-yellow emotion crystal=
-You see a yellow emotion crystal. It energizes you.=
+yellow emotion crystal=cristal amarillo de emoción
+You see a yellow emotion crystal. It energizes you.=Ves un cristal amarillo de emoción. Te da energía.
 
-pink emotion crystal=
-You see a pink emotion crystal. It almost feels soft.=
+pink emotion crystal=cristal rosa de emoción
+You see a pink emotion crystal. It almost feels soft.=Ves un cristal rosa de emoción. Casi se siente suave.
 
-blue emotion crystal=
-You see a blue emotion crystal. While holding it your worries seem to disappear.=
+blue emotion crystal=cristal azul de emoción
+You see a blue emotion crystal. While holding it your worries seem to disappear.=Ves un cristal azul de emoción. Mientras al sujetarlo tus preocupaciones parecen desaparecer.
 
 
 ## documents
@@ -463,11 +463,11 @@ You see a hand drawn map, but no matter how you look at it, nothing on it looks 
 
 ## drinks
 
-olive oil=
-You see a bottle of olive oil. Do not drink it pure, it will make you feel sick!=
+olive oil=aceite de oliva
+You see a bottle of olive oil. Do not drink it pure, it will make you feel sick!=Ves una botella de aceite de oliva. No lo bebas puro, ¡te hará sentir mal!
 
-vinegar=
-You see a bottle of vinegar. Do not drink it pure, it will make you feel sick!=
+vinegar=vinagre
+You see a bottle of vinegar. Do not drink it pure, it will make you feel sick!=Ves una botella de vinagre. No lo bebas puro, ¡te hará sentir mal!
 
 fierywater=aguardiente
 You see a bottle of fierywater. Do not drink it pure, you would evaporate!=Ves una botella de aguardiente. No te la bebas pura, ¡Te evaporarías!
@@ -508,8 +508,8 @@ You see an antidote, to cure you of poison and protect you for a while.=Ves un a
 greater antidote=antidoto mayor
 You see a greater antidote, to cure you of poison and protect you for a long while.=Ves un antidoto mayor, para curarte de venenos y protegerte durante un largo rato.
 
-mana=
-You see an bottle of mana, to increase your mana rapidly.=
+mana=maná
+You see an bottle of mana, to increase your mana rapidly.=Ves una botella de maná, para rellenar tu maná rápidamente.
 
 poison=veneno
 You see a bottle of poison. Don't drink it!=Ves una botella de veneno ¡No te la tomes!
@@ -550,17 +550,17 @@ You see a mega potion. It strengthens greatly.=Ves una mega poción. Te fortalec
 love potion=poción de amor
 You see a love potion. It looks powerful so take care to use it carefully!=Ves una poción de amor ¡Parece potente así que ten cuidado de usarla con precaución!
 
-sedative=
-You see a sedative. It's effects can protect you from a shocked state.=
+sedative=sedante
+You see a sedative. It's effects can protect you from a shocked state.=Ves un sedante. Sus efectos pueden protegerte de un estado de shock.
 
-ashen holy water=
-A bottle of ashen holy water.=
+ashen holy water=agua santa cenizada
+A bottle of ashen holy water.=Ves una botella de agua santa cenizada.
 
-cobra venom=
-You see a vial filled with cobra venom. Even in this small amount, it could be deadly if ingested.=
+cobra venom=veneno de cobra
+You see a vial filled with cobra venom. Even in this small amount, it could be deadly if ingested.=Ves una ampolleta llena de veneno de cobra. Aun en esta pequeña cantidad, podría ser letal si se ingiere.
 
-antivenom=
-You see a vial filled with antivenom.=
+antivenom=antiveneno
+You see a vial filled with antivenom.=Ves una ampolleta llena de antiveneno.
 
 
 ## flowers
@@ -589,11 +589,11 @@ You see a zantedeschia, a delicate bloom with the sweetest fragrance.=Ves una za
 apple=manzana
 You see a nice shiny apple.=Ves una bonita y brillante manzana.
 
-purple apple=
-You see a purple apple. It is loaded with memories=
+purple apple=manzana morada
+You see a purple apple. It is loaded with memories=Ves una manzana morada. Está cargada de recuerdos.
 
-mauve apple=
-You see a mauve apple. It is loaded with memories=
+mauve apple=manzana malva
+You see a mauve apple. It is loaded with memories=Ves una manzana malva. Está cargada de recuerdos.
 
 black apple=manzana negra
 You see a black apple. It must be a gift from lil Johnnnny. He's the guy with black items.=Ves una manzana negra. Debe de ser un regalo del pequeño Johnnny
@@ -684,8 +684,8 @@ You see a char, with a fleshy pink belly.=Ves un salvelinus, con un vientre carn
 cod=bacalao
 You see a cod.=Ves un bacalao.
 
-smoked cod=
-You see a smoked cod.=
+smoked cod=bacalao ahumado
+You see a smoked cod.=Ves un bacalao ahumado.
 
 mackerel=caballa
 You see a mackerel.=Ves una caballa.
@@ -708,8 +708,8 @@ You see a bright blue surgeonfish.=Ves un pez cirujano de color azul brillante.
 trout=trucha
 You see a trout.=Ves una trucha.
 
-smoked trout=
-You see a smoked trout.=
+smoked trout=trucha ahumado
+You see a smoked trout.=Ves una trucha ahumada.
 
 bread=pan
 You see a loaf of bread. It is freshly baked and ready to eat.=Ves una barra de pan. Está recién horneada y lista para comer.
@@ -732,8 +732,8 @@ You see a crepes suzette topped with hot chocolate sauce.=Ves una crepe suzette 
 sandwich=sandwich
 You see a ham and cheese sandwich.=Ves un sandwich de jamón y queso.
 
-smoked ham=
-You see a smoked ham.=
+smoked ham=jamón ahumado
+You see a smoked ham.=Ves un jamón ahumado.
 
 sugar=azúcar
 You see a sack of raw sugar.=Ves un saco de azúcar no refinado.
@@ -771,8 +771,8 @@ You see a scrumptious chocolate shake. Absolutely NO calories.=Ves un batido de 
 vanilla shake=batido de vainilla
 You see a yummy vanilla shake. Absolutely NO calories.=Ves un sabroso batido de vainilla. Absolutamente SIN calorías.
 
-potato=
-You see a potato.=
+potato=papa
+You see a potato.=Ves una papa.
 
 habanero pepper=
 You see a habanero pepper. Could be a very HOT ingredient for a decent meal...=
@@ -819,8 +819,8 @@ You see a juicy ham.=Ves un jugoso jamón.
 meat=carne
 You see a piece of meat.=Ves un pedazo de carne.
 
-smoked meat=
-You see a piece of smoked meat.=
+smoked meat=carne ahumado
+You see a piece of smoked meat.=Ves un trozo de carne ahumada.
 
 easter egg=huevo de pascua
 You see a lovely chocolate easter egg. It's huge!=Ves un encantador huevo de pascua ¡Es enorme!
