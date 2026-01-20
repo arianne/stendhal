@@ -69,7 +69,7 @@ You see a suit of mithril armor. Its tightly woven links are truly amazing.=Ves 
 pauldroned iron cuirass=coraza de hierro con hombreras
 You see a formidable pauldroned iron cuirass. The pauldrons (shoulder pieces) will protect your upper half.=Ves una formidable coraza de hierro con hombreras. Las hombreras (las piezas de los hombros) protegerán tu mitad superior.
 
-pauldroned leather cuirass=coraza de cuero con hombreras.
+pauldroned leather cuirass=coraza de cuero con hombreras
 You see a pauldroned leather cuirass. It was crafted to withstand minor attacks.=Ves una coraza de cuero con hombreras. Fue diseñada para soportar ataques menores.
 
 plate armor=armadura de placas de acero
@@ -227,7 +227,7 @@ You see a pair of mainio boots. It's hard to believe that boots looking like thi
 mithril boots=botas de mithril
 You see a sparkling set of mithril boots.=Ves un brillante conjunto de botas de mithril.
 
-red boots=botas rojas.
+red boots=botas rojas
 You see a pair of red boots, the color reminds you of fresh blood.=Ves un par de botas rojas, su color te recuerda a la sangre fresca.
 
 royal boots=
@@ -299,7 +299,7 @@ You see an elvish cloak. The material is dark, but thick and warm.=Ves una capa 
 golden cloak=capa de oro
 You see a golden cloak. See how the light glistens off the gold, it is a prized possession.=Ves una capa de oro. Ves cómo la luz brilla saliendo del oro, es una preciada posesión.
 
-green dragon cloak=capa de dragón verde.
+green dragon cloak=capa de dragón verde
 You see a huge green dragon cloak. It's probably too big for you but, even dragging on the floor it will provide excellent protection.=Ves una enorme capa de dragón verde. Es probablemente demasiado grande para ti pero, aunque arrastre por el suelo te proporcionará una protección excelente.
 
 lich cloak=capa de lich
@@ -969,7 +969,7 @@ You see a key to the customer room of Nalwor Bank.=Ves una llave de la sala de c
 kotoch prison key=llave de la prisión de kotoch
 You see an ancient copper key, enscribed with something in Orcish.=Ves una antigua llave de cobre, grabada con algo en Orco.
 
-kanmararn prison key=llave de la prisión de kanmararn.
+kanmararn prison key=llave de la prisión de kanmararn
 You see a key which matches the locks in the Kanmararn prison.=Ves una llave que coincide con las cerraduras de la prisión de Kanmararn.
 
 sedah gate key=llave de la puerta de sedah
@@ -1319,7 +1319,7 @@ You see a strange looking piece of moss. It looks like it could have hallucinoge
 
 ## shields
 
-black shield=escudo negro.
+black shield=escudo negro
 You see a black shield. Its darkness will surely protect you.=Ves un escudo negro. Su oscuridad seguro que te protegerá.
 
 blue shield=escudo azul
@@ -1373,7 +1373,7 @@ You see a shadow shield. Rather than reflecting light, it seems to absorb it.=Ve
 skull shield=escudo de calavera
 The face of a skull scowls at you from this fearsome skull shield.=La cara de una calavera te frunce el ceño desde este temible escudo de calavera
 
-studded shield=escudo tachonado.
+studded shield=escudo tachonado
 You see a studded shield. It's a little dented but seems robust enough.=Ves un escudo tachonado. Está un poco abollado peroparece bastante robusto.
 
 unicorn shield=escudo del unicornio
@@ -1570,7 +1570,7 @@ You see a fishing rod. If you find a fishing spot you can catch fish with it.=Ve
 lamp=
 You see a lamp.=
 
-magical scissors=tijeras mágicas.
+magical scissors=tijeras mágicas
 You see a sparkling pair of magical scissors. Just think what they could cut!=Ves un par de tijeras mágicas centelleantes ¡Piensa sólo en lo que podrían cortar!
 
 magical needle=aguja mágica
@@ -1975,7 +1975,7 @@ You see a Water elemental which is made of water and various other liquids.=
 ent=ent
 You see an ent. First you think it is a tree but you will get a surprise when it starts to walk!=Ves a un ent !Primero piensas que es un árbol pero te llevas una sorpresa cuando empieza a caminar!
 
-old ent=ent viejo.
+old ent=ent viejo
 You see an old ent. It has seen many years passing by and survived a lot of storms. You can see that it is very old because it has already lost all of its leaves and most of its bark is broken...=Ves a un viejo ent. Ha visto muchos años pasar y ha sobrevivido a muchas tormentas. Puedes ver que es muy viejo porque ya ha perdido todas sus hojas y la mayor parte de su corteza está rota...
 
 entwife=esposaent
