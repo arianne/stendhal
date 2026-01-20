@@ -1,7 +1,7 @@
 
 ##
-## Language: <name> (<code>)
-## Translators: <translator1>[, <translator2>...]
+## Language: Spanish (es)
+## Translators: unknown
 ##
 
 
