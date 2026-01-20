@@ -598,11 +598,11 @@ You see a mauve apple. It is loaded with memories=Ves una manzana malva. Está c
 black apple=manzana negra
 You see a black apple. It must be a gift from lil Johnnnny. He's the guy with black items.=Ves una manzana negra. Debe de ser un regalo del pequeño Johnnny
 
-lemon=
-You see a lemon. Could be an ingredient for the right chef...=
+lemon=limón
+You see a lemon. Could be an ingredient for the right chef...=Ves un limón. Podría ser un ingrediente para el chef adecuado.
 
-banana=
-You see a banana. Be careful of monkeys when you have them in your bag!=
+banana=banana
+You see a banana. Be careful of monkeys when you have them in your bag!=Ves una banana. ¡Ten cuidado con los monos cuando las llevas en tu bolso!
 
 cherry=cereza
 You see a cherry. Its tangy taste revives you a little.=Ves una cereza. Su sabor amargo te revive un poco.
@@ -610,8 +610,8 @@ You see a cherry. Its tangy taste revives you a little.=Ves una cereza. Su sabor
 coconut=coco
 You see a coconut. Luckily it's already cracked and you can drink from it.=Ves un coco. Afortunadamente ya está abierto y puedes beber de él.
 
-corn=
-You see an ear of corn. It could be eaten raw, grilled or turned into flour... Your choice.=
+corn=maíz
+You see an ear of corn. It could be eaten raw, grilled or turned into flour... Your choice.=Ves una oreja de maíz. Se puede comer cruda, asada o convertirla en harina... Tú decides.
 
 grapes=
 You see a bunch of grapes. They look quite juicy and tasty.=
