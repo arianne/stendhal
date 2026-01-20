@@ -1,7 +1,7 @@
 
 ##
 ## Language: Spanish (es)
-## Translators: unknown
+## Translators: unknown, AntumDeluge
 ##
 
 
@@ -61,7 +61,7 @@ magic plate armor=armadura de placas de acero mágica
 You see a suit of magic plate armor. The steel is well tempered and the suit is very strong.=Ves un traje de armadura de placas de acero mágica. El acero está bien templado y el traje es muy resistente.
 
 mainio armor=armadura de mainio
-You see a strange suit of mainio armor. What it lacks in subtlety it makes up for with strength.=
+You see a strange suit of mainio armor. What it lacks in subtlety it makes up for with strength.=Ves un extraño traje de armadura de mainio. Lo que le falta en sutileza lo suple con fortaleza.
 
 mithril armor=armadura de mithril
 You see a suit of mithril armor. Its tightly woven links are truly amazing.=Ves un traje de armadura de mithril. Sus eslabones apretadamente tejidos son verdaderamante asombrosos.
@@ -70,7 +70,7 @@ pauldroned iron cuirass=coraza de hierro con hombreras
 You see a formidable pauldroned iron cuirass. The pauldrons (shoulder pieces) will protect your upper half.=Ves una formidable coraza de hierro con hombreras. Las hombreras (las piezas de los hombros) protegerán tu mitad superior.
 
 pauldroned leather cuirass=coraza de cuero con hombreras.
-You see a pauldroned leather cuirass. It was crafted to withstand minor attacks.=
+You see a pauldroned leather cuirass. It was crafted to withstand minor attacks.=Ves una coraza de cuero con hombreras. Fue diseñada para soportar ataques menores.
 
 plate armor=armadura de placas de acero
 You see a suit of plate armor. You imagine it would be heavy but the steel is well tempered and the suit is very strong.=Ves un traje de armadura de placas de acero. Te imaginas que será muy pesada pero el acero está bien templado y el traje es muy resistente.
@@ -109,7 +109,7 @@ steel arrow=flecha de acero
 You see a shining steel arrow. With plenty of these, and a good bow, you'll be a formidable archer.=Ves una flecha de reluciente acero. Con muchas de éstas, y un buen arco, serás un arquero formidable.
 
 golden arrow=flecha de oro
-You see a golden arrow. With a fist full of these and a good bow, you will surely take down your enemies quicker.=
+You see a golden arrow. With a fist full of these and a good bow, you will surely take down your enemies quicker.=Ves una flecha de oro. Con un puñado de éstas y un buen arco, derribarás a tus enemigos más rápido.
 
 fire arrow=
 You see a fire arrow. The tip burns brightly.=
@@ -124,7 +124,7 @@ dark arrow=
 You see a dark arrow. It's hard to describe.=
 
 power arrow=flecha de potencia
-You see a power arrow. The sting of this arrow will surely defeat your enemies, when equipped with a bow.=
+You see a power arrow. The sting of this arrow will surely defeat your enemies, when equipped with a bow.=Ves una flecha de potencia. La punzada de esta flecha seguramente derrotará a tus enemigos, cuando vaya equipada con un arco.
 
 
 ## axes
@@ -151,7 +151,7 @@ durin axe=hacha de durin
 You see a durin axe, a great prize from the dwarves.=Ves un hacha de durin, un gran premio de los enanos.
 
 golden twoside axe=hacha de doble hoja de oro
-You see a golden twoside axe. This axe is a rare find.=
+You see a golden twoside axe. This axe is a rare find.=Ves un hacha de doble hoja de oro. Este hacha es un raro hallazgo.
 
 halberd=alabarda
 You see a rare halberd, with an axe's blade fused onto a shaft. It is both heavy and keen-edged.=Ves una rara alabarda, con una hoja de hacha enastada en un astil. Es a la vez pesada y de borde afilado.
@@ -163,7 +163,7 @@ magic twoside axe=hacha de doble hoja mágica
 You see a magic twoside axe. The nature of the magic isn't clear to you.=Ves un hacha de doble hoja mágica. La naturaleza de la magia no está clara para ti.
 
 old scythe=guadaña vieja
-You see an old scythe, it used to be a weapon of death. But now it is only a useful tool for farming.=
+You see an old scythe, it used to be a weapon of death. But now it is only a useful tool for farming.=Ves una vieja guadaña, solía ser el arma de la muerte. Pero ahora sólo es una útil herramienta de labranza.
 
 scythe=guadaña
 You see the weapon of death - a scythe. It looks dangerous but perhaps also a useful tool for farming.=Ves el arma de la muerte - una guadaña. Parece peligrosa pero quizá también sea una herramienta útil para la labranza.
@@ -240,7 +240,7 @@ steel boots=botas de acero
 You see a pair of steel boots, fit for any soldier.=Ves un par de botas de acero, adecuadas para cualquier soldado.
 
 stone boots=botas de piedra
-You see a pair of stone boots. They may be heavy, but they protect your feet well.=
+You see a pair of stone boots. They may be heavy, but they protect your feet well.=Ves un par de botas de piedra. Puede que sean pesadas, pero te protegen bien los pies.
 
 studded boots=botas tachonadas
 You see a pair of worn studded boots with moderate protection for your feet.=Ves un par de botas tachonadas desgastadas que proporcionan una protección moderada a tus pies.
@@ -297,7 +297,7 @@ elvish cloak=capa élfica
 You see an elvish cloak. The material is dark, but thick and warm.=Ves una capa élfica. Su material es oscuro, pero es grueso y cálido.
 
 golden cloak=capa de oro
-You see a golden cloak. See how the light glistens off the gold, it is a prized possession.=
+You see a golden cloak. See how the light glistens off the gold, it is a prized possession.=Ves una capa de oro. Ves cómo la luz brilla saliendo del oro, es una preciada posesión.
 
 green dragon cloak=capa de dragón verde.
 You see a huge green dragon cloak. It's probably too big for you but, even dragging on the floor it will provide excellent protection.=Ves una enorme capa de dragón verde. Es probablemente demasiado grande para ti pero, aunque arrastre por el suelo te proporcionará una protección excelente.
@@ -309,7 +309,7 @@ magic cloak=
 You see a magic cloak.=
 
 mainio cloak=capa de mainio
-You see a mainio cloak. Its flashing colors are absurd! But you wear it because it's very well made.=
+You see a mainio cloak. Its flashing colors are absurd! But you wear it because it's very well made.=Ves una capa de mainio ¡Sus colores parpadeantes son absurdos! Pero la llevas puesta porque está muy bien elaborada.
 
 mithril cloak=capa de mithril
 You see a mithril cloak. Its weave is so fine and its looks are breathtaking.=Ves una capa de mithril. Su trama es tan fina y su apariencia quita la respiración.
@@ -333,7 +333,7 @@ vampire cloak=capa de vampiro
 You see a vibrant red vampire cloak. Wearing it sends a shiver down your spine.=Ves una capa de vampiro de vibrante color rojo. Llevarla puesta te produce un escalofrío por tu columna vertebral.
 
 xeno cloak=capa de xeno
-You see a xeno cloak. It's heavy and thick, giving you good protection.=
+You see a xeno cloak. It's heavy and thick, giving you good protection.=Ves una capa de xeno. Es pesada y gruesa, proporcionandote una buena protección.
 
 
 ## clubs
@@ -351,7 +351,7 @@ enhanced mace=maza mejorada
 You see an enhanced mace. The heavy attacking end makes it hard to balance.=Ves una maza mejorada. Su pesado extremo de ataque la hace difícil de equilibrar.
 
 flail=mangual
-You see a flail. Swinging it in circles will tire you but it will be an effective weapon.=
+You see a flail. Swinging it in circles will tire you but it will be an effective weapon.=Ves un mangual. Moverlo en círculos te cansará pero será un arma efectiva.
 
 golden hammer=martillo de oro
 You see a valuable golden hammer. This golden weapon may be worth a lot to someone. It has a slow rate of attack.=Ves un valioso martillo de oro. Este arma de oro puede valer muchísimo para alguien. Tiene un ritmo de ataque lento.
@@ -363,16 +363,16 @@ hammer=martillo
 You see a common hammer. It is heavy enough that you should be able to bludgeon your enemies with it, but only slowly=Ves un martillo común. Es bastante pesado por lo que deberías de ser capaz de aporrear a tus enemigos con él, pero sólo con lentitud.
 
 ice war hammer=martillo de guerra de hielo
-You see an ice war hammer. The last owner must have been huge to wield it.=
+You see an ice war hammer. The last owner must have been huge to wield it.=Ves un martillo de guerra de hielo. Su último dueño debe de haber sido enorme para manejarlo.
 
 mace=maza
 You see a mace, much neglected in years of use.=Ves una maza, muy descuidada en los años de uso.
 
 morning star=lucero del alba
-You see a morning star. This is a very rare item indeed.=
+You see a morning star. This is a very rare item indeed.=Ves un lucero del alba. Éste es realmente un artículo raro.
 
 rod of the gm=vara del DJ
-You see a rod of the GM. This rod is reserved for those with special powers, be careful not to let it fall into the wrong hands.=
+You see a rod of the GM. This rod is reserved for those with special powers, be careful not to let it fall into the wrong hands.=Ves una vara del DJ. Esta vara se reserva a aquellos con poderes especiales, ten cuidado de no dejar que caiga en las manos equivocadas.
 
 skull staff=bastón de calavera
 You see a rare skull staff. It appears mystical but will work like any other staff.=Ves un bastón de calavera. Parece místico pero funcionará como cualquier otro bastón.
@@ -387,7 +387,7 @@ vulcano hammer=martillo de vulcano
 You see a vulcano hammer. It's said to be a weapon of a God, but attacks with a snail like pace.=Ves un martillo de vulcano. Se dice que es el arma de un dios, pero ataca al ritmo de un caracol.
 
 war hammer=martillo de guerra
-You see a huge war hammer. It seems strong but is so heavy that you can only lift it to attack every so often.=
+You see a huge war hammer. It seems strong but is so heavy that you can only lift it to attack every so often.=Ves un enorme martillo de guerra. Parece potente pero es tan pesado que sólo lo puedes levantar de vez en cuando para atacar.
 
 
 ## containers
@@ -399,7 +399,7 @@ empty sack=saco vacío
 You see an empty sack. It will not stand up, unless you fill it first.=Ves un saco vacío. No se mantendrá en pie, a menos que lo llenes primero.
 
 flask=frasco
-You see a flask. It's good for storing medicine.=
+You see a flask. It's good for storing medicine.=Ves un frasco. Es bueno para almacenar medicina.
 
 eared bottle=botella con asas
 You see an eared bottle. It is empty, someone drank the contents.=Ves una botella con asas. Está vacía, alguien se bebió su contenido.
@@ -411,10 +411,10 @@ fat bottle=botella gruesa
 You see a fat bottle. It is empty, someone drank the contents.=Ves una botella gruesa. Está vacía, alguien se bebió su contenido.
 
 empty goblet=copa vacía
-You see an empty goblet. You wonder what could it hold.=
+You see an empty goblet. You wonder what could it hold.=Ves una copa vacía. Te preguntas que podría contener.
 
 goblet=copa
-You see a goblet. You look at its contents, and shiver at the blood inside.=
+You see a goblet. You look at its contents, and shiver at the blood inside.=Ves una copa. Miras su contenido, y sientes escalofríos al ver sangre dentro.
 
 vial=
 You see a vial used in chemestry.=
@@ -494,7 +494,7 @@ water=agua
 You see a bottle of fresh spring water. It's really tasty and fresh.=Ves una botella de agua fresca de manantial. Es realmente sabrosa y fresca.
 
 pina colada=piña colada
-You see a pina colada. It looks delicious but tastes dangerously strong!=
+You see a pina colada. It looks delicious but tastes dangerously strong!=Ves una piña colada. ¡Parece deliciosa pero sabe peligrosamente fuerte!
 
 tea=té
 You see a lovely cup of tea.=Ves una encantadora taza de té.
@@ -521,7 +521,7 @@ deadly poison=veneno mortal
 You see a deadly poison. Don't drink it!=Ves un veneno mortal ¡No te lo tomes!
 
 disease poison=veneno de enfermar
-You see a disease poison. Be careful, it's wicked.=
+You see a disease poison. Be careful, it's wicked.=Ves un veneno de enfermar. Ten cuidado, es malvado.
 
 mega poison=mega veneno
 You see a mega poison. This is some wicked poison.=Ves un mega veneno. Éste es un veneno malvado.
@@ -632,13 +632,13 @@ watermelon=
 You see a watermelon. It refreshes your throat during hot summer days.=
 
 artichoke=alcachofa
-You see an artichoke. It can be an ingredient, or you can eat it.=
+You see an artichoke. It can be an ingredient, or you can eat it.=Ves una alcachofa. Puede ser un ingrediente, o te la puedes comer.
 
 broccoli=brocoli
 You see a bunch of broccoli.=Ves un manojo de brocoli.
 
 carrot=zanahoria
-You see a carrot. It can be an ingredient, or you can eat it.=
+You see a carrot. It can be an ingredient, or you can eat it.=Ves una zanahoria. Puede ser un ingrediente, o te la puedes comer.
 
 cauliflower=coliflor
 You see a fresh head of cauliflower.=Ves la cabeza de una fresca coliflor.
@@ -670,10 +670,10 @@ egg=huevo
 You see an egg.=Ves un huevo.
 
 button mushroom=champiñón común
-You see a button mushroom. It can be an ingredient, or you can eat it.=
+You see a button mushroom. It can be an ingredient, or you can eat it.=Ves un champiñón común. Puede ser un ingrediente, o te lo puedes comer.
 
 porcini=seta calabaza
-You see a porcini. It can be an ingredient, or you can eat it.=
+You see a porcini. It can be an ingredient, or you can eat it.=Ves una seta calabaza. Puede ser un ingrediente, o te la puedes comer.
 
 toadstool=seta venenosa
 You see a toadstool. Beware!=Ves una seta venenosa ¡Ten cuidado!
@@ -712,7 +712,7 @@ smoked trout=
 You see a smoked trout.=
 
 bread=pan
-You see a loaf of bread. It is freshly baked and ready to eat.=
+You see a loaf of bread. It is freshly baked and ready to eat.=Ves una barra de pan. Está recién horneada y lista para comer.
 
 pie=pastel
 You see a meat and vegetable pie.=Ves un pastel de carne y verduras.
@@ -745,7 +745,7 @@ honey=miel
 You see a jar of sticky sweet honey. It's the clear runny kind.=Ves una jarra de miel dulce y pegajosa. Es de tipo fluído y claro.
 
 icecream=helado
-You see a wafer cone with vanilla ice cream and chocolate flakes.=
+You see a wafer cone with vanilla ice cream and chocolate flakes.=Ves un cucurucho de helado de vainilla y virutas de chocolate.
 
 licorice=regaliz
 You see some delicious licorice. Your mouth waters.=Ves un poco de delicioso regaliz. Se te hace la boca agua.
@@ -763,7 +763,7 @@ sausage=salchicha
 You see what looks like a tasty sausage.=Ves lo que parece ser una sabrosa salchicha.
 
 tuna sandwich=sandwich de atún
-You see what looks like a tuna sandwich.=
+You see what looks like a tuna sandwich.=Ves lo que parece ser un sandwich de atún.
 
 chocolate shake=batido de chocolate
 You see a scrumptious chocolate shake. Absolutely NO calories.=Ves un batido de chocolate para chuparse los dedos. Absolutamente SIN calorías.
@@ -781,7 +781,7 @@ pinto beans=
 You see a bunch of pinto beans. An ingredient a chef will surely appreciate...=
 
 cheese=queso
-You see some cheese. Eat it and see what happens.=
+You see some cheese. Eat it and see what happens.=Ves un poco de queso. Cometelo y verás lo que pasa.
 
 chicken=pollo
 You see a tasty leg of chicken.=Ves un sabroso muslo de pollo.
@@ -865,7 +865,7 @@ viking helmet=casco de vikingo
 You see a viking helmet. The previous owner wore it to many battles.=Ves un casco de vikingo. Su anterior dueño lo llevó consigo a muchas batallas.
 
 aventail=almófar
-You see an aventail. It's a clever design.=
+You see an aventail. It's a clever design.=Ves un almófar. Es un diseño ingenioso.
 
 blue helmet=casco azul
 You see a brand new blue helmet.=Ves un casco azul nuevecito.
@@ -910,7 +910,7 @@ You see a royal helmet.=
 ## herbs
 
 arandula=arandula
-You see an arandula. It has medicinal properties, if the right person uses it.=
+You see an arandula. It has medicinal properties, if the right person uses it.=Ves una arandula. Tiene propiedades medicinales, si es usada por la persona adecuada.
 
 kokuda=kokuda
 You see a kokuda. It has medicinal properties, if the right person uses it.=Ves una kokuda. Tiene propiedades medicinales, si es usada por la persona adecuada.
@@ -946,7 +946,7 @@ amethyst=
 You see an amethyst, a precious gemstone.=
 
 diamond=diamante
-You see a diamond, not just a beautiful gem but also the hardest naturally occurring material.=
+You see a diamond, not just a beautiful gem but also the hardest naturally occurring material.=Ves un diamante, no es sólo una hermosa gema sino también el material más duro de origen natural.
 
 black pearl=perla negra
 You see a black pearl, so dark and shiny.=Ves una perla negra, tan oscura y brillante.
@@ -961,7 +961,7 @@ lich gold key=llave de oro del lich
 You see a golden lich key. It will open the door to terrible things.=Ves una llave de oro del lick. Abrirá la puerta a cosas terribles.
 
 minotaur key=llave del minotauro
-You see a fancy bronze key. It smells faintly of minotaur. Perhaps one dropped it?=
+You see a fancy bronze key. It smells faintly of minotaur. Perhaps one dropped it?=Ves una lujosa llave de bronce. Huele ligeramente a minotauro. ¿Quizá se le cayó a uno?
 
 nalwor bank key=llave del banco de nalwor
 You see a key to the customer room of Nalwor Bank.=Ves una llave de la sala de clientes del Banco de Nalwork.
@@ -1022,7 +1022,7 @@ You see a pair of leather legs. They look new but they're poor quality.=Ves un p
 magic plate legs=
 
 mainio legs=quijotes de mainio
-You see a pair of odd looking mainio legs. They are somewhat startling but they give you good protection.=
+You see a pair of odd looking mainio legs. They are somewhat startling but they give you good protection.=Ves un par de quijotes de mainio de extraño aspecto. Son de algún modo sorprendentes pero te proporcionan una buena proteccion.
 
 mithril legs=quijotes de mithril
 You see a pair of mithril legs. They will serve you well.=Ves un par de quijotes de mithril. Te servirán de mucho.
@@ -1040,7 +1040,7 @@ stone legs=
 You see a pair of stone legs, heavy and durable.=
 
 studded legs=quijotes tachonados
-You see a pair of blood stained studded legs. You're not sure if the blood came from their last owner... or his enemies.=
+You see a pair of blood stained studded legs. You're not sure if the blood came from their last owner... or his enemies.=Ves un par de quijotes tachonados manchados de sangre. No estás seguro de si la sangre es de su último dueño... o de sus enemigos.
 
 xeno legs=quijotes de xeno
 You see a pair of xeno legs. They're very strong and look brand new.=Ves un par de quijotes de xeno. Son muy resistentes y parecen nuevecitos.
@@ -1052,10 +1052,10 @@ decent meal=
 You see a decent meal for Groongo Rahnnt. Deliver it to him quickly!=
 
 bulb=bulbo
-You see a bulb. It can be planted in fertile ground where it will thrive.=
+You see a bulb. It can be planted in fertile ground where it will thrive.=Ves un bulbo. Puede ser plantado en terreno fértil donde se prosperará.
 
 seed=semilla
-You see a seed. It can be planted in fertile ground where it will thrive.=
+You see a seed. It can be planted in fertile ground where it will thrive.=Ves un semilla. Puede ser plantado en terreno fértil donde se prosperará.
 
 giant heart=corazón gigante
 You see a giant heart. This proves that a giant was defeated, and has magical properties that you are not sure of.=Ves un corazón gigante. Ésto demuestra que un gigante fue derrotado, y tiene propiedades mágicas de las que no estás seguro.
@@ -1064,16 +1064,16 @@ dice=dados
 You see a set of dice. May lady luck be with you.=Ves un grupo de dados. Que la suerte te acompañe.
 
 cards=cartas
-You see a deck of cards. Shuffle them well, to get a winning hand.=
+You see a deck of cards. Shuffle them well, to get a winning hand.=Ves una baraja de cartas. Barajealas bien, para ganar la mano.
 
 teddy=peluche
-You see a teddy bear. It's soft and cuddly, and children love them.=
+You see a teddy bear. It's soft and cuddly, and children love them.=Ves un oso de peluche. Es suave y tierno, y a los niños les encanta.
 
 rodent trap=
 You see a rodent trap.=
 
 vampirette entrails=entrañas de vampiresa
-You see some vampirette entrails. These guts prove that a vampirette was slain.=
+You see some vampirette entrails. These guts prove that a vampirette was slain.=Ves unas entrañas de vampiresa. Estas vísceras demuestran que una vampiresa fue asesinada.
 
 bat entrails=entrañas de murciégalo
 You see some bat entrails, full of the blood of a living creature.=Ves unas entrañas de murciégalo, llenas de sangre de algún ser vivo.
@@ -1085,10 +1085,10 @@ marbles=canicas
 You see some marbles. Boys will be boys.=Ves unas canicas. Son cosas de niños.
 
 canned tuna=atún en lata
-You see what appears to be canned tuna. Too bad you don't have a can opener.=
+You see what appears to be canned tuna. Too bad you don't have a can opener.=Ves lo que parece ser atún enlatado. Lástima que no tengas un abrelatas.
 
 snowglobe=esfera de nieve
-You see a snowglobe. It's so festive, it reminds you of Christmas!=
+You see a snowglobe. It's so festive, it reminds you of Christmas!=Ves una esfera de nieve. ¡Es tan festiva, te recuerda a la Navidad!
 
 bobbin=canilla
 You see a bobbin for a sewing machine.=Ves una canilla para una máquina de coser.
@@ -1109,7 +1109,7 @@ You see a spiral unicorn horn. It is highly valued by traders and used in the cr
 ## missiles
 
 snowball=bola de nieve
-You see a snowball. You can throw it at your friends or put it in your bag to keep your fish fresh. But be careful, there could be little stones in it.=
+You see a snowball. You can throw it at your friends or put it in your bag to keep your fish fresh. But be careful, there could be little stones in it.=Ves una bola de nieve. Puedes tirarselas a tus amigos o ponerlas en tu bolsa para conservar el pescado fresco. Pero ten cuidado, podría haber piedrecitas dentro de ella.
 
 vomit=vómito
 You see a pile of vomit. Gross!=Ves un montón de vómito ¡Qué desagradable!
@@ -1141,7 +1141,7 @@ composite bow=arco compuesto
 You see a composite bow. It's better strung than most bows, for excellent ranged attack.=Ves un arco compuesto. Está mejor tensado que la mayoría de arcos, para proporcionar un excelente ataque a distancia.
 
 crossbow=ballesta
-You see a crossbow. The attack is high but it has a very short range. What do you prefer?=
+You see a crossbow. The attack is high but it has a very short range. What do you prefer?=Ves una ballesta. Su ataque es elevado pero cubre una distancia muy corta. ¿Qué prefieres?
 
 hunter crossbow=ballesta de cazador
 You see a hunter crossbow. You must decide if the high attack is worth the short range it has.=Ves una ballesta de cazador. Debes decidir si su elevado ataque compensa la corta distancia que cubre.
@@ -1210,7 +1210,7 @@ silk gland=glándula de seda
 You see a silk gland from a giant spider. Its contents are extremely valuable.=Ves una glándula de seda de una araña gigante. Su contenido es extremadamente valioso.
 
 silk thread=hilo de seda
-You see a spool of silk thread, spun from the glands of a giant spider.=
+You see a spool of silk thread, spun from the glands of a giant spider.=Ves un carrete de hilo de seda, hilado de las glándulas de una araña gigante.
 
 oil=aceite
 You see a small can of oil.=Ves una pequeña lata de aceite.
@@ -1286,7 +1286,7 @@ nalwor city scroll=pergamino de la ciudad de nalwor
 You see a nalwor city scroll, it will take you back to nalwor city.=Ves un pergamino de la ciudad de nalwor, te llevará de regreso a la ciudad de nalwor.
 
 ados city scroll=pergamino de la ciudad de ados
-You see an ados city scroll, it will take you back to ados city.=
+You see an ados city scroll, it will take you back to ados city.=Ves un pergamino de la ciudad de ados, te llevará de regreso a la ciudad de ados.
 
 fado city scroll=pergamino de la ciudad de fado
 You see a fado city scroll, it will take you back to fado city.=Ves un pergamino de la ciudad de fado, te llevará de regreso a la ciudad de fado.
@@ -1344,13 +1344,13 @@ golden shield=escudo de oro
 You see a golden shield, could it be the ultimate in defense?=Ves un escudo de oro, ¿podría ser lo último en defensa?
 
 green dragon shield=escudo de dragón verde
-You see a green dragon shield, scaly and strong.=
+You see a green dragon shield, scaly and strong.=Ves un escudo de dragón verde, escamoso y resistente.
 
 lion shield=escudo de león
 You see a valuable lion shield. It is heavy enough to defend you against strong attacks.=Ves un valioso escudo de león. Es lo bastante pesado como para defenderte frente a ataques potentes.
 
 magic plate shield=escudo mágico de placas de acero
-You see a magic plate shield. It has a magical quality surrounding it.=
+You see a magic plate shield. It has a magical quality surrounding it.=Ves un escudo mágico de placas de acero. Tiene una cualidad mágica que lo envuelve.
 
 mainio shield=escudo de mainio
 You see a strange looking mainio shield. You have no idea what it's made of, but it seems to protect you well by distracting your enemies.=Ves un escudo de mainio de extraña apariencia. No tienes ni idea de lo que está hecho, pero parece que te protege bien al distraer a tus enemigos.
@@ -1397,7 +1397,7 @@ mithril clasp=cierre de mithril
 You see a clasp made from mithril, it would provide the fastening for a cloak.=Ves un cierre elaborado a partir de mithril, te proporcionaría la fijación para una capa.
 
 mythical egg=huevo mítico
-You see a mythical egg, but you do not know what it is for.=
+You see a mythical egg, but you do not know what it is for.=Ves un huevo mítico, pero no sabes para qué es.
 
 magical eggshells=cáscaras de huevo mágicas
 You see shards from a mythical egg. They have magical properties.=Ves fragmentos de un huevo mítico. Tienen propiedades mágicas.
@@ -1421,10 +1421,10 @@ assassin dagger=daga de asesino
 You see an assassin dagger, easy to pull out and use when needed.=Ves una daga de asesino, fácil de sacar y de usar cuando se necesite.
 
 biting sword=espada mordaz
-The tip of this biting sword is chiseled to a lethal point. It will serve you well.=
+The tip of this biting sword is chiseled to a lethal point. It will serve you well.=La punta de esta espada mordaz está cincelada hasta un punto letal.
 
 black sword=espada negra
-You see a black sword. Its darkness will surely protect you.=
+You see a black sword. Its darkness will surely protect you.=Ves una espada negra. Su oscuridad seguro que te protegerá.
 
 broadsword=espada ancha
 You see a mighty broadsword. Enemies will see their death.=Ves una poderosa espada ancha. Los enemigos verán su muerte.
@@ -1436,7 +1436,7 @@ chaos dagger=daga del caos
 You see a chaos dagger, it is very lightweight and sharp. It will heal you while hurting them.=Ves una daga del caos, es muy ligera y afilada.
 
 chaos sword=espada del caos
-You see a chaos sword. Wielding it allows to hurt your foes and to heal you at the same time.=
+You see a chaos sword. Wielding it allows to hurt your foes and to heal you at the same time.=Ves una espada del caos. Empuñarla te permite hacer daño a tus enemigos y curarte al mismo tiempo.
 
 claymore=claymore
 This claymore is very hard to lift as it is so heavy. It will be a good weapon if you can swing it.=Esta claymore es muy difícil de levantar ya que es muy pesada.
@@ -1457,7 +1457,7 @@ drow sword=espada drow
 This is a genuine drow sword.=Esta es una genuina espada drow.
 
 elvish sword=espada élfica
-This is an elvish sword. It is finely crafted.=
+This is an elvish sword. It is finely crafted.=Esta es una espada élfica. Está finamente elaborada.
 
 fire sword=espada de fuego
 Flames race along this fire sword as you wield it.=Las llamas corren a lo largo de esta espada de fuego mientras la esgrimes.
@@ -1499,7 +1499,7 @@ nihonto=nihonto
 You see a samurai's nihonto sword with a razor sharp blade.=Ves una espada nihonto de samurai con una hoja tan afilada como la de una cuchilla.
 
 obsidian knife=cuchillo de obsidiana
-You see a knife whose blade is crafted to a lethal edge from the finest obsidian.=
+You see a knife whose blade is crafted to a lethal edge from the finest obsidian.=Ves un cuchillo cuya hoja se ha trabajado hasta conseguir un filo letal a partir de la obsidiana más pura.
 
 orc sword=espada de orco
 You see an orc sword which has a heavy and deadly appearance.=Ves una espada de orco que tiene una apariencia pesada y mortal.
@@ -1577,7 +1577,7 @@ magical needle=aguja mágica
 You see a magical needle with a very sharp point.=Ves una aguja mágica con una punta muy afilada.
 
 pick=pico
-You see a pick. It is a tool for excavating coal.=
+You see a pick. It is a tool for excavating coal.=Ves un pico. Es una herramienta para la extracción de carbón.
 
 shovel=
 You see a shovel, a tool for digging.=
@@ -1609,7 +1609,7 @@ dark angel=ángel oscuro
 You see a dark angel. He is an strong evil angel, and for now he is under cover of darkness.=Ves a un ángel oscuro. Es un ángel poderoso y malvado, y por ahora está al amparo de la oscuridad.
 
 dark archangel=arcángel oscuro
-You see a dark archangel. After she fell from heaven her soul became as dark as she is now.=
+You see a dark archangel. After she fell from heaven her soul became as dark as she is now.=Ves a una arcángel oscura. Después de que cayese del cielo su alma se volvió tan oscura como ella lo es ahora.
 
 fallen angel=ángel caído
 You see a fallen angel. When he turned away from good, he fell down from heaven.=Ves a un ángel caído. Cuando se apartó del bien, se cayó del cielo.
@@ -1731,7 +1731,7 @@ chick=pollito
 You see a little chick, it doesn't like to be away from its mother.=Ves un pequeño pollito, no le gusta estar lejos de su madre.
 
 chicken=pollo
-You see a chicken, isn't it nice?=
+You see a chicken, isn't it nice?=Ves un pollo, ¿a que es bonito?
 
 dodo=
 You see a dodo bird, aren't they supposed to be extinct?=
@@ -1752,7 +1752,7 @@ young beholder=joven beholder
 You see a young beholder. His huge eye will find you everywhere!=Ves un joven beholder ¡Su ojo gigante te encontrará en cualquier lugar!
 
 beholder=beholder
-You see a beholder which can see you very well with his huge eye...=
+You see a beholder which can see you very well with his huge eye...=Ves un beholder que puede verte muy bien con su enorme ojo...
 
 elder beholder=beholder anciano
 You see an elder beholder, his nasty eye will scare you.=Ves un beholder anciano, su desagradable ojo te asustará.
@@ -2126,7 +2126,7 @@ ice golem=golem de hielo
 You see an Ice golem. Ice Golems are elementals made out of ice. You should watch out for its icy fists or you might get hurt.=
 
 stone golem=golem de piedra
-You see a stone golem, it only exists to protect. What was it crafted for to protect, and what would one do if it lost its purpose?=
+You see a stone golem, it only exists to protect. What was it crafted for to protect, and what would one do if it lost its purpose?=Ves a un golem de piedra, existe solamente para proteger. ¿Qué fue diseñado para proteger, y qué haría si perdiese su propósito?
 
 wooden golem=golem de madera
 You see a wooden golem. The scroll with ancient words in his head keeps it walking.=Ves a un golem de madera. El pergamino con las antiguas palabras en su cabeza lo mantiene caminando.
@@ -2135,7 +2135,7 @@ You see a wooden golem. The scroll with ancient words in his head keeps it walki
 ## human
 
 kalavan housewife=ama de casa kalavan
-You see a kalavan housewife. She lives in Kalavan city and she is very angry with rude people who want to steal her food out of the kitchen and destroy her beautiful flower garden!=
+You see a kalavan housewife. She lives in Kalavan city and she is very angry with rude people who want to steal her food out of the kitchen and destroy her beautiful flower garden!=Ves a una ama de casa kalavan. Vive en la ciudad de Kalavan y ¡se enfada mucho con la gente ruda que quiere robar comida de su cocina y destruir su precioso jardín!
 
 kalavan peasant=campesino kalavan
 You see a kalavan peasant. He works in the fields around Kalavan city. As he heard there were strangers in the city he came to help the kalavan citizens in fighting the enemies!=Ves un campesino kalavan. Trabaja en los campos de alrededor de la ciudad de Kalavan. Cuando oyó que había extranjeros en la ciudad vino a ayudar a los ciudadanos de kalavan a luchar contra los enemigos!
@@ -2156,7 +2156,7 @@ devil monk=monje del diablo
 You see a devil monk. He is a member of a devil cult which practises black rituals.=Ves a un monje del diablo. Es miembro de un culto al diablo que practica negros rituales.
 
 littlewitch=brujita
-You see a little witch. These little girls are witches and that makes them very dangerous.=
+You see a little witch. These little girls are witches and that makes them very dangerous.=Ves a una brujita. Estas niñitas son brujas y eso las hace muy peligrosas.
 
 littlewizard=pequeño mago
 You see a little wizard. Although he is a child, he is already able to cast powerful spells.=Ves a un pequeño mago. Aunque es un crío, ya es capaz de lanzar poderosos hechizos.
@@ -2304,7 +2304,7 @@ chaos lord=señor del caos
 You see a chaos lord who is one of the strongest chaos creatures in Faiumoni. You should prepare well before attacking him.=
 
 chaos overlord=gran señor del caos
-You see a chaos overlord. It is him who directs the creation of evil plans and gives orders to all chaotic creatures which exist.=
+You see a chaos overlord. It is him who directs the creation of evil plans and gives orders to all chaotic creatures which exist.=Ves a un gran señor del caos. Es él quien dirige la creación de los planes malvados y da las órdenes a todas las criaturas que existen.
 
 
 ## human_imperial
@@ -2516,7 +2516,7 @@ leader kobold=líder kobold
 You see a leader kobold, one of the mighty warriors.=Ves a un líder kobold, uno de los poderosos guerreros.
 
 giant kobold=kobold gigante
-You see a giant kobold. Though generally playful it doesn't quite know its own strength. When it asks for a hug, it's best to decline that offer.=
+You see a giant kobold. Though generally playful it doesn't quite know its own strength. When it asks for a hug, it's best to decline that offer.=Ves a un kobold gigante. Aunque por lo general es juguetón no conoce su propia fuerza. Cuando pide un abrazo, es mejor rechazar la oferta.
 
 
 ## mutant
@@ -2579,7 +2579,7 @@ ivory pegasus=
 ebony pegasus=
 
 centaur=centauro
-You see a noble centaur, half man, half horse. He looks capable of great damage but thankfully seems to mean you no harm.=
+You see a noble centaur, half man, half horse. He looks capable of great damage but thankfully seems to mean you no harm.=Ves a un noble centauro, mitad hombre, mitad caballo. Parece capaz de causar gran daño pero afortunadamente no parece tener intención de herirte.
 
 solar centaur=
 
@@ -2818,7 +2818,7 @@ death=muerte
 You see Death. Do you have the will to stare him in the face? Today he's not in the mood to bargain with your soul.=Ves a la Muerte ¿Tendrás el valor de mirarla a la cara? Hoy no está de humor para negociar con tu alma.
 
 black death=muerte negra
-You see a black death. With his scythe he reaps your soul and then he takes it over the river where it has to stay until judgement day arrives.=
+You see a black death. With his scythe he reaps your soul and then he takes it over the river where it has to stay until judgement day arrives.=Ves una muerte negra. Con su guadaña siega tu alma y después se la lleva al río donde tiene que permanecer hasta que llegue el día del juicio.
 
 golden death=muerte de oro
 You see the golden death. He came to take your soul away to pay for all your sins.=Ves a la muerte de oro. Vino a llevarse tu alma para que pague por todos tus pecados.
@@ -2845,7 +2845,7 @@ You see a vampire lord. Be careful, he is after your blood!=Ves a un señor vamp
 ## undead_zombie
 
 bloody zombie=zombi sangriento
-You see a bloody zombie. Can you see the drops of blood which fall from his body?=
+You see a bloody zombie. Can you see the drops of blood which fall from his body?=Ves a un zombi sangriento. ¿Puedes ver las gotas de sangre que caen de su cuerpo?
 
 zombie=zombi
 You see a zombie. It woke up just to take revenge, be silent.=Ves a un zombi. Se despertó solo para vengarse, estate en silencio.
@@ -2859,26 +2859,10 @@ You see a rotten zombie. You are disgusted as you see its rotten skin that hangs
 
 # strings not found in template
 
-You see a pauldroned leather cuirass.  It was crafted to withstand minor attacks.=Ves una coraza de cuero con hombreras. Fue diseñada para soportar ataques menores.
-You see a strange strange suit of mainio armor. What it lacks in subtlety it makes up for with strength.=Ves un extraño traje de armadura de mainio. Lo que le falta en sutileza lo suple con fortaleza.
-You see a golden arrow.  With a fist full of these and a good bow, you will surely take down your enemies quicker.=Ves una flecha de oro. Con un puñado de éstas y un buen arco, derribarás a tus enemigos más rápido.
-You see a power arrow.  The sting of this arrow will surely defeat your enemies, when equipped with a bow.=Ves una flecha de potencia. La punzada de esta flecha seguramente derrotará a tus enemigos, cuando vaya equipada con un arco.
-You see an old scythe, it used to be weapon of death. But now it is only a useful tool for farming.=Ves una vieja guadaña, solía ser el arma de la muerte. Pero ahora sólo es una útil herramienta de labranza.
-You see a golden twoside axe.  This axe is a rare find.=Ves un hacha de doble hoja de oro.  Este hacha es un raro hallazgo.
-You see a pair of stone boots.  They may be heavy, but they protect your feet well.=Ves un par de botas de piedra.  Puede que sean pesadas, pero te protegen bien los pies.
-You see a golden cloak.  See how the light glistens off the gold, it is a prized possession.=Ves una capa de oro.  Ves cómo la luz brilla saliendo del oro, es una preciada posesión.
-You see a mainio cloak. It's flashing colors are absurd! But you wear it because it's very well made.=Ves una capa de mainio ¡Sus colores parpadeantes son absurdos! Pero la llevas puesta porque está muy bien elaborada.
-You see a xeno cloak. It's heavy and thick, giving you a good protection.=Ves una capa de xeno. Es pesada y gruesa, proporcionandote una buena protección.
 rift cloak=capa de rift
 You see a rift cloak. Almost useless in the battle, but saves your life when you enter a magical rift.=Ves una capa de rift. Casi inútil en la batalla, pero te salva la vida cuando entras en un rift mágico.
-You see a military flail. Swinging it in circles will tire you but it will be an effective weapon.=Ves un mangual militar. Moverlo en círculos te cansará pero será un arma efectiva.
-You see a morning star.  This is a very rare item indeed.=Ves un lucero del alba. Éste es realmente un artículo raro.
-You see a huge war hammer. It seems strong but is so heavy that you can only lift it to attack every so often..=Ves un enorme martillo de guerra. Parece potente pero es tan pesado que sólo lo puedes levantar de vez en cuando para atacar..
-You see a ice war hammer. The last owner must have been huge, to wield it.=Ves un martillo de guerra de hielo. Su último dueño debe de haber sido enorme, para manejarlo.
 necromancers staff=baston de nigromante
 You see a cunningly beautiful staff. If you listen carefully you can hear its previous owners' souls screaming from within it.=Ves un bastón engañosamente hermoso. Si escuchas atentamente puedes oir las almas de sus anteriores dueños gritar desde dentro.
-You see a rod of the GM.  This rod is reserved for those with special powers, be careful not to let it fall into the wrong hands.=Ves una vara del DJ. Esta vara se reserva a aquellos con poderes especiales, ten cuidado de no dejar que caiga en las manos equivocadas.
-You see a flask. This flask is good for storing medicine.=Ves un frasco. Este frasco es bueno para almacenar medicina.
 bottle=botella
 You see a bottle. It is empty, someone drank the contents.=Ves una botella. Está vacía, alguien se bebió su contenido.
 big bottle=botella grande
@@ -2893,30 +2877,14 @@ tall bottle=botella alta.
 You see a tall bottle. It is empty, someone drank the contents.=Ves una botella alta. Está vacía, alguien se bebió su contenido.
 triangular bottle=botella triangular
 You see a triangular bottle. It is empty, someone drank the contents.=Ves una botella triangular. Está vacía, alguien se bebió su contenido.
-You see an empty goblet.  You wonder what could it hold.=Ves una copa vacía.  Te preguntas que podría contener.
-You see a goblet.  You look at its contents, and shiver at the blood inside.=Ves una copa.  Miras su contenido, y sientes escalofríos al ver sangre dentro.
 blank scroll=pergamino en blanco
 You see a rolled up blank scroll.=Ves un pergamino enrollado y en blanco
 ice scroll=pergamino de hielo
 You see a scroll, circled by ice crystals. You can feel its cold aura.=Ves un pergamino, rodeado por cristales de hielo. Puedes sentir su fría aura.
-You see a pina colada. It looks delicious but tastes dangerously strong!.=Ves una piña colada ¡Parece deliciosa pero sabe peligrosamente fuerte!
-You see a disease poison.  Be careful, it's wicked.=Ves un veneno de enfermar.  Ten cuidado, es malvado.
-You see some cheese.  Eat it and see what happens.=Ves un poco de queso. Cometelo y verás lo que pasa.
-You see a wafer cone with vanilla ice cream and a chocolate flake.=Ves un cucurucho de helado de vainilla y virutas de chocolate.
-You see an artichoke.  It can be an ingredient, or you can eat it.=Ves una alcachofa. Puede ser un ingrediente, o te la puedes comer.
-You see a carrot.  It can be an ingredient, or you can eat it.=Ves una zanahoria. Puede ser un ingrediente, o te la puedes comer.
 salad=ensalada
 You see a salad.=Ves una ensalada.
-You see a loaf of bread.  It is freshly baked and ready to eat.=Ves una barra de pan. Está recién horneada y lista para comer.
-You see a button mushroom.  It can be an ingredient, or you can eat it.=Ves un champiñón común. Puede ser un ingrediente, o te lo puedes comer.
-You see a porcini.  It can be an ingredient, or you can eat it.=Ves una seta calabaza. Puede ser un ingrediente, o te la puedes comer.
 courgette=calabacín
 You see a courgette. It can be an ingredient, or you can eat it.=Ves un calabacín. Puede ser un ingrediente, o te lo puedes comer.
-You see what looks like tuna sandwich.=Ves lo que parece ser un sandwich de atún.
-You see a aventail. It's a clever design.=Ves un almófar. Es un diseño ingenioso.
-You see a arandula. It has medicinal properties, if the right person uses it.=Ves una arandula. Tiene propiedades medicinales, si es usada por la persona adecuada.
-You see a diamond, not just a beautiful gem but also the hardest naturally occurring material .=Ves un diamante, no es sólo una hermosa gema sino también el material más duro de origen natural.
-You see a fancy bronze key. It smells faintly of minotaur, perhaps one dropped it?=Ves una lujosa llave de bronce. Huele ligeramente a minotauro, ¿quizá se le cayó a uno?
 fado hotel key 001=llave 001 del hotel de fado
 You see a key to room #001 in the Fado Hotel.=Ves una llave de la habitación #001 del hotel de Fado.
 fado hotel key 002=llave 002 del hotel de fado
@@ -2933,21 +2901,10 @@ fado hotel key 007=llave 007 del hotel de fado
 You see a key to room #007 in the Fado Hotel.=Ves una llave de la habitación #007 del hotel de Fado.
 fado hotel key 008=llave 008 del hotel de fado
 You see a key to room #008 in the Fado Hotel.=Ves una llave de la habitación #008 del hotel de Fado.
-You see a pair of blood stained studded legs. You're not sure if the blood came from their last owner ... or his enemies.=Ves un par de quijotes tachonados manchados de sangre. No estás seguro de si la sangre es de su último dueño ... o de sus enemigos.
-You see a pair of odd looking mainio legs. They are somewhat startling but they give you a good protection.=Ves un par de quijotes de mainio de extraño aspecto. Son de algún modo sorprendentes pero te proporcionan una buena proteccion.
-You see a bulb. It can be planted anywhere, but it will only thrive on fertile ground.=Ves un bulbo. Puede ser plantado en cualquier sitio, pero sólo prosperará en un terreno fértil.
-You see a seed. It can be planted anywhere, but it will only thrive on fertile ground.=Ves una semilla. Puede ser plantada en cualquier sitio, pero sólo prosperará en un terreno fértil.
-You see a deck of cards.  Shuffle them well, to get a winning hand.=Ves una baraja de cartas. Barajealas bien, para ganar la mano.
-You see a teddy bear. Its soft and cuddly, and children love them.=Ves un oso de peluche. Es suave y tierno, y a los niños les encanta.
-You see some vampirette entrails. These guts proves that a vampirette was slain.=Ves unas entrañas de vampiresa. Estas vísceras demuestran que una vampiresa fue asesinada.
-You see tuna in a can. Too bad you don't have a can opener.=Ves atún en una lata. Lástima que no tengas un abrelatas.
-You see a snowglobe. You are SUCH a tourist!=Ves una esfera de nieve ¡Estás hecho un turista!
-You see snowballs. You can throw them at your friends or put it in your bag to keep your fish fresh. But be careful, there could be little stones in it.=Ves bolas de nieve. Puedes tirarselas a tus amigos o ponerlas en tu bolsa para conservar el pescado fresco. Pero ten cuidado, podría haber piedrecitas dentro de ella.
 dart=dardo
 You see a dart. You'll need to be close before you can use it as a missile. Stand square on, not diagonally, for the best results.=Ves un dardo. Necesitarás estar cerca antes de que lo puedas usar como proyectil. Permanece recto, no inclinado, para obtener los mejores resultados.
 power dart=dardo de potencia
 You see a power dart. You'll need to be close before you can use it as a missile. Stand square on, not diagonally, for the best results.=Ves un dardo de potencia. Necesitarás estar cerca antes de que lo puedas usar como proyectil. Permanece recto, no inclinado, para obtener los mejores resultados.
-You see a crossbow. The attack is high but it has a very short range, what do you prefer?=Ves una ballesta. Su ataque es elevado pero cubre una distancia muy corta, ¿qué prefieres?
 angel figurine=figurilla de ángel
 You see a sparkling angel figurine.=Ves una figurilla de ángel resplandeciente.
 ankh=anj
@@ -2955,19 +2912,10 @@ You see a mysterious ankh. You don't know what it is for.=Ves un misterioso anj.
 iron=hierro
 reptile egg=huevo de reptil
 You see a valuable reptile egg.=Ves un valioso huevo de reptil.
-You see a spool of silk thread, spun from the glands of a giant spider..=Ves un carrete de hilo de seda, hilado de las glándulas de una araña gigante..
-You see a ados city scroll, it will take you back to ados city.=Ves un pergamino de la ciudad de ados, te llevará de regreso a la ciudad de ados.
-You see an green dragon shield, scaly and strong.=Ves un escudo de dragón verde, escamoso y resistente.
-You see a magic plate shield. Its has a magical quality surrounding it.=Ves un escudo mágico de placas de acero. Tiene una cualidad mágica que lo envuelve.
-You see a mythical egg, but you do not know, what it is for.=Ves un huevo mítico, pero no sabes, para qué es.
-You see a knife whose blade is crafted to a lethal edge from finest obsidian.=Ves un cuchillo cuya hoja se ha trabajado hasta conseguir un filo letal a partir de la obsidiana más pura.
-The point of this biting sword is chiseled to a lethal point. It will serve you well.=La punta de esta espada mordaz está cincelada hasta un punto letal.
-The chaos sword. It hurts them but it heals you.=La espada del caos. Les hace daño a ellos pero a ti te cura.
-This an elvish sword. It looks like it is made from tree leaves!=Esta es una espada élfica ¡Parece que está hecha de hojas de árbol!
-You see a black sword.  Its darkness will surely protect you.=Ves una espada negra. Su oscuridad seguro que te protegerá.
-You see a pick. It is a tool which helps you to get some coal.=Ves un pico. Es una herramienta que te ayuda a obtener algo de carbón.
+
+# creature speach not yet supported by parser
+
 click-clack-click=clic-clac-clic
-You see a chicken, isn't it nice?.=Ves un pollo, ¿a que es bonito?
 cluck cluck cluck=cloc cloc cloc
 cluck cluck=cloc cloc
 Oou! Oou!=Oou! Oou!
@@ -2986,15 +2934,12 @@ WHOOOOEOEOEZZZZZZ!!!=WHOOOOEOEOEZZZZZZ!!!
 Miiiiaaauuu!=Miiiiaaauuu!
 ROOOOAAAAR!=ROOOOAAAAR!
 Defend yourself! I can see you!=¡Defiendete! ¡Puedo verte!
-You see a beholder which can see you very well with its huge eye...=Ves un beholder que puede verte muy bien con su enorme ojo...
 Defy order! Seek chaos!=¡Desafía al orden! ¡Busca el caos!
 Chaos in the wrath!=¡El caos en la ira!
 I will summon chaos and fury upon you!=¡Invocaré el caos y la furia sobre ti!
 Chaos will rule!=¡El caos reinará!
-You see a chaos overlord. It is he who directs the creation of evil plans and gives orders to all chaotic creatures which exist.=Ves a un gran señor del caos. Es él quien dirige la creación de los planes malvados y da las órdenes a todas las criaturas que existen.
 I am become death, destroyer of worlds.=Me he convertido en la muerte, en el destructor de mundos.
 pirate=pirata
-You see a bandit. Together with his partners he commits many different crimes to get much money or some rare and valuable items.=Ves a un bandido. Junto a sus compañeros comete muy diversos crímenes para conseguir mucho dinero o algunos objetos raros y valiosos.
 Aye, my hearties!=¡Sí, mis valientes!
 Yohoho and a boddle of rum!=¡Yohoho y una bodella de rón!
 pirate wench=chica pirata
@@ -3058,13 +3003,11 @@ Who dare challenge me?=¿Quién se atreve a desafiarme?
 Leave me now, before it is too late!=¡Marchaos ahora, antes de que sea demasiado tarde!
 Meet thy maker!=¡Conoce a tu creador!
 Mere mortals cannot challenge me!=¡Los simples mortales no pueden desafiarme!
-You see an archangel. She wants to kill you because she doesn't want you in the clouds.=Ves a una arcángel. Quiere matarte porque no quiere que estés en las nubes.
 Leave now, before it is too late for you.=Marchate ahora, antes de que sea demasiado tarde para ti.
 Your destiny is not here.=Tu destino no está aquí.
 Neither the earth nor the sky has a place for you...=Ni la tierra ni el cielo tienen un lugar para ti...
 My will be done over land and sky!=¡Mi voluntad se hará en la tierra y en el cielo!
 Mine is the Power and the Glory!=¡Mío es el poder y la gloria!
-You see a dark archangel, after she fell from heaven her soul became as dark as she is now.=Ves a una arcángel oscura, después de que cayese del cielo su alma se volvió tan oscura como ella lo es ahora.
 I will strike you down with more power than you can imagine!!= ¡¡Yo te derribaré con más poder del que puedas imaginar!!
 My will be done!=¡Mi voluntad se hará!
 Giiiiiaaants! Run away!=¡Giganteeeeees! ¡Huyamos!
@@ -3073,24 +3016,19 @@ Ready! Aim! Runnnnnnnnnnn=¡Preparados! ¡Apunten! ¡Corraaaaaaaaaaaan!
 Ready! Aim! Runnnnnnnnnnn=¡Preparados! ¡Apunten! ¡Corraaaaaaaaaaaan!
 Umm! Tasty meat.=¡Umm! Carne sabrosa.
 Breakfast time!=¡Hora de desayunar!
-You see a stone golem, it exists to protect and nothing else. What was it crafted to protect, and what would one do if it lost it's purpose?=Ves a un golem de piedra, existe para proteger y nada más ¿Qué fue diseñado para proteger, y qué haría si perdiese su propósito?
-You see a giant kobold. Though generally playful it doesn't quite know it's own strength. When it asks for a hug, it's best to decline that offer.=Ves a un kobold gigante. Aunque por lo general es juguetón no conoce su propia fuerza. Cuando pide un abrazo, es mejor rechazar la oferta.
 Hug?=¿Un abrazo?
 Wheee!!=¡¡Uiií!!
 It's fun up here!=¡Es divertido estar aquí arriba!
 Charrrrrrrrge!=¡A la cargaaaaaaaa!
-You see black death. With his scythe he reaps your soul and then he takes it over the river where it has to stay until judgement day.=Ves a la muerte negra. Con su guadaña siega tu alma y después se la lleva al río donde tiene que permanecer hasta el día del juicio.
 Your time to die has come!=¡Ha llegado tu hora de morir!
 Say goodbye to this world!=¡Di adiós a este mundo!
 You will dream of me tonight...=Soñarás conmigo esta noche...
 You will pay for your greed!=¡Pagarás por tu codicia!
 Zag-Zag!=Zag-Zag!
-You see a little witch. Witches are are evil little girls who are very dangerous.=Ves a una brujita. Las brujas son niñitas malvadas que son muy peligrosas.
 The end of the world is nigh...=El fin del mundo está cerca...
 Yield to the Power!=¡sometete al poder!
 Meet you after Cataclysm.=Nos veremos después del Cataclismo.
 I see you, heretic!=¡Te estoy viendo, hereje!
-You see a kalavan housewife. She lives in Kalavan city and she very angry with rude people who want to steal her food out of the kitchen and destroy her beautiful flower garden!=Ves a una ama de casa kalavan. Vive en la ciudad de Kalavan y ¡se enfada mucho con la gente ruda que quiere robar comida de su cocina y destruir su precioso jardín!
 Ou-Garrrr!=Ou-Garrrr!
 Yummie!=mmmmm!
 The Cataclysm cometh!=¡El cometa del Cataclismo!
@@ -3129,7 +3067,6 @@ I am the king of this area!=¡Soy el rey de esta área!
 Ouurgghh!=Ouurgghh!
 Growwwwwwwrrrrrrr!=Growwwwwwwrrrrrrr!
 Arrrrllllggggghhhh=Arrrrllllggggghhhh
- You see a noble centaur, half man, half horse. He looks capable of great damage but thankfully seems to mean you no harm.=Ves a un noble centauro, mitad hombre, mitad caballo. Parece capaz de causar gran daño pero afortunadamente no parece tener intención de herirte.
 Revere me, the Oni King!=¡Veneradme, al Rey Oni!
 You must bow before the Oni Queen.=Debes inclinarte ante la Reina Oni.
 You, humans, never leave us alone!=¡Vosotros, los humanos, nunca nos dejáis en paz!
@@ -3151,7 +3088,6 @@ Thou shall not pass!=¡No pasarás!
 Ooooouuuuuh!=Ooooouuuuuh!
 WooOouuuUuh!=WooOouuuUuh!
 Ghhrr!=Ghhrr!
-You see a bloody zombie. Can you see the drops of blood that fall from his body?=Ves a un zombi sangriento ¿Puedes ver las gotas de sangre que caen de su cuerpo?
 brrraaaaaaaaaains=cereeeeeeeebrooooos
 Thou shall not kill!=¡No matarás!
 Thou shall not survive!=¡No sobrevivirás!
