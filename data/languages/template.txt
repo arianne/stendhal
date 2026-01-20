@@ -1097,6 +1097,7 @@ venom gland=
 You see the venom gland of a giant king cobra. It is filled with deadly toxin.=
 
 pelt=
+You see a pelt of animal skin. It's used to make clothes and leather armor.=
 
 leather thread=
 You see a strand of sturdy leather thread.=
@@ -1265,6 +1266,9 @@ You see an imperial ring. It is imbued with the strength of a king.=
 enhanced imperial ring=
 You see an enhanced imperial ring. It eminates the auras of strength and defense.=
 
+ring of clarity=
+You see a ring of clarity. You feel more aware while wearing it.=
+
 
 ## scrolls
 
@@ -1406,6 +1410,9 @@ You see a silvery gm token. Does it bring you pride?=
 
 bronze gm token=
 You see a bronze gm token. Does it bring you pride?=
+
+four-leaf clover=
+You see a lucky four-leaf clover. What are the chances of finding one!?=
 
 
 ## swords
@@ -1635,6 +1642,7 @@ You see a killer bat which will suck your blood!=
 giant bat=
 
 giant killer bat=
+You see a giant killer bat. As if small wasn't pesky enough, these giant ones are capable of taking down anyone who dares come before them.=
 
 piglet=
 You see a piglet, a bit dirty.=
@@ -1702,6 +1710,7 @@ black bear=
 You see a strong black bear which hibernates in winter.=
 
 polar bear=
+You see a polar bear which lives in the icy desert. Beware! It can take you down with its powerful claws!=
 
 
 ## animal_aquatic
@@ -2268,6 +2277,7 @@ cannibal=
 You see a cannibal. He hunts you for cooking and eating your fresh meat! It's useless to tell him that your flesh is not good, better fight him or run away!=
 
 elder cannibal=
+You see an elder cannibal. For years it has eaten humans. It will not stop until its hunger is satisfied.=
 
 cannibal warrior=
 You see a cannibal warrior.=
