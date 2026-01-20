@@ -4,7 +4,8 @@
 
 	<import file="dist.xml" />
 
-	<target name="compile_stendhaltools" description="Compile Stendhal build tools.">
+	<!-- Compile Stendhal build tools. -->
+	<target name="compile_tools">
 		<mkdir dir="${build_stendhaltools}"/>
 
 		<javac srcdir="${src}" destdir="${build_stendhaltools}" source="1.8" target="1.8" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}" includeantruntime="true">
@@ -28,7 +29,11 @@
 		</javac>
 	</target> <!-- compile_stendhaltools -->
 
-	<target name="clean_whitespace" description="Clean whitespace in source and other specified file types." depends="compile_stendhaltools">
+	<!-- Alias of `compile_tools`. -->
+	<target name="compile_stendhaltools" depends="compile_tools" />
+
+	<!-- Clean whitespace in source and other specified file types. -->
+	<target name="clean_whitespace" depends="compile_stendhaltools">
 		<!-- process main Java source, config, & scripting files -->
 		<java classname="games.stendhal.tools.CleanWhitespace">
 			<classpath>
@@ -69,10 +74,8 @@
 	</target> <!-- clean_whitespace -->
 
 
-	<target name="cleanwhitespace" depends="clean_whitespace" description="Alias of clean_whitespace."/>
-
-
-	<target name="postman" description="Build postman bot.">
+	<!-- Build postman bot. -->
+	<target name="postman">
 		<mkdir dir="${buildroot}/buildbot"/>
 		<javac srcdir="${src}" destdir="${buildroot}/buildbot" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.8" target="1.8" deprecation="${javac.deprecation}" includeantruntime="false">
 			<include name="games/stendhal/bot/postman/*.java"/>
@@ -108,7 +111,8 @@
 	</target> <!-- postman -->
 
 
-	<target name="signupdates" description="Sign updates." depends="compile_stendhaltools,jardiff" unless="exclude.signing">
+	<!-- Sign updates. -->
+	<target name="signupdates" depends="compile_stendhaltools,jardiff" unless="exclude.signing">
 		<taskdef name="updatesigner" classname="games.stendhal.tools.updateprop.UpdateSigner">
 			<classpath>
 				<pathelement path="."/>
@@ -124,7 +128,8 @@
 	</target> <!-- signupdates -->
 
 
-	<target name="jardiff" depends="client_build" unless="exclude.jardiff" description="Generate release changes info.">
+	<!-- Generate release changes info. -->
+	<target name="jardiff" depends="client_build" unless="exclude.jardiff">
 		<echo>Creating update from ${version.old} to ${version}</echo>
 		<delete>
 			<fileset dir="${build-archive}">
@@ -168,8 +173,9 @@
 	</target> <!-- jardiff -->
 
 
+	<!-- Run enemy balancer. -->
 	<!-- USAGE: ant balance -Dcreature="<creature_name>" -->
-	<target name="balance" description="Run enemy balancer." depends="compile_stendhaltools,server_build">
+	<target name="balance" depends="compile_stendhaltools,server_build">
 		<java classname="games.stendhal.tools.BalanceRPGame">
 			<classpath>
 				<pathelement path="${build_stendhaltools}"/>

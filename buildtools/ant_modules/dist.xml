@@ -19,13 +19,15 @@
 	</condition>
 
 
-	<target name="jar" depends="client_build,server_build" description="Build server and clients.">
+	<!-- Build server and clients. -->
+	<target name="jar" depends="client_build,server_build">
 		<!-- XXX: client & server builds are not exclusive to NetBeans, remove this output? -->
 		<echo>Built client and server for NetBeans.</echo>
 	</target>
 
 
-	<target name="signjar" unless="exclude.signing" description="Sign client distribution.">
+	<!-- Sign client distribution. -->
+	<target name="signjar" unless="exclude.signing">
 		<signjar
 			alias="${keystore.alias}"
 			keystore="keystore.ks"
@@ -34,20 +36,23 @@
 	</target>
 
 
+	<!-- Generate JAR files for both client and server. -->
 	<!-- XXX: why does this depend on "server_build" twice? -->
-	<target name="compile" depends="server_build,client_build,server_build" description="Generate JAR files for both client and server."/>
+	<target name="compile" depends="server_build,client_build,server_build" />
 
 
-	<target name="dist" depends="clean,dist_binary,dist_source,signupdates" description="Create all packages for Stendhal release."/>
+	<!-- Create all packages for Stendhal release. -->
+	<target name="dist" depends="clean,dist_binary,dist_source,signupdates" />
 
 
-	<target name="dist_binary" depends="clean,dist_server_binary,dist_client_binary,dist_client_starter,dist_webclient_binary"
-			description="Create all binary packages for Stendhal release."/>
+	<!-- Create all binary packages for Stendhal release. -->
+	<target name="dist_binary" depends="clean,dist_server_binary,dist_client_binary,dist_client_starter,dist_webclient_binary" />
 
 
 	<!-- START: source -->
 
-	<target name="dist_source" description="Create all source packages for Stendhal release.">
+	<!-- Create all source packages for Stendhal release. -->
+	<target name="dist_source">
 		<mkdir dir="${buildroot}/stendhal-${version}-src"/>
 
 		<copy todir="${buildroot}/stendhal-${version}-src/src">
@@ -104,7 +109,8 @@
 
 	<!-- START: client data -->
 
-	<target name="build_client_data" description="Build client data files.">
+	<!-- Build client data files. -->
+	<target name="build_client_data">
 		<!-- base data -->
 		<mkdir dir="${build_client_data}"/>
 		<copy todir="${build_client_data}/data/sprites">
@@ -179,7 +185,8 @@
 
 	<!-- START: server -->
 
-	<target name="server_build" depends="init,checkxml" description="Compile JAR file for Stendhal server.">
+	<!-- Compile JAR file for Stendhal server. -->
+	<target name="server_build" depends="init,checkxml">
 		<mkdir dir="${build_server}"/>
 
 		<copy todir="${build_server}/data/conf" file="data/conf/stendhalcreateaccount.properties"/>
@@ -340,7 +347,8 @@
 	</target> <!-- server_build -->
 
 
-	<target name="dist_server_binary" depends="server_build" description="Create server package for release and distribution.">
+	<!-- Create server package for release and distribution. -->
+	<target name="dist_server_binary" depends="server_build">
 		<mkdir dir="${buildroot}/stendhal-server-${version}"/>
 
 		<copy todir="${buildroot}/stendhal-server-${version}/data/script">
@@ -392,10 +400,12 @@
 	</target> <!-- dist_server_binary -->
 
 
-	<target name="dist_docker" depends="docker_build,docker_push" description="Build and push container image."/>
+	<!-- Build and push container image. -->
+	<target name="dist_docker" depends="docker_build,docker_push" />
 
 
-	<target name="docker_build_prepare" depends="dist_server_binary" description="Prepare container image build.">
+	<!-- Prepare container image build. -->
+	<target name="docker_build_prepare" depends="dist_server_binary">
 		<mkdir dir="${build_docker}" />
 		<copy file="${buildtools_docker}/Dockerfile" todir="${build_docker}" />
 		<copy file="${buildtools_docker}/.dockerignore" todir="${build_docker}" />
@@ -404,7 +414,8 @@
 	</target> <!-- docker_build_prepare -->
 
 
-	<target name="docker_build" depends="docker_build_prepare" description="Build container image.">
+	<!-- Build container image. -->
+	<target name="docker_build" depends="docker_build_prepare">
 		<exec dir="${build_docker}" executable="docker">
 			<arg value="build" />
 			<arg value="-t" />
@@ -414,10 +425,12 @@
 	</target> <!-- docker_build -->
 
 
-	<target name="docker_push" description="Push container image."/>
+	<!-- Push container image. -->
+	<target name="docker_push" />
 
 
-	<target name="server_run" depends="server_build,compilejs" description="Run server.">
+	<!-- Run server. -->
+	<target name="server_run" depends="server_build,compilejs">
 		<mkdir dir="run_srvr"/>
 
 		<copy todir="run_srvr">
@@ -446,7 +459,8 @@
 
 	<!-- START: java client -->
 
-	<target name="client_build" depends="init,build_client_data" description="Compile client JAR file.">
+	<!-- Compile client JAR file. -->
+	<target name="client_build" depends="init,build_client_data">
 		<mkdir dir="${build_client}"/>
 
 		<copy todir="${build_client}/games/stendhal/client">
@@ -539,7 +553,8 @@
 	</target> <!-- client_build -->
 
 
-	<target name="compile_stendhaltextclient" description="Compile text client.">
+	<!-- Compile text client. -->
+	<target name="compile_textclient">
 		<mkdir dir="${build_stendhaltextclient}"/>
 
 		<javac srcdir="${src}" destdir="${build_stendhaltextclient}" source="1.8" target="1.8" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}" includeantruntime="false">
@@ -560,8 +575,12 @@
 		</javac>
 	</target> <!-- compile_stendhaltextclient -->
 
+	<!-- Alias of `compile_textclient`. -->
+	<target name="compile_stendhaltextclient" depends="compile_textclient" />
 
-	<target name="dist_client_binary" depends="clean_client_data,client_build" description="Create Java client package for release and distribution.">
+
+	<!-- Create Java client package for release and distribution. -->
+	<target name="dist_client_binary" depends="clean_client_data,client_build">
 		<mkdir dir="${buildroot}/stendhal-${version}"/>
 		<mkdir dir="${buildroot}/stendhal-${version}/lib"/>
 		<mkdir dir="${buildroot}/stendhal-${version}/log"/>
@@ -597,8 +616,8 @@
 	</target> <!-- dist_client_binary -->
 
 
-	<!-- XXX: is this still used? -->
-	<target name="dist_client_starter" depends="client_build" description="Create Java client starter package.">
+	<!-- Create Java client starter package (obsolete). -->
+	<target name="dist_client_starter" depends="client_build">
 		<mkdir dir="${buildroot}/stendhal-${version}"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_starter_jarname}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib">
@@ -620,7 +639,8 @@
 	</target> <!-- dist_client_starter -->
 
 
-	<target name="client_run" depends="client_build" description="Run Java client.">
+	<!-- Run Java client. -->
+	<target name="client_run" depends="client_build">
 		<mkdir dir="run_clnt"/>
 		<mkdir dir="run_clnt/lib"/>
 
@@ -656,8 +676,9 @@
 	</target> <!-- client_run -->
 
 
+	<!-- Run client for NetBeans trick. -->
 	<!-- Netbeans won't let you choose ant options, so this does it for us-->
-	<target name="run" depends="client_run" description="Run client for NetBeans trick."/>
+	<target name="run" depends="client_run" />
 
 	<!-- END: java client -->
 
@@ -754,7 +775,8 @@ export function version(marauroa, stendhal) {
 	</target>
 
 
-	<target name="compilejs" depends="cleanjs" description="Compile web client.">
+	<!-- Compile web client. -->
+	<target name="compilejs" depends="cleanjs">
 		<antcall target="js-prepare" unless:set="exclude.webclient"/>
 		<antcall target="js-invoke-compiler" unless:set="exclude.webclient"/>
 
@@ -763,7 +785,8 @@ export function version(marauroa, stendhal) {
 	</target> <!-- compilejs -->
 
 
-	<target name="webclient_build" depends="compilejs,clean_client_data,build_client_data" description="Compile and stage web client files.">
+	<!-- Compile and stage web client files. -->
+	<target name="webclient_build" depends="compilejs,clean_client_data,build_client_data">
 		<mkdir dir="${build_webclient}"/>
 
 		<copy todir="${build_webclient}">
@@ -785,10 +808,8 @@ export function version(marauroa, stendhal) {
 	</target> <!-- webclient_build -->
 
 
-	<target name="build_webclient" depends="webclient_build" description="Alias of webclient_build."/>
-
-
-	<target name="dist_webclient_binary" depends="webclient_build" description="Create web client package for release and distribution.">
+	<!-- Create web client package for release and distribution. -->
+	<target name="dist_webclient_binary" depends="webclient_build">
 		<zip destfile="${buildroot}/stendhal-webclient-${version}.zip">
 			<zipfileset dir="${build_client_data}"/>
 			<zipfileset dir="${build_client_music_data}"/>

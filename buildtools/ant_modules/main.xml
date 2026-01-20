@@ -2,7 +2,8 @@
 
 <project xmlns:if="ant:if" xmlns:unless="ant:unless">
 
-	<target name="init" description="Update version and resource info.">
+	<!-- Update version and resource info. -->
+	<target name="init">
 		<mkdir dir="${lib}"/>
 
 		<!-- update version -->
@@ -89,7 +90,8 @@
 	</target> <!-- init -->
 
 
-	<target name="checkxml" description="Verify XML files are well-formed.">
+	<!-- Verify XML files are well-formed. -->
+	<target name="checkxml">
 		<schemavalidate failonerror="yes" lenient="yes" warn="yes">
 			<schema namespace="stendhal" file="${config_dir}/zones.xsd"/>
 			<fileset dir="${config_dir}/zones">
@@ -167,7 +169,8 @@
 	</target> <!-- checkxml -->
 
 
-	<target name="internalUpdatePrereleaseVersion" if="PRE_RELEASE" description="Add date to pre-release test client.">
+	<!-- Add date to pre-release test client. -->
+	<target name="internalUpdatePrereleaseVersion" if="PRE_RELEASE">
 		<tstamp prefix="date">
 			<format property="iso" pattern="yyyy-MM-dd"/>
 		</tstamp>

@@ -2,7 +2,8 @@
 
 <project xmlns:if="ant:if" xmlns:unless="ant:unless">
 
-	<target name="locale_build_template" description="Creates a template for translating.">
+	<!-- Creates a template for translating. -->
+	<target name="locale_template">
 		<echo unless:true="${python.present}" message="Python unavailable, cannot build locale template"/>
 
 		<exec executable="${executable.python}" if:true="${python.present}" failonerror="true">
@@ -11,7 +12,8 @@
 		</exec>
 	</target>
 
-	<target name="locale_update" description="Update translation files from template.">
+	<!-- Update translation files from template. -->
+	<target name="locale_update">
 		<echo unless:true="${python.present}" message="Python unavailable, cannot update translations"/>
 
 		<exec executable="${executable.python}" if:true="${python.present}" failonerror="true">

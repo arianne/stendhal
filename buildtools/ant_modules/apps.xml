@@ -161,7 +161,8 @@
 	</target> <!-- client_android_build -->
 
 
-	<target name="android" description="Create Android client package for release and distribution.">
+	<!-- Create Android client package for release and distribution. -->
+	<target name="android">
 		<echo
 			if:set="exclude.webview"
 			message="ANDROID_SDK_ROOT environment variable not set. Skipping Android WebView client build."/>

@@ -1,81 +1,32 @@
 <?xml version='1.0'?>
 
-<project name="stendhal" default="compile" basedir=".">
-	<!--
-		Sets a property (by name and value), or set of properties (from file or resource) in the project. Properties are case sensitive.
-		Properties are immutable: whoever sets a property first freezes it for the rest of the build; they are most definitely not variables.
-	-->
+<project name="stendhal" default="help" basedir=".">
+	<description>
+Project:
+    Name: .......... ${game_name}
+    Version: ....... ${version}
+    Root: .......... ${basedir}
+
+Build system:
+    Ant version: ... ${ant.version.number}
+    Ant home: ...... ${ant.location}
+    Java version: .. ${java.version}
+    Java home: ..... ${java.home}
+
+Execute `ant help` for more information.
+	</description>
+
 
 	<property file="build.ant-private.properties"/>
 	<property file="build.ant.properties"/>
-
-	<property name="build_tests" value="${buildroot}/build_tests"/>
-	<property name="build_tests_report" value="${buildroot}/build_test_report"/>
-
-	<property name="build_client" value="${buildroot}/build_client"/>
-	<property name="build_client_data" value="${buildroot}/build_client_data"/>
-	<property name="build_client_sound_data" value="${buildroot}/build_client_sound_data"/>
-	<property name="build_client_music_data" value="${buildroot}/build_client_music_data"/>
-
-	<property name="build_webclient" value="${buildroot}/build_webclient"/>
-
-	<property name="build_docker" value="${buildroot}/build_docker"/>
-	<property name="buildtools_docker" value="buildtools/docker"/>
-
-	<property name="build_postman" value="${buildroot}/buildbot/"/>
-
-	<property name="build_server" value="${buildroot}/build_server"/>
-	<property name="build_server_maps" value="${buildroot}/build_server_maps"/>
-	<property name="build_server_script" value="${buildroot}/build_server_script"/>
-	<property name="build_server_mods" value="${buildroot}/build_server_mods"/>
-	<property name="build_server_xmlconf" value="${buildroot}/build_server_xmlconf"/>
-
-	<property name="build_stendhaltools" value="${buildroot}/build_stendhaltools"/>
-	<property name="build_stendhaltextclient" value="${buildroot}/build_stendhaltextclient"/>
-
-	<property name="client_data" value="stendhal-data-${version}.jar"/>
-	<property name="client_jarname" value="stendhal-${version}.jar"/>
-	<property name="client_sound_data" value="stendhal-sound-data-${version}.jar"/>
-	<property name="client_music_data" value="stendhal-music-data-${version}.jar"/>
-	<property name="client_starter_jarname" value="stendhal-starter-${version}.jar"/>
-
-	<property name="dist_server_binary" value="${buildroot}/stendhal-server-${version}.zip" />
-
-	<property name="maps_jarname" value="stendhal-maps-${version}.jar"/>
-
-	<property name="server_jarname" value="stendhal-server-${version}.jar"/>
-	<property name="xmlconf_jarname" value="stendhal-xmlconf-${version}.jar"/>
-
-	<property name="config_dir" value="data/conf"/>
-
-	<property name="schema_location" value="${config_dir}"/>
-
-	<property name="cobertura.dir" value="${libdir}/cobertura"/>
-
-	<condition property="exclude.signing" value="true">
-		<not>
-			<available file="keystore.ks"/>
-		</not>
-	</condition>
-	<condition property="exclude.jardiff" value="true">
-		<not>
-			<available file="${build-archive}/stendhal-${version.old}.zip"/>
-		</not>
-	</condition>
-
-	<!-- time & date -->
-	<tstamp>
-		<format property="year" pattern="yyyy"/>
-		<format property="date" pattern="yyyy-MM-dd"/>
-		<format property="time" pattern="HH:mm:ss"/>
-	</tstamp>
-	<property name="datetime" value="${date} ${time}"/>
 
 
 	<!-- Ant sub-modules -->
 
 	<import file="build-private.xml" optional="true"/>
 
+	<import file="${ant_modules}/properties.xml"/>
+	<import file="${ant_modules}/info.xml"/>
 	<import file="${ant_modules}/system.xml"/>
 	<import file="${ant_modules}/apps.xml"/>
 	<import file="${ant_modules}/main.xml"/>

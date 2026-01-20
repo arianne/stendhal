@@ -1,0 +1,86 @@
+<?xml version='1.0'?>
+
+<project>
+
+	<target name="info" description="Print project build information.">
+		<echo level="info" message="Project:" />
+		<echo level="info" message="    Name: .......... ${game_name}" />
+		<echo level="info" message="    Version: ....... ${version}" />
+		<echo level="info" message="    Root: .......... ${basedir}" />
+		<echo level="info" />
+		<echo level="info" message="Build system:" />
+		<echo level="info" message="    Ant version: ... ${ant.version.number}" />
+		<echo level="info" message="    Ant home: ...... ${ant.location}" />
+		<echo level="info" message="    Java version: .. ${java.version}" />
+		<echo level="info" message="    Java home: ..... ${java.home}" />
+	</target>
+
+	<target name="help" description="Print project build and help information." depends="info">
+		<echo level="info" message="Usage:" />
+		<echo level="info" message="    ant &lt;target&gt; [&lt;target&gt;...]" />
+		<echo level="info" />
+		<echo level="info" />
+		<echo level="info" message="=== TARGETS ===" />
+		<echo level="info" />
+		<echo level="info" message="General:" />
+		<echo level="info" message="    info: ........................ Print project build information." />
+		<echo level="info" message="    help: ........................ Print project build and help information." />
+		<echo level="info" message="    init: ........................ Update version and resource info." />
+		<echo level="info" message="    checkxml: .................... Verify XML files are well-formed." />
+		<echo level="info" />
+		<echo level="info" message="Build:" />
+		<echo level="info" message="    server_build: ................ Compile JAR file for Stendhal server." />
+		<echo level="info" message="    client_build: ................ Compile client JAR file." />
+		<echo level="info" message="    webclient_build: ............. Compile and stage web client files." />
+		<echo level="info" message="    compile_textclient: .......... Compile text client." />
+		<echo level="info" message="    compile: ..................... Generate JAR files for both client and server." />
+		<echo level="info" message="    compilejs: ................... Compile web client." />
+		<echo level="info" message="    compile_tools: ............... Compile Stendhal build tools." />
+		<echo level="info" message="    server_run: .................. Run server." />
+		<echo level="info" message="    client_run: .................. Run Java client." />
+		<echo level="info" message="    postman: ..................... Build postman bot." />
+		<echo level="info" />
+		<echo level="info" message="Testing:" />
+		<echo level="info" message="    compile_tests: ............... Compile all tests." />
+		<echo level="info" message="    run_tests: ................... Run all tests." />
+		<echo level="info" message="    test: ........................ Compile and run all tests." />
+		<echo level="info" />
+		<echo level="info" message="Build cleaning:" />
+		<echo level="info" message="    clean: ....................... Delete all build files and directories." />
+		<echo level="info" message="    clean_client_data: ........... Delete client data build files and directories." />
+		<echo level="info" message="    cleanjs: ..................... Delete web client build files and directories." />
+		<echo level="info" />
+		<echo level="info" message="Source maintanence:" />
+		<echo level="info" message="    clean_whitespace: ............ Clean whitespace in source and other specified file types." />
+		<echo level="info" />
+		<echo level="info" message="Distribution:" />
+		<echo level="info" message="    dist_source: ................. Create all source packages for Stendhal release." />
+		<echo level="info" message="    dist_binary: ................. Create all binary packages for Stendhal release." />
+		<echo level="info" message="    dist_server_binary: .......... Create server package for release and distribution." />
+		<echo level="info" message="    dist_client_binary: .......... Create Java client package for release and distribution." />
+		<echo level="info" message="    dist_webclient_binary: ....... Create web client package for release and distribution." />
+		<echo level="info" message="    dist_client_starter: ......... Create Java client starter package (obsolete)." />
+		<echo level="info" message="    dist: ........................ Create all packages for Stendhal release." />
+		<echo level="info" message="    android: ..................... Create Android client package for release and distribution." />
+		<echo level="info" />
+		<echo level="info" message="Resources:" />
+		<echo level="info" message="    rendermaps: .................. Convert TMX maps to PNG images scaled 1:16." />
+		<echo level="info" message="    renderatlas: ................. Generate files for the Stendhal Atlas." />
+		<echo level="info" message="    renderworldmap: .............. Export world.tmx map to PNG image." />
+		<echo level="info" message="    updatemaps: .................. Load and save TMX maps to fix tilesets changes." />
+		<echo level="info" />
+		<echo level="info" message="Documentation:" />
+		<echo level="info" message="    docs: ........................ Generate HTML documentation for Java, TypeScript, and Lua APIs." />
+		<echo level="info" />
+		<echo level="info" message="Localization:" />
+		<echo level="info" message="    locale_template: ............. Creates a template for translating." />
+		<echo level="info" message="    locale_update: ............... Update translation files from template." />
+		<echo level="info" />
+		<echo level="info" message="Aliases:" />
+		<echo level="info" message="    compile_stendhaltextclient: .. Alias of `compile_textclient`." />
+		<echo level="info" message="    compile_stendhaltools: ....... Alias of `compile_tools`." />
+		<echo level="info" />
+		<echo level="info" message="Execute `ant -p -v` for a full list of build targets." />
+	</target>
+
+</project>
