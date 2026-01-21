@@ -431,24 +431,51 @@
 
 	<!-- Run server. -->
 	<target name="server_run" depends="server_build,compilejs">
-		<mkdir dir="run_srvr"/>
+		<mkdir dir="run_srvr/libs"/>
+		<mkdir dir="run_srvr/js"/>
 
 		<copy todir="run_srvr">
 			<fileset file="build/lib/${server_jarname}"/>
 			<fileset file="build/lib/${xmlconf_jarname}"/>
 			<fileset file="build/lib/${maps_jarname}"/>
-			<fileset file="libs/marauroa.jar"/>
-			<fileset file="libs/groovy.jar"/>
-			<fileset file="libs/guava.jar"/>
-			<fileset file="libs/log4j.jar"/>
-			<fileset file="libs/${mysqldriver_jarname}"/>
+		</copy>
+
+		<copy todir="run_srvr/libs">
+			<fileset file="${marauroa_jar}" />
+			<fileset file="${groovy_jar}" />
+			<fileset file="${guava_jar}" />
+			<fileset file="${log4j_jar}" />
+			<fileset file="${mysqldriver_jar}" />
+			<fileset file="${h2_jar}" />
+			<fileset file="${hamcrest_jar}" />
+			<fileset file="${tomcatcore_jar}" />
+			<fileset file="${tomcatwebsocket_jar}" />
+			<fileset file="${jakartaannotation_jar}" />
+			<fileset file="${luaj_jar}" />
+			<fileset file="${jsonsimple_jar}" />
+		</copy>
+
+		<copy todir="run_srvr/js">
+			<fileset dir="${srcjs}">
+				<exclude name="stendhal/" />
+				<exclude name="stendhal-compiled.js.map" />
+				<exclude name=".gitignore" />
+			</fileset>
 		</copy>
 
 		<chmod file="run_srvr/${server_jarname}" perm="+x"/>
 
-		<exec dir="." executable="java">
-			<arg line="-Xmx256m -cp run_srvr -jar run_srvr/${server_jarname} -c server.ini -l"/>
-		</exec>
+		<java jar="run_srvr/${server_jarname}"
+			fork="true"
+			failonerror="true"
+			maxmemory="256m">
+			<arg value="-c" />
+			<arg value="server.ini" />
+			<arg value="-l" />
+			<classpath>
+				<pathelement location="${basedir}" />
+			</classpath>
+		</java>
 
 		<!-- we've run the program, so delete the jars -->
 		<delete dir="run_srvr"/>
