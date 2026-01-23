@@ -219,9 +219,7 @@ export class Outfit {
 			return;
 		}
 
-		const stage = DrawingStage.get();
-		stage.reset();
-		stage.setSize(48 * 3, 64 * 4);
+		let stage = new DrawingStage(48 * 3, 64 * 4);
 
 		let outfitLayers = this.getLayers();
 		const detailIndex = this.getLayerIndex("detail") || 0;
@@ -275,7 +273,6 @@ export class Outfit {
 				stage.drawImage(layer);
 			}
 			image = stage.toImage() as SpriteImage;
-			stage.reset();
 			image.counter = 1;
 			singletons.getSpriteStore().cache(sig, image);
 			if (image.height > 0) {

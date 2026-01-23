@@ -10,7 +10,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { RenderingContext2D } from "./Types";
+import { Canvas, RenderingContext2D } from "./Types";
 
 
 /**
@@ -19,105 +19,38 @@ import { RenderingContext2D } from "./Types";
 export class DrawingStage {
 
 	/** Hidden canvas element. */
-	private canvas: HTMLCanvasElement;
+	private canvas: Canvas;
 	/** Canvas's drawing context. */
 	private ctx: RenderingContext2D;
 
-	/** Singleton instance. */
-	private static instance: DrawingStage;
-
 
 	/**
-	 * Retrieves the singleton instance.
+	 * create new DrawingStage
 	 *
-	 * @returns {DrawingStage}
-	 *   Drawing stage instance.
+	 * @param width the canvas width.
+	 * @param height the canvas height.
 	 */
-	static get(): DrawingStage {
-		if (!DrawingStage.instance) {
-			DrawingStage.instance = new DrawingStage();
-		}
-		return DrawingStage.instance;
-	}
-
-	/**
-	 * Hidden singleton constructor.
-	 */
-	private constructor() {
-		this.canvas = document.getElementById("drawing-stage")! as HTMLCanvasElement;
+	constructor(width: number, height: number) {
+		this.canvas = new OffscreenCanvas(width, height);
 		this.ctx = this.canvas.getContext("2d")!;
-		this.reset();
 	}
 
-	/**
-	 * Clears canvas & resets dimensions to 0x0.
-	 */
-	reset() {
-		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-		this.setSize(0, 0);
-	}
 
 	/**
-	 * Sets dimensions of drawing canvas.
+	 * Converts canvas
 	 *
-	 * @param {number} width
-	 *   New canvas width.
-	 * @param {number} height
-	 *   New canvas height.
+	 * @returns new image
 	 */
-	setSize(width: number, height: number) {
-		this.canvas.width = width;
-		this.canvas.height = height;
-	}
-
-	/**
-	 * Compares canvas dimensions against image and adjusts if necessary.
-	 *
-	 * @param {HTMLImageElement} image
-	 *   Image to compare against.
-	 */
-	private checkSize(image: HTMLImageElement) {
-		if (this.canvas.width < image.width || this.canvas.height < image.height) {
-			this.setSize(image.width, image.height);
-		}
-	}
-
-	/**
-	 * Converts canvas data to PNG data URL.
-	 *
-	 * @returns {string}
-	 *   PNG data encoded string.
-	 */
-	// TODO: Do we really need this? We could use an offscreen canvas otherwise
-	toDataURL(): string {
-		return this.canvas.toDataURL("image/png");
-	}
-
-	/**
-	 * Converts canvas data to PNG image.
-	 *
-	 * @returns {HTMLImageElement}
-	 *   New image element.
-	 */
-	toImage(): HTMLImageElement {
-		const image = new Image();
-		image.src = this.toDataURL();
-		return image;
+	toImage(): CanvasImageSource {
+		return this.canvas;
 	}
 
 	/**
 	 * Draws an image on the canvas.
 	 *
-	 * @param {HTMLImageElement} image
-	 *   Image to be drawn.
-	 * @param {boolean} [reset=false]
-	 *   If `true` erases current image data before drawing.
+	 * @param image Image to be drawn.
 	 */
-	drawImage(image: HTMLImageElement, reset=false) {
-		if (reset) {
-			this.reset();
-		}
-		this.checkSize(image);
+	drawImage(image: CanvasImageSource) {
 		this.ctx.drawImage(image, 0, 0);
 	}
 }

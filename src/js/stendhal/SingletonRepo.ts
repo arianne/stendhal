@@ -17,7 +17,6 @@ import { Zone } from "./entity/Zone";
 
 import { ConfigManager } from "./util/ConfigManager";
 import { DownloadUtil } from "./util/DownloadUtil";
-import { DrawingStage } from "./util/DrawingStage";
 import { FacingHandler } from "./util/FacingHandler";
 import { KeyHandler } from "./util/KeyHandler";
 import { SessionManager } from "./util/SessionManager";
@@ -48,7 +47,9 @@ import { ViewPort } from "./ui/ViewPort";
 
 import { ChatInputComponent } from "./ui/component/ChatInputComponent";
 
-
+/**
+ * @Deprecated use Class.get() directly to prevent dependency chain
+ */
 export class SingletonRepo {
 
 	static getCStatus(): CStatus {
@@ -73,10 +74,6 @@ export class SingletonRepo {
 
 	static getDownloadUtil(): typeof DownloadUtil {
 		return DownloadUtil;
-	}
-
-	static getDrawingStage(): DrawingStage {
-		return DrawingStage.get();
 	}
 
 	static getEmojiStore(): EmojiStore {
