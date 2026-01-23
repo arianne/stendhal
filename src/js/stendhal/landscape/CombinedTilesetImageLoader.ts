@@ -70,6 +70,7 @@ export class CombinedTilesetImageLoader {
 			return;
 		}
 		let url = tsname + "?v=" + stendhal.data.build.version;
+		// TODO: deal with errors
 		let response = await fetch(url);
 		if (!response.ok) {
 			return;
