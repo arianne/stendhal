@@ -26,6 +26,7 @@ export class OutfitPaletteColorSelector extends OutfitColorSelector {
 		this._x = 0;
 		this._y = 0;
 		this.hX = this.baseImage.width / 2;
+		this._createColorMap();
 	}
 
 	override get color() {
