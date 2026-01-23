@@ -219,8 +219,6 @@ export class Outfit {
 			return;
 		}
 
-		let stage = new DrawingStage(48 * 3, 64 * 4);
-
 		let outfitLayers = this.getLayers();
 		const detailIndex = this.getLayerIndex("detail") || 0;
 		if (stendhal.data.outfit.detailHasRearLayer(detailIndex)) {
@@ -268,18 +266,16 @@ export class Outfit {
 		};
 
 		onAllLayersReady = function() {
+			let canvas = new OffscreenCanvas(48 * 3, 64 * 4);
+			let ctx = canvas.getContext("2d")!;
 			for (const layer of layers) {
 				layer.removeEventListener("load", onLayerReady);
-				stage.drawImage(layer);
+				ctx.drawImage(layer, 0, 0);
 			}
-			image = stage.toImage() as SpriteImage;
+			image = canvas as unknown as SpriteImage; // TODO clean this up
 			image.counter = 1;
 			singletons.getSpriteStore().cache(sig, image);
-			if (image.height > 0) {
-				onReady();
-			} else {
-				image.addEventListener("load", onReady);
-			}
+			onReady();
 		};
 
 		for (const layer of layers) {
