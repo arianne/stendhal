@@ -11,7 +11,6 @@
  ***************************************************************************/
 
 import { singletons } from "../SingletonRepo";
-import { DrawingStage } from "../util/DrawingStage";
 import { Pair } from "../util/Pair";
 import { StringUtil } from "../util/StringUtil";
 import { Paths } from "./Paths";

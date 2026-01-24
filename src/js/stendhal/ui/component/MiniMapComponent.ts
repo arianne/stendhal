@@ -16,7 +16,7 @@ import { Component } from "../toolkit/Component";
 import { Player } from "../../entity/Player";
 
 import { Color } from "../../data/color/Color";
-import { Canvas, RenderingContext2D } from "util/Types";
+import { RenderingContext2D } from "util/Types";
 import { stendhal } from "stendhal";
 
 
@@ -33,7 +33,7 @@ export class MiniMapComponent extends Component {
 	private mapWidth = 1;
 	private mapHeight = 1;
 	private scale = 1;
-	private bgImage!: Canvas;
+	private bgImage?: ImageBitmap;
 	private lastZone?: number[];
 
 	// ground/collision colors
@@ -140,8 +140,8 @@ export class MiniMapComponent extends Component {
 
 		if (stendhal.data.map.collisionData !== this.lastZone) {
 			this.lastZone = stendhal.data.map.collisionData;
-			this.bgImage = document.createElement("canvas");
-			let ctx = this.bgImage.getContext("2d")!;
+			let canvas = new OffscreenCanvas(width, height);
+			let ctx = canvas.getContext("2d")!;
 			let imgData = ctx.createImageData(width, height);
 
 			for (let y = 0; y < height; y++) {
@@ -162,10 +162,11 @@ export class MiniMapComponent extends Component {
 					imgData.data[pos + 3] = 255; // opacity
 				}
 			}
-			this.bgImage.width  = width;
-			this.bgImage.height = height;
-
 			ctx.putImageData(imgData, 0, 0);
+			if (this.bgImage) {
+				this.bgImage.close();
+			}
+			this.bgImage = canvas.transferToImageBitmap();
 		}
 	}
 
