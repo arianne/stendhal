@@ -270,10 +270,8 @@ export class RPEntity extends ActiveEntity {
 			const lsprite = this.getOutfitPart(layer, outfit[layer], outfit["body"]);
 			if (lsprite && lsprite.complete && lsprite.height) {
 				if (!this.octx) {
-					let ocanvas = document.createElement("canvas");
+					let ocanvas = new OffscreenCanvas(lsprite.width, lsprite.height);
 					this.octx = ocanvas.getContext("2d")!;
-					ocanvas.width = lsprite.width;
-					ocanvas.height = lsprite.height;
 				}
 				this.octx!.drawImage(lsprite, 0, 0);
 			}
