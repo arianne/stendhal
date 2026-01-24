@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2026 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -51,10 +51,8 @@ export class ImageSprite implements Sprite {
     }
 
     private static createCompatibleImage(sprite: Sprite): Canvas {
-        const canvas = document.createElement('canvas');
+        const canvas = new OffscreenCanvas(sprite.getWidth(), sprite.getHeight());
         const g = canvas.getContext('2d');
-        canvas.width = sprite.getWidth();
-        canvas.height = sprite.getHeight();
         sprite.draw(g!, 0, 0);
         return canvas;
     }
@@ -91,11 +89,8 @@ export class ImageSprite implements Sprite {
         height = Math.min(height, iheight);
 
         // Full copy method (the memory hog)
-        const canvas = document.createElement('canvas');
+		const canvas = new OffscreenCanvas(width, height);
         const g = canvas.getContext('2d');
-        canvas.width = width;
-        canvas.height = height;
-
         this.draw(g!, 0, 0, x, y, width, height);
 
         return new ImageSprite(canvas, ref);
