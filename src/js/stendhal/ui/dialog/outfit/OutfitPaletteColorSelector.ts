@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2015-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2015-2026 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -11,6 +11,7 @@
 
 import { singletons } from "../../../SingletonRepo";
 import { OutfitColorSelector } from "./OutfitColorSelector";
+import { ImageFilter } from "../../../sprite/image/ImageFilter";
 
 
 export class OutfitPaletteColorSelector extends OutfitColorSelector {
@@ -31,10 +32,11 @@ export class OutfitPaletteColorSelector extends OutfitColorSelector {
 
 	override get color() {
 		if (this.enabled) {
+			let filter = new ImageFilter();
 			const hs = this._hsMap[Math.floor(this._x / this._blockWidth)][Math.floor(this._y / this._blockHeight)];
 			const hsl = [hs[0], hs[1], this.hX / this.baseImage.width];
-			const rgbArray = singletons.getSpriteStore().filter.hsl2rgb(hsl);
-			return singletons.getSpriteStore().filter.mergergb(rgbArray);
+			const rgbArray = filter.hsl2rgb(hsl);
+			return filter.mergergb(rgbArray);
 		}
 		return null;
 	}
@@ -42,7 +44,8 @@ export class OutfitPaletteColorSelector extends OutfitColorSelector {
 	override set color(rgb) {
 		if (rgb != null) {
 			this.enabled = true;
-			const hsl = singletons.getSpriteStore().filter.rgb2hsl(singletons.getSpriteStore().filter.splitrgb(rgb));
+			let filter = new ImageFilter();
+			const hsl = filter.rgb2hsl(filter.splitrgb(rgb));
 			this.hX = hsl[2] * this.baseImage.width;
 			let bestDelta = Number.MAX_VALUE;
 			for (let i = 0; i < 4; i++) {
@@ -68,12 +71,13 @@ export class OutfitPaletteColorSelector extends OutfitColorSelector {
 		const saturations = [0.70, 0.55, 0.40, 0.25];
 		const hsMap: any = [[],[],[],[]];
 		const colors: any = [[],[],[],[]];
+		let filter = new ImageFilter();
 		for (let i = 0; i < 4; i++) {
 			for (let j = 0; j < 4; j++) {
 				const hue = hues[j];
 				const sat = saturations[i];
 				hsMap[i].push([hue, sat]);
-				const color = singletons.getSpriteStore().filter.hsl2rgb([hue, sat, 0.5]);
+				const color = filter.hsl2rgb([hue, sat, 0.5]);
 				colors[i].push(color);
 			}
 		}
@@ -102,13 +106,14 @@ export class OutfitPaletteColorSelector extends OutfitColorSelector {
 	}
 
 	override _calculateGradientStops() {
+		let filter = new ImageFilter();
 		let hs = this._hsMap[Math.floor(this._x / this._blockWidth)][Math.floor(this._y / this._blockHeight)];
 		const hslLeft = [hs[0], hs[1], 0.08];
 		const hslMiddle = [hs[0], hs[1], 0.5];
 		const hslRight = [hs[0], hs[1], 0.92];
-		const rgbLeft = singletons.getSpriteStore().filter.hsl2rgb(hslLeft);
-		const rgbMiddle = singletons.getSpriteStore().filter.hsl2rgb(hslMiddle);
-		const rgbRight = singletons.getSpriteStore().filter.hsl2rgb(hslRight);
+		const rgbLeft = filter.hsl2rgb(hslLeft);
+		const rgbMiddle = filter.hsl2rgb(hslMiddle);
+		const rgbRight = filter.hsl2rgb(hslRight);
 
 		return [rgbLeft, rgbMiddle, rgbRight];
 	}

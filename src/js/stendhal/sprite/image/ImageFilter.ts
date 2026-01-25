@@ -1,0 +1,186 @@
+/***************************************************************************
+ *                   (C) Copyright 2003-2026 - Stendhal                    *
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU Affero General Public License as        *
+ *   published by the Free Software Foundation; either version 3 of the    *
+ *   License, or (at your option) any later version.                       *
+ *                                                                         *
+ ***************************************************************************/
+
+export class ImageFilter {
+	// Helper functions
+	/**
+	 * @param {Number} rgb
+	 * @return {Array<Number>}
+	 */
+	splitrgb(rgb: number): number[] {
+		rgb &= 0xffffff;
+		var b = rgb & 0xff;
+		rgb >>>= 8;
+		var g = rgb & 0xff;
+		rgb >>>= 8;
+		return [rgb, g, b];
+	}
+
+	mergergb(rgbArray: number[]): number {
+		const r = rgbArray[0] << 16;
+		const g = rgbArray[1] << 8;
+		return 0xffffff & (r | g | rgbArray[2]);
+	}
+
+	/**
+	 * @param {Array<Number>} rgb
+	 * @return {Array<Number>}
+	 */
+	rgb2hsl(rgb: number[]): number[] {
+		var r = rgb[0] / 255;
+		var g = rgb[1] / 255;
+		var b = rgb[2] / 255;
+
+		var max, min, maxVar;
+		// Find the max and minimum colors, and remember which one it was
+		if (r > g) {
+			max = r;
+			min = g;
+			maxVar = 0;
+		} else {
+			max = g;
+			min = r;
+			maxVar = 1;
+		}
+		if (b > max) {
+			max = b;
+			maxVar = 2;
+		} else if (b < min) {
+			min = b;
+		}
+
+		// lightness
+		var l = (max + min) / 2;
+		var s, h;
+
+		// saturation
+		var diff = max - min;
+		if (diff < 0.000001) {
+			s = 0;
+			// hue not really defined, but set it to something reasonable
+			h = 0;
+		} else {
+			if (l < 0.5) {
+				s = diff / (max + min);
+			} else {
+				s = diff / (2 - max - min);
+			}
+
+			// hue
+			if (maxVar === 0) {
+				h = (g - b) / diff;
+			} else if (maxVar === 1) {
+				h = 2 + (b - r) / diff;
+			} else {
+				h = 4 + (r - g) / diff;
+			}
+			// Normalize to range [0, 1]. It's more useful than the usual 360
+			h /= 6;
+		}
+
+		return [h, s, l];
+	}
+
+	/**
+	 * @param {Array<Number>} hsl
+	 * @return {Array<Number>}
+	 */
+	hsl2rgb(hsl: number[]): number[] {
+		var r, g, b;
+		var h = hsl[0];
+		var s = hsl[1];
+		var l = hsl[2];
+
+		if (s < 0.0000001) {
+			r = g = b = Math.floor(255 * l);
+		} else {
+			var tmp1, tmp2;
+			if (l < 0.5) {
+				tmp1 = l * (1 + s);
+			} else {
+				tmp1 = l + s - l * s;
+			}
+			tmp2 = 2 * l - tmp1;
+
+			var rf = this.hue2rgb(this.limitHue(h + 1 / 3), tmp2, tmp1);
+			var gf = this.hue2rgb(this.limitHue(h), tmp2, tmp1);
+			var bf = this.hue2rgb(this.limitHue(h - 1 / 3), tmp2, tmp1);
+
+			r = Math.floor(255 * rf) & 0xff;
+			g = Math.floor(255 * gf) & 0xff;
+			b = Math.floor(255 * bf) & 0xff;
+		}
+
+		return [r, g, b];
+	}
+
+	/**
+	 * @param {Number} hue
+	 * @param {Number} val1
+	 * @param {Number} val2
+	 */
+	private hue2rgb(hue: number, val1: number, val2: number): number {
+		var res = hue;
+		if (6 * hue < 1) {
+			res = val1 + (val2 - val1) * 6 * hue;
+		} else if (2 * hue < 1) {
+			res = val2;
+		} else if (3 * hue < 2) {
+			res = val1 + (val2 - val1) * (2 / 3 - hue) * 6;
+		} else {
+			res = val1;
+		}
+
+		return res;
+	}
+
+	/**
+	 * @param {Number} hue
+	 */
+	private limitHue(hue: number): number {
+		var res = hue;
+		if (res < 0) {
+			res += 1;
+		} else if (res > 1) {
+			res -= 1;
+		}
+		return res;
+	}
+
+	private trueColor(data: any, color: number) {
+		var hslColor = this.rgb2hsl(this.splitrgb(color));
+		var end = data.length;
+		for (var i = 0; i < end; i += 4) {
+			var rgb = [data[i], data[i + 1], data[i + 2]];
+			var hsl = this.rgb2hsl(rgb);
+			// Adjust the brightness
+			var adj = hslColor[2] - 0.5; // [-0.5, 0.5]
+			var tmp = hsl[2] - 0.5; // [-0.5, 0.5]
+			// tweaks the middle lights either upward or downward, depending
+			// on if source lightness is high or low
+			var l = hsl[2] - 2.0 * adj * ((tmp * tmp) - 0.25);
+			var resultHsl = [hslColor[0], hslColor[1], l];
+			var resultRgb = this.hsl2rgb(resultHsl);
+			data[i] = resultRgb[0];
+			data[i + 1] = resultRgb[1];
+			data[i + 2] = resultRgb[2];
+		}
+	}
+	
+	public filter(data: ImageData, filter: string, param?: number): void {
+		if (filter ==='trueColor') {
+			this.trueColor(data.data, param!);
+		} else {
+			console.log("Unknown filter name " + filter);
+		}
+	}
+}
+

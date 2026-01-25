@@ -12,6 +12,7 @@
 import { stendhal } from "../stendhal";
 
 import { Paths } from "./Paths";
+import { ImageFilter } from "../sprite/image/ImageFilter";
 
 
 export class SpriteImage extends Image {
@@ -314,10 +315,7 @@ export class SpriteStore {
 	 */
 	getFiltered(fileName: string, filter: string, param?: number) {
 		const img = this.get(fileName);
-		let filterFn;
-		if (typeof(filter) === "undefined"
-			|| !(filterFn = this.filter[filter])
-			|| !img.complete || img.width === 0 || img.height === 0) {
+		if (!img.complete || img.width === 0 || img.height === 0) {
 			return img;
 		}
 		const filteredName = fileName + " " + filter + " " + param;
@@ -329,8 +327,7 @@ export class SpriteStore {
 			const ctx = canvas.getContext("2d")!;
 			ctx.drawImage(img, 0, 0);
 			const imgData = ctx.getImageData(0, 0, img.width, img.height);
-			const data = imgData.data;
-			filterFn(data, param);
+			new ImageFilter().filter(imgData, filter, param);
 			ctx.putImageData(imgData, 0, 0);
 			canvas.complete = true;
 			this.images[filteredName] = filtered = canvas as SpriteImage;
@@ -347,10 +344,7 @@ export class SpriteStore {
 	getFilteredWithPromise(fileName: string, filter: string, param?: number) {
 		const imgPromise = this.getWithPromise(fileName);
 		return imgPromise.then(function (img: HTMLImageElement) {
-			let filterFn: Function;
-			if (typeof(filter) === "undefined"
-				|| !(filterFn = stendhal.data.sprites.filter[filter])
-				|| !img.complete || img.width === 0 || img.height === 0) {
+			if (!img.complete || img.width === 0 || img.height === 0) {
 				return img;
 			}
 			const filteredName = fileName + " " + filter + " " + param;
@@ -362,8 +356,7 @@ export class SpriteStore {
 				const ctx = canvas.getContext("2d")!;
 				ctx.drawImage(img, 0, 0);
 				const imgData = ctx.getImageData(0, 0, img.width, img.height);
-				const data = imgData.data;
-				filterFn(data, param);
+				new ImageFilter().filter(imgData, filter, param);
 				ctx.putImageData(imgData, 0, 0);
 				canvas.complete = true;
 				stendhal.data.sprites.images[filteredName] = filtered = canvas as SpriteImage;
@@ -374,153 +367,7 @@ export class SpriteStore {
 	}
 
 
-	/** Image filters */
-	filter: {[key: string]: Function} = {
-		// Helper functions
-		/**
-		 * @param {Number} rgb
-		 * @return {Array<Number>}
-		 */
-		splitrgb: function(rgb: number): number[] {
-			rgb &= 0xffffff;
-			var b = rgb & 0xff;
-			rgb >>>= 8;
-			var g = rgb & 0xff;
-			rgb >>>= 8;
-			return [rgb, g, b];
-		},
 
-		mergergb: function(rgbArray: number[]): number {
-			const r = rgbArray[0] << 16;
-			const g = rgbArray[1] << 8;
-			return 0xffffff & (r | g | rgbArray[2]);
-		},
-
-		/**
-		 * @param {Array<Number>} rgb
-		 * @return {Array<Number>}
-		 */
-		rgb2hsl: function(rgb: number[]): number[] {
-			var r = rgb[0] / 255;
-			var g = rgb[1] / 255;
-			var b = rgb[2] / 255;
-
-			var max, min, maxVar;
-			// Find the max and minimum colors, and remember which one it was
-			if (r > g) {
-				max = r;
-				min = g;
-				maxVar = 0;
-			} else {
-				max = g;
-				min = r;
-				maxVar = 1;
-			}
-			if (b > max) {
-				max = b;
-				maxVar = 2;
-			} else if (b < min) {
-				min = b;
-			}
-
-			// lightness
-			var l = (max + min) / 2;
-			var s, h;
-
-			// saturation
-			var diff = max - min;
-			if (diff < 0.000001) {
-				s = 0;
-				// hue not really defined, but set it to something reasonable
-				h = 0;
-			} else {
-				if (l < 0.5) {
-					s = diff / (max + min);
-				} else {
-					s = diff / (2 - max - min);
-				}
-
-				// hue
-				if (maxVar === 0) {
-					h = (g - b) / diff;
-				} else if (maxVar === 1) {
-					h = 2 + (b - r) / diff;
-				} else {
-					h = 4 + (r - g) / diff;
-				}
-				// Normalize to range [0, 1]. It's more useful than the usual 360
-				h /= 6;
-			}
-
-			return [h, s, l];
-		},
-
-		/**
-		 * @param {Array<Number>} hsl
-		 * @return {Array<Number>}
-		 */
-		hsl2rgb: function(hsl: number[]): number[] {
-			var r, g, b;
-			var h = hsl[0];
-			var s = hsl[1];
-			var l = hsl[2];
-
-			if (s < 0.0000001) {
-				r = g = b = Math.floor(255 * l);
-			} else {
-				var tmp1, tmp2;
-				if (l < 0.5) {
-					tmp1 = l * (1 + s);
-				} else {
-					tmp1 = l + s - l * s;
-				}
-				tmp2 = 2 * l - tmp1;
-
-				var rf = stendhal.data.sprites.filter.hue2rgb(this.limitHue(h + 1/3), tmp2, tmp1);
-				var gf = stendhal.data.sprites.filter.hue2rgb(this.limitHue(h), tmp2, tmp1);
-				var bf = stendhal.data.sprites.filter.hue2rgb(this.limitHue(h - 1/3), tmp2, tmp1);
-
-				r = Math.floor(255 * rf) & 0xff;
-				g = Math.floor(255 * gf) & 0xff;
-				b = Math.floor(255 * bf) & 0xff;
-			}
-
-			return [r, g, b];
-		},
-
-		/**
-		 * @param {Number} hue
-		 * @param {Number} val1
-		 * @param {Number} val2
-		 */
-		hue2rgb: function(hue: number, val1: number, val2: number): number {
-			var res = hue;
-			if (6 * hue < 1) {
-				res = val1 + (val2 - val1) * 6 * hue;
-			} else if (2 * hue < 1) {
-				res = val2;
-			} else if (3 * hue < 2) {
-				res = val1 + (val2 - val1) * (2/3 - hue) * 6;
-			} else {
-				res = val1;
-			}
-
-			return res;
-		},
-
-		/**
-		 * @param {Number} hue
-		 */
-		limitHue: function(hue: number): number {
-			var res = hue;
-			if (res < 0) {
-				res += 1;
-			} else if (res > 1) {
-				res -= 1;
-			}
-			return res;
-		}
-	}
 
 	/**
 	 * Retrieves a shadow sprite if the style is available.
@@ -597,23 +444,3 @@ class SpriteStoreInternal extends SpriteStore {
 
 // SpriteStore singleton instance
 export const store = SpriteStoreInternal.get();
-// *** Image filters. Prevent the closure compiler from mangling the names. ***
-store.filter['trueColor'] = function(data: any, color: number) {
-	var hslColor = stendhal.data.sprites.filter.rgb2hsl(stendhal.data.sprites.filter.splitrgb(color));
-	var end = data.length;
-	for (var i = 0; i < end; i += 4) {
-		var rgb = [data[i], data[i + 1], data[i + 2]];
-		var hsl = stendhal.data.sprites.filter.rgb2hsl(rgb);
-		// Adjust the brightness
-		var adj = hslColor[2] - 0.5; // [-0.5, 0.5]
-		var tmp = hsl[2] - 0.5; // [-0.5, 0.5]
-		// tweaks the middle lights either upward or downward, depending
-		// on if source lightness is high or low
-		var l = hsl[2] - 2.0 * adj * ((tmp * tmp) - 0.25);
-		var resultHsl = [hslColor[0], hslColor[1], l];
-		var resultRgb = stendhal.data.sprites.filter.hsl2rgb(resultHsl);
-		data[i] = resultRgb[0];
-		data[i+1] = resultRgb[1];
-		data[i+2] = resultRgb[2];
-	}
-};
