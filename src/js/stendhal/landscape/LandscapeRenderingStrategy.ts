@@ -12,7 +12,6 @@
 import { Canvas } from "util/Types";
 import { TileMap } from "../data/TileMap";
 import { CombinedTilesetFactory } from "./CombinedTilesetFactory";
-import { LandscapeRenderer } from "./LandscapeRenderer";
 
 
 import { stendhal } from "../stendhal";

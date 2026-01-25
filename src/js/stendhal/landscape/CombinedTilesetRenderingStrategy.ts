@@ -14,7 +14,7 @@ import { LandscapeRenderingStrategy } from "./LandscapeRenderingStrategy";
 import { Canvas } from "util/Types";
 import { TileMap } from "../data/TileMap";
 import { CombinedTilesetFactory } from "./CombinedTilesetFactory";
-import { LandscapeRenderer } from "./LandscapeRenderer";
+import { CombinedTileset } from "./CombinedTileset";
 
 export class CombinedTilesetRenderingStrategy extends LandscapeRenderingStrategy {
 
@@ -32,8 +32,7 @@ export class CombinedTilesetRenderingStrategy extends LandscapeRenderingStrategy
 		canvas: Canvas, gamewindow: any,
 		tileOffsetX: number, tileOffsetY: number, targetTileWidth: number, targetTileHeight: number): void {
 
-		let landscapeRenderder = new LandscapeRenderer();
-		landscapeRenderder.drawLayer(
+		this.drawLayer(
 			canvas,
 			stendhal.data.map.combinedTileset,
 			0,
@@ -41,11 +40,49 @@ export class CombinedTilesetRenderingStrategy extends LandscapeRenderingStrategy
 
 		gamewindow.drawEntities();
 
-		landscapeRenderder.drawLayer(
+		this.drawLayer(
 			canvas,
 			stendhal.data.map.combinedTileset,
 			1,
 			tileOffsetX, tileOffsetY, targetTileWidth, targetTileHeight);
+	}
+
+	drawLayer(
+			canvas: Canvas,
+			combinedTileset: CombinedTileset, layerNo: number,
+			tileOffsetX: number, tileOffsetY: number, targetTileWidth: number, targetTileHeight: number): void {
+		if (!combinedTileset) {
+			return;
+		}
+		let ctx = canvas.getContext("2d")!;
+
+		const layer = combinedTileset.combinedLayers[layerNo];
+		const yMax = Math.min(tileOffsetY + canvas.height / targetTileHeight + 1, stendhal.data.map.zoneSizeY);
+		const xMax = Math.min(tileOffsetX + canvas.width / targetTileWidth + 1, stendhal.data.map.zoneSizeX);
+
+		for (let y = tileOffsetY; y < yMax; y++) {
+			for (let x = tileOffsetX; x < xMax; x++) {
+				let index = layer[y * stendhal.data.map.zoneSizeX + x];
+				if (index > -1) {
+
+					try {
+						const pixelX = x * targetTileWidth;
+						const pixelY = y * targetTileHeight;
+
+						ctx.drawImage(combinedTileset.canvas,
+
+							(index % combinedTileset.tilesPerRow) * stendhal.data.map.tileWidth,
+							Math.floor(index / combinedTileset.tilesPerRow) * stendhal.data.map.tileHeight,
+
+							stendhal.data.map.tileWidth, stendhal.data.map.tileHeight,
+							pixelX, pixelY,
+							targetTileWidth, targetTileHeight);
+					} catch (e) {
+						console.error(e);
+					}
+				}
+			}
+		}
 	}
 
 }
