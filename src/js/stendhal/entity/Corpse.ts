@@ -40,7 +40,6 @@ export class Corpse extends PopupInventory {
 		if (stendhal.config.getBoolean("activity-indicator")) {
 			this.indicator = new ActivityIndicatorSprite();
 		}
-		console.log('XXXX', MarauroaUtils.isEmpty({}), MarauroaUtils.isEmpty({'a': 'b'}));
 	}
 
 	override set(key: string, value: any) {
