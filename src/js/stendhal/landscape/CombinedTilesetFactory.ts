@@ -71,7 +71,7 @@ export class CombinedTilesetFactory {
 				}
 			}
 		}
-		let combinedTileset = new CombinedTileset(combinedTilesToIndex.size, combinedLayers);
+		let combinedTileset = new CombinedTileset(combinedTilesToIndex.size, combinedLayers, this.map.tileWidth, this.map.tileHeight);
 
 		// console.log(this.map, combinedTilesToIndex, combinedLayers);
 		// document.getElementsByTagName("body")[0].append(combinedTileset.canvas);

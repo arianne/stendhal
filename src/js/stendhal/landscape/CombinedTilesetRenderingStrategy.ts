@@ -9,7 +9,6 @@
  *                                                                         *
  ***************************************************************************/
 
-import { stendhal } from "../stendhal";
 import { LandscapeRenderingStrategy } from "./LandscapeRenderingStrategy";
 import { Canvas } from "util/Types";
 import { TileMap } from "../data/TileMap";
@@ -17,10 +16,13 @@ import { CombinedTilesetFactory } from "./CombinedTilesetFactory";
 import { CombinedTileset } from "./CombinedTileset";
 
 export class CombinedTilesetRenderingStrategy extends LandscapeRenderingStrategy {
+	private combinedTileset?: CombinedTileset;
+	private map!: TileMap;
 
 	public onMapLoaded(map: TileMap): void {
+		this.map = map;
 		let combinedTilesetFactory = new CombinedTilesetFactory(map);
-		stendhal.data.map.combinedTileset = combinedTilesetFactory.combine();
+		this.combinedTileset = combinedTilesetFactory.combine();
 	}
 
 	public onTilesetLoaded(): void {
@@ -34,7 +36,7 @@ export class CombinedTilesetRenderingStrategy extends LandscapeRenderingStrategy
 
 		this.drawLayer(
 			canvas,
-			stendhal.data.map.combinedTileset,
+			this.combinedTileset,
 			0,
 			tileOffsetX, tileOffsetY, targetTileWidth, targetTileHeight);
 
@@ -42,14 +44,14 @@ export class CombinedTilesetRenderingStrategy extends LandscapeRenderingStrategy
 
 		this.drawLayer(
 			canvas,
-			stendhal.data.map.combinedTileset,
+			this.combinedTileset,
 			1,
 			tileOffsetX, tileOffsetY, targetTileWidth, targetTileHeight);
 	}
 
 	drawLayer(
 			canvas: Canvas,
-			combinedTileset: CombinedTileset, layerNo: number,
+			combinedTileset: CombinedTileset|undefined, layerNo: number,
 			tileOffsetX: number, tileOffsetY: number, targetTileWidth: number, targetTileHeight: number): void {
 		if (!combinedTileset) {
 			return;
@@ -57,12 +59,12 @@ export class CombinedTilesetRenderingStrategy extends LandscapeRenderingStrategy
 		let ctx = canvas.getContext("2d")!;
 
 		const layer = combinedTileset.combinedLayers[layerNo];
-		const yMax = Math.min(tileOffsetY + canvas.height / targetTileHeight + 1, stendhal.data.map.zoneSizeY);
-		const xMax = Math.min(tileOffsetX + canvas.width / targetTileWidth + 1, stendhal.data.map.zoneSizeX);
+		const yMax = Math.min(tileOffsetY + canvas.height / targetTileHeight + 1, this.map.zoneSizeY);
+		const xMax = Math.min(tileOffsetX + canvas.width / targetTileWidth + 1, this.map.zoneSizeX);
 
 		for (let y = tileOffsetY; y < yMax; y++) {
 			for (let x = tileOffsetX; x < xMax; x++) {
-				let index = layer[y * stendhal.data.map.zoneSizeX + x];
+				let index = layer[y * this.map.zoneSizeX + x];
 				if (index > -1) {
 
 					try {
@@ -71,10 +73,10 @@ export class CombinedTilesetRenderingStrategy extends LandscapeRenderingStrategy
 
 						ctx.drawImage(combinedTileset.canvas,
 
-							(index % combinedTileset.tilesPerRow) * stendhal.data.map.tileWidth,
-							Math.floor(index / combinedTileset.tilesPerRow) * stendhal.data.map.tileHeight,
+							(index % combinedTileset.tilesPerRow) * this.map.tileWidth,
+							Math.floor(index / combinedTileset.tilesPerRow) * this.map.tileHeight,
 
-							stendhal.data.map.tileWidth, stendhal.data.map.tileHeight,
+							this.map.tileWidth, this.map.tileHeight,
 							pixelX, pixelY,
 							targetTileWidth, targetTileHeight);
 					} catch (e) {
