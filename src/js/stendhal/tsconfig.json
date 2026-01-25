@@ -2,8 +2,8 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"lib": ["dom", "es2022"],
-		"module": "node20",
-		"moduleResolution": "nodenext",
+		"module": "es2020",
+		"moduleResolution": "bundler",
 		"noImplicitOverride": true,
 		"outDir": "../../../build/ts",
 		"rootDir": ".",
