@@ -1,0 +1,51 @@
+/***************************************************************************
+ *                (C) Copyright 2022-2026 - Faiumoni e. V.                 *
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU Affero General Public License as        *
+ *   published by the Free Software Foundation; either version 3 of the    *
+ *   License, or (at your option) any later version.                       *
+ *                                                                         *
+ ***************************************************************************/
+
+import { stendhal } from "../stendhal";
+import { LandscapeRenderingStrategy } from "./LandscapeRenderingStrategy";
+import { Canvas } from "util/Types";
+import { TileMap } from "../data/TileMap";
+import { CombinedTilesetFactory } from "./CombinedTilesetFactory";
+import { LandscapeRenderer } from "./LandscapeRenderer";
+
+export class CombinedTilesetRenderingStrategy extends LandscapeRenderingStrategy {
+
+	public onMapLoaded(map: TileMap): void {
+		let combinedTilesetFactory = new CombinedTilesetFactory(map);
+		stendhal.data.map.combinedTileset = combinedTilesetFactory.combine();
+	}
+
+	public onTilesetLoaded(): void {
+		let body = document.getElementById("body")!;
+		body.style.cursor = "auto";
+	}
+
+	public render(
+		canvas: Canvas, gamewindow: any,
+		tileOffsetX: number, tileOffsetY: number, targetTileWidth: number, targetTileHeight: number): void {
+
+		let landscapeRenderder = new LandscapeRenderer();
+		landscapeRenderder.drawLayer(
+			canvas,
+			stendhal.data.map.combinedTileset,
+			0,
+			tileOffsetX, tileOffsetY, targetTileWidth, targetTileHeight);
+
+		gamewindow.drawEntities();
+
+		landscapeRenderder.drawLayer(
+			canvas,
+			stendhal.data.map.combinedTileset,
+			1,
+			tileOffsetX, tileOffsetY, targetTileWidth, targetTileHeight);
+	}
+
+}

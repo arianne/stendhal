@@ -14,7 +14,8 @@ import { stendhal } from "../stendhal";
 
 import { Paths } from "./Paths";
 
-import { LandscapeRenderingStrategy, CombinedTilesetRenderingStrategy } from "../landscape/LandscapeRenderingStrategy";
+import { LandscapeRenderingStrategy } from "../landscape/LandscapeRenderingStrategy";
+import { CombinedTilesetRenderingStrategy } from "../landscape/CombinedTilesetRenderingStrategy";
 import { IndividualTilesetRenderingStrategy } from "../landscape/IndividualTilesetRenderingStrategy";
 import { ParallaxBackground } from "../landscape/ParallaxBackground";
 

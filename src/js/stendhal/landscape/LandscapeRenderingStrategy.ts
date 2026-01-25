@@ -28,37 +28,3 @@ export abstract class LandscapeRenderingStrategy {
 		tileOffsetX: number, tileOffsetY: number, targetTileWidth: number, targetTileHeight: number): void;
 
 }
-
-export class CombinedTilesetRenderingStrategy extends LandscapeRenderingStrategy {
-
-	public onMapLoaded(map: TileMap): void {
-		let combinedTilesetFactory = new CombinedTilesetFactory(map);
-		stendhal.data.map.combinedTileset = combinedTilesetFactory.combine();
-	}
-
-	public onTilesetLoaded(): void {
-		let body = document.getElementById("body")!;
-		body.style.cursor = "auto";
-	}
-
-	public render(
-		canvas: Canvas, gamewindow: any,
-		tileOffsetX: number, tileOffsetY: number, targetTileWidth: number, targetTileHeight: number): void {
-
-		let landscapeRenderder = new LandscapeRenderer();
-		landscapeRenderder.drawLayer(
-			canvas,
-			stendhal.data.map.combinedTileset,
-			0,
-			tileOffsetX, tileOffsetY, targetTileWidth, targetTileHeight);
-
-		gamewindow.drawEntities();
-
-		landscapeRenderder.drawLayer(
-			canvas,
-			stendhal.data.map.combinedTileset,
-			1,
-			tileOffsetX, tileOffsetY, targetTileWidth, targetTileHeight);
-	}
-
-}
