@@ -16,7 +16,7 @@ import { Color } from "../data/color/Color";
 import { Paths } from "../data/Paths";
 
 import { marauroa } from "marauroa"
-import { stendhal } from "../stendhal";
+import { TileMap } from "data/TileMap";
 
 export class Portal extends Entity {
 
@@ -60,7 +60,8 @@ export class Portal extends Entity {
 	 */
 	override getDefaultAction() {
 		// don't try to walk to if on collision tile
-		if (stendhal.data.map.collision(this["x"], this["y"])) {
+		let map = TileMap.get();
+		if (map.collision(this["x"], this["y"])) {
 			return {
 				"type": "use",
 				"target": "#" + this["id"],
