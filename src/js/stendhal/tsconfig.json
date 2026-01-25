@@ -3,6 +3,7 @@
 		"baseUrl": ".",
 		"lib": ["dom", "es2022"],
 		"module": "node20",
+		"moduleResolution": "nodenext",
 		"noImplicitOverride": true,
 		"outDir": "../../../build/ts",
 		"rootDir": ".",
