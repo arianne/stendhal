@@ -27,8 +27,8 @@ export class HTMLImageElementUtil {
 	 * @param image original image
 	 * @param width width of the area
 	 * @param height height of the area
-	 * @param {number=} offsetX optional. left x coordinate of the area
-	 * @param {number=} offsetY optional. top y coordinate of the area
+	 * @param offsetX optional. left x coordinate of the area
+	 * @param offsetY optional. top y coordinate of the area
 	 */
 	static getAreaOf(image: CanvasImageSource & ImageWithDimensions, width: number, height: number,
 		offsetX?: number, offsetY?: number): any {
@@ -47,7 +47,7 @@ export class HTMLImageElementUtil {
 		try {
 			ctx.drawImage(image, offsetX, offsetY, width, height, 0, 0, width, height);
 		} catch (err) {
-			ctx.drawImage(store.getFailsafe(), 0, 0);
+			console.log(err);
 		}
 		let newImage = new Image();
 		newImage.src = canvas.toDataURL("image/png");
