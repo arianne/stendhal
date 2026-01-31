@@ -10,13 +10,13 @@
  *                                                                         *
  ***************************************************************************/
 
-import { singletons } from "../SingletonRepo";
 import { Pair } from "../util/Pair";
 import { StringUtil } from "../util/StringUtil";
 import { Paths } from "./Paths";
-import { SpriteImage } from "../data/SpriteStore";
 
 import { stendhal } from "../stendhal";
+import { ImageMetadata } from "sprite/image/ImageMetadata";
+import { MultilayerImageLoader } from "sprite/image/MultilayerImageLoader";
 
 
 /**
@@ -195,36 +195,14 @@ export class Outfit {
 	 *
 	 * TODO:
 	 *   - use dress layer based on body type
-	 *
-	 * @param {Function} callback
-	 *   Function to pass image to when ready.
 	 */
-	toImage(callback: Function) {
-		const sig = this.getSignature();
-		// get directly from cache since we don't want to return failsafe image
-		let image: SpriteImage = singletons.getSpriteStore().getCached(sig);
-
-		const onReady = function(e?: Event) {
-			image.removeEventListener("load", onReady);
-			callback(image);
-		};
-
-		if (image instanceof HTMLImageElement) {
-			if (image.height > 0) {
-				onReady();
-			} else {
-				image.addEventListener("load", onReady);
-			}
-			return;
-		}
-
+	async toImage(): Promise<ImageBitmap> {
+		let parts: ImageMetadata[] = [];
 		let outfitLayers = this.getLayers();
 		const detailIndex = this.getLayerIndex("detail") || 0;
 		if (stendhal.data.outfit.detailHasRearLayer(detailIndex)) {
 			outfitLayers = [new Pair("detail-rear", detailIndex), ...outfitLayers];
 		}
-
-		const layers: HTMLImageElement[] = [];
 		for (const l of outfitLayers) {
 			let layerName = l.first;
 			let suffix = "";
@@ -240,49 +218,14 @@ export class Outfit {
 				layerPath += "-nonude";
 			}
 			layerPath += ".png";
-			const coloring = this.getLayerColor(layerName);
-			if (typeof(coloring) === "undefined") {
-				layers.push(singletons.getSpriteStore().get(layerPath));
-			} else {
-				layers.push(singletons.getSpriteStore().getFiltered(layerPath, "trueColor", coloring));
+			let filter = undefined;
+			let coloring = this.getLayerColor(layerName);
+			if (coloring) {
+				filter = "trueColor";
 			}
+			parts.push(new ImageMetadata(layerPath, filter, coloring));
 		}
 
-		if (layers.length == 0) {
-			image = singletons.getSpriteStore().getFailsafe() as SpriteImage;
-			callback(image);
-			return;
-		}
-
-		let onAllLayersReady: Function;
-		const onLayerReady = function(e?: Event) {
-			for (const layer of layers) {
-				if (!layer.complete || layer.height === 0) {
-					return;
-				}
-			}
-			onAllLayersReady();
-		};
-
-		onAllLayersReady = function() {
-			let canvas = new OffscreenCanvas(48 * 3, 64 * 4);
-			let ctx = canvas.getContext("2d")!;
-			for (const layer of layers) {
-				layer.removeEventListener("load", onLayerReady);
-				ctx.drawImage(layer, 0, 0);
-			}
-			image = canvas as unknown as SpriteImage; // TODO clean this up
-			image.counter = 1;
-			singletons.getSpriteStore().cache(sig, image);
-			onReady();
-		};
-
-		for (const layer of layers) {
-			if (layer.height > 0) {
-				onLayerReady();
-			} else {
-				layer.addEventListener("load", onLayerReady);
-			}
-		}
+		return await new MultilayerImageLoader(parts).load();
 	}
 }

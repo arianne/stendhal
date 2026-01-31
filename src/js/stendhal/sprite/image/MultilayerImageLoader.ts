@@ -10,11 +10,10 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Canvas } from "util/Types";
 import { ImageMetadata } from "./ImageMetadata";
 import { ImageFilter } from "./ImageFilter";
 
-export class MultilayerImage {
+export class MultilayerImageLoader {
 	private images = new Map<ImageMetadata, ImageBitmap>();
 	private pending: number;
 	private canvas?: OffscreenCanvas;
