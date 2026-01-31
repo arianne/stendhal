@@ -49,10 +49,7 @@ export class OutfitPreviewComponent extends Component {
 	setOutfit(outfit: string, coloring?: string) {
 		const otemp = Outfit.build(outfit, coloring);
 		otemp.toImage().then((image) => {
-			if (this.image) {
-				this.image.close();
-			}
-			// TODO: close on closure of dialog
+			this.image?.close();
 			this.image = image;
 			this.update();
 		});
@@ -141,5 +138,9 @@ export class OutfitPreviewComponent extends Component {
 			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 		}
 		ctx.drawImage(this.image, this.index * w, (this.dir.val - 1) * h, w, h, 0, 0, w, h);
+	}
+
+	close() {
+		this.image?.close();
 	}
 }

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2007-2024 - Faiumoni e. V.                 *
+ *                (C) Copyright 2007-2026 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -246,7 +246,7 @@ export class OutfitDialog extends DialogContentComponent {
 	}
 
 	public override onParentClose() {
+		this.outfitPreview.close();
 		ui.unregisterComponent(this);
 	}
-
 }
