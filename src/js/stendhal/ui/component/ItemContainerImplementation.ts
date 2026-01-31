@@ -22,6 +22,7 @@ import { singletons } from "../../SingletonRepo";
 
 import { Point } from "../../util/Point";
 import { Paths } from "../../data/Paths";
+import { HTMLImageElementUtil } from "sprite/image/HTMLImageElementUtil";
 
 
 /**
@@ -191,7 +192,7 @@ export class ItemContainerImplementation {
 				quantity: item.hasOwnProperty("quantity") ? item["quantity"] : 1
 			};
 
-			const img = singletons.getSpriteStore().getAreaOf(singletons.getSpriteStore().get(item.sprite.filename), 32, 32);
+			const img = HTMLImageElementUtil.getAreaOf(singletons.getSpriteStore().get(item.sprite.filename), 32, 32);
 			if (event instanceof DragEvent && event.dataTransfer) {
 				stendhal.ui.heldObject = heldObject;
 				event.dataTransfer.setDragImage(img, 0, 0);

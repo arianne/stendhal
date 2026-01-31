@@ -34,6 +34,7 @@ import { Point } from "../util/Point";
 import { Canvas, RenderingContext2D } from "util/Types";
 import { Debug } from "../util/Debug";
 import { TileMap } from "data/TileMap";
+import { HTMLImageElementUtil } from "sprite/image/HTMLImageElementUtil";
 
 
 /**
@@ -656,7 +657,7 @@ export class ViewPort {
 		var img = undefined;
 		let heldObject: HeldObject;
 		if (draggedEntity && draggedEntity.type === "item") {
-			img = singletons.getSpriteStore().getAreaOf(singletons.getSpriteStore().get(draggedEntity.sprite.filename), 32, 32);
+			img = HTMLImageElementUtil.getAreaOf(singletons.getSpriteStore().get(draggedEntity.sprite.filename), 32, 32);
 			heldObject = {
 				path: draggedEntity.getIdPath(),
 				zone: marauroa.currentZoneName,

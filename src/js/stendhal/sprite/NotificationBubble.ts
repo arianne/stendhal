@@ -21,6 +21,7 @@ import { Speech } from "../util/Speech";
 import { RenderingContext2D } from "util/Types";
 import { Paths } from "../data/Paths";
 import { singletons } from "../SingletonRepo";
+import { HTMLImageElementUtil } from "./image/HTMLImageElementUtil";
 
 
 export class NotificationBubble extends TextBubble {
@@ -138,7 +139,7 @@ export class NotificationBubble extends TextBubble {
 		const img = singletons.getSpriteStore().get(Paths.sprites
 				+ "/npc/" + this.profileName + ".png");
 		if (img.complete && img.height) {
-			this.profile = singletons.getSpriteStore().getAreaOf(img, 48, 48, 48, 128);
+			this.profile = HTMLImageElementUtil.getAreaOf(img, 48, 48, 48, 128);
 		}
 	}
 }
