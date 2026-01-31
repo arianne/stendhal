@@ -12,12 +12,14 @@
 
 import { Canvas } from "util/Types";
 import { ImageMetadata } from "./ImageMetadata";
+import { ImageFilter } from "./ImageFilter";
 
 export class MultilayerImage {
 	private images = new Map<ImageMetadata, ImageBitmap>();
 	private pending: number;
-	private canvas?: Canvas;
+	private canvas?: OffscreenCanvas;
 
+	
 	constructor(private imageMetadatas: ImageMetadata[]) {
 		this.pending = imageMetadatas.length;
 	}
@@ -27,9 +29,13 @@ export class MultilayerImage {
 		for (let imageMetadata of this.imageMetadatas) {
 			promises.push(this.loadImage(imageMetadata));
 		}
-		// TODO: handle empty filenames array (with placeholder image?)
-		await Promise.all(promises);
-		return this.canvas;
+
+		if (promises.length) {
+			await Promise.all(promises);
+		} else {
+			this.finish();
+		}
+		return this.canvas!.transferToImageBitmap();
 	}
 
 	private async loadImage(imageMetadata: ImageMetadata) {
@@ -37,7 +43,11 @@ export class MultilayerImage {
 		if (response.ok) {
 			let blob = await response.blob();
 			let bitmap = await createImageBitmap(blob);
-			// TODO: filter image
+			if (imageMetadata.filter) {
+				let filteredBitmap = new ImageFilter().filterImage(bitmap, imageMetadata.filter, imageMetadata.color);
+				bitmap.close();
+				bitmap = filteredBitmap;
+			}
 			this.images.set(imageMetadata, bitmap);
 		}
 		this.pending--;
@@ -47,9 +57,12 @@ export class MultilayerImage {
 	}
 
 	private finish() {
-		// TODO: handle empty image map because all images failed to load;
-		let first = this.images.values().next().value!;
-		this.canvas = new OffscreenCanvas(first.width, first.height);
+		let first = undefined;
+		if (this.images.size) {
+			first = this.images.values().next().value;
+		}
+		// TODO: have a global constant of an empty Canvas and an empty ImageBitmap
+		this.canvas = new OffscreenCanvas(first?.width || 0, first?.height || 0);
 		let ctx = this.canvas.getContext("2d")!;
 
 		for (let imageMetadata of this.imageMetadatas) {

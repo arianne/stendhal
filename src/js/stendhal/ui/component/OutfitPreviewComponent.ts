@@ -28,7 +28,7 @@ export class OutfitPreviewComponent extends Component {
 
 	private dir: Direction;
 	private index: number;
-	private image?: HTMLImageElement;
+	private image?: ImageBitmap;
 	private bgColor?: string;
 
 
@@ -48,7 +48,11 @@ export class OutfitPreviewComponent extends Component {
 	 */
 	setOutfit(outfit: string, coloring?: string) {
 		const otemp = Outfit.build(outfit, coloring);
-		otemp.toImage((image: HTMLImageElement) => {
+		otemp.toImage().then((image) => {
+			if (this.image) {
+				this.image.close();
+			}
+			// TODO: close on closure of dialog
 			this.image = image;
 			this.update();
 		});

@@ -9,6 +9,9 @@
  *                                                                         *
  ***************************************************************************/
 
+import { ImageWithDimensions } from "data/ImageWithDimensions";
+import { Canvas } from "util/Types";
+
 export class ImageFilter {
 	// Helper functions
 	/**
@@ -181,6 +184,18 @@ export class ImageFilter {
 		} else {
 			console.log("Unknown filter name " + filter);
 		}
+	}
+
+
+	public filterImage(image: CanvasImageSource & ImageWithDimensions, filter: string, param?: number): ImageBitmap {
+		const canvas = new OffscreenCanvas(image.width, image.height);
+		const ctx = canvas.getContext("2d", {willReadFrequently: true})!;
+		ctx.drawImage(image, 0, 0);
+		let imageData = ctx.getImageData(0, 0, image.width, image.height);
+		new ImageFilter().filter(imageData, filter, param);
+		this.filter(imageData, filter, param);
+		ctx.putImageData(imageData, 0, 0);
+		return canvas.transferToImageBitmap();
 	}
 }
 
