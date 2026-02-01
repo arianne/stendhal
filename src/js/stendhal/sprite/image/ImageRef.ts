@@ -13,12 +13,16 @@ import { stendhal } from "stendhal";
 
 export class ImageRef {
 	image?: ImageBitmap;
-	refCount = 0;
-	lastFreed?: Date;
-	closed = false;
+	private refCount = 0;
+	private lastFreed?: Date;
+	private closed = false;
+	private loaded: Promise<ImageBitmap>;
+	private promiseResolve!: Function;
 
 	constructor(private filename: string) {
-		// empty
+		this.loaded = new Promise((resolve) => {
+			this.promiseResolve = resolve;
+		})
 	}
 
 	async load() {
@@ -37,6 +41,7 @@ export class ImageRef {
 			return;
 		}
 		this.image = bitmap;
+		this.promiseResolve(bitmap);
 	}
 
 	/**
@@ -69,4 +74,7 @@ export class ImageRef {
 		this.image = undefined;
 	}
 
+	async waitFor(): Promise<ImageBitmap> {
+		return this.loaded
+	}
 }

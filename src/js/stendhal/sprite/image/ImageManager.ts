@@ -21,6 +21,7 @@ export class ImageManager {
 			imageRef = new ImageRef(filename);
 		}
 		imageRef.use();
+		imageRef.load();
 		return imageRef;
 	}
 
