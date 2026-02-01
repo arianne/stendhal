@@ -9,8 +9,6 @@
  *                                                                         *
  ***************************************************************************/
 
-import { stendhal } from "../stendhal";
-
 import { Paths } from "./Paths";
 import { ImageFilter } from "../sprite/image/ImageFilter";
 
@@ -298,12 +296,12 @@ export class SpriteStore {
 	 */
 	getFilteredWithPromise(fileName: string, filter: string, param?: number) {
 		const imgPromise = this.getWithPromise(fileName);
-		return imgPromise.then(function (img: HTMLImageElement) {
+		return imgPromise.then((img: HTMLImageElement) => {
 			if (!img.complete || img.width === 0 || img.height === 0) {
 				return img;
 			}
 			const filteredName = fileName + " " + filter + " " + param;
-			let filtered: SpriteImage = stendhal.data.sprites.images[filteredName];
+			let filtered: SpriteImage = this.images[filteredName];
 			if (typeof(filtered) === "undefined") {
 				const canvas = document.createElement("canvas") as any;
 				canvas.width  = img.width;
@@ -314,7 +312,7 @@ export class SpriteStore {
 				new ImageFilter().filter(imgData, filter, param);
 				ctx.putImageData(imgData, 0, 0);
 				canvas.complete = true;
-				stendhal.data.sprites.images[filteredName] = filtered = canvas as SpriteImage;
+				this.images[filteredName] = filtered = canvas as SpriteImage;
 			}
 
 			return filtered;
