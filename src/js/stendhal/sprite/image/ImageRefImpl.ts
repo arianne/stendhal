@@ -16,10 +16,10 @@ export class ImageRefImpl extends ImageRef {
 	private refCount = 0;
 	private lastFreed?: Date;
 	private closed = false;
-	private loaded: Promise<ImageBitmap>;
-	private promiseResolve!: Function;
+	private loaded: Promise<void>;
+	protected promiseResolve!: Function;
 
-	constructor(private filename: string) {
+	constructor(protected filename: string) {
 		super();
 		this.loaded = new Promise((resolve) => {
 			this.promiseResolve = resolve;
@@ -30,15 +30,18 @@ export class ImageRefImpl extends ImageRef {
 		let url = this.filename + "?v=" + stendhal.data.build.version;
 		let response = await fetch(url);
 		if (!response.ok || this.closed) {
+			this.promiseResolve(undefined)
 			return;
 		}
 		let blob = await response.blob();
 		if (this.closed) {
+			this.promiseResolve(undefined)
 			return;
 		}
 		let bitmap = await createImageBitmap(blob);
 		if (this.closed) {
 			bitmap.close();
+			this.promiseResolve(undefined)
 			return;
 		}
 		this.image = bitmap;
@@ -75,7 +78,7 @@ export class ImageRefImpl extends ImageRef {
 		this.image = undefined;
 	}
 
-	override async waitFor(): Promise<ImageBitmap> {
+	override async waitFor(): Promise<void> {
 		return this.loaded
 	}
 }

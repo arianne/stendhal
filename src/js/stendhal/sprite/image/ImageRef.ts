@@ -12,7 +12,7 @@
 export abstract class ImageRef {
 	image?: ImageBitmap;
 
-	async /*abstract */ waitFor(): Promise<ImageBitmap> {
-		return new Promise<ImageBitmap>(() => {});
+	async /*abstract */ waitFor(): Promise<void> {
+		return new Promise<void>(() => {});
 	}
 }
