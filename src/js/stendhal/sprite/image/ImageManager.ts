@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { FilteredImageRefImpl } from "./FilteredImageRefImpl";
 import { ImageRef } from "./ImageRef";
 import { ImageRefImpl } from "./ImageRefImpl";
 
@@ -16,18 +17,24 @@ export class ImageManager {
 
 	images = new Map<string, ImageRefImpl>();
 
-	load(filename: string): ImageRef {
-		let imageRef = this.images.get(filename);
+	load(filename: string, filter?: string, param?: number): ImageRef {
+		let key = filename + "!" + filter + "!" + param;
+		let imageRef = this.images.get(key);
 		if (!imageRef) {
-			imageRef = new ImageRefImpl(filename);
+			if (filter) {
+				imageRef = new FilteredImageRefImpl(filename, filter, param);
+			} else {
+				imageRef = new ImageRefImpl(filename);
+			}
 			imageRef.load();
 		}
 		imageRef.use();
 		return imageRef;
 	}
 
-	free(filename: string) {
-		let imageRef = this.images.get(filename);
+	free(filename: string, filter?: string, param?: number) {
+		let key = filename + "!" + filter + "!" + param;
+		let imageRef = this.images.get(key);
 		if (!imageRef) {
 			console.error("freeing unknown image: " + filename);
 			return;
