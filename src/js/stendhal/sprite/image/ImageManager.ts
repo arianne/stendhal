@@ -10,18 +10,19 @@
  ***************************************************************************/
 
 import { ImageRef } from "./ImageRef";
+import { ImageRefImpl } from "./ImageRefImpl";
 
 export class ImageManager {
 
-	images = new Map<string, ImageRef>();
+	images = new Map<string, ImageRefImpl>();
 
-	load(filename: string) {
+	load(filename: string): ImageRef {
 		let imageRef = this.images.get(filename);
 		if (!imageRef) {
-			imageRef = new ImageRef(filename);
+			imageRef = new ImageRefImpl(filename);
+			imageRef.load();
 		}
 		imageRef.use();
-		imageRef.load();
 		return imageRef;
 	}
 
@@ -33,6 +34,8 @@ export class ImageManager {
 		}
 		imageRef.free();
 	}
+
+	// TODO: consider providing a new method: free(imageRef: ImageRef)
 
 }
 

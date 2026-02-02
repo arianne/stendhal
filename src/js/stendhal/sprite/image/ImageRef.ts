@@ -9,72 +9,10 @@
  *                                                                         *
  ***************************************************************************/
 
-import { stendhal } from "stendhal";
-
-export class ImageRef {
+export abstract class ImageRef {
 	image?: ImageBitmap;
-	private refCount = 0;
-	private lastFreed?: Date;
-	private closed = false;
-	private loaded: Promise<ImageBitmap>;
-	private promiseResolve!: Function;
 
-	constructor(private filename: string) {
-		this.loaded = new Promise((resolve) => {
-			this.promiseResolve = resolve;
-		})
-	}
-
-	async load() {
-		let url = this.filename + "?v=" + stendhal.data.build.version;
-		let response = await fetch(url);
-		if (!response.ok || this.closed) {
-			return;
-		}
-		let blob = await response.blob();
-		if (this.closed) {
-			return;
-		}
-		let bitmap = await createImageBitmap(blob);
-		if (this.closed) {
-			bitmap.close();
-			return;
-		}
-		this.image = bitmap;
-		this.promiseResolve(bitmap);
-	}
-
-	/**
-	 * called internally by ImageManager
-	 */
-	use() {
-		this.refCount++;
-		this.lastFreed = undefined;
-	}
-
-	/**
-	 * called internally by ImageManager
-	 */
-	free() {
-		this.refCount--;
-		if (this.refCount < 0) {
-			console.error("Negative reference count", this);
-		}
-		if (this.refCount <= 0) {
-			this.lastFreed = new Date();
-		}
-	}
-
-	/**
-	 * called internally by ImageManager
-	 */
-	close() {
-		this.closed = true;
-		this.image?.close();
-		this.image = undefined;
-	}
-
-	async waitFor(): Promise<ImageBitmap> {
-		return this.loaded
+	async /*abstract */ waitFor(): Promise<ImageBitmap> {
+		return new Promise<ImageBitmap>(() => {});
 	}
 }
