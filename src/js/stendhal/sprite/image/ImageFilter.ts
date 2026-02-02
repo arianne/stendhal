@@ -10,19 +10,17 @@
  ***************************************************************************/
 
 import { ImageWithDimensions } from "data/ImageWithDimensions";
-import { Canvas } from "util/Types";
 
 export class ImageFilter {
-	// Helper functions
+
 	/**
-	 * @param {Number} rgb
-	 * @return {Array<Number>}
+	 * @param rgb
 	 */
 	splitrgb(rgb: number): number[] {
 		rgb &= 0xffffff;
-		var b = rgb & 0xff;
+		let b = rgb & 0xff;
 		rgb >>>= 8;
-		var g = rgb & 0xff;
+		let g = rgb & 0xff;
 		rgb >>>= 8;
 		return [rgb, g, b];
 	}
@@ -34,15 +32,14 @@ export class ImageFilter {
 	}
 
 	/**
-	 * @param {Array<Number>} rgb
-	 * @return {Array<Number>}
+	 * @param rgb
 	 */
 	rgb2hsl(rgb: number[]): number[] {
-		var r = rgb[0] / 255;
-		var g = rgb[1] / 255;
-		var b = rgb[2] / 255;
+		let r = rgb[0] / 255;
+		let g = rgb[1] / 255;
+		let b = rgb[2] / 255;
 
-		var max, min, maxVar;
+		let max, min, maxVar;
 		// Find the max and minimum colors, and remember which one it was
 		if (r > g) {
 			max = r;
@@ -61,11 +58,11 @@ export class ImageFilter {
 		}
 
 		// lightness
-		var l = (max + min) / 2;
-		var s, h;
+		let l = (max + min) / 2;
+		let s, h;
 
 		// saturation
-		var diff = max - min;
+		let diff = max - min;
 		if (diff < 0.000001) {
 			s = 0;
 			// hue not really defined, but set it to something reasonable
@@ -97,15 +94,15 @@ export class ImageFilter {
 	 * @return {Array<Number>}
 	 */
 	hsl2rgb(hsl: number[]): number[] {
-		var r, g, b;
-		var h = hsl[0];
-		var s = hsl[1];
-		var l = hsl[2];
+		let r, g, b;
+		let h = hsl[0];
+		let s = hsl[1];
+		let l = hsl[2];
 
 		if (s < 0.0000001) {
 			r = g = b = Math.floor(255 * l);
 		} else {
-			var tmp1, tmp2;
+			let tmp1, tmp2;
 			if (l < 0.5) {
 				tmp1 = l * (1 + s);
 			} else {
@@ -113,9 +110,9 @@ export class ImageFilter {
 			}
 			tmp2 = 2 * l - tmp1;
 
-			var rf = this.hue2rgb(this.limitHue(h + 1 / 3), tmp2, tmp1);
-			var gf = this.hue2rgb(this.limitHue(h), tmp2, tmp1);
-			var bf = this.hue2rgb(this.limitHue(h - 1 / 3), tmp2, tmp1);
+			let rf = this.hue2rgb(this.limitHue(h + 1 / 3), tmp2, tmp1);
+			let gf = this.hue2rgb(this.limitHue(h), tmp2, tmp1);
+			let bf = this.hue2rgb(this.limitHue(h - 1 / 3), tmp2, tmp1);
 
 			r = Math.floor(255 * rf) & 0xff;
 			g = Math.floor(255 * gf) & 0xff;
@@ -126,12 +123,12 @@ export class ImageFilter {
 	}
 
 	/**
-	 * @param {Number} hue
-	 * @param {Number} val1
-	 * @param {Number} val2
+	 * @param hue
+	 * @param val1
+	 * @param val2
 	 */
 	private hue2rgb(hue: number, val1: number, val2: number): number {
-		var res = hue;
+		let res = hue;
 		if (6 * hue < 1) {
 			res = val1 + (val2 - val1) * 6 * hue;
 		} else if (2 * hue < 1) {
@@ -146,10 +143,10 @@ export class ImageFilter {
 	}
 
 	/**
-	 * @param {Number} hue
+	 * @param hue
 	 */
 	private limitHue(hue: number): number {
-		var res = hue;
+		let res = hue;
 		if (res < 0) {
 			res += 1;
 		} else if (res > 1) {
@@ -159,25 +156,26 @@ export class ImageFilter {
 	}
 
 	private trueColor(data: any, color: number) {
-		var hslColor = this.rgb2hsl(this.splitrgb(color));
-		var end = data.length;
-		for (var i = 0; i < end; i += 4) {
-			var rgb = [data[i], data[i + 1], data[i + 2]];
-			var hsl = this.rgb2hsl(rgb);
+		let hslColor = this.rgb2hsl(this.splitrgb(color));
+		let end = data.length;
+		for (let i = 0; i < end; i += 4) {
+			let rgb = [data[i], data[i + 1], data[i + 2]];
+			let hsl = this.rgb2hsl(rgb);
 			// Adjust the brightness
-			var adj = hslColor[2] - 0.5; // [-0.5, 0.5]
-			var tmp = hsl[2] - 0.5; // [-0.5, 0.5]
+			let adj = hslColor[2] - 0.5; // [-0.5, 0.5]
+			let tmp = hsl[2] - 0.5; // [-0.5, 0.5]
 			// tweaks the middle lights either upward or downward, depending
 			// on if source lightness is high or low
-			var l = hsl[2] - 2.0 * adj * ((tmp * tmp) - 0.25);
-			var resultHsl = [hslColor[0], hslColor[1], l];
-			var resultRgb = this.hsl2rgb(resultHsl);
+			let l = hsl[2] - 2.0 * adj * ((tmp * tmp) - 0.25);
+			let resultHsl = [hslColor[0], hslColor[1], l];
+			let resultRgb = this.hsl2rgb(resultHsl);
 			data[i] = resultRgb[0];
 			data[i + 1] = resultRgb[1];
 			data[i + 2] = resultRgb[2];
 		}
 	}
-	
+
+
 	public filter(data: ImageData, filter: string, param?: number): void {
 		if (filter ==='trueColor') {
 			this.trueColor(data.data, param!);
