@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2015-2024 - Faiumoni e. V.                 *
+ *                (C) Copyright 2015-2026 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,36 +9,37 @@
  *                                                                         *
  ***************************************************************************/
 
-import { singletons } from "../../../SingletonRepo";
 import { Paths } from "../../../data/Paths";
 import { RenderingContext2D } from "util/Types";
 
 import { stendhal } from "../../../stendhal";
+import { ImageRef } from "sprite/image/ImageRef";
+import { images } from "sprite/image/ImageManager";
 
 export class OutfitPartSelector {
-		private _part: string;
-		private _onPartChanged: Function;
-		private _index: number;
-		private _maxindex: number;
-		private _ctx: RenderingContext2D;
-		private _width: number;
-		private _height: number;
-		private _color?: any;
-		private _image?: Promise<CanvasImageSource>;
+	private part: string;
+	private onPartChanged: Function;
+	private _index: number;
+	private maxIndex: number;
+	private ctx: RenderingContext2D;
+	private width: number;
+	private height: number;
+	private _color?: any;
+	private imageRef!: ImageRef;
 
 	constructor(part: string, initialIndex: any, maxindex: number, onPartChanged: Function) {
-		this._part = part;
-		this._onPartChanged = onPartChanged;
+		this.part = part;
+		this.onPartChanged = onPartChanged;
 		this._index = parseInt(initialIndex, 10);
-		this._maxindex = maxindex;
+		this.maxIndex = maxindex;
 
 		const canvas = document.getElementById('setoutfit' + part + 'canvas') as HTMLCanvasElement;
 		canvas.style.margin = "5px";
-		this._ctx = canvas.getContext("2d")!;
-		this._width = canvas.width;
-		this._height = canvas.height;
+		this.ctx = canvas.getContext("2d")!;
+		this.width = canvas.width;
+		this.height = canvas.height;
 		this._color = undefined;
-		this._image = undefined;
+		this.loadPartSprite();
 	}
 
 
@@ -54,20 +55,15 @@ export class OutfitPartSelector {
 	}
 
 
-	draw() {
-		const image = this._getPartSprite(this._part, this._index, this._color);
-		this._image = image;
-		this._ctx.fillStyle = "white";
-		this._ctx.fillRect(0, 0, this._width, this._height);
+	async draw() {
+		this.ctx.fillStyle = "white";
+		this.ctx.fillRect(0, 0, this.width, this.height);
 
-		image.then((img: CanvasImageSource) => {
-			this._ctx.drawImage(img, -48, -128);
-			this._onPartChanged();
-		});
-	}
-
-	get image() {
-		return this._image;
+		let currentImage = this.imageRef;
+		await currentImage.waitFor();
+		if (currentImage === this.imageRef && currentImage.image) {
+			this.ctx.drawImage(currentImage.image, -48, -128);
+		}
 	}
 
 	get index() {
@@ -76,42 +72,53 @@ export class OutfitPartSelector {
 
 	set index(newIndex: any) {
 		this._index = parseInt(newIndex, 10);
+		this.loadPartSprite();
 		this.draw();
 	}
 
 	set color(newColor: any) {
 		this._color = newColor;
+		this.loadPartSprite();
+		this.onPartChanged();
 		this.draw();
 	}
 
 	previous() {
-		const numOutfits = this._maxindex + 1;
-		this._index += this._maxindex;
+		const numOutfits = this.maxIndex + 1;
+		this._index += this.maxIndex;
 		this._index %= numOutfits;
+		this.loadPartSprite();
+		this.onPartChanged();
 		this.draw();
-		this._onPartChanged();
 	}
 
 	next() {
-		const numOutfits = this._maxindex + 1;
+		const numOutfits = this.maxIndex + 1;
 		this._index++;
 		this._index %= numOutfits;
+		this.loadPartSprite();
+		this.onPartChanged();
 		this.draw();
-		this._onPartChanged();
 	}
 
-	_getPartSprite(part: string, index: number, color = null): Promise<CanvasImageSource> {
+	private loadPartSprite() {
+		this.imageRef?.free();
 		let suffix = ".png";
-		if (this._part === "body" && stendhal.config.getBoolean("effect.no-nude")) {
+		if (this.part === "body" && stendhal.config.getBoolean("effect.no-nude")) {
 			suffix = "-nonude.png";
 		}
 
 		// FIXME: need to draw "busty" dress variants for body index 1
 
-		const fname = Paths.sprites + "/outfit/" + part + "/" + this.indexString(index) + suffix;
-		if (color != null) {
-			return singletons.getSpriteStore().getFilteredWithPromise(fname, "trueColor", color);
+		let fname = Paths.sprites + "/outfit/" + this.part + "/" + this.indexString(this._index) + suffix;
+		if (this._color != null) {
+			this.imageRef = images.load(fname, "trueColor", this._color);
+		} else {
+			this.imageRef = images.load(fname);
 		}
-		return singletons.getSpriteStore().getWithPromise(fname);
+	}
+
+	close() {
+		this.imageRef?.free();
 	}
 }
