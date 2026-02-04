@@ -69,6 +69,13 @@ export class ImageRefImpl extends ImageRef {
 		}
 	}
 
+	shouldCleanup(olderThan: Date) {
+		if (this.refCount > 0 || !this.lastFreed) {
+			return false;
+		}
+		return (this.lastFreed < olderThan);
+	}
+
 	/**
 	 * called internally by ImageManager
 	 */

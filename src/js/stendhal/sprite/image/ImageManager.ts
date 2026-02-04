@@ -27,6 +27,7 @@ export class ImageManager {
 				imageRef = new ImageRefImpl(filename);
 			}
 			imageRef.load();
+			this.images.set(key, imageRef);
 		}
 		imageRef.use();
 		return imageRef;
@@ -36,13 +37,20 @@ export class ImageManager {
 		let key = filename + "!" + filter + "!" + param;
 		let imageRef = this.images.get(key);
 		if (!imageRef) {
-			console.error("freeing unknown image: " + filename);
+			console.error("freeing unknown image: " + key);
 			return;
 		}
 		imageRef.free();
 	}
 
-	// TODO: consider providing a new method: free(imageRef: ImageRef)
+	cleanup(olderThan: Date) {
+		for (let [key, imageRef] of this.images) {
+			if (imageRef.shouldCleanup(olderThan)) {
+				imageRef.close();
+				this.images.delete(key);
+			}
+		}
+	}
 
 }
 
