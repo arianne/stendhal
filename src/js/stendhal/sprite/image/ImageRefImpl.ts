@@ -59,7 +59,7 @@ export class ImageRefImpl extends ImageRef {
 	/**
 	 * called internally by ImageManager
 	 */
-	free() {
+	override free() {
 		this.refCount--;
 		if (this.refCount < 0) {
 			console.error("Negative reference count", this);

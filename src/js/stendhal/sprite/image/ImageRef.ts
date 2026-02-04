@@ -15,4 +15,6 @@ export abstract class ImageRef {
 	async /*abstract */ waitFor(): Promise<void> {
 		return new Promise<void>(() => {});
 	}
+
+	abstract free(): void;
 }
