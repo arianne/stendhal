@@ -10,7 +10,6 @@
  ***************************************************************************/
 
 import { ImageWithDimensions } from "data/ImageWithDimensions";
-import { store } from "../../data/SpriteStore";
 
 export class HTMLImageElementUtil {
 
