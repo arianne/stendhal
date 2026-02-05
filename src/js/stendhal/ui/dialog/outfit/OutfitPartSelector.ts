@@ -20,6 +20,7 @@ export class OutfitPartSelector {
 	private part: string;
 	private onPartChanged: Function;
 	private _index: number;
+	private minIndex: number;
 	private maxIndex: number;
 	private ctx: RenderingContext2D;
 	private width: number;
@@ -27,11 +28,12 @@ export class OutfitPartSelector {
 	private _color?: any;
 	private imageRef!: ImageRef;
 
-	constructor(part: string, initialIndex: any, maxindex: number, onPartChanged: Function) {
+	constructor(part: string, initialIndex: any, minIndex: number, maxIndex: number, onPartChanged: Function) {
 		this.part = part;
 		this.onPartChanged = onPartChanged;
 		this._index = parseInt(initialIndex, 10);
-		this.maxIndex = maxindex;
+		this.minIndex = minIndex;
+		this.maxIndex = maxIndex;
 
 		const canvas = document.getElementById('setoutfit' + part + 'canvas') as HTMLCanvasElement;
 		canvas.style.margin = "5px";
@@ -84,18 +86,20 @@ export class OutfitPartSelector {
 	}
 
 	previous() {
-		const numOutfits = this.maxIndex + 1;
-		this._index += this.maxIndex;
-		this._index %= numOutfits;
+		this._index--
+		if (this._index < this.minIndex) {
+			this._index = this.maxIndex;
+		}
 		this.loadPartSprite();
 		this.onPartChanged();
 		this.draw();
 	}
 
 	next() {
-		const numOutfits = this.maxIndex + 1;
 		this._index++;
-		this._index %= numOutfits;
+		if (this._index > this.maxIndex) {
+			this._index = this.minIndex;
+		}
 		this.loadPartSprite();
 		this.onPartChanged();
 		this.draw();

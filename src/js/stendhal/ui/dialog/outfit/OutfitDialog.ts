@@ -184,12 +184,17 @@ export class OutfitDialog extends DialogContentComponent {
 	}
 
 	makeSelector(part: string, index: number): OutfitPartSelector {
-		// FIXME: selector should be showing a default if index is less than 0
-		if (index < 0 || index === undefined) {
-			index = 0;
+		let minIndex = 0;
+		if (part === "dress" && stendhal.config.getBoolean("effect.no-nude")) {
+			minIndex = 1;
 		}
 
-		const selector = new OutfitPartSelector(part, index, stendhal.data.outfit.count[part] - 1, () => {
+		// FIXME: selector should be showing a default if index is less than 0
+		if (index < minIndex || index === undefined) {
+			index = minIndex;
+		}
+
+		const selector = new OutfitPartSelector(part, index, minIndex, stendhal.data.outfit.count[part] - 1, () => {
 			this.drawComposite();
 		});
 
