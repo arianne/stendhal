@@ -11,64 +11,40 @@
  ***************************************************************************/
 
 import { ImageMetadata } from "./ImageMetadata";
-import { ImageFilter } from "./ImageFilter";
+import { images } from "./ImageManager";
+import { ImageRef } from "./ImageRef";
 
 export class MultilayerImageLoader {
-	private images = new Map<ImageMetadata, ImageBitmap>();
-	private pending: number;
-	private canvas?: OffscreenCanvas;
+	private imageRefs: ImageRef[] = [];
 
-	
 	constructor(private imageMetadatas: ImageMetadata[]) {
-		this.pending = imageMetadatas.length;
 	}
 
 	public async load() {
-		let promises: Promise<void>[] = [];
 		for (let imageMetadata of this.imageMetadatas) {
-			promises.push(this.loadImage(imageMetadata));
+			this.imageRefs.push(images.load(imageMetadata.filename, imageMetadata.filter, imageMetadata.color));
 		}
 
-		if (promises.length) {
-			await Promise.all(promises);
-		} else {
-			this.finish();
+		for (let imageRef of this.imageRefs) {
+			await imageRef.waitFor();
 		}
-		return this.canvas!.transferToImageBitmap();
-	}
 
-	private async loadImage(imageMetadata: ImageMetadata) {
-		let response = await fetch(imageMetadata.filename);
-		if (response.ok) {
-			let blob = await response.blob();
-			let bitmap = await createImageBitmap(blob);
-			if (imageMetadata.filter) {
-				let filteredBitmap = new ImageFilter().filterImage(bitmap, imageMetadata.filter, imageMetadata.color);
-				bitmap.close();
-				bitmap = filteredBitmap;
+		let canvas: OffscreenCanvas|undefined = undefined;
+		let ctx: OffscreenCanvasRenderingContext2D|undefined = undefined;
+		for (let imageRef of this.imageRefs) {
+			if (imageRef.image) {
+				if (!canvas) {
+					canvas = new OffscreenCanvas(imageRef.image.width, imageRef.image.height);
+					ctx = canvas.getContext("2d")!;
+				}
+				ctx?.drawImage(imageRef.image, 0, 0);
+				imageRef.free();
 			}
-			this.images.set(imageMetadata, bitmap);
 		}
-		this.pending--;
-		if (this.pending <= 0) {
-			this.finish();
+		if (!canvas) {
+			canvas = new OffscreenCanvas(0, 0);
 		}
-	}
-
-	private finish() {
-		let first = undefined;
-		if (this.images.size) {
-			first = this.images.values().next().value;
-		}
-		// TODO: have a global constant of an empty Canvas and an empty ImageBitmap
-		this.canvas = new OffscreenCanvas(first?.width || 0, first?.height || 0);
-		let ctx = this.canvas.getContext("2d")!;
-
-		for (let imageMetadata of this.imageMetadatas) {
-			let image = this.images.get(imageMetadata)!;
-			ctx.drawImage(image, 0, 0);
-			image.close();
-		}
+		return canvas.transferToImageBitmap();
 	}
 
 }
