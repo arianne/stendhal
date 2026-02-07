@@ -108,23 +108,6 @@ export class SpriteStore {
 		return temp;
 	}
 
-	getWithPromise(filename: string): any {
-		return new Promise((resolve) => {
-			if (typeof(this.images[filename]) != "undefined") {
-				this.images[filename].counter++;
-				resolve(this.images[filename]);
-			}
-
-			const image = new Image() as SpriteImage;
-			// TypeError: Image constructor: 'new' is required
-			//~ const image = new SpriteImage();
-			image.counter = 0;
-			this.images[filename] = image;
-			image.onload = () => resolve(image);
-			image.src = filename;
-		});
-	}
-
 	/**
 	 * Rotates an image.
 	 *
@@ -288,38 +271,6 @@ export class SpriteStore {
 
 		return filtered;
 	}
-
-	/**
-	 * @param {string} fileName
-	 * @param {string} filter
-	 * @param {number=} param
-	 */
-	getFilteredWithPromise(fileName: string, filter: string, param?: number) {
-		const imgPromise = this.getWithPromise(fileName);
-		return imgPromise.then((img: HTMLImageElement) => {
-			if (!img.complete || img.width === 0 || img.height === 0) {
-				return img;
-			}
-			const filteredName = fileName + " " + filter + " " + param;
-			let filtered: SpriteImage = this.images[filteredName];
-			if (typeof(filtered) === "undefined") {
-				const canvas = document.createElement("canvas") as any;
-				canvas.width  = img.width;
-				canvas.height = img.height;
-				const ctx = canvas.getContext("2d")!;
-				ctx.drawImage(img, 0, 0);
-				const imgData = ctx.getImageData(0, 0, img.width, img.height);
-				new ImageFilter().filter(imgData, filter, param);
-				ctx.putImageData(imgData, 0, 0);
-				canvas.complete = true;
-				this.images[filteredName] = filtered = canvas as SpriteImage;
-			}
-
-			return filtered;
-		});
-	}
-
-
 
 
 	/**
