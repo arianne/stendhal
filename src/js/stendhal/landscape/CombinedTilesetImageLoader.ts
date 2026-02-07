@@ -16,11 +16,13 @@ import { CombinedTileset } from "./CombinedTileset";
 import { Debug } from "../util/Debug";
 
 import { stendhal } from "../stendhal";
+import { images } from "sprite/image/ImageManager";
+import { ImageRef } from "sprite/image/ImageRef";
 
 export class CombinedTilesetImageLoader {
 
 	private tileUsedAtIndex!: MapOfSets<number, number>
-	private tilesetImages: ImageBitmap[] = [];
+	private tilesetImages: ImageRef[] = [];
 	private drawCanvas: Canvas;
 	private drawCtx: RenderingContext2D;
 	private blendCanvas: Canvas;
@@ -31,9 +33,9 @@ export class CombinedTilesetImageLoader {
 	private usedTilesetCount = 0;
 
 	constructor(
-			private map: TileMap,
-			private indexToCombinedTiles: Map<number, number[]>,
-			private combinedTileset: CombinedTileset) {
+		private map: TileMap,
+		private indexToCombinedTiles: Map<number, number[]>,
+		private combinedTileset: CombinedTileset) {
 
 		this.drawCanvas = new OffscreenCanvas(this.map.tileWidth, this.map.tileHeight);
 		this.blendCanvas = new OffscreenCanvas(this.map.tileWidth, this.map.tileHeight);
@@ -69,32 +71,29 @@ export class CombinedTilesetImageLoader {
 		if (!tsname) {
 			return;
 		}
-		let url = tsname + "?v=" + stendhal.data.build.version;
-		// TODO: deal with errors
-		let response = await fetch(url);
-		if (!response.ok) {
-			return;
-		}
-        let blob = await response.blob();
-		let bitmap = await createImageBitmap(blob);
-		this.tilesetImages[tileset] = bitmap;
+		let imageRef = images.load(tsname);
+		await imageRef.waitFor();
+		this.tilesetImages[tileset] = imageRef;
 		this.loadedTilesetCount++;
-        this.drawTileset(tileset);
+		this.drawTileset(tileset);
 		if (this.loadedTilesetCount >= this.usedTilesetCount) {
 			this.finish();
 		}
 	}
 
 	private finish() {
-		for (let bitmap of this.tilesetImages) {
-			bitmap.close();
+		for (let imageRef of this.tilesetImages) {
+			imageRef.free();
 		}
 	}
 
 
 	private drawTileset(tileset: number): void {
 		let firstGid = this.map.firstgids[tileset];
-		let image = this.tilesetImages[tileset];
+		let image = this.tilesetImages[tileset].image;
+		if (!image) {
+			return;
+		}
 		let numberOfTiles = image.width / this.map.tileWidth * image.height / this.map.tileHeight;
 
 		let lastGid = firstGid + numberOfTiles;
@@ -176,8 +175,8 @@ export class CombinedTilesetImageLoader {
 		let flip = tile & 0xE0000000;
 		let gid = tile & 0x1FFFFFFF;
 		let tileset = this.map.getTilesetForGid(gid);
-		let image = this.tilesetImages[tileset];
-		if (!image || !image.height) {
+		let image = this.tilesetImages[tileset]?.image;
+		if (!image) {
 			return;
 		}
 
@@ -192,11 +191,11 @@ export class CombinedTilesetImageLoader {
 
 		if (flip === 0) {
 			ctx.drawImage(tilesetImage,
-					(tileIndexInTileset % tilesPerRow) * this.map.tileWidth,
-					Math.floor(tileIndexInTileset / tilesPerRow) * this.map.tileHeight,
-					this.map.tileWidth, this.map.tileHeight,
-					pixelX, pixelY,
-					this.map.tileWidth, this.map.tileHeight);
+				(tileIndexInTileset % tilesPerRow) * this.map.tileWidth,
+				Math.floor(tileIndexInTileset / tilesPerRow) * this.map.tileHeight,
+				this.map.tileWidth, this.map.tileHeight,
+				pixelX, pixelY,
+				this.map.tileWidth, this.map.tileHeight);
 
 		} else {
 			ctx.translate(pixelX, pixelY);
