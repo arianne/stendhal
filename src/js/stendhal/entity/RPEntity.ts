@@ -847,10 +847,11 @@ export class RPEntity extends ActiveEntity {
 		}
 	}
 
-	override destroy(_obj: Entity) {
+	override destroy(obj: Entity) {
 		if (this._target) {
 			this._target.onAttackStopped(this);
 		}
+		super.destroy(obj);
 	}
 
 	/**
