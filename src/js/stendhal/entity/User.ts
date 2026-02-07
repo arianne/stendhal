@@ -225,7 +225,7 @@ export class User extends Player {
 	 * @param dir {util.Direction.Direction}
 	 *   New direction to face.
 	 */
-	public setFacing(dir: Direction) {
+	public faceTo(dir: Direction) {
 		marauroa.clientFramework.sendAction({type: "face", dir: ""+dir.val});
 	}
 
