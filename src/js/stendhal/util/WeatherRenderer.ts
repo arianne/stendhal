@@ -9,7 +9,6 @@
  *                                                                         *
  ***************************************************************************/
 
-import { singletons } from "../SingletonRepo";
 import { Paths } from "../data/Paths";
 import { TileStore } from "../data/TileStore";
 
@@ -17,6 +16,8 @@ import { SoundObject } from "../data/sound/SoundFactory";
 import { Canvas, RenderingContext2D } from "./Types";
 
 import { stendhal } from "../stendhal";
+import { ImageRef } from "sprite/image/ImageRef";
+import { images } from "sprite/image/ImageManager";
 
 
 const weatherLoops = {
@@ -25,7 +26,7 @@ const weatherLoops = {
 	"rain_light": true
 } as {[key: string]: boolean};
 
-interface WeatherSprite extends HTMLImageElement {
+interface WeatherSprite extends ImageRef {
 	frames: number[];
 	delays: number[];
 }
@@ -33,7 +34,6 @@ interface WeatherSprite extends HTMLImageElement {
 export class WeatherRenderer {
 
 	private enabled = true;
-	private warned: {[key: string]: boolean} = {};
 	private sprite?: WeatherSprite;
 	private frameIdx = 0;
 	private lastUpdate = 0;
@@ -81,7 +81,7 @@ export class WeatherRenderer {
 	 * @param weather
 	 *     Weather type identifier.
 	 */
-	update(weather?: string) {
+	async update(weather?: string) {
 		this.enabled = stendhal.config.getBoolean("effect.weather");
 		if (!this.enabled) {
 			// prevent playing sound & other weather-related instructions
@@ -97,8 +97,6 @@ export class WeatherRenderer {
 
 		this.frameIdx = 0;
 		this.lastUpdate = Date.now();
-		// reset warning messages
-		this.warned = {};
 
 		// stop previous sounds
 		// FIXME: should continue playing if weather is same on next map
@@ -111,41 +109,33 @@ export class WeatherRenderer {
 			this.sprite = undefined;
 		} else {
 			const img = Paths.weather + "/" + weather + ".png";
-			this.sprite = <WeatherSprite> singletons.getSpriteStore().get(img);
+			let sprite = <WeatherSprite> images.load(img)
+			await sprite.waitFor();
+			if (weather != this.weatherName || !sprite.image) {
+				sprite.free();
+				return;
+			}
+
 			/* FIXME:
 			 *   "TypeError: $stendhal$$.data.$tileset$.$weatherAnimationMap$
 			 *   is undefined". TileStore.weatherMap is not always loaded
 			 *   before this is called.
 			 */
 			const animationMap = TileStore.get().getWeatherMap()[img];
-
-			if (!this.sprite || !this.sprite.src) {
-				console.error("weather sprite for '" + weather + "' not found");
-				return;
-			}
-			//~ if (!animationMap) {
-				//~ console.error("weather animation map for '" + weather + "' not loaded");
-				//~ return;
 			if (animationMap && Object.keys(animationMap).length == 0) {
 				console.error("weather animation map for '" + weather + "' is empty");
 				return;
 			}
 
 			if (animationMap) {
-				this.sprite.frames = animationMap[0].frames;
-				this.sprite.delays = animationMap[0].delays;
+				sprite.frames = animationMap[0].frames;
+				sprite.delays = animationMap[0].delays;
 			} else {
 				// weather is not animated
-				this.sprite.frames = [0];
+				sprite.frames = [0];
 			}
 
-			let spriteH = this.sprite.height;
-			// failsafe assumes min sprite dimensions to be 32x32
-			if (!spriteH) {
-				spriteH = 32;
-				console.log("using failsafe sprite height: " + spriteH);
-			}
-
+			let spriteH = sprite.image.height;
 			const canvas = document.getElementById("viewport") as Canvas;
 			this.tilesX = Math.ceil(canvas.width / spriteH) + 1;
 			this.tilesY = Math.ceil(canvas.height / spriteH) + 1;
@@ -153,6 +143,7 @@ export class WeatherRenderer {
 			if (weatherLoops[weather]) {
 				this.audio = stendhal.sound.playGlobalizedLoop("weather/" + weather, this.soundLayer);
 			}
+			this.sprite = sprite;
 		}
 	}
 
@@ -163,31 +154,19 @@ export class WeatherRenderer {
 	 *    Drawing target element.
 	 */
 	draw(ctx: RenderingContext2D) {
-		if (this.enabled && this.sprite && this.sprite.frames) {
-			if (!this.tilesX || !this.tilesY) {
-				if (!this.warned.tiling) {
-					console.warn("cannot tile weather animation");
-					this.warned.tiling = true;
-				}
-				return;
-			}
-			if (!this.sprite.height) {
-				if (!this.warned.imgReady) {
-					console.warn("waiting on image to load before drawing weather");
-					this.warned.imgReady = true;
-				}
-				return;
-			}
-			if (this.weatherName === "clouds") {
-				ctx.save();
-				ctx.globalAlpha = 0.80;
-				this.drawClouds(ctx, stendhal.ui.gamewindow.offsetX, stendhal.ui.gamewindow.offsetY);
-				ctx.restore();
-			} else if (this.fog) {
-				this.drawFog(ctx, stendhal.ui.gamewindow.offsetX, stendhal.ui.gamewindow.offsetY);
-			} else {
-				this.drawOther(ctx, stendhal.ui.gamewindow.offsetX, stendhal.ui.gamewindow.offsetY);
-			}
+		if (!this.enabled || !this.sprite || !this.sprite.frames) {
+			return;
+		}
+
+		if (this.weatherName === "clouds") {
+			ctx.save();
+			ctx.globalAlpha = 0.80;
+			this.drawClouds(ctx, stendhal.ui.gamewindow.offsetX, stendhal.ui.gamewindow.offsetY);
+			ctx.restore();
+		} else if (this.fog) {
+			this.drawFog(ctx, stendhal.ui.gamewindow.offsetX, stendhal.ui.gamewindow.offsetY);
+		} else {
+			this.drawOther(ctx, stendhal.ui.gamewindow.offsetX, stendhal.ui.gamewindow.offsetY);
 		}
 	}
 
@@ -199,9 +178,13 @@ export class WeatherRenderer {
 	 * @param {number} offsetY
 	 */
 	private drawClouds(ctx: RenderingContext2D, offsetX: number, offsetY: number) {
+		let image = this.sprite?.image;
+		if (!image) {
+			return
+		}
 		const drawStart = Date.now();
 		const timeDiff = drawStart - this.lastUpdate;
-		const dim = {width: this.sprite!.width, height: this.sprite!.height};
+		const dim = {width: image.width, height: image.height};
 
 		// horizontal drift rate for wind effect (1 pixel per 100 milliseconds)
 		let wind = Math.floor(timeDiff / 100);
@@ -219,7 +202,7 @@ export class WeatherRenderer {
 
 		for (let dy = -clipTop; dy < offsetY + ctx.canvas.height; dy += dim.height) {
 			for (let dx = -clipLeft; dx < offsetX + ctx.canvas.width; dx += dim.width) {
-				ctx.drawImage(this.sprite!,
+				ctx.drawImage(image,
 						0, 0, dim.width, dim.height,
 						dx, dy, dim.width, dim.height);
 			}
@@ -251,13 +234,17 @@ export class WeatherRenderer {
 	 * @param {number} offsetY
 	 */
 	private drawOther(ctx: RenderingContext2D, offsetX: number, offsetY: number) {
+		let image = this.sprite?.image;
+		if (!image) {
+			return
+		}
 		// width & height dimensions should be the same
-		const dim = this.sprite!.height;
+		const dim = image.height;
 		const clipLeft = offsetX % dim;
 		const clipTop = offsetY % dim;
 		for (let ix = 0; ix < this.tilesX; ix++) {
 			for (let iy = 0; iy < this.tilesY; iy++) {
-				ctx.drawImage(this.sprite!,
+				ctx.drawImage(image,
 						this.sprite!.frames[this.frameIdx]*dim,
 						0,
 						dim, dim,

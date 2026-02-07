@@ -368,11 +368,6 @@ export class SpriteStore {
 				"underground_zone"]) {
 			this.get(Paths.achievements + "/" + cat + ".png");
 		}
-		// weather
-		for (const weather of ["clouds", "fog", "fog_heavy", "rain", "rain_heavy",
-				"rain_light", "snow", "snow_heavy", "snow_light", "wave"]) {
-			this.get(Paths.weather + "/" + weather + ".png");
-		}
 	}
 }
 
