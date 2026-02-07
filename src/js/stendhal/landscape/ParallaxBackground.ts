@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2024 - Faiumoni e. V.                    *
+ *                  Copyright © 2024-2026 - Faiumoni e. V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,7 +12,8 @@
 
 import { RenderingContext2D } from "util/Types";
 import { singletons } from "../SingletonRepo";
-
+import { ImageRef } from "sprite/image/ImageRef";
+import { images } from "sprite/image/ImageManager";
 
 export class ParallaxBackground {
 
@@ -20,7 +21,7 @@ export class ParallaxBackground {
 	public static readonly SCROLL = 0.25;
 
 	/** Tiled image to be drawn. */
-	private image?: HTMLImageElement;
+	private imageRef?: ImageRef;
 
 	/** Singleton instance. */
 	private static instance: ParallaxBackground;
@@ -55,8 +56,8 @@ export class ParallaxBackground {
 	 *   Map pixel height.
 	 */
 	setImage(name: string, width: number, height: number) {
-		const fullPath = singletons.getPaths().parallax + "/" + name + ".png";
-		this.image = singletons.getSpriteStore().get(fullPath);
+		let fullPath = singletons.getPaths().parallax + "/" + name + ".png";
+		this.imageRef = images.load(fullPath);
 
 		/* FIXME:
 		//this.image = singletons.getTileStore().getParallax(name, ParallaxBackground.SCROLL, width, height);
@@ -73,20 +74,22 @@ export class ParallaxBackground {
 	 * Unsets parallax background image.
 	 */
 	reset() {
-		this.image = undefined;
+		this.imageRef?.free();
+		this.imageRef = undefined;
 	}
 
 	draw(ctx: RenderingContext2D, offsetX: number, offsetY: number) {
-		if (!this.image || !this.image.height) {
+		if (!this.imageRef?.image) {
 			return;
 		}
+		let image = this.imageRef.image;
 
 		// FIXME: seams are visible when walking
-		let dy = offsetY - ((offsetY / 4) % this.image.height);
-		for (dy; dy < this.image.height * 100; dy += this.image.height) {
-			let dx = offsetX - ((offsetX / 4) % this.image.width);
-			for (dx; dx < this.image.width * 100; dx += this.image.width) {
-				ctx.drawImage(this.image, dx, dy);
+		let dy = offsetY - ((offsetY / 4) % image.height);
+		for (dy; dy < image.height * 100; dy += image.height) {
+			let dx = offsetX - ((offsetX / 4) % image.width);
+			for (dx; dx < image.width * 100; dx += image.width) {
+				ctx.drawImage(image, dx, dy);
 			}
 		}
 
