@@ -12,16 +12,10 @@
 import { Paths } from "./Paths";
 import { ImageFilter } from "../sprite/image/ImageFilter";
 
-
-export class SpriteImage extends Image {
-	// number of times the image has been accessed after initial creation
-	counter = 0;
-}
-
 export class SpriteStore {
 
 	private knownBrokenUrls: {[url: string]: boolean} = {};
-	private images: {[filename: string]: SpriteImage} = {};
+	private images: {[filename: string]: CanvasImageSource} = {};
 
 	private knownShadows: {[key: string]: boolean} = {
 		"24x32": true,
@@ -84,14 +78,10 @@ export class SpriteStore {
 			return {};
 		}
 		if (this.images[filename]) {
-			this.images[filename].counter++;
 			return this.images[filename];
 		}
-		var temp = new Image() as SpriteImage;
-		// TypeError: Image constructor: 'new' is required
-		//~ var temp = new SpriteImage();
-		temp.counter = 0;
-		temp.onerror = (function(t: SpriteImage, store: SpriteStore) {
+		var temp = new Image();
+		temp.onerror = (function(t: HTMLImageElement, store: SpriteStore) {
 			return function() {
 				if (t.src && !store.knownBrokenUrls[t.src]) {
 					console.log("Broken image path:", t.src, new Error());
@@ -152,8 +142,7 @@ export class SpriteStore {
 		}
 		// NOTE: cannot use HTMLImageElement.cloneNode here, must get base image then transfer
 		//       `src` property when ready
-		const img = new Image() as SpriteImage;
-		img.counter = 0;
+		const img = new Image();
 		img.onload = () => {
 			img.onload = null;
 			this.rotate(img, angle);
@@ -179,8 +168,7 @@ export class SpriteStore {
 	 * @param {SpriteImage}
 	 *   Image to be cached.
 	 */
-	cache(id: string, image: SpriteImage) {
-		image.counter = 0;
+	cache(id: string, image: CanvasImageSource) {
 		this.images[id] = image;
 	}
 
@@ -206,14 +194,12 @@ export class SpriteStore {
 		const filename = Paths.sprites + "/failsafe.png";
 		let failsafe = this.images[filename];
 		if (failsafe) {
-			failsafe.counter++;
 		} else {
-			failsafe = new Image() as SpriteImage;
-			failsafe.counter = 0;
+			failsafe = new Image();
 			failsafe.src = filename;
 			this.images[filename] = failsafe;
 		}
-		return failsafe;
+		return failsafe as HTMLImageElement;
 	}
 
 	/**
@@ -228,21 +214,6 @@ export class SpriteStore {
 		return this.get(filename).src;
 	}
 
-	/** deletes all objects that have not been accessed since this method was called last time */
-	// TODO: call clean on map change
-	clean() {
-		for (var i in this.images) {
-			console.log(typeof(this.images[i]));
-			if (this.images[i] instanceof SpriteImage) {
-				if (this.images[i].counter > 0) {
-					this.images[i].counter--;
-				} else {
-					delete(this.images[i]);
-				}
-			}
-		}
-	}
-
 
 	/**
 	 * @param {string} fileName
@@ -255,7 +226,7 @@ export class SpriteStore {
 			return img;
 		}
 		const filteredName = fileName + " " + filter + " " + param;
-		let filtered: SpriteImage = this.images[filteredName];
+		let filtered = this.images[filteredName];
 		if (typeof(filtered) === "undefined") {
 			const canvas = document.createElement("canvas") as any;
 			canvas.width  = img.width;
@@ -266,7 +237,7 @@ export class SpriteStore {
 			new ImageFilter().filter(imgData, filter, param);
 			ctx.putImageData(imgData, 0, 0);
 			canvas.complete = true;
-			this.images[filteredName] = filtered = canvas as SpriteImage;
+			this.images[filteredName] = filtered = canvas;
 		}
 
 		return filtered;
