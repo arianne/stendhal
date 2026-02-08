@@ -21,9 +21,8 @@ import { Chat } from "../util/Chat";
 import { PopupInventory } from "./PopupInventory";
 import { Paths } from "../data/Paths";
 import { singletons } from "../SingletonRepo";
-import { MarauroaUtils } from "marauroa";
 
-import { marauroa } from "marauroa"
+import { marauroa, RPObject, RPZone } from "marauroa"
 import { stendhal } from "../stendhal";
 
 export class Corpse extends PopupInventory {
@@ -178,5 +177,10 @@ export class Corpse extends PopupInventory {
 
 	private isEmpty() {
 		return !this["content"] || this["content"]._objects.length === 0;
+	}
+
+	override destroy(parent: RPObject|RPZone): void {
+		this.indicator?.free();
+		super.destroy(parent);
 	}
 }

@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { RPObject, RPZone} from "marauroa";
 import { Entity } from "./Entity";
 import { ActivityIndicatorSprite } from "../sprite/ActivityIndicatorSprite";
 import { RenderingContext2D } from "util/Types";
@@ -56,6 +57,11 @@ export class Sign extends Entity {
 
 	override getCursor(_x: number, _y: number) {
 		return "url(" + Paths.sprites + "/cursor/look.png) 1 3, auto";
+	}
+
+	override destroy(parent: RPObject|RPZone): void {
+		this.indicator?.free();
+		super.destroy(parent);
 	}
 
 }

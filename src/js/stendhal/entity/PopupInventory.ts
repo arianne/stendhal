@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { marauroa, RPObject } from "marauroa";
+import { marauroa, RPObject, RPZone } from "marauroa";
 
 import { RenderingContext2D } from "util/Types";
 import { Entity } from "./Entity";
@@ -32,9 +32,9 @@ export class PopupInventory extends Entity {
 		// inheriting classes can override
 	}
 
-	override destroy(_parent: RPObject) {
+	override destroy(parent: RPObject|RPZone) {
 		this.closeInventoryWindow();
-		super.destroy(_parent);
+		super.destroy(parent);
 	}
 
 	/**
