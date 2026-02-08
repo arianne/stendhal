@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2026 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,10 +9,10 @@
  *                                                                         *
  ***************************************************************************/
 
+import { images } from "sprite/image/ImageManager";
 import { Paths } from "../data/Paths";
 import { Entity } from "./Entity";
-
-import { stendhal } from "../stendhal";
+import { ImageSprite } from "sprite/image/ImageSprite";
 
 export class VisibleEntity extends Entity {
 
@@ -20,21 +20,29 @@ export class VisibleEntity extends Entity {
 
 	constructor() {
 		super();
-		this.sprite = {
-			height: 32,
-			width: 32
-		};
+	}
+
+	override init(): void {
+		let filename = Paths.sprites + "/"
+			+ (this["class"] || "") + "/"
+			+ (this["subclass"] || "") + "/"
+			+ (this["_name"] || "") + ".png";
+		let state = this["state"] * 32 || 0;
+		this.imageSprite = new ImageSprite(images.load(filename), 0, state, 32, 32);
 	}
 
 	override set(key: string, value: any) {
 		super.set(key, value);
 		if (key === "class" || key === "subclass" || key === "_name") {
-			this.sprite.filename = Paths.sprites + "/"
-				+ (this["class"] || "") + "/"
-				+ (this["subclass"] || "") + "/"
-				+ (this["_name"] || "") + ".png";
+			// if this was already initialized, create a new ImageSprite
+			if (this.imageSprite) {
+				this.imageSprite.free();
+				this.init();
+			}
 		} else if (key === "state") {
-			this.sprite.offsetY = value * 32;
+			if (this.imageSprite) {
+				this.imageSprite.offsetY = value * 32;
+			}
 		}
 	}
 

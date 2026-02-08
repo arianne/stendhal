@@ -17,33 +17,41 @@ import { Paths } from "../data/Paths";
 import { singletons } from "../SingletonRepo";
 
 import { stendhal } from "../stendhal";
+import { images } from "sprite/image/ImageManager";
+import { ImageSprite } from "sprite/image/ImageSprite";
 
 export class Sign extends Entity {
 	override zIndex = 5000;
 
 	private indicator?: ActivityIndicatorSprite;
 
-
-	constructor() {
-		super();
-		this["class"] = "default";
+	override init() {
+		super.init();
+		if (!this.imageSprite) {
+			this.imageSprite = new ImageSprite(
+				images.load(Paths.sprites + "/signs/" + "default" + ".png"),
+				0, 0, 32, 32
+			);
+		}
 	}
 
 	override set(key: string, value: object) {
 		super.set(key, value);
 		if (key === "activity-indicator" && stendhal.config.getBoolean("activity-indicator")) {
 			this.indicator = new ActivityIndicatorSprite();
+		} else if (key === "class") {
+			this.imageSprite = new ImageSprite(
+				images.load(Paths.sprites + "/signs/" + this["class"] + ".png"),
+				0, 0, 32, 32
+			);
 		}
 	}
 
 	override draw(ctx: RenderingContext2D) {
-		if (!this.imagePath) {
-			this.imagePath = Paths.sprites + "/signs/" + this["class"] + ".png";
-		}
-		var image = singletons.getSpriteStore().get(this.imagePath);
-		if (image.height) {
-			var localX = this["x"] * 32;
-			var localY = this["y"] * 32;
+		let image = this.imageSprite?.imageRef?.image;
+		let localX = this["x"] * 32;
+		let localY = this["y"] * 32;
+		if (image) {
 			ctx.drawImage(image, localX, localY);
 			if (this.indicator) {
 				this.indicator.draw(ctx, localX, localY, image.width);

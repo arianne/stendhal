@@ -12,8 +12,6 @@
 import { Paths } from "../data/Paths";
 import { Entity } from "./Entity";
 
-import { stendhal } from "../stendhal";
-
 export class WalkBlocker extends Entity {
 
 	override zIndex = 3000;

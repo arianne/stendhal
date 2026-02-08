@@ -9,33 +9,26 @@
  *                                                                         *
  ***************************************************************************/
 
-import { stendhal } from "../stendhal";
-
 import { Entity } from "./Entity";
 import { MenuItem } from "../action/MenuItem";
 import { Paths } from "../data/Paths";
+import { ImageSprite } from "sprite/image/ImageSprite";
+import { images } from "sprite/image/ImageManager";
 
 
 export class UseableEntity extends Entity {
 	override zIndex = 3000
 	action = "use";
 
-	constructor() {
-		super();
-		this.sprite = {
-			height: 32,
-			width: 32
-		};
-	}
-
 	override set(key: string, value: any) {
 		super.set(key, value);
 		if (key === "class" || key === "name") {
-			this.sprite.filename = Paths.sprites + "/"
-				+ this["class"] + "/" + this["_name"] + ".png";
-		}
-		if (key === "state") {
-			this.sprite.offsetY = this["state"] * 32;
+			let filename = Paths.sprites + "/" + this["class"] + "/" + this["_name"] + ".png";
+			let state = this["state"] * 32 || 0;
+			this.imageSprite?.free();
+			this.imageSprite = new ImageSprite(images.load(filename), 0, state, 32, 32);
+		} else if (key === "state" && this.imageSprite) {
+			this.imageSprite.offsetY = this["state"] * 32;
 		}
 	}
 
