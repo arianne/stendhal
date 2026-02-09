@@ -16,10 +16,25 @@ import { Paths } from "../data/Paths";
 import { singletons } from "../SingletonRepo";
 
 import { marauroa } from "marauroa"
+import { ImageSprite } from "sprite/image/ImageSprite";
+import { images } from "sprite/image/ImageManager";
 
 
 export class GrowingEntitySpawner extends Entity {
 	override zIndex = 3000;
+
+
+	override set(key: string, value: any) {
+		super.set(key, value);
+		if (key === "class") {
+			this.imageSprite?.free();
+			let className = value.replace(" ", "_");
+			this.imageSprite = new ImageSprite(
+				images.load(Paths.sprites + "/" + className + ".png"),
+				0, 0, 0, 0);
+		}
+	}
+
 
 	/**
 	 * is this entity visible to a specific action
@@ -50,30 +65,19 @@ export class GrowingEntitySpawner extends Entity {
 		marauroa.clientFramework.sendAction(action);
 	}
 
-	/**
-	 * draw RPEntities
-	 */
 	override draw(ctx: RenderingContext2D) {
-		var localX = this["x"] * 32;
-		var localY = this["y"] * 32;
-
-		// FIXME:
-		//   temporary fix, problem lies higher up
-		//   appears to only affect button_mushroom_grower
-		//   could be issue in marauroa
-		let class_name = this["class"];
-		if (class_name.includes(" ")) {
-			class_name = class_name.replace(" ", "_");
+		let localX = this["x"] * 32;
+		let localY = this["y"] * 32;
+		let image = this.imageSprite?.imageRef?.image;
+		if (!image) {
+			return;
 		}
 
-		var image = singletons.getSpriteStore().get(Paths.sprites + "/" + class_name + ".png");
-		if (image.height) { // image.complete is true on missing image files
-			var count = parseInt(this["max_ripeness"], 10) + 1;
-			var drawHeight = image.height / count;
-			var yRow = this["ripeness"];
-			ctx.drawImage(image, 0, yRow * drawHeight, image.width, drawHeight,
+		let count = parseInt(this["max_ripeness"], 10) + 1;
+		let drawHeight = image.height / count;
+		let yRow = this["ripeness"];
+		ctx.drawImage(image, 0, yRow * drawHeight, image.width, drawHeight,
 					localX, localY - drawHeight + 32, image.width, drawHeight);
-		}
 	}
 
 	override getCursor(_x: number, _y: number) {

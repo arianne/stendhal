@@ -9,34 +9,32 @@
  *                                                                         *
  ***************************************************************************/
 
-import { RenderingContext2D } from "util/Types";
 import { Entity } from "./Entity";
 import { Paths } from "../data/Paths";
-import { singletons } from "../SingletonRepo";
 
 import { marauroa } from "marauroa"
+import { ImageSprite } from "sprite/image/ImageSprite";
+import { images } from "sprite/image/ImageManager";
 
 
 export class Food extends Entity {
 
 	override zIndex = 5000;
 
+	override init() {
+		this.imageSprite = new ImageSprite(
+			images.load(Paths.sprites + "/food.png"),
+			0, this["amount"] * 32, 32, 32);
+	}
+
 	override set(key: string, value: any) {
 		super.set(key, value);
 		if (key === "amount") {
-			this._amount = parseInt(value, 10);
+			if (this.imageSprite) {
+				this.imageSprite.offsetY = this["amount"] * 32;
+			}
 		}
 		// TODO: play sound effect
-	}
-
-	override draw(ctx: RenderingContext2D) {
-		var image = singletons.getSpriteStore().get(Paths.sprites + "/food.png");
-		if (image.height) {
-			var localX = this["x"] * 32;
-			var localY = this["y"] * 32;
-			var offset = this._amount * 32;
-			ctx.drawImage(image, 0, offset, 32, 32, localX, localY, 32, 32);
-		}
 	}
 
 	override onclick(_x: number, _y: number) {

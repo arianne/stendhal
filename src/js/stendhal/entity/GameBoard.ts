@@ -13,25 +13,20 @@ import { Paths } from "../data/Paths";
 import { Entity } from "./Entity";
 
 import { stendhal } from "../stendhal";
+import { ImageSprite } from "sprite/image/ImageSprite";
+import { images } from "sprite/image/ImageManager";
 
 export class GameBoard extends Entity {
 
 	override minimapShow = false;
 	override zIndex = 100;
 
-	constructor() {
-		super();
-		this.sprite = {
-			height: 32 * 3,
-			width: 32 * 3
-		};
-	}
-
 	override set(key: string, value: any) {
 		super.set(key, value);
 		if (key === "class") {
-			this.sprite.filename = Paths.sprites + "/gameboard/"
-				+ this["class"] + ".png";
+			let filename = Paths.sprites + "/gameboard/" + this["class"] + ".png";
+			this.imageSprite?.free();
+			this.imageSprite = new ImageSprite(images.load(filename), 0, 0, 3*32, 3*32);
 		}
 	}
 

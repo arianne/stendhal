@@ -13,28 +13,41 @@ import { RenderingContext2D } from "util/Types";
 import { MenuItem } from "../action/MenuItem";
 import { Entity } from "./Entity";
 import { Paths } from "../data/Paths";
-import { singletons } from "../SingletonRepo";
 
 import { marauroa } from "marauroa"
+import { images } from "sprite/image/ImageManager";
+import { ImageSprite } from "sprite/image/ImageSprite";
 
 export class Gate extends Entity {
 
 	override zIndex = 5000;
+	private locked = false;
+
+	override init() {
+		this.imageSprite?.free();
+		this.imageSprite = new ImageSprite(
+			images.load(Paths.sprites + "/doors/" + this["image"] + "_" + this["orientation"] + ".png"),
+			0, 0, 0, 0);
+	}
 
 	override set(key: string, value: any) {
 		super.set(key, value);
 		if (key === "resistance") {
-			this["locked"] = parseInt(value, 10) !== 0;
+			this.locked = parseInt(value, 10) !== 0;
 		} else if (key === "image" || key === "orientation") {
-			// Force re-evaluation of the sprite
-			delete this["_image"];
+			if (this.imageSprite) {
+				this.imageSprite?.free();
+				this.imageSprite = new ImageSprite(
+					images.load(Paths.sprites + "/doors/" + this["image"] + "_" + this["orientation"] + ".png"),
+					0, 0, 0, 0);
+			}
 		}
 	}
 
 	override buildActions(list: MenuItem[]) {
 		var id = this["id"];
 		list.push({
-			title: (this["locked"]) ? "Open" : "Close",
+			title: (this.locked) ? "Open" : "Close",
 			action: function(_entity: Entity) {
 				var action = {
 					"type": "use",
@@ -47,19 +60,17 @@ export class Gate extends Entity {
 	}
 
 	override draw(ctx: RenderingContext2D) {
-		if (this._image == undefined) {
-			var filename = Paths.sprites + "/doors/" + this["image"] + "_" + this["orientation"] + ".png";
-			this._image = singletons.getSpriteStore().get(filename);
+		let image = this.imageSprite?.imageRef?.image;
+		if (!image) {
+			return;
 		}
-		if (this._image.height) {
-			var xOffset = -32 * Math.floor(this._image.width / 32 / 2);
-			var height = this._image.height / 2;
-			var yOffset = -32 * Math.floor(height / 32 / 2);
-			var localX = this["_x"] * 32 + xOffset;
-			var localY = this["_y"] * 32 + yOffset;
-			var yStart = (this["locked"]) ? height : 0;
-			ctx.drawImage(this._image, 0, yStart, this._image.width, height, localX, localY, this._image.width, height);
-		}
+		let xOffset = -32 * Math.floor(image.width / 32 / 2);
+		let height = image.height / 2;
+		let yOffset = -32 * Math.floor(height / 32 / 2);
+		let localX = this["_x"] * 32 + xOffset;
+		let localY = this["_y"] * 32 + yOffset;
+		let yStart = (this.locked) ? height : 0;
+		ctx.drawImage(image, 0, yStart, image.width, height, localX, localY, image.width, height);
 	}
 
 	override isVisibleToAction(_filter: boolean) {
