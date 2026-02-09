@@ -18,6 +18,9 @@ export class ImageManager {
 	images = new Map<string, ImageRefImpl>();
 
 	load(filename: string, filter?: string, param?: number): ImageRef {
+		if (filename.indexOf("..") > -1) {
+			throw new Error("Invalid filename: " + filename);
+		}
 		let key = filename + "!" + filter + "!" + param;
 		let imageRef = this.images.get(key);
 		if (!imageRef) {
