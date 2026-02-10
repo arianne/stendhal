@@ -24,6 +24,8 @@ import { singletons } from "../SingletonRepo";
 
 import { marauroa, RPObject, RPZone } from "marauroa"
 import { stendhal } from "../stendhal";
+import { images } from "sprite/image/ImageManager";
+import { ImageSprite } from "sprite/image/ImageSprite";
 
 export class Corpse extends PopupInventory {
 
@@ -44,18 +46,21 @@ export class Corpse extends PopupInventory {
 	override set(key: string, value: any) {
 		super.set(key, value);
 
-		this.sprite = this.sprite || {};
-		const bloodEnabled = stendhal.config.getBoolean("effect.blood");
-
+		let bloodEnabled = stendhal.config.getBoolean("effect.blood");
 		if (bloodEnabled && (key === "image")) {
-			this.sprite.filename = Paths.sprites + "/corpse/" + value + ".png";
+			this.imageSprite?.free();
+			this.imageSprite = new ImageSprite(
+				images.load(Paths.sprites + "/corpse/" + value + ".png"));
 		} else if (!bloodEnabled && (key === "harmless_image")) {
-			this.sprite.filename = Paths.sprites + "/corpse/" + value + ".png";
+			this.imageSprite?.free();
+			this.imageSprite = new ImageSprite(
+				images.load(Paths.sprites + "/corpse/" + value + ".png"));
 		}
 	}
 
 	override draw(ctx: RenderingContext2D) {
-		if (!this.sprite) {
+		let image = this.imageSprite?.imageRef?.image;
+		if (!image) {
 			return;
 		}
 		super.draw(ctx);
@@ -63,21 +68,13 @@ export class Corpse extends PopupInventory {
 		if (this.indicator && !this.isEmpty()) {
 			const tileW = stendhal.ui.gamewindow.targetTileWidth;
 			const tileH = stendhal.ui.gamewindow.targetTileHeight;
-			if (this.sprite.width == undefined || this.sprite.height == undefined) {
-				const image = singletons.getSpriteStore().get(this.sprite.filename);
-				if (image.complete) {
-					this.sprite.width = image.width < tileW ? tileW : image.width;
-					this.sprite.height = image.height < tileH ? tileH : image.height;
-				}
-				return;
-			}
-
-			const offsetX = Math.floor((this["width"] * tileW - this.sprite.width) / 2);
-			const offsetY = Math.floor((this["height"] * tileH - this.sprite.height) / 2);
-			const dx = this["x"] * tileW + offsetX;
-			const dy = this["y"] * tileH + offsetY;
-
-			this.indicator.draw(ctx, dx, dy, this.sprite.width);
+			let width = image.width < tileW ? tileW : image.width;
+			let height = image.height < tileH ? tileH : image.height;
+			let offsetX = Math.floor((this["width"] * tileW - width) / 2);
+			let offsetY = Math.floor((this["height"] * tileH - height) / 2);
+			let dx = this["x"] * tileW + offsetX;
+			let dy = this["y"] * tileH + offsetY;
+			this.indicator.draw(ctx, dx, dy, width);
 		}
 	}
 

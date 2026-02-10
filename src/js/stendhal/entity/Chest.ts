@@ -24,20 +24,8 @@ import { Paths } from "../data/Paths";
 import { marauroa } from "marauroa"
 import { stendhal } from "../stendhal";
 import { Entity } from "./Entity";
-
-
-let OPEN_SPRITE = {
-	filename: Paths.sprites + "/chest.png",
-	height: 32,
-	width: 32,
-	offsetY: 32
-};
-
-let CLOSED_SPRITE = {
-	filename: Paths.sprites + "/chest.png",
-	height: 32,
-	width: 32
-};
+import { ImageSprite } from "sprite/image/ImageSprite";
+import { images } from "sprite/image/ImageManager";
 
 export class Chest extends PopupInventory {
 
@@ -45,13 +33,19 @@ export class Chest extends PopupInventory {
 	override minimapStyle = Color.CHEST;
 
 	override zIndex = 5000;
-	sprite = CLOSED_SPRITE;
 	open = false;
+
+	constructor() {
+		super();
+		this.imageSprite = new ImageSprite(
+			images.load(Paths.sprites + "/chest.png"),
+			0, 0, 32, 32);
+	}
 
 	override set(key: string, value: any) {
 		super.set(key, value);
 		if (key === "open") {
-			this.sprite = OPEN_SPRITE;
+			this.imageSprite!.offsetY = 32;
 			this.open = true;
 		}
 		if (this.isNextTo(marauroa.me as Entity)) {
@@ -62,7 +56,7 @@ export class Chest extends PopupInventory {
 	override unset(key: string) {
 		super.unset(key);
 		if (key === "open") {
-			this.sprite = CLOSED_SPRITE;
+			this.imageSprite!.offsetY = 0;
 			this.open = false;
 			if (this.inventory && this.inventory.isOpen()) {
 				this.inventory.close();

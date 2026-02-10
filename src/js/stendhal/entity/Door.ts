@@ -13,26 +13,39 @@ import { RenderingContext2D } from "util/Types";
 import { MenuItem } from "../action/MenuItem";
 import { Portal } from "./Portal";
 import { Paths } from "../data/Paths";
-import { singletons } from "../SingletonRepo";
+import { ImageSprite } from "sprite/image/ImageSprite";
+import { images } from "sprite/image/ImageManager";
 
 export class Door extends Portal {
 
 	override zIndex = 5000;
 
-	override draw(ctx: RenderingContext2D) {
-		let imagePath = Paths.sprites + "/doors/" + this["class"] + ".png";
-		let image = singletons.getSpriteStore().get(imagePath);
-		if (image.height) {
-			let height = image.height / 2;
-			let x = (this["x"] * 32) - ((image.width - 32) / 2);
-			let y = (this["y"] * 32) - ((height - 32) / 2);
-
-			var offsetY = height;
-			if (this["open"] === "") {
-				offsetY = 0;
+	override set(key: string, value: any) {
+		super.set(key, value);
+		if (key === "class") {
+			if (this.imageSprite) {
+				this.imageSprite?.free();
+				this.imageSprite = new ImageSprite(
+					images.load(Paths.sprites + "/doors/" + value + ".png"),
+					0, 0, 0, 0);
 			}
-			ctx.drawImage(image, 0, offsetY, image.width, height, x, y, image.width, height);
 		}
+	}
+
+	override draw(ctx: RenderingContext2D) {
+		let image = this.imageSprite?.imageRef?.image;
+		if (!image) {
+			return;
+		}
+		let height = image.height / 2;
+		let x = (this["x"] * 32) - ((image.width - 32) / 2);
+		let y = (this["y"] * 32) - ((height - 32) / 2);
+
+		let offsetY = height;
+		if (this["open"] === "") {
+			offsetY = 0;
+		}
+		ctx.drawImage(image, 0, offsetY, image.width, height, x, y, image.width, height);
 	}
 
 	override buildActions(list: MenuItem[]) {
