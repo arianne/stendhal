@@ -21,6 +21,7 @@ import { OutfitPreviewComponent } from "../../component/OutfitPreviewComponent";
 
 import { marauroa } from "marauroa"
 import { stendhal } from "../../../stendhal";
+import { OutfitStore } from "data/OutfitStore";
 
 
 /**
@@ -194,7 +195,7 @@ export class OutfitDialog extends DialogContentComponent {
 			index = minIndex;
 		}
 
-		const selector = new OutfitPartSelector(part, index, minIndex, stendhal.data.outfit.count[part] - 1, () => {
+		const selector = new OutfitPartSelector(part, index, minIndex, OutfitStore.get().count[part] - 1, () => {
 			this.drawComposite();
 		});
 
@@ -217,7 +218,7 @@ export class OutfitDialog extends DialogContentComponent {
 	initialColorValue(part: string) {
 		const colors = marauroa.me["outfit_colors"];
 		if (colors != null) {
-			const colorName = stendhal.data.outfit.isSkinLayer(part) ? "skin" : part;
+			const colorName = OutfitStore.get().isSkinLayer(part) ? "skin" : part;
 
 			let layer_color = colors[colorName + "_orig"];
 			if (layer_color === undefined) {

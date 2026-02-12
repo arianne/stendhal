@@ -115,10 +115,6 @@ export class SingletonRepo {
 		return LoopedSoundSourceManager.get();
 	}
 
-	static getOutfitStore(): OutfitStore {
-		return OutfitStore.get();
-	}
-
 	static getPaths(): typeof Paths {
 		return Paths;
 	}

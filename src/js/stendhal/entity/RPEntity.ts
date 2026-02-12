@@ -35,6 +35,7 @@ import { RangedAttackSprite } from "../sprite/action/RangedAttackSprite";
 import { ImageWithDimensions } from "data/ImageWithDimensions";
 import { RenderingContext2D } from "util/Types";
 import { Paths } from "../data/Paths";
+import { OutfitStore } from "data/OutfitStore";
 
 var HEALTH_BAR_HEIGHT = 6;
 
@@ -221,7 +222,7 @@ export class RPEntity extends ActiveEntity {
 	}
 
 	drawMultipartOutfit(ctx: RenderingContext2D) {
-		const store = singletons.getOutfitStore();
+		const store = OutfitStore.get();
 		// layers in draw order
 		var layers = store.getLayerNames();
 
@@ -257,13 +258,13 @@ export class RPEntity extends ActiveEntity {
 		if (this.octx) {
 			this.octx.clearRect(0, 0, this.octx.canvas.width, this.octx.canvas.height);
 		}
-		if (stendhal.data.outfit.detailHasRearLayer(outfit["detail"])) {
+		if (store.detailHasRearLayer(outfit["detail"])) {
 			layers.splice(0, 0, "detail-rear");
 			outfit["detail-rear"] = outfit["detail"];
 		}
 		for (const layer of layers) {
 			// hair is not drawn under certain hats/helmets
-			if (layer == "hair" && !stendhal.data.outfit.drawHair(outfit["hat"])) {
+			if (layer == "hair" && !store.drawHair(outfit["hat"])) {
 				continue;
 			}
 
@@ -302,9 +303,10 @@ export class RPEntity extends ActiveEntity {
 			n = "0" + index;
 		}
 
+		let store = OutfitStore.get();
 		if (part === "body" && index < 3 && stendhal.config.getBoolean("effect.no-nude")) {
 			n += "-nonude";
-		} else if (part === "dress" && stendhal.data.outfit.drawBustyDress(index, body)) {
+		} else if (part === "dress" && store.drawBustyDress(index, body)) {
 			n += "b";
 		} else if (part.endsWith("-rear")) {
 			n += "-rear";
@@ -314,7 +316,7 @@ export class RPEntity extends ActiveEntity {
 		const filename = Paths.sprites + "/outfit/" + part + "/" + n + ".png";
 		const colors = this["outfit_colors"];
 		let colorname;
-		if (stendhal.data.outfit.isSkinLayer(part)) {
+		if (store.isSkinLayer(part)) {
 			colorname = "skin";
 		} else {
 			colorname = part;

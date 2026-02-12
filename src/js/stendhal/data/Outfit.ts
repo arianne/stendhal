@@ -17,6 +17,7 @@ import { Paths } from "./Paths";
 import { stendhal } from "../stendhal";
 import { ImageMetadata } from "sprite/image/ImageMetadata";
 import { MultilayerImageLoader } from "sprite/image/MultilayerImageLoader";
+import { OutfitStore } from "./OutfitStore";
 
 
 /**
@@ -115,7 +116,7 @@ export class Outfit {
 	public getLayers(): Pair<string, number>[] {
 		const layers: Pair<string, number>[] = [];
 		// only include valid layers
-		for (const name of stendhal.data.outfit.getLayerNames()) {
+		for (const name of OutfitStore.get().getLayerNames()) {
 			let index = this.layers[name];
 			if (index != undefined) {
 				layers.push(new Pair(name, index));
@@ -153,7 +154,7 @@ export class Outfit {
 	 *   Color value or `undefined`.
 	 */
 	public getLayerColor(name: string): number|undefined {
-		if (stendhal.data.outfit.isSkinLayer(name)) {
+		if (OutfitStore.get().isSkinLayer(name)) {
 			name = "skin";
 		}
 		return this.coloring && name in this.coloring ? this.coloring[name] : undefined;
@@ -200,7 +201,7 @@ export class Outfit {
 		let parts: ImageMetadata[] = [];
 		let outfitLayers = this.getLayers();
 		const detailIndex = this.getLayerIndex("detail") || 0;
-		if (stendhal.data.outfit.detailHasRearLayer(detailIndex)) {
+		if (OutfitStore.get().detailHasRearLayer(detailIndex)) {
 			outfitLayers = [new Pair("detail-rear", detailIndex), ...outfitLayers];
 		}
 		for (const l of outfitLayers) {

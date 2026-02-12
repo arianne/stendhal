@@ -25,7 +25,7 @@ export class OutfitStore {
 
 
 	// player pickable layers
-	private count: {[key: string]: number} = {
+	public readonly count: {[key: string]: number} = {
 		"hat": 19,
 		"hair": 57,
 		"mask": 9,

@@ -38,6 +38,7 @@ import { Chat } from "./util/Chat";
 import { DialogHandler } from "./util/DialogHandler";
 import { Globals } from "./util/Globals";
 import { TileMap } from "data/TileMap";
+import { OutfitStore } from "data/OutfitStore";
 
 
 /**
@@ -116,7 +117,6 @@ export class Client {
 		stendhal.data.cstatus = singletons.getCStatus();
 		stendhal.data.cstatus.init();
 		stendhal.data.group = singletons.getGroupManager();
-		stendhal.data.outfit = singletons.getOutfitStore();
 		stendhal.data.sprites = singletons.getSpriteStore();
 		// online players
 		stendhal.players = [];
@@ -179,7 +179,7 @@ export class Client {
 		// initialize emoji data
 		singletons.getEmojiStore().init();
 		// initialize outfit data
-		stendhal.data.outfit.init();
+		OutfitStore.get().init();
 
 		new DesktopUserInterfaceFactory().create();
 
