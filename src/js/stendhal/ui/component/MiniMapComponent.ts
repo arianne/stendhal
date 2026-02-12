@@ -19,6 +19,7 @@ import { Color } from "../../data/color/Color";
 import { RenderingContext2D } from "util/Types";
 import { stendhal } from "stendhal";
 import { TileMap } from "data/TileMap";
+import { HTMLUtil } from "ui/HTMLUtil";
 
 
 /**
@@ -220,7 +221,7 @@ export class MiniMapComponent extends Component {
 		if (!stendhal.config.getBoolean("pathfinding.minimap")) {
 			return;
 		}
-		let pos = stendhal.ui.html.extractPosition(event);
+		let pos = HTMLUtil.extractPosition(event);
 		let x = Math.floor((pos.canvasRelativeX + this.xOffset) / this.scale);
 		let y = Math.floor((pos.canvasRelativeY + this.yOffset) / this.scale);
 		if (!this.map.collision(x, y)) {

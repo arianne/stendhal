@@ -24,6 +24,7 @@ import { Point } from "../../util/Point";
 import { Paths } from "../../data/Paths";
 import { HTMLImageElementUtil } from "sprite/image/HTMLImageElementUtil";
 import { TouchHandler } from "ui/TouchHandler";
+import { HTMLUtil } from "ui/HTMLUtil";
 
 
 /**
@@ -201,7 +202,7 @@ export class ItemContainerImplementation {
 			} else if (this.touchHandler.isTouchEvent(event)) {
 				this.touchHandler.setHolding(true);
 				// TODO: move when supported by mouse events
-				const pos = stendhal.ui.html.extractPosition(event);
+				const pos = HTMLUtil.extractPosition(event);
 				singletons.getHeldObjectManager().set(heldObject, img, new Point(pos.pageX, pos.pageY));
 			}
 		} else {
@@ -248,9 +249,9 @@ export class ItemContainerImplementation {
 	private onDrop(event: DragEvent|TouchEvent) {
 		const myobject = this.object || marauroa.me;
 		if (stendhal.ui.heldObject) {
-			const pos = stendhal.ui.html.extractPosition(event);
+			const pos = HTMLUtil.extractPosition(event);
 			const id = (pos.target as HTMLElement).id;
-			const targetSlot = stendhal.ui.html.parseSlotName(id);
+			const targetSlot = HTMLUtil.parseSlotName(id);
 			if (event.type === "touchend" && id === "viewport") {
 				stendhal.ui.gamewindow.onDrop(event);
 				event.stopPropagation();
@@ -262,7 +263,7 @@ export class ItemContainerImplementation {
 			if (event.type === "touchend") {
 				// find the actual target ID for touch events
 				if (targetSlot === "content") {
-					const container = stendhal.ui.equip.getByElement(stendhal.ui.html.extractTarget(event).parentElement!);
+					const container = stendhal.ui.equip.getByElement((HTMLUtil.extractTarget(event) as HTMLElement).parentElement!);
 					if (container && container.object) {
 						objectId = container.object.id;
 					}
@@ -292,7 +293,7 @@ export class ItemContainerImplementation {
 			const touch_held = this.touchHandler.holding() && quantity > 1;
 			const split_action = !sameSlot && ((event instanceof DragEvent && event.ctrlKey) || touch_held);
 			if (split_action) {
-				const pos = stendhal.ui.html.extractPosition(event);
+				const pos = HTMLUtil.extractPosition(event);
 				ui.createSingletonFloatingWindow("Quantity",
 					new DropQuantitySelectorDialog(action, touch_held),
 					pos.pageX - 50, pos.pageY - 25);
@@ -322,9 +323,9 @@ export class ItemContainerImplementation {
 		if (this.timestampMouseDown - this.timestampMouseDownPrev <= this.rightClickDuration) {
 			// reset so subsequent single clicks/taps aren't counted
 			this.timestampMouseDown = 0;
-			return (stendhal.ui.html.extractTarget(evt) as HTMLElement).id === this.lastClickedId;
+			return (HTMLUtil.extractTarget(evt) as HTMLElement).id === this.lastClickedId;
 		}
-		this.lastClickedId = (stendhal.ui.html.extractTarget(evt) as HTMLElement).id;
+		this.lastClickedId = (HTMLUtil.extractTarget(evt) as HTMLElement).id;
 		return false;
 	}
 
@@ -344,7 +345,7 @@ export class ItemContainerImplementation {
 			return;
 		}
 
-		let event = stendhal.ui.html.extractPosition(evt);
+		let event = HTMLUtil.extractPosition(evt);
 		if ((event.target as any).dataItem) {
 			const long_touch = this.touchHandler.isLongTouch(evt);
 			const context_action = (evt instanceof MouseEvent && this.isRightClick(evt)) || long_touch;
@@ -402,7 +403,7 @@ export class ItemContainerImplementation {
 	}
 
 	private onTouchStart(evt: TouchEvent) {
-		const pos = stendhal.ui.html.extractPosition(evt);
+		const pos = HTMLUtil.extractPosition(evt);
 		this.touchHandler.onTouchStart(pos.pageX, pos.pageY);
 	}
 

@@ -19,6 +19,7 @@ import { singletons } from "../SingletonRepo";
 import { marauroa } from "marauroa"
 import { stendhal } from "../stendhal";
 import { ImageSprite } from "../sprite/image/ImageSprite";
+import { HTMLUtil } from "ui/HTMLUtil";
 
 /**
  * General entity
@@ -184,7 +185,7 @@ export class Entity extends RPObject {
 		// action replaces "Look" command (e. g. "look closely" on signs)
 		if (this["action"]) {
 			list.push({
-				title: stendhal.ui.html.niceName(this["action"]),
+				title: HTMLUtil.niceName(this["action"]),
 				type: this.actionAliasToAction(this["action"])
 			});
 		} else {

@@ -35,7 +35,6 @@ import { SoundManager } from "./data/sound/SoundManager";
 import { ui } from "./ui/UI";
 import { UIComponentEnum } from "./ui/UIComponentEnum";
 import { HeldObjectManager } from "./ui/HeldObject";
-import { HTMLManager } from "./ui/HTMLManager";
 import { Inventory } from "./ui/Inventory";
 import { SoftwareJoystickController } from "./ui/SoftwareJoystickController";
 import { UIUpdateObserver } from "./ui/UIUpdateObserver";
@@ -90,10 +89,6 @@ export class SingletonRepo {
 
 	static getHeldObjectManager(): HeldObjectManager {
 		return HeldObjectManager.get();
-	}
-
-	static getHTMLManager(): HTMLManager {
-		return HTMLManager.get();
 	}
 
 	static getInventory(): Inventory {

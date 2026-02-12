@@ -21,6 +21,7 @@ import { stendhal } from "stendhal";
 
 
 import { marauroa } from "marauroa"
+import { HTMLUtil } from "ui/HTMLUtil";
 
 /**
  * displays the player stats
@@ -71,7 +72,7 @@ export class BuddyListComponent extends Component {
 			} else {
 				html += Paths.gui + "/buddy_offline.png";
 			}
-			html += "\"> " + stendhal.ui.html.esc(buddies[i].name) + "</li>";
+			html += "\"> " + HTMLUtil.esc(buddies[i].name) + "</li>";
 		}
 
 		if (this.lastHtml !== html) {

@@ -17,6 +17,7 @@ import { Direction } from "../../util/Direction";
 import { MathUtil } from "../../util/MathUtil";
 import { Pair } from "../../util/Pair";
 import { Point } from "../../util/Point";
+import { HTMLUtil } from "ui/HTMLUtil";
 
 
 /**
@@ -270,7 +271,7 @@ export class Joystick extends JoystickImpl {
 		}
 
 		// update inner button position
-		const pos = stendhal.ui.html.extractPosition(e);
+		const pos = HTMLUtil.extractPosition(e);
 		this.updateInner(pos.pageX, pos.pageY);
 
 		// set new direction of movement

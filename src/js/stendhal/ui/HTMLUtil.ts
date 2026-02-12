@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2024 - Stendhal                    *
+ *                   (C) Copyright 2003-2026 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -13,21 +13,7 @@
 /**
  * HTML code manipulation.
  */
-export class HTMLManager {
-
-	/** Singleton instance. */
-	private static instance: HTMLManager;
-
-
-	/**
-	 * Retrieves singleton instance.
-	 */
-	static get(): HTMLManager {
-		if (!HTMLManager.instance) {
-			HTMLManager.instance = new HTMLManager();
-		}
-		return HTMLManager.instance;
-	}
+export class HTMLUtil {
 
 	/**
 	 * Hidden singleton constructor.
@@ -36,7 +22,7 @@ export class HTMLManager {
 		// do nothing
 	}
 
-	esc(msg: string, filter=[]) {
+	public static esc(msg: string, filter: string[]=[]) {
 		msg = msg.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/\n/g, "<br>");
 		// restore filtered tags
 		for (const tag of filter) {
@@ -47,7 +33,7 @@ export class HTMLManager {
 		return msg;
 	}
 
-	niceName(s: string): string {
+	public static niceName(s: string): string {
 		if (!s) {
 			return "";
 		}
@@ -63,7 +49,7 @@ export class HTMLManager {
 	 * @return {EventTarget}
 	 *   Translated event target.
 	 */
-	extractTarget(event: any): EventTarget {
+	public static extractTarget(event: any): EventTarget {
 		if (event.changedTouches) {
 			// FIXME: Always uses last index. Any way to detect which touch index was engaged?
 			const tidx = event.changedTouches.length - 1;
@@ -88,9 +74,9 @@ export class HTMLManager {
 	 * @return {any}
 	 *   Normalized event.
 	 */
-	extractPosition(event: any): any {
+	public static extractPosition(event: any): any {
 		let pos = event;
-		const target = this.extractTarget(event);
+		const target = HTMLUtil.extractTarget(event);
 		const canvas = target as HTMLCanvasElement;
 		if (event.changedTouches) {
 			// FIXME: Always uses last index. Any way to detect which touch index was engaged?
@@ -117,7 +103,7 @@ export class HTMLManager {
 		return pos;
 	}
 
-	formatTallyMarks(line: string): any {
+	public static formatTallyMarks(line: string): any {
 		let tmp = line.split("<tally>");
 		const pre = tmp[0];
 		tmp = tmp[1].split("</tally>");
@@ -157,7 +143,7 @@ export class HTMLManager {
 	 * @return {string}
 	 *   Slot name.
 	 */
-	parseSlotName(id: string): string {
+	public static parseSlotName(id: string): string {
 		if (id.includes("-")) {
 			return id.split("-")[0];
 		}

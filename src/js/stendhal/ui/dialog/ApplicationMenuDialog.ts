@@ -16,6 +16,7 @@ import { singletons } from "../../SingletonRepo";
 
 import { Debug } from "../../util/Debug";
 import { ScreenCapture } from "../../util/ScreenCapture";
+import { HTMLUtil } from "ui/HTMLUtil";
 
 
 interface MenuAction {
@@ -136,14 +137,14 @@ export class ApplicationMenuDialog extends DialogContentComponent {
 
 		var content = "";
 		for (var i = 0; i < this.actions.length; i++) {
-			content += "<div class=\"inlineblock buttonColumn\"><h4 class=\"menugroup\">" + stendhal.ui.html.esc(this.actions[i].title) + "</h4>"
+			content += "<div class=\"inlineblock buttonColumn\"><h4 class=\"menugroup\">" + HTMLUtil.esc(this.actions[i].title) + "</h4>"
 			for (var j = 0; j < this.actions[i].children.length; j++) {
 				const action = this.actions[i].children[j];
 				let title = action.title;
 				if (action.alt && action.condition && action.condition()) {
 					title = action.alt;
 				}
-				content += "<button id=\"menubutton." + action.action + "\" class=\"menubutton\">" + stendhal.ui.html.esc(title) + "</button><br>";
+				content += "<button id=\"menubutton." + action.action + "\" class=\"menubutton\">" + HTMLUtil.esc(title) + "</button><br>";
 			}
 			content += "</div>";
 		}

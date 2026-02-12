@@ -14,6 +14,7 @@ import { stendhal } from "../stendhal";
 import { RenderingContext2D } from "util/Types";
 import { Color } from "../data/color/Color";
 import { Pair } from "../util/Pair";
+import { HTMLUtil } from "ui/HTMLUtil";
 
 
 export abstract class TextBubble {
@@ -110,7 +111,7 @@ export abstract class TextBubble {
 	 *   Mouse or touch event executed on canvas context.
 	 */
 	onClick(evt: MouseEvent|TouchEvent) {
-		const pos = stendhal.ui.html.extractPosition(evt);
+		const pos = HTMLUtil.extractPosition(evt);
 		const screenRect = document.getElementById("viewport")!.getBoundingClientRect();
 		const pointX = pos.clientX - screenRect.x + stendhal.ui.gamewindow.offsetX;
 		const pointY = pos.clientY - screenRect.y + stendhal.ui.gamewindow.offsetY + TextBubble.adjustY;

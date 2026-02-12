@@ -16,6 +16,7 @@ import { ChatInputComponent } from "../component/ChatInputComponent";
 
 import { marauroa } from "marauroa"
 import { stendhal } from "../../stendhal";
+import { HTMLUtil } from "ui/HTMLUtil";
 
 export class ActionContextMenu extends Component {
 	private entity: any;
@@ -31,7 +32,7 @@ export class ActionContextMenu extends Component {
 		var content = "<div class=\"actionmenu verticalgroup\">";
 		for (var i = 0; i < this.actions.length; i++) {
 			// FIXME: the addition of "sub-actionbutton" class should no longer be needed
-			content += "<button class=\"actionbutton" + (i > 0 ? " sub-actionbutton" : "") + "\" id=\"actionbutton." + i + "\">" + stendhal.ui.html.esc(this.actions[i].title) + "</button>";
+			content += "<button class=\"actionbutton" + (i > 0 ? " sub-actionbutton" : "") + "\" id=\"actionbutton." + i + "\">" + HTMLUtil.esc(this.actions[i].title) + "</button>";
 		}
 		content += "</div>";
 		this.componentElement.innerHTML = content;

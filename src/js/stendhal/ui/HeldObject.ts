@@ -13,6 +13,7 @@
 import { stendhal } from "../stendhal";
 
 import { Point } from "../util/Point";
+import { HTMLUtil } from "./HTMLUtil";
 
 
 /**
@@ -146,7 +147,7 @@ export class HeldObjectManager {
 	 * Handles event to update held object drawing position.
 	 */
 	private onDragWhileHeld(e: Event) {
-		const pos = stendhal.ui.html.extractPosition(e);
+		const pos = HTMLUtil.extractPosition(e);
 		HeldObjectManager.get().setPosition(pos.pageX, pos.pageY);
 	}
 

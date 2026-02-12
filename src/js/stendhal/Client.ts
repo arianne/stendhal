@@ -140,7 +140,6 @@ export class Client {
 	private initUI() {
 		stendhal.ui = stendhal.ui || {};
 		stendhal.ui.equip = singletons.getInventory();
-		stendhal.ui.html = singletons.getHTMLManager();
 		stendhal.ui.viewport = singletons.getViewPort();
 		// alias for backward-compat until changed in all source
 		stendhal.ui.gamewindow = stendhal.ui.viewport;

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2025 - Stendhal                    *
+ *                   (C) Copyright 2003-2026 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -36,6 +36,7 @@ import { Debug } from "../util/Debug";
 import { TileMap } from "data/TileMap";
 import { HTMLImageElementUtil } from "sprite/image/HTMLImageElementUtil";
 import { TouchHandler } from "./TouchHandler";
+import { HTMLUtil } from "./HTMLUtil";
 
 
 /**
@@ -86,8 +87,6 @@ export class ViewPort {
 
 	/** Singleton instance. */
 	private static instance: ViewPort;
-
-	private touchHandler = TouchHandler.get();
 
 	/**
 	 * Retrieves singleton instance.
@@ -500,7 +499,7 @@ export class ViewPort {
 
 		mHandle._onMouseDown = function(e: MouseEvent|TouchEvent) {
 			let touchHandler = TouchHandler.get();
-			var pos = stendhal.ui.html.extractPosition(e);
+			var pos = HTMLUtil.extractPosition(e);
 			if (touchHandler.isTouchEvent(e)) {
 				if (touchHandler.holding()) {
 					// prevent default viewport action when item is "held"
@@ -548,12 +547,13 @@ export class ViewPort {
 		}
 
 		mHandle.onMouseUp = function(e: MouseEvent|TouchEvent) {
-			const is_touch = this.touchHandler.isTouchEvent(e);
+			let touchHandler = TouchHandler.get();
+			const is_touch = touchHandler.isTouchEvent(e);
 			if (is_touch) {
-				this.touchHandler.onTouchEnd(e);
+				touchHandler.onTouchEnd();
 			}
-			var pos = stendhal.ui.html.extractPosition(e);
-			const long_touch = is_touch && this.touchHandler.isLongTouch(e);
+			var pos = HTMLUtil.extractPosition(e);
+			const long_touch = is_touch && touchHandler.isLongTouch(e);
 			if ((e instanceof MouseEvent && mHandle.isRightClick(e)) || long_touch) {
 				if (entity != stendhal.zone.ground) {
 					const append: any[] = [];
@@ -574,11 +574,11 @@ export class ViewPort {
 		}
 
 		mHandle.onDrag = function(e: MouseEvent) {
-			if (this.touchHandler.isTouchEvent(e)) {
+			if (TouchHandler.get().isTouchEvent(e)) {
 				stendhal.ui.gamewindow.onDragStart(e);
 			}
 
-			var pos = stendhal.ui.html.extractPosition(e);
+			var pos = HTMLUtil.extractPosition(e);
 			var xDiff = startX - pos.offsetX;
 			var yDiff = startY - pos.offsetY;
 			// It's not really a click if the mouse has moved too much.
@@ -605,7 +605,7 @@ export class ViewPort {
 	 * Updates cursor style when positioned over an element or entity.
 	 */
 	onMouseMove(e: MouseEvent) {
-		var pos = stendhal.ui.html.extractPosition(e);
+		var pos = HTMLUtil.extractPosition(e);
 		var x = pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX;
 		var y = pos.canvasRelativeY + stendhal.ui.gamewindow.offsetY;
 		var entity = stendhal.zone.entityAt(x, y);
@@ -649,7 +649,7 @@ export class ViewPort {
 	 * Handles engaging an item or corpse to be dragged.
 	 */
 	onDragStart(e: DragEvent) {
-		var pos = stendhal.ui.html.extractPosition(e);
+		var pos = HTMLUtil.extractPosition(e);
 		let draggedEntity;
 		for (const obj of stendhal.zone.getEntitiesAt(pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX,
 				pos.canvasRelativeY + stendhal.ui.gamewindow.offsetY)) {
@@ -679,9 +679,10 @@ export class ViewPort {
 			return;
 		}
 
-		if (this.touchHandler.isTouchEvent(e)) {
+		let touchHandler = TouchHandler.get();
+		if (touchHandler.isTouchEvent(e)) {
 			singletons.getHeldObjectManager().set(heldObject, img, new Point(pos.pageX, pos.pageY));
-			this.touchHandler.setHolding(true);
+			touchHandler.setHolding(true);
 		} else {
 			stendhal.ui.heldObject = heldObject;
 		}
@@ -708,8 +709,8 @@ export class ViewPort {
 	 */
 	onDrop(e: DragEvent) {
 		if (stendhal.ui.heldObject) {
-			var pos = stendhal.ui.html.extractPosition(e);
-			const targetSlot = stendhal.ui.html.parseSlotName((pos.target as HTMLElement).id);
+			var pos = HTMLUtil.extractPosition(e);
+			const targetSlot = HTMLUtil.parseSlotName((pos.target as HTMLElement).id);
 			const action: any = {
 				"zone": stendhal.ui.heldObject.zone
 			};
@@ -730,7 +731,7 @@ export class ViewPort {
 				let objectId = marauroa.me["id"];
 				if (e.type === "touchend" && targetSlot === "content") {
 					// find the actual target ID for touch events
-					const container = stendhal.ui.equip.getByElement(stendhal.ui.html.extractTarget(event).parentElement!);
+					const container = stendhal.ui.equip.getByElement((HTMLUtil.extractTarget(event) as HTMLElement).parentElement!);
 					if (container && container.object) {
 						objectId = container.object.id;
 					}
@@ -745,7 +746,7 @@ export class ViewPort {
 			// item was dropped
 			stendhal.ui.heldObject = undefined;
 
-			const touch_held = this.touchHandler.holding() && quantity > 1;
+			const touch_held = TouchHandler.get().holding() && quantity > 1;
 			// if ctrl is pressed or holding stackable item from touch event, we ask for the quantity
 			// NOTE: don't create selector if touch source is ground
 			if (e.ctrlKey || (touch_held && sourceSlot !== targetSlot)) {
@@ -764,11 +765,12 @@ export class ViewPort {
 	 * This is a workaround until it's figured out how to make it work using the same methods as mouse event.
 	 */
 	onTouchEnd(e: TouchEvent) {
-		this.touchHandler.onTouchEnd();
+		let touchHandler = TouchHandler.get();
+		touchHandler.onTouchEnd();
 		stendhal.ui.gamewindow.onDrop(e);
-		if (this.touchHandler.holding()) {
-			this.touchHandler.setHolding(false);
-			this.touchHandler.unsetOrigin();
+		if (touchHandler.holding()) {
+			touchHandler.setHolding(false);
+			touchHandler.unsetOrigin();
 		}
 		// execute here because "touchend" event propagation is cancelled on the veiwport
 		Client.handleClickIndicator(e);

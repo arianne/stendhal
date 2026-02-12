@@ -12,6 +12,7 @@
 import { stendhal } from "../stendhal";
 
 import { Point } from "../util/Point";
+import { HTMLUtil } from "./HTMLUtil";
 
 
 /**
@@ -117,7 +118,7 @@ export class TouchHandler {
 		const durationMatch = (this.timestampTouchEnd - this.timestampTouchStart > this.longTouchDuration);
 		let positionMatch = true;
 		if (evt && this.origin) {
-			const pos = stendhal.ui.html.extractPosition(evt);
+			const pos = HTMLUtil.extractPosition(evt);
 			// if position has moved too much it's not a long touch
 			positionMatch = (Math.abs(pos.pageX - this.origin.x) <= this.moveThreshold)
 					&& (Math.abs(pos.pageY - this.origin.y) <= this.moveThreshold);

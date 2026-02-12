@@ -18,6 +18,7 @@ import { Chat } from "../../util/Chat";
 
 import { stendhal } from "../../stendhal";
 import { TouchHandler } from "ui/TouchHandler";
+import { HTMLUtil } from "ui/HTMLUtil";
 
 
 /**
@@ -41,7 +42,7 @@ export class ChatLogComponent extends Component {
 			this.onContextMenu(evt)
 		});
 		this.componentElement.addEventListener("touchstart", (evt: TouchEvent) => {
-			const pos = stendhal.ui.html.extractPosition(evt);
+			const pos = HTMLUtil.extractPosition(evt);
 			touchHandler.onTouchStart(pos.pageX, pos.pageY);
 		}, {passive: true});
 		this.componentElement.addEventListener("touchend", (evt: TouchEvent) => {
@@ -368,7 +369,7 @@ export class ChatLogComponent extends Component {
 			options.unshift(new MenuItem("Copy", function() { log.exportContents(); }));
 		}
 
-		const pos = stendhal.ui.html.extractPosition(evt);
+		const pos = HTMLUtil.extractPosition(evt);
 		stendhal.ui.actionContextMenu.set(ui.createSingletonFloatingWindow("Action",
 				new LogContextMenu(options), pos.pageX - 50, pos.pageY - 5));
 
@@ -393,7 +394,7 @@ class LogContextMenu extends Component {
 
 		let content = "<div class=\"actionmenu verticalgroup\">";
 		for (let i = 0; i < this.options.length; i++) {
-			content += "<button class=\"actionbutton\" id=\"actionbutton." + i + "\">" + stendhal.ui.html.esc(this.options[i].title) + "</button>";
+			content += "<button class=\"actionbutton\" id=\"actionbutton." + i + "\">" + HTMLUtil.esc(this.options[i].title) + "</button>";
 		}
 		content += "</div>";
 		this.componentElement.innerHTML = content;

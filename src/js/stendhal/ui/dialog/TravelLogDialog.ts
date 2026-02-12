@@ -16,6 +16,7 @@ import { UIComponentEnum } from "../UIComponentEnum";
 
 import { marauroa } from "marauroa"
 import { stendhal } from "../../stendhal";
+import { HTMLUtil } from "ui/HTMLUtil";
 
 /**
  * a dialog to display images
@@ -58,9 +59,9 @@ export class TravelLogDialog extends DialogContentComponent {
 	private createHtml(dataItems: string[]) {
 		let buttons = "";
 		for (var i = 0; i < dataItems.length; i++) {
-			buttons = buttons + "<button id=\"" + stendhal.ui.html.esc(dataItems[i])
+			buttons = buttons + "<button id=\"" + HTMLUtil.esc(dataItems[i])
 				+ "\" class=\"progressTypeButton\">"
-				+ stendhal.ui.html.esc(dataItems[i]) + "</button>";
+				+ HTMLUtil.esc(dataItems[i]) + "</button>";
 		}
 		this.child(".tavellogtabpanel")!.innerHTML = buttons;
 
@@ -136,8 +137,8 @@ export class TravelLogDialog extends DialogContentComponent {
 		var html = "";
 		for (var i = 0; i < dataItems.length; i++) {
 			const currentItem = dataItems[i];
-			html += "<option value=\"" + stendhal.ui.html.esc(currentItem) + "\">"
-				+ stendhal.ui.html.esc(currentItem);
+			html += "<option value=\"" + HTMLUtil.esc(currentItem) + "\">"
+				+ HTMLUtil.esc(currentItem);
 			if (this.repeatable[currentItem]) {
 				html += " (R)";
 			}
@@ -165,23 +166,23 @@ export class TravelLogDialog extends DialogContentComponent {
 
 		const detailsSpan = document.createElement("span");
 
-		detailsSpan.innerHTML = "<h3>" + stendhal.ui.html.esc(selectedItem) + "</h3>";
+		detailsSpan.innerHTML = "<h3>" + HTMLUtil.esc(selectedItem) + "</h3>";
 		if (this.repeatable[selectedItem]) {
 			detailsSpan.innerHTML += "<p id=\"travellogrepeatable\">"
 				+ "<img src=\"" + Paths.gui + "/rp.png\" /> <em>I can do this quest again.</em></p>";
 		}
 
 		detailsSpan.innerHTML += "<p id=\"travellogdescription\">"
-				+ stendhal.ui.html.esc(description) + "</p>";
+				+ HTMLUtil.esc(description) + "</p>";
 
 		const ul = document.createElement("ul");
 		ul.className = "uniform";
 
 		for (var i = 0; i < dataItems.length; i++) {
 			let content = []
-			let html = stendhal.ui.html.esc(dataItems[i], ["em", "tally"]);
+			let html = HTMLUtil.esc(dataItems[i], ["em", "tally"]);
 			if (html.includes("<tally>") && html.includes("</tally>")) {
-				content = stendhal.ui.html.formatTallyMarks(html);
+				content = HTMLUtil.formatTallyMarks(html);
 			} else {
 				content.push(html);
 			}
