@@ -25,6 +25,7 @@ import { Paths } from "../../data/Paths";
 import { HTMLImageElementUtil } from "sprite/image/HTMLImageElementUtil";
 import { TouchHandler } from "ui/TouchHandler";
 import { HTMLUtil } from "ui/HTMLUtil";
+import { ViewPort } from "ui/ViewPort";
 
 
 /**
@@ -253,7 +254,7 @@ export class ItemContainerImplementation {
 			const id = (pos.target as HTMLElement).id;
 			const targetSlot = HTMLUtil.parseSlotName(id);
 			if (event.type === "touchend" && id === "viewport") {
-				stendhal.ui.gamewindow.onDrop(event);
+				ViewPort.get().onDrop(event);
 				event.stopPropagation();
 				event.preventDefault();
 				return;

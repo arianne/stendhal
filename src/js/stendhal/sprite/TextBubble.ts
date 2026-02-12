@@ -15,6 +15,7 @@ import { RenderingContext2D } from "util/Types";
 import { Color } from "../data/color/Color";
 import { Pair } from "../util/Pair";
 import { HTMLUtil } from "ui/HTMLUtil";
+import { ViewPort } from "ui/ViewPort";
 
 
 export abstract class TextBubble {
@@ -111,14 +112,15 @@ export abstract class TextBubble {
 	 *   Mouse or touch event executed on canvas context.
 	 */
 	onClick(evt: MouseEvent|TouchEvent) {
+		let viewPort = ViewPort.get();
 		const pos = HTMLUtil.extractPosition(evt);
 		const screenRect = document.getElementById("viewport")!.getBoundingClientRect();
-		const pointX = pos.clientX - screenRect.x + stendhal.ui.gamewindow.offsetX;
-		const pointY = pos.clientY - screenRect.y + stendhal.ui.gamewindow.offsetY + TextBubble.adjustY;
+		const pointX = pos.clientX - screenRect.x + viewPort.offsetX;
+		const pointY = pos.clientY - screenRect.y + viewPort.offsetY + TextBubble.adjustY;
 		if (this.clipsPoint(pointX, pointY)) {
 			evt.stopPropagation();
 			// remove when clicked or tapped
-			stendhal.ui.gamewindow.removeTextBubble(this, pointX, pointY);
+			viewPort.removeTextBubble(this, pointX, pointY);
 		}
 	}
 

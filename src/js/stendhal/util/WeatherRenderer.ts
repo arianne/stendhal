@@ -18,6 +18,7 @@ import { Canvas, RenderingContext2D } from "./Types";
 import { stendhal } from "../stendhal";
 import { ImageRef } from "sprite/image/ImageRef";
 import { images } from "sprite/image/ImageManager";
+import { ViewPort } from "ui/ViewPort";
 
 
 const weatherLoops = {
@@ -157,16 +158,17 @@ export class WeatherRenderer {
 		if (!this.enabled || !this.sprite || !this.sprite.frames) {
 			return;
 		}
+		let viewPort = ViewPort.get();
 
 		if (this.weatherName === "clouds") {
 			ctx.save();
 			ctx.globalAlpha = 0.80;
-			this.drawClouds(ctx, stendhal.ui.gamewindow.offsetX, stendhal.ui.gamewindow.offsetY);
+			this.drawClouds(ctx, viewPort.offsetX, viewPort.offsetY);
 			ctx.restore();
 		} else if (this.fog) {
-			this.drawFog(ctx, stendhal.ui.gamewindow.offsetX, stendhal.ui.gamewindow.offsetY);
+			this.drawFog(ctx, viewPort.offsetX, viewPort.offsetY);
 		} else {
-			this.drawOther(ctx, stendhal.ui.gamewindow.offsetX, stendhal.ui.gamewindow.offsetY);
+			this.drawOther(ctx, viewPort.offsetX, viewPort.offsetY);
 		}
 	}
 

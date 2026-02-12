@@ -14,6 +14,7 @@ import { stendhal } from "../stendhal";
 
 import { Point } from "../util/Point";
 import { HTMLUtil } from "./HTMLUtil";
+import { ViewPort } from "./ViewPort";
 
 
 /**
@@ -97,7 +98,7 @@ export class HeldObjectManager {
 		if (pos) {
 			this.setPosition(pos.x, pos.y);
 		} else {
-			const rect = stendhal.ui.gamewindow.getElement().getBoundingClientRect();
+			const rect = ViewPort.get().getElement().getBoundingClientRect();
 			this.setPosition(rect.left, rect.top);
 		}
 		this.setVisible(true);

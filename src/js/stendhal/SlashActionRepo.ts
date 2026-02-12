@@ -766,7 +766,7 @@ export class SlashActionRepo {
 		execute: (type: string, params: string[], remainder: string): boolean => {
 			const newMode = !stendhal.config.getBoolean("input.doubleclick");
 			stendhal.config.set("input.doubleclick", newMode);
-			stendhal.ui.gamewindow.updateClickMode();
+			ViewPort.get().updateClickMode();
 
 			if (newMode) {
 				Chat.log("info", "Click mode is now set to double click.");

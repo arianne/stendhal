@@ -20,6 +20,7 @@ import { RPEntity } from "../entity/RPEntity";
 import { Pair } from "../util/Pair";
 import { Speech } from "../util/Speech";
 import { RenderingContext2D } from "util/Types";
+import { ViewPort } from "ui/ViewPort";
 
 
 export class SpeechBubble extends TextBubble {
@@ -32,6 +33,7 @@ export class SpeechBubble extends TextBubble {
 
 
 	constructor(text: string, entity: RPEntity) {
+		let viewPort = ViewPort.get();
 		text = text.replace(/\\\\/g, "\\");
 		super((text.length > 30) ? (text.substring(0, 30) + "...") : text);
 		this.entity = entity;
@@ -42,9 +44,9 @@ export class SpeechBubble extends TextBubble {
 		this.offsetY = 0;
 		// find free text bubble position
 		const x = this.getX(), y = this.getY();
-		for (const bubble of stendhal.ui.gamewindow.textSprites) {
+		for (const bubble of viewPort.textSprites) {
 			if (x == bubble.getX() && y + this.offsetY == bubble.getY()) {
-				this.offsetY += stendhal.ui.gamewindow.targetTileHeight / 2;
+				this.offsetY += viewPort.targetTileHeight / 2;
 			}
 		}
 
@@ -83,8 +85,9 @@ export class SpeechBubble extends TextBubble {
 	override getX(): number {
 		let x = this.entity["_x"] * 32 + (32 * this.entity["width"]);
 		if (this.entity.inView()) {
+			let viewPort = ViewPort.get();
 			// keep on screen while entity is visible (border is 1 pixel)
-			const overdraw = x + this.width - (stendhal.ui.gamewindow.offsetX + stendhal.ui.gamewindow.width) + 1;
+			const overdraw = x + this.width - (viewPort.offsetX + viewPort.width) + 1;
 			x = overdraw > 0 ? x - overdraw : x;
 		}
 		return x;
@@ -93,8 +96,9 @@ export class SpeechBubble extends TextBubble {
 	override getY(): number {
 		let y = this.entity["_y"] * 32 - 16 - (32 * (this.entity["height"] - 1)) + this.offsetY - TextBubble.adjustY;
 		if (this.entity.inView()) {
+			let viewPort = ViewPort.get();
 			// keep on screen while entity is visible (border is 1 pixel)
-			y = y < stendhal.ui.gamewindow.offsetY + 1 ? stendhal.ui.gamewindow.offsetY + 1 : y;
+			y = y < viewPort.offsetY + 1 ? viewPort.offsetY + 1 : y;
 		}
 		return y;
 	}

@@ -20,7 +20,6 @@ import { Paths } from "./data/Paths";
 import { Color } from "./data/color/Color";
 
 import { EntityRegistry } from "./entity/EntityRegistry";
-import { Ground } from "./entity/Ground";
 
 import { ui } from "./ui/UI";
 import { UIComponentEnum } from "./ui/UIComponentEnum";
@@ -40,7 +39,8 @@ import { Globals } from "./util/Globals";
 import { TileMap } from "data/TileMap";
 import { OutfitStore } from "data/OutfitStore";
 import { TileStore } from "data/TileStore";
-import { Zone } from "entity/Zone";
+import { WeatherRenderer } from "util/WeatherRenderer";
+import { ViewPort } from "ui/ViewPort";
 
 
 /**
@@ -140,10 +140,6 @@ export class Client {
 	private initUI() {
 		stendhal.ui = stendhal.ui || {};
 		stendhal.ui.equip = singletons.getInventory();
-		stendhal.ui.viewport = singletons.getViewPort();
-		// alias for backward-compat until changed in all source
-		stendhal.ui.gamewindow = stendhal.ui.viewport;
-
 		stendhal.ui.getMenuStyle = Globals.getMenuStyle;
 	}
 
@@ -198,7 +194,7 @@ export class Client {
 		stendhal.sound.startupCache();
 
 		if (document.getElementById("viewport")) {
-			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
+			ViewPort.get().draw();
 		}
 	}
 
@@ -392,18 +388,19 @@ export class Client {
 
 		document.getElementById("body")!.addEventListener("mouseenter", stendhal.main.onMouseEnter);
 
-		var gamewindow = document.getElementById("viewport")!;
+		let gamewindow = document.getElementById("viewport")!;
+		let viewPort = ViewPort.get();
 		gamewindow.setAttribute("draggable", "true");
-		gamewindow.addEventListener("mousedown", stendhal.ui.gamewindow.onMouseDown);
-		gamewindow.addEventListener("dblclick", stendhal.ui.gamewindow.onMouseDown);
-		gamewindow.addEventListener("dragstart", stendhal.ui.gamewindow.onDragStart);
-		gamewindow.addEventListener("mousemove", stendhal.ui.gamewindow.onMouseMove);
-		gamewindow.addEventListener("touchstart", stendhal.ui.gamewindow.onMouseDown, {passive: true});
-		gamewindow.addEventListener("touchend", stendhal.ui.gamewindow.onTouchEnd);
-		gamewindow.addEventListener("dragover", stendhal.ui.gamewindow.onDragOver);
-		gamewindow.addEventListener("drop", stendhal.ui.gamewindow.onDrop);
-		gamewindow.addEventListener("contextmenu", stendhal.ui.gamewindow.onContentMenu);
-		gamewindow.addEventListener("wheel", stendhal.ui.gamewindow.onMouseWheel, {passive: true});
+		gamewindow.addEventListener("mousedown", viewPort.onMouseDown);
+		gamewindow.addEventListener("dblclick", viewPort.onMouseDown);
+		gamewindow.addEventListener("dragstart", viewPort.onDragStart);
+		gamewindow.addEventListener("mousemove", viewPort.onMouseMove);
+		gamewindow.addEventListener("touchstart", viewPort.onMouseDown, {passive: true});
+		gamewindow.addEventListener("touchend", viewPort.onTouchEnd);
+		gamewindow.addEventListener("dragover", viewPort.onDragOver);
+		gamewindow.addEventListener("drop", viewPort.onDrop);
+		gamewindow.addEventListener("contextmenu", viewPort.onContentMenu);
+		gamewindow.addEventListener("wheel", viewPort.onMouseWheel, {passive: true});
 
 		singletons.getJoystickController().registerGlobalEventHandlers();
 
@@ -442,6 +439,7 @@ export class Client {
 	 */
 	onDataMap(data: any) {
 		let map = TileMap.get();
+		let viewPort = ViewPort.get();
 		var zoneinfo = {} as {[key: string]: string};
 		var deserializer = Deserializer.fromBase64(data);
 		deserializer.readAttributes(zoneinfo);
@@ -461,22 +459,22 @@ export class Client {
 		// coloring information
 		if (zoneinfo["color"] && stendhal.config.getBoolean("effect.lighting")) {
 			if (zoneinfo["color_method"]) {
-				stendhal.ui.gamewindow.setColorMethod(zoneinfo["color_method"]);
+				viewPort.setColorMethod(zoneinfo["color_method"]);
 			}
 			if (zoneinfo["blend_method"]) {
-				stendhal.ui.gamewindow.setBlendMethod(zoneinfo["blend_method"]);
+				viewPort.setBlendMethod(zoneinfo["blend_method"]);
 			}
 			const hsl = Color.numToHSL(Number(zoneinfo["color"]));
-			stendhal.ui.gamewindow.HSLFilter = hsl.toString();
+			viewPort.HSLFilter = hsl.toString();
 			// deprecated
-			stendhal.ui.gamewindow.filter = "hue-rotate(" + hsl.H + "deg) saturate(" + hsl.S
+			viewPort.filter = "hue-rotate(" + hsl.H + "deg) saturate(" + hsl.S
 					+ ") brightness(" + hsl.L + ")";
 		} else {
-			stendhal.ui.gamewindow.HSLFilter = undefined;
-			stendhal.ui.gamewindow.filter = undefined;
+			viewPort.HSLFilter = undefined;
+			viewPort.filter = undefined;
 		}
 
-		singletons.getWeatherRenderer().update(zoneinfo["weather"]);
+		WeatherRenderer.get().update(zoneinfo["weather"]);
 	}
 
 	/**

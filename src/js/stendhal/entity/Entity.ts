@@ -20,6 +20,7 @@ import { marauroa } from "marauroa"
 import { stendhal } from "../stendhal";
 import { ImageSprite } from "../sprite/image/ImageSprite";
 import { HTMLUtil } from "ui/HTMLUtil";
+import { ViewPort } from "ui/ViewPort";
 
 /**
  * General entity
@@ -330,16 +331,17 @@ export class Entity extends RPObject {
 	 * Checks if within vieport area.
 	 */
 	public inView(): boolean {
+		let viewPort = ViewPort.get();
 		const view_rect: any = {};
-		view_rect.left = stendhal.ui.gamewindow.offsetX;
-		view_rect.right = view_rect.left + stendhal.ui.gamewindow.width;
-		view_rect.top = stendhal.ui.gamewindow.offsetY;
-		view_rect.bottom = view_rect.top + stendhal.ui.gamewindow.height;
+		view_rect.left = viewPort.offsetX;
+		view_rect.right = view_rect.left + viewPort.width;
+		view_rect.top = viewPort.offsetY;
+		view_rect.bottom = view_rect.top + viewPort.height;
 
-		const pixelX = this["x"] * stendhal.ui.gamewindow.targetTileWidth
-				+ Math.floor(stendhal.ui.gamewindow.targetTileWidth / 2);
-		const pixelY = this["y"] * stendhal.ui.gamewindow.targetTileHeight
-				+ Math.floor(stendhal.ui.gamewindow.targetTileHeight / 2);
+		const pixelX = this["x"] * viewPort.targetTileWidth
+				+ Math.floor(viewPort.targetTileWidth / 2);
+		const pixelY = this["y"] * viewPort.targetTileHeight
+				+ Math.floor(viewPort.targetTileHeight / 2);
 
 		const ent_rect: any = {};
 		// horizontal orientation is centered

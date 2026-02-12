@@ -22,6 +22,7 @@ import { RenderingContext2D } from "util/Types";
 import { Paths } from "../data/Paths";
 import { singletons } from "../SingletonRepo";
 import { HTMLImageElementUtil } from "./image/HTMLImageElementUtil";
+import { ViewPort } from "ui/ViewPort";
 
 
 export class NotificationBubble extends TextBubble {
@@ -75,9 +76,10 @@ export class NotificationBubble extends TextBubble {
 	}
 
 	override draw(ctx: RenderingContext2D): boolean {
-		const screenTop = stendhal.ui.gamewindow.offsetY;
+		let viewPort = ViewPort.get()
+		const screenTop = viewPort.offsetY;
 		const screenBottom = screenTop + ctx.canvas.height;
-		const screenLeft = stendhal.ui.gamewindow.offsetX;
+		const screenLeft = viewPort.offsetX;
 		const screenCenterX = screenLeft + (ctx.canvas.width / 2);
 
 

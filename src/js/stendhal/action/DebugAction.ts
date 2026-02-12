@@ -25,6 +25,7 @@ import { Paths } from "../data/Paths";
 
 import { marauroa } from "marauroa"
 import { stendhal } from "../stendhal";
+import { WeatherRenderer } from "util/WeatherRenderer";
 
 /**
  * performances debugging actions
@@ -146,7 +147,7 @@ export class DebugAction extends SlashAction {
 			}
 		}
 
-		singletons.getWeatherRenderer().update(weather);
+		WeatherRenderer.get().update(weather);
 	}
 
 };

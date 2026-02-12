@@ -38,6 +38,7 @@ import { HTMLImageElementUtil } from "sprite/image/HTMLImageElementUtil";
 import { TouchHandler } from "./TouchHandler";
 import { HTMLUtil } from "./HTMLUtil";
 import { Zone } from "entity/Zone";
+import { WeatherRenderer } from "util/WeatherRenderer";
 
 
 /**
@@ -46,39 +47,39 @@ import { Zone } from "entity/Zone";
 export class ViewPort {
 
 	/** Horizontal screen offset in pixels. */
-	private offsetX = 0;
+	public offsetX = 0;
 	/** Vertical screen offset in pixels. */
-	private offsetY = 0;
+	public offsetY = 0;
 	/** Prevents adjusting offset based on player position. */
-	private freeze = false;
+	public freeze = false;
 	/** Time of most recent redraw. */
 	private timeStamp = Date.now();
 
 	// dimensions
 	// TODO: remove & use CSS style instead
-	private readonly width: number;
-	private readonly height: number;
+	public readonly width: number;
+	public readonly height: number;
 
 	/** Drawing context. */
 	private ctx: RenderingContext2D;
 	/** Map tile pixel width. */
-	private readonly targetTileWidth = 32;
+	public readonly targetTileWidth = 32;
 	/** Map tile pixel height. */
-	private readonly targetTileHeight = 32;
+	public readonly targetTileHeight = 32;
 	private drawingError = false;
 
 	/** Active speech bubbles to draw. */
-	private textSprites: SpeechBubble[] = [];
+	public textSprites: SpeechBubble[] = [];
 	/** Active notification bubbles/achievement banners to draw. */
 	private notifSprites: TextBubble[] = [];
 	/** Active emoji sprites to draw. */
 	private emojiSprites: EmojiSprite[] = [];
 	/** Handles drawing weather in viewport. */
-	private weatherRenderer = singletons.getWeatherRenderer();
+	private weatherRenderer = WeatherRenderer.get();
 	/** Coloring method of current zone. */
-	private filter?: string; // deprecated, use `HSLFilter`
+	public filter?: string; // deprecated, use `HSLFilter`
 	/** Coloring filter of current zone. */
-	private HSLFilter?: string;
+	public HSLFilter?: string;
 	private colorMethod = "";
 	private blendMethod = ""; // FIXME: unused
 	private map: TileMap;
@@ -122,11 +123,11 @@ export class ViewPort {
 	/**
 	 * Retrieves the viewport element.
 	 *
-	 * @return {HTMLElement}
+	 * @return {HTMLCanvasElement}
 	 *   Viewport `HTMLElement`.
 	 */
-	public getElement(): HTMLElement {
-		return document.getElementById("viewport")!;
+	public getElement(): HTMLCanvasElement {
+		return document.getElementById("viewport")! as HTMLCanvasElement;
 	}
 
 	/**
@@ -170,8 +171,8 @@ export class ViewPort {
 				(ui.get(UIComponentEnum.PlayerEquipment) as PlayerEquipmentComponent).update();
 			}
 		}
-		window.setTimeout(function() {
-			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
+		window.setTimeout(() => {
+			this.draw();
 		}, Math.max((1000/20) - (new Date().getTime()-startTime), 1));
 	}
 
@@ -511,12 +512,13 @@ export class ViewPort {
 
 			startX = pos.canvasRelativeX;
 			startY = pos.canvasRelativeY;
+			let viewPort = ViewPort.get();
 
-			var x = pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX;
-			var y = pos.canvasRelativeY + stendhal.ui.gamewindow.offsetY;
+			var x = pos.canvasRelativeX + viewPort.offsetX;
+			var y = pos.canvasRelativeY + viewPort.offsetY;
 
 			// override ground/entity action if there is a text bubble
-			if (stendhal.ui.gamewindow.textBubbleAt(x, y+15)) {
+			if (viewPort.textBubbleAt(x, y+15)) {
 				return;
 			}
 
@@ -574,7 +576,7 @@ export class ViewPort {
 
 		mHandle.onDrag = function(e: MouseEvent) {
 			if (TouchHandler.get().isTouchEvent(e)) {
-				stendhal.ui.gamewindow.onDragStart(e);
+				ViewPort.get().onDragStart(e);
 			}
 
 			var pos = HTMLUtil.extractPosition(e);
@@ -604,11 +606,12 @@ export class ViewPort {
 	 * Updates cursor style when positioned over an element or entity.
 	 */
 	onMouseMove(e: MouseEvent) {
+		let viewPort = ViewPort.get();
 		var pos = HTMLUtil.extractPosition(e);
-		var x = pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX;
-		var y = pos.canvasRelativeY + stendhal.ui.gamewindow.offsetY;
+		var x = pos.canvasRelativeX + viewPort.offsetX;
+		var y = pos.canvasRelativeY + viewPort.offsetY;
 		var entity = Zone.get().entityAt(x, y);
-		stendhal.ui.gamewindow.getElement().style.cursor = entity.getCursor(x, y);
+		viewPort.getElement().style.cursor = entity.getCursor(x, y);
 	}
 
 	/**
@@ -647,11 +650,14 @@ export class ViewPort {
 	/**
 	 * Handles engaging an item or corpse to be dragged.
 	 */
-	onDragStart(e: DragEvent) {
+	onDragStart(e: DragEvent|MouseEvent) {
 		var pos = HTMLUtil.extractPosition(e);
 		let draggedEntity;
-		for (const obj of Zone.get().getEntitiesAt(pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX,
-				pos.canvasRelativeY + stendhal.ui.gamewindow.offsetY)) {
+		let viewPort = ViewPort.get();
+		let entries = Zone.get().getEntitiesAt(
+				pos.canvasRelativeX + viewPort.offsetX,
+				pos.canvasRelativeY + viewPort.offsetY);
+		for (const obj of entries) {
 			if (obj.isDraggable()) {
 				draggedEntity = obj;
 			}
@@ -686,9 +692,9 @@ export class ViewPort {
 			stendhal.ui.heldObject = heldObject;
 		}
 
-		if (e.dataTransfer) {
+		if (e instanceof DragEvent) {
 			window.event = e; // required by setDragImage polyfil
-			e.dataTransfer.setDragImage(img, 0, 0);
+			e.dataTransfer?.setDragImage(img, 0, 0);
 		}
 	}
 
@@ -706,7 +712,7 @@ export class ViewPort {
 	/**
 	 * Handles releasing an item or corpse from drag event.
 	 */
-	onDrop(e: DragEvent) {
+	onDrop(e: DragEvent|TouchEvent) {
 		if (stendhal.ui.heldObject) {
 			var pos = HTMLUtil.extractPosition(e);
 			const targetSlot = HTMLUtil.parseSlotName((pos.target as HTMLElement).id);
@@ -714,8 +720,9 @@ export class ViewPort {
 				"zone": stendhal.ui.heldObject.zone
 			};
 			if (targetSlot === "viewport") {
-				action.x = Math.floor((pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX) / 32).toString();
-				action.y = Math.floor((pos.canvasRelativeY + stendhal.ui.gamewindow.offsetY) / 32).toString();
+				let viewPort = ViewPort.get();
+				action.x = Math.floor((pos.canvasRelativeX + viewPort.offsetX) / 32).toString();
+				action.y = Math.floor((pos.canvasRelativeY + viewPort.offsetY) / 32).toString();
 
 				var id = stendhal.ui.heldObject.path.substr(1, stendhal.ui.heldObject.path.length - 2);
 				var drop = /\t/.test(id);
@@ -766,7 +773,7 @@ export class ViewPort {
 	onTouchEnd(e: TouchEvent) {
 		let touchHandler = TouchHandler.get();
 		touchHandler.onTouchEnd();
-		stendhal.ui.gamewindow.onDrop(e);
+		ViewPort.get().onDrop(e);
 		if (touchHandler.holding()) {
 			touchHandler.setHolding(false);
 			touchHandler.unsetOrigin();

@@ -15,6 +15,7 @@ import { SlashAction } from "./SlashAction";
 import { ScreenCapture } from "../util/ScreenCapture";
 
 import { stendhal } from "../stendhal";
+import { ViewPort } from "ui/ViewPort";
 
 
 export class ScreenCaptureAction extends SlashAction {
@@ -35,7 +36,7 @@ export class ScreenCaptureAction extends SlashAction {
 			return true;
 		}
 		this.recorder = new ScreenCapture();
-		this.recorder.start(stendhal.ui.viewport.getElement() as HTMLCanvasElement);
+		this.recorder.start(ViewPort.get().getElement());
 		return true;
 	}
 }

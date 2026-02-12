@@ -36,6 +36,7 @@ import { ImageWithDimensions } from "data/ImageWithDimensions";
 import { RenderingContext2D } from "util/Types";
 import { Paths } from "../data/Paths";
 import { OutfitStore } from "data/OutfitStore";
+import { ViewPort } from "ui/ViewPort";
 
 var HEALTH_BAR_HEIGHT = 6;
 
@@ -207,11 +208,11 @@ export class RPEntity extends ActiveEntity {
 	 *     Text to display.
 	 */
 	addSpeechBubble(text: string) {
-		stendhal.ui.gamewindow.addTextSprite(new SpeechBubble(text, this));
+		ViewPort.get().addTextSprite(new SpeechBubble(text, this));
 	}
 
 	addEmoji(emoji: HTMLImageElement) {
-		stendhal.ui.gamewindow.addEmojiSprite(new EmojiSprite(emoji, this));
+		ViewPort.get().addEmojiSprite(new EmojiSprite(emoji, this));
 	}
 
 	/**
@@ -333,7 +334,7 @@ export class RPEntity extends ActiveEntity {
 	 * extends past top edge.
 	 */
 	public setStatusBarOffset() {
-		const screenOffsetY = stendhal.ui.gamewindow.offsetY;
+		const screenOffsetY = ViewPort.get().offsetY;
 		const entityBottom = (this["_y"] * 32) + (this["height"] * 32);
 		// FIXME: how to get text height dynamically?
 		const entityTop = entityBottom - this["drawHeight"]
@@ -679,10 +680,11 @@ export class RPEntity extends ActiveEntity {
 			this.attackSprite = undefined;
 			return;
 		}
+		let viewPort = ViewPort.get();
 		var localX = this["_x"] * 32;
 		var localY = this["_y"] * 32;
-		var localW = this["width"] * stendhal.ui.gamewindow.targetTileWidth;
-		var localH = this["height"] * stendhal.ui.gamewindow.targetTileHeight;
+		var localW = this["width"] * viewPort.targetTileWidth;
+		var localH = this["height"] * viewPort.targetTileHeight;
 		this.attackSprite.draw(ctx, localX, localY, localW, localH);
 	}
 

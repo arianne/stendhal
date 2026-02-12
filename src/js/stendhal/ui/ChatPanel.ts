@@ -16,6 +16,7 @@ import { QuickMenu } from "./quickmenu/QuickMenu";
 import { QuickMenuButton } from "./quickmenu/QuickMenuButton";
 import { Panel } from "./toolkit/Panel";
 import { singletons } from "../SingletonRepo";
+import { ViewPort } from "./ViewPort";
 
 
 /**
@@ -68,7 +69,7 @@ export class ChatPanel extends Panel {
 	public override refresh() {
 		const floating = this.isFloating();
 		if (floating) {
-			const rect = singletons.getViewPort().getElement().getBoundingClientRect();
+			const rect = ViewPort.get().getElement().getBoundingClientRect();
 			const halfHeight = Math.abs(rect.height / 2);
 			this.componentElement.style["width"] = rect.width + "px";
 			this.componentElement.style["height"] = halfHeight + "px";
@@ -88,7 +89,7 @@ export class ChatPanel extends Panel {
 		QuickMenu.setButtonEnabled(UIComponentEnum.QMChat, floating);
 
 		// adapt viewport layout
-		singletons.getViewPort().onChatPanelRefresh(floating);
+		ViewPort.get().onChatPanelRefresh(floating);
 	}
 
 	/**

@@ -15,6 +15,7 @@ import { RPEntity } from "../../entity/RPEntity";
 import { RenderingContext2D } from "util/Types";
 
 import { stendhal } from "../../stendhal";
+import { ViewPort } from "ui/ViewPort";
 
 
 export class BarehandAttackSprite extends AttackSprite {
@@ -31,6 +32,7 @@ export class BarehandAttackSprite extends AttackSprite {
 
 	override draw(ctx: RenderingContext2D, x: number, y: number, entityWidth: number,
 			entityHeight: number): boolean {
+		let viewPort = ViewPort.get();
 		if (!this.image || !this.image.height) {
 			return this.expired();
 		}
@@ -46,19 +48,19 @@ export class BarehandAttackSprite extends AttackSprite {
 		let sx, sy;
 		switch (this.dir+"") {
 			case "1": // UP
-				sx = centerX + (stendhal.ui.gamewindow.targetTileWidth / 2);
-				sy = y - (stendhal.ui.gamewindow.targetTileHeight * 1.5);
+				sx = centerX + (viewPort.targetTileWidth / 2);
+				sy = y - (viewPort.targetTileHeight * 1.5);
 				break;
 			case "3": // DOWN
 				sx = centerX;
-				sy = y + entityHeight - drawHeight + (stendhal.ui.gamewindow.targetTileHeight / 2);
+				sy = y + entityHeight - drawHeight + (viewPort.targetTileHeight / 2);
 				break;
 			case "4": // LEFT
-				sx = x - (stendhal.ui.gamewindow.targetTileWidth / 2);
-				sy = centerY - (stendhal.ui.gamewindow.targetTileHeight / 2);
+				sx = x - (viewPort.targetTileWidth / 2);
+				sy = centerY - (viewPort.targetTileHeight / 2);
 				break;
 			case "2": // RIGHT
-				sx = x + entityWidth - drawWidth + (stendhal.ui.gamewindow.targetTileWidth / 2);
+				sx = x + entityWidth - drawWidth + (viewPort.targetTileWidth / 2);
 				sy = centerY; // - ICON_OFFSET; // ICON_OFFSET = 8 in Java client
 				break;
 			default:

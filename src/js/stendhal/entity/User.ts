@@ -33,6 +33,7 @@ import { OutfitDialog } from "../ui/dialog/outfit/OutfitDialog";
 import { FloatingWindow } from "../ui/toolkit/FloatingWindow";
 
 import { Direction } from "../util/Direction";
+import { ViewPort } from "ui/ViewPort";
 
 
 /**
@@ -163,7 +164,7 @@ export class User extends Player {
 	override onExitZone() {
 		super.onExitZone();
 		// speech bubbles & emojis from viewport
-		stendhal.ui.gamewindow.onExitZone();
+		ViewPort.get().onExitZone();
 		// stop sounds & clear map sounds cache on zone change
 		const msgs: string[] = [];
 		const lssm = singletons.getLoopedSoundSourceManager();
@@ -244,7 +245,7 @@ export class User extends Player {
 			return;
 		}
 		// in case viewport frozen from view change event
-		stendhal.ui.viewport.freeze = false;
+		ViewPort.get().freeze = false;
 		if (cancelAutoWalk && this.autoWalkEnabled() && this.getWalkDirection() == dir) {
 			// cancel auto-walk if enabled & new direction is same as current direction of movement
 			marauroa.clientFramework.sendAction({type: "walk"});
@@ -280,7 +281,7 @@ export class User extends Player {
 	public moveTo(x: number, y: number, zone?: string): void;
 	public moveTo(p1: object|number, p2?: number, p3?:string) {
 		// in case viewport frozen from view change event
-		stendhal.ui.viewport.freeze = false;
+		ViewPort.get().freeze = false;
 		let action: any = {};
 		if (typeof(p1) === "object") {
 			action = p1;

@@ -15,6 +15,7 @@ import { RenderingContext2D } from "util/Types";
 import { Paths } from "../data/Paths";
 import { singletons } from "../SingletonRepo";
 import { stendhal } from "../stendhal";
+import { ViewPort } from "ui/ViewPort";
 
 export class AchievementBanner extends TextBubble {
 
@@ -56,8 +57,9 @@ export class AchievementBanner extends TextBubble {
 	}
 
 	override draw(ctx: RenderingContext2D): boolean {
-		const targetX = stendhal.ui.gamewindow.offsetX + this.x;
-		const targetY = stendhal.ui.gamewindow.offsetY + this.y;
+		let viewPort = ViewPort.get();
+		const targetX = viewPort.offsetX + this.x;
+		const targetY = viewPort.offsetY + this.y;
 
 		const iconX = targetX + (this.width / 2) - (this.innerWidth / 2);
 		const iconY = targetY + (this.height / 2) - (this.icon.height * 0.75);
@@ -95,10 +97,10 @@ export class AchievementBanner extends TextBubble {
 	}
 
 	override getX(): number {
-		return stendhal.ui.gamewindow.offsetX + this.x;
+		return ViewPort.get().offsetX + this.x;
 	}
 
 	override getY(): number {
-		return stendhal.ui.gamewindow.offsetY + this.y;
+		return ViewPort.get().offsetY + this.y;
 	}
 }

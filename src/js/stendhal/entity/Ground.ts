@@ -14,6 +14,7 @@ import { Paths } from "../data/Paths";
 import { marauroa } from "marauroa"
 import { stendhal } from "../stendhal";
 import { TileMap } from "data/TileMap";
+import { ViewPort } from "ui/ViewPort";
 
 
 /**
@@ -67,8 +68,9 @@ export class Ground {
 		if (!stendhal.config.getBoolean("pathfinding")) {
 			return;
 		}
-		var gameX = x + stendhal.ui.gamewindow.offsetX;
-		var gameY = y + stendhal.ui.gamewindow.offsetY;
+		let viewPort = ViewPort.get();
+		var gameX = x + viewPort.offsetX;
+		var gameY = y + viewPort.offsetY;
 		var action = {
 			"type": "moveto",
 			"x": "" + Math.floor(gameX / 32),

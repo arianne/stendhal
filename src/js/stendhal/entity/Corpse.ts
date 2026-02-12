@@ -26,6 +26,7 @@ import { marauroa, RPObject, RPZone } from "marauroa"
 import { stendhal } from "../stendhal";
 import { images } from "sprite/image/ImageManager";
 import { ImageSprite } from "sprite/image/ImageSprite";
+import { ViewPort } from "ui/ViewPort";
 
 export class Corpse extends PopupInventory {
 
@@ -66,8 +67,9 @@ export class Corpse extends PopupInventory {
 		super.draw(ctx);
 
 		if (this.indicator && !this.isEmpty()) {
-			const tileW = stendhal.ui.gamewindow.targetTileWidth;
-			const tileH = stendhal.ui.gamewindow.targetTileHeight;
+			let viewPort = ViewPort.get();
+			const tileW = viewPort.targetTileWidth;
+			const tileH = viewPort.targetTileHeight;
 			let width = image.width < tileW ? tileW : image.width;
 			let height = image.height < tileH ? tileH : image.height;
 			let offsetX = Math.floor((this["width"] * tileW - width) / 2);

@@ -13,14 +13,11 @@ import { Client } from "./Client";
 import { EventRegistry } from "./event/EventRegistry";
 import { SlashActionRepo } from "./SlashActionRepo";
 
-import { Zone } from "./entity/Zone";
-
 import { ConfigManager } from "./util/ConfigManager";
 import { DownloadUtil } from "./util/DownloadUtil";
 import { FacingHandler } from "./util/FacingHandler";
 import { KeyHandler } from "./util/KeyHandler";
 import { SessionManager } from "./util/SessionManager";
-import { WeatherRenderer } from "./util/WeatherRenderer";
 
 import { CStatus } from "./data/CStatus";
 import { CacheManager } from "./data/CacheManager";
@@ -38,7 +35,6 @@ import { HeldObjectManager } from "./ui/HeldObject";
 import { Inventory } from "./ui/Inventory";
 import { SoftwareJoystickController } from "./ui/SoftwareJoystickController";
 import { UIUpdateObserver } from "./ui/UIUpdateObserver";
-import { ViewPort } from "./ui/ViewPort";
 
 import { ChatInputComponent } from "./ui/component/ChatInputComponent";
 
@@ -129,14 +125,6 @@ export class SingletonRepo {
 
 	static getUIUpdateObserver(): UIUpdateObserver {
 		return UIUpdateObserver.get();
-	}
-
-	static getViewPort(): ViewPort {
-		return ViewPort.get();
-	}
-
-	static getWeatherRenderer(): WeatherRenderer {
-		return WeatherRenderer.get();
 	}
 
 }

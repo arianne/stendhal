@@ -14,6 +14,7 @@ import { stendhal } from "../stendhal";
 
 import { Canvas } from "util/Types";
 import { RPEvent } from "marauroa"
+import { ViewPort } from "ui/ViewPort";
 
 
 /**
@@ -26,12 +27,13 @@ export class ViewChangeEvent extends RPEvent {
 
 
 	execute(_entity: any) {
-		const canvas = stendhal.ui.viewport.getElement() as Canvas;
+		let viewport = ViewPort.get();
+		const canvas = viewport.getElement();
 		queueMicrotask(() => {
-			stendhal.ui.viewport.freeze = true;
-			stendhal.ui.viewport.offsetX = this.x * stendhal.ui.viewport.targetTileWidth
+			viewport.freeze = true;
+			viewport.offsetX = this.x * viewport.targetTileWidth
 					- Math.round(canvas.width / 2);
-			stendhal.ui.viewport.offsetY = this.y * stendhal.ui.viewport.targetTileHeight
+			viewport.offsetY = this.y * viewport.targetTileHeight
 					- Math.round(canvas.height / 2);
 		});
 	}

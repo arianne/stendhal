@@ -15,6 +15,7 @@ import { UIComponentEnum } from "../ui/UIComponentEnum";
 import { ChatLogComponent } from "../ui/component/ChatLogComponent";
 
 import { marauroa } from "marauroa"
+import { ViewPort } from "ui/ViewPort";
 
 
 /**
@@ -71,8 +72,9 @@ export class Chat {
 			} else {
 				messages = message as string[];
 			}
+			let viewPort = ViewPort.get();
 			for (const m of messages) {
-				stendhal.ui.gamewindow.addNotifSprite(type, m, profile);
+				viewPort.addNotifSprite(type, m, profile);
 			}
 		}
 	}

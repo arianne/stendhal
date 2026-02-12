@@ -18,6 +18,7 @@ import { Debug } from "../util/Debug";
 import { stendhal } from "../stendhal";
 import { images } from "sprite/image/ImageManager";
 import { ImageRef } from "sprite/image/ImageRef";
+import { ViewPort } from "ui/ViewPort";
 
 export class CombinedTilesetImageLoader {
 
@@ -117,7 +118,7 @@ export class CombinedTilesetImageLoader {
 		const pixelX = x * this.map.tileWidth;
 		const pixelY = y * this.map.tileHeight;
 
-		if (Debug.isActive("light") && stendhal.ui.gamewindow.HSLFilter) {
+		if (Debug.isActive("light") && ViewPort.get().HSLFilter) {
 			this.drawCombinedTileWithBlend(tiles, pixelX, pixelY);
 		} else {
 			this.drawCombinedTileWithoutBlend(this.combinedTileset.ctx, tiles, pixelX, pixelY);
@@ -144,7 +145,7 @@ export class CombinedTilesetImageLoader {
 		this.blendCtx.drawImage(this.drawCanvas, 0, 0);
 
 		this.blendCtx.globalCompositeOperation = "multiply";
-		this.blendCtx.fillStyle = stendhal.ui.gamewindow.HSLFilter;
+		this.blendCtx.fillStyle = ViewPort.get().HSLFilter!;
 		this.blendCtx.fillRect(0, 0, this.map.tileWidth, this.map.tileHeight);
 
 		let tile = tiles[0];
