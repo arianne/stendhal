@@ -17,6 +17,7 @@ import { singletons } from "../../SingletonRepo";
 import { Chat } from "../../util/Chat";
 
 import { stendhal } from "../../stendhal";
+import { TouchHandler } from "ui/TouchHandler";
 
 
 /**
@@ -34,19 +35,20 @@ export class ChatLogComponent extends Component {
 		super("chat");
 		this.refresh();
 		this.scrollStateBottom = this.isAtBottom();
+		let touchHandler = TouchHandler.get();
 
 		this.componentElement.addEventListener("mouseup", (evt: MouseEvent) => {
 			this.onContextMenu(evt)
 		});
 		this.componentElement.addEventListener("touchstart", (evt: TouchEvent) => {
 			const pos = stendhal.ui.html.extractPosition(evt);
-			stendhal.ui.touch.onTouchStart(pos.pageX, pos.pageY);
+			touchHandler.onTouchStart(pos.pageX, pos.pageY);
 		}, {passive: true});
 		this.componentElement.addEventListener("touchend", (evt: TouchEvent) => {
-			stendhal.ui.touch.onTouchEnd();
+			touchHandler.onTouchEnd();
 			this.onContextMenu(evt)
 			// clean up
-			stendhal.ui.touch.unsetOrigin();
+			touchHandler.unsetOrigin();
 		});
 
 		this.scrollListener = (evt: Event) => {
@@ -350,7 +352,7 @@ export class ChatLogComponent extends Component {
 		if (evt.type === "mouseup" && evt.button != 2) {
 			return;
 		}
-		if (evt.type === "touchend" && !stendhal.ui.touch.isLongTouch(evt)) {
+		if (evt.type === "touchend" && !TouchHandler.get().isLongTouch(evt)) {
 			evt.preventDefault();
 			return;
 		}

@@ -23,6 +23,7 @@ import { singletons } from "../../SingletonRepo";
 import { Point } from "../../util/Point";
 import { Paths } from "../../data/Paths";
 import { HTMLImageElementUtil } from "sprite/image/HTMLImageElementUtil";
+import { TouchHandler } from "ui/TouchHandler";
 
 
 /**
@@ -37,6 +38,7 @@ export class ItemContainerImplementation {
 
 	// marked for updating certain attributes
 	private dirty = false;
+	private touchHandler = TouchHandler.get();
 
 
 	// TODO: replace usage of global document.getElementById()
@@ -168,7 +170,7 @@ export class ItemContainerImplementation {
 	private onDragStart(event: DragEvent|TouchEvent) {
 		let myobject = this.object || marauroa.me;
 		// some mobile browsers such as Chrome call "dragstart" via long touch
-		if (!myobject[this.slot] || (event.type === "dragstart" && stendhal.ui.touch.isTouchEngaged())) {
+		if (!myobject[this.slot] || (event.type === "dragstart" && this.touchHandler.isTouchEngaged())) {
 			event.preventDefault();
 			return;
 		}
@@ -196,8 +198,8 @@ export class ItemContainerImplementation {
 			if (event instanceof DragEvent && event.dataTransfer) {
 				stendhal.ui.heldObject = heldObject;
 				event.dataTransfer.setDragImage(img, 0, 0);
-			} else if (stendhal.ui.touch.isTouchEvent(event)) {
-				stendhal.ui.touch.setHolding(true);
+			} else if (this.touchHandler.isTouchEvent(event)) {
+				this.touchHandler.setHolding(true);
 				// TODO: move when supported by mouse events
 				const pos = stendhal.ui.html.extractPosition(event);
 				singletons.getHeldObjectManager().set(heldObject, img, new Point(pos.pageX, pos.pageY));
@@ -287,7 +289,7 @@ export class ItemContainerImplementation {
 			stendhal.ui.heldObject = undefined;
 
 			// if ctrl is pressed or holding stackable item from touch event, we ask for the quantity
-			const touch_held = stendhal.ui.touch.holding() && quantity > 1;
+			const touch_held = this.touchHandler.holding() && quantity > 1;
 			const split_action = !sameSlot && ((event instanceof DragEvent && event.ctrlKey) || touch_held);
 			if (split_action) {
 				const pos = stendhal.ui.html.extractPosition(event);
@@ -344,7 +346,7 @@ export class ItemContainerImplementation {
 
 		let event = stendhal.ui.html.extractPosition(evt);
 		if ((event.target as any).dataItem) {
-			const long_touch = stendhal.ui.touch.isLongTouch(evt);
+			const long_touch = this.touchHandler.isLongTouch(evt);
 			const context_action = (evt instanceof MouseEvent && this.isRightClick(evt)) || long_touch;
 			if (this.quickPickup && !context_action) {
 				marauroa.clientFramework.sendAction({
@@ -386,7 +388,7 @@ export class ItemContainerImplementation {
 		}
 
 		// clean up item held via touch
-		stendhal.ui.touch.setHolding(false);
+		this.touchHandler.setHolding(false);
 
 		document.getElementById("viewport")!.focus();
 	}
@@ -401,21 +403,21 @@ export class ItemContainerImplementation {
 
 	private onTouchStart(evt: TouchEvent) {
 		const pos = stendhal.ui.html.extractPosition(evt);
-		stendhal.ui.touch.onTouchStart(pos.pageX, pos.pageY);
+		this.touchHandler.onTouchStart(pos.pageX, pos.pageY);
 	}
 
 	private onTouchEnd(evt: TouchEvent) {
-		stendhal.ui.touch.onTouchEnd();
-		if (stendhal.ui.touch.isLongTouch(evt) && !stendhal.ui.touch.holding()) {
+		this.touchHandler.onTouchEnd();
+		if (this.touchHandler.isLongTouch(evt) && !this.touchHandler.holding()) {
 			this.onMouseUp(evt);
-		} else if (stendhal.ui.touch.holding()) {
+		} else if (this.touchHandler.holding()) {
 			evt.preventDefault();
 
 			this.onDrop(evt);
-			stendhal.ui.touch.setHolding(false);
+			this.touchHandler.setHolding(false);
 		}
 		// clean up touch handler
-		stendhal.ui.touch.unsetOrigin();
+		this.touchHandler.unsetOrigin();
 	}
 
 	/**

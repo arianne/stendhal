@@ -35,6 +35,7 @@ import { Canvas, RenderingContext2D } from "util/Types";
 import { Debug } from "../util/Debug";
 import { TileMap } from "data/TileMap";
 import { HTMLImageElementUtil } from "sprite/image/HTMLImageElementUtil";
+import { TouchHandler } from "./TouchHandler";
 
 
 /**
@@ -85,6 +86,8 @@ export class ViewPort {
 
 	/** Singleton instance. */
 	private static instance: ViewPort;
+
+	private touchHandler = TouchHandler.get();
 
 	/**
 	 * Retrieves singleton instance.
@@ -496,13 +499,14 @@ export class ViewPort {
 		const mHandle: any = {};
 
 		mHandle._onMouseDown = function(e: MouseEvent|TouchEvent) {
+			let touchHandler = TouchHandler.get();
 			var pos = stendhal.ui.html.extractPosition(e);
-			if (stendhal.ui.touch.isTouchEvent(e)) {
-				if (stendhal.ui.touch.holding()) {
+			if (touchHandler.isTouchEvent(e)) {
+				if (touchHandler.holding()) {
 					// prevent default viewport action when item is "held"
 					return;
 				}
-				stendhal.ui.touch.onTouchStart(pos.pageX, pos.pageY);
+				touchHandler.onTouchStart(pos.pageX, pos.pageY);
 			}
 			if (stendhal.ui.globalpopup) {
 				stendhal.ui.globalpopup.close();
@@ -544,12 +548,12 @@ export class ViewPort {
 		}
 
 		mHandle.onMouseUp = function(e: MouseEvent|TouchEvent) {
-			const is_touch = stendhal.ui.touch.isTouchEvent(e);
+			const is_touch = this.touchHandler.isTouchEvent(e);
 			if (is_touch) {
-				stendhal.ui.touch.onTouchEnd(e);
+				this.touchHandler.onTouchEnd(e);
 			}
 			var pos = stendhal.ui.html.extractPosition(e);
-			const long_touch = is_touch && stendhal.ui.touch.isLongTouch(e);
+			const long_touch = is_touch && this.touchHandler.isLongTouch(e);
 			if ((e instanceof MouseEvent && mHandle.isRightClick(e)) || long_touch) {
 				if (entity != stendhal.zone.ground) {
 					const append: any[] = [];
@@ -570,7 +574,7 @@ export class ViewPort {
 		}
 
 		mHandle.onDrag = function(e: MouseEvent) {
-			if (stendhal.ui.touch.isTouchEvent(e)) {
+			if (this.touchHandler.isTouchEvent(e)) {
 				stendhal.ui.gamewindow.onDragStart(e);
 			}
 
@@ -675,9 +679,9 @@ export class ViewPort {
 			return;
 		}
 
-		if (stendhal.ui.touch.isTouchEvent(e)) {
+		if (this.touchHandler.isTouchEvent(e)) {
 			singletons.getHeldObjectManager().set(heldObject, img, new Point(pos.pageX, pos.pageY));
-			stendhal.ui.touch.setHolding(true);
+			this.touchHandler.setHolding(true);
 		} else {
 			stendhal.ui.heldObject = heldObject;
 		}
@@ -741,7 +745,7 @@ export class ViewPort {
 			// item was dropped
 			stendhal.ui.heldObject = undefined;
 
-			const touch_held = stendhal.ui.touch.holding() && quantity > 1;
+			const touch_held = this.touchHandler.holding() && quantity > 1;
 			// if ctrl is pressed or holding stackable item from touch event, we ask for the quantity
 			// NOTE: don't create selector if touch source is ground
 			if (e.ctrlKey || (touch_held && sourceSlot !== targetSlot)) {
@@ -760,11 +764,11 @@ export class ViewPort {
 	 * This is a workaround until it's figured out how to make it work using the same methods as mouse event.
 	 */
 	onTouchEnd(e: TouchEvent) {
-		stendhal.ui.touch.onTouchEnd();
+		this.touchHandler.onTouchEnd();
 		stendhal.ui.gamewindow.onDrop(e);
-		if (stendhal.ui.touch.holding()) {
-			stendhal.ui.touch.setHolding(false);
-			stendhal.ui.touch.unsetOrigin();
+		if (this.touchHandler.holding()) {
+			this.touchHandler.setHolding(false);
+			this.touchHandler.unsetOrigin();
 		}
 		// execute here because "touchend" event propagation is cancelled on the veiwport
 		Client.handleClickIndicator(e);

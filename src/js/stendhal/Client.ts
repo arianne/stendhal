@@ -39,6 +39,7 @@ import { DialogHandler } from "./util/DialogHandler";
 import { Globals } from "./util/Globals";
 import { TileMap } from "data/TileMap";
 import { OutfitStore } from "data/OutfitStore";
+import { TileStore } from "data/TileStore";
 
 
 /**
@@ -140,7 +141,6 @@ export class Client {
 		stendhal.ui = stendhal.ui || {};
 		stendhal.ui.equip = singletons.getInventory();
 		stendhal.ui.html = singletons.getHTMLManager();
-		stendhal.ui.touch = singletons.getTouchHandler();
 		stendhal.ui.viewport = singletons.getViewPort();
 		// alias for backward-compat until changed in all source
 		stendhal.ui.gamewindow = stendhal.ui.viewport;
@@ -175,7 +175,7 @@ export class Client {
 		singletons.getEventRegistry().init();
 
 		// initialize tileset animation data
-		singletons.getTileStore().init();
+		TileStore.get().init();
 		// initialize emoji data
 		singletons.getEmojiStore().init();
 		// initialize outfit data

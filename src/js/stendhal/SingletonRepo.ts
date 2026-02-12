@@ -26,10 +26,8 @@ import { CStatus } from "./data/CStatus";
 import { CacheManager } from "./data/CacheManager";
 import { EmojiStore } from "./data/EmojiStore";
 import { GroupManager } from "./data/GroupManager";
-import { OutfitStore } from "./data/OutfitStore";
 import { Paths } from "./data/Paths";
 import { SpriteStore, store } from "./data/SpriteStore";
-import { TileStore } from "./data/TileStore";
 
 import { LoopedSoundSourceManager } from "./data/sound/LoopedSoundSourceManager";
 import { SoundManager } from "./data/sound/SoundManager";
@@ -40,7 +38,6 @@ import { HeldObjectManager } from "./ui/HeldObject";
 import { HTMLManager } from "./ui/HTMLManager";
 import { Inventory } from "./ui/Inventory";
 import { SoftwareJoystickController } from "./ui/SoftwareJoystickController";
-import { TouchHandler } from "./ui/TouchHandler";
 import { UIUpdateObserver } from "./ui/UIUpdateObserver";
 import { ViewPort } from "./ui/ViewPort";
 
@@ -133,14 +130,6 @@ export class SingletonRepo {
 
 	static getSpriteStore(): SpriteStore {
 		return store;
-	}
-
-	static getTileStore(): TileStore {
-		return TileStore.get();
-	}
-
-	static getTouchHandler(): TouchHandler {
-		return TouchHandler.get();
 	}
 
 	static getUIUpdateObserver(): UIUpdateObserver {
