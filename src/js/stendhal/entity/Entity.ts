@@ -143,10 +143,10 @@ export class Entity extends RPObject {
 	/**
 	 * is this entity visible to a specific action
 	 *
-	 * @param filter 0: short left click
+	 * @param _filter 0: short left click
 	 * @return true, if the entity is visible, false otherwise
 	 */
-	isVisibleToAction(filter: boolean) {
+	isVisibleToAction(_filter?: boolean) {
 		return false;
 	}
 

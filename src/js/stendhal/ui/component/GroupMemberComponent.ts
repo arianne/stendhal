@@ -24,6 +24,7 @@ import { ActionContextMenu } from "../dialog/ActionContextMenu";
 
 import { singletons } from "../../SingletonRepo";
 import { stendhal } from "stendhal";
+import { Zone } from "entity/Zone";
 
 
 /**
@@ -45,7 +46,7 @@ export class GroupMemberComponent extends Component {
 		this.hpBar = new StatBarComponent();
 		this.hpBar.componentElement.classList.add("group-member-hpbar");
 		// check for player to initialize HP bar value
-		const player = singletons.getZone().findPlayer(memberName);
+		const player = Zone.get().findPlayer(memberName);
 		if (player) {
 			// component hasn't been created yet so `Player.updateGroupStatus` will fail here
 			this.hpBar.draw(player["hp"] / player["base_hp"]);

@@ -139,9 +139,6 @@ export class SingletonRepo {
 		return WeatherRenderer.get();
 	}
 
-	static getZone(): Zone {
-		return Zone.get();
-	}
 }
 
 export const singletons = SingletonRepo;

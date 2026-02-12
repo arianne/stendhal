@@ -19,6 +19,7 @@ import { BuddyListComponent } from "ui/component/BuddyListComponent";
 import { PlayerEquipmentComponent } from "ui/component/PlayerEquipmentComponent";
 import { singletons } from "SingletonRepo";
 import { Client } from "Client";
+import { Zone } from "entity/Zone";
 
 
 /**
@@ -49,7 +50,7 @@ export class StendhalPerceptionListener extends PerceptionListener {
 	}
 
 	override onPerceptionEnd(_type: Int8Array, _timestamp: number) {
-		stendhal.zone.sortEntities();
+		Zone.get().sortEntities();
 		(ui.get(UIComponentEnum.MiniMap) as MiniMapComponent).draw();
 		(ui.get(UIComponentEnum.BuddyList) as BuddyListComponent).update();
 		stendhal.ui.equip.update();

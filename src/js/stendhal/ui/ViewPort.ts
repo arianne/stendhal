@@ -37,6 +37,7 @@ import { TileMap } from "data/TileMap";
 import { HTMLImageElementUtil } from "sprite/image/HTMLImageElementUtil";
 import { TouchHandler } from "./TouchHandler";
 import { HTMLUtil } from "./HTMLUtil";
+import { Zone } from "entity/Zone";
 
 
 /**
@@ -268,11 +269,10 @@ export class ViewPort {
 	 * Draws overall entity sprites.
 	 */
 	drawEntities() {
-		var currentTime = new Date().getTime();
-		var time = currentTime - this.timeStamp;
+		let currentTime = new Date().getTime();
+		let time = currentTime - this.timeStamp;
 		this.timeStamp = currentTime;
-		for (var i in stendhal.zone.entities) {
-			var entity = stendhal.zone.entities[i];
+		for (let entity of Zone.get().entities) {
 			if (typeof(entity.draw) != "undefined") {
 				entity.updatePosition(time);
 				entity.draw(this.ctx);
@@ -284,9 +284,7 @@ export class ViewPort {
 	 * Draws titles & HP bars associated with entities.
 	 */
 	drawEntitiesTop() {
-		var i;
-		for (i in stendhal.zone.entities) {
-			const entity = stendhal.zone.entities[i];
+		for (let entity of Zone.get().entities) {
 			if (typeof(entity.setStatusBarOffset) !== "undefined") {
 				entity.setStatusBarOffset();
 			}
@@ -522,7 +520,8 @@ export class ViewPort {
 				return;
 			}
 
-			entity = stendhal.zone.entityAt(x, y);
+			let zone = Zone.get();
+			entity = zone.entityAt(x, y);
 			stendhal.ui.timestampMouseDown = +new Date();
 
 			if (e.type !== "dblclick" && e.target) {
@@ -530,7 +529,7 @@ export class ViewPort {
 				e.target.addEventListener("mouseup", mHandle.onMouseUp);
 				e.target.addEventListener("touchmove", mHandle.onDrag, {passive: true});
 				e.target.addEventListener("touchend", mHandle.onMouseUp);
-			} else if (entity == stendhal.zone.ground) {
+			} else if (entity == zone.ground) {
 				entity.onclick(pos.canvasRelativeX, pos.canvasRelativeY, true);
 			}
 		}
@@ -555,7 +554,7 @@ export class ViewPort {
 			var pos = HTMLUtil.extractPosition(e);
 			const long_touch = is_touch && touchHandler.isLongTouch(e);
 			if ((e instanceof MouseEvent && mHandle.isRightClick(e)) || long_touch) {
-				if (entity != stendhal.zone.ground) {
+				if (entity != Zone.get().ground) {
 					const append: any[] = [];
 					/*
 					if (long_touch) {
@@ -608,7 +607,7 @@ export class ViewPort {
 		var pos = HTMLUtil.extractPosition(e);
 		var x = pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX;
 		var y = pos.canvasRelativeY + stendhal.ui.gamewindow.offsetY;
-		var entity = stendhal.zone.entityAt(x, y);
+		var entity = Zone.get().entityAt(x, y);
 		stendhal.ui.gamewindow.getElement().style.cursor = entity.getCursor(x, y);
 	}
 
@@ -651,7 +650,7 @@ export class ViewPort {
 	onDragStart(e: DragEvent) {
 		var pos = HTMLUtil.extractPosition(e);
 		let draggedEntity;
-		for (const obj of stendhal.zone.getEntitiesAt(pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX,
+		for (const obj of Zone.get().getEntitiesAt(pos.canvasRelativeX + stendhal.ui.gamewindow.offsetX,
 				pos.canvasRelativeY + stendhal.ui.gamewindow.offsetY)) {
 			if (obj.isDraggable()) {
 				draggedEntity = obj;

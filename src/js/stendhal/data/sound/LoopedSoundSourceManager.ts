@@ -13,6 +13,7 @@ import { marauroa } from "marauroa"
 import { stendhal } from "../../stendhal";
 
 import { LoopedSoundSource } from "../../entity/LoopedSoundSource";
+import { Zone } from "entity/Zone";
 
 
 // server doesn't distinguish between music & looped sound effects so we
@@ -179,8 +180,8 @@ export class LoopedSoundSourceManager {
 	 */
 	private getZoneEntities(): LoopedSoundSource[] {
 		const ents: LoopedSoundSource[] = [];
-		if (stendhal.zone.entities) {
-			for (const ent of stendhal.zone.entities) {
+		if (Zone.get().entities) {
+			for (const ent of Zone.get().entities) {
 				if (ent instanceof LoopedSoundSource) {
 					ents.push(ent);
 				}

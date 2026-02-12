@@ -40,6 +40,7 @@ import { Globals } from "./util/Globals";
 import { TileMap } from "data/TileMap";
 import { OutfitStore } from "data/OutfitStore";
 import { TileStore } from "data/TileStore";
+import { Zone } from "entity/Zone";
 
 
 /**
@@ -100,7 +101,6 @@ export class Client {
 		this.initData();
 		this.initSound();
 		this.initUI();
-		this.initZone();
 
 		// add version & build info to DOM for retrieval by browser
 		document.documentElement.setAttribute("data-build-version", stendhal.data.build?.version);
@@ -147,13 +147,6 @@ export class Client {
 		stendhal.ui.getMenuStyle = Globals.getMenuStyle;
 	}
 
-	/**
-	 * Builds initial zone for user to enter world.
-	 */
-	private initZone() {
-		stendhal.zone = singletons.getZone();
-		stendhal.zone.ground = new Ground();
-	}
 
 	/**
 	 * Main startup routines.

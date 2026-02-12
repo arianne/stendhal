@@ -14,6 +14,7 @@ import { stendhal } from "../stendhal";
 
 import { Entity } from "./Entity";
 import { Player } from "./Player";
+import { Ground } from "./Ground";
 
 
 /**
@@ -22,11 +23,12 @@ import { Player } from "./Player";
 export class Zone {
 
 	/** Entities found in this zone. */
-	private entities: Entity[] = [];
+	public entities: Entity[] = [];
 
 	/** Singleton instance. */
 	private static instance: Zone;
 
+	public ground = new Ground();
 
 	/**
 	 * Retrieves singleton instance.
@@ -45,7 +47,7 @@ export class Zone {
 		// do nothing
 	}
 
-	getEntitiesAt(x: number, y: number, filter: boolean): Entity[] {
+	getEntitiesAt(x: number, y: number, filter?: boolean): Entity[] {
 		const xGrid = x / 32;
 		const yGrid = y / 32;
 		const entities = [] as Entity[];
@@ -63,14 +65,14 @@ export class Zone {
 		return entities;
 	}
 
-	entityAt(x: number, y: number, filter: boolean): Entity {
-		let res = stendhal.zone.ground;
+	entityAt(x: number, y: number, filter?: boolean): Entity {
+		let res = Zone.get().ground as any;
 		for (const obj of this.getEntitiesAt(x, y, filter)) {
 			res = obj;
 		}
 
 		// If we found an entity, return it
-		if (res != stendhal.zone.ground) {
+		if (res != Zone.get().ground) {
 			return res;
 		}
 

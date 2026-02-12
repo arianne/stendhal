@@ -15,6 +15,7 @@ import { MathUtil } from "../util/MathUtil";
 
 import { stendhal } from "../stendhal";
 import { TileMap } from "data/TileMap";
+import { Zone } from "./Zone";
 
 export class ActiveEntity extends Entity {
 
@@ -260,8 +261,8 @@ export class ActiveEntity extends Entity {
 		var thisEndY = Math.ceil(this["_y"] + this["height"]);
 
 		var i;
-		for (i in stendhal.zone.entities) {
-			var other = stendhal.zone.entities[i];
+		for (i in Zone.get().entities) {
+			var other = Zone.get().entities[i];
 			if (!this.isObstacle(other)) {
 				continue;
 			}
