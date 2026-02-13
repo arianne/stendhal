@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2025 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -24,8 +24,10 @@ import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
+import games.stendhal.server.entity.npc.condition.UsingWebClientCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.semos.temple.TelepathNPC;
@@ -133,9 +135,17 @@ public class MeetIo extends AbstractQuest {
 		npc.add(
 			ConversationStates.INFORMATION_5,
 			ConversationPhrases.YES_MESSAGES,
-			null,
+			new NotCondition(new UsingWebClientCondition()),
 			ConversationStates.INFORMATION_6,
 			"You can travel to the astral plane at any time, thereby saving and closing your game. Just type #/quit, or press the #Esc key, or even simply close the window. Okay! Hmm, I think you want to learn how to float in the air like I do.",
+			null);
+
+		npc.add(
+			ConversationStates.INFORMATION_5,
+			ConversationPhrases.YES_MESSAGES,
+			new UsingWebClientCondition(),
+			ConversationStates.INFORMATION_6,
+			"You can travel to the astral plane at any time, thereby saving and closing your game. Just open the main menu and select the \"Select character\" button, or even simply close the window. Okay! Hmm, I think you want to learn how to float in the air like I do.",
 			null);
 
 		/** Give the reward to the patient newcomer user */
