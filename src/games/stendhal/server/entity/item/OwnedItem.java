@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                 Copyright © 2020-2024 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -21,11 +21,14 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * Class representing an item owned by an entity.
+ *
+ * An "owned" item is different than a bound item in that it can be used by players other than the
+ * owner but they do not get the same or full benefit of.
  */
 public abstract class OwnedItem extends Item {
 
 	// slots to which item cannot be equipped if it has an owner
-	private List<String> ownedBlacklistSlots = Arrays.asList("trade");
+	private List<String> ownedBlacklistSlots = Arrays.asList("mailbox", "trade");
 	// slots to which non-owners cannot equip
 	private List<String> ownerOnlySlots;
 
@@ -82,8 +85,9 @@ public abstract class OwnedItem extends Item {
 	 * Override to check if item has owner.
 	 *
 	 * @return
-	 * 		<code>true</code> if owned.
+	 *   {@ true} if owned.
 	 */
+	@Override
 	public boolean hasOwner() {
 		return getOwner() != null;
 	}
