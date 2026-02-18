@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2021 Stendhal                      *
+ *                   (C) Copyright 2003-2024 Stendhal                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.core.scripting.impl.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
 

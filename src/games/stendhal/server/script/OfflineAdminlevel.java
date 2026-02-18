@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,6 +15,7 @@ package games.stendhal.server.script;
 import java.util.List;
 
 import games.stendhal.server.core.engine.GameEvent;
+import games.stendhal.server.core.scripting.impl.AbstractOfflineAction;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPObject;
 
