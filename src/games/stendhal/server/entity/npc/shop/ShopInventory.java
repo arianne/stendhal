@@ -1,5 +1,6 @@
 /***************************************************************************
- *                      (C) Copyright 2023 - Stendhal                      *
+ *                 Copyright © 2023-2024 - Faiumoni e. V.                  *
+ ***************************************************************************
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -84,4 +85,7 @@ public abstract class ShopInventory<T, V> extends LinkedHashMap<String, V> {
 		temp.add(new Pair<>(required, count));
 		tradeFor.put(name, temp);
 	}
+
+	@Override
+	public abstract String toString();
 }
