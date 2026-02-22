@@ -41,7 +41,7 @@ import { OutfitStore } from "data/OutfitStore";
 import { TileStore } from "data/TileStore";
 import { WeatherRenderer } from "util/WeatherRenderer";
 import { ViewPort } from "ui/ViewPort";
-import { store } from "data/SpriteStore";
+import { htmlImageStore } from "data/HTMLImageStore";
 
 
 /**
@@ -190,7 +190,7 @@ export class Client {
 		stendhal.ui.globalInternalWindow = new DialogHandler();
 
 		// pre-cache images & sounds
-		store.startupCache();
+		htmlImageStore.startupCache();
 		stendhal.sound.startupCache();
 
 		if (document.getElementById("viewport")) {

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                 Copyright © 2024 - 2025  Faiumoni e. V.                 *
+ *                 Copyright © 2024 - 2026  Faiumoni e. V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -10,14 +10,14 @@
  *                                                                         *
  ***************************************************************************/
 
-import { RPEvent } from "marauroa"
+import { RPEvent } from "marauroa";
 
-import { ui } from "../ui/UI";
-import { DialogContentComponent } from "../ui/toolkit/DialogContentComponent";
-import { Chat } from "../util/Chat";
 import { Paths } from "../data/Paths";
-import { singletons } from "../SingletonRepo";
+import { DialogContentComponent } from "../ui/toolkit/DialogContentComponent";
+import { ui } from "../ui/UI";
+import { Chat } from "../util/Chat";
 
+import { htmlImageStore } from "data/HTMLImageStore";
 import { stendhal } from "../stendhal";
 
 
@@ -95,7 +95,7 @@ export class ShowItemListEvent extends RPEvent {
 			// Item (image)
 			const itemCell = document.createElement("td");
 			itemCell.appendChild(
-				singletons.getSpriteStore().get(
+				htmlImageStore.get(
 					Paths.sprites + "/items/" + i.img
 				)
 			);

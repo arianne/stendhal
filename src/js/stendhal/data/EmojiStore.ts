@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2003-2023 - Stendhal                     *
+ *                    Copyright © 2003-2026 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,9 +9,9 @@
  *                                                                         *
  ***************************************************************************/
 
-import { Paths } from "./Paths";
 import { JSONLoader } from "../util/JSONLoader";
-import { singletons } from "../SingletonRepo";
+import { htmlImageStore } from "./HTMLImageStore";
+import { Paths } from "./Paths";
 
 
 export class EmojiStore {
@@ -70,7 +70,7 @@ export class EmojiStore {
 		if (!filename) {
 			return;
 		}
-		return singletons.getSpriteStore().get(filename);
+		return htmlImageStore.get(filename);
 	}
 
 	/**

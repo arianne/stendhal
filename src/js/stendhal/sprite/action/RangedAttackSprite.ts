@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2023-2024 - Stendhal                     *
+ *                    Copyright © 2023-2026 - Stendhal                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -10,13 +10,12 @@
  *                                                                         *
  ***************************************************************************/
 
-import { AttackSprite } from "./AttackSprite";
-import { RPEntity } from "../../entity/RPEntity";
 import { RenderingContext2D } from "util/Types";
 import { Paths } from "../../data/Paths";
-import { singletons } from "../../SingletonRepo";
+import { RPEntity } from "../../entity/RPEntity";
+import { AttackSprite } from "./AttackSprite";
 
-import { stendhal } from "../../stendhal";
+import { htmlImageStore } from "data/HTMLImageStore";
 import { ViewPort } from "ui/ViewPort";
 
 
@@ -26,7 +25,7 @@ export class RangedAttackSprite extends AttackSprite {
 	private readonly targetX: number;
 	private readonly targetY: number;
 	private readonly color: string;
-	private readonly image = singletons.getSpriteStore().get(Paths.sprites + "/combat/ranged.png");
+	private readonly image = htmlImageStore.get(Paths.sprites + "/combat/ranged.png");
 	private readonly weapon?: string;
 
 

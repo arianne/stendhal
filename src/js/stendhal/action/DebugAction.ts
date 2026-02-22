@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2022-2024 - Stendhal                    *
+ *                   (C) Copyright 2022-2026 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -8,8 +8,6 @@
  *   License, or (at your option) any later version.                       *
  *                                                                         *
  ***************************************************************************/
-
-import { singletons } from "../SingletonRepo";
 
 import { ui } from "../ui/UI";
 import { UIComponentEnum } from "../ui/UIComponentEnum";
@@ -26,6 +24,7 @@ import { Paths } from "../data/Paths";
 import { marauroa } from "marauroa"
 import { stendhal } from "../stendhal";
 import { WeatherRenderer } from "util/WeatherRenderer";
+import { htmlImageStore } from "data/HTMLImageStore";
 
 /**
  * performances debugging actions
@@ -141,7 +140,7 @@ export class DebugAction extends SlashAction {
 		if (weather) {
 			weather = weather.replace(/ /g, "_");
 			const wfilename = Paths.weather + "/" + weather + ".png";
-			if (!singletons.getSpriteStore().getCached(wfilename)) {
+			if (!htmlImageStore.getCached(wfilename)) {
 				Chat.logH("error", "unknown weather: " + wfilename);
 				return;
 			}

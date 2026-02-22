@@ -1,5 +1,5 @@
 /***************************************************************************
- *                 Copyright © 2003-2024 - Faiumoni e. V.                  *
+ *                 Copyright © 2003-2026 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -10,19 +10,18 @@
  *                                                                         *
  ***************************************************************************/
 
-import { stendhal } from "../stendhal";
 
 import { TextBubble } from "./TextBubble";
 
 import { Color } from "../data/color/Color";
 
-import { NotificationType } from "../util/NotificationType";
-import { Speech } from "../util/Speech";
+import { htmlImageStore } from "data/HTMLImageStore";
+import { ViewPort } from "ui/ViewPort";
 import { RenderingContext2D } from "util/Types";
 import { Paths } from "../data/Paths";
-import { singletons } from "../SingletonRepo";
+import { NotificationType } from "../util/NotificationType";
+import { Speech } from "../util/Speech";
 import { HTMLImageElementUtil } from "./image/HTMLImageElementUtil";
-import { ViewPort } from "ui/ViewPort";
 
 
 export class NotificationBubble extends TextBubble {
@@ -138,7 +137,7 @@ export class NotificationBubble extends TextBubble {
 	 * Loads a profile image to be drawn with text.
 	 */
 	private loadProfileSprite() {
-		const img = singletons.getSpriteStore().get(Paths.sprites
+		const img = htmlImageStore.get(Paths.sprites
 				+ "/npc/" + this.profileName + ".png");
 		if (img.complete && img.height) {
 			this.profile = HTMLImageElementUtil.getAreaOf(img, 48, 48, 48, 128);

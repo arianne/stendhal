@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2023-2024 - Stendhal                     *
+ *                    Copyright © 2023-2026 - Stendhal                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,11 +9,12 @@
  *                                                                         *
  ***************************************************************************/
 
-import { DialogContentComponent } from "../toolkit/DialogContentComponent";
 import { singletons } from "../../SingletonRepo";
 import { Paths } from "../../data/Paths";
+import { DialogContentComponent } from "../toolkit/DialogContentComponent";
 
-import { marauroa } from "marauroa"
+import { htmlImageStore } from "data/HTMLImageStore";
+import { marauroa } from "marauroa";
 import { stendhal } from "../../stendhal";
 
 
@@ -84,7 +85,7 @@ export class EmojiMapDialog extends DialogContentComponent {
 			const button = document.createElement("button");
 			button.classList.add("shortcut-button", "emoji-text");
 			if (!this.sysEmojis) {
-				button.appendChild(singletons.getSpriteStore().get(Paths.sprites + "/emoji/" + emoji + ".png").cloneNode());
+				button.appendChild(htmlImageStore.get(Paths.sprites + "/emoji/" + emoji + ".png").cloneNode());
 			} else {
 				button.innerText = emoji;
 			}

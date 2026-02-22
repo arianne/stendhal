@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2003-2024 - Faiumoni e. V.                 *
+ *                (C) Copyright 2003-2026 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,23 +9,24 @@
  *                                                                         *
  ***************************************************************************/
 
-import { marauroa } from "marauroa"
+import { marauroa } from "marauroa";
 import { stendhal } from "../../stendhal";
 
 import { ui } from "../UI";
 
+import { Item } from "../../entity/Item";
 import { ActionContextMenu } from "../dialog/ActionContextMenu";
 import { DropQuantitySelectorDialog } from "../dialog/DropQuantitySelectorDialog";
-import { Item } from "../../entity/Item";
 
 import { singletons } from "../../SingletonRepo";
 
-import { Point } from "../../util/Point";
-import { Paths } from "../../data/Paths";
+import { htmlImageStore } from "data/HTMLImageStore";
 import { HTMLImageElementUtil } from "sprite/image/HTMLImageElementUtil";
-import { TouchHandler } from "ui/TouchHandler";
 import { HTMLUtil } from "ui/HTMLUtil";
+import { TouchHandler } from "ui/TouchHandler";
 import { ViewPort } from "ui/ViewPort";
+import { Paths } from "../../data/Paths";
+import { Point } from "../../util/Point";
 
 
 /**
@@ -137,7 +138,7 @@ export class ItemContainerImplementation {
 				}
 
 				e.style.backgroundImage = "url("
-						+ singletons.getSpriteStore().checkPath(Paths.sprites
+						+ htmlImageStore.checkPath(Paths.sprites
 								+ "/items/" + o["class"] + "/" + o["subclass"] + ".png")
 						+ ")";
 				e.style.backgroundPosition = (xOffset+1) + "px " + (yOffset+1) + "px";
@@ -196,7 +197,7 @@ export class ItemContainerImplementation {
 				quantity: item.hasOwnProperty("quantity") ? item["quantity"] : 1
 			};
 
-			const img = HTMLImageElementUtil.getAreaOf(singletons.getSpriteStore().get(item.sprite.filename), 32, 32);
+			const img = HTMLImageElementUtil.getAreaOf(htmlImageStore.get(item.sprite.filename), 32, 32);
 			if (event instanceof DragEvent && event.dataTransfer) {
 				stendhal.ui.heldObject = heldObject;
 				event.dataTransfer.setDragImage(img, 0, 0);

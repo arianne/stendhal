@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2026 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,15 +9,15 @@
  *                                                                         *
  ***************************************************************************/
 
-import { ItemMap } from "./ItemMap";
-import { MenuItem } from "../action/MenuItem";
-import { Entity } from "./Entity";
-import { TextSprite } from "../sprite/TextSprite";
 import { RenderingContext2D } from "util/Types";
+import { MenuItem } from "../action/MenuItem";
 import { Paths } from "../data/Paths";
-import { singletons } from "../SingletonRepo";
+import { TextSprite } from "../sprite/TextSprite";
+import { Entity } from "./Entity";
+import { ItemMap } from "./ItemMap";
 
-import { marauroa } from "marauroa"
+import { htmlImageStore } from "data/HTMLImageStore";
+import { marauroa } from "marauroa";
 
 export class Item extends Entity {
 
@@ -146,12 +146,12 @@ export class Item extends Entity {
 	}
 
 	public isAnimated(): boolean {
-		if (!singletons.getSpriteStore().get(this.sprite.filename).height) {
+		if (!htmlImageStore.get(this.sprite.filename).height) {
 			return false;
 		}
 		if (this.animated == null) {
 			// store animation state
-			this.animated = (singletons.getSpriteStore().get(this.sprite.filename).width / 32) > 1;
+			this.animated = (htmlImageStore.get(this.sprite.filename).width / 32) > 1;
 		}
 
 		return this.animated;
@@ -159,7 +159,7 @@ export class Item extends Entity {
 
 	private setXFrameIndex(idx: number) {
 		if (this.xFrames == null) {
-			const img = singletons.getSpriteStore().get(this.sprite.filename);
+			const img = htmlImageStore.get(this.sprite.filename);
 			this.xFrames = img.width / 32;
 		}
 
@@ -173,7 +173,7 @@ export class Item extends Entity {
 
 	private setYFrameIndex(idx: number) {
 		if (this.yFrames == null) {
-			const img = singletons.getSpriteStore().get(this.sprite.filename);
+			const img = htmlImageStore.get(this.sprite.filename);
 			this.yFrames = img.height / 32;
 		}
 

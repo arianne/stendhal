@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-import { marauroa } from "marauroa"
+import { marauroa } from "marauroa";
 import { stendhal } from "../stendhal";
 
 import { HeldObject } from "./HeldObject";
@@ -30,15 +30,16 @@ import { NotificationBubble } from "../sprite/NotificationBubble";
 import { SpeechBubble } from "../sprite/SpeechBubble";
 import { TextBubble } from "../sprite/TextBubble";
 
-import { Point } from "../util/Point";
-import { Canvas, RenderingContext2D } from "util/Types";
-import { Debug } from "../util/Debug";
+import { htmlImageStore } from "data/HTMLImageStore";
 import { TileMap } from "data/TileMap";
-import { HTMLImageElementUtil } from "sprite/image/HTMLImageElementUtil";
-import { TouchHandler } from "./TouchHandler";
-import { HTMLUtil } from "./HTMLUtil";
 import { Zone } from "entity/Zone";
+import { HTMLImageElementUtil } from "sprite/image/HTMLImageElementUtil";
+import { Canvas, RenderingContext2D } from "util/Types";
 import { WeatherRenderer } from "util/WeatherRenderer";
+import { Debug } from "../util/Debug";
+import { Point } from "../util/Point";
+import { HTMLUtil } from "./HTMLUtil";
+import { TouchHandler } from "./TouchHandler";
 
 
 /**
@@ -666,14 +667,14 @@ export class ViewPort {
 		var img = undefined;
 		let heldObject: HeldObject;
 		if (draggedEntity && draggedEntity.type === "item") {
-			img = HTMLImageElementUtil.getAreaOf(singletons.getSpriteStore().get(draggedEntity.sprite.filename), 32, 32);
+			img = HTMLImageElementUtil.getAreaOf(htmlImageStore.get(draggedEntity.sprite.filename), 32, 32);
 			heldObject = {
 				path: draggedEntity.getIdPath(),
 				zone: marauroa.currentZoneName,
 				quantity: draggedEntity.hasOwnProperty("quantity") ? draggedEntity["quantity"] : 1
 			}
 		} else if (draggedEntity && draggedEntity.type === "corpse") {
-			img = singletons.getSpriteStore().get(draggedEntity.sprite.filename);
+			img = htmlImageStore.get(draggedEntity.sprite.filename);
 			heldObject = {
 				path: draggedEntity.getIdPath(),
 				zone: marauroa.currentZoneName,

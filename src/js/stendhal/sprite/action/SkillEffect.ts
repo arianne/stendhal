@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2024 - Faiumoni e. V.                    *
+ *                  Copyright © 2024-2026 - Faiumoni e. V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,8 +12,9 @@
 
 import { OverlaySpriteImpl } from "../OverlaySpriteImpl";
 
-import { singletons } from "../../SingletonRepo";
+import { htmlImageStore } from "data/HTMLImageStore";
 import { RenderingContext2D } from "util/Types";
+import { singletons } from "../../SingletonRepo";
 
 
 /**
@@ -46,7 +47,7 @@ export class SkillEffect implements OverlaySpriteImpl {
 	 *   sprite should not expire.
 	 */
 	constructor(name: string, delay=100, duration=0) {
-		this.image = singletons.getSpriteStore().get(singletons.getPaths().sprites + "/entity/overlay/"
+		this.image = htmlImageStore.get(singletons.getPaths().sprites + "/entity/overlay/"
 				+ name + ".png");
 		this.cycleTime = Date.now();
 		this.drawTime = 0;

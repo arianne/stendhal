@@ -9,18 +9,17 @@
  *                                                                         *
  ***************************************************************************/
 
+import { RPObject, RPZone } from "marauroa";
 import { RenderingContext2D } from "util/Types";
 import { MenuItem } from "../action/MenuItem";
-import { Chat } from "../util/Chat";
-import { RPObject, RPZone } from "marauroa";
 import { Paths } from "../data/Paths";
-import { singletons } from "../SingletonRepo";
+import { Chat } from "../util/Chat";
 
-import { marauroa } from "marauroa"
-import { stendhal } from "../stendhal";
-import { ImageSprite } from "../sprite/image/ImageSprite";
+import { htmlImageStore } from "data/HTMLImageStore";
+import { marauroa } from "marauroa";
 import { HTMLUtil } from "ui/HTMLUtil";
 import { ViewPort } from "ui/ViewPort";
+import { ImageSprite } from "../sprite/image/ImageSprite";
 
 /**
  * General entity
@@ -228,7 +227,7 @@ export class Entity extends RPObject {
 		if (this.imageSprite) {
 			this.imageSprite.drawOnto(ctx, x, y, this.getWidth() * 32, this.getHeight() * 32);
 		} else {
-			let image = singletons.getSpriteStore().get(this.sprite.filename);
+			let image = htmlImageStore.get(this.sprite.filename);
 			if (image.height) {
 				let offsetX = this.sprite.offsetX || 0;
 				let offsetY = this.sprite.offsetY || 0;

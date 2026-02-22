@@ -10,7 +10,7 @@
  ***************************************************************************/
 
 import { LandscapeRenderingStrategy } from "./LandscapeRenderingStrategy";
-import { Canvas } from "util/Types";
+import { Canvas, RenderingContext2D } from "util/Types";
 import { TileMap } from "../data/TileMap";
 import { CombinedTilesetFactory } from "./CombinedTilesetFactory";
 import { CombinedTileset } from "./CombinedTileset";
@@ -56,7 +56,7 @@ export class CombinedTilesetRenderingStrategy extends LandscapeRenderingStrategy
 		if (!combinedTileset) {
 			return;
 		}
-		let ctx = canvas.getContext("2d")!;
+		let ctx = canvas.getContext("2d")! as RenderingContext2D;
 
 		const layer = combinedTileset.combinedLayers[layerNo];
 		const yMax = Math.min(tileOffsetY + canvas.height / targetTileHeight + 1, this.map.zoneSizeY);

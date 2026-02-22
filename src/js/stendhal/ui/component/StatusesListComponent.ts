@@ -1,5 +1,5 @@
 /***************************************************************************
- *                       Copyright © 2023 - Arianne                        *
+ *                     Copyright © 2023-2026 - Arianne                     *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -11,9 +11,9 @@
 
 import { Component } from "../toolkit/Component";
 
-import { User } from "../../entity/User";
+import { htmlImageStore } from "data/HTMLImageStore";
 import { Paths } from "../../data/Paths";
-import { singletons } from "../../SingletonRepo";
+import { User } from "../../entity/User";
 
 
 export class StatusesListComponent extends Component {
@@ -69,7 +69,7 @@ export class StatusesListComponent extends Component {
 			} else {
 				iconPath = Paths.sprites + "/status/panel/" + id + ".png";
 			}
-			const icon = singletons.getSpriteStore().get(iconPath);
+			const icon = htmlImageStore.get(iconPath);
 			icon.className = "status-icon";
 			this.componentElement.appendChild(icon);
 		}

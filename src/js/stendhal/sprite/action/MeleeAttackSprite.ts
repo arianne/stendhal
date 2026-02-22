@@ -1,5 +1,5 @@
 /***************************************************************************
- *                 Copyright © 2023-2024 - Faiumoni e. V.                  *
+ *                 Copyright © 2023-2026 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -10,11 +10,11 @@
  *                                                                         *
  ***************************************************************************/
 
-import { AttackSprite } from "./AttackSprite";
+import { htmlImageStore } from "data/HTMLImageStore";
+import { RenderingContext2D } from "util/Types";
 import { RPEntity } from "../../entity/RPEntity";
 import { Direction } from "../../util/Direction";
-import { RenderingContext2D } from "util/Types";
-import { singletons } from "../../SingletonRepo";
+import { AttackSprite } from "./AttackSprite";
 
 
 export class MeleeAttackSprite extends AttackSprite {
@@ -47,7 +47,7 @@ export class MeleeAttackSprite extends AttackSprite {
 		this.frames = [
 			//~ singletons.getSpriteStore().getRotated(imagePath + "_rot45.png", rot-90),
 			undefined,
-			singletons.getSpriteStore().getRotated(imagePath + ".png", rot),
+			htmlImageStore.getRotated(imagePath + ".png", rot),
 			//~ singletons.getSpriteStore().getRotated(imagePath + "_rot45.png", rot)
 			undefined
 		];

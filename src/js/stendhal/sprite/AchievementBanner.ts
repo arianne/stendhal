@@ -1,5 +1,5 @@
 /***************************************************************************
- *                 Copyright © 2003-2024 - Faiumoni e. V.                  *
+ *                 Copyright © 2003-2026 - Faiumoni e. V.                  *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,13 +9,13 @@
  *                                                                         *
  ***************************************************************************/
 
-import { TextBubble } from "./TextBubble";
-import { BackgroundPainter } from "../util/BackgroundPainter";
+import { htmlImageStore } from "data/HTMLImageStore";
+import { ViewPort } from "ui/ViewPort";
 import { RenderingContext2D } from "util/Types";
 import { Paths } from "../data/Paths";
-import { singletons } from "../SingletonRepo";
 import { stendhal } from "../stendhal";
-import { ViewPort } from "ui/ViewPort";
+import { BackgroundPainter } from "../util/BackgroundPainter";
+import { TextBubble } from "./TextBubble";
 
 export class AchievementBanner extends TextBubble {
 
@@ -34,9 +34,9 @@ export class AchievementBanner extends TextBubble {
 	constructor(cat: string, title: string, desc: string) {
 		super(desc);
 		this.title = title;
-		const bg = singletons.getSpriteStore().get(Paths.gui + "/banner_background.png");
+		const bg = htmlImageStore.get(Paths.gui + "/banner_background.png");
 		this.banner = new BackgroundPainter(bg);
-		this.icon = singletons.getSpriteStore().get(Paths.achievements
+		this.icon = htmlImageStore.get(Paths.achievements
 				+ "/" + cat.toLowerCase() + ".png");
 
 		/* keep achievements on the screen a bit longer since they

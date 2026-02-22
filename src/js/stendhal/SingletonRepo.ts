@@ -24,7 +24,6 @@ import { CacheManager } from "./data/CacheManager";
 import { EmojiStore } from "./data/EmojiStore";
 import { GroupManager } from "./data/GroupManager";
 import { Paths } from "./data/Paths";
-import { SpriteStore, store } from "./data/SpriteStore";
 
 import { LoopedSoundSourceManager } from "./data/sound/LoopedSoundSourceManager";
 import { SoundManager } from "./data/sound/SoundManager";
@@ -117,10 +116,6 @@ export class SingletonRepo {
 
 	static getSoundManager(): SoundManager {
 		return SoundManager.get();
-	}
-
-	static getSpriteStore(): SpriteStore {
-		return store;
 	}
 
 	static getUIUpdateObserver(): UIUpdateObserver {

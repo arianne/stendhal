@@ -12,7 +12,7 @@
 import { Paths } from "./Paths";
 import { ImageFilter } from "../sprite/image/ImageFilter";
 
-export class SpriteStore {
+export class HTMLImageStore {
 
 	private knownBrokenUrls: {[url: string]: boolean} = {};
 	private images: {[filename: string]: CanvasImageSource} = {};
@@ -74,7 +74,7 @@ export class SpriteStore {
 			return this.images[filename];
 		}
 		var temp = new Image();
-		temp.onerror = (function(t: HTMLImageElement, store: SpriteStore) {
+		temp.onerror = (function(t: HTMLImageElement, store: HTMLImageStore) {
 			return function() {
 				if (t.src && !store.knownBrokenUrls[t.src]) {
 					console.log("Broken image path:", t.src, new Error());
@@ -287,4 +287,4 @@ export class SpriteStore {
 }
 
 // SpriteStore singleton instance
-export const store = /* @__PURE__ */ new SpriteStore();
+export const htmlImageStore = /* @__PURE__ */ new HTMLImageStore();

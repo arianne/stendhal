@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2024 - Stendhal                    *
+ *                   (C) Copyright 2003-2026 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,15 +9,15 @@
  *                                                                         *
  ***************************************************************************/
 
+import { MenuItem } from "../action/MenuItem";
 import { RPEntity } from "./RPEntity";
-import { MenuItem} from "../action/MenuItem";
 
-import { Color } from "../data/color/Color";
 import { RenderingContext2D } from "util/Types";
+import { Color } from "../data/color/Color";
 import { Paths } from "../data/Paths";
-import { singletons } from "../SingletonRepo";
 
-import { marauroa } from "marauroa"
+import { htmlImageStore } from "data/HTMLImageStore";
+import { marauroa } from "marauroa";
 
 export class DomesticAnimal extends RPEntity {
 
@@ -34,7 +34,7 @@ export class DomesticAnimal extends RPEntity {
 
 		var localX = this["_x"] * 32;
 		var localY = this["_y"] * 32;
-		var image = singletons.getSpriteStore().get(this.imagePath);
+		var image = htmlImageStore.get(this.imagePath);
 		if (image.height) {
 			var nFrames = 3;
 			var nDirections = 4;

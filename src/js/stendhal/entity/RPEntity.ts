@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2024 - Stendhal                    *
+ *                   (C) Copyright 2003-2026 - Stendhal                    *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,21 +9,21 @@
  *                                                                         *
  ***************************************************************************/
 
-import { marauroa } from "marauroa"
+import { marauroa } from "marauroa";
 import { stendhal } from "../stendhal";
 
-import { ActiveEntity } from "./ActiveEntity";
-import { Entity } from "./Entity";
 import { singletons } from "../SingletonRepo";
 import { MenuItem } from "../action/MenuItem";
+import { ActiveEntity } from "./ActiveEntity";
+import { Entity } from "./Entity";
 
 import { Color } from "../data/color/Color";
 
 import { Chat } from "../util/Chat";
 import { Nature } from "../util/Nature";
 
-import { Floater } from "../sprite/Floater";
 import { EmojiSprite } from "../sprite/EmojiSprite";
+import { Floater } from "../sprite/Floater";
 import { OverlaySpriteImpl } from "../sprite/OverlaySpriteImpl";
 import { SpeechBubble } from "../sprite/SpeechBubble";
 import { TextSprite } from "../sprite/TextSprite";
@@ -32,11 +32,12 @@ import { BarehandAttackSprite } from "../sprite/action/BarehandAttackSprite";
 //import { MeleeAttackSprite } from "../sprite/action/MeleeAttackSprite";
 import { RangedAttackSprite } from "../sprite/action/RangedAttackSprite";
 
+import { htmlImageStore } from "data/HTMLImageStore";
 import { ImageWithDimensions } from "data/ImageWithDimensions";
-import { RenderingContext2D } from "util/Types";
-import { Paths } from "../data/Paths";
 import { OutfitStore } from "data/OutfitStore";
 import { ViewPort } from "ui/ViewPort";
+import { RenderingContext2D } from "util/Types";
+import { Paths } from "../data/Paths";
 
 var HEALTH_BAR_HEIGHT = 6;
 
@@ -248,7 +249,7 @@ export class RPEntity extends ActiveEntity {
 		if (stendhal.config.getBoolean("effect.shadows") && this.castsShadow()) {
 			// dressed entities should use 48x64 sprites
 			// FIXME: this will not display correctly for horse outfit
-			const shadow = singletons.getSpriteStore().getShadow("48x64");
+			const shadow = htmlImageStore.getShadow("48x64");
 
 			if (shadow && shadow.complete && shadow.height) {
 				// draw shadow below other layers
@@ -323,9 +324,9 @@ export class RPEntity extends ActiveEntity {
 			colorname = part;
 		}
 		if (typeof(colors) !== "undefined" && (typeof(colors[colorname]) !== "undefined")) {
-			return singletons.getSpriteStore().getFiltered(filename, "trueColor", colors[colorname]);
+			return htmlImageStore.getFiltered(filename, "trueColor", colors[colorname]);
 		} else {
-			return singletons.getSpriteStore().get(filename);
+			return htmlImageStore.get(filename);
 		}
 	}
 
@@ -370,13 +371,13 @@ export class RPEntity extends ActiveEntity {
 			}
 
 			// check for safe image
-			if (!stendhal.config.getBoolean("effect.blood") && singletons.getSpriteStore().hasSafeImage(filename)) {
+			if (!stendhal.config.getBoolean("effect.blood") && htmlImageStore.hasSafeImage(filename)) {
 				filename = filename + "-safe.png";
 			} else {
 				filename = filename + ".png";
 			}
 
-			let image = singletons.getSpriteStore().get(filename);
+			let image = htmlImageStore.get(filename);
 
 			if (stendhal.config.getBoolean("effect.shadows") && this.castsShadow()) {
 				// check for configured shadow style
@@ -386,7 +387,7 @@ export class RPEntity extends ActiveEntity {
 					shadow_style = (image.width / 3) + "x" + (image.height / 4);
 				}
 
-				const shadow = singletons.getSpriteStore().getShadow(shadow_style);
+				const shadow = htmlImageStore.getShadow(shadow_style);
 
 				// draw shadow first
 				if (typeof(shadow) !== "undefined") {
@@ -406,14 +407,14 @@ export class RPEntity extends ActiveEntity {
 			ctx.drawImage(icon, frame * xdim, 0, xdim, ydim, x, y, xdim, ydim);
 		}
 		function drawAnimatedIcon(iconPath: string, delay: number, x: number, y: number, fWidth?: number) {
-			var icon = singletons.getSpriteStore().get(iconPath);
+			var icon = htmlImageStore.get(iconPath);
 			var dimH = icon.height;
 			var dimW = typeof(fWidth) !== "undefined" ? fWidth : dimH;
 			var nFrames = icon.width / dimW;
 			_drawAnimatedIcon(icon, delay, nFrames, dimW, dimH, x, y);
 		}
 		function drawAnimatedIconWithFrames(iconPath: string, nFrames: number, delay: number, x: number, y: number) {
-			var icon = singletons.getSpriteStore().get(iconPath);
+			var icon = htmlImageStore.get(iconPath);
 			var ydim = icon.height;
 			var xdim = icon.width / nFrames;
 			_drawAnimatedIcon(icon, delay, nFrames, xdim, ydim, x, y);
@@ -422,19 +423,19 @@ export class RPEntity extends ActiveEntity {
 		var x = this["_x"] * 32 - 10;
 		var y = (this["_y"] + 1) * 32;
 		if (this.hasOwnProperty("choking")) {
-			ctx.drawImage(singletons.getSpriteStore().get(Paths.sprites + "/ideas/choking.png"), x, y - 10);
+			ctx.drawImage(htmlImageStore.get(Paths.sprites + "/ideas/choking.png"), x, y - 10);
 		} else if (this.hasOwnProperty("eating")) {
-			ctx.drawImage(singletons.getSpriteStore().get(Paths.sprites + "/ideas/eat.png"), x, y - 10);
+			ctx.drawImage(htmlImageStore.get(Paths.sprites + "/ideas/eat.png"), x, y - 10);
 		}
 		// NPC and pet idea icons
 		if (this.hasOwnProperty("idea")) {
 			const idea = Paths.sprites + "/ideas/" + this["idea"] + ".png";
-			const ani = singletons.getSpriteStore().animations.idea[this["idea"]];
+			const ani = htmlImageStore.animations.idea[this["idea"]];
 			if (ani) {
 				drawAnimatedIcon(idea, ani.delay, x + ani.offsetX * this["width"],
 						y - this["drawHeight"] + ani.offsetY);
 			} else {
-				ctx.drawImage(singletons.getSpriteStore().get(idea), x + 32 * this["width"],
+				ctx.drawImage(htmlImageStore.get(idea), x + 32 * this["width"],
 						y - this["drawHeight"]);
 			}
 		}
@@ -460,15 +461,15 @@ export class RPEntity extends ActiveEntity {
 		// NPC job icons
 		let nextX = x;
 		if (this.hasOwnProperty("job_healer")) {
-			ctx.drawImage(singletons.getSpriteStore().get(Paths.sprites + "/status/healer.png"), nextX, y - 10);
+			ctx.drawImage(htmlImageStore.get(Paths.sprites + "/status/healer.png"), nextX, y - 10);
 			nextX += 12;
 		}
 		if (this.hasOwnProperty("job_merchant")) {
-			ctx.drawImage(singletons.getSpriteStore().get(Paths.sprites + "/status/merchant.png"), nextX, y - 10);
+			ctx.drawImage(htmlImageStore.get(Paths.sprites + "/status/merchant.png"), nextX, y - 10);
 			nextX += 12;
 		}
 		if (this.hasOwnProperty("job_producer")) {
-			ctx.drawImage(singletons.getSpriteStore().get(Paths.sprites + "/status/producer.png"), nextX, y - 16);
+			ctx.drawImage(htmlImageStore.get(Paths.sprites + "/status/producer.png"), nextX, y - 16);
 			nextX += 16;
 		}
 	}
@@ -786,7 +787,7 @@ export class RPEntity extends ActiveEntity {
 	createResultIcon(imagePath: string) {
 		return {
 			initTime: Date.now(),
-			image: singletons.getSpriteStore().get(imagePath),
+			image: htmlImageStore.get(imagePath),
 			draw: function(ctx: RenderingContext2D, x: number, y: number) {
 				ctx.drawImage(this.image, x, y);
 				return (Date.now() - this.initTime > 1200);
@@ -817,12 +818,12 @@ export class RPEntity extends ActiveEntity {
 			const imagePath = Nature.VALUES[nature].getWeaponPath(weapon);
 			/*
 			if (weapon.startsWith("blade_strike")) {
-				this.attackSprite = new BarehandAttackSprite(this, singletons.getSpriteStore().get(imagePath));
+				this.attackSprite = new BarehandAttackSprite(this, htmlImageStore.get(imagePath));
 			} else {
 				this.attackSprite = new MeleeAttackSprite(this, imagePath);
 			}
 			*/
-			this.attackSprite = new BarehandAttackSprite(this, singletons.getSpriteStore().get(imagePath));
+			this.attackSprite = new BarehandAttackSprite(this, htmlImageStore.get(imagePath));
 		}
 	}
 

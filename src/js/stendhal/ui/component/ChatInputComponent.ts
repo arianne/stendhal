@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2003-2024 - Faiumoni e. V.                 *
+ *                (C) Copyright 2003-2026 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -9,19 +9,19 @@
  *                                                                         *
  ***************************************************************************/
 
-import { marauroa } from "marauroa"
+import { marauroa } from "marauroa";
 
+import { htmlImageStore } from "data/HTMLImageStore";
+import { stendhal } from "stendhal";
+import { Paths } from "../../data/Paths";
+import { ChatCompletionHelper } from "../../util/ChatCompletionHelper";
+import { KeyCode } from "../../util/KeyCode";
 import { ChatPanel } from "../ChatPanel";
 import { ui } from "../UI";
 import { UIComponentEnum } from "../UIComponentEnum";
 import { ChatOptionsDialog } from "../dialog/ChatOptionsDialog";
 import { EmojiMapDialog } from "../dialog/EmojiMapDialog";
 import { Component } from "../toolkit/Component";
-import { singletons } from "../../SingletonRepo";
-import { ChatCompletionHelper } from "../../util/ChatCompletionHelper";
-import { KeyCode } from "../../util/KeyCode";
-import { Paths } from "../../data/Paths";
-import { stendhal } from "stendhal";
 
 
 /**
@@ -87,7 +87,7 @@ export class ChatInputComponent extends Component {
 			btn_emoji.innerText = "☺";
 		} else {
 			// set image for emoji button
-			btn_emoji.appendChild(singletons.getSpriteStore().get(Paths.sprites + "/emoji/smile.png").cloneNode());
+			btn_emoji.appendChild(htmlImageStore.get(Paths.sprites + "/emoji/smile.png").cloneNode());
 		}
 	}
 
