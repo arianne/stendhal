@@ -16,44 +16,57 @@ import { RenderingContext2D } from "util/Types";
 import { Color } from "../data/color/Color";
 import { Paths } from "../data/Paths";
 
-import { htmlImageStore } from "data/HTMLImageStore";
 import { marauroa } from "marauroa";
+import { images } from "sprite/image/ImageManager";
+import { ImageSprite } from "sprite/image/ImageSprite";
 
 export class DomesticAnimal extends RPEntity {
 
 	override minimapStyle = Color.DOMESTICANIMAL;
 
+	override init() {
+		this.imageSprite = new ImageSprite(
+			images.load(Paths.sprites + "/" + this["_rpclass"] + ".png"));
+		this["largeWeight"] = this["largeWeight"] || 20;
+		if (this["_rpclass"] == "sheep") {
+			this["largeWeight"] = 60;
+		}
+	}
+
+	override set(key: string, value: any) {
+		super.set(key, value);
+		if (key === "_rpclass") {
+			console.log("set _rpclass");
+		}
+	}
+
 	override drawMain(ctx: RenderingContext2D) {
-		if (!this.imagePath && this["_rpclass"]) {
-			this["largeWeight"] = this["largeWeight"] | 20;
-			if (this["_rpclass"] == "sheep") {
-				this["largeWeight"] = 60;
-			}
-			this.imagePath = Paths.sprites + "/" + this["_rpclass"] + ".png";
+
+		let image = this.imageSprite?.imageRef?.image
+		if (!image) {
+			return;
 		}
 
-		var localX = this["_x"] * 32;
-		var localY = this["_y"] * 32;
-		var image = htmlImageStore.get(this.imagePath);
-		if (image.height) {
-			var nFrames = 3;
-			var nDirections = 4;
-			var yRow = this["dir"] - 1;
-			if (this["weight"] >= this["largeWeight"]) {
-				yRow += 4;
-			}
-			this["drawHeight"] = image.height / nDirections / 2;
-			this["drawWidth"] = image.width / nFrames;
-			var drawX = ((this["width"] * 32) - this["drawWidth"]) / 2;
-			var frame = 0;
-			if (this["speed"] > 0) {
-				// % Works normally with *floats* (just whose bright idea was
-				// that?), so use floor() as a workaround
-				frame = Math.floor(Date.now() / 100) % nFrames;
-			}
-			var drawY = (this["height"] * 32) - this["drawHeight"];
-			ctx.drawImage(image, frame * this["drawWidth"], yRow * this["drawHeight"], this["drawWidth"], this["drawHeight"], localX + drawX, localY + drawY, this["drawWidth"], this["drawHeight"]);
+		let localX = this["_x"] * 32;
+		let localY = this["_y"] * 32;
+
+		let nFrames = 3;
+		let nDirections = 4;
+		let yRow = this["dir"] - 1;
+		if (this["weight"] >= this["largeWeight"]) {
+			yRow += 4;
 		}
+		this["drawHeight"] = image.height / nDirections / 2;
+		this["drawWidth"] = image.width / nFrames;
+		let drawX = ((this["width"] * 32) - this["drawWidth"]) / 2;
+		let frame = 0;
+		if (this["speed"] > 0) {
+			// % Works normally with *floats* (just whose bright idea was
+			// that?), so use floor() as a workaround
+			frame = Math.floor(Date.now() / 100) % nFrames;
+		}
+		let drawY = (this["height"] * 32) - this["drawHeight"];
+		ctx.drawImage(image, frame * this["drawWidth"], yRow * this["drawHeight"], this["drawWidth"], this["drawHeight"], localX + drawX, localY + drawY, this["drawWidth"], this["drawHeight"]);
 	}
 
 	override getCursor(_x: number, _y: number) {
