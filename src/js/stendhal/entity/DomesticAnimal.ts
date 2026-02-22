@@ -33,12 +33,6 @@ export class DomesticAnimal extends RPEntity {
 		}
 	}
 
-	override set(key: string, value: any) {
-		super.set(key, value);
-		if (key === "_rpclass") {
-			console.log("set _rpclass");
-		}
-	}
 
 	override drawMain(ctx: RenderingContext2D) {
 
