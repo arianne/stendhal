@@ -41,6 +41,7 @@ import { OutfitStore } from "data/OutfitStore";
 import { TileStore } from "data/TileStore";
 import { WeatherRenderer } from "util/WeatherRenderer";
 import { ViewPort } from "ui/ViewPort";
+import { store } from "data/SpriteStore";
 
 
 /**
@@ -118,7 +119,6 @@ export class Client {
 		stendhal.data.cstatus = singletons.getCStatus();
 		stendhal.data.cstatus.init();
 		stendhal.data.group = singletons.getGroupManager();
-		stendhal.data.sprites = singletons.getSpriteStore();
 		// online players
 		stendhal.players = [];
 	}
@@ -190,7 +190,7 @@ export class Client {
 		stendhal.ui.globalInternalWindow = new DialogHandler();
 
 		// pre-cache images & sounds
-		stendhal.data.sprites.startupCache();
+		store.startupCache();
 		stendhal.sound.startupCache();
 
 		if (document.getElementById("viewport")) {
