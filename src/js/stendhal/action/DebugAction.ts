@@ -13,18 +13,16 @@ import { ui } from "../ui/UI";
 import { UIComponentEnum } from "../ui/UIComponentEnum";
 import { FloatingWindow } from "../ui/toolkit/FloatingWindow";
 
-import { SlashAction } from "./SlashAction";
-import { ShowFloatingWindowComponent } from "../ui/component/ShowFloatingWindowComponent";
 import { Panel } from "ui/toolkit/Panel";
+import { ShowFloatingWindowComponent } from "../ui/component/ShowFloatingWindowComponent";
+import { SlashAction } from "./SlashAction";
 
 import { Chat } from "../util/Chat";
 import { Debug } from "../util/Debug";
-import { Paths } from "../data/Paths";
 
-import { marauroa } from "marauroa"
-import { stendhal } from "../stendhal";
+import { marauroa } from "marauroa";
 import { WeatherRenderer } from "util/WeatherRenderer";
-import { htmlImageStore } from "data/HTMLImageStore";
+import { stendhal } from "../stendhal";
 
 /**
  * performances debugging actions
@@ -139,14 +137,9 @@ export class DebugAction extends SlashAction {
 
 		if (weather) {
 			weather = weather.replace(/ /g, "_");
-			const wfilename = Paths.weather + "/" + weather + ".png";
-			if (!htmlImageStore.getCached(wfilename)) {
-				Chat.logH("error", "unknown weather: " + wfilename);
-				return;
-			}
+			WeatherRenderer.get().update(weather);
 		}
 
-		WeatherRenderer.get().update(weather);
-	}
+	}	
 
 };
