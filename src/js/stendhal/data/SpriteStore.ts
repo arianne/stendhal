@@ -59,13 +59,6 @@ export class SpriteStore {
 	};
 
 
-	/**
-	 * Hidden singleton constructor.
-	 */
-	protected constructor() {
-		// do nothing
-	}
-
 	get(filename: string): any {
 		if (!filename) {
 			return {};
@@ -293,24 +286,5 @@ export class SpriteStore {
 	}
 }
 
-/**
- * Hidden class to create the singleton instance internally.
- */
-class SpriteStoreInternal extends SpriteStore {
-
-	/** Singleton instance. */
-	private static instance: SpriteStore;
-
-	/**
-	 * Retrieves singleton instance.
-	 */
-	static get(): SpriteStore {
-		if (!SpriteStoreInternal.instance) {
-			SpriteStoreInternal.instance = new SpriteStore();
-		}
-		return SpriteStoreInternal.instance;
-	}
-}
-
 // SpriteStore singleton instance
-export const store = SpriteStoreInternal.get();
+export const store = /* @__PURE__ */ new SpriteStore();
