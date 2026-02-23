@@ -18,6 +18,8 @@ import { ItemMap } from "./ItemMap";
 
 import { htmlImageStore } from "data/HTMLImageStore";
 import { marauroa } from "marauroa";
+import { ImageSprite } from "sprite/image/ImageSprite";
+import { images } from "sprite/image/ImageManager";
 
 export class Item extends Entity {
 
@@ -29,15 +31,10 @@ export class Item extends Entity {
 	// animation
 	private frameTimeStamp = 0;
 	private animated: boolean|null = null;
-	private xFrames: number|null = null;
-	private yFrames: number|null = null;
+
 
 	constructor() {
 		super();
-		this.sprite = {
-			height: 32,
-			width: 32
-		};
 		this.quantityTextSprite = new TextSprite("", "white", "10px sans-serif");
 	}
 
@@ -73,39 +70,50 @@ export class Item extends Entity {
 	override set(key: string, value: any) {
 		super.set(key, value);
 		if (key === "class" || key === "subclass") {
-			this.sprite.filename = Paths.sprites + "/items/"
-				+ this["class"] + "/" + this["subclass"] + ".png";
-		}
-		if (key === "quantity") {
+			if (this["class"] && this["subclass"]) {
+				this.imageSprite?.free();
+				this.imageSprite = new ImageSprite(
+					images.load(Paths.sprites + "/items/" + this["class"] + "/" + this["subclass"] + ".png"),
+					0, (this["state"] || 0) * 32, 32, 32);
+			}
+		} else if (key === "state") {
+			if (this.imageSprite) {
+				this.imageSprite.offsetY = (this["state"] || 0) * 32
+			}
+	    } else if (key === "quantity") {
 			this.quantityTextSprite = new TextSprite(this.formatQuantity(), "white", "10px sans-serif");
 		}
 	}
 
 	override draw(ctx: RenderingContext2D) {
-		this.sprite.offsetY = (this["state"] || 0) * 32
 		this.stepAnimation();
-
 		this.drawAt(ctx, this["x"] * 32, this["y"] * 32);
 	}
 
 	drawAt(ctx: RenderingContext2D, x: number, y: number) {
-		if (this.sprite) {
-			this.drawSpriteAt(ctx, x, y);
-			let textMetrics = this.quantityTextSprite.getTextMetrics(ctx);
-			if (!textMetrics) {
-				throw new Error("textMetrics is undefined");
-			}
-			this.quantityTextSprite.draw(ctx, x + (32 - textMetrics.width), y + 6);
+		let image = this.imageSprite?.imageRef?.image;
+		if (!image) {
+			return;
 		}
+		this.drawSpriteAt(ctx, x, y);
+		let textMetrics = this.quantityTextSprite.getTextMetrics(ctx);
+		if (!textMetrics) {
+			throw new Error("textMetrics is undefined");
+		}
+		this.quantityTextSprite.draw(ctx, x + (32 - textMetrics.width), y + 6);
 	}
 
 	public stepAnimation() {
+		let image = this.imageSprite?.imageRef?.image;
+		if (!image) {
+			return;
+		}
 		const currentTimeStamp = +new Date();
-		if (this.frameTimeStamp == 0) {
-			this.frameTimeStamp = currentTimeStamp;
-			this.sprite.offsetX = 0;
-			this.sprite.offsetY = 0;
-		} else if (currentTimeStamp - this.frameTimeStamp >= 100) {
+//		if (this.frameTimeStamp == 0) {
+//			this.frameTimeStamp = currentTimeStamp;
+//			this.imageSprite?.offsetX = 0;
+//		}
+		if (currentTimeStamp - this.frameTimeStamp >= 100) {
 			// FIXME: need proper FPS limit
 			this.setXFrameIndex(this.getXFrameIndex() + 1);
 			this.frameTimeStamp = currentTimeStamp;
@@ -146,51 +154,31 @@ export class Item extends Entity {
 	}
 
 	public isAnimated(): boolean {
-		if (!htmlImageStore.get(this.sprite.filename).height) {
-			return false;
+		if (this.animated === null) {
+			let image = this.imageSprite?.imageRef?.image
+			if (image) {
+				this.animated = (image.width / 32) > 1;
+			}
 		}
-		if (this.animated == null) {
-			// store animation state
-			this.animated = (htmlImageStore.get(this.sprite.filename).width / 32) > 1;
-		}
-
-		return this.animated;
+		return this.animated || false;
 	}
 
 	private setXFrameIndex(idx: number) {
-		if (this.xFrames == null) {
-			const img = htmlImageStore.get(this.sprite.filename);
-			this.xFrames = img.width / 32;
+		let image = this.imageSprite?.imageRef.image
+		if (!image) {
+			return;
 		}
-
-		if (idx >= this.xFrames) {
+		let frames = image.width / 32;
+		if (idx >= frames) {
 			// restart
 			idx = 0;
 		}
 
-		this.sprite.offsetX = idx * 32;
-	}
-
-	private setYFrameIndex(idx: number) {
-		if (this.yFrames == null) {
-			const img = htmlImageStore.get(this.sprite.filename);
-			this.yFrames = img.height / 32;
-		}
-
-		if (idx >= this.yFrames) {
-			// restart
-			idx = 0;
-		}
-
-		this.sprite.offsetY = idx * 32;
+		this.imageSprite!.offsetX = idx * 32;
 	}
 
 	public getXFrameIndex(): number {
-		return (this.sprite.offsetX || 0) / 32;
-	}
-
-	public getYFrameIndex(): number {
-		return (this.sprite.offsetY || 0) / 32;
+		return (this.imageSprite?.offsetX || 0) / 32;
 	}
 
 	public override isDraggable(): boolean {

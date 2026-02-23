@@ -190,6 +190,10 @@ export class ItemContainerImplementation {
 		const slotNumber = target.id.slice(this.slot.length + this.suffix.length);
 		let item = myobject[this.slot].getByIndex(slotNumber);
 		if (item) {
+			if (!singletons.getHeldObjectManager().prepare(item, event)) {
+				return;
+			}
+
 			const heldObject = {
 				path: item.getIdPath(),
 				zone: marauroa.currentZoneName,
@@ -197,15 +201,13 @@ export class ItemContainerImplementation {
 				quantity: item.hasOwnProperty("quantity") ? item["quantity"] : 1
 			};
 
-			const img = HTMLImageElementUtil.getAreaOf(htmlImageStore.get(item.sprite.filename), 32, 32);
 			if (event instanceof DragEvent && event.dataTransfer) {
 				stendhal.ui.heldObject = heldObject;
-				event.dataTransfer.setDragImage(img, 0, 0);
 			} else if (this.touchHandler.isTouchEvent(event)) {
 				this.touchHandler.setHolding(true);
 				// TODO: move when supported by mouse events
 				const pos = HTMLUtil.extractPosition(event);
-				singletons.getHeldObjectManager().set(heldObject, img, new Point(pos.pageX, pos.pageY));
+				singletons.getHeldObjectManager().set(heldObject, new Point(pos.pageX, pos.pageY));
 			}
 		} else {
 			event.preventDefault();

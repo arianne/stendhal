@@ -335,7 +335,7 @@ div.logcolR {
 	background: url(/data/gui/danger.png) repeat;
 }
 
-.qm-button, img#held-object {
+.qm-button, canvas#held-object {
 	position: absolute;
 	display: none;
 	opacity: 0.5;

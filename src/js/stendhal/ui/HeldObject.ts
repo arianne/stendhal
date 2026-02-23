@@ -10,6 +10,7 @@
  *                                                                         *
  ***************************************************************************/
 
+import { Entity } from "entity/Entity";
 import { stendhal } from "../stendhal";
 
 import { Point } from "../util/Point";
@@ -37,7 +38,7 @@ export interface HeldObject {
 export class HeldObjectManager {
 
 	/** Image displayed when an object is "held". */
-	private readonly image: HTMLImageElement;
+	private image: HTMLCanvasElement|HTMLImageElement;
 
 	/** Singleton instance. */
 	private static instance: HeldObjectManager;
@@ -58,6 +59,25 @@ export class HeldObjectManager {
 	 */
 	private constructor() {
 		this.image = document.getElementById("held-object")! as HTMLImageElement;
+	}
+
+	public prepare(draggedEntity: Entity, e: Event) {
+		let image = draggedEntity?.imageSprite?.imageRef.image;
+		if (!draggedEntity || !(draggedEntity.type === "item" || draggedEntity.type === "corpse") || !image) {
+			e.preventDefault();
+			return false;
+		}
+		let canvas = document.getElementById("held-object") as HTMLCanvasElement;
+		let sprite = draggedEntity.imageSprite!;
+		canvas.style.display = "block";
+		this.setPosition(-1000, -1000);
+		canvas.width = sprite.width!;
+		canvas.height = sprite.height!;
+		sprite.drawOnto(canvas.getContext("2d")!, 0, 0, 32, 32);
+		if (e instanceof DragEvent) {
+			e.dataTransfer?.setDragImage(canvas, 0, 0);
+		}
+		return true;
 	}
 
 	/**
@@ -82,9 +102,8 @@ export class HeldObjectManager {
 	 * @param pos {util.Point.Point}
 	 *   Initial position of displayed image.
 	 */
-	public set(obj: HeldObject, img: HTMLImageElement|string, pos?: Point) {
+	public set(obj: HeldObject, pos?: Point) {
 		stendhal.ui.heldObject = obj;
-		this.setImage(img);
 		this.onSet(pos);
 	}
 
@@ -113,22 +132,6 @@ export class HeldObjectManager {
 	public onRelease() {
 		// NOTE: should we unset `stendhal.ui.heldObject` here?
 		this.setVisible(false);
-	}
-
-	/**
-	 * Sets or unsets object image.
-	 *
-	 * @param img {HTMLImageElement|string}
-	 *   Image element or path to image.
-	 */
-	private setImage(img?: HTMLImageElement|string) {
-		if (!img) {
-			this.image.src = "";
-		} else if (typeof(img) === "string") {
-			this.image.src = img;
-		} else {
-			this.image.src = img.src;
-		}
 	}
 
 	/**

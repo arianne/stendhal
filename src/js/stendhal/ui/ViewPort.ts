@@ -664,38 +664,23 @@ export class ViewPort {
 			}
 		}
 
-		var img = undefined;
-		let heldObject: HeldObject;
-		if (draggedEntity && draggedEntity.type === "item") {
-			img = HTMLImageElementUtil.getAreaOf(htmlImageStore.get(draggedEntity.sprite.filename), 32, 32);
-			heldObject = {
-				path: draggedEntity.getIdPath(),
-				zone: marauroa.currentZoneName,
-				quantity: draggedEntity.hasOwnProperty("quantity") ? draggedEntity["quantity"] : 1
-			}
-		} else if (draggedEntity && draggedEntity.type === "corpse") {
-			img = htmlImageStore.get(draggedEntity.sprite.filename);
-			heldObject = {
-				path: draggedEntity.getIdPath(),
-				zone: marauroa.currentZoneName,
-				quantity: 1
-			}
-		} else {
-			e.preventDefault();
+		if (!draggedEntity || !singletons.getHeldObjectManager().prepare(draggedEntity, e)) {
 			return;
+		}
+
+		
+		let heldObject: HeldObject = {
+			path: draggedEntity.getIdPath(),
+			zone: marauroa.currentZoneName,
+			quantity: draggedEntity.hasOwnProperty("quantity") ? draggedEntity["quantity"] : 1
 		}
 
 		let touchHandler = TouchHandler.get();
 		if (touchHandler.isTouchEvent(e)) {
-			singletons.getHeldObjectManager().set(heldObject, img, new Point(pos.pageX, pos.pageY));
+			singletons.getHeldObjectManager().set(heldObject, new Point(pos.pageX, pos.pageY));
 			touchHandler.setHolding(true);
 		} else {
 			stendhal.ui.heldObject = heldObject;
-		}
-
-		if (e instanceof DragEvent) {
-			window.event = e; // required by setDragImage polyfil
-			e.dataTransfer?.setDragImage(img, 0, 0);
 		}
 	}
 
