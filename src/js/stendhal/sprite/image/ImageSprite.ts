@@ -40,6 +40,19 @@ export class ImageSprite {
 		ctx.drawImage(image, offsetX, offsetY, width, height, x, y, width, height);
 	}
 
+	drawOntoWithZoom(ctx: RenderingContext2D, targetX: number, targetY: number, targetWidth: number, targetHeight: number) {
+		let image = this.imageRef.image;
+		if (!image) {
+			return;
+		}
+		let offsetX = this.offsetX || 0;
+		let offsetY = this.offsetY || 0;
+		let width = this.width || image.width;
+		let height = this.height || image.height;
+
+		ctx.drawImage(image, offsetX, offsetY, width, height, targetX, targetY, targetWidth, targetHeight);
+	}
+
 	public free() {
 		this.imageRef.free();
 	}

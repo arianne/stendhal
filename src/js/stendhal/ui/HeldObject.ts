@@ -73,7 +73,12 @@ export class HeldObjectManager {
 		this.setPosition(-1000, -1000);
 		canvas.width = sprite.width!;
 		canvas.height = sprite.height!;
-		sprite.drawOnto(canvas.getContext("2d")!, 0, 0, 32, 32);
+		let ctx = canvas.getContext("2d")!;
+		ctx.clearRect(0, 0, sprite.width!, sprite.height!);
+		sprite.drawOntoWithZoom(ctx, 0, 0, 24, 24);
+
+
+
 		if (e instanceof DragEvent) {
 			e.dataTransfer?.setDragImage(canvas, 0, 0);
 		}
