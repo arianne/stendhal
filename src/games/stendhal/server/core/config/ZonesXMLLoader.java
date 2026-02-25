@@ -35,6 +35,7 @@ import games.stendhal.common.tiled.LayerDefinition;
 import games.stendhal.common.tiled.StendhalMapStructure;
 import games.stendhal.server.core.config.zone.AttributesXMLReader;
 import games.stendhal.server.core.config.zone.ConfiguratorXMLReader;
+import games.stendhal.server.core.config.zone.CreatureSpawnsXMLReader;
 import games.stendhal.server.core.config.zone.EntitySetupXMLReader;
 import games.stendhal.server.core.config.zone.PortalSetupXMLReader;
 import games.stendhal.server.core.config.zone.RegionNameSubstitutionHelper;
@@ -57,6 +58,8 @@ public final class ZonesXMLLoader {
 
 	/** Zone attributes reader. */
 	private static final SetupXMLReader attributesReader = new AttributesXMLReader();
+	/** Dynamically spawned creatures. */
+	private static final SetupXMLReader creatureSpawnsReader = new CreatureSpawnsXMLReader();
 	/**
 	 * The ConfiguratorDescriptor XML reader.
 	 */
@@ -416,6 +419,13 @@ public final class ZonesXMLLoader {
 				continue;
 			} else if (tag.equals("associated")) {
 				desc.setAssociatedZones(child.getAttribute("zones"));
+			} else if (tag.equals("spawns")) {
+				for (final Element spawn: XMLUtil.getElements(child)) {
+					final String spawnType = spawn.getTagName();
+					if ("creatures".equals(spawnType)) {
+						setupDesc = creatureSpawnsReader.read(spawn);
+					}
+				}
 			} else {
 				logger.warn("Zone [" + name + "] has unknown element: " + tag);
 				continue;

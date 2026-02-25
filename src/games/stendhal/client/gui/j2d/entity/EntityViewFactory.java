@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,9 +17,9 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import games.stendhal.client.Triple;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.common.Triple;
 
 /*
  * The entity views are generic, but we don't simply have sufficient data to
