@@ -32,4 +32,6 @@ export abstract class AttackSprite implements OverlaySpriteImpl {
 	expired(): boolean {
 		return Date.now() - this.initTime > 180;
 	}
+
+	abstract free() :void;
 }

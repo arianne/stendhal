@@ -52,7 +52,7 @@ export class DirectionalSkillEffect extends SkillEffect {
 		if (rowIdx < 0) {
 			rowIdx = Direction.DOWN.val - 1; // default is third row (down)
 		}
-		ctx.drawImage(this.image, colIdx*drawWidth, rowIdx*drawHeight, drawWidth, drawHeight, x, y,
-				drawWidth, drawHeight);
+		ctx.drawImage(this.imageRef.image!, colIdx*drawWidth, rowIdx*drawHeight, drawWidth, drawHeight, 
+				x, y, drawWidth, drawHeight);
 	}
 }

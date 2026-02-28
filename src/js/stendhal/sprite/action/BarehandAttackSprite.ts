@@ -72,4 +72,8 @@ export class BarehandAttackSprite extends AttackSprite {
 				drawWidth, drawHeight, sx, sy, drawWidth, drawHeight);
 		return this.expired();
 	}
+
+	override free(): void {
+		// do nothing
+	}
 }

@@ -15,6 +15,8 @@ import { OverlaySpriteImpl } from "../OverlaySpriteImpl";
 import { htmlImageStore } from "data/HTMLImageStore";
 import { RenderingContext2D } from "util/Types";
 import { singletons } from "../../SingletonRepo";
+import { images } from "sprite/image/ImageManager";
+import { ImageRef } from "sprite/image/ImageRef";
 
 
 /**
@@ -23,7 +25,7 @@ import { singletons } from "../../SingletonRepo";
 export class SkillEffect implements OverlaySpriteImpl {
 
 	/** Image to be drawn on canvas. */
-	protected readonly image: HTMLImageElement;
+	protected readonly imageRef: ImageRef;
 	/** Time for which each frame should be displayed. */
 	private readonly delay: number;
 	/** Timestamp at which this sprite should expire. */
@@ -47,8 +49,7 @@ export class SkillEffect implements OverlaySpriteImpl {
 	 *   sprite should not expire.
 	 */
 	constructor(name: string, delay=100, duration=0) {
-		this.image = htmlImageStore.get(singletons.getPaths().sprites + "/entity/overlay/"
-				+ name + ".png");
+		this.imageRef = images.load(singletons.getPaths().sprites + "/entity/overlay/" + name + ".png");
 		this.cycleTime = Date.now();
 		this.drawTime = 0;
 		this.delay = delay > 0 ? delay : 100;
@@ -73,18 +74,18 @@ export class SkillEffect implements OverlaySpriteImpl {
 	 */
 	protected drawInternal(ctx: RenderingContext2D, colIdx: number, x: number, y: number,
 			drawWidth: number, drawHeight: number) {
-		ctx.drawImage(this.image, colIdx*drawWidth, 0, drawWidth, drawHeight, x, y, drawWidth,
-				drawHeight);
+		ctx.drawImage(this.imageRef.image!, colIdx*drawWidth, 0, drawWidth, drawHeight, 
+				x, y, drawWidth, drawHeight);
 	}
 
 	draw(ctx: RenderingContext2D, x=0, y=0, drawWidth=48, drawHeight=64): boolean {
 		this.drawTime = Date.now();
-		if (!this.image.height) {
+		if (!this.imageRef.image) {
 			return this.expired();
 		}
 
 		const timeDiff = this.drawTime - this.cycleTime;
-		const fcount = Math.floor(this.image.width / drawWidth);
+		const fcount = Math.floor(this.imageRef.image?.width / drawWidth);
 		let frame = Math.floor(timeDiff / this.delay);
 		if (frame >= fcount) {
 			// start new frame cycle
@@ -99,4 +100,9 @@ export class SkillEffect implements OverlaySpriteImpl {
 	expired(): boolean {
 		return this.expires > 0 && this.drawTime > this.expires;
 	}
+
+	free(): void {
+		this.imageRef.free();
+	}
+
 }

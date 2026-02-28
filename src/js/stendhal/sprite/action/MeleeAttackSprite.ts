@@ -130,4 +130,8 @@ export class MeleeAttackSprite extends AttackSprite {
 		ctx.drawImage(frame, 0, 0, frame.width, frame.height, dx, dy, frame.width, frame.height);
 		return this.expired();
 	}
+
+	override free(): void {
+		// do nothing
+	}
 }

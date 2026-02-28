@@ -104,4 +104,8 @@ export class RangedAttackSprite extends AttackSprite {
 		}
 		return this.expired();
 	}
+
+	override free(): void {
+		// do nothing
+	}
 }
