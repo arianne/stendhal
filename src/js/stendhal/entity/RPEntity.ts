@@ -29,7 +29,6 @@ import { SpeechBubble } from "../sprite/SpeechBubble";
 import { TextSprite } from "../sprite/TextSprite";
 
 import { BarehandAttackSprite } from "../sprite/action/BarehandAttackSprite";
-//import { MeleeAttackSprite } from "../sprite/action/MeleeAttackSprite";
 import { RangedAttackSprite } from "../sprite/action/RangedAttackSprite";
 
 import { htmlImageStore } from "data/HTMLImageStore";
@@ -38,6 +37,7 @@ import { OutfitStore } from "data/OutfitStore";
 import { ViewPort } from "ui/ViewPort";
 import { RenderingContext2D } from "util/Types";
 import { Paths } from "../data/Paths";
+import { statusIconDrawer } from "sprite/indicator/StatusIconDrawer";
 
 var HEALTH_BAR_HEIGHT = 6;
 
@@ -358,121 +358,53 @@ export class RPEntity extends ActiveEntity {
 		this.drawCombat(ctx);
 		this.drawMain(ctx);
 		this.drawAttack(ctx);
-		this.drawStatusIcons(ctx);
+		statusIconDrawer.drawStatusIcons(this, ctx);
 	}
 
 	drawMain(ctx: RenderingContext2D) {
 		if (typeof(this["outfit"]) != "undefined" || typeof(this["outfit_ext"]) != "undefined") {
 			this.drawMultipartOutfit(ctx);
 		} else {
-			let filename = Paths.sprites + "/" + this.spritePath + "/" + this["class"];
-			if (typeof(this["subclass"]) != "undefined") {
-				filename = filename + "/" + this["subclass"];
-			}
-
-			// check for safe image
-			if (!stendhal.config.getBoolean("effect.blood") && htmlImageStore.hasSafeImage(filename)) {
-				filename = filename + "-safe.png";
-			} else {
-				filename = filename + ".png";
-			}
-
-			let image = htmlImageStore.get(filename);
-
-			if (stendhal.config.getBoolean("effect.shadows") && this.castsShadow()) {
-				// check for configured shadow style
-				let shadow_style = this["shadow_style"];
-				if (typeof(shadow_style) === "undefined") {
-					// default to sprite dimensions
-					shadow_style = (image.width / 3) + "x" + (image.height / 4);
-				}
-
-				const shadow = htmlImageStore.getShadow(shadow_style);
-
-				// draw shadow first
-				if (typeof(shadow) !== "undefined") {
-					this.drawSpriteImage(ctx, shadow);
-				}
-			}
-
-			this.drawSpriteImage(ctx, image);
-			this.drawOverlayAnimation(ctx);
+			this.drawSingleOutfit(ctx);
 		}
 	}
 
-	drawStatusIcons(ctx: RenderingContext2D) {
-
-		function _drawAnimatedIcon(icon: CanvasImageSource, delay: number, nFrames: number, xdim: number, ydim: number, x: number, y: number) {
-			var frame = Math.floor(Date.now() / delay) % nFrames;
-			ctx.drawImage(icon, frame * xdim, 0, xdim, ydim, x, y, xdim, ydim);
-		}
-		function drawAnimatedIcon(iconPath: string, delay: number, x: number, y: number, fWidth?: number) {
-			var icon = htmlImageStore.get(iconPath);
-			var dimH = icon.height;
-			var dimW = typeof(fWidth) !== "undefined" ? fWidth : dimH;
-			var nFrames = icon.width / dimW;
-			_drawAnimatedIcon(icon, delay, nFrames, dimW, dimH, x, y);
-		}
-		function drawAnimatedIconWithFrames(iconPath: string, nFrames: number, delay: number, x: number, y: number) {
-			var icon = htmlImageStore.get(iconPath);
-			var ydim = icon.height;
-			var xdim = icon.width / nFrames;
-			_drawAnimatedIcon(icon, delay, nFrames, xdim, ydim, x, y);
+	drawSingleOutfit(ctx: RenderingContext2D) {
+		let filename = Paths.sprites + "/" + this.spritePath + "/" + this["class"];
+		if (typeof(this["subclass"]) != "undefined") {
+			filename = filename + "/" + this["subclass"];
 		}
 
-		var x = this["_x"] * 32 - 10;
-		var y = (this["_y"] + 1) * 32;
-		if (this.hasOwnProperty("choking")) {
-			ctx.drawImage(htmlImageStore.get(Paths.sprites + "/ideas/choking.png"), x, y - 10);
-		} else if (this.hasOwnProperty("eating")) {
-			ctx.drawImage(htmlImageStore.get(Paths.sprites + "/ideas/eat.png"), x, y - 10);
+		// check for safe image
+		if (!stendhal.config.getBoolean("effect.blood") && htmlImageStore.hasSafeImage(filename)) {
+			filename = filename + "-safe.png";
+		} else {
+			filename = filename + ".png";
 		}
-		// NPC and pet idea icons
-		if (this.hasOwnProperty("idea")) {
-			const idea = Paths.sprites + "/ideas/" + this["idea"] + ".png";
-			const ani = htmlImageStore.animations.idea[this["idea"]];
-			if (ani) {
-				drawAnimatedIcon(idea, ani.delay, x + ani.offsetX * this["width"],
-						y - this["drawHeight"] + ani.offsetY);
-			} else {
-				ctx.drawImage(htmlImageStore.get(idea), x + 32 * this["width"],
-						y - this["drawHeight"]);
+
+		let image = htmlImageStore.get(filename);
+
+		if (stendhal.config.getBoolean("effect.shadows") && this.castsShadow()) {
+			// check for configured shadow style
+			let shadow_style = this["shadow_style"];
+			if (typeof(shadow_style) === "undefined") {
+				// default to sprite dimensions
+				shadow_style = (image.width / 3) + "x" + (image.height / 4);
+			}
+
+			const shadow = htmlImageStore.getShadow(shadow_style);
+
+			// draw shadow first
+			if (typeof(shadow) !== "undefined") {
+				this.drawSpriteImage(ctx, shadow);
 			}
 		}
-		if (this.hasOwnProperty("away")) {
-			drawAnimatedIcon(Paths.sprites + "/ideas/away.png", 1500, x + 32 * this["width"], y - this["drawHeight"]);
-		}
-		if (this.hasOwnProperty("grumpy")) {
-			drawAnimatedIcon(Paths.sprites + "/ideas/grumpy.png", 1000, x + 5, y - this["drawHeight"]);
-		}
-		if (this.hasOwnProperty("last_player_kill_time")) {
-			drawAnimatedIconWithFrames(Paths.sprites + "/ideas/pk.png", 12, 300, x, y - this["drawHeight"]);
-		}
-		// status affects
-		if (this.hasOwnProperty("poisoned")) {
-			drawAnimatedIcon(Paths.sprites + "/status/poison.png", 100, x + 32 * this["width"] - 10, y - this["drawHeight"]);
-		}
-		if (this.hasOwnProperty("status_confuse")) {
-			drawAnimatedIcon(Paths.sprites + "/status/confuse.png", 200, x + 32 * this["width"] - 14, y - this["drawHeight"] + 16);
-		}
-		if (this.hasOwnProperty("status_shock")) {
-			drawAnimatedIcon(Paths.sprites + "/status/shock.png", 200, x + 32 * this["width"] - 25, y - 32, 38);
-		}
-		// NPC job icons
-		let nextX = x;
-		if (this.hasOwnProperty("job_healer")) {
-			ctx.drawImage(htmlImageStore.get(Paths.sprites + "/status/healer.png"), nextX, y - 10);
-			nextX += 12;
-		}
-		if (this.hasOwnProperty("job_merchant")) {
-			ctx.drawImage(htmlImageStore.get(Paths.sprites + "/status/merchant.png"), nextX, y - 10);
-			nextX += 12;
-		}
-		if (this.hasOwnProperty("job_producer")) {
-			ctx.drawImage(htmlImageStore.get(Paths.sprites + "/status/producer.png"), nextX, y - 16);
-			nextX += 16;
-		}
+
+		this.drawSpriteImage(ctx, image);
+		this.drawOverlayAnimation(ctx);
 	}
+
+
 
 	/**
 	 * Draw colored ellipses (or rectangles on browsers that do not support
