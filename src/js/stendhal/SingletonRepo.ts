@@ -1,5 +1,5 @@
 /***************************************************************************
- *                 Copyright © 2003-2024 - Faiumoni e. V.                  *
+ *                 Copyright © 2003-2026 - Faiumoni e. V.                  *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -19,8 +19,8 @@ import { FacingHandler } from "./util/FacingHandler";
 import { KeyHandler } from "./util/KeyHandler";
 import { SessionManager } from "./util/SessionManager";
 
-import { CStatus } from "./data/CStatus";
 import { CacheManager } from "./data/CacheManager";
+import { CStatus } from "./data/CStatus";
 import { EmojiStore } from "./data/EmojiStore";
 import { GroupManager } from "./data/GroupManager";
 import { Paths } from "./data/Paths";
@@ -28,11 +28,10 @@ import { Paths } from "./data/Paths";
 import { LoopedSoundSourceManager } from "./data/sound/LoopedSoundSourceManager";
 import { SoundManager } from "./data/sound/SoundManager";
 
-import { ui } from "./ui/UI";
-import { UIComponentEnum } from "./ui/UIComponentEnum";
-import { HeldObjectManager } from "./ui/HeldObject";
 import { Inventory } from "./ui/Inventory";
 import { SoftwareJoystickController } from "./ui/SoftwareJoystickController";
+import { ui } from "./ui/UI";
+import { UIComponentEnum } from "./ui/UIComponentEnum";
 import { UIUpdateObserver } from "./ui/UIUpdateObserver";
 
 import { ChatInputComponent } from "./ui/component/ChatInputComponent";
@@ -80,10 +79,6 @@ export class SingletonRepo {
 
 	static getGroupManager(): GroupManager {
 		return GroupManager.get();
-	}
-
-	static getHeldObjectManager(): HeldObjectManager {
-		return HeldObjectManager.get();
 	}
 
 	static getInventory(): Inventory {

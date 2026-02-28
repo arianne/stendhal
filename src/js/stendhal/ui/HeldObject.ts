@@ -37,11 +37,13 @@ export interface HeldObject {
  */
 export class HeldObjectManager {
 
+	/** Singleton instance. */
+	private static instance: HeldObjectManager;
+
 	/** Image displayed when an object is "held". */
 	private image: HTMLCanvasElement|HTMLImageElement;
 
-	/** Singleton instance. */
-	private static instance: HeldObjectManager;
+	public heldObject?: HeldObject;
 
 
 	/**
@@ -75,9 +77,7 @@ export class HeldObjectManager {
 		canvas.height = sprite.height!;
 		let ctx = canvas.getContext("2d")!;
 		ctx.clearRect(0, 0, sprite.width!, sprite.height!);
-		sprite.drawOntoWithZoom(ctx, 0, 0, 24, 24);
-
-
+		sprite.drawOntoWithZoom(ctx, 0, 0, 32, 32);
 
 		if (e instanceof DragEvent) {
 			e.dataTransfer?.setDragImage(canvas, 0, 0);
@@ -108,7 +108,7 @@ export class HeldObjectManager {
 	 *   Initial position of displayed image.
 	 */
 	public set(obj: HeldObject, pos?: Point) {
-		stendhal.ui.heldObject = obj;
+		this.heldObject = obj;
 		this.onSet(pos);
 	}
 
@@ -135,7 +135,7 @@ export class HeldObjectManager {
 	 * Hides object image.
 	 */
 	public onRelease() {
-		// NOTE: should we unset `stendhal.ui.heldObject` here?
+		// NOTE: should we unset `heldObject` here?
 		this.setVisible(false);
 	}
 

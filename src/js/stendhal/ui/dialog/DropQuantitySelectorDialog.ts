@@ -9,10 +9,10 @@
  *                                                                         *
  ***************************************************************************/
 
-import { marauroa } from "marauroa"
+import { marauroa } from "marauroa";
 
+import { HeldObjectManager } from "ui/HeldObject";
 import { Component } from "../toolkit/Component";
-import { singletons } from "../../SingletonRepo";
 
 
 export class DropQuantitySelectorDialog extends Component {
@@ -49,7 +49,7 @@ export class DropQuantitySelectorDialog extends Component {
 	 * Drops selected quantity from stack.
 	 */
 	private onDrop(event: Event) {
-		singletons.getHeldObjectManager().onRelease();
+		HeldObjectManager.get().onRelease();
 		let quantityStr = (this.child(".quantityselectorvalue") as HTMLInputElement).value;
 		let quantity = parseInt(quantityStr);
 		if (quantity > 0) {
@@ -64,7 +64,7 @@ export class DropQuantitySelectorDialog extends Component {
 	 * Drops entire stack.
 	 */
 	private onDropAll(event: Event) {
-		singletons.getHeldObjectManager().onRelease();
+		HeldObjectManager.get().onRelease();
 		marauroa.clientFramework.sendAction(this.action);
 		this.componentElement.dispatchEvent(new Event("close"));
 		event.preventDefault();

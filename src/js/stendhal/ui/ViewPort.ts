@@ -12,7 +12,7 @@
 import { marauroa } from "marauroa";
 import { stendhal } from "../stendhal";
 
-import { HeldObject } from "./HeldObject";
+import { HeldObject, HeldObjectManager } from "./HeldObject";
 import { ui } from "./UI";
 import { UIComponentEnum } from "./UIComponentEnum";
 
@@ -22,7 +22,6 @@ import { ActionContextMenu } from "./dialog/ActionContextMenu";
 import { DropQuantitySelectorDialog } from "./dialog/DropQuantitySelectorDialog";
 
 import { Client } from "../Client";
-import { singletons } from "../SingletonRepo";
 
 import { AchievementBanner } from "../sprite/AchievementBanner";
 import { EmojiSprite } from "../sprite/EmojiSprite";
@@ -30,10 +29,8 @@ import { NotificationBubble } from "../sprite/NotificationBubble";
 import { SpeechBubble } from "../sprite/SpeechBubble";
 import { TextBubble } from "../sprite/TextBubble";
 
-import { htmlImageStore } from "data/HTMLImageStore";
 import { TileMap } from "data/TileMap";
 import { Zone } from "entity/Zone";
-import { HTMLImageElementUtil } from "sprite/image/HTMLImageElementUtil";
 import { Canvas, RenderingContext2D } from "util/Types";
 import { WeatherRenderer } from "util/WeatherRenderer";
 import { Debug } from "../util/Debug";
@@ -664,7 +661,8 @@ export class ViewPort {
 			}
 		}
 
-		if (!draggedEntity || !singletons.getHeldObjectManager().prepare(draggedEntity, e)) {
+		if (!draggedEntity || !HeldObjectManager.get().prepare(draggedEntity, e)) {
+			e.preventDefault();
 			return;
 		}
 
@@ -677,10 +675,10 @@ export class ViewPort {
 
 		let touchHandler = TouchHandler.get();
 		if (touchHandler.isTouchEvent(e)) {
-			singletons.getHeldObjectManager().set(heldObject, new Point(pos.pageX, pos.pageY));
+			HeldObjectManager.get().set(heldObject, new Point(pos.pageX, pos.pageY));
 			touchHandler.setHolding(true);
 		} else {
-			stendhal.ui.heldObject = heldObject;
+			HeldObjectManager.get().heldObject = heldObject;
 		}
 	}
 
@@ -699,22 +697,23 @@ export class ViewPort {
 	 * Handles releasing an item or corpse from drag event.
 	 */
 	onDrop(e: DragEvent|TouchEvent) {
-		if (stendhal.ui.heldObject) {
+		let heldObject = HeldObjectManager.get().heldObject;
+		if (heldObject) {
 			var pos = HTMLUtil.extractPosition(e);
 			const targetSlot = HTMLUtil.parseSlotName((pos.target as HTMLElement).id);
 			const action: any = {
-				"zone": stendhal.ui.heldObject.zone
+				"zone": heldObject.zone
 			};
 			if (targetSlot === "viewport") {
 				let viewPort = ViewPort.get();
 				action.x = Math.floor((pos.canvasRelativeX + viewPort.offsetX) / 32).toString();
 				action.y = Math.floor((pos.canvasRelativeY + viewPort.offsetY) / 32).toString();
 
-				var id = stendhal.ui.heldObject.path.substr(1, stendhal.ui.heldObject.path.length - 2);
+				var id = heldObject.path.substring(1, heldObject.path.length - 1);
 				var drop = /\t/.test(id);
 				if (drop) {
 					action["type"] = "drop";
-					action["source_path"] = stendhal.ui.heldObject.path;
+					action["source_path"] = heldObject.path;
 				} else {
 					action["type"] = "displace";
 					action["baseitem"] = id;
@@ -729,22 +728,22 @@ export class ViewPort {
 					}
 				}
 				action["type"] = "equip";
-				action["source_path"] = stendhal.ui.heldObject.path;
+				action["source_path"] = heldObject.path;
 				action["target_path"] = "[" + objectId + "\t" + targetSlot + "]";
 			}
 
-			const quantity = stendhal.ui.heldObject.quantity;
-			const sourceSlot = stendhal.ui.heldObject.slot || "viewport";
+			const quantity = heldObject.quantity;
+			const sourceSlot = heldObject.slot || "viewport";
 			// item was dropped
-			stendhal.ui.heldObject = undefined;
+			heldObject = undefined;
 
-			const touch_held = TouchHandler.get().holding() && quantity > 1;
+			const touch_held = TouchHandler.get().holding() && (quantity||1) > 1;
 			// if ctrl is pressed or holding stackable item from touch event, we ask for the quantity
 			// NOTE: don't create selector if touch source is ground
 			if (e.ctrlKey || (touch_held && sourceSlot !== targetSlot)) {
 				ui.createSingletonFloatingWindow("Quantity", new DropQuantitySelectorDialog(action, touch_held), pos.pageX - 50, pos.pageY - 25);
 			} else {
-				singletons.getHeldObjectManager().onRelease();
+				HeldObjectManager.get().onRelease();
 				marauroa.clientFramework.sendAction(action);
 			}
 		}

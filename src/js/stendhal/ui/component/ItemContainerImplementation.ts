@@ -21,7 +21,7 @@ import { DropQuantitySelectorDialog } from "../dialog/DropQuantitySelectorDialog
 import { singletons } from "../../SingletonRepo";
 
 import { htmlImageStore } from "data/HTMLImageStore";
-import { HTMLImageElementUtil } from "sprite/image/HTMLImageElementUtil";
+import { HeldObjectManager } from "ui/HeldObject";
 import { HTMLUtil } from "ui/HTMLUtil";
 import { TouchHandler } from "ui/TouchHandler";
 import { ViewPort } from "ui/ViewPort";
@@ -190,7 +190,7 @@ export class ItemContainerImplementation {
 		const slotNumber = target.id.slice(this.slot.length + this.suffix.length);
 		let item = myobject[this.slot].getByIndex(slotNumber);
 		if (item) {
-			if (!singletons.getHeldObjectManager().prepare(item, event)) {
+			if (!HeldObjectManager.get().prepare(item, event)) {
 				return;
 			}
 
@@ -202,12 +202,12 @@ export class ItemContainerImplementation {
 			};
 
 			if (event instanceof DragEvent && event.dataTransfer) {
-				stendhal.ui.heldObject = heldObject;
+				HeldObjectManager.get().heldObject = heldObject;
 			} else if (this.touchHandler.isTouchEvent(event)) {
 				this.touchHandler.setHolding(true);
 				// TODO: move when supported by mouse events
 				const pos = HTMLUtil.extractPosition(event);
-				singletons.getHeldObjectManager().set(heldObject, new Point(pos.pageX, pos.pageY));
+				HeldObjectManager.get().set(heldObject, new Point(pos.pageX, pos.pageY));
 			}
 		} else {
 			event.preventDefault();
@@ -218,7 +218,7 @@ export class ItemContainerImplementation {
 	 * Handles displaying an icon for objects dragged with touch.
 	 */
 	private onTouchMove(event: TouchEvent) {
-		if (stendhal.ui.heldObject) {
+		if (HeldObjectManager.get().heldObject) {
 			return;
 		}
 		this.onDragStart(event);
@@ -251,8 +251,9 @@ export class ItemContainerImplementation {
 	}
 
 	private onDrop(event: DragEvent|TouchEvent) {
+		let heldObject = HeldObjectManager.get().heldObject;
 		const myobject = this.object || marauroa.me;
-		if (stendhal.ui.heldObject) {
+		if (heldObject) {
 			const pos = HTMLUtil.extractPosition(event);
 			const id = (pos.target as HTMLElement).id;
 			const targetSlot = HTMLUtil.parseSlotName(id);
@@ -278,20 +279,20 @@ export class ItemContainerImplementation {
 			}
 
 			const action = {
-				"source_path": stendhal.ui.heldObject.path
+				"source_path": heldObject.path
 			} as any;
-			const sameSlot = stendhal.ui.heldObject.slot === targetSlot;
+			const sameSlot = heldObject.slot === targetSlot;
 			if (sameSlot) {
 				action["type"] = "reorder";
 				action["new_position"] = this.parseIndex(id) || "" + (this.size - 1);
 			} else {
 				action["type"] = "equip";
 				action["target_path"] = "[" + objectId + "\t" + targetSlot + "]";
-				action["zone"] = stendhal.ui.heldObject.zone;
+				action["zone"] = heldObject.zone;
 			}
 
-			const quantity = stendhal.ui.heldObject.quantity;
-			stendhal.ui.heldObject = undefined;
+			const quantity = heldObject.quantity || 1;
+			HeldObjectManager.get().heldObject = undefined;
 
 			// if ctrl is pressed or holding stackable item from touch event, we ask for the quantity
 			const touch_held = this.touchHandler.holding() && quantity > 1;
@@ -302,7 +303,7 @@ export class ItemContainerImplementation {
 					new DropQuantitySelectorDialog(action, touch_held),
 					pos.pageX - 50, pos.pageY - 25);
 			} else {
-				singletons.getHeldObjectManager().onRelease();
+				HeldObjectManager.get().onRelease();
 				marauroa.clientFramework.sendAction(action);
 			}
 		}
@@ -381,7 +382,7 @@ export class ItemContainerImplementation {
 				stendhal.ui.actionContextMenu.set(ui.createSingletonFloatingWindow("Action",
 					new ActionContextMenu((event.target as any).dataItem, append),
 					event.pageX - 50, event.pageY - 5));
-			} else if (!stendhal.ui.heldObject) {
+			} else if (!HeldObjectManager.get().heldObject) {
 				if (!stendhal.config.getBoolean("inventory.double-click") || this.isDoubleClick(event)) {
 					marauroa.clientFramework.sendAction({
 						type: "use",
