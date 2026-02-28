@@ -9,11 +9,19 @@
  *                                                                         *
  ***************************************************************************/
 
+import { RenderingContext2D } from "util/Types";
+
 export abstract class ImageRef {
 	image?: ImageBitmap;
 
 	async /*abstract */ waitFor(): Promise<void> {
 		return new Promise<void>(() => {});
+	}
+
+	drawOnto(ctx: RenderingContext2D, x: number, y: number) {
+		if (this.image) {
+			ctx.drawImage(this.image, x, y);
+		}
 	}
 
 	abstract free(): void;
