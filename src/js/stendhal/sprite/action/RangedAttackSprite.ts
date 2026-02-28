@@ -15,7 +15,8 @@ import { Paths } from "../../data/Paths";
 import { RPEntity } from "../../entity/RPEntity";
 import { AttackSprite } from "./AttackSprite";
 
-import { htmlImageStore } from "data/HTMLImageStore";
+import { images } from "sprite/image/ImageManager";
+import { ImageRef } from "sprite/image/ImageRef";
 import { ViewPort } from "ui/ViewPort";
 
 
@@ -25,12 +26,13 @@ export class RangedAttackSprite extends AttackSprite {
 	private readonly targetX: number;
 	private readonly targetY: number;
 	private readonly color: string;
-	private readonly image = htmlImageStore.get(Paths.sprites + "/combat/ranged.png");
+	private readonly imageRef: ImageRef;
 	private readonly weapon?: string;
 
 
 	constructor(source: RPEntity, target: RPEntity, color: string, weapon?: string) {
 		super();
+		this.imageRef = images.load(Paths.sprites + "/combat/ranged.png");
 		this.dir = source["dir"];
 		this.targetX = (target.x + target.width / 2) * 32;
 		this.targetY = (target.y + target.height / 2) * 32;
@@ -65,12 +67,14 @@ export class RangedAttackSprite extends AttackSprite {
 		ctx.lineTo(endX, endY);
 		ctx.stroke();
 
+		let image = this.imageRef.image;
+
 		// draw bow
-		if (this.weapon === "ranged" && this.image.height) {
+		if (this.weapon === "ranged" && image) {
 			frame = Math.floor(Math.min(dtime / 60, 3));
 			const yRow = this.dir - 1;
-			const drawWidth = this.image.width / 3;
-			const drawHeight = this.image.height / 4;
+			const drawWidth = image.width / 3;
+			const drawHeight = image.height / 4;
 
 			const centerX = x + (entityWidth - drawWidth) / 2;
 			const centerY = y + (entityHeight - drawHeight) / 2;
@@ -99,13 +103,16 @@ export class RangedAttackSprite extends AttackSprite {
 					sy = centerY;
 			}
 
-			ctx.drawImage(this.image, frame * drawWidth, yRow * drawHeight,
-					drawWidth, drawHeight, sx, sy, drawWidth, drawHeight);
+			ctx.drawImage(image, 
+					frame * drawWidth, yRow * drawHeight,
+					drawWidth, drawHeight, 
+					sx, sy, 
+					drawWidth, drawHeight);
 		}
 		return this.expired();
 	}
 
 	override free(): void {
-		// do nothing
+		this.imageRef.free();
 	}
 }

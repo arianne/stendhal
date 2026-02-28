@@ -12,11 +12,10 @@
 
 import { OverlaySpriteImpl } from "../OverlaySpriteImpl";
 
-import { htmlImageStore } from "data/HTMLImageStore";
-import { RenderingContext2D } from "util/Types";
-import { singletons } from "../../SingletonRepo";
 import { images } from "sprite/image/ImageManager";
 import { ImageRef } from "sprite/image/ImageRef";
+import { RenderingContext2D } from "util/Types";
+import { singletons } from "../../SingletonRepo";
 
 
 /**

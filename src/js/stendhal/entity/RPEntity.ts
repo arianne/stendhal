@@ -610,6 +610,7 @@ export class RPEntity extends ActiveEntity {
 		if (this.attackSprite.expired()) {
 			// sprite expired & should be removed
 			// NOTE: if this is done after `this.attackSprite.draw` animation doesn't look right
+			this.attackSprite.free();
 			this.attackSprite = undefined;
 			return;
 		}
@@ -631,6 +632,7 @@ export class RPEntity extends ActiveEntity {
 		if (this.overlay && this.overlay.draw(ctx, this["drawOffsetX"], this["drawOffsetY"],
 				this["drawWidth"], this["drawHeight"])) {
 			// overlay sprite expired
+			this.overlay.free();
 			this.overlay = undefined;
 		}
 	}
@@ -733,6 +735,7 @@ export class RPEntity extends ActiveEntity {
 			weapon = undefined;
 		}
 
+		this.attackSprite?.free();
 		if (ranged) {
 			this.attackSprite = new RangedAttackSprite(this, this.getAttackTarget()!,
 					Nature.VALUES[nature].color, weapon);
@@ -750,12 +753,12 @@ export class RPEntity extends ActiveEntity {
 			const imagePath = Nature.VALUES[nature].getWeaponPath(weapon);
 			/*
 			if (weapon.startsWith("blade_strike")) {
-				this.attackSprite = new BarehandAttackSprite(this, htmlImageStore.get(imagePath));
+				this.attackSprite = new BarehandAttackSprite(this, imagePath);
 			} else {
 				this.attackSprite = new MeleeAttackSprite(this, imagePath);
 			}
 			*/
-			this.attackSprite = new BarehandAttackSprite(this, htmlImageStore.get(imagePath));
+			this.attackSprite = new BarehandAttackSprite(this, imagePath);
 		}
 	}
 
@@ -785,9 +788,8 @@ export class RPEntity extends ActiveEntity {
 	}
 
 	override destroy(obj: Entity) {
-		if (this._target) {
-			this._target.onAttackStopped(this);
-		}
+		this._target?.onAttackStopped(this);
+		this.overlay?.free();
 		super.destroy(obj);
 	}
 

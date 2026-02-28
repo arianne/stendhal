@@ -1,5 +1,5 @@
 /***************************************************************************
- *                 Copyright © 2023-2024 - Faiumoni e. V.                  *
+ *                 Copyright © 2023-2026 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -10,37 +10,40 @@
  *                                                                         *
  ***************************************************************************/
 
-import { AttackSprite } from "./AttackSprite";
-import { RPEntity } from "../../entity/RPEntity";
 import { RenderingContext2D } from "util/Types";
+import { RPEntity } from "../../entity/RPEntity";
+import { AttackSprite } from "./AttackSprite";
 
-import { stendhal } from "../../stendhal";
+import { images } from "sprite/image/ImageManager";
+import { ImageRef } from "sprite/image/ImageRef";
 import { ViewPort } from "ui/ViewPort";
 
 
 export class BarehandAttackSprite extends AttackSprite {
 
 	private readonly dir: number;
-	private readonly image: HTMLImageElement;
+	private readonly imageRef: ImageRef;
 
 
-	constructor(source: RPEntity, image: HTMLImageElement) {
+	constructor(source: RPEntity, imagePath: string) {
 		super();
 		this.dir = source["dir"];
-		this.image = image;
+		this.imageRef = images.load(imagePath);
 	}
 
-	override draw(ctx: RenderingContext2D, x: number, y: number, entityWidth: number,
-			entityHeight: number): boolean {
-		let viewPort = ViewPort.get();
-		if (!this.image || !this.image.height) {
+	override draw(ctx: RenderingContext2D, x: number, y: number, 
+			entityWidth: number, entityHeight: number): boolean {
+		
+		let image = this.imageRef.image;
+		if (!image) {
 			return this.expired();
 		}
-
+				
+		let viewPort = ViewPort.get();
 		const dtime = Date.now() - this.initTime;
 		const frameIndex = Math.floor(Math.min(dtime / 60, 2));
-		const drawWidth = this.image.width / 3;
-		const drawHeight = this.image.height / 4;
+		const drawWidth = image.width / 3;
+		const drawHeight = image.height / 4;
 		const centerX = x + (entityWidth - drawWidth) / 2;
 		const centerY = y + (entityHeight - drawHeight) / 2;
 
@@ -68,12 +71,16 @@ export class BarehandAttackSprite extends AttackSprite {
 				sy = centerY;
 		}
 
-		ctx.drawImage(this.image, frameIndex * drawWidth, (this.dir - 1) * drawHeight,
-				drawWidth, drawHeight, sx, sy, drawWidth, drawHeight);
+		ctx.drawImage(image, 
+				frameIndex * drawWidth, (this.dir - 1) * drawHeight,
+				drawWidth, drawHeight, 
+				sx, sy, 
+				drawWidth, drawHeight);
 		return this.expired();
 	}
 
 	override free(): void {
-		// do nothing
+		this.imageRef?.free();
 	}
+
 }
