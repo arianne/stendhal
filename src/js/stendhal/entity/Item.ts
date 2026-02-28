@@ -16,10 +16,9 @@ import { TextSprite } from "../sprite/TextSprite";
 import { Entity } from "./Entity";
 import { ItemMap } from "./ItemMap";
 
-import { htmlImageStore } from "data/HTMLImageStore";
 import { marauroa } from "marauroa";
-import { ImageSprite } from "sprite/image/ImageSprite";
 import { images } from "sprite/image/ImageManager";
+import { ImageSprite } from "sprite/image/ImageSprite";
 
 export class Item extends Entity {
 
