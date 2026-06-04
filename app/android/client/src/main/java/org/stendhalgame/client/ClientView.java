@@ -14,6 +14,7 @@ package org.stendhalgame.client;
 import java.util.Random;
 
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -189,7 +190,11 @@ public class ClientView extends WebView {
 				if (!UrlHelper.isInternalUri(uri)) {
 					// open external links in default browser/app
 					// FIXME: should we ask for confirmation?
-					MainActivity.get().startActivity(new Intent(Intent.ACTION_VIEW, uri));
+					try {
+						MainActivity.get().startActivity(new Intent(Intent.ACTION_VIEW, uri));
+					} catch (final ActivityNotFoundException e) {
+						Notifier.toast("No app found to open this link");
+					}
 					return true;
 				}
 				view.loadUrl(UrlHelper.checkClientUrl(uri.toString()));
