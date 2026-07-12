@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2025 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -33,6 +33,9 @@ public class CStatusAction implements ActionListener {
 
 	/** Key is name, value is ID */
 	public static final Map<String, String> nameList = new HashMap<String, String>();
+
+	/** Key is name, value is client dist */
+	public static final Map<String, String> clientList = new HashMap<String, String>();
 
 	/** registers the action */
 	public static void register() {
@@ -83,5 +86,10 @@ public class CStatusAction implements ActionListener {
 			}
 		}
 
+		String clientDist = "";
+		if (action.has("dist")) {
+			clientDist = action.get("dist");
+		}
+		clientList.put(pName, clientDist);
 	}
 }
