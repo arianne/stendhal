@@ -17,7 +17,7 @@ import java.util.List;
 import games.stendhal.server.constants.StandardMessages;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.core.scripting.impl.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
 /**

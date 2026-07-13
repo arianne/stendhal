@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2012-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2012-2024 - Faiumoni e. V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,7 +18,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.MathHelper;
-import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.core.scripting.impl.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;

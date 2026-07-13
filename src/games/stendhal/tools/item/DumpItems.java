@@ -1,5 +1,5 @@
 /***************************************************************************
- *                     Copyright © 2020 - Arianne                          *
+ *                     Copyright © 2020-2024 - Arianne                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -26,7 +26,7 @@ import games.stendhal.server.core.config.ItemGroupsXMLLoader;
 import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
 import games.stendhal.server.core.rule.defaultruleset.LowerCaseMap;
-import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.core.scripting.impl.ScriptImpl;
 import games.stendhal.server.entity.creature.impl.DropItem;
 
 /**

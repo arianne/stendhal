@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,7 +17,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.core.scripting.impl.ScriptImpl;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Transition;

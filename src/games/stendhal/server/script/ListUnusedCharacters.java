@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2022-2022 - Stendhal                    *
+ *                   (C) Copyright 2022-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -23,7 +23,7 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.KeyedSlotUtil;
-import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.core.scripting.impl.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.KeyedSlot;
 import marauroa.common.game.RPObject;

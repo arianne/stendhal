@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    Copyright © 2020-2023 - Stendhal                     *
+ *                    Copyright © 2020-2024 - Stendhal                     *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,7 +16,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import games.stendhal.common.NotificationType;
-import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.core.scripting.impl.ScriptImpl;
 import games.stendhal.server.core.scripting.lua.LuaLoader;
 import games.stendhal.server.entity.player.Player;
 

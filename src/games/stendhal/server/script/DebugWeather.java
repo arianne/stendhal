@@ -22,7 +22,7 @@ import java.util.Set;
 import games.stendhal.server.constants.StandardMessages;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.WeatherUpdater;
-import games.stendhal.server.core.scripting.AbstractAdminScript;
+import games.stendhal.server.core.scripting.impl.AbstractAdminScript;
 import marauroa.common.Pair;
 
 

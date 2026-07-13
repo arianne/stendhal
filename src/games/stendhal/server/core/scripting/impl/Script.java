@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -10,10 +10,11 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.scripting;
+package games.stendhal.server.core.scripting.impl;
 
 import java.util.List;
 
+import games.stendhal.server.core.scripting.ScriptingSandbox;
 import games.stendhal.server.entity.player.Player;
 
 /**

@@ -9,7 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.scripting;
+package games.stendhal.server.core.scripting.impl;
 
 import java.util.Arrays;
 import java.util.LinkedList;

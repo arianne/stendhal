@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2023 - Faiumoni e.V.                    *
+ *                 (C) Copyright 2023-2024 - Faiumoni e.V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 import games.stendhal.server.core.rp.DaylightPhase;
 import games.stendhal.server.core.rp.DaylightUpdater;
-import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.core.scripting.impl.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
 /**
