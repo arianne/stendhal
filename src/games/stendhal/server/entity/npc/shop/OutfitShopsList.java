@@ -19,6 +19,7 @@ import java.util.TreeMap;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.server.entity.npc.MerchantNPC;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.OutfitChangerAdder;
@@ -164,6 +165,11 @@ public class OutfitShopsList {
 		}
 		new OutfitChangerAdder().addOutfitChanger(npc, behaviour, action, !fl.containsKey("noOffer"),
 				fl.containsKey("returnable"));
+
+		if (npc instanceof MerchantNPC) {
+			// register with merchant NPC for retrieving shop inventory for interactive dialogs
+			((MerchantNPC) npc).addShop(ShopType.OUTFIT, name);
+		}
 	}
 
 	/**

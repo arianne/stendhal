@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -133,6 +133,7 @@ public class CommandCenter {
 		WhoAction.register();
 		register("info", new InfoAction());
 		register("markscroll", new MarkScrollAction());
+		register("shop_inventory", new ShopInventoryAction());
 	}
 
 	/**
