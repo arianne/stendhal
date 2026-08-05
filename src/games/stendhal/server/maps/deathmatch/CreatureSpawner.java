@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2023 - Stendhal                    *
+ *                   (C) Copyright 2003-2024 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -163,7 +163,7 @@ public class CreatureSpawner  {
 	 */
 	DeathMatchCreature spawnNewCreature(final Creature template, final Player player, final DeathmatchInfo deathmatchInfo) {
 		DeathMatchCreature creature = new DeathMatchCreature(
-				new ArenaCreature(template.getNewInstance(), deathmatchInfo.getArena().getShape()), deathmatchInfo);
+				new ArenaCreature(template.getNewInstanceRandomizeStats(), deathmatchInfo.getArena().getShape()), deathmatchInfo);
 
 		if (StendhalRPAction.placeat(deathmatchInfo.getZone(), creature, player.getX(), player.getY(), deathmatchInfo.getArena().getShape())) {
 			creature.clearDropItemList();

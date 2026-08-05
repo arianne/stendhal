@@ -28,6 +28,7 @@ import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.common.constants.SoundLayer;
+import games.stendhal.common.constants.Testing;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -366,6 +367,24 @@ public class Creature extends NPC {
 	 */
 	public Creature getNewInstance() {
 		return new Creature(this);
+	}
+
+	/**
+	 * Creates a new creature with randomized stats using this instance as a template.
+	 *
+	 * @return
+	 *   New creature instance.
+	 */
+	public Creature getNewInstanceRandomizeStats() {
+		final Creature newInstance = getNewInstance();
+		// A bit of randomization to make Joan and Snaketails a bit happier.
+		// :)
+		newInstance.setAtk(Rand.randGaussian(newInstance.getAtk(), newInstance.getAtk() / 10));
+		newInstance.setDef(Rand.randGaussian(newInstance.getDef(), newInstance.getDef() / 10));
+		if (Testing.COMBAT) {
+			newInstance.setRatk(Rand.randGaussian(newInstance.getRatk(), newInstance.getRatk() / 10));
+		}
+		return newInstance;
 	}
 
 	/**
