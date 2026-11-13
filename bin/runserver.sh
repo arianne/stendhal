@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-STENDHAL_VERSION="1.49"
+STENDHAL_VERSION="1.49.1"
 SERVER_JAR="stendhal-server-${STENDHAL_VERSION}.jar"
 
 # change to server directory

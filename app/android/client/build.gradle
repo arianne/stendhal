@@ -11,7 +11,7 @@ android {
 		minSdk 21
 		targetSdk 32
 		versionCode 1049000
-		versionName "1.49"
+		versionName "1.49.1"
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 		targetSdkVersion 32
 		minSdkVersion 21
