@@ -33,6 +33,21 @@ export class HTMLUtil {
 		return msg;
 	}
 
+	public static escapeChar(character: string): string {
+		switch (character) {
+			case "&":
+				return "&amp;";
+			case "<":
+				return "&lt;";
+			case ">":
+				return "&gt;";
+			case "\"":
+				return "&quot;";
+			default:
+				return character;
+		}
+	}
+
 	public static niceName(s: string): string {
 		if (!s) {
 			return "";
