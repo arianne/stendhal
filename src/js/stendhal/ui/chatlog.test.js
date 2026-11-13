@@ -26,6 +26,8 @@ function test(input, output) {
 test("",            "");
 test("a",           "a");
 test("a <oops",     "a &lt;oops");
+test("\\<img src=x onerror=alert(1)>", "&lt;img src=x onerror=alert(1)&gt;");
+test("a & b",       "a &amp; b");
 test("#a",          "<span class=\"logh\">a</span>");
 test("##a",         "#a");
 test("#a#b",        "<span class=\"logh\">a#b</span>");

@@ -1,5 +1,5 @@
 /***************************************************************************
- *                (C) Copyright 2022-2023 - Faiumoni e. V.                 *
+ *                (C) Copyright 2022-2026 - Faiumoni e. V.                 *
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -15,6 +15,7 @@ import { ChatLogComponent } from "../ui/component/ChatLogComponent";
 
 declare let marauroa: any;
 declare let stendhal: any;
+import { HTMLUtil } from "../ui/HTMLUtil";
 
 
 /**
@@ -122,8 +123,12 @@ export class Chat {
 
 			if (c === "\\") {
 				let n = message[i + 1];
-				res += n;
-				i++;
+				if (n !== undefined) {
+					res += HTMLUtil.escapeChar(n);
+					i++;
+				} else {
+					res += "\\";
+				}
 
 			// Highlight Start?
 			} else if (c === "#") {
@@ -179,10 +184,6 @@ export class Chat {
 				}
 				res += c;
 
-			// HTML escape
-			} else if (c === "<") {
-				res += "&lt;";
-
 			// End of word
 			} else if (delims.indexOf(c) > -1) {
 				let n = message[i + 1];
@@ -202,7 +203,7 @@ export class Chat {
 
 			// Normal characters
 			} else {
-				res += c;
+				res += HTMLUtil.escapeChar(c);
 			}
 		}
 
@@ -216,4 +217,6 @@ export class Chat {
 
 		return res;
 	}
+
+
 }
