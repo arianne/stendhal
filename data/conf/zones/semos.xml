@@ -1468,6 +1468,11 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
 				<parameter name="rejected">You find it hard to enter. Perhaps you're not prepared for what is below.</parameter>
 			</implementation>
 		</portal>
+		
+		<portal x="112" y="86" ref="post_office_entrance">
+			<destination zone="int_semos_post_office" ref="exit"/>
+			<attribute name="move.continuous"/>
+		</portal>
 
 		<portal x="21" y="80" ref="school_entrance">
 			<destination zone="int_semos_school_0" ref="exit"/>
@@ -1550,6 +1555,15 @@ South: Semos city
 				class-name="games.stendhal.server.entity.mapstuff.useable.WellSource"/>
 		</entity>
 
+	</zone>
+	
+	<zone name="int_semos_post_office" file="interiors/semos/post_office.tmx">
+		<portal x="9" y="17" ref="exit">
+			<destination zone="0_semos_plains_n" ref="post_office_entrance"/>
+			<attribute name="move.continuous"/>
+		</portal>
+		
+		<configurator class-name="games.stendhal.server.maps.semos.postoffice.PostmasterNPC"/>
 	</zone>
 
 	<zone name="int_semos_school_0" file="interiors/semos/school_0.tmx">
